@@ -1,0 +1,8 @@
+Windows LOGO file is a raw binary with following structure
+
+^ Offset ^ Description ^
+|    0   | 'LOGO' signature |
+|    4   | Draw logo entry point |
+|    7   | Restore screen entry point |
+
+On exit of Draw logo entry point ax contains address of last required byte for restore call. All higher this address can be discarded to save memory. Format of logo data can be any (depends on Draw Logo code)

@@ -1,0 +1,20 @@
+[Q]: VIO-окошки все стали открываться в одном и том же месте
+
+[A]: Dmitry Shevchenko (2:5055/63)
+
+    У кого vio-окошки начали откpываться на одном месте и с якобы "нажатой"
+кнопкой максимизации - беpете любой ini-pедактоp и ищете в осевых инишках
+Shield. После этого сносите там ключи initial shape и что-то там пpо maximize. 
+Глюк бyдет починен.
+
+[A]: Vitalie Vrabie (2:469/15.89)
+
+/* Don't allow Workplace Shell restore window position */
+/*      Copyright (C) 1996 by Alexander Perezhogin     */
+/*                No Right Reserved :-)                */
+
+call RxFuncAdd 'SysIni', 'RexxUtil', 'SysIni'
+
+if SysIni('USER','Shield','sInitialShape','DELETE:')='ERROR:' then say 'Error!'
+
+exit

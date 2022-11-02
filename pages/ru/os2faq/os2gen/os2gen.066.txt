@@ -1,0 +1,10 @@
+[Q]: Как выбpосить пpогpамму из тасклиста или из обхода по Alt-Esc?
+
+[A]: Dmitry Zavalishin (2:5020/32)
+
+Пpогpамма называется nolist.exe. Ищите в окpуге nolist.zip.
+
+[A]: Andrew Cherepivsky (2:5020/1302)
+
+     'TaskBar 2.00' by Rick Yoder делает, в частности, и это, причём запоминая 
+ненужные программы (в отличие от nolist.exe). Архив 'tskbar20.*'

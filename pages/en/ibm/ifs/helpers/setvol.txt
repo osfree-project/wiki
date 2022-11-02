@@ -1,0 +1,39 @@
+==== FSH_SETVOLUME ====
+
+**Purpose**
+
+This function provides the mechanism for assuring that a desired volume is in a removable media drive before I/O is done to the drive.   
+
+**Calling Sequence**
+
+<code c>
+int far pascal FSH_SETVOLUME(hVPB , fControl)
+
+unsigned short hVPB;
+unsigned short fControl;
+</code>
+
+**Where**
+
+//hVPB// is the volume handle for the source of I/O.   
+
+//fControl// is the bit mask of pop-up control actions:   
+
+|Bit 0 off |indicates volume change pop-up desired |
+|Bit 0 on |indicates no volume change pop-up  |
+|All other bits are reserved and must be zero. ||
+
+**Returns**
+
+If no error is detected, a zero error code is returned. If an error is detected, one of the following error codes is returned:   
+
+  * ERROR_VOLUME_CHANGED -- is an indication that removable media volume change has occurred. 
+  * ERROR_INVALID_PARAMETER -- the fControl flag word has reserved bits on. 
+
+**Remarks**
+
+This routine is used by the //FSH_CALLDRIVER// routine to insure that the desired volume is in a removable media drive. FSDs can use it for the same purpose.   
+
+//FSH_SETVOLUME// may block.   
+
+**Note**:   OS/2 does not validate input parameters. An FSD, therefore, should call //FSH_PROBEBUF// where appropriate.   

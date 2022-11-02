@@ -1,0 +1,129 @@
+{{page>en:templates:fapiint}}
+
+====== DosErrClass ======
+ 
+
+This call helps OS/2 applications respond to error codes (return codes) received from OS/2.
+
+===== Syntax =====
+<code c>
+DosErrClass (Code, Class, Action, Locus)
+</code>
+
+===== Parameters =====
+
+  * Code ([[USHORT]]) - input : Error code returned by an OS/2 function.
+  * Class ([[PUSHORT]]) - output : Address of the classification of an error.
+  * Action ([[PUSHORT]]) - output : Address of the action for an error.
+  * Locus ([[PUSHORT]]) - output : Address of the origin of an error.
+
+===== Return Code =====
+
+rc ([[USHORT]]) - return:Return code descriptions are:
+
+  * 0 NO_ERROR
+
+===== Remarks =====
+
+The input is a return code returned from another function call, and the output is a classification of the return and recommended action. Depending on the application, the recommended action could be followed, or a more specific application recovery could be performed.
+
+The following values are returned in Class, Action, and Locus:
+
+^ VALUE ^ MNEMONIC ^ DESCRIPTION ^
+|1|OUTRES|Out of resources|
+|2|TEMPSIT|Temporary situation|
+|3|AUTH|Authorization failed|
+|4|INTRN|Internal error|
+|5|HRDFAIL|Device hardware failure|
+|6|SYSFAIL|System failure|
+|7|APPERR|Probable application error|
+|8|NOTFND|Item not located|
+|9|BADFMT|Bad format for call/data|
+|10|LOCKED|Resource/data locked|
+|11|MEDIA|Incorrect media, CRC error|
+|12|ALREADY|Resource/action already taken/done/exists|
+|13|UNK|Unclassified|
+|14|CANT|Can't perform requested action|
+|15|TIME|Timeout|
+
+^ VALUE ^ MNEMONIC ^ DESCRIPTION ^
+|1|RETRY|Retry immediately|
+|2|DLYRET|Delay and retry|
+|3|USER|Bad user input - get new values|
+|4|ABORT|Terminate in an orderly manner|
+|5|PANIC|Terminate immediately|
+|6|IGNORE|Ignore error|
+|7|INTRET|Retry after user intervention|
+
+^VALUE^MNEMONIC^DESCRIPTION^
+|1|UNK|Unknown|
+|2|DISK|Random access device such as a disk|
+|3|NET|Network|
+|4|SERDEV|Serial device|
+|5|MEM|Memory|
+
+==== Family API Considerations ====
+
+Some options operate differently in the DOS mode than in the OS/2 mode. Therefore, the following considerations apply to DosErrClass when coding for the DOS mode:
+
+When DosErrClass is called by a family application, it returns a valid error classification for returns that have occurred. The classifications of a given return code may not be the same for the Family API and the OS/2 mode applications. 
+
+===== Bindings =====
+
+==== C ====
+
+<code c>
+#define INCL_DOSMISC
+
+USHORT  rc = DosErrClass(Code, Class, Action, Locus);
+
+USHORT  Code;          /* Error code for analysis */
+PUSHORT Class;         /* Error classification (returned) */
+PUSHORT Action;        /* Recommended action (returned) */
+PUSHORT Locus;         /* Error locus (returned) */
+
+USHORT  rc;            /* return code */
+</code>
+
+==== MASM ====
+
+<code asm>
+EXTRN  DosErrClass:FAR
+INCL_DOSMISC      EQU 1
+
+PUSH   WORD    Code      ;Error code for analysis
+PUSH@  WORD    Class     ;Error classification (returned)
+PUSH@  WORD    Action    ;Recommended action (returned)
+PUSH@  WORD    Locus     ;Error locus (returned)
+CALL   DosErrClass
+
+</code>
+
+Returns WORD
+
+
+===== Example Code =====
+
+This example attempts to delete a non-existent file. The error returned is then plugged into DosErrClass for more information about the error and what actions should be taken.
+<code c>
+#define INCL_DOSQUEUES
+
+#define RESERVED 0L
+#define FILE_DELETE "adlkjf.dkf"
+
+USHORT Error;
+USHORT Class;
+USHORT Action;
+USHORT Locus;
+USHORT rc;
+
+   Error = DosDelete(FILE_DELETE,  /* File name path */
+                     RESERVED);    /* Reserved (must be zero) */
+   rc = DosErrClass(Error,         /* Error code for analysis */
+                    &Class,        /* Error classification */
+                    &Action,       /* Recommended action */
+                    &Locus);       /* Error locus */
+</code>
+
+
+{{page>en:templates:fapi}}

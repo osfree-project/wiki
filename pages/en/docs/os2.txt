@@ -1,0 +1,23 @@
+==== OS/2 personality ====
+
+Here's the section related to the OS/2 API implementation
+
+  * [[en:docs:os2:architecture|Architectural ideas behind OS/2 personality]]
+  * [[en:docs:os2:status|OS/2 personality prototype status]]
+  * [[en:docs:os2:ifs|Installable File System]]
+  * [[en:docs:os2:ixf|Installable Executable Format]]
+  * [[en:docs:os2:cmd:index|Command Line Reference]]
+  * [[en:docs:os2:modules|Modules and their entry points]]
+  * [[en:docs:os2:pm:index|Presentation Manager]]
+  * [[ru:docs:os2:freepm:index|FreePM Documentation]]
+  * [[en:docs:os2:bld:index|Build Level documentation]]
+  * [[en:ibm|IBM's OS/2 Toolkit and DDK documentation]]
+  * [[en:docs:fapi|Family API]]
+  * [[en:docs:os2:api:vio|VIO API]]
+  * [[en:docs:os2:api:cpi|CPI API]]
+  * [[en:docs:general:mvm|MVM server]]
+  * [[en:docs:os2:os2srv|main OS/2 server]]
+  * [[en:docs:os2:os2exec|os2exec server]]
+  * [[en:docs:os2:os2fs|filesystem server]]
+  * [[en:docs:os2:modules:kal|libKAL library]]
+  * [[en:docs:os2:modules:doscalls|DOSCALLS.DLL library]]

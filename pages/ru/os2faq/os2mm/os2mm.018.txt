@@ -1,0 +1,18 @@
+[Q]: Чем проигрывать *.MOD, *.STM и прочие модули под OS/2?
+
+[A]: Dmitry Shevchenko (2:5055/63)
+
+    _Очень_ хоpоший интеpполиpyющий сабж XMP:
+
+Extended Module Player 2.0.2 Wed Feb 23 09:14:49 BRST 2000
+Copyright (C) 1996-2000 Claudio Matsuoka and Hipolito Carraro Jr
+OS/2 Port by Kevin Langman (langman@earthling.net)
+
+    46 фоpматов модyлей. DART, файл. Chorus, reverb. Типа кpyто и всё такое.
+
+    От mikmod отличается хотя бы тем, что пpавильно гpyзит амижьи .med-ы.
+
+[A]: Max Alekseyev (2:5015/60)
+
+Порт mikmod (а также mikmodPM) тоже его рук дело. Взять XMP и mikmod можно со
+страницы автора http://go.to/langman

@@ -1,0 +1,51 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=44H, AL=08H ======
+
+===== Version =====
+
+3.0 and higher
+
+===== Brief =====
+
+CHECK IF BLOCK DEVICE REMOVABLE
+
+===== Family API =====
+
+
+===== Input =====
+
+	AX = 4408h
+	BL = drive number (00h = default, 01h = A:, etc)
+
+===== Return =====
+
+ CF clear if successful
+	    AX = media type (0000h removable, 0001h fixed)
+	CF set on error
+	    AX = error code (01h,0Fh) (see #01680 at AH=59h/BX=0000h)
+
+===== Macro =====
+
+
+===== Notes =====
+
+	in addition to the normal operation, if Stacker is installed, this
+	  call also sets the volume number at offset 58h in the Stacker
+	  device driver (except under DR DOS 3.41-5.0, which do not pass
+	  through this call to the driver; use AX=440Eh instead)
+	  (see AX=4404h"Stacker",AX=440Eh,INT 25/AX=CDCDh)
+	this function was not supported by Digital Research's DOS Plus
+
+===== See also =====
+
+  AX=4400h,AX=4404h"Stacker",AX=4409h,INT 2F/AX=122Bh
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:int}}
+
+{{page>en:templates:fapi}}
+

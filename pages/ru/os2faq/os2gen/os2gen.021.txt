@@ -1,0 +1,43 @@
+[Q]: А как запустить конкретную VIO-сессию с заданным окном, шрифтом и т.д?
+
+[A]: Alexander Bezborodov (2:5062/3)
+
+REXX спасет отца pусской демокpатии ;)
+
+>------ 8< ---| start3.Cmd | ----------------
+
+/* */
+
+/* parse arg X Y CmdLine */
+call rxfuncadd SysIni, rexxutil, SysIni
+
+/* для eng или pусской с англ. фиксом */
+FS = SysIni('USER', 'Shield', '~Font Size...')
+
+if FS \= 'ERROR:' then
+do
+  Call SysIni 'USER', 'Shield', '~Font Size...', d2c(Y*256+X)
+  'start 'CmdLine
+  Call SysIni 'USER', 'Shield', '~Font Size...', FS
+  exit
+end
+
+/* для pусской оси */
+FS = SysIni('USER', 'Shield', 'Размер ~шрифта...')
+
+if FS \= 'ERROR:' then
+do
+  Call SysIni 'USER', 'Shield', 'Размер ~шрифта...', d2c(Y*256+X)
+  'start 'cndline
+  Call SysIni 'USER', 'Shield', 'Размер ~шрифта...', FS
+  exit
+end
+
+>------ 8< -----------------------------
+
+[A]: Ivan Borovicov (2:5020/955)
+
+А вообще еще есть довольно приятная софтинка GO, которая именно этим и
+занимается. Плюс еще много всего умеет.
+
+Go можно взять на oksoft.rsl.ru

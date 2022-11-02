@@ -1,0 +1,49 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=5DH, AL=09H ======
+
+===== Version =====
+
+3.1 and higher
+
+===== Brief =====
+
+FLUSH REDIRECTED PRINTER OUTPUT
+
+===== Family API =====
+
+
+===== Input =====
+
+		AX = 5D09h
+
+===== Return =====
+
+  nothing
+
+===== Macro =====
+
+
+===== Notes =====
+
+
+  Desc:	forces redirected printer output to be printed, and starts a new print
+	  job
+  Notes:	MS-DOS and DR DOS 3.41/5.0 simply push AX on the stack and call
+	  INT 2F/AX=1125h
+	this function is also supported by 10Net, which calls it Terminate All
+	  Spool Jobs, and does not flush if in "combine" mode
+
+
+===== See also =====
+
+   AX=5D07h,AX=5D08h,INT 2F/AX=1125h
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:int}}
+
+{{page>en:templates:fapi}}
+

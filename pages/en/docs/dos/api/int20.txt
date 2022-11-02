@@ -1,0 +1,49 @@
+{{page>en:templates:dosint}}
+
+====== Int 20H ======
+
+===== Version =====
+
+1 and higher
+
+===== Brief =====
+
+TERMINATE PROGRAM
+
+===== Family API =====
+
+[[en:docs:fapi:DosExit]]
+
+===== Input =====
+
+  CS = PSP segment
+
+===== Return =====
+
+Never return
+
+===== Macro =====
+
+<code asm>
+INCLUDE DOS.INC
+
+TERMINATE
+</code>
+===== Notes =====
+
+Function is obsolete. Use [[en:docs:dos:api:int21:4c|INT 21/AH=4Ch]] instead
+
+This function sets the program's return code (ERRORLEVEL) to 00h
+
+===== See Also =====
+
+[[en:docs:dos:api:int21:00|INT 21/AH=00h]] [[en:docs:dos:api:int21:4c|INT 21/AH=4Ch]]
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:int}}
+
+{{page>en:templates:fapi}}
+

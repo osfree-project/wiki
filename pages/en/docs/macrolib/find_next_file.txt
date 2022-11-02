@@ -1,0 +1,32 @@
+{{page>en:templates:macroint}}
+
+======  ======
+
+===== Version =====
+
+
+
+===== Brief =====
+
+
+
+===== DOS Interrupt =====
+
+[[en:docs:dos:api:int|INTH]]: [[en:docs:dos:api:int:|H]]
+
+===== Family API =====
+
+[[en:docs:fapi:]]
+
+===== Syntax =====
+
+<code asm>
+</code>
+
+===== Parameters =====
+
+
+===== Return =====
+
+
+{{page>en:templates:biosapi}}

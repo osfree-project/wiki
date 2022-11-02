@@ -1,0 +1,5 @@
+[Q]: Как в SIO залочить порт?
+
+[A]: Gosha Zafievsky (2:5020/72)
+
+DEVICE=C:\OS2\SIO\SIO.SYS (COM1:57600)

@@ -1,0 +1,62 @@
+{{page>en:templates:fapiint}}
+
+====== DosGetHugeShift ======
+
+This call returns a shift count used to derive the selectors that address memory allocated with [[DosAllocHuge]].
+
+===== Syntax =====
+
+<code c>
+DosGetHugeShift (ShiftCount)
+</code>
+
+===== Parameters =====
+
+  * ShiftCount ([[PUSHORT]]) - output : Address of the shift count.
+
+===== Return Code =====
+
+rc ([[USHORT]]) - return
+
+Return code description is:
+
+  * 0    NO_ERROR
+
+===== Remarks =====
+
+Each segment of a huge memory allocation has a unique selector. To compute the next sequential selector in a huge memory area, take the value 1, shift it left by the number of bits specified in shift count. Use the resulting value as an increment to add to the previous selector (using the selector returned by [[DosAllocHuge]] as the first selector). For example:
+  * Assume [[DosAllocHuge]] is issued with NumSeg equal to 3, and that the number 63 is returned for the selector of the first segment. 
+  * If DosGetHugeShift returns a shift count of 4, shifting the value "1" by this amount results in an increment of 16. 
+  * Adding this increment to selector number 63 produces 79 for the second selector. Adding the same increment to selector number 79 yields 95 for the third selector.
+
+===== Example Code =====
+
+==== C Binding ====
+
+<code c>
+#define INCL_DOSMEMMGR
+
+USHORT  rc = DosGetHugeShift(ShiftCount);
+
+PUSHORT          ShiftCount;    /* Shift Count (returned) */
+
+USHORT           rc;            /* return code */
+</code>
+
+==== MASM Binding ====
+
+<code c>
+EXTRN  DosGetHugeShift:FAR
+INCL_DOSMEMMGR      EQU 1
+
+PUSH@  WORD    ShiftCount    ;Shift Count (returned)
+CALL   DosGetHugeShift
+
+Returns WORD
+</code>
+
+===== Note =====
+
+Text based on [[http://www.edm2.com/index.php/DosGetHugeShift]]
+
+{{page>en:templates:fapi}}

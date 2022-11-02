@@ -1,0 +1,17 @@
+{{page>en:templates:biosint}}
+
+====== Int 16H ======
+
+Keyboard BIOS API. All registers saved on entry and restores on return.
+
+===== BIOS Interrupts =====
+
+^ Function ^ Macro ^ Description ^ Version ^
+| [[en:docs:bios:api:int16:00|00H]] | [[en:docs:macrolib:@CharIn]]((osFree extension)) | Read char | 5150+ |
+| [[en:docs:bios:api:int16:01|01H]] | [[en:docs:macrolib:@CharPeek]]((osFree extension)) | Peek char | 5150+ |
+| [[en:docs:bios:api:int16:02|02H]] | [[en:docs:macrolib:@KbdStatus]]((osFree extension)) | Get keyboard status | 5150+ |
+
+{{page>en:templates:biosapi}}
+
+{{page>en:templates:fapi}}
+

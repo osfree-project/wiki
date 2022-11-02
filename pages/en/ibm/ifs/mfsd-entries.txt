@@ -1,0 +1,13 @@
+===== mini-FSD Entry points =====
+
+The following table is a summary of mini-FSD entry points:   
+
+^# ^Entry Point              ^Description ^
+|1. |[[en:ibm:ifs:mfsd-entries:chgfptr|MFS_CHGFILEPTR]] |Move a file's position pointer |
+|2. |[[en:ibm:ifs:mfsd-entries:close|MFS_CLOSE]]           |Close a file. |
+|3. |[[en:ibm:ifs:mfsd-entries:init|MFS_INIT]]                |mini-FSD initialization |
+|4. |[[en:ibm:ifs:mfsd-entries:open|MFS_OPEN]]             |Open a file |
+|5. |[[en:ibm:ifs:mfsd-entries:read|MFS_READ]]             |Read from a file |
+|6. |[[en:ibm:ifs:mfsd-entries:term|MFS_TERM]]             |Terminate the mini-FSD |
+
+Table 4-1. Summary of mini-FSD entry points   

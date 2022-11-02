@@ -1,0 +1,20 @@
+{{page>en:templates:biosint}}
+
+====== Int 13H ======
+
+Disk BIOS API. All registers saved on entry and restores on return.
+
+===== BIOS Interrupts =====
+
+^ Function ^ Macro ^ Description ^ Version ^
+| [[en:docs:bios:api:int13:00|00H]] | [[en:docs:macrolib:@DskReset]]((osFree extension)) | Reset drives | 5150+ |
+| [[en:docs:bios:api:int13:01|01H]] | [[en:docs:macrolib:@DskStatus]]((osFree extension)) | Get disk status | 5150+ |
+| [[en:docs:bios:api:int13:02|02H]] | [[en:docs:macrolib:@DskRead]]((osFree extension)) | Read sector | 5150+ |
+| [[en:docs:bios:api:int13:03|03H]] | [[en:docs:macrolib:@DskWrite]]((osFree extension)) | Write sector | 5150+ |
+| [[en:docs:bios:api:int13:04|04H]] | [[en:docs:macrolib:@DskVerify]]((osFree extension)) | Verify sector | 5150+ |
+| [[en:docs:bios:api:int13:05|05H]] | [[en:docs:macrolib:@DskFormat]]((osFree extension)) | Format track | 5150+ |
+
+{{page>en:templates:biosapi}}
+
+{{page>en:templates:fapi}}
+

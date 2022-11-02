@@ -1,0 +1,38 @@
+==== FSH_INTERR ====
+
+**Purpose**
+
+This function signals an internal error.   
+
+**Calling Sequence**
+
+<code c>
+void far pascal FSH_INTERR(pMsg, cbMsg)
+
+char far * pMsg;
+unsigned short cbMsg;
+</code>
+
+**Where**
+
+//pMsg// is a pointer to the message text.   
+
+//cbMsg// is the length of the message text. 
+
+**Returns**
+
+There are no error returns.   
+
+**Remarks**
+
+For reliability, if an FSD detects an internal inconsistency during normal operation, the FSD shuts down the system as a whole. This is the safest thing to do since it is not clear if the system as a whole is in a state that allows normal execution to continue.   
+
+When an FSD calls //FSH_INTERR//, the address of the caller and the supplied message is displayed on the console. The system then halts.   
+
+The code used to display the message is primitive. The message should contain ASCII characters in the range 0x20-0x7E, optionally with 0x0D and 0x0A to break the text into multiple lines.   
+
+The FSD must preface all such messages with the name of the file system.   
+
+The maximum message length is 512 characters. Messages longer than this are truncated.   
+
+Note:   OS/2 does not validate input parameters. An FSD, therefore, should call //FSH_PROBEBUF// where appropriate.   

@@ -1,0 +1,89 @@
+{{logos:os2.gif?35x35}} 
+
+**Please help to find info about enries marked as //No info//**
+
+===== PMDRAG =====
+ 
+THis is not real DLL, but forwarders to [[PMCTLS]].DLL. 
+
+^Ordinal ^Name ^Desc ^ Status ^
+| 1 | DrgAccessDraginfo | Forwarder to PMCTLS.41 | Done |
+| 2 | DrgAddStrHandle | Forwarder to PMCTLS.42 | Done |
+| 3 | DrgAllocDraginfo | Forwarder to PMCTLS.43 | Done |
+| 4 | DrgAllocDragtransfer | Forwarder to PMCTLS.44 | Done |
+| 5 | DrgDeleteDraginfoStrHandles | Forwarder to PMCTLS.45 | Done |
+| 6 | DrgDeleteStrHandle | Forwarder to PMCTLS.46 | Done |
+| 7 | DrgDrag | Forwarder to PMCTLS.47 | Done |
+| 8 | DrgFreeDraginfo | Forwarder to PMCTLS.48 | Done |
+| 9 | DrgFreeDragtransfer | Forwarder to PMCTLS.49 | Done |
+| 10 | DrgGetPS | Forwarder to PMCTLS.50 | Done |
+| 11 | DrgPostTransferMsg | Forwarder to PMCTLS.51 | Done |
+| 12 | DrgPushDraginfo | Forwarder to PMCTLS.52 | Done |
+| 13 | DrgQueryDragitem | Forwarder to PMCTLS.53 | Done |
+| 14 | DrgQueryDragitemCount | Forwarder to PMCTLS.54 | Done |
+| 15 | DrgQueryDragitemPtr | Forwarder to PMCTLS.55 | Done |
+| 16 | DrgQueryNativeRMF | Forwarder to PMCTLS.56 | Done |
+| 17 | DrgQueryNativeRMFLen | Forwarder to PMCTLS.57 | Done |
+| 18 | DrgQueryStrName | Forwarder to PMCTLS.58 | Done |
+| 19 | DrgQueryStrNameLen | Forwarder to PMCTLS.59 | Done |
+| 20 | DrgQueryTrueType | Forwarder to PMCTLS.60 | Done |
+| 21 | DrgQueryTrueTypeLen | Forwarder to PMCTLS.61 | Done |
+| 22 | DrgReleasePS | Forwarder to PMCTLS.62 | Done |
+| 23 | DrgSendTransferMsg | Forwarder to PMCTLS.63 | Done |
+| 24 | DrgSetDragPointer | Forwarder to PMCTLS.64 | Done |
+| 25 | DrgSetDragImage | Forwarder to PMCTLS.65 | Done |
+| 26 | DrgSetDragItem | Forwarder to PMCTLS.66 | Done |
+| 27 | DrgVerifyNativeRMF | Forwarder to PMCTLS.67 | Done |
+| 28 | DrgVerifyRMF | Forwarder to PMCTLS.68 | Done |
+| 29 | DrgVerifyTrueType | Forwarder to PMCTLS.69 | Done |
+| 30 | DrgVerifyType | Forwarder to PMCTLS.70 | Done |
+| 31 | DrgVerifyTypeSet | Forwarder to PMCTLS.71 | Done |
+| 32 | Drg32AccessDraginfo | Forwarder to PMCTLS.74 | Done |
+| 33 | Drg32AddStrHandle | Forwarder to PMCTLS.75 | Done |
+| 34 | Drg32AllocDraginfo | Forwarder to PMCTLS.76 | Done |
+| 35 | Drg32AllocDragtransfer | Forwarder to PMCTLS.77 | Done |
+| 36 | Drg32DeleteDraginfoStrHandles | Forwarder to PMCTLS.78 | Done |
+| 37 | Drg32DeleteStrHandle | Forwarder to PMCTLS.79 | Done |
+| 38 | Drg32Drag | Forwarder to PMCTLS.80 | Done |
+| 39 | Drg32FreeDraginfo | Forwarder to PMCTLS.81 | Done |
+| 40 | Drg32FreeDragtransfer | Forwarder to PMCTLS.82 | Done |
+| 41 | Drg32GetPS | Forwarder to PMCTLS.83 | Done |
+| 42 | Drg32PostTransferMsg | Forwarder to PMCTLS.84 | Done |
+| 43 | Drg32PushDraginfo | Forwarder to PMCTLS.85 | Done |
+| 44 | Drg32QueryDragitem | Forwarder to PMCTLS.86 | Done |
+| 45 | Drg32QueryDragitemCount | Forwarder to PMCTLS.87 | Done |
+| 46 | Drg32QueryDragitemPtr | Forwarder to PMCTLS.88 | Done |
+| 47 | Drg32QueryNativeRMF | Forwarder to PMCTLS.89 | Done |
+| 48 | Drg32QueryNativeRMFLen | Forwarder to PMCTLS.90 | Done |
+| 49 | Drg32QueryStrName | Forwarder to PMCTLS.91 | Done |
+| 50 | Drg32QueryStrNameLen | Forwarder to PMCTLS.92 | Done |
+| 51 | Drg32QueryTrueType | Forwarder to PMCTLS.93 | Done |
+| 52 | Drg32QueryTrueTypeLen | Forwarder to PMCTLS.94 | Done |
+| 53 | Drg32ReleasePS | Forwarder to PMCTLS.95 | Done |
+| 54 | Drg32SendTransferMsg | Forwarder to PMCTLS.96 | Done |
+| 55 | Drg32SetDragPointer | Forwarder to PMCTLS.97 | Done |
+| 56 | Drg32SetDragImage | Forwarder to PMCTLS.98 | Done |
+| 57 | Drg32SetDragitem | Forwarder to PMCTLS.99 | Done |
+| 58 | Drg32VerifyNativeRMF | Forwarder to PMCTLS.100 | Done |
+| 59 | Drg32VerifyRMF | Forwarder to PMCTLS.101 | Done |
+| 60 | Drg32VerifyTrueType | Forwarder to PMCTLS.102 | Done |
+| 61 | Drg32VerifyType | Forwarder to PMCTLS.103 | Done |
+| 62 | Drg32VerifyTypeSet | Forwarder to PMCTLS.104 | Done |
+| 63 | DrgDragFiles | Forwarder to PMCTLS.72 | Done |
+| 64 | DrgAcceptDroppedFiles | Forwarder to PMCTLS.73 | Done |
+| 65 | Drg32DragFiles | Forwarder to PMCTLS.105 | Done |
+| 66 | Drg32AcceptDroppedFiles | Forwarder to PMCTLS.106 | Done |
+| 67 | DrgLazyDrag | Forwarder to PMCTLS.284 | Done |
+| 68 | DrgCancelLazyDrag | Forwarder to PMCTLS.285 | Done |
+| 69 | DrgLazyDrop | Forwarder to PMCTLS.286 | Done |
+| 70 | DrgQueryDraginfoPtr | Forwarder to PMCTLS.287 | Done |
+| 71 | DrgQueryDraginfoPtrFromHwnd | Forwarder to PMCTLS.288 | Done |
+| 72 | DrgQueryDraginfoPtrFromDragitem | Forwarder to PMCTLS.289 | Done |
+| 73 | DrgQueryDragStatus | Forwarder to PMCTLS.290 | Done |
+| 74 | DrgReallocDraginfo | Forwarder to PMCTLS.291 | Done |
+| 75 | Drg32QueryFormat | Forwarder to PMCTLS.107 | Done |
+| 76 | DrgGetClipPS | Forwarder to PMCTLS.108 | Done |
+
+
+{{page>en:templates:dlls}}
+

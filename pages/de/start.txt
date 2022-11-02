@@ -1,0 +1,23 @@
+==== Was ist osFree? ====
+
+Das osFree-Projekt ist der Versuch, eine Open-Source-Variante von [[de:os_2|OS/2]] zu produzieren.
+
+osFree ist ein freies (nicht-kommerzielles) Open-Source Software-Entwicklungs-Projekt. Ziel des Projektes ist es, alle (oder zumindest die meisten) Bestandteile von OS/2 durch Open-Source-Alternativen zu ersetzen. Primäres Ziel ist es, Kompatibilität zu OS/2 Warp 4 (Merlin) zu erreichen, was aber nicht heißt, dass wir keine Features von neueren Versionen OS/2-ähnlicher Systeme, wie OS/2 WarpServer und eComStation von Serenity Systems unterstützen werden.
+
+**Achtung:** Als Referenz ist immer die Englisch-sprachige Version der osFree-Seite zu werten, da dort Informationen als erstes veröffentlicht werden und die Übersetzung an wenigen hänge bleibt. Daher würden wir uns hier über Unterstützung freuen!
+
+=== Mithelfen ===
+
+Die Entwicklung an osFree wird im Moment von nur sehr wenigen Leuten getragen. Daher gibt es für [[en:teams|uns]] viel zu tun und uns ist jede Hilfe willkommen. Wir suchen nicht nur Programmierer sondern auch Leute, die Dokumentation schreiben, die Internetseite pflegen, die Dokumentation bzw. die Internetseite ins Deutsche übersetzen und vieles mehr.
+
+Aber natürlich suchen [[en:teams|wir]] AUCH nach Entwicklern. Für Neulinge haben wir einige [[en:smalltasks|kleinere]] Aufgaben. Wenn Du ein erfahrenerer Entwickler bist, dann haben wir für Dich [[en:bigtasks|schwierigere Probleme]], damit Du auch gefordert bist! Lies auf der [[en:develop|Entwicklungsseite]] Informationen darüber, wie Du anfangen kannst, für osFree zu programmieren und mach Dich mit unserer [[en:legal|"Lizens-Politik"]] vertraut. Gerne beantworten wie auch Fragen, denn die Internetseite ist meistens nicht auf dem aller aktuellsten Stand.
+
+Wenn Du wiki-Seiten erstellen willst, dann setz Dich bitte im Forum mit uns in Verbindung und lies die [[en:wiki:namespaces|wiki-Namens-Richtlinien]]
+
+==== Aktuellste Neuigkeiten ====
+
+{{blog>de:news?12&noform}}
+
+=== 02.02.2007 ===
+
+Aufgrund von Hardware-Problemen war unsere Internetseite außer Betrieb gesetzt. Es gibt jedoch gute Neuigkeiten abseits der Homepage: Der config.sys parser sowie ein ELF-Parser konnten in einen L4-Server-Stub umgesetzt werden und sind in der Lage, ein erstes einfaches (bis jetzt noch ELF-)Programm auszuführen. Es besteht die Hoffnung, dass es in näherer Zukunft erfolgreicher weitergeht.

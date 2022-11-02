@@ -1,0 +1,27 @@
+=== Disk media and file system layout ===
+
+are described by the following structures. The data which is provided to the file system may depend on the level of file system support provided by the device driver attached to the block device. These structures are relevant only for local file systems.   
+
+<code c>
+/* file system independent - volume parameters */
+
+struct vpfsi {
+    unsigned long  vpi_vid;        /* 32 bit volume ID */
+    unsigned long  vpi_hDEV;       /* handle to device driver */
+    unsigned short vpi_bsize;      /* sector size in bytes */
+    unsigned long  vpi_totsec;     /* total number of sectors */
+    unsigned short vpi_trksec;     /* sectors / track */
+    unsigned short vpi_nhead;      /* number of heads */
+    char           vpi_text[12];   /* ASCIIZ volume name */
+    void far *     vpi_pDCS;       /* device capability structure */
+    void far *     vpi_pVCS;       /* volume characteristics */
+    unsigned char  vpi_drive;      /* drive (0=A) */
+    unsigned char  vpi_unit;       /* unit code */
+};
+
+/* file system dependent - volume parameters */
+
+struct vpfsd {
+    char           vpd_work[36];   /* work area */
+};
+</code>

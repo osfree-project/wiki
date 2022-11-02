@@ -1,0 +1,90 @@
+{{logos:os2.gif?35x35}}
+
+====== PMGRE ======
+
+This dll just forwarder to PMMERGE.DLL. No any real code in it.
+
+^Ordinal ^Name            ^ Desc ^ Status ^
+| 3 | InnerGreEntry       | Forwarder to PMMERGE.2035 | Done |
+| 4 | GreInitialize       | Forwarder to PMMERGE.2036 | Done |
+| 12 | GreEntry2          | Forwarder to PMMERGE.2037 | Done |
+| 13 | GreEntry3          | Forwarder to PMMERGE.2038 | Done |
+| 14 | GreEntry4          | Forwarder to PMMERGE.2039 | Done |
+| 15 | GreEntry5          | Forwarder to PMMERGE.2040 | Done |
+| 16 | GreEntry6          | Forwarder to PMMERGE.2041 | Done |
+| 17 | GreEntry7          | Forwarder to PMMERGE.2042 | Done |
+| 18 | GreEntry8          | Forwarder to PMMERGE.2043 | Done |
+| 19 | GreEntry9          | Forwarder to PMMERGE.2044 | Done |
+| 20 | GreEntry10         | Forwarder to PMMERGE.2045 | Done |
+| 30 | GetDriverInfo      | Forwarder to PMMERGE.2046 | Done |
+| 31 | SetDriverInfo      | Forwarder to PMMERGE.2047 | Done |
+| 32 | PostDeviceModes    | Forwarder to PMMERGE.2048 | Done |
+| 34 | BitmapLimitWarning | Forwarder to PMMERGE.2049 | Done |
+| 37 | GetDriverInfo32    | Forwarder to PMMERGE.5046 | Done |
+| 38 | SetDriverInfo32    | Forwarder to PMMERGE.5098 | Done |
+| 39 | PostDeviceModes32  | Forwarder to PMMERGE.5073 | Done |
+| 41 | PostEscape32       | Forwarder to PMMERGE.5460 | Done |
+| 42 | PmWinGreEntry2     | Forwarder to PMMERGE.2050 | Done |
+| 43 | PmWinGreEntry3     | Forwarder to PMMERGE.2051 | Done |
+| 44 | PmWinGreEntry4     | Forwarder to PMMERGE.2052 | Done |
+| 45 | PmWinGreEntry5     | Forwarder to PMMERGE.2053 | Done |
+| 46 | PmWinGreEntry6     | Forwarder to PMMERGE.2054 | Done |
+| 47 | PmWinGreEntry7     | Forwarder to PMMERGE.2055 | Done |
+| 48 | PmWinGreEntry8     | Forwarder to PMMERGE.2056 | Done |
+| 49 | PmWinGreEntry9     | Forwarder to PMMERGE.2057 | Done |
+| 50 | PmWinGreEntry10    | Forwarder to PMMERGE.2058 | Done |
+| 62 | Gre32Entry2        | Forwarder to PMMERGE.5049 | Done |
+| 63 | Gre32Entry3        | Forwarder to PMMERGE.5050 | Done |
+| 64 | Gre32Entry4        | Forwarder to PMMERGE.5051 | Done |
+| 65 | Gre32Entry5        | Forwarder to PMMERGE.5052 | Done |
+| 66 | Gre32Entry6        | Forwarder to PMMERGE.5053 | Done |
+| 67 | Gre32Entry7        | Forwarder to PMMERGE.5054 | Done |
+| 68 | Gre32Entry8        | Forwarder to PMMERGE.5055 | Done |
+| 69 | Gre32Entry9        | Forwarder to PMMERGE.5056 | Done |
+| 70 | Gre32Entry10       | Forwarder to PMMERGE.5048 | Done |
+| 72 | InnerGre32Entry2   | Forwarder to PMMERGE.5060 | Done |
+| 73 | InnerGre32Entry3   | Forwarder to PMMERGE.5061 | Done |
+| 74 | InnerGre32Entry4   | Forwarder to PMMERGE.5062 | Done |
+| 75 | InnerGre32Entry5   | Forwarder to PMMERGE.5063 | Done |
+| 76 | InnerGre32Entry6   | Forwarder to PMMERGE.5064 | Done |
+| 77 | InnerGre32Entry7   | Forwarder to PMMERGE.5065 | Done |
+| 78 | InnerGre32Entry8   | Forwarder to PMMERGE.5066 | Done |
+| 79 | InnerGre32Entry9   | Forwarder to PMMERGE.5067 | Done |
+| 80 | InnerGre32Entry10  | Forwarder to PMMERGE.5059 | Done |
+| 100 |SSAllocSeg         | Forwarder to PMMERGE.2059 | Done |
+| 101 |SSAllocHuge        | Forwarder to PMMERGE.2060 | Done |
+| 102 |SSFreeSeg          | Forwarder to PMMERGE.2061 | Done |
+| 103 |SSFlushSegs        | Forwarder to PMMERGE.2062 | Done |
+| 106 |SSAllocMem         | Forwarder to PMMERGE.5104 | Done |
+| 107 |SSFreeMem          | Forwarder to PMMERGE.5105 | Done |
+| 200 |Enable_Call_16     | Forwarder to PMMERGE.4010 | Done |
+| 201 |Devmode_Call_16    | Forwarder to PMMERGE.4000 | Done |
+| 202 |DeleteBitmap16Call | Forwarder to PMMERGE.4021 | Done |
+| 203 |PFN4R2             | Forwarder to PMMERGE.4015 | Done |
+| 204 |PFN5R2             | Forwarder to PMMERGE.4016 | Done |
+| 205 |PFN6R2             | Forwarder to PMMERGE.4017 | Done |
+| 206 |PFN7R2             | Forwarder to PMMERGE.4018 | Done |
+| 207 |PFN8R2             | Forwarder to PMMERGE.4019 | Done |
+| 208 |PFN9R2             | Forwarder to PMMERGE.4020 | Done |
+| 209 |PFN10R2            | Forwarder to PMMERGE.4014 | Done |
+| 210 |Devname_Call_16    | Forwarder to PMMERGE.4001 | Done |
+| 213 |Dispatch16Gate3    | Forwarder to PMMERGE.4003 | Done |
+| 214 |Dispatch16Gate4    | Forwarder to PMMERGE.4004 | Done |
+| 215 |Dispatch16Gate5    | Forwarder to PMMERGE.4005 | Done |
+| 216 |Dispatch16Gate6    | Forwarder to PMMERGE.4006 | Done |
+| 217 |Dispatch16Gate7    | Forwarder to PMMERGE.4007 | Done |
+| 218 |Dispatch16Gate8    | Forwarder to PMMERGE.4008 | Done |
+| 219 |Dispatch16Gate9    | Forwarder to PMMERGE.4009 | Done |
+| 220 |Dispatch16Gate10   | Forwarder to PMMERGE.4002 | Done |
+| 400 |RamSemRequest32    | Forwarder to PMMERGE.5097 | Done |
+| 401 |RamSemClear32      | Forwarder to PMMERGE.5096 | Done |
+| 402 |RamSemRequest16    | Forwarder to PMMERGE.2063 | Done |
+| 403 |RamSemClear16      | Forwarder to PMMERGE.2064 | Done |
+| 500 |GreMemPtrs         | Forwarder to PMMERGE.6200 | Done |
+| 501 |GreNLS             | Forwarder to PMMERGE.6100 | Done |
+| 510 |SetDeviceSurface   | Forwarder to PMMERGE.5108 | Done |
+
+GreInitialize32.6, InitMoveCursor.33, SSServer.104, SSInit.105, SSFlushMem.108, SSServer32.140, SSInit32.141, Dispatch32Gate3.223, Dispatch32Gate4.224, Dispatch32Gate5.225, Dispatch32Gate6.226, Dispatch32Gate7.227, Dispatch32Gate8.228, Dispatch32Gate9.229, Dispatch32Gate10.230, GreRequestMutexSem.300, GreReleaseMutexSem.201 ara absent in latest OS/2 DLLs
+
+
+{{page>en:templates:dlls}}

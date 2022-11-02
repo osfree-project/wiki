@@ -1,0 +1,9 @@
+Das Projekt osFree befindet sich noch in einem sehr frühen Alpha-Stadium. Gegenwärtig werden grundlegende Teile des Systemstarts entwickelt. Außerdem existieren bereits einige Kommandozeilenprogramme wie CMD.EXE und Datei/Platten-Verwaltungs-Werkzeuge.
+
+Einige dieser Werkzeuge wurden bereits fertiggestellt (besonderer Dank gilt hier JP Software für die Quellen Ihres 4OS2 Kommando-Interpreters und Bartosz Tomasik für die meisten anderen Kommandozeilenwerkzeuge. Vielen dank auch an all diejenigen, die direkt oder indirekt ihre Quellen zur Verfügung gestellt haben). Aber es gibt immer noch viel zu tun.
+
+Aber beschränken Sie sich nicht auf Kommandozeilenprogramme! Wenn Sie Interesse an der Entwicklung eines Kernel-Loaders (an dem derzeit aktiv entwickelt wird), Betriebssystemkerns, Gerätetreibers oder eines anderen Teiles des Betriebssystems haben steht es Ihnen offen, daran zu arbeiten. Wir würden uns freuen, Sie als einen osFree-Entwickler begrüßen zu dürfen!
+
+==== Aktueller Status ====
+
+Wir haben ein [[http://www.osfree.org/dotproject|dotProject]] Management-System auf diesem Server installiert um den Status von osFree zu verwalten. Momentan ist das System noch nicht in das Layout von DokuWiki integriert. Aber die Möglichkeit zum Einloggen existiert (mit Gastaccount). 

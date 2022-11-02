@@ -1,0 +1,15 @@
+[Q]: Виртуализация LAN в Virtual PC
+
+[A]: Alexey Korop (2:461/155)
+
+Q. Можно ли с Virtual PC и Virtual Switch поднять NetBIOS между реальной и
+виртуальной машиной, не имея сетевой карты?
+A. NetBIOS через TCP/IP - можно. Ставим в физической машине в качестве сетевого
+адаптера SSW Parallel port NIC-less adapter, на него вешаем TCP/IP и NetBIOS
+через TCP/IP. Дальше - согласно документу к Virtual Switch.
+
+Q. Можно ли с Virtual PC и Virtual Switch поднять NetBIOS (не через TCP/IP)
+между двумя виртуальными машинами?
+A. Без проблем.
+Q. А между реальной и виртуальной машинами?
+A. Hет.

@@ -1,0 +1,49 @@
+[Q]: Пример настройки кэширующего DNS (named.exe)
+
+[A]: Sergey Mookhin (2:453/10)
+
+(пример приводится для сети из 2 машин)
+
+  1) %ETC%\NAMEDB\named.bt
+     ;
+     cache   .                      c:\\mptn\\etc\\namedb\\named.ca
+     primary local.net              c:\\mptn\\etc\\namedb\\named.dom
+     primary 1.168.192.in-addr.arpa c:\\mptn\\etc\\namedb\\named.rev
+
+  2) %ETC%\NAMEDB\named.ca
+     ;
+     .             99999999 IN NS    dns.your.isp ; DNS-имя машины провайдера
+     in-addr.arpa. 99999999 IN NS    dns.your.isp
+     dns.your.isp. 99999999 IN A     999.99.99.99 ; соответственно ее адрес
+                                  
+  3) %ETC%\NAMEDB\named.dom
+     ;
+     $ORIGIN net.
+     local                  IN SOA   ivan.local.net. root.ivan.local.net. (
+                                     43 10800 900 86400 86400 )
+                            IN NS    ivan.local.net.
+     $ORIGIN local.net.
+     ivan                   IN A     192.168.1.1
+     drug                   IN A     192.168.1.2
+     ddns                   IN CNAME ivan
+
+  4) %ETC%\NAMEDB\named.rev
+     ;
+     $ORIGIN 168.192.in-addr.arpa.
+     1                      IN SOA   ivan.local.net. root.ivan.local.net. (
+                                     43 10800 900 86400 86400 )
+                            IN NS    ivan.local.net.
+     $ORIGIN 1.168.192.in-addr.arpa.
+     1                      IN PTR   ivan.local.net.
+     2                      IN PTR   drug.local.net.
+
+  5) resolv/resolv2 - на _обоих_ машинах!
+     domain local.net
+     nameserver 192.168.1.1
+   
+  6) hosts          - на _обоих_ машинах!
+     127.0.0.1    localhost   loopback
+
+  7) SET USE_HOSTS_FIRST=1 в CONFIG.SYS для OS/2
+
+p.s. 6,7 - опционально... :)

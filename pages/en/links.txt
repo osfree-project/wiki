@@ -1,0 +1,42 @@
+===== Links =====
+
+==== Internal ====
+
+  * [[en:docs:index|osFree Documentation Index]]
+
+==== External ====
+
+  * [[https://github.com|GitHub]]
+  * [[http://www.sourceforge.net/|SourceForge]]
+  * [[http://www.netlabs.org/|OS/2 Netlabs]]
+  * [[http://groups.yahoo.com/group/osfree|Unofficial osFree Newsgroup]]
+  * [[http://groups.yahoo.com/group/os3free|Another unofficial osFree Newsgroup]]
+  * [[http://voyager.netlabs.org/|Voyager]]
+  * [[http://os4you.org/168.98.html|Flash-boot howto. Some information about undocumented interfaces during boot process]]
+  * [[http://www.cs.vu.nl/~ast/reliable-os/|Tanenbaum-Torvalds Debate: Part II]]
+  * [[http://wiki.laser.ru/os8/index.php/FreePM|FreePM documentation (mix of Russian and English)]]
+  * [[http://os2linux.sourceforge.net/|OS/2 API implementation for Linux]]
+  * [[https://hg.icculus.org/icculus/2ine/|2ine: An OS/2 emulator for Linux project]]
+  * [[http://homepage.ntlworld.com/jonathan.deboynepollard/Softwares/conapi/|32-bit Console API for OS/2]]
+  * [[http://www.microsoft.com/technet/archive/ntwrkstn/reskit/os2comp.mspx?mfr=true|OS/2 API implementation by Microsoft (documentation)]]
+  * [[http://sourceforge.net/projects/nudawn/|NuDawn]]
+  * [[http://sourceforge.net/projects/os2-oorexx/|OORexx for OS/2]]
+  * [[http://i1.dk/ntos2/|Open source OS/2 API implementation for Windows]]
+  * [[http://www.gnu.org/software/edma/edma.html|GNU EDMA]]
+  * [[http://www.gnome.org/projects/ORBit2/|ORBit2]]
+  * [[http://www.mico.org/|MICO]]
+  * [[http://www2.parc.com/istl/projects/ILU/ilu.html|ILU]]
+  * [[http://oxyd.alt2.spb.ru/|Oxyd's osFree related site]]
+  * [[http://www.r-5.org|Serge Posokhov site with his book]]
+  * [[http://os2.snc.ru/|OS/2 software from Digi]]
+  * [[http://home.clara.net/orac/os2dll.htm|OS/2 DLL's entry points]]
+  * [[http://www.edm2.com/|EDM/2]]
+  * osFree on Chaos Construction'11 [[http://www.youtube.com/watch?v=yxE6Jy3SQ04|(youtube)]] : [[ru:articles:cc-2011|(wiki page)]]
+
+==== Links to us ====
+
+  * [[http://osnews.com/comment.php?news_id=12771|First screenshot at OSNews]]
+  * [[http://www.osnews.com/story.php/16543/A-Very-Critical-Look-at-OS-Re-creation-Projects/page1/|A Very Critical Look at OS Re-creation Projects at OSNews]]
+  * [[http://www.pcpro.co.uk/columns/102194/technolog.html|PC Pro Columns: Technolog]]
+  * [[http://old.computerra.ru/interactive/370174/|an Article in Computerra-Online about OS/2, eComStation and osFree]] : [[ru:articles:computerra-online|the local copy of the same article]]
+  * [[https://www.osnews.com/story/131701/the-osfree-project/|The osFree project at OSNews]]

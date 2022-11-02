@@ -1,0 +1,45 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=67H ======
+
+===== Version =====
+
+3.3 and higher
+
+===== Brief =====
+
+SET HANDLE COUNT
+
+===== Family API =====
+
+
+===== Input =====
+
+  AH = 67h
+  BX = size of new file handle table for process
+
+===== Return =====
+
+  CF clear if successful
+  CF set on error
+  AX = error code (see #01680 at AH=59h/BX=0000h)
+
+===== Notes =====
+
+	If BX <= 20, no action is taken if the handle limit has not yet been increased, and the table is copied back into the PSP if the limit is currently > 20 handles. For file handle tables of > 20 handles, DOS 3.30 never reuses the same memory block, even if the limit is being reduced; this can lead to memory fragmentation as a new block is allocated and the existing one freed. Only the first 20 handles are copied to child processes in DOS 3.3-6.0. Increasing the file handles here will not, in general, increase the number of files that can be opened using the runtime library of a high-level language such as C. Novell DOS 7 reportedly terminates the calling program if the JFT is being reduced in size and there are any open file handles beyond the portion of the JFT being retained
+
+  BUGS: The original release of DOS 3.30 allocates a full 64K for the handle table on requests for an even number of handles. DR DOS 3.41 and 5.0 will lose track of any open file handles beyond the portion of the JFT retained after the call; MS-DOS will indicate error 04h if any of the JFT entries to be removed are open
+
+          
+===== See also =====
+
+   AH=26h - AH=86h
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:int}}
+
+{{page>en:templates:fapi}}
+

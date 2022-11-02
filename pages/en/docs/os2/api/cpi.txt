@@ -1,0 +1,7 @@
+{{logos:os2.gif?35x35}} 
+
+====== Introduction ======
+
+Control Program Interface (CPI, CP API) is a general set of system interfaces to perform most of common tasks. Mainly, CPI consist of [[en:docs:os2:modules:doscalls|DOSCALLS.DLL]], [[en:docs:os2:modules:viocalls|VIOCALLS.DLL]], [[en:docs:os2:modules:kbdcalls|KBDCALLS.DLL]], [[en:docs:os2:modules:moucalls|MOUCALLS.DLL]] etc. Some of CP API shared with [[en:docs:fapi|Family API]] - cross-platform API which supports both OS/2 and DOS.
+
+{{page>en:templates:os2api}}

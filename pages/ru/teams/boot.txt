@@ -1,0 +1,13 @@
+Boot team разрабатывает и сопровождает систему загрузки osFree.
+
+В систему загрузки входит следующее:
+
+  * [[ru:blackbox|шаблон MicroFSD/BlackBox]] для разработчиков IFS
+  * [[ru:freeldr|Гибкий и расширяемый загрузчик ОС (FreeLDR)]]
+  * [[ru:docs:boot:index|Документация позагрузке osFree и FreeLDR]]
+
+Список всех из нас находится здесь:
+
+  * [[ru:teams:boot:members|Члены команды]]
+
+~~DISCUSSION~~

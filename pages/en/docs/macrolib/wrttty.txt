@@ -1,0 +1,37 @@
+{{page>en:templates:biosint}}
+
+====== @WrtTTY ======
+
+===== Version =====
+
+IBM 5150 and higher
+
+===== Brief =====
+
+Write char in TTY mode
+
+===== BIOS Interrupt =====
+
+[[en:docs:bios:api:int10|INT10H]]: [[en:docs:bios:api:int10:0E|0EH]]
+
+===== Family API =====
+
+[[en:docs:fapi:VioWrtTTY]]
+
+===== Syntax =====
+
+<code asm>
+@WrtTTY char, page
+</code>
+
+===== Parameters =====
+
+  * char (BYTE) - character code
+  * page (BYTE) - optional video page number
+
+===== Return =====
+
+
+none
+
+{{page>en:templates:biosapi}}

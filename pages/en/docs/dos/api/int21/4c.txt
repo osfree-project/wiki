@@ -1,0 +1,42 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=4CH ======
+
+===== Version =====
+
+2 and higher
+
+===== Brief =====
+
+"EXIT" - TERMINATE WITH RETURN CODE
+
+===== Family API =====
+
+[[en:docs:fapi:DosExit]]
+
+===== Input =====
+
+  AH = 4Ch
+  AL = return code
+
+===== Return =====
+
+never returns
+
+===== Notes =====
+
+  * unless the process is its own parent (see #01378 [offset 16h] at AH=26h), all open files are closed and all memory belonging to the process is freed
+  * all network file locks should be removed before calling this function
+        
+===== See also =====
+
+AH=[[en:docs:dos:api:int21:00|00H]], AH=[[en:docs:dos:api:int21:26|26H]], AH=[[en:docs:dos:api:int21:4b|4BH]], AH=[[en:docs:dos:api:int21:4d|4DH]],INT 15/AH=12h/BH=02h,INT 20,INT 22
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:int}}
+
+{{page>en:templates:fapi}}
+

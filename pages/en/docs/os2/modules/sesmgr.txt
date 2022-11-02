@@ -1,0 +1,52 @@
+{{logos:os2.gif?35x35}} 
+
+===== SESMGR =====
+
+This is forwarder DLL to [[DOSCALLS]].DLL
+
+^ Ordinal ^ Name ^ Desc ^ Status ^
+| 1 |DosSMSGDoPopup | Forwarder to DOSCALLS.686 | Done |
+| 2 |DosSMSwitch | Forwarder to DOSCALLS.687 | Done |
+| 3 |DosSMServeAppReq | Forwarder to DOSCALLS.688 | Done |
+| 4 |DosGetTimes | Forwarder to DOSCALLS.689 | Done |
+| 5 |DosSMSetTitle | Forwarder to DOSCALLS.690 | Done |
+| 6 |DosScrUnlock | Forwarder to DOSCALLS.691 | Done |
+| 7 |DosSMDoAppReq | Forwarder to DOSCALLS.692 | Done |
+| 8 |DosStopSession | Forwarder to DOSCALLS.693 | Done |
+| 9 |DosSelectSession | Forwarder to DOSCALLS.694 | Done |
+| 10 |DosScrLock | Forwarder to DOSCALLS.695 | Done |
+| 11 |DosSavRedrawWait | Forwarder to DOSCALLS.696 | Done |
+| 12 |DosSavRedrawUndo | Forwarder to DOSCALLS.697 | Done |
+| 13 |DosSMSGEndPopup | Forwarder to DOSCALLS.698 | Done |
+| 14 |DosSetSession | Forwarder to DOSCALLS.699 | Done |
+| 15 |DosSetMNLockTime | Forwarder to DOSCALLS.700 | Done |
+| 16 |DosModeUndo | Forwarder to DOSCALLS.701 | Done |
+| 17 |DosStartSession | Forwarder to DOSCALLS.702 | Done |
+| 18 |DosSMGetStatus | Forwarder to DOSCALLS.703 | Done |
+| 19 |DosModeWait | Forwarder to DOSCALLS.704 | Done |
+| 20 |DosSMTerminate | Forwarder to DOSCALLS.705 | Done |
+| 21 |DosSMGetAppReq | Forwarder to DOSCALLS.706 | Done |
+| 23 |DosSMInitialize | Forwarder to DOSCALLS.707 | Done |
+| 24 |DosSMStart | Forwarder to DOSCALLS.708 | Done |
+| 25 |DosSMParentSwitch | Forwarder to DOSCALLS.709 | Done |
+| 26 |DosSMPause | Forwarder to DOSCALLS.710 | Done |
+| 27 |DosSMHDEInit | Forwarder to DOSCALLS.711 | Done |
+| 28 |DosSMPMPresent | Forwarder to DOSCALLS.712 | Done |
+| 29 |DosSMRegisterDD | Forwarder to DOSCALLS.713 | Done  |
+| 30 |DosSMSysInit | Forwarder to DOSCALLS.855 | Done |
+| 31 |DosSMNotifyDD | Forwarder to DOSCALLS.714 | Done |
+| 32 |DosSMNotifyDD2 | Forwarder to DOSCALLS.715 | Done |
+| 33 |DosSMOpenDD | Forwarder to DOSCALLS.716 | Done |
+| 34 |QhKeybdHandle | Forwarder to DOSCALLS.856 | Done |
+| 35 |QhMouseHandle | Forwarder to DOSCALLS.857 | Done |
+| 36 |DosSMSetSessionType | Forwarder to DOSCALLS.717 | Done |
+| 37 |DosStartSession2 | Forwarder to DOSCALLS.669 | Done |
+| 38 |DosSelectSession2 | Forwarder to DOSCALLS.670 | Done |
+| 39 |DosSetSession2 | Forwarder to DOSCALLS.671 | Done |
+| 40 |DosStopSession2 | Forwarder to DOSCALLS.672 | Done |
+| 41 |DosRegisterNotification | Forwarder to DOSCALLS.673 | Done |
+
+DosSMRealPrtSc.22 is absent in latest OS/2 DLLs
+
+{{page>en:templates:dlls}}
+

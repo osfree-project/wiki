@@ -1,0 +1,28 @@
+{{page>en:templates:dosshell}}
+
+====== Int 2FH, AX=4A05H, SI=02H ======
+
+===== Version =====
+
+?
+
+===== Brief =====
+
+Switch to previous task in Z order list
+
+===== Input =====
+
+	None
+  
+===== Return =====
+
+    CF is reset - ok
+    CF is set - error. Only one task in list
+
+===== Notes =====
+
+  Function switches Z order list so previus task in list become first, current become become second and so on.
+  
+===== See also =====
+
+   

@@ -1,0 +1,33 @@
+{{page>en:templates:fapiint}}
+
+====== KbdGetHWID ======
+
+Returns the type of keyboard in use. The hardware ID specifies the type of keyboard attached and is defined by the manufacturer.
+
+===== Syntax =====
+<code c>
+ KbdGetHWID(pkbdhwid, hkbd)
+</code>
+
+===== Parameters =====
+
+  * pkbdhwid (PKBDHWID) - output : A pointer to a [[KBDHWID]] structure in which the keyboard hardware ID is returned.
+  * hkbd (HKBD) - input : Reserved. Must be 0.
+
+===== Return Code =====
+
+return (APIRET) - returns
+
+KbdGetHWID returns one of the following values:
+
+  * 0   NO_ERROR
+  * 373 ERROR_KBD_PARAMETER
+  * 439 ERROR_KBD_INVALID_HANDLE 
+  * 447 ERROR_KBD_KEYBOARD_BUSY 
+  * 504 ERROR_KBD_EXTENDED_SG
+
+===== Remarks =====
+
+The hardware ID indicates the basic layout of the keyboard, such as whether or not a numeric keypad exists. It gives no information about key values.
+
+{{page>en:templates:fapi}}

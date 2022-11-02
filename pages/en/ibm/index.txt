@@ -1,0 +1,7 @@
+===== IBM's Toolkit and DDK documentation =====
+
+  * [[en:ibm:cmd|Command reference]]
+  * [[en:ibm:cpref|New 32-bits API's]]
+  * [[en:ibm:prcp|Old 16-bits API's]]
+  * [[en:ibm:ifs|Installable File Systems]]
+  * [[en:ibm:gradd|GRADD]]

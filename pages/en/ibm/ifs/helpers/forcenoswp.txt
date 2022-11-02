@@ -1,0 +1,41 @@
+==== FSH_FORCENOSWAP ====
+
+**Purpose**
+
+This function permanently forces segments into memory.   
+
+**Calling Sequence**
+
+<code c>
+int far pascal FSH_FORCENOSWAP(sel)
+
+unsigned short sel;
+</code>
+
+**Where**
+
+//sel// is the selector that is to be made non-swappable. 
+
+**Returns**
+
+If no error is detected, a zero error code is returned. If an error is detected, one of the following error codes is returned:   
+
+  * ERROR_INVALID_ACCESS  -- indicates the selector is invalid. 
+  * ERROR_INVALID_DENIED -- indicates the selector is invalid or the sector belongs to another process. 
+  * ERROR_DIRECT_ACCESS_HANDLE -- indicates the handle does not refer to a segment. 
+  * ERROR_NOT_ENOUGH_MEMORY -- indicates there is not enough physical memory to make a segment nonswappable. 
+  * ERROR_SWAP_TABLE_FULL -- indicates the attempt to grow the swap file failed. 
+  * ERROR_SWAP_FILE_FULL -- indicates the attempt to grow the swap file failed. 
+  * ERROR_PMM_INSUFFICIENT_MEMORY -- indicates the attempt to grow the swap file failed. 
+  
+**Remarks**
+
+An FSD may call //FSH_FORCENOSWAP// to force segments to be loaded into memory and marked non-swappable. All segments both in the load image of the FSD and those allocated via //FSH_SEGALLOC// are eligible to be marked. There is no way to undo the effect of //FSH_FORCENOSWAP//.   
+
+If an FSD is notified it is managing the swapping media, it should make this call for the necessary segments.   
+
+An FSD should be prepared to see multiple swapping files on more than one volume in 80386 processors and in future releases of OS/2.   
+
+//FSH_FORCENOSWAP// may block.   
+
+**Note**:   OS/2 does not validate input parameters. An FSD, therefore, should call //FSH_PROBEBUF// where appropriate.   

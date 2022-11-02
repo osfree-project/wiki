@@ -1,0 +1,69 @@
+{{page>en:templates:fapiint}}
+
+====== DosNewSize ======
+
+This call changes the size of a file.
+
+===== Syntax =====
+<code c>
+DosNewSize (FileHandle, FileSize)
+</code>
+
+===== Parameters =====
+
+  * FileHandle ([[HFILE]]) - input : Handle of the file whose size is being changed. 
+  * FileSize ([[ULONG]]) - input : File's new size in bytes.
+
+===== Return Code =====
+
+rc ([[USHORT]]) - return
+
+Return code descriptions are:
+
+  * 0        NO_ERROR 
+  * 5        ERROR_ACCESS_DENIED 
+  * 6        ERROR_INVALID_HANDLE 
+  * 26       ERROR_NOT_DOS_DISK 
+  * 33       ERROR_LOCK_VIOLATION 
+  * 87       ERROR_INVALID_PARAMETER 
+  * 112      ERROR_DISK_FULL
+
+===== Remarks =====
+
+When DosNewSize is called, the file must be open in a mode that allows write access. If the file is a read-only file, its read-only status must be changed with [[DosSetFileMode]] before you can open the file for write access.
+
+The open file can be truncated or extended in size. If the file is being extended, the file system makes a reasonable attempt to allocate the additional bytes for the file in a contiguous (or nearly contiguous) space on the medium. The value of the new bytes is undefined. 
+
+===== Example Code =====
+
+==== C Binding====
+<code c>
+#define INCL_DOSFILEMGR
+
+USHORT  rc = DosNewSize(FileHandle, FileSize);
+
+HFILE            FileHandle;    /* File handle */
+ULONG            FileSize;      /* File's new size */
+
+USHORT           rc;            /* return code */
+</code>
+
+==== MASM Binding ====
+<code asm>
+EXTRN  DosNewSize:FAR
+INCL_DOSFILEMGR     EQU 1
+
+PUSH   WORD    FileHandle    ;File handle
+PUSH   DWORD   FileSize      ;File's new size
+CALL   DosNewSize
+
+</code>
+
+Returns WORD
+
+===== Note =====
+
+Text based on http://www.edm2.com/index.php/DosNewSize
+
+{{page>en:templates:fapi}}
+

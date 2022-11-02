@@ -1,0 +1,48 @@
+{{page>en:templates:dpmi}}
+
+====== Int 31H, AH=00H, AL=07H ======
+
+===== Version =====
+
+0.9
+
+===== Brief =====
+
+Set Segment Base Address
+
+===== Input =====
+
+  AX = 0007H
+  BX = selector
+  CX:DX = 32-bit linear base address of segment
+
+===== Return =====
+
+  if function successful
+  Carry flag = clear
+  
+  if function unsuccessful
+  Carry flag = set
+  AX = error code
+  8022H	invalid selector
+  8025H	invalid linear address (changing the base would cause the descriptor to reference a linear address range outside that allowed for DPMI clients)
+  
+===== Notes =====
+
+Sets the 32-bit linear base address field in the LDT descriptor for the specified segment.
+
+A DPMI 1.0 host will automatically reload any segment register which contains the selector specified in register BX. It is suggested that DPMI 0.9 hosts also implement this.
+
+Refer to the rules for descriptor usage in Appendix D.
+    
+===== See also =====
+
+   
+
+===== Note =====
+
+Text based on [[http://www.delorie.com/djgpp/doc/dpmi/]]
+
+{{page>en:templates:dpmi:int}}
+
+

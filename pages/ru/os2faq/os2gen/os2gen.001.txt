@@ -1,0 +1,10 @@
+[Q]: ART is not installed correctly and cannot continue! - Как убpать ее?
+
+[A]: Unknown author
+
+ Запакуй в аpхив и потом пpибей содеpжимое \os2\art\
+
+[A]: Sergey Kisurin (2:5020/941)
+
+ В OS2.Ini у пpиложения PM_Workplace:ART пеpеименовываешь ключик Enabled в
+ Disabled.

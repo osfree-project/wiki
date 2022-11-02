@@ -1,0 +1,63 @@
+{{page>en:templates:fapiint}}
+
+====== VioPrtScToggle ======
+
+This call is called by the Session Manager when the operator presses Ctrl and PrtSc.
+
+===== Syntax =====
+<code c>
+VioPrtScToggle (VioHandle)
+</code>
+
+===== Parameters =====
+
+VioHandle ([[HVIO]]) - input : Reserved word of 0s.
+
+===== Return Code =====
+
+rc ([[USHORT]]) - return
+
+Return code descriptions are:
+
+  * 0   NO_ERROR
+  * 355 ERROR_VIO_MODE
+  * 402 ERROR_VIO_SMG_ONLY
+  * 430 ERROR_VIO_ILLEGAL_DURING_POPUP
+  * 436 ERROR_VIO_INVALID_HANDLE
+  * 465 ERROR_VIO_DETACHED
+
+===== Remarks =====
+
+VioPrtScToggle toggles the Ctrl and PrtSc state of the foreground session. When the Ctrl and PrtSc state is on, all [[VioWrtTTY]] calls from that session are echoed to the print device.
+
+VioPrtScToggle can only be called by the session manager. If an application issues this call, it receives an error code.
+
+Three beeps are generated if a hard error is detected while writing to the printer. When Ctrl and PrtSc is turned off, the operator may have to press the Enter key to cause output spooled while Ctrl and PrtSc was active to be printed. This is because the spool files are closed when the next VioWrtTTY is executed in the session, such as writing the prompt in response to the Enter key.
+
+===== Bindings =====
+
+==== C ====
+
+<code c>
+#define INCL_VIO
+
+USHORT  rc = VioPrtScToggle(VioHandle);
+
+HVIO    VioHandle;     /* Vio handle */
+USHORT  rc;            /* return code */
+</code>
+
+====MASM====
+<code asm>
+EXTRN  VioPrtScToggle:FAR
+INCL_VIO            EQU 1
+
+PUSH   WORD    VioHandle     ;Vio handle
+CALL   VioPrtScToggle
+
+Returns WORD
+</code>
+
+Text based on [[http://www.edm2.com/index.php/VioPrtScToggle]]
+
+{{page>en:templates:fapi}}

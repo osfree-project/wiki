@@ -1,0 +1,27 @@
+==== MFSH_SETBOOTDRIVE - Change boot drive number kept by the OS/2 kernel ====
+
+**Purpose**
+
+Change boot drive number kept by the kernel to allow a change in the assignment of boot drive as seen by later processes.   
+
+**Calling Sequence**
+
+<code c>
+int far pascal MFSH_SETBOOTDRIVE(usDrive)
+
+unsigned short usDrive;
+</code>
+
+**Where**
+
+//usDrive// contains the 0-based drive number that the mini-FSD wants the system to consider as the boot drive. 
+
+**Returns**
+
+If no error is detected, a zero error code is returned. If an error is detected, on of the following error codes is returned:   
+
+  * ERROR_INVALID_PARAMETER -- the supplied drive number is invalid. 
+
+**Remarks**
+
+This call changes the boot drive number that is kept in the global info segment of the system. Valid values range from 2 (=C) to 25 (=Z). This function must be called during the call to //MFS_INIT// to update the info segment correctly. This is routine should be used by RIPL mini-FSDs.   

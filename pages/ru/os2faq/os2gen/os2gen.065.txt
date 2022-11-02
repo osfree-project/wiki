@@ -1,0 +1,7 @@
+[Q]: Фикспак не ставится!
+
+[A]: Gosha Zafievsky (gosha@phantom.ru)
+
+del \os2\install\service.log
+del \os2\install\log*.os2
+del \mmos2\install\log*.os2

@@ -1,0 +1,28 @@
+{{page>en:templates:dosshell}}
+
+====== Int 2FH, AX=4A05H, SI=00H ======
+
+===== Version =====
+
+?
+
+===== Brief =====
+
+Initialize task list
+
+
+===== Input =====
+
+	None
+  
+===== Return =====
+
+   None
+
+===== Notes =====
+
+Function initializes internal structures and adds main shell as only task in list. In case of MS-DOS shell main shel is "MS-DOS Shell"
+
+===== See also =====
+
+   

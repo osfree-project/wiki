@@ -1,0 +1,70 @@
+{{page>en:templates:fapiint}}
+
+====== DosPortAccess ======
+
+This call requests or releases access to ports for I/O privilege.
+
+===== Syntax =====
+
+<code c>
+DosPortAccess (Reserved, TypeOfAccess, FirstPort, LastPort)
+</code>
+
+===== Parameters =====
+
+  * Reserved ([[USHORT]]) - input : Must be set to zero.
+  * TypeOfAccess ([[USHORT]]) - input : A request for or release of access to a port.
+    *0 - Request access
+    *1 - Release access.
+  * FirstPort ([[USHORT]]) - input : Starting (low) number in a contiguous range or a single port.
+  * LastPort ([[USHORT]]) - input : Ending (high) number in a contiguous range or a single port. If only one port is being used, FirstPort and LastPort should both be set to this port.
+
+===== Return Code =====
+
+rc ([[USHORT]]) - return:Return code descriptions are:
+
+  *0 NO_ERROR
+  *5 ERROR_ACCESS_DENIED
+
+===== Remarks =====
+
+Note that CLI/STI privilege is also granted automatically. There is no need to make an additional call to [[DosCLIAccess]].
+
+Applications that perform I/O to port(s) in IOPL segments must request port access from the operating system.
+
+An application with no IOPL segments that accesses a device through a device driver or by an interface package such as VIO, does not need to issue this call. The device driver or interface package is responsible for obtaining the necessary I/O access.
+
+===== Bindings =====
+
+==== C ====
+
+<code c>
+#define INCL_DOSDEVICES
+
+USHORT  rc = DosPortAccess(Reserved, TypeOfAccess, FirstPort, LastPort);
+
+USHORT  0;             /* 0 */
+USHORT  TypeOfAccess;  /* Request or release */
+USHORT  FirstPort;     /* First port number */
+USHORT  LastPort;      /* Last port number */
+
+USHORT  rc;            /* return code */
+</code>
+
+==== MASM ====
+
+
+<code asm>
+EXTRN  DosPortAccess:FAR
+INCL_DOSDEVICES     EQU 1
+
+PUSH   WORD    0             ;Reserved (must be zero)
+PUSH   WORD    TypeOfAccess  ;Request or release
+PUSH   WORD    FirstPort     ;First port number
+PUSH   WORD    LastPort      ;Last port number
+CALL   DosPortAccess
+
+Returns WORD
+</code>
+
+{{page>en:templates:fapi}}

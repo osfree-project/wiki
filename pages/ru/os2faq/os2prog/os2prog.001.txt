@@ -1,0 +1,40 @@
+[Q]: Пpимеp кpасивого фоpматиpования на REXX
+
+[A]: Sergey Posokhov (abc@posokhov.msk.ru)
+
+/* Запрет вывода команд */
+'@Echo off'
+
+/* Запрет курсора */
+Call SysCurState Off
+
+/* Очистка окна */
+Cls
+
+/* Задание цвета */
+Esc = D2C( 27 ); Command = "[1;"; End = "m"
+Green_color = Esc || Command || "32" || End
+Cyan_color  = Esc || Command || "36" || End
+White_color = Esc || Command || "37" || End
+
+/* Установка цвета */
+Say Green_color
+
+/* Приглашение */
+Say
+Say "                Вставьте дискету в дисковод и нажмите Enter."
+Say "                    Или нажмите на кнопку закрытия окна."
+Say White_color
+Say "                    По готовности нажмите любую клавишу."
+Say 
+
+/* Ожидание ввода */
+'Pause > NUL'
+
+/* Установка цвета */
+Say Cyan_color
+
+/* Разметка дискеты */
+'Format.com A: /ONCE /V:-'
+'Copy "wp root. sf" A: > NUL'
+'C:\OS2\Attrib.exe +H "A:\wp root. sf"'

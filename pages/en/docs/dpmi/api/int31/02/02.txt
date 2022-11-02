@@ -1,0 +1,48 @@
+{{page>en:templates:dpmi}}
+
+====== Int 31H, AH=02H, AL=02H ======
+
+===== Version =====
+
+0.9
+
+===== Brief =====
+
+Get Processor Exception Handler Vector
+
+===== Input =====
+
+  AX = 0202H
+  BL = exception number (00H-1FH)
+        
+===== Return =====
+
+  if function successful
+  Carry flag = clear
+  CX:(E)DX = selector:offset of exception handler
+  
+  if function unsuccessful
+  Carry flag = set
+  AX = error code
+  8021H	invalid value (BL not in range 0-1FH)
+
+===== Notes =====
+
+Returns the address of the current client's protected mode exception handler for the specified exception number. This function should be avoided by DPMI 1.0 clients.
+
+The value returned in CX is a valid protected mode selector, not a real mode segment address.
+
+32-bit clients will be returned a 32-bit offset in the EDX register.
+
+Clients which run under DPMI 1.0 should use Int 31H Functions 0210H and 0211H to obtain the addresses of exception handlers. This function is supported by DPMI 1.0 hosts solely for compatibility with DPMI 0.9.
+
+===== See also =====
+
+   
+
+===== Note =====
+
+Text based on [[http://www.delorie.com/djgpp/doc/dpmi/]]
+
+{{page>en:templates:dpmi:int}}
+

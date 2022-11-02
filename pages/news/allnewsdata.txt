@@ -1,0 +1,3 @@
+====== Latest NEWS articles ======
+~~NOCACHE~~
+{{anss>allnews}}

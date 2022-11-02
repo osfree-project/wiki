@@ -1,0 +1,37 @@
+[Q]: if exist для рекса
+
+[A]: Unknown author
+
+File_Exist.cmd:
+------------------
+/* */
+
+Parse Arg Name
+
+Call SysFileTree Name, Result 
+
+
+if Result.0 = 0 then
+	Return 0
+else
+	Return 1
+------------------
+
+
+Использование:
+
+do while( file_exist(netdir'\Hold.!!!') )
+    call syssleep 10
+end
+
+
+Вариант:
+if stream( 'myfile.txt', 'c', 'query exists' ) \= '' then say 'Ok!'
+
+
+[A]: Stas Mishchenkov (2:460/58)
+
+Если в этой же директории проверяет свои флаги The Brake!(tm) Mailer, то
+предпочтительней вариант с SysFileTree. stream( 'myfile.txt', 'c', 'query
+exists' ) со временем почему-то вводит машину в ступор, если используется в
+цикле.

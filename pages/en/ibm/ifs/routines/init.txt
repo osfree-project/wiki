@@ -1,0 +1,31 @@
+==== FS_INIT ====
+
+**Purpose**
+
+Request file system driver initialization.   
+
+**Calling Sequence**
+
+<code c>
+int far pascal FS_INIT(szParm, DevHelp, pMiniFSD)
+
+char far * szParm;
+unsigned long DevHelp;
+unsigned long far * pMiniFSD;
+</code>
+
+**Where**
+
+//szParm// is a pointer to the ASCIIZ parameters following the CONFIG.SYS IFS= command that loaded the FSD. The FSD does not need to verify this pointer.   
+
+//DevHelp// is the address of the kernel entry point for the DevHelp routines.   
+
+This is used exactly as the device driver DevHelp address, and can be used by an FSD that needs access to some of the device helper services.   
+
+//pMiniFSD// is a pointer to data passed between the mini-FSD and the FSD, or null. 
+
+**Remarks**
+
+This call is made during system initialization to allow the FSD to perform actions necessary for beginning operation. The FSD may successfully initialize by returning 0 or may reject installation (invalid parameters, incompatible hardware, etc.) by returning the appropriate error code. If rejection is selected, all FSD selectors and segments are released.   
+
+//pMiniFSD// will be null, except when booting from a volume managed by an FSD and the exported name of the FSD matches the exported name of the mini-FSD. In this case, //pMiniFSD// will point to data established by the mini-FSD (See MFS_INIT).   

@@ -1,0 +1,41 @@
+==== FSH_UPPERCASE ====
+
+**Purpose**
+
+This function is used to uppercase an ASCIIZ string.   
+
+**Calling Sequence**
+
+<code c>
+int far pascal FSH_UPPERCASE(szPathName, cbPathBuf, pPathBuf)
+
+char far * szPathName;
+unsigned short cbPathBuf;
+char far * pPathBuf;
+</code>
+
+**Where**
+
+//szPathName// is a pointer to the ASCIIZ pathname to be uppercased.   
+
+//cbPathBuf// is the length of the pathname buffer.   
+
+//pPathBuf// is a pointer to the buffer to copy the uppercased path into 
+
+**Returns**
+
+If no error is detected, a zero error code is returned. If an error is detected, the following error code is returned:   
+
+  * ERROR_BUFFER_OVERFLOW -- uppercased pathname is too long to fit into buffer. 
+
+**Remarks**
+
+This routine processes DBCS characters properly.   
+
+The FSD is responsible for verifying the string pointers and checking for segment boundaries.   
+
+//szPathName// and //pPathBuf// may point to the same place in memory.   
+
+//FSH_UPPERCASE// should be called for names passed into the FSD in raw data packets which are not passed to //FSH_CANONICALIZE// and should be uppercased, that is, extended attribute names.   
+
+**Note**:   OS/2 does not validate input parameters. Therefore, an FSD should call //FSH_PROBEBUF// where appropriate.   

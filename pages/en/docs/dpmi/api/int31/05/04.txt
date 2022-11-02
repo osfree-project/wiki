@@ -1,0 +1,63 @@
+{{page>en:templates:dpmi}}
+
+====== Int 31H, AH=05H, AL=04H ======
+
+===== Version =====
+
+1.0
+
+===== Brief =====
+
+Allocate Linear Memory Block
+
+===== Input =====
+
+  AX = 0504H
+  EBX = desired page-aligned linear address of memory block, or zero if linear address unspecified
+  ECX = size of block (bytes, must be nonzero)
+  EDX = flags
+
+^ Bit ^ Significance ^
+| 0 | 0 = create uncommitted pages 1 = create committed pages |
+| 1-31 | reserved, should be zero |
+    
+===== Return =====
+
+  if function successful
+  Carry flag = clear
+  EBX = linear address of memory block
+  ESI = handle for memory block
+  
+  if function unsuccessful
+  Carry flag = set
+  AX = error code
+  8001H	unsupported function (16-bit host)
+  8012H	linear memory unavailable
+  8013H	physical memory unavailable
+  8014H	backing store unavailable
+  8016H	handle unavailable
+  8021H	invalid value (ECX = 0)
+  8025H	invalid linear address (EBX not page aligned)
+
+===== Notes =====
+
+Allocates a block of page-aligned linear address space. The base address of the block may be specified by the client, and pages within the block may be committed or uncommitted.
+
+A DPMI 1.0 host that is 16-bit only will not support this function.
+
+A 16-bit client of a 32-bit DPMI 1.0 host can use this function.
+
+The allocated block is always page-aligned. If a specific linear address is not requested (EBX = 0), the DPMI host allocates the memory block at any available page-aligned linear address. If a specific linear address is requested (EBX nonzero), the host either allocates the block at the specified address or returns error code 8012H (linear memory unavailable).
+
+Int 31H Function 0501H, which can also be used to allocate linear memory blocks, does not necessarily page-align its blocks and does not have the ability to create uncommitted pages or allocate a block at a specific linear address. 
+       
+===== See also =====
+
+   
+
+===== Note =====
+
+Text based on [[http://www.delorie.com/djgpp/doc/dpmi/]]
+
+{{page>en:templates:dpmi:int}}
+

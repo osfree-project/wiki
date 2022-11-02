@@ -1,0 +1,48 @@
+==== MouGetNumMickeys ====
+
+**Bindings**: [[getnummickeys#C bindings|C]], [[getnummickeys#MASM bindings|MASM]]
+
+This call returns the number of mickeys in each centimeter for the installed mouse driver. 
+
+//MouGetNumMickeys// (NumberOfMickeys, DeviceHandle) 
+
+//NumberOfMickeys// (**PUSHORT**) - output 
+Address of the number of physical mouse motion units. Mouse motion units are reported in mickeys in each centimeter. This value is constant based upon the mouse device attached. 
+
+//DeviceHandle// (**HMOU**) - input 
+Handle of the mouse device from a previous [[en:ibm:prcp:mou:open|MouOpen]]. 
+
+//rc// (**USHORT**) - return 
+Return code descriptions are: 
+
+|0 |NO_ERROR |
+|385 |ERROR_MOUSE_NO_DEVICE |
+|466 |ERROR_MOU_DETACHED |
+|501 |ERROR_MOUSE_NO_CONSOLE |
+|505 |ERROR_MOU_EXTENDED_SG |
+
+=== C bindings ===
+
+<code c>
+#define INCL_MOU
+
+USHORT  rc = MouGetNumMickeys(NumberOfMickeys, DeviceHandle);
+
+PUSHORT          NumberOfMickeys; /* Number mickeys/centimeter */
+HMOU             DeviceHandle;    /* Mouse device handle */
+
+USHORT           rc;              /* return code */
+</code>
+
+=== MASM bindings ===
+
+<code asm>
+EXTRN  MouGetNumMickeys:FAR
+INCL_MOU            EQU 1
+
+PUSH@  WORD    NumberOfMickeys ;Number mickeys/centimeter
+PUSH   WORD    DeviceHandle    ;Mouse device handle
+CALL   MouGetNumMickeys
+
+Return WORD
+</code>

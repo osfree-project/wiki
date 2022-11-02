@@ -1,0 +1,5 @@
+==== Issues list ====
+
+~~NOCACHE~~
+
+{{issuetracker>project=osfree|product=all|status=all|severity=all|display=issues}}

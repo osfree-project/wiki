@@ -1,0 +1,45 @@
+{{page>en:templates:biosint}}
+
+====== Int 10H, AH=0CH ======
+
+===== Version =====
+
+IBM 5150 and higher
+
+===== Brief =====
+
+Draw pixel in graph mode
+
+===== Family API =====
+
+
+===== Input =====
+
+  * AH = 0Ch
+  * BH = page number
+  * AL = pixel color if bit 7 set, value is XOR'ed onto screen except in 256-color modes
+  * CX = column
+  * DX = row
+
+===== Return =====
+
+
+===== Macro =====
+
+<code asm>
+INCLUDE BIOS.INC
+
+@SetPixel 1, 10, 10, 0
+
+</code>
+
+===== Notes =====
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:biosapi}}
+
+{{page>en:templates:fapi}}
+

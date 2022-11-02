@@ -1,0 +1,49 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=66H, AL=01H ======
+
+===== Version =====
+
+3.3 and higher
+
+===== Brief =====
+
+GET GLOBAL CODE PAGE TABLE
+
+===== Family API =====
+
+
+===== Input =====
+
+	AX = 6601h
+  
+===== Return =====
+
+   CF set on error
+  AX = error code (see #01680 at AH=59h/BX=0000h)
+  CF clear if successful
+  BX = active code page (see #01757)
+  DX = system code page (see #01757)
+
+===== Macro =====
+
+
+===== Notes =====
+
+
+  
+
+
+===== See also =====
+
+   AX=6602h
+   
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:int}}
+
+{{page>en:templates:fapi}}
+
+

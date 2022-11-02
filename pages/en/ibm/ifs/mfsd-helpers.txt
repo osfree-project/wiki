@@ -1,0 +1,19 @@
+===== mini-FSD Helper Routines =====
+
+The following table summaries the mini-FSD Helper Routines:   
+
+^# ^FSD Helper                ^Description  ^
+|1. |[[en:ibm:ifs:mfsd-helpers:callrm|MFSH_CALLRM]]          |Put machine in real mode |
+|2. |[[en:ibm:ifs:mfsd-helpers:dovolio|MFSH_DOVOLIO]]         |Read sectors |
+|3. |[[en:ibm:ifs:mfsd-helpers:interr|MFSH_INTERR]]            |Internal error |
+|4. |[[en:ibm:ifs:mfsd-helpers:lock|MFSH_LOCK]]               |Lock segment |
+|5. |[[en:ibm:ifs:mfsd-helpers:phystovirt|MFSH_PHYSTOVIRT]]   |Convert physical to virtual address |
+|6. |[[en:ibm:ifs:mfsd-helpers:segalloc|MFSH_SEGALLOC]]       |Allocate a segment |
+|7. |[[en:ibm:ifs:mfsd-helpers:segfree|MFSH_SEGFREE]]          |Free a segment |
+|8. |[[en:ibm:ifs:mfsd-helpers:segrealloc|MFSH_SEGREALLOC]]   |Change segment size |
+|9. |[[en:ibm:ifs:mfsd-helpers:setbtdrv|MFSH_SETBOOTDRIVE]] |Change boot drive number\\ kept by the OS/2 kernel |
+|10.|[[en:ibm:ifs:mfsd-helpers:unlock|MFSH_UNLOCK]]            |Unlock a segment |
+|11.|[[en:ibm:ifs:mfsd-helpers:unphtovirt|MFSH_UNPHYSTOVIRT]] |Mark completion of use of virtual address |
+|12.|[[en:ibm:ifs:mfsd-helpers:virt2phys|MFSH_VIRT2PHYS]]        |Convert virtual to physical address |
+
+Table 4-2. Summary of mini-FSD Helpers  

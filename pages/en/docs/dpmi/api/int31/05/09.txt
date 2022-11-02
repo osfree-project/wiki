@@ -1,0 +1,70 @@
+{{page>en:templates:dpmi}}
+
+====== Int 31H, AH=05H, AL=09H ======
+
+===== Version =====
+
+1.0
+
+===== Brief =====
+
+Map Conventional Memory in Memory Block
+
+===== Input =====
+
+  AX = 0509H
+  ESI = memory block handle
+  EBX = offset within memory block of page(s) to be mapped (must be page-aligned)
+  ECX = number of pages to map
+  EDX = linear address of conventional memory (must be page-aligned)
+    
+===== Return =====
+
+  if function successful
+  Carry flag = clear
+  
+  if function unsuccessful
+  Carry flag = set
+  AX = error code
+  8001H	unsupported function (Conventional Memory Mapping Capability not supported)
+  8003H	system integrity (invalid conventional memory address)
+  8023H	invalid handle (in ESI)
+  8025H	invalid linear address (specified range is not within specified block, or EBX/EDX is not page aligned)
+
+===== Notes =====
+
+Aliases linear addresses below the 1 MB boundary onto the linear addresses of a memory block previously allocated with Int 31H Function 0504H.
+
+16-bit DPMI hosts will not support this function. A 16-bit client of a 32-bit DPMI 1.0 host can use this function.
+
+Support of this call by 32-bit DPMI hosts is optional. Application programs or DOS Extenders which require this call in order to run are not DPMI Compliant.
+
+Any committed or mapped pages resided in the linear address range that is being mapped into will be uncommitted or unmapped automatically by the host.
+
+A client may only map conventional memory that it already owns; i.e. memory which the client previously allocated with Int 31H Function 0100H or by calling DOS's Int 21H Function 48H directly via the translation services.
+
+All pages created by this call have the mapped bit (bit 2) set in the attributes returned by the Get Page Attributes function (Int 31H Function 0506H).
+
+DPMI hosts that do not implement virtual memory can support this function by simply copying page table entries. The entries must be marked as mapped so that the host knows not to free up those physical pages when the memory block is freed.
+
+DPMI hosts that provide virtual memory must implement some form of page aliasing in order to support this function.
+
+The function can provide a large contiguous memory space without virtual memory support.
+
+Implementors of DPMI hosts which do not provide virtual memory are encouraged to support this function. Without this function, conventional memory may be inaccessible to a 32-bit nonsegmented client, because the client may need contiguous linear memory for its code and data. 32-bit clients can always guarantee that conventional memory is not wasted with the following strategy:
+
+    Call DOS to allocate any free conventional memory
+    If the DPMI host supports virtual memory, call the Mark Real Mode Region Pageable function (Int 31H Function 0602H) to ensure that the host has not locked down conventional memory.
+    If the host does not support virtual memory but supports the Map Conventional Memory function (Int 31H Function 0509H), allocate a memory block with uncommitted pages, then use Function 0509H to make the physical memory allocated below 640 KB addressable in the memory block, and therefore useable by the 32-bit application program. 
+    
+
+===== See also =====
+
+   
+
+===== Note =====
+
+Text based on [[http://www.delorie.com/djgpp/doc/dpmi/]]
+
+{{page>en:templates:dpmi:int}}
+

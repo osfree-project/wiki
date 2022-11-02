@@ -1,0 +1,58 @@
+{{page>en:templates:fapiint}}
+
+====== KbdClose ======
+
+This call closes the existing logical keyboard identified by the keyboard handle.
+
+===== Syntax =====
+<code c>
+ KbdClose (KbdHandle)
+</code>
+
+===== Parameters =====
+
+  * KbdHandle ([[HKBD]]) - input: Default keyboard or the logical keyboard.
+
+===== Return Code =====
+
+rc (USHORT) - return:Return code descriptions are:
+
+  *0 - NO_ERROR
+  *439 - ERROR_KBD_INVALID_HANDLE
+  *464 - ERROR_KBD_DETACHED
+  *504 - ERROR_KBD_EXTENDED_SG
+
+===== Remarks =====
+
+KbdClose blocks while another thread has the keyboard focus (by way of [[KbdGetFocus]]) until the thread with the focus issues [[KbdFreeFocus]]. Therefore, to prevent KbdClose from blocking, it is recommended that KbdClose be issued only while the current thread has the focus. For example:
+
+  KbdGetFocus:Wait until focus available on handle 0.
+  KbdClose:Close a logical keyboard handle.
+  KbdClose:Close another logical keyboard handle.
+  KbdClose:Close still another logical keyboard handle.
+  KbdFreeFocus:Give up the focus on handle 0.
+
+===== Bindings =====
+
+====C====
+<code cRE>
+#define INCL_KBD
+
+USHORT  rc = KbdOpen(KbdHandle);
+PHKBD   KbdHandle;     /* Keyboard handle */
+USHORT  rc;            /* return code */
+</code>
+
+====MASM====
+<code asm>
+EXTRN  KbdOpen:FAR
+INCL_KBD            EQU 1
+
+PUSH@  WORD    KbdHandle     ;Keyboard handle
+CALL   KbdOpen
+
+Returns WORD
+</code>
+
+{{page>en:templates:fapi}}
+

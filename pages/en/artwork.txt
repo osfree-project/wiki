@@ -1,0 +1,11 @@
+===== osFree artwork =====
+
+The available osFree artwork are its logos, at most. We have several logos, and several versions of each logo available.
+
+{{logos:osfree.png|osFree logo}}
+
+This is a current official osFree logo, created by Alex Kramer (Germany). It was chosen because it looks nice and modern. But we also like our previous logos.
+
+{{logos:osflogo.gif|original osFree logo (transparent)}} {{logos:osflogo2.png|original osFree logo (white)}} {{logos:logosmall.png|original osFree logo (white, small, diagonal)}}
+
+These are the original osFree logos, created by Cristiano Guadagnino (Italy). They are better reflect the idea of the "osFree" name. osFree is named after OS/3, being the OS/2 successor. Also, because "three" sounds similar to "free", and it is a free software, we chose the name "osFree". So, the original osFree logo better reflects the double meaning of the word play free/three. "Three" and "Free" are just merged on the picture.

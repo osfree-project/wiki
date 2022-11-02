@@ -1,0 +1,45 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=5FH, AL=07H ======
+
+===== Version =====
+
+5 and higher
+
+===== Brief =====
+
+ENABLE DRIVE
+
+===== Family API =====
+
+
+===== Input =====
+
+    AX = 5F07h
+    DL = drive number (0=A:)
+
+===== Return =====
+
+  CF clear if successful
+  CF set on error
+  AX = error code (0Fh) (see #01680 at AH=59h/BX=0000h)
+
+===== Macro =====
+
+
+===== Notes =====
+
+ Simply sets the "valid" bit in the drive's CDS. This function is not supported by Novell DOS 7 through at least Update 4, but support was added by Update 13
+
+===== See also =====
+
+  AH=52h - AX=5F08h"DOS"
+  
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:int}}
+
+{{page>en:templates:fapi}}
+

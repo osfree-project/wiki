@@ -1,0 +1,57 @@
+==== KbdSetCustXt ====
+
+**Bindings**: [[setcustxt#C bindings|C]], [[setcustxt#MASM bindings|MASM]]
+
+This call installs, on the specified handle, the translate table which this call points to. This translate table affects only this handle. 
+
+KbdSetCustXt (Xlatetable, KbdHandle) 
+
+//Xlatetable// (**PUSHORT**) - input 
+A pointer to the translation table used to translate scan code to ASCII code for a specified handle. The format of the translate table is documented in the Set Code Page IOCTL 50H. Refer to IBM Operating System/2 Version 1.2 I/O Subsystems And Device Support Volume 1 for a complete discussion of Set Code Page IOCTL 50H. 
+
+//KbdHandle// (**HKBD**) - input 
+Default keyboard or the logical keyboard. 
+
+//rc// (**USHORT**) - return 
+Return code descriptions are: 
+
+|0 |NO_ERROR |
+|377 |ERROR_KBD_INVALID_ECHO_MASK |
+|378 |ERROR_KBD_INVALID_INPUT_MASK |
+|439 |ERROR_KBD_INVALID_HANDLE |
+|445 |ERROR_KBD_FOCUS_REQUIRED |
+|447 |ERROR_KBD_KEYBOARD_BUSY |
+|464 |ERROR_KBD_DETACHED |
+|504 |ERROR_KBD_EXTENDED_SG |
+
+**Remarks**
+
+The translate table must be maintained in the caller's memory. No copy of the translate table is made by //KbdSetCustXt//. 
+
+//[[setcp|KbdSetCp]]// reverses the action of //KbdSetCustXt// and sets the handle equal to one of the system translate tables. If memory is dynamically allocated by the caller for the translate table and is freed before the //[[setcp|KbdSetCp]]// is performed, //[[setcp|KbdSetCp]]// and future translations may fail. 
+
+=== C bindings ===
+
+<code c>
+#define INCL_KBD
+
+USHORT  rc = KbdSetCustXt(Xlatetable, KbdHandle);
+
+PUSHORT          Xlatetable;    /* Translation Table */
+HKBD             KbdHandle;     /* Keyboard handle */
+
+USHORT           rc;            /* return code */
+</code>
+
+=== MASM bindings ===
+
+<code asm>
+EXTRN  KbdSetCustXt:FAR
+INCL_KBD            EQU 1
+
+PUSH@  WORD    CodePage      ;Translation Table
+PUSH   WORD    KbdHandle     ;Keyboard handle
+CALL   KbdSetCustXt
+
+Returns WORD
+</code>

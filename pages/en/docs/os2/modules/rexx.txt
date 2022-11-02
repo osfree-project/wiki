@@ -1,0 +1,22 @@
+{{logos:os2.gif?35x35}} 
+
+**Please help to find info about entries marked as //No info//**
+
+===== REXX =====
+
+
+^Ordinal ^Name ^Desc ^ Status ^
+| 1 | RexxStart | | |
+| 2 | RexxVariablePool | | |
+| 3 | RexxSetHalt | | |
+| 4 | RexxSetTrace | | |
+| 5 | RexxResetTrace | | |
+| 6 | RXTRACERESET | Turn off interactive debugger | |
+| 7 | RXBREAKCLEANUP | | |
+| 8 | RXVAR | Pass shared variables to the variable pool | |
+| 9 | REXXSAA | Call REXX interpreter from application | |
+| 10 | RXHALTSET | Inform REXX about halt condition | |
+| 11 | RXTRACESET | Turn on interactive debugger | |
+
+{{page>en:templates:dlls}}
+

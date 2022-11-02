@@ -1,0 +1,43 @@
+{{page>en:templates:dpmi}}
+
+====== Int 31H, AH=05H, AL=0AH ======
+
+===== Version =====
+
+1.0
+
+===== Brief =====
+
+Get Memory Block Size and Base
+
+===== Input =====
+
+  AX = 050AH
+  SI:DI = memory block handle
+    
+===== Return =====
+
+  if function successful
+  Carry flag = clear
+  SI:DI = size of memory block (bytes)
+  BX:CX = base address of memory block
+  
+  if function unsuccessful
+  Carry flag = set
+  AX = error code
+  8023H	invalid handle
+
+===== Notes =====
+
+Returns the size of a memory block that was previously allocated with Int 31H Function 0501H or 0504H.
+
+===== See also =====
+
+   
+
+===== Note =====
+
+Text based on [[http://www.delorie.com/djgpp/doc/dpmi/]]
+
+{{page>en:templates:dpmi:int}}
+

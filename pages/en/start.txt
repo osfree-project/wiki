@@ -1,0 +1,50 @@
+{{logos:fiasco.png?35}}{{logos:os2.gif?35x35}}{{logos:dos.gif?35x35}}{{logos:win16.gif?28x35}}{{logos:win32.gif?28x35}}{{logos:linux.jpg?35x35}}{{logos:java.gif?35x35}}
+
+====== osFree project  ======
+
+[[en:donate|{{en:heart.gif}}]][[en:donate|Like it? 
+Support us!]] [[en:develop|{{en:join_icon.png}}]][[develop|Join us!]]
+
+[[en:about|osFree]] is a [[wp>FOSS|Free Open Source software]] operating system development project, aiming to replace eventually all [[en:os_2|OS/2]] subsystems with Open source analogues. It aims for [[wp>OS/2]] Warp 4 (Merlin) as a base compatibility system, which does not mean that we will not support features of newer (OS/2 Warp Server for e-business, [[wp>eComStation]] and [[wp>ArcaOS]]) [[wp>OS/2]] versions. This includes rewriting not only user-level code but the [[en:os_2|OS/2]] kernel too.
+
+We're collecting existing code for [[wp>OS/2]] subsystems for years. Also we are developing our own bootloader named [[en:freeldr|FreeLdr]] and OS/2 personality for [[wp>L4_microkernel_family|L4]] microkernel, i.e. a number of servers, implementing the Control Program (OS/2 kernel) Interface functionality in userspace. See [[en:docs:general:index|osFree design and development concept]] for more details. Visit the [[irc://irc.inet.tele.dk/osfree|#osFree]] IRC channel on the EFNet or [[https://osfree_pub.t.me]] Telegram channel.
+
+Several projects with similar goals exist (or existed). [[en:docs:projects|Here]] is the brief comparison of goals and tasks of different projects.
+
+Our project is reusing the code of many [[en:credits|opensource projects]].
+
+Our project alternative domain names: [[http://osfreeorgysalbcqrk3kqib55urra2mvtfmsoezcqwop2fed7jc64gqd.onion|Tor one]] and [[http://yf2xankbjprn7xs2pd67xix7idfqyxbbl2zul3dgwln2wwefqjsa.b32.i2p|I2P one]].
+
+  * [[en:about|Learn more]] 
+
+==== Project News ====
+
+{{blog>en:news?12&noform}}
+
+  * [[en:news|More news]]
+
+==== osFree userland commit log ====
+
+{{rss>https://github.com/osfree-project/osfree/commits/master.atom 12 author date description 1h}}
+
+==== osFree OS/2 personality commit log ====
+
+{{rss>https://github.com/osfree-project/os3/commits/master.atom 12 author date description 1h}}
+
+==== Last bugtracker issues ====
+
+{{rss>http://osfree.org/mantis/issues_rss.php?username=valerius&key=IrYNBGclQADoHkoPqWjWErMc0EZ3vo6Zh-4j2W6BnxGE5dSRiAjrPJl-Lp5WsAIm4hHyv2lRFS_A7ypWM1nc 15 author date 1h}}
+
+==== Last forum topics ====
+
+{{rss>http://osfree.org/forum/feed.php 15 author date 1h}}
+
+==== Roadmap ====
+
+We're now at the **alpha** stage, which means that the current version is **not feature-complete nor stable** and not recommended for everyday usage. The 0.0.x release series will still stay in alpha stage, and 0.9 release series will be marked as beta, meaning a system which is suitable for every day use.
+
+The next release will be 0.0.5, with an release date being open. See our [[en:roadmap|osFree roadmap]] for details.
+
+==== Getting access to site areas ====
+
+The site has several separate areas, like [[en:start|wiki]], [[http://osfree.org/forum/|forum]], [[http://osfree.org/mantis/|bugtracker]], [[http://osfree.org/roundcube/|webmail]] and [[http://osfree.org/dp/|dotProject]]. If you want to get access to these, you should register [[http://osfree.org/forum/ucp.php?mode=register|here]] first. After you verify your account via email, you'll get access to all five parts of the site. Approval of user accounts by site admin is now disabled. After verification of your account, you need to wait 15 mins or less, until your account info is propagated from forum to another site parts. Note also, that there is a guest account (user: guest, password: guest), which allows you to login to the site areas, requiring a login (like a dotProject area). It gives you a read only access. Once you log in into the forum, you get access to wiki too, and vice versa. The same login applies to dotProject, webmail and bugtracker. After adding to "Users" group you'll get a write access to wiki, bugtracker and forum. If you want to contribute to site design or development, or to get a mail account, the admin can add you to corresponding user groups and your access level will be increased. In case of troubles, or questions, you can contact site [[http://osfree.org/forum/memberlist.php?mode=contactadmin|admin]]. 

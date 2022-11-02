@@ -1,0 +1,13 @@
+==== Small tasks ====
+
+  * Development of command line tools of osFree DOS Personality
+  * Continue Command Line Tools improvements
+  * Modify COMP command line tool to be compatible with original OS/2 tool
+  * Port PING sources to OpenWatcom and integrate to build system
+  * Port TRACERTE sources to OpenWatcom and integrate to build system
+  * Write EAUTIL tool
+  * Add /S switch to TIME command (CMD.EXE)
+  * Collect documentation for parts, used in osFree
+  * Replace all_getopt by code with osFree license code instead of GPL code (to prevent license problems)
+  * improvement of mkmsgf tool from hobbes
+

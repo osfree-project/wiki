@@ -1,0 +1,69 @@
+{{page>en:templates:fapiint}}
+
+====== DosPutMessage ======
+
+This call outputs the message in a buffer passed by a caller to the specified handle. The function formats the buffer to prevent words from wrapping if displayed to a screen.
+
+===== Syntax =====
+<code c>
+DosPutMessage (FileHandle, MessageLength, MessageBuffer) 
+</code>
+
+===== Parameters =====
+
+  * FileHandle ([[USHORT]]) - input : Handle of the output file or device.
+  * MessageLength ([[USHORT]]) - input : Length of the message to be output.
+  * MessageBuffer ([[PCHAR]]) - input : Address of the buffer that contains the returned message.
+
+===== Return Code =====
+
+rc ([[USHORT]]) - return
+
+Return code descriptions are:
+
+  * 0   NO_ERROR
+  * 6   ERROR_INVALID_HANDLE
+  * 19  ERROR_WRITE_PROTECT
+  * 321 ERROR_MR_UN_PERFORM
+
+===== Remarks =====
+
+Screen width is assumed to be 80 characters. The DosPutMessage call counts a CR/LF in the 80 characters that it tries to write to the screen. If a word extends past column 78, it is put on the next line. DosPutMessage assumes the starting cursor position is column one when handling a word wrap.
+
+If the last character to be positioned on a line is a double-byte character that would be bisected, the rule above ensures that the character is not bisected.
+
+===== Example Code =====
+
+==== C Binding ====
+
+<code c>
+#define INCL_DOSMISC
+
+USHORT  rc = DosPutMessage(FileHandle, MessageLength, MessageBuffer);
+
+USHORT  FileHandle;    /* Handle of output file/device */
+USHORT  MessageLength; /* Length of message buffer */
+PCHAR   MessageBuffer; /* Message buffer */
+
+USHORT  rc;            /* return code */
+</code>
+
+==== MASM Binding ====
+
+<code asm>
+EXTRN  DosPutMessage:FAR
+INCL_DOSMISC      EQU 1
+
+PUSH   WORD    FileHandle    ;Handle of output file/device
+PUSH   WORD    MessageLength ;Length of message buffer
+PUSH@  OTHER   MessageBuffer ;Message buffer
+CALL   DosPutMessage
+</code>
+Returns WORD
+
+===== Note =====
+
+Text based on [[http://www.edm2.com/index.php/DosPutMessage_(FAPI)]]
+
+{{page>en:templates:fapi}}
+

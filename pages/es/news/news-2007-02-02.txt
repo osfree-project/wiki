@@ -1,0 +1,5 @@
+==== 2.2.07 ==
+
+El equipo de la tela del osFree ha decidido cambiar varias cosas. Los primeros y primeros, sin registrar usuarios no pueden comentar respecto a historias de las noticias. En segundo lugar, han inhabilitado la capacidad para que le coloque su propia cuenta para evitar que las cuentas simuladas del Spam se coloquen. De ahora encendido, usted debe solicitar una cuenta del wiki del osFree cualquiera entrando en contacto con el admins(if que usted es revelador usted recibió probablemente ya una cuenta a partir del uno de los admins) vía el email o los foros. Estos cambios fueron iniciados como venganza con derecho preferente a una cuenta recientemente registrada del Spam.
+
+~~DISCUSSION~~

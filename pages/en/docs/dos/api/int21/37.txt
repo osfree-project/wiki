@@ -1,0 +1,13 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=37H ======
+
+^ Subfunction                        ^ Desctiption          ^ Version      ^
+| [[en:docs:dos:api:int21:37:00|00]] | GET SWITCH CHARACTER | 2.0+         |
+| [[en:docs:dos:api:int21:37:01|01]] | SET SWITCH CHARACTER | 2.0+         |
+| [[en:docs:dos:api:int21:37:02|02]] | Get availdev flag    | 2.x and 3.3+ |
+| [[en:docs:dos:api:int21:37:03|03]] | Set availdev flag    | 2.x and 3.3+ |
+
+{{page>en:templates:int}}
+
+{{page>en:templates:fapi}}

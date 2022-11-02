@@ -1,0 +1,19 @@
+==== FSH_IOBOOST ====
+
+**Purpose**
+
+This function allows an FSD to boost the current thread's I/O priority after a I/O request.   
+
+**Calling Sequence**
+
+<code c>
+void far pascal FSH_IOBOOST(void)
+</code>
+
+**Returns**
+
+There are no error returns.   
+
+**Remarks**
+
+//FSH_IOBOOST// will not block. 

@@ -1,0 +1,74 @@
+==== FS_FINDNOTIFYFIRST ====
+
+**Purpose**
+
+Start monitoring a directory for changes.   
+
+**Calling Sequence**
+
+<code c>
+int far pascal FS_FINDNOTIFYFIRST(pcdfsi, pcdfsd, pName, iCurDirEnd, attr,
+                                  pHandle, pData, cbData, pcMatch, level,
+                                  timeout)
+
+struct cdfsi far * pcdfsi;
+struct cdfsd far * pcdfsd;
+char far * pName;
+unsigned short iCurDirEnd;
+unsigned short attr;
+unsigned short far * pHandle; char far * pData;
+unsigned short cbData;
+unsigned short far * pMatch;
+unsigned short level;
+unsigned long timeout;
+</code>
+
+**Where**
+
+//pcdfsi// is a pointer to the file-system-independent working directory structure.   
+
+//pcdfsd// is a pointer to the file-system-dependent working directory structure.   
+
+//pName// is a pointer to the ASCIIZ name of the file or directory.   
+
+Wildcard characters are allowed only in the last component. The FSD does not need to verify this pointer.   
+
+//iCurDirEnd// is the index of the end of the current directory in //pName//.   
+
+This is used to optimize FSD path processing. If //iCurDirEnd// == -1 there is no current directory relevant to the name text, that is, a device.   
+
+//attr// is the bit field that governs the match.   
+
+Any directory entry whose attribute bit mask is a subset of attr and whose name matches that in pName should be returned. See //FS_FINDFIRST// for an explanation.   
+
+//pHandle// is a pointer to the handle for the find-notify request.   
+
+The FSD allocates a handle for the find-notify request, that is, a handle to the directory monitoring continuation information, and stores it here. This handle is passed to //FS_FINDNOTIFYNEXT// to continue directory monitoring.   
+
+The FSD does not need to verify this pointer.   
+
+//pData// is the address of the application data area.   
+
+Addressing of this data area is not validated by the kernel (see //FSH_PROBEBUF//). The FSD fills in this area with a set of packed, variable- length structures that contain the requested data and matching file names.   
+
+//cbData// is the length of the application data area in bytes.   
+
+//pcMatch// is a pointer to the number of matching entries.   
+
+The FSD returns, at most, this number of entries. The FSD returns in this parameter the number of entries actually placed in the data area.   
+
+The FSD does not need to verify this pointer.   
+
+//level// is the information level to be returned.   
+
+//Level// selects among a series of data structures to be returned. See the description of //DosFindNotifyFirst// in the OS/2 Version 2.0 Control Program Programming Reference for more information.   
+
+The //level// passed to the FSD is valid.   
+
+//timeout// is the time-out in milliseconds.   
+
+The FSD waits until either the time-out has expired, the buffer is full, or the specified number of entries has been returned before returning to the caller. 
+
+**Remarks**
+
+None.   

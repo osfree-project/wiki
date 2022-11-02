@@ -1,0 +1,17 @@
+{{page>en:templates:biosint}}
+
+====== Int 17H ======
+
+Printer Port BIOS API. All registers saved on entry and restores on return.
+
+===== BIOS Interrupts =====
+
+^ Function ^ Macro ^ Description ^ Version ^
+| [[en:docs:bios:api:int17:00|00H]] | [[en:docs:macrolib:@PrnPrint]]((osFree extension)) | Print char | 5150+ |
+| [[en:docs:bios:api:int17:01|01H]] | [[en:docs:macrolib:@PrnInit]]((osFree extension)) | Initialize port | 5150+ |
+| [[en:docs:bios:api:int17:02|02H]] | [[en:docs:macrolib:@PrnStatus]]((osFree extension)) | Get port status | 5150+ |
+
+{{page>en:templates:biosapi}}
+
+{{page>en:templates:fapi}}
+

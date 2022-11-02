@@ -1,0 +1,49 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=39H ======
+
+===== Version =====
+
+2 and higher
+
+===== Brief =====
+
+"MKDIR" - CREATE SUBDIRECTORY
+
+===== Family API =====
+
+
+===== Input =====
+
+        AH = 39h
+        DS:DX -> ASCIZ pathname
+
+===== Return =====
+
+ CF clear if successful
+            AX destroyed
+        CF set on error
+            AX = error code (03h,05h) (see #01680 at AH=59h/BX=0000h)
+
+===== Notes =====
+
+  all directories in the given path except the last must exist
+        fails if the parent directory is the root and is full
+        DOS 2.x-3.3 allow the creation of a directory sufficiently deep that
+          it is not possible to make that directory the current directory
+          because the path would exceed 64 characters
+        under the FlashTek X-32 DOS extender, the pointer is in DS:EDX
+          
+===== See also =====
+
+ AH=3Ah,AH=3Bh,AH=6Dh,AX=7139h,AH=E2h/SF=0Ah,AX=43FFh/BP=5053h
+ INT 2F/AX=1103h,INT 60/DI=0511h
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:int}}
+
+{{page>en:templates:fapi}}
+

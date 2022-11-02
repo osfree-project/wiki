@@ -1,0 +1,7 @@
+===== SU.OS2 Fidonet OS/2 FAQ =====
+
+|[[ru:os2faq:os2comm|Communication]] |[[ru:os2faq:os2gen|General]] |
+|[[ru:os2faq:os2mm|Multimedia]] |[[ru:os2faq:os2prog|Programming]] |
+|[[ru:os2faq:os2soft|Software]] |[[ru:os2faq:os2str|Storage]] |
+|[[ru:os2faq:os2video|Video]] | [[ru:os2faq:os2win|Windows]] |
+|[[ru:os2faq:outdated|Outdated]] | |

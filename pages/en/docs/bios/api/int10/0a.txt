@@ -1,0 +1,49 @@
+{{page>en:templates:biosint}}
+
+====== Int 10H, AH=09H ======
+
+===== Version =====
+
+IBM 5150 and higher
+
+===== Brief =====
+
+Print character and attribute at cursor position
+
+===== Family API =====
+
+[[en:docs:fapi:VioWrtNCell]] [[en:docs:fapi:VioWrtNAttr]] [[en:docs:fapi:VioWrtNChar]]
+
+===== Input =====
+
+  * AH = 09h
+  * AL = character to display
+  * BH = page number (00h to number of pages - 1) (see #00010) background color in 256-color graphics modes (ET4000)
+  * BL = attribute (PCjr, Tandy 1000 only) or color (graphics mode) if bit 7 set in <256-color graphics mode, character is XOR'ed onto screen
+  * CX = number of times to write character
+
+===== Return =====
+
+
+===== Macro =====
+
+<code asm>
+INCLUDE BIOS.INC
+
+@PutCh 'A', 7, 0, 5
+</code>
+
+===== Notes =====
+
+  * all characters are displayed, including CR, LF, and BS
+  * replication count in CX may produce an unpredictable result in graphics modes if it is greater than the number of positions remaining in the current row
+  * With PhysTechSoft's PTS ROM-DOS the BH, BL, and CX values are ignored on entry.
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:biosapi}}
+
+{{page>en:templates:fapi}}
+

@@ -1,0 +1,11 @@
+==== July 5, 2007 ====
+
+For Linux personality we can select existent Linux distribution to have 
+as less maintaining as possible. The Linux personality isn't the main 
+goal of the project and we don't want to lose much time for it.
+
+The Poll about Linux personality is located [[http://www.osfree.org/forum/viewtopic.php?t=240|here]].
+
+{{tag>poll}}
+
+~~DISCUSSION~~

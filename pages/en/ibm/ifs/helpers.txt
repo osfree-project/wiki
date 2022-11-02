@@ -1,0 +1,56 @@
+===== FS Helper Functions =====
+
+The following table summarizes the routines that make up the File System Helper interface between FSDs and the kernel.   
+
+^# ^FS Helper Routine       ^Description ^
+|1. |[[en:ibm:ifs:helpers:addshare|FSH_ADDSHARE]]         |Add a name to the sharing set |
+|2. |<del>FSH_BUFSTATE</del>         |REMOVED in OS/2 Version 2.0 |
+|3. |[[en:ibm:ifs:helpers:calldriver|FSH_CALLDRIVER]]       |Call Device Driver's Extended \\ Strategy entry point |
+|4. |[[en:ibm:ifs:helpers:canonicalize|FSH_CANONICALIZE]]   |Convert pathname to canonical form |
+|5. |[[en:ibm:ifs:helpers:chkeaname|FSH_CHECKEANAME]]  |Check EA name validity |
+|6. |[[en:ibm:ifs:helpers:criterror|FSH_CRITERROR]]        |Signal a hard error to the daemon |
+|7. |[[en:ibm:ifs:helpers:devioctl|FSH_DEVIOCTL]]           |Send IOCTL request to device driver |
+|8. |[[en:ibm:ifs:helpers:dovolio|FSH_DOVOLIO]]             |Volume-based sector-oriented \\ transfer |
+|9. |[[en:ibm:ifs:helpers:dovolio2|FSH_DOVOLIO2]]           |Send volume-based IOCTL request to \\ device driver. |
+|10.|[[en:ibm:ifs:helpers:findchar|FSH_FINDCHAR]]           |Find first occurrence of char in \\ string |
+|11.|[[en:ibm:ifs:helpers:findduphvpb|FSH_FINDDUPHVPB]]     |Locates equivalent hVPBs |
+|12.|<del>FSH_FLUSHBUF</del>           |REMOVED in OS/2 Version 2.0 |
+|13.|[[en:ibm:ifs:helpers:forcenoswp|FSH_FORCENOSWAP]]  |Force segments permanently into \\ memory |
+|14.|<del>FSH_GETBUF</del>              |REMOVED in OS/2 Version 2.0 |
+|15.|<del>FSH_GETFIRSTOVERLAPB</del> |REMOVED in OS/2 Version 2.0 |
+|16.|[[en:ibm:ifs:helpers:getprio|FSH_GETPRIORITY]]      |Get current thread's I/O priority |
+|17.|[[en:ibm:ifs:helpers:getvolparm|FSH_GETVOLPARM]]     |Get VPB data from VPB handle |
+|18.|[[en:ibm:ifs:helpers:interr|FSH_INTERR]]                |Signal an internal error |
+|19.|[[en:ibm:ifs:helpers:ioboost|FSH_IOBOOST]]             |Gives the current thread an I/O \\ priority boost |
+|20.|[[en:ibm:ifs:helpers:iosemclear|FSH_IOSEMCLEAR]]       |Clear an I/O-event semaphore |
+|21.|[[en:ibm:ifs:helpers:iscurdirpref|FSH_ISCURDIRPREFIX]]  |Test for a prefix of a current \\ directory |
+|22.|[[en:ibm:ifs:helpers:loadchr|FSH_LOADCHAR]]          |Load character from a string |
+|23.|[[en:ibm:ifs:helpers:namefromsfn|FSH_NAMEFROMSFN]]   |Get the full path name from an SFN |
+|24.|[[en:ibm:ifs:helpers:prevchar|FSH_PREVCHAR]]          |Move backward in string |
+|25.|[[en:ibm:ifs:helpers:probebuf|FSH_PROBEBUF]]          |User address validity check |
+|26.|[[en:ibm:ifs:helpers:qsysinfo|FSH_QSYSINFO]]           |Query system information |
+|27.|[[en:ibm:ifs:helpers:regprfctrs|FSH_REGISTERPERFCTRS]] |Register a FSD with PERFVIEW |
+|28.|<del>FSH_RELEASEBUF</del>       |REMOVED in OS/2 Version 2.0 |
+|29.|[[en:ibm:ifs:helpers:removeshare|FSH_REMOVESHARE]]    |Remove a name from the sharing set |
+|30.|[[en:ibm:ifs:helpers:segalloc|FSH_SEGALLOC]]           |Allocate a GDT or LDT segment |
+|31.|[[en:ibm:ifs:helpers:segfree|FSH_SEGFREE]]             |Release a GDT or LDT segment |
+|32.|[[en:ibm:ifs:helpers:segrealloc|FSH_SEGREALLOC]]      |Change segment size |
+|33.|[[en:ibm:ifs:helpers:semclr|FSH_SEMCLEAR]]          |Clear a semaphore |
+|34.|[[en:ibm:ifs:helpers:semreq|FSH_SEMREQUEST]]      | Request a semaphore |
+|35.|[[en:ibm:ifs:helpers:semset|FSH_SEMSET]]               |Set a semaphore |
+|36.|[[en:ibm:ifs:helpers:semsetwait|FSH_SEMSETWAIT]]       |Set a semaphore and wait for clear |
+|37.|[[en:ibm:ifs:helpers:semwait|FSH_SEMWAIT]]             |Wait for clear |
+|38.|[[en:ibm:ifs:helpers:setvol|FSH_SETVOLUME]]        |Force a volume to be mounted on the \\ drive |
+|39.|[[en:ibm:ifs:helpers:storechr|FSH_STORECHAR]]       |Store character into string |
+|40.|[[en:ibm:ifs:helpers:uppercase|FSH_UPPERCASE]]        |Uppercase ASCIIZ string |
+|41.|[[en:ibm:ifs:helpers:wildmatch|FSH_WILDMATCH]]        |Match using OS/2 wildcards |
+|42.|[[en:ibm:ifs:helpers:yield|FSH_YIELD]]                   |Yield CPU to higher priority \\ threads |
+
+
+FSDs are loaded as dynamic link libraries and may import services provided by the kernel. These services can be called directly by the file system, passing the relevant parameters.   
+
+No validation of input parameters is done unless otherwise specified. The FSD calls //FSH_PROBEBUF//, where appropriate, before calling the FS help routine.   
+
+When any service returns an error code, the FSD must return to the caller as soon as possible and return the specific error code from the helper to the FS router.   
+
+There are many deadlocks that may occur as a result of operations issued by FSDs. OS/2 provides no means whereby deadlocks between file systems and applications can be detected.  

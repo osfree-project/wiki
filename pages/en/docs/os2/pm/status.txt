@@ -1,0 +1,21 @@
+==== osFree PM prototype current state ====
+
+Originaly osFree PM was taken from FreePM project by Evgeny Kotsuba. Since last update by Evgen  many time is gone. So we forked FreePM project. We still name it as FreePM, but, if Evgen will continue to work with it's original project, we'll need to rename it.
+
+osFree PM consist of client and server parts. Server works on local host and handles hardware events and manage client windows and sessions. Clients work on local and/or remote  host and draw on server screen. Client can use user standard controls of server or provide it's own controls.
+
+At the present time FreePM mostly prints out messages about which messages it receives in the server and in the client part (the server and client is in separate exe files). The communication between the server and the client goes through a named pipe with a certain [[en:docs:pm:pm_protocol|protocol]]. Such as a command token (opcode) and following data.
+
+The core part of the server is in “FreePM/src_s/Fs_main.cpp” in the function “Fs_ClientWork”. There is quite a bit of code which deals with synchronization, Evgen has done a lot of work with that part. 
+
+The server draws to a framebuffer and handles hardware events via driver DLL. 
+
+The PMWINDOW.DLL driver creates a PM window (with some graphics art) and monitors the messages it gets from that. If you move the mouse cursor above it or change the size, the server prints out stuff about that. The window is created in the server file: “FreePM/src_s/Fs_PMdev.cpp”.
+
+Client program uses set of DLL's with PM*.DLL mask. PMCLIENT.DLL contains communication code of client application with server.
+
+Many calls of client sent to the server through the named pipe. For example “WinInitialize” is in “FreePM/src_c/FreePM_win.cpp” which sets up the connection to the server and gets the HAB (Anchor Block Handle) for this client.
+
+First, the client automatically tries to connect to remote server. If no success, then it tries to connect to local server. If no success, then it starts local copy of server and connects to it.
+
+~~DISCUSSION~~

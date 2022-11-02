@@ -1,0 +1,19 @@
+{{logos:os2.gif?35x35}} 
+
+**Please help to find info about enries marked as //No info//**
+
+===== UNIKBD =====
+
+
+^Ordinal ^Name ^Desc ^ Status ^
+| 1 | UniCreateKeyboard | | |
+| 2 | UniDestroyKeyboard | | |
+| 3 | UniQueryKeyboard | | |
+| 4 | UniResetShiftState | | |
+| 5 | UniUpdateShiftState | | |
+| 6 | UniTranslateKey | | |
+| 7 | UniTranslateDeadkey | | |
+| 8 | UniUntranslateKey | | |
+| 9 | UniInitKeyboard | | |
+
+{{page>en:templates:dlls}}

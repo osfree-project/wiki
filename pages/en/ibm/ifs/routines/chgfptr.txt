@@ -1,0 +1,48 @@
+==== FS_CHGFILEPTR ====
+
+**Purpose**
+
+Move a file's logical read/write position pointer.   
+
+**Calling Sequence**
+
+<code c>
+int far pascal FS_CHGFILEPTR(psffsi, psffsd, offset, type, IOflag)
+
+struct sffsi far * psffsi;
+struct sffsd far * psffsd;
+long offset;
+unsigned short type;
+unsigned short IOflag;
+</code>
+
+**Where**
+
+//psffsi// is a pointer to the file-system-independent portion of an open file instance.   
+
+The FSD uses the current file size or //sfi_position// along with offset and type to compute a new //sfi_position//. This is updated by the system.   
+
+//psffsd// is a pointer to the file-system-dependent portion of an open file instance. The FSD may store or adjust data as appropriate in this structure.   
+
+offset is the signed offset to be added to the current file size or position to form the new position within the file.   
+
+^//type// ^indicates the basis of a seek operation.   ^
+|//type// == 0 |indicates seek relative to beginning of file. |
+|//type// == 1 |indicates seek relative to current position within the file. |
+|//type// == 2 |indicates seek relative to end of file.   |
+
+The value of type passed to the FSD will be valid.   
+
+^//IOflag// ^indicates information about the operation on the handle.   ^
+|//IOflag// == 0x0010 |indicates write-through. |
+|//IOflag// == 0x0020 |indicates no-cache. |
+
+**Remarks**
+
+The file system may want to take the seek operation as a hint that an I/O operation is about to take place at the new position and initiate a positioning operation on sequential access media or read-ahead operation on other media.   
+
+Some DOS mode programs expect to be able to do a negative seek. OS/2 passes these requests on to the FSD and returns an error for OS/2 mode negative seek requests. Because a seek to a negative position is, effectively, a seek to a very large offset, it is suggested that the FSD return end-of-file for subsequent read requests.   
+
+FSDs must allow seeks to positions beyond end-of-file.   
+
+The information passed in //IOflag// is what was set for the handle during a //DosOpen/DosOpen2// operation, or by a //DosSetFHandState// call.   

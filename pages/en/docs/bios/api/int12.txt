@@ -1,0 +1,44 @@
+{{page>en:templates:biosint}}
+
+====== Int 12H ======
+
+===== Version =====
+
+IBM 5150 and later
+
+===== Brief =====
+
+Get memory size
+
+===== Family API =====
+
+[[en:docs:fapi:DosMemAvail]]
+
+===== Input =====
+
+none
+
+===== Return =====
+
+  * AX = kilobytes of contiguous memory starting at absolute address 00000h
+
+===== Macro =====
+
+<code asm>
+INCLUDE BIOS.INC
+
+@MemSize
+</code>
+
+===== Notes =====
+
+  * this call returns the contents of the word at 0040h:0013h; in PC and XT, this value is set from the switches on the motherboard
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:biosapi}}
+
+{{page>en:templates:fapi}}
+

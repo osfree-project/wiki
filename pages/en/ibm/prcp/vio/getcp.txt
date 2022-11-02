@@ -1,0 +1,61 @@
+==== VioGetCp ====
+
+**Bindings**: [[getcp#C bindings|C]], [[getcp#MASM bindings|MASM]]
+
+This call allows a process to query the code page currently used to display text data. 
+
+//VioGetCp// (Reserved, CodePageID, VioHandle) 
+
+//Reserved// (**USHORT**) - input 
+A reserved word of 0s. 
+
+//CodePageID// (**PUSHORT**) - output 
+Address of a word in the application's data area. The current video code page is returned in this word. 
+
+//VioHandle// (**HVIO**) - input 
+This must be zero unless the caller is a Presentation Manager application, in which case it must be the value returned by [[en:ibm:prcp:vio:getps|VioGetPs]]. 
+
+//rc// (**USHORT**) - return 
+Return code descriptions are: 
+
+|0 |NO_ERROR |
+|355 |ERROR_VIO_MODE |
+|436 |ERROR_VIO_INVALID_HANDLE |
+|465 |ERROR_VIO_DETACHED |
+|468 |ERROR_VIO_USER_FONT |
+
+**Remarks** 
+
+The display code page ID previously set by [[en:ibm:prcp:vio:setcp|VioSetCp]], or inherited from the requesting process, is returned to the caller. 
+
+The code page tag returned is the currently active code page. A value of 0000 indicates that the code page in use is the ROM code page provided by the hardware. 
+
+If ERROR_VIO_USER_FONT is returned, it indicates a user font that was previously loaded with [[en:ibm:prcp:vio:setfont|VioSetFont]] is the active code page. 
+
+=== C bindings ===
+
+<code c>
+#define INCL_VIO
+
+USHORT  rc = VioGetCp(Reserved, CodePageID, VioHandle);
+
+USHORT           Reserved;      /* Reserved (must be zero) */
+PUSHORT          CodePageID;    /* Code page ID */
+HVIO             VioHandle;     /* Video handle */
+
+USHORT           rc;            /* return code */
+</code>
+
+=== MASM bindings ===
+
+<code asm>
+EXTRN  VioGetCp:FAR
+INCL_VIO            EQU 1
+
+PUSH   WORD    Reserved      ;Reserved (must be zero)
+PUSH@  WORD    CodePageID    ;Code page ID
+PUSH   WORD    VioHandle     ;Video handle
+CALL   VioGetCp
+
+Returns WORD
+</code>

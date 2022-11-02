@@ -1,0 +1,6 @@
+^ [[en:docs:dpmi|DPMI]] ^^
+| Process manager | **[[en:docs:dpmi:api:int2f|INT 2FH]]** [[en:docs:dpmi:api:int2f:16:80|1680H]], [[en:docs:dpmi:api:int2f:16:87|1687H]] |
+| Signals |  |
+| Memory manager |  |
+| Misc | **[[en:docs:dpmi:api:int2f|INT 2FH]]** [[en:docs:dpmi:api:int2f:16:86|1686H]], [[en:docs:dpmi:api:int2f:16:8a|168AH]] |
+| Devices |  |

@@ -1,0 +1,18 @@
+{{logos:os2.gif?35x35}} 
+
+**Please help to find info about enries marked as //No info//**
+
+===== GRE2VMAN =====
+
+
+^Ordinal ^Name ^Desc ^ Status ^
+| 103 | movecursorblock | | |
+| 200 | OS2_PM_DRV_ENABLE | | |
+| 202 | OS2_PM_DRV_QUERYSCREENRESOLUTIONS | | |
+| 350 | SEAMLESSTERMINATE | | |
+| 351 | SEAMLESSINITIALIZE | | |
+| 1000 | NotifyModeChange | | |
+
+{{page>en:templates:dlls}}
+
+

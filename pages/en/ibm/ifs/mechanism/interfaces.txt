@@ -1,0 +1,32 @@
+==== FSD System Interfaces ====
+
+=== Overview ===
+
+Installable file system entry points are called by the kernel as a result of action taken through the published standard file I/O application programming interface in OS/2 Version 2.0.   
+
+Installable file systems are installed as OS/2 dynamic link library modules. Unlike device drivers, they may include any number of segments, all of which will remain after initialization, unless the FSD itself takes some action to free them.   
+
+An FSD exports FS entries to the OS/2 kernel using standard PUBLIC declarations. Each FS entry is called directly. The OS/2 kernel manages the association between internal data structures and FSDs.   
+
+When a file system service is required, OS/2 assembles an argument list, and calls the appropriate FS entry for the relevant FSD. If a back-level FSD is loaded, the OS/2 kernel assures that all arguments passed and all structures passed are understood by the FSD.   
+
+Application program interfaces that are unsupported by an FSD receive an UNSUPPORTED FUNCTION error from the FSD.   
+
+Certain routines, for example, FS_PROCESSNAME, may provide no processing, no processing is needed, or processing does not make sense. These routines return no error, not ERROR_NOT_SUPPORTED.   
+
+=== Data Structures ===
+
+OS/2 data structures that include a pointer to the file system driver, as well as file system specific data areas are:   
+
+  * the CDS (current directory structure) 
+  * the SFT (system file table entry), 
+  * the VPB (volume parameter block) 
+  * the file search structures. 
+
+File system service routines are generally passed pointers to two parameter areas, in addition to read-only parameters which are specific to each call. The FSD does not need to verify these pointers. The two parameter areas contain file-system-independent data which is maintained jointly by OS/2 and the file system driver and file-system-dependent data which is unused by OS/2 and which may be used in any way by the file system driver. The file system driver is generally permitted to use the file-system-dependent information in any way. The file-system-dependent information may contain all the information needed to describe the current state of the file or directory, or it may contain a handle which will direct it to other information about the file maintained within the FSD. Handles must be GDT selectors because any SFT, CDS, or VPB may be seen by more than one process. File-system-dependent and file-system-independent parameter areas are defined by data structures described in the remainder of this section.   
+
+  * [[en:ibm:ifs:mechanism:interfaces:layout|Disk media and file system layout]]
+  * [[en:ibm:ifs:mechanism:interfaces:curdir|Per-disk current directories]]
+  * [[en:ibm:ifs:mechanism:interfaces:openfiles|Open files]]
+  * [[en:ibm:ifs:mechanism:interfaces:search|File search records]]
+  * [[en:ibm:ifs:mechanism:interfaces:timest|Time Stamping]]

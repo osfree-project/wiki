@@ -1,0 +1,14 @@
+[Q]: Чтобы Clipper'ные пpоги не pyгались на нехватку Files
+
+[A]: Serge Mikhaylov (2:5020/871.1)
+
+section 1 of uuencode 5.10 of file sd2f.com    by R.E.M.
+
+begin 644 sd2f.com
+MZRX]%A)U#ON#^WAR!/G*`@#XR@(`Z@`````J($UE971(:6=H3&]V92!#;W)P
+M+B`JN"\US2&,!A@!B1X6`1X'_+X``;]<`+D.`/.ENEX`M"7-(;1)C@8L`,TA
+$B]?-)]?-
+`
+end
+sum -r/size 35344/159 section (from "begin" to "end")
+sum -r/size 35708/94 entire input file

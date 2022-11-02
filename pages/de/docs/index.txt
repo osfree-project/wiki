@@ -1,0 +1,14 @@
+==== osFree Dokumentation ====
+
+Willkommen im deutschen Verzeichnis für Dukumentation zu osFree! Bitte wählen Sie eine der unten stehenden Kategorien.
+
+**Beachten Sie:** Die deutsche Version dieser Seite ist noch sehr jung, daher sind die Meisten zur Verfügung stehenden Dokumentations-Links auch noch nicht übersetzt. Hilfe ist jederzeit willkommen.
+
+  * [[de:docs:boot:index|Leitlinien und Referenz des Boot-Vorgangs]]
+  * [[en:docs:cmd:index|Komandozeilen-Referenz]]
+  * [[de:develop:guidelines|Entwickler-Referenz]]
+  * [[en:docs:bld:index|Build Level Referenz]]
+  * [[en:docs:cvs|Netlabs CVS Readme]]
+  * [[en:docs:web:index|Anleitungen und Referenz zur Pflege der Webseiten]]
+
+~~DISCUSSION~~

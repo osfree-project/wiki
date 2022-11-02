@@ -1,0 +1,70 @@
+{{page>en:templates:fapiint}}
+
+====== MouGetEventMask ======
+
+This call returns the current value of the mouse event queue mask.
+
+===== Syntax =====
+<code c>
+ MouGetEventMask (EventMask, DeviceHandle)
+</code>
+
+===== Parameters =====
+
+  * EventMask (PUSHORT) - output : Address in application storage where the current mouse device driver's event mask is returned to the caller by the mouse device driver.
+
+The EventMask is set by MouSetEventMask, and has the following definition:
+
+^ Bit ^ Description ^
+|15-7|Reserved, set to zero.|
+|6|Set to report button 3 press/release events, without mouse motion.|
+|5|Set to report button 3 press/release events, with mouse motion.|
+|4|Set to report button 2 press/release events, without mouse motion.|
+|3|Set to report button 2 press/release events, with mouse motion.|
+|2|Set to report button 1 press/release events, without mouse motion.|
+|1|Set to report button 1 press/release events, with mouse motion.|
+|0|Set to report mouse motion events with no button press/release events.|
+
+  * DeviceHandle (HMOU) - input: Handle of the mouse device from a previous MouOpen.
+
+===== Return Code =====
+
+rc (USHORT) - return:Return code descriptions are:
+
+  *0 NO_ERROR
+  *385 ERROR_MOUSE_NO_DEVICE
+  *466 ERROR_MOU_DETACHED
+  *501 ERROR_MOUSE_NO_CONSOLE
+  *505 ERROR_MOU_EXTENDED_SG
+
+===== Remarks =====
+
+Buttons are logically numbered from left to right.
+
+===== Bindings =====
+
+==== C ====
+<code c>
+#define INCL_MOU
+
+USHORT  rc = MouGetEventMask(EventMask, DeviceHandle);
+
+PUSHORT EventMask;     /* Event Mask word */
+HMOU    DeviceHandle;  /* Mouse device handle */
+
+USHORT  rc;            /* return code */
+</code>
+
+====MASM====
+<code asm>
+EXTRN  MouGetEventMask:FAR
+INCL_MOU            EQU 1
+
+PUSH@  WORD    EventMask     ;Event Mask word
+PUSH   WORD    DeviceHandle  ;Mouse device handle
+CALL   MouGetEventMask
+
+Returns WORD
+</code>
+
+{{page>en:templates:fapi}}

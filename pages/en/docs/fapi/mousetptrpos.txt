@@ -1,0 +1,75 @@
+{{page>en:templates:fapiint}}
+
+====== MouSetPtrPos ======
+
+This call directs the mouse driver to set a new row and column coordinate position for the mouse pointer.
+
+===== Syntax =====
+<code c>
+ MouSetPtrPos (PtrPos, DeviceHandle)
+</code>
+
+===== Parameters =====
+
+  * PtrPos (PPTRLOC) - input : Address of the mouse pointer position structure:
+    * pointerrow (USHORT) : New pointer row coordinate (pels or characters).
+    * pointercol (USHORT) : New pointer column coordinate (pels or characters).
+  * DeviceHandle (HMOU) - input : Handle of the mouse device from a previous MouOpen.
+
+===== Return Code =====
+
+rc (USHORT) - return
+
+Return code descriptions are:
+
+  * 0          NO_ERROR 
+  * 385        ERROR_MOUSE_NO_DEVICE 
+  * 387        ERROR_MOUSE_INV_PARMS 
+  * 466        ERROR_MOU_DETACHED 
+  * 501        ERROR_MOUSE_NO_CONSOLE 
+  * 505        ERROR_MOU_EXTENDED_SG
+
+===== Remarks =====
+
+The application must ensure that the coordinate position specified conforms to the current display mode orientation for the session. Pel values must be used for graphics modes and character values for text modes.
+
+This function has no effect on the display's current collision area definition as specified by the MouDrawPtr call. If the mouse pointer image is directed into a defined collision area, the pointer image is not drawn until either the pointer is moved outside the collision area or the collision area is released by the MouDrawPtr call. 
+
+===== Bindings =====
+
+====C====
+<code c>
+typedef struct _PTRLOC {  /* moupl */
+  USHORT row;             /* pointer row coordinate screen position */
+  USHORT col;             /* pointer column coordinate screen position */
+} PTRLOC;
+
+#define INCL_MOU
+
+USHORT  rc = MouSetPtrPos(PtrPos, DeviceHandle);
+
+PPTRLOC          PtrPos;        /* Double word structure */
+HMOU             DeviceHandle;  /* Mouse device handle */
+
+USHORT           rc;            /* return code */
+</code>
+
+====MASM====
+<code asm>
+PTRLOC  struc
+  moupl_row  dw  ? ;pointer row coordinate screen position
+  moupl_col  dw  ? ;pointer column coordinate screen position
+PTRLOC  ends
+
+EXTRN  MouSetPtrPos:FAR
+INCL_MOU            EQU 1
+
+PUSH@  OTHER   PtrPos        ;Double word structure
+PUSH   WORD    DeviceHandle  ;Mouse device handle
+CALL   MouSetPtrPos
+
+Returns WORD
+</code>
+
+{{page>en:templates:fapi}}
+

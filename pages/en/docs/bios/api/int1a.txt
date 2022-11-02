@@ -1,0 +1,16 @@
+{{page>en:templates:biosint}}
+
+====== Int 1AH ======
+
+Timer BIOS API. All registers saved on entry and restores on return.
+
+===== BIOS Interrupts =====
+
+^ Function ^ Macro ^ Description ^ Version ^
+| [[en:docs:bios:api:int1a:00|00H]] | [[en:docs:macrolib:@GetTime]]((osFree extension)) | Set time | 5150+ |
+| [[en:docs:bios:api:int1a:01|01H]] | [[en:docs:macrolib:@SetTime]]((osFree extension)) | Get time | 5150+ |
+
+{{page>en:templates:biosapi}}
+
+{{page>en:templates:fapi}}
+

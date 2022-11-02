@@ -1,0 +1,29 @@
+{{page>en:templates:biosint}}
+
+====== @DskVerify ======
+
+===== Brief =====
+
+
+===== BIOS Interrupt =====
+
+[[en:docs:bios:api:int|INTH]]: [[en:docs:bios:api::|H]]
+
+===== Family API =====
+
+[[en:docs:fapi:]]
+
+===== Syntax =====
+
+<code asm>
+@DskVerify
+</code>
+
+===== Parameters =====
+
+none
+
+===== Return =====
+
+none
+

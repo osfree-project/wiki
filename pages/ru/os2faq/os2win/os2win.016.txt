@@ -1,0 +1,5 @@
+[Q]: Как настроить ширину рамок в Win-OS/2 Window?
+
+[A]: Konstantin Kozlov (2:5013/14.35)
+
+В Windowed используются настройки PM, AFAIR

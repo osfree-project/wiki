@@ -1,0 +1,22 @@
+{{logos:os2.gif?35x35}} 
+
+**Please help to find info about enries marked as //No info//**
+
+===== BDWPCLS =====
+
+
+^Ordinal ^Name ^Desc ^ Status ^
+| 1 | BDWPSDLG_is_DOS_prgm | | |
+| 2 | BDWPSDLG_PageSettings | | |
+| 3 | BDWPSDLG_BidiValError | | |
+| 4 | IsHebrewSystem | | |
+| 5 | BDWPSDLG_setup | | |
+| 6 | FindRunningBidiSettings | | |
+| 7 | BDWPSDLG_LoadDlg | | |
+| 8 | BDWPSDLG_ResetEnv | | |
+| 9 | BDWPSDLG_ModifyEnv | | |
+| 10 | BDWPSDLG_Verify_BidiSettings | | |
+| 11 | BDWPSDLG_getMRI_Lang | | |
+| 12 | BDWPSDLG_setMRI_Lang | | |
+
+{{page>en:templates:dlls}}

@@ -1,0 +1,118 @@
+[Q]: Как русифицировать StarOffice v 5.1?
+
+[A]: Yury Tarasievich (2:451/4)
+
+Сделал патч для кириллизации StarOffice 5.1. Вроде бы работает корректно, и
+ничего не ломает. Пока что HЕ помогает при импорте/экспорте форматов Word 97 и
+HTML. Патч предоставляется As Is и без всяких гарантий.
+
+Перед накладыванием патча распаковать модуль TL516CO.DLL утилитой LxLite версии
+1.2.1 (возможно, подойдёт и другая версия, в патч встроена простейшая проверка
+корректности распаковки). Скопировать патч в каталог, где размещён StarOffice
+5.1. Hаложить патч при помощи штатной утилиты os/2 patch.exe --
+patch.exe so51_cyr /a
+
+<для StarOffice v 5.1a - использовать файлы TLS517CO.DLL и SO51ACYR>
+
+Собственно патч помещён в SU.OS2.SRC. Приветствуется публикация с указанием
+авторства на WWW сайтах Russian Underground/2 и Teamos2/Russian.
+
+section 1 of file so51_cyr.arj  < uuencode 1.0 by FRIENDS Software >
+
+filetime 793082009
+begin 644 so51_cyr.arj
+M8.H@`!X)`0`0``*EI;CN)H^`12\``````````````````````34S:0``8.HX
+M`"X)`040`0"E09;N)M\+```\(P``^]_0%P``(```````````````````````
+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
+G^?CI\'^7WCZ>I_F%I[?[[^OI^?C_O/TCZ^GGIE/C__UX^`!@Z@``
+`
+end
+sum -r/size 26434/5663 section (from "begin" to "end")
+sum -r/size 11085/4089 entire input file

@@ -1,0 +1,67 @@
+{{page>en:templates:fapiint}}
+
+====== VioShowBuf ======
+
+This call updates the physical display buffer with the logical video buffer (LVB).
+
+===== Syntax =====
+<code c>
+VioShowBuf (Offset, Length, VioHandle)
+</code>
+===== Parameters =====
+  * Offset (USHORT) - input : Starting offset within the logical video buffer at which the update to the screen is to start.
+  * Length (USHORT) - input : Length of the area to be updated to the screen.
+  * VioHandle (HVIO) - input : This must be zero unless the caller is a Presentation Manager application, in which case it must be the value returned by VioGetPs.
+
+===== Return Code =====
+rc (USHORT) - return
+
+Return code descriptions are:
+
+  * 0          NO_ERROR 
+  * 355        ERROR_VIO_MODE 
+  * 430        ERROR_VIO_ILLEGAL_DURING_POPUP 
+  * 436        ERROR_VIO_INVALID_HANDLE 
+  * 465        ERROR_VIO_DETACHED
+
+===== Remarks =====
+VioShowBuf is ignored unless it is issued by a process that has previously called VioGetBuf and that is currently executing in the foreground.
+
+==== PM Considerations ====
+This function updates the display with the Advanced VIO presentation space. 
+
+===== Bindings =====
+==== C Binding ====
+<code c>
+#define INCL_VIO
+
+USHORT  rc = VioShowBuf(Offset, Length, VioHandle);
+
+USHORT           Offset;        /* Offset into LVB */
+USHORT           Length;        /* Length */
+HVIO             VioHandle;     /* Video handle */
+
+USHORT           rc;            /* return code */
+</code>
+
+==== MASM Binding ====
+<code asm>
+EXTRN  VioShowBuf:FAR
+INCL_VIO            EQU 1
+
+PUSH   WORD    Offset        ;Offset into LVB
+PUSH   WORD    Length        ;Length
+PUSH   WORD    VioHandle     ;Video handle
+CALL   VioShowBuf
+
+Returns WORD
+</code>
+
+
+===== Note =====
+
+Text based on [[http://www.edm2.com/index.php/VioShowBuf_(FAPI)]]
+
+{{page>en:templates:fapi}}
+
+

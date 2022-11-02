@@ -1,0 +1,8 @@
+====== OS/2 Programming reference (16 bits) ======
+
+^  {{en:img0.gif}}  ^
+|[[en:ibm:prcp:cpi|Control Program Function Calls]] |
+|[[en:ibm:prcp:kbd|Keyboard Function Calls]] |
+|[[en:ibm:prcp:mou|Mouse Function Calls]] |
+|[[en:ibm:prcp:vio|VideoFunction Calls]] |
+|[[en:ibm:prcp:err|Errors Returned from Base OS/2 Calls]] |

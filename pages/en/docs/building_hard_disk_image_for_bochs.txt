@@ -1,0 +1,22 @@
+===== General information =====
+
+Hard disk image now consist from the folowing parts:
+
+  * MBR
+  * Boot partition with boot sector and ext2 filesystem (as fast as we will provide other filesystems drivers filesystem can be differ from ext2)
+
+ext2 file system contains: 
+
+  * FreeLdr (os2ldr)
+  * Kernel and modules initializer (bootstrap)
+  * Microkernel (fiasco)
+  * Root task (roottask)
+  * Other servers
+
+==== Creating image ====
+
+To create hard disk image you can use following logic and tools:
+
+  - 
+
+~~DISCUSSION~~

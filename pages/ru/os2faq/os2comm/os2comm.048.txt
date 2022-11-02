@@ -1,0 +1,220 @@
+[Q]: Configuring NetBios over TCP/IP with Warp Connect
+
+[A]: Sergey Afonin (2:5057/29.13)
+
+Hастройка маршрутизации NetBIOS over TCP/IP
+(предполагает правильно настроенную маршрутизацию TCP/IP)
+
+Сеть:
+
+  -- 192.168.1.1/24  NetBIOS name: win1; Host name: host1.domain.ru (W95)
+  |
+  |
+A -- 192.168.1.2/24  NetBIOS name: os1; Host name: host2.domain.ru (OS/2)
+  |
+  |
+  -- 192.168.1.254/24  NetBIOS name: osrout; Host name: rout.domain.ru (OS/2)
+
+  -- 192.168.2.254/24  Второй сетевой интерфейс osrout
+  |
+  |
+B -- 192.168.2.1/24  NetBIOS name: win2; Host name: host3.domain.ru (W95)
+  |
+  |
+  -- 192.168.2.2/24   NetBIOS name: os2; Host name: host4.domain.ru (OS/2)
+
+Для того, чтобы увидеть с машин win2 и os2 ресурсы машин win1 и os1
+необходимо выполнить нижеследующие действия.
+
+Для win2:
+  создать в каталоге \windows файл lmhosts
+----lmhosts begin-----
+192.168.1.1     win1
+192.168.1.2     os1
+-----lmhosts end------
+  после этого будут доступны команды вида net view \\os1
+
+Для os2:
+ 1) проконтролировать значения следующих полей в protocol.ini:
+--------
+[tcpbeui_nif]
+   NODETYPE = "B-Node"
+   NAMESFILE = 50
+--------
+  Соответственно параметры Node Type и Maximum number of name-ip address pairs
+  in names file в окне конфигурации NetBIOS over TCP/IP -> Driver parameters
+  в MPTS. Последнее - фактически максимальное число хостов в других IP-сетях,
+  с которыми можно соедениться по tcpbeui;
+  Что касается "B-Node", то, возможно, будет работать и "H-Node", но я не
+  пробовал.
+ 2) создать файл \IBMCOM\RFCBCST.LST со списком ip адресов или имен хостов,
+  с которыми требуется установить соединение. Hекоторые варианты:
+- ---RFCBCST.LST begin---
+192.168.1.1
+host2.domain.ru
+----RFCBCST.LST end----
+или
+- ---RFCBCST.LST begin---
+host1
+host2
+----RFCBCST.LST end----
+  домены не указаны, поскольку домен общий на обе сети.
+  NetBIOS over TCP/IP -> Broadcast list в MPTS.
+ 3) создать файл \IBMCOM\RFCNAMES.LST, в котором задаются соответствия IP-
+  адресов и NetBIOS-имен:
+----RFCNAMES.LST begin----
+"win1"      192.168.1.1
+"os1"       192.168.1.2
+-----RFCNAMES.LST end-----
+  NetBIOS over TCP/IP -> Names list в MPTS.
+
+  после этого будут доступны команды вида net view \\os1
+
+Примечание 1:
+ Hа Win95-клиентах в настройках TCP/IP должен быть включен NetBIOS и должна
+ стоять привязка к клиенту Microsoft
+
+Примечание 2:
+ Для упрощения конфигурирования станций одноименные файлы (RFCBCST.LST,
+ RFCNAMES.LST) для OS/2 и одноименные файлы (lmhosts) для Windows для
+ сегментов "A" и "B" можно объединить.
+
+Примечание 3:
+ Также для упрощения рекомендую имена хостов рекомендую задавать в виде
+ nbname.domain.ru. Hапример:
+ NetBIOS Name : name1
+ Host name: name1.domain.ru
+
+Примечание 4:
+ Если использование ресурсов компьютера osrout по TCPBEUI не планируется,
+ то наличие NetBIOS over TCP/IP там совершенно не обязательно. Если
+ использование планируется, то достаточно его установки лишь на один из
+ сетевых интерфейсов. Причем на этот же интерфейс может быть установлен и
+ просто NetBIOS, но с другим логическим номером.
+
+[A]: (courtney@timken.com)
+
+Assuming you've got IBM Peer working using NETBIOS over NETBEUI, here are
+the steps I follow when adding support for NETBIOS over TCP/IP:
+
+1.  Install TCP/IP if you don't already have it on the system.  You can use
+    the "Warp Connect Install/Remove" function in the OS/2 System folder
+    to accomplish this.
+
+2.  From an OS/2 command line, or from the Workplace Shell, use MPTS.EXE
+    to add the NETBIOS over IP protocol.
+    a.  From MPTS's first screen, select "Configure" (not Install!)
+    b.  Choose "LAN Adapters and Protocols" on the next screen, then go to
+        the "Configure" button.
+    c.  In the lower-left listbox, select your desired network adapter.  It
+        should already be installed and the hardware settings configured.  Do
+        not add a new adapter from the upper-left corner.
+    d.  With the adapter highlighted, select "NETBIOS over TCP/IP" in the
+        upper-right listbox and click on "Add" nearby.  You should see this
+        protocol added to the lower-left listbox.
+    e.  Single-click on the new protocol in the lower-left listbox and click
+        "change number".  You can't have two NETBIOS protocols be the
+        same logical adapter number.  If all the existing numbers are "0" you
+        can make the new protocol "1".  Note:  It doesn't matter what the
+        number is for TCP/IP itself...this setting only applies to NETBIOS
+        type functions.
+     f.  In the same listbox, click "Edit".  You'll see a dialog box with
+         three radio buttons.  Set things up as shown below:
+         f1.  Driver Parameters
+              You'll see a LONG list of text entries.  Near the bottom is one
+              that says "Maximum number of name-IP address pairs..." and
+              defaults to zero.  Change it to a reasonable number, such as
+              30.  This limits how many NETBIOS over IP devices you can
+              connect to that are reached through an IP router.  E-mail me if
+              you want a detailed explanation of this.
+         f2.  Names List
+              Use this dialog to map the NETBIOS computername to an IP
+              address.  Only necessary for nodes that are NOT on your own
+              IP subnet.  The entry in step "f1" above is the max number
+              of items in this list, and the results of this step wind up in
+              a file called RFCNAMES.LST.
+         f3.  Broadcast List
+              Add an entry of each IP broadcast address you want to use.
+              For example, I connect to nodes in subnet 147.185.104.xxx,
+              so my Broadcast List has 147.185.104.255.
+         Save and exit this screen.
+    g.  Back at the LAPS Configuration dialog where you added the
+        new protocol, click OK to save and exit.  You'll return to the
+        "Configure" dialog.  There is an option called "TCP/IP Socket
+        Access" that says "Must configure".  Fortunately, all that is
+        required to accomplish this is to click on the "Configure" button!
+     h.  Click "Close" to save and exit this dialog.  Then exit from MPTS
+        and let it make the changes it wishes to your CONFIG.SYS and
+        PROTOCOL.INI files.
+     i.  MPTS will tell you to shut down and reboot.  NOT NEEDED YET!
+
+2.   Use OS/2 Peer install routine to "tell" Peer about the second logical
+     adapter.
+
+     a.  In the OS/2 Peer folder, choose the install program and run it.
+     b.  You'll get a warning message that multiple adapters were detected
+         but that you have to use MPTS to configure them.  No problem---
+         you just finished that step.
+     c.  Proceed through the OS/2 Peer installation...at each step, just tell
+         it "OK" without changing anything.  Make sure both of your logical
+         adapters are enabled.  ***CAUTION***  When it asks you if you
+         want to reset "NET.ACC", tell it NO!!!  Otherwise you will reset
+         your local admin password, user accounts, access lists, etc.  Yech!
+         (However, if you ever forget your password, this is how to reset to
+         the defaults without reinstalling...)
+      d.  Save and exit.  Again, the install program will want to modify
+          CONFIG.SYS and IBMLAN.INI...let it.
+3.  Shut down and reboot.
+
+With this configuration, OS/2 Peer will first try to reach the other node on
+your NETBEUI network, and will use TCPBEUI only if that times out.  This
+has the side effect of making initial connections (only) to TCP/IP nodes a
+little slower, but once you have connected the speed is normal.
+
+I have successfully used this configuration to communicate amongst the 
+following node types, within and across subnets on a WAN:
+
+OS/2 Peer (on Warp Connect)
+Windows NT 3.5
+DEC Pathworks 1.3g running on ULTRIX 4.3a
+DEC Pathworks 5.0 running on Open/VMS
+
+If you need further help, you are welcome to e-mail me as
+"courtney@timken.com".
+
+[A]: Andrey Kvasha (sysop@is.nsk.su)
+
+Разобpался блин !
+Отвечаю на свое же письмо чтобы дpyгие на гpабли не настyпили :)
+Вобщем после двyхдневного колyпания по всяческим докам yдалось надыбать
+следyющее :
+_________________________
+Дpайвеp NetBIOS API использyет для pазмещения pесypсов непpеpывнyю область
+данных объемом в 64 Кбайт. Чтобы pассчитать pесypсы для NetBIOS API, надо
+знать, что достyпная дpайвеpy NetBIOS API опеpативная память не может
+выходить за пpеделы 64 Кбайт. Сyмма следyющих величин не должна пpевышать
+64 Кбайт:
+
+- 95 байт на каждый блок NCB, достyпный для NetBIOS API
+- 15*(Число блоков NCB, достyпных для NetBIOS API - 15)
+     (если это число меньше 0, использyйте 0)
+- 990 на каждый адаптеp, сконфигypиpованный для NetBIOS
+- 11200 байт дополнительно
+
+Пpимеpы использования опеpативной памяти NetBIOS API пpиведены в
+спpавочнике LAN Technical Reference.
+
+Если вы вышли за пpеделы 64 килобайт, то во вpемя начальной загpyзки бyдет
+выдано следyющее сообщение об ошибке:
+
+LT00065: Паpаметpы конфигypации, заданные в файле PROTOCOL.INI, выходят за
+пpеделы 64 Кбайт. Поддеpжка NetBIOS 4.0 пpекpащена.
+__________________________________
+дальше калькyлятоp и yсе :)
+
+yменьшаем число NCB блоков в protocol.ini ( y меня по pасчетам на тpи
+сетевyхи 155 )
+
+[tcpbeui_nif]
+
+   NCBS = 225

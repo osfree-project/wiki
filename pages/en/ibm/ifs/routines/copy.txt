@@ -1,0 +1,64 @@
+==== FS_COPY ====
+
+**Purpose**
+
+Copy a specified file or subdirectory to a specified target.   
+
+**Calling Sequence**
+
+<code c>
+int far pascal FS_COPY(flag, pcdfsi, pcdfsd, pSrc, iSrcCurDirEnd, pDst,
+                       iDstCurDirEnd, nameType)
+
+unsigned short flag;
+struct cdfsi far * pcdfsi;
+struct cdfsd far * pcdfsd;
+char far * pSrc;
+unsigned short iSrcCurDirEnd;
+char far * pDst; unsigned short iDstCurDirEnd;
+unsigned short nameType;
+</code>
+
+**Where**
+
+^flag ^is a bit mask controlling copy   ^
+|0x0001 |specifies that an existing target file/directory should be replaced |
+|0x0002 |specifies that a source file will be appended to the destination file. |
+|All other bits are reserved.   ||
+
+(See the description of the //DosCopy// function call in the OS/2 Version 2.0 Control Program Programming Reference.)   
+
+//pcdfsi// is a pointer to the file-system-independent working directory structure.   
+
+//pcdfsd// is a pointer to the file-system-dependent working directory structure.   
+
+//pSrc// is a pointer to the ASCIIZ name of the source file/directory.   
+
+//iSrcCurDirEnd// is the index of the end of the current directory in //pSrc//. If = -1, there is no current directory relevant to the source name.   
+
+//pDst// is a pointer to the ASCIIZ name of the destination file/directory.   
+
+//iDstCurDirEnd// is the index of the end of the current directory in //pDst//. If = -1, there is no current directory relevant to the destination name.   
+
+^//nameType// ^indicates the destination name type.   ^
+|NameType == 0x0040 |indicates non-8.3 filename format. All other values are reserved. |
+
+**Remarks**
+
+The file specified in the source file name should be copied to the target file if possible.   
+
+The files specified may not be currently open. File system drivers must assure consistency of file allocation information and directory entries.   
+
+The file system driver returns the special CANNOT COPY error if it cannot perform the copy because:   
+
+  * it does not know how 
+  * the source and target are on different volumes
+  * of any other reason for which it would make sense for its caller to perform the copy operation manually. 
+
+Returning //ERROR_CANNOT_COPY// indicates to its caller that it should attempt to perform the copy operation manually. Any other error will be returned directly to the caller of //DosCopy//. See the description of the DosCopy function call in the OS/2 Version 2.0 Control Program Programming Reference for other error codes that can be returned.   
+
+//FS_COPY// needs to check that certain types of illegal copying operations are not performed. A directory cannot be copied to itself or to one of its subdirectories. This is especially critical in situations where two different fully-qualified pathnames can refer to the same file or directory. For example, if X: is redirected to //\\SERVER\SHARE//, the X:\PATH and //\\SERVER\SHARE\PATH// refer to the same object.   
+
+The behavior of //FS_COPY// should match the behavior of the generic //DosCopy// routine.   
+
+The non-8.3 filename format attribute in the directory entry for the destination name should be set according to the value in //nameType//.   

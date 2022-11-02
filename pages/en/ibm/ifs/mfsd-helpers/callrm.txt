@@ -1,0 +1,27 @@
+==== MFSH_CALLRM Put machine in real mode ====
+
+**Purpose**
+
+Put the machine into real mode, call the specified routine, put the machine back into protect mode, and return.   
+
+**Calling Sequence**
+
+<code c>
+int far pascal MFSH_CALLRM(plRoutine)
+
+unsigned long far * plRoutine;
+</code>
+
+**Where**
+
+//plRoutine// is a pointer to a double word which contains the VIRTUAL address of the routine to call. 
+
+**Returns**
+
+There are no error returns.   
+
+**Remarks**
+
+Only registers DS and SI will be preserved between the caller and the target routine. The selector in DS will be converted to a segment before calling the target routine. Arguments may not be passed on the stack since a stack switch may occur.   
+
+This helper allows the mini-FSD to access the ROM BIOS functions which typically run in real mode only. Great care must be taken in using this function since selectors used throughout the system are meaningless in real mode. While in real mode, no calls to any helpers may be made.   

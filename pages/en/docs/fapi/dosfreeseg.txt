@@ -1,0 +1,87 @@
+{{page>en:templates:fapiint}}
+====== DosFreeSeg ======
+
+This call deallocates a memory segment.
+
+===== Syntax =====
+
+<code c>
+DosFreeSeg (Selector)
+</code>
+
+===== Parameters =====
+
+  * Selector ([[SEL]]) - input : Selector of the segment to be freed.
+
+===== Return Code =====
+
+rc ([[USHORT]]) - return
+
+Return code descriptions are:
+  * 0         NO_ERROR
+  * 5         ERROR_ACCESS_DENIED 
+  * 212       ERROR_LOCKED
+
+===== Remarks =====
+
+
+DosFreeSeg frees selectors to segments returned by allocation calls to [[DosAllocSeg]], [[DosAllocShrSeg]], and [[DosAllocHuge]]. In addition, DosFreeSeg frees a selector returned by a call to [[DosCreateCSAlias]]. If a CS alias selector has been created for a data segment by a call to [[DosCreateCSAlias]], the CS alias selector is still valid after the segment's data selector has been freed.
+
+When allocated memory is shared, all selectors to the shared memory must be freed before the memory is deallocated. For example, if memory allocated by [[DosAllocSeg]] or [[DosAllocHuge]] has been given to another process with [[DosGiveSeg]], the giver usually frees its selector by a call to DosFreeSeg. The recipient, in turn, frees the selector passed to it, after it has accessed the shared memory with [[DosGetSeg]].
+
+DosFreeSeg decrements the reference count for named shared segments allocated by [[DosAllocShrSeg]]. Access to the segment with [[DosGetShrSeg]] increments this count. When the count is 0, the memory is deallocated. 
+
+==== Family API Considerations ====
+
+
+Some options operate differently in the DOS mode than in OS/2 mode. Therefore, the following restriction applies to DosFreeSeg when coding for the DOS mode:
+
+If DosFreeSeg is issued on a CSAliased segment it deallocates the associated memory. This is inconsistent with the OS/2 mode, because DosFreeSeg must be performed on both the original and CSAliased selectors. 
+
+===== Example Code =====
+
+==== C Binding ====
+
+<code c>
+  #define INCL_DOSMEMMGR
+  
+  USHORT  rc = DosFreeSeg(Selector);
+  
+  SEL              Selector;      /* Selector */
+  
+  USHORT           rc;            /* return code */
+</code>
+This example allocates a segment of 30,250 bytes and then discards the segment. 
+
+<code c>
+  #define INCL_DOSMEMMGR
+  
+  #define NUMBER_OF_BYTES 30250
+  #define ALLOC_FLAG SEG_GETTABLE
+  
+  SEL    Selector;
+  USHORT rc;
+  
+     rc = DosAllocSeg(NUMBER_OF_BYTES,     /* # of bytes requested */
+                      &Selector,           /* Selector allocated */
+                     ALLOC_FLAG);         /* Allocation flags */
+   rc = DosFreeSeg(Selector);            /* Segment selector */
+</code>
+
+==== MASM Binding ====
+
+<code asm>
+  EXTRN  DosFreeSeg:FAR
+  INCL_DOSMEMMGR      EQU 1
+  
+  PUSH   WORD    Selector      ;Selector
+  CALL   DosFreeSeg
+</code>
+Returns WORD
+
+===== Note =====
+
+
+Text based on http://www.edm2.com/index.php/DosFreeSeg
+
+{{page>en:templates:fapi}}

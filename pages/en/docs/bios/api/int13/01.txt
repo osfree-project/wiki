@@ -1,0 +1,47 @@
+{{page>en:templates:biosint}}
+
+====== Int 13H, AH=01H ======
+
+===== Version =====
+
+IBM 5150 and higher
+
+===== Brief =====
+
+Get last disk status
+
+===== Family API =====
+
+None. Most error statuses available via API return codes.
+
+===== Input =====
+
+  * AH = 01h
+  * DL = drive (bit 7 set for hard disk)
+
+===== Return =====
+
+  * CF clear if successful (returned status 00h)
+  * CF set on error
+  * AH = status of previous operation (see #00234)
+
+===== Macro =====
+
+<code asm>
+INCLUDE BIOS.INC
+
+@DskStatus
+</code>
+
+===== Notes =====
+
+  * some BIOSes return the status in AL; the PS/2 Model 30/286 returns the status in both AH and AL
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:biosapi}}
+
+{{page>en:templates:fapi}}
+

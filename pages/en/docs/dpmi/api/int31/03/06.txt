@@ -1,0 +1,56 @@
+{{page>en:templates:dpmi}}
+
+====== Int 31H, AH=03H, AL=06H ======
+
+===== Version =====
+
+0.9
+
+===== Brief =====
+
+Get Raw Mode Switch Addresses
+
+===== Input =====
+
+  AX = 0306H
+
+===== Return =====
+
+  Carry flag = clear (this function always succeeds)
+  BX:CX = real-to-protected mode switch address
+  SI:(E)DI = protected-to-real mode switch address
+
+===== Notes =====
+
+The address returned in BX:CX must only be called in real mode to switch into protected mode. The address returned in SI:(E)DI must only be called in protected mode to switch into real mode; 16-bit programs should call the address returned by this function in SI:DI, while 32-bit programs should call the address returned in SI:EDI.
+
+The mode switch procedures are entered by a FAR JMP to the appropriate address with the following parameters:
+
+  AX = new DS
+  CX = new ES
+  DX = new SS
+  (E)BX = new (E)SP
+  SI = new CS
+  (E)DI = new (E)IP
+
+The processor is placed into the desired mode, and the DS, ES, SS, (E)SP, CS, and (E)IP registers are updated with the specified values; in other words, execution of the client continues in the requested mode at the address provided in registers SI:(E)DI. The values specified to be placed into the segment registers must be appropriate for the destination mode; if invalid selectors are supplied when switching into protected mode, an exception will occur.
+
+The values in (E)AX, (E)BX, (E)CX, (E)DX, (E)SI, and (E)DI after the mode switch are undefined. (E)BP will be preserved across the mode switch call so it can be used as a pointer. On an 80386 or later CPU, the FS and GS segment registers will contain zero after the mode switch.
+
+If interrupts are disabled when the mode switch procedure is invoked, they will not be re-enabled by the DPMI host (even temporarily).
+
+It is up to the client to save and restore the state of the task when using this function to switch modes. This usually requires using the state save/restore procedures whose addresses are returned by Int 31H Function 0305H.
+
+Clients may find it more convenient to use Int 31H Functions 0300H, 0301H, and 0302H for mode switching than this function.
+
+       
+===== See also =====
+
+   
+
+===== Note =====
+
+Text based on [[http://www.delorie.com/djgpp/doc/dpmi/]]
+
+{{page>en:templates:dpmi:int}}
+

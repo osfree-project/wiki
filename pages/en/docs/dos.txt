@@ -1,0 +1,13 @@
+====== DOS personality ======
+
+
+  * [[en:docs:bios:api|BIOS API]]
+  * [[en:docs:dos:api|DOS API]]
+  * [[en:docs:fapi|Family API]]
+  * [[en:docs:xms:api|XMS API]]
+  * [[en:docs:tasklist|Task List API]]
+  * [[en:docs:grabbers|Screen grabbers API]]
+  * [[en:docs:switcher|Task switcher API]]
+  * [[en:docs:dpmi|DPMI]]
+  * [[en:docs:dos:mouse:api|MOUSE API]]
+  * [[en:docs:dos:share:api|SHARE API]]

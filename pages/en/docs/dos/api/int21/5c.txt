@@ -1,0 +1,14 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=5cH ======
+
+===== Input ======
+
+ AH=5cH, AL=Subfunction
+
+^ Subfunction                        ^ Description                                       ^ Version ^
+| [[en:docs:dos:api:int21:5c:00|00]] | lock region of file                               | 3.0+    |
+| [[en:docs:dos:api:int21:5c:01|01]] | unlock region of file                             | 3.0+    |
+
+
+{{page>en:templates:int}}

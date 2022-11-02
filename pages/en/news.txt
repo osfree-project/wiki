@@ -1,0 +1,56 @@
+===== osFree news =====
+~~NOCACHE~~
+~~NOTOC~~
+
+{{blog>en:news?12&noform}}
+
+===== News around osFree =====
+
+==== osfree.org site ====
+
+{{rss>http://osfree.org/forum/feed.php?f=7 15 author date 1h}}
+
+==== #osfree channel ====
+
+{{rss>http://osfree.org/forum/feed.php?f=8 15 author date 1h}}
+
+==== OS/2 Personality Command line tools ====
+
+{{rss>http://osfree.org/forum/feed.php?f=10 15 author date 1h}}
+
+==== OS/2 Personality REXX support ====
+
+{{rss>http://osfree.org/forum/feed.php?f=11 15 author date 1h}}
+
+==== DOS Personality Command Line Tools ====
+
+{{rss>http://osfree.org/forum/feed.php?f=13 15 author date 1h}}
+
+==== Boot sequence ====
+
+{{rss>http://osfree.org/forum/feed.php?f=15 15 author date 1h}}
+
+
+==== osFree related projects news ====
+
+This page containg changelogs from projects which replaces OS/2 components and will be reused (most probably) without changes.
+
+=== NewView Changelog ===
+
+{{rss>http://trac.netlabs.org/newview/timeline?changeset=on&max=8&daysback=9000&authors=&format=rss 15 author date description 1h}}
+
+=== Fat32 IFS Changelog ===
+
+{{rss>http://trac.netlabs.org/fat32/timeline?changeset=on&max=8&daysback=9000&authors=&format=rss 15 author date description 1h}}
+
+=== VirtualBox for OS/2 Changelog ===
+
+{{rss>http://trac.netlabs.org/vbox/timeline?changeset=on&max=8&daysback=9000&authors=&format=rss 15 author date description 1h}}
+
+=== UniAudio driver Changelog ===
+
+{{rss>http://trac.netlabs.org/uniaud/timeline?changeset=on&max=8&daysback=9000&authors=&format=rss 15 author date description 1h}}
+
+=== UniPort driver Changelog ===
+
+{{rss>http://trac.netlabs.org/unipdr/timeline?changeset=on&max=8&daysback=9000&authors=&format=rss 15 author date description 1h}}

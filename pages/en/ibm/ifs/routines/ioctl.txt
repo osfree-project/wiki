@@ -1,0 +1,59 @@
+==== FS_IOCTL ====
+
+**Purpose**
+
+Perform control function on the device specified by the opened device handle.   
+
+**Calling Sequence**
+
+<code c>
+int far pascal FS_IOCTL(psffsi, psffsd, cat, func, pParm, lenMaxParm,
+                        plenInOutParm, pData, lenMaxData, plenInOutData)
+
+struct sffsi far * psffsi;
+struct sffsd far * psffsd;
+unsigned short cat;
+unsigned short func;
+char far * pParm;
+unsigned short lenMaxParm;
+unsigned short * plenInOutParm;
+char far * pData;
+unsigned short lenMaxData;
+unsigned short * plenInOutData;
+</code>
+
+**Where**
+
+//psffsi// is a pointer to the file-system-independent portion of an open file instance.   
+
+//psffsd// is a pointer to the file-system-dependent portion of an open file instance.   
+
+//cat// is the category of the function to be performed.   
+
+//func// is the function within the category to be performed.   
+
+//pParm// is the address of the application input parameter area.   
+
+Addressing of this data area is not validated by the kernel (see //FSH_PROBEBUF//). A null value indicates that the parameter is unspecified for this function. lenMaxParm is the byte length of the application input parameter area.   
+
+If //lenMaxParm// is 0, *//plenInOutParm// is 0, and //pParm// is not null, it means that the data buffer length is unknown due to the request being submitted via an old IOCTL or //DosDevIOCtl// interface.   
+
+//plenInOutParm// is the pointer to an unsigned short that contains the length of the parameter area in use on input and is set by the FSD to be the length of the parameter area in use on output.   
+
+Addressing of this data area is not validated by the kernel (see //FSH_PROBEBUF//). A null value indicates that the parameter is unspecified for this function.   
+
+//pData// is the address of the application output data area.   
+
+Addressing of this data area has not been validated by the kernel (see //FSH_PROBEBUF//). A null value indicates that the parameter is unspecified for this function.   
+
+//lenMaxData// is the byte length of the application output data area.   
+
+If //lenMaxData// is 0, *//plenInOutData// is 0, and //pData// is not null, it means that the data buffer length is unknown due to the request being submitted via an old IOCTL or //DosDevIOCtl// interface.   
+
+//plenInOutData// is the pointer to an unsigned short that contains the length of the data area in use on input and is set by the FSD to be the length of the data area in use on output.   
+
+Addressing of this data area is not validated by the kernel (see //FSH_PROBEBUF//). A null value indicates that the parameter is unspecified for this function. 
+
+**Remarks**
+
+Note:   This entry point's parameter list definition has changed from the 1.x IFS document. If the parameters //plenInOutParm// and //plenInOutData// are null, use the //lenMax// parameters as the buffer sizes sent to any file system helper.   

@@ -1,0 +1,27 @@
+==== Download the Latest Files ====
+
+
+Most of osFree's files are currently available from our [[ftp://osfree.org/pub/downloads/]]. osFree is currently a deep alpha stage project. You can test some packages and/or you can browse the sources. You can also access the Git repository directly at [[https://github.com/osfree-project/osfree/|our repository]] through your preferred Git client. GitHub has more information about accessing it through Git. However we have information about it as well.
+
+There is our [[en:demo|Demo CD]] available too.
+
+|{{logos:iso.png?20x20}} |{{downloads:osfree-demo-0.0.4.8.zip?nocache|osFree 0.0.4.8 ISO image}} |
+|{{logos:iso.png?20x20}} |{{downloads:osfree-demo-0.0.4.7-cc-edition.7z?nocache|osFree 0.0.4.7 CC Edition ISO image}} |
+|{{logos:iso.png?20x20}} |{{downloads:osfree-demo-0.0.4.6.zip?nocache|osFree 0.0.4.6 ISO image}} |
+|{{logos:iso.png?20x20}} |{{downloads:osfree-demo-0.0.4.5.zip?nocache|osFree 0.0.4.5 ISO image}} |
+|{{logos:iso.png?20x20}} |{{downloads:osfree-demo-0.0.4.1.zip?nocache|osFree 0.0.4.1 ISO image}} |
+|{{logos:iso.png?20x20}} |{{downloads:osfree-demo-0_0_4.zip?nocache|osFree 0.0.4 ISO image}} |
+|{{logos:zip.png?20x20}} |{{downloads:os3-dos-cmd_wpi.zip?nocache|osFree DOS Personality Command Line Tools 0.0.3.1}} |
+|{{logos:zip.png?20x20}} |{{downloads:os3-os2-cmd-0_0_3_1_wpi.zip?nocache|osFree OS/2 Personality Command Line Tools 0.0.3.1}} |
+|{{logos:zip.png?20x20}} |{{downloads:os3-os2-rexx_wpi.zip?nocache|osFree OS/2 Personality Classic REXX 0.0.2}} |
+|{{logos:zip.png?20x20}} |{{downloads:os3-os2-mm_wpi.zip?nocache|osFree OS/2 Personality Multimedia Subsystem 0.0.2}} |
+
+=== Download the Older Files ===
+
+|{{logos:zip.png?20x20}} |{{downloads:os3-os2-cmd_wpi.zip?nocache|osFree OS/2 Personality Command Line Tools 0.0.3}} |
+
+=== Download the source code ===
+
+|{{logos:git.png?20x20}} |[[https://github.com/osfree-project/osfree/|View the osFree repository at Github via a web interface]] (and download latest snapshot) |
+
+~~DISCUSSION~~

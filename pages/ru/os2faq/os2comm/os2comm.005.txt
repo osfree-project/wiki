@@ -1,0 +1,13 @@
+[Q]: Запускаем инсталляцию, MPTS - сообщает о лоченых файлах
+
+[A]: Basil Botchin (2:5020/106.48)
+
+Он находит файло \os2\install\ibmlanlk.lst  и матерно ругается.
+соответвенно два пути лечения либо прописать в конфиге первыми строками
+
+device=[drive:]\os2\install\ibmlanlk.sys [drive:]\os2\install\ibmlanlk.lst
+run=[drive:]\os2\install\ibmlanlk.exe [drive:]\os2\install\ibmlanlk.lst
+
+и перзагрузиться
+
+либо просто удавить \os2\install\ibmlanlk.lst

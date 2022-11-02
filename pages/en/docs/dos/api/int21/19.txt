@@ -1,0 +1,41 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=19H ======
+
+===== Version =====
+
+1 and higher
+
+===== Brief =====
+
+GET CURRENT DEFAULT DRIVE
+
+===== Family API =====
+
+[[en:docs:fapi:DosQCurDisk]]
+
+===== Input =====
+
+        AH = 19h
+
+===== Return =====
+
+AL = drive (00h = A:, 01h = B:, etc)
+
+===== Notes =====
+
+ Novell NetWare uses the fact that DOS 2.x COMMAND.COM issues this call
+          from a particular location every time it starts a command to
+          determine when to issue an automatic EOJ
+          
+===== See also =====
+
+AH=0Eh,AH=47h,AH=BBh
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:int}}
+
+{{page>en:templates:fapi}}

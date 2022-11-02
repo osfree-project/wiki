@@ -1,0 +1,93 @@
+{{page>en:templates:fapiint}}
+
+====== DosGetCp ======
+
+This call allows a process to query the current process code page and the prepared system code pages.
+
+===== Syntax =====
+
+<code c>
+ DosGetCp (Length, CodePageList, DataLength)
+</code>
+
+===== Parameters =====
+
+  * Length (USHORT) - input : Length, in bytes, of CodePageList. This length should be at least 2 bytes. If the length is less than the bytes needed to return all the prepared system code pages than the returned CodePageList is truncated.
+  * CodePageList (PUSHORT) - output : Address of the list of available system code pages. The format of the information returned in this list is:
+    * 1 - Current code page identifier
+    * 2 - The first prepared code page
+    * 3 - The second prepared code page
+    * N - Other prepared system code pages.
+  * DataLength (PUSHORT) - output : Address of the length, in bytes, of the returned data.
+
+===== Return Code =====
+
+rc (USHORT) - return:Return code
+
+  *0 NO_ERROR
+  *473 ERROR_CPLIST_TOO_SMALL
+
+===== Remarks =====
+
+If the process code page identifier was previously set by [[DosSetCp]] or inherited by a process, it is returned to the caller.
+
+An input list size (length) of two bytes returns only the current process code page identifier. If CodePageList length is too small to hold all the available information, then as much information as possible is provided in the available space and ERROR_CPLIST_TOO_SMALL is returned.
+
+If no codepages were prepared with the CODEPAGE command, a length of two and current codepage identifier value of zero is returned. 
+
+==== Family API Considerations ====
+
+Some options operate differently in the DOS mode than in OS/2 mode. Therefore, the following restriction applies to DosGetCp when coding for the DOS mode:
+
+The current process code page, and no more than one prepared system code page, is returned. 
+
+===== Bindings =====
+
+==== C ====
+
+<code c>
+#define INCL_DOSNLS
+
+USHORT  rc = DosGetCp(Length, CodePageList, DataLength);
+
+USHORT           Length;        /* Length of list */
+PUSHORT          CodePageList;  /* List (returned) */
+PUSHORT          DataLength;    /* Length of list (returned) */
+
+USHORT           rc;            /* return code */
+</code>
+
+==== MASM ====
+
+<code asm>
+EXTRN  DosGetCp:FAR
+INCL_DOSNLS         EQU 1
+
+PUSH   WORD    Length        ;Length of list
+PUSH@  WORD    CodePageList  ;List (returned)
+PUSH@  WORD    DataLength    ;Length of list (returned)
+CALL   DosGetCp
+
+Returns WORD
+</code>
+
+===== Example =====
+
+This example gets the current code page and then up to 3 other prepared codepages.
+<code c>
+#define INCL_DOSNLS
+
+USHORT CpList[8];
+USHORT CpSize;
+USHORT rc;
+
+ rc = DosGetCp(sizeof(CpList),   /* Length of list */
+               CpList,           /* List */
+               &CpSize);         /* Length of returned list */
+</code>
+
+===== Related Functions =====
+
+*[[DosSetCp]]
+
+{{page>en:templates:fapi}}

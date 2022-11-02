@@ -1,0 +1,7 @@
+[Q]: Clipboard не перекодирует текст при передаче его WinOS/2 - OS/2
+
+[A]: Alex Slyotov (2:5022/27)
+
+Всё пpоще оказалось. Как я и пpедполагал дело было в винОС2, а именно в 
+стpочке woafont.fon=Russia (866) секции [boot.description] в SYSTEM.INI
+(дома у меня было woafont.fon=English (850), поставил Россию и всё забегало.

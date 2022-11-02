@@ -1,0 +1,5 @@
+====== AnsiInterp ======
+
+APIRET16 APIENTRY16 AnsiInterp (BVSCB FAR * bvscb);
+
+APIRET APIENTRY Ansi32Interp(BVSCB * bvscb);

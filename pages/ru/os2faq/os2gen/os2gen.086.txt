@@ -1,0 +1,96 @@
+[Q]: Два десктопа сменяют друг друга при перезагрузке
+
+[A]: Unknown author
+
+The problem with alternating Desktops is caused by a Drive being duplicated
+in the File Handle Structure in the OS2SYS.INI file. In order to fixthis
+problem, you must remove one of the duplicated Drive entries from the INI file.
+
+Here is how you fix the problem with the alternating Desktops using UniMaint.
+
+1. Make sure you have a Desktop Backup of your system. We are going to mess 
+with some things that could have a major effect on PM and WPS, so you always 
+want to have a place to go back to.
+
+2. You are going to have to live with one Desktop or the other, so boot until
+you get to the Desktop that you want and do the steps below immediately after
+the Boot and do not do anything else until you are finished.
+
+3. Bring up the main UniMaint window and use the File Menu to get the 
+System INI File as the file you are looking at. This is the OS2SYS.INI 
+file unless you have manually changed it.
+
+4. Find PM_Workplace:Active Handles and highlight it. In the User Data Window
+you will see with the Handles0 or the Handles1 Application Name.
+
+5. Highlight the Application Name that is listed in the window. The Key 
+Names should not start with BLOCK1. There might be only on entry or there 
+could be a BLOCK2 etc. Don't worry about how many there are.
+
+6. Use the Find/Application Key Value to do a search on the drive that is 
+duplicated, D:, for example.
+
+7. Looking at the information on the right hand side of the user Data Window,
+when you find the entry you are looking for, you will see the characters 
+DRIV a few lines above the D: and the word NODE just past the D: that you 
+found. A few lines down you will find D: again. This is the good entry, so 
+you do not want to mess with it.
+
+8. Use the Find/Repeat Last Find and it will find the second D: entry which 
+is the one above that is a few lines down from the first one.
+
+9. Do the Repeat Find again and you should not be at the D: entry that is 
+the problem entry. Once again, you will see DRIV in front of the entry, NODE 
+just past it and another D: a few lines down.
+
+10. You need to get rid of this D: drive, so you can move the cursor in the 
+User Data Window to the two D: entries and change the D to an invalid drive 
+by typing over it. You must change both of them, you must change them to 
+something that is a drive that does not exist and you must change both of 
+them to the same thing.
+
+11. Go to the Action Menu and use Update Current Key to get the information 
+written to the OS2SYS.INI file.
+
+12. This is probably not necessary, but I would suggest you now sit and wait 
+for at least one minute so that the modified OS2SYS.INI file is actually 
+written to you HD.
+
+13. Now use the Desktop Menu, Reset Desktop to do a Reset of WPS. This will 
+cause WPS to collapse and all of your Icons will disappear. The Desktop 
+should come back in a minute or so. If the Desktop does not come back, then 
+do a three finger salute to reboot.
+
+14. You should now have the Desktop you expect and the other Desktop will not 
+come back. 
+
+15. If you have the wrong Desktop, then you should use the Backup to Restore 
+the Desktop with the duplicate Handles and modify the other D: entry.
+
+16. Once you have a good Desktop, then make a new Desktop Backup, so you can 
+always get back to where you are.
+
+17. Finally, use the Recover menu, Repair INI Files to do the Default INI 
+File Repair. Just bring up the Dialog, click on Execute...this will fill 
+the Repair Window, select the Do Repair Button just above the data window and 
+click on Execute again. All of the problem entries will now be gone.
+
+18. I would now make another Desktop Backup, do a Shutdown and Reboot just 
+to be sure that everything is okay.
+
+19. After you have done a few Shutdowns and Reboots...over the space of a 
+couple of days or so. Then it would not hurt to make another Desktop Backup, 
+just to be sure that everything is okay.
+
+It does not hurt to make several Desktop Backups, because the default is 
+to keep 10 generations. You should use the Description field to make careful 
+notes as to exactly where you are in the process above when you make each 
+Backup so that you will know exactly which generation to use if you need to 
+backtrack for any reason.
+
+Let me know if you have any problems or do not understand any of the above. 
+If you get to a point in the procedure where you are not sure whether you are
+in the right place and you have not made any changes, then stop right there
+and ask questions. Once you have made any of the changes and written them to 
+the file, you must go all the way through the process or use the Desktop 
+Backup to Restore and start over.

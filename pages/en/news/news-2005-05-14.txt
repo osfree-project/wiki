@@ -1,0 +1,13 @@
+==== May 14, 2005 ====
+
+  * osFree mentioned at osViews.com in article about ReactOS: 
+[[http://www.osviews.com/modules.php?op=modload&name=News&file=article&sid=2230|[1]]]
+  * Samuel A. Falvo II released first boot sequence prototype [[http://www.falvotech.com/projects/os3.php|[2]]]. 
+Check Boot sequence forum for more information.
+  * Old forum replaced by more powerfull forum system (PhpBB). osFree skin is bad ;) We are looking for web-page designers.
+  * Kernel selected. It is L4 Microkernel [[http://l4ka.org/|[3]]]. Most probably ReactOS will be ported to L4 also (things happen). 
+As result we can have 'Virtual drivers' like from L4Linux [[http://l4ka.org/projects/virtualization/drivers.php|[4]]]. 
+
+{{tag>site development}}
+
+~~DISCUSSION~~

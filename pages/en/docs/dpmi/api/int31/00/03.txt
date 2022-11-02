@@ -1,0 +1,38 @@
+{{page>en:templates:dpmi}}
+
+====== Int 31H, AH=00H, AL=02H ======
+
+===== Version =====
+
+0.9
+
+===== Brief =====
+
+Get Selector Increment Value
+
+===== Input =====
+
+  AX = 0003H
+
+===== Return =====
+
+  Carry flag = clear (this function always succeeds)
+  AX = selector increment value  
+  
+===== Notes =====
+
+The DPMI functions Allocate LDT Descriptors (Int 31H Function 0000H) and Allocate DOS Memory Block (Int 31H Function 0100H) can allocate an array of contiguous descriptors, but only return a selector for the first descriptor. The value returned by this function can be used to calculate the selectors for subsequent descriptors in the array.
+    
+The increment value is always a power of two. 
+    
+===== See also =====
+
+   
+
+===== Note =====
+
+Text based on [[http://www.delorie.com/djgpp/doc/dpmi/]]
+
+{{page>en:templates:dpmi:int}}
+
+

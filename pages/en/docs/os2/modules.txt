@@ -1,0 +1,137 @@
+===== OS/2 DLL entry points =====
+
+This OS/2 DLL's entry point description is inspired by [[http://home.clara.net/orac/os2dll.htm]], [[http://www.edm2.com/index.php/Category:Files]]
+
+==== Control Program API  ====
+
+These DLL's contain core OS/2 API, exported by kernel (called CP API or Control Program API), and others are mostly "forwarders" to doscalls. We must note here, that in Intel OS/2 doscalls is a virtual DLL. It does not exist on disk. But here exist DOSCALL1.DLL, which is a collections of call gates into the kernel, or implementations of some API's fully in ring3, based on the real kernel API. DOSCALLS is a virtual DLL, which is a pure kernel API merged with doscall1.dll. The kernel will load also the DLL called DOSCALL2.DLL, which is "user defined API's". This was intended for OEM API extensions. DOSCALLS in modern OS/2 contains implementation of all (or most) Control Program API. Many other DLLs just forwarders to DOSCALLS. We also uses such logic. Only difference is DOSCALLS not lowest library. DOSCALLS also divided onto two libs. DOSCALLS itself, which contains kernel independed parts, and KAL library, which contains kernel depended part. For osFree project KAL just forward all calls to OS/2 Personality server and recieves answer from it with call result. Such approach allow to port CPI to other kernel easely, because kernel-depended part cleary divided into separate layer.
+
+^Name ^Description ^Status ^
+|[[en:docs:os2:modules:doscalls|doscalls]] |Most  CP API | |
+|[[en:docs:os2:modules:ansicall|ansicall]] |ANSI terminal support | Done |
+|[[en:docs:os2:modules:nls|nls]] |NLS support | Done |
+|[[en:docs:os2:modules:msg|msg]] |Message file API | Done |
+|[[en:docs:os2:modules:moncalls|moncalls]] |Monitor API | Done |
+|[[en:docs:os2:modules:kbdcalls|kbdcalls]] |Keyboard API | Done |
+|[[en:docs:os2:modules:moucalls|moucalls]] |Mouse API | Done |
+|[[en:docs:os2:modules:viocalls|viocalls]] |VIO API | Done |
+|[[en:docs:os2:modules:sesmgr|sesmgr]] |Session manager | Done |
+|[[en:docs:os2:modules:bkscalls|bkscalls]] |Base Keyboard Subsystem | Done |
+|[[en:docs:os2:modules:bmscalls|bmscalls]] |Base Mouse subsystem | Done |
+|[[en:docs:os2:modules:bvscalls|bvscalls]] |Base Video Subsystem | Done |
+|[[en:docs:os2:modules:nampipes|nampipes]] |Named Pipes API | Done |
+|[[en:docs:os2:modules:quecalls|quecalls]] |Queues API | Done |
+|[[en:docs:os2:modules:os2char|os2char]] |OS/2 character console context | Done |
+
+==== Unicode API ====
+
+^Name ^Description ^Status ^
+|[[en:docs:os2:modules:uconv|uconv]] | | |
+|[[en:docs:os2:modules:unikbd|unikbd]] | | |
+|[[en:docs:os2:modules:libuni|libuni]] | | |
+
+==== BIDIrectional support ====
+
+^Name ^Description ^Status ^
+|[[en:docs:os2:modules:bdcalls|bdcalls]] | 16-bit API | |
+|[[en:docs:os2:modules:bdcalls32|bdcalls32]] | 32-bit API | |
+|[[en:docs:os2:modules:bdime|bdime]] |Bidirectionlal Input Method Editor | |
+|[[en:docs:os2:modules:bdbvh|bdbvh]] | BVH for BIDI | |
+|[[en:docs:os2:modules:bdview|bdview]] | BDview (Language Viewer) \\ WPS class (in System Setup)| |
+|[[en:docs:os2:modules:bdwpcls|bdwpcls]] |some WPS class? | |
+
+==== Base Video Handlers ====
+
+^Name ^Description ^Status ^
+|[[en:docs:os2:modules:bvhinit|bvhinit]] |minimal BVH, capable of writing via int 10h when booting and install process | |
+|[[en:docs:os2:modules:bvhmpa|bvhmpa]] |a BVH for monochrome adapter | |
+|[[en:docs:os2:modules:bvhvga|bvhvga]] |a BVH for VGA adapter | |
+|[[en:docs:os2:modules:bvhsvga|bvhsvga]] |a filter BVH for SVGA modes | |
+|[[en:docs:os2:modules:bvhwndw|bvhwndw]] | a BVH for VIO windows in a PM environment | |
+
+==== GRADD subsystem ====
+
+^Name ^Description ^Status ^
+|[[en:docs:os2:modules:vman|vman]] |Video Manager (VMAN) | |
+|[[en:docs:os2:modules:softdraw|softdraw]] |Softdraw -- a default software renderer | |
+|[[en:docs:os2:modules:gre2vman|gre2vman]] |A PM GRE to VMAN translation layer | |
+|[[en:docs:os2:modules:gengradd|gengradd]] |Generic VESA GRADD driver \\ as an example of a GRADD driver | |
+
+==== Information Presentation facility ====
+
+^Name ^Description ^Status ^
+|[[en:docs:os2:modules:helpmgr|helpmgr]] |Help Manager API | |
+|[[en:docs:os2:modules:hpmgrmri|hpmgrmri]] | Help manager MRI (resources) | |
+|[[en:docs:os2:modules:minxobj]] |Mindex (Main Index/Glossary) WPS class | |
+|[[en:docs:os2:modules:ibmhmgr|ibmhmgr]] |Old version of helpmgr (from IBM) | |
+|[[en:docs:os2:modules:newview|newview]] |some NewView stub ??? | |
+|[[en:docs:os2:modules:minxmri]] | Mindex resources (MRI) | |
+
+==== REXX ====
+
+^Name ^Description ^Status ^
+|[[en:docs:os2:modules:rexx|rexx]] | REXX Interpreter | |
+|[[en:docs:os2:modules:rexxapi|rexxapi]] | API for manipulating REXX environment and enable scripting in applications | | 
+|[[en:docs:os2:modules:rexxutil|rexxutil]] |REXX utilities library | |
+
+==== Presentation Manager ====
+
+=== The core  PM DLL's ===
+
+^Name ^ Description ^Status ^
+|[[en:docs:os2:modules:pmmerge|pmmerge]] |The PM merged library \\ (the PM "kernel") | |
+|[[en:docs:os2:modules:pmmrgres|pmmrgres]] |PMMERGE resources | |
+|[[en:docs:os2:modules:pmshapi|pmshapi]] |The PMShell API | Done |
+|[[en:docs:os2:modules:pmshltkt|pmshltkt]] |PMShell toolkit ??? | |
+|[[en:docs:os2:modules:pmgre|pmgre]] |PM GRE (Graphics Runtime Environment) API | Done |
+|[[en:docs:os2:modules:pmgpi|pmgpi]] |GPI (Graphical Program \\ Interface) API | |
+|[[en:docs:os2:modules:pmdrag|pmdrag]] |The PM Drag'n'Drop API | Done |
+|[[en:docs:os2:modules:pmctls|pmctls]] |PM controls | |
+|[[en:docs:os2:modules:pmbidi|pmbidi]] |PM BIDI API | |
+|[[en:docs:os2:modules:pmmle|pmmle]] |PM MLE (Multiple Line Edit) control | Done |
+|[[en:docs:os2:modules:pmspl|pmspl]] |PM Print Spooler API | |
+|[[en:docs:os2:modules:pmviop|pmviop]] |PM VIO Shield | |
+|[[en:docs:os2:modules:pmwin|pmwin]] |PM Window Manager API | Done |
+|[[en:docs:os2:modules:pmwinx|pmwinx]] |Open32 (Win32 API subset) | |
+|[[en:docs:os2:modules:mirrors|mirrors]] |Something also \\ related to Open32 | |
+|[[en:docs:os2:modules:registry|registry]] |Registry support | |
+
+=== The IFI (Intelligent Font Interface) drivers ===
+
+^Name ^ Description ^Status ^
+|[[en:docs:os2:modules:pmatm|pmatm]] |A PM Adobe Type Manager | |
+|[[en:docs:os2:modules:truetype|truetype]] |A PM Truetype Font Driver | |
+|[[en:docs:os2:modules:pmunif|pmunif]] |A PM UNI Font IFI driver | |
+|[[en:docs:os2:modules:freetype|freetype]] |A Free OpenSource Truetype driver replacement | |
+|[[en:docs:os2:modules:pmpre|pmpre]] |PMPRE ??? | |
+
+=== Data Exchange ===
+
+^Name ^ Description ^Status ^
+|[[en:docs:os2:modules:pmclip|pmclip]] |PM clipboard | |
+|[[en:docs:os2:modules:pmdde|pmdde]] |A windows-like Dynamic Data Exchange | |
+|[[en:docs:os2:modules:pmddeml|pmddeml]] |??? | |
+
+=== VDM PM interface ===
+
+^Name ^ Description ^Status ^
+|[[en:docs:os2:modules:pmvdmh|pmvdmh]] |PM VDM helper | |
+|[[en:docs:os2:modules:pmvdmp|pmvdmp]] |PM DOS window DLL \\ (works closely with pmviop) | |
+|[[en:docs:os2:modules:seamless|seamless]] |Seamless Win-OS/2 support (PM shield) | |
+|[[en:docs:os2:modules:shield|shield]] |Some shieild API | |
+
+=== Miscellaneous ===
+
+^Name ^ Description ^Status ^
+|[[en:docs:os2:modules:pmpic|pmpic]] |Something which handle \\ pictures and metafiles | |
+|[[en:docs:os2:modules:pmtkt|pmtkt]] |PM toolkit ??? | |
+
+==== WPS ====
+
+^Name ^ Description ^Status ^
+|[[en:docs:os2:modules:pmwp|pmwp]] |WPS main module | |
+|[[en:docs:os2:modules:pmwpmri|pmwpmri]] |WPS resources | |
+|[[en:docs:os2:modules:pmvddrop|pmvddrop]] |PMVDDrop Class library (WPS class???) | |
+
+
+{{page>en:templates:dlls}}

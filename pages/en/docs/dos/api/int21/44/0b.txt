@@ -1,0 +1,49 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=44H, AL=0BH ======
+
+===== Version =====
+
+3.1 and higher
+
+===== Brief =====
+
+SET SHARING RETRY COUNT
+
+===== Family API =====
+
+
+===== Input =====
+
+	AX = 440Bh
+	CX = pause between retries (default 1)
+	DX = number of retries (default 3)
+
+===== Return =====
+
+ CF clear if successful
+	CF set on error
+	    AX = error code (01h) (see #01680 at AH=59h/BX=0000h)
+
+===== Macro =====
+
+
+===== Notes =====
+
+       delay is dependent on processor speed (value in CX specifies number of
+	  64K-iteration empty loops to execute)
+	if DX=0000h on entry, the retry count is left unchanged
+	this function was not supported by Digital Research's DOS Plus
+
+===== See also =====
+
+    AH=52h,INT 2F/AX=1224h,INT 2F/AX=122Bh
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:int}}
+
+{{page>en:templates:fapi}}
+

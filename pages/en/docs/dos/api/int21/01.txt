@@ -1,0 +1,56 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=01H ======
+
+===== Version =====
+
+1 and higher
+
+===== Brief =====
+
+READ CHARACTER FROM STANDARD INPUT, WITH ECHO
+
+===== Family API =====
+
+[[en:docs:fapi:DosRead]]
+
+===== Input =====
+
+  AH = 01h
+
+===== Return =====
+
+  AL = character read
+
+===== Macro =====
+
+<code asm>
+INCLUDE DOS.INC
+
+READ_KBD_AND_ECHO
+</code>
+
+===== Notes =====
+
+ ^C / ^Break are checked, and INT 23 executed if read
+
+ ^P toggles the DOS-internal echo-to-printer flag
+
+ ^Z is not interpreted, thus not causing an EOF if input is redirected
+character is echoed to standard output
+standard input is always the keyboard and standard output the screen
+under DOS 1.x, but they may be redirected under DOS 2+
+
+===== See also =====
+
+AH=06h,AH=07h,AH=08h,AH=0Ah
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:int}}
+
+{{page>en:templates:fapi}}
+
+

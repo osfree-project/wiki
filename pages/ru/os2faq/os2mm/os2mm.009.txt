@@ -1,0 +1,5 @@
+[Q]: Под OS/2 Warp3 ни один MP3 проигрыватель не выдает ни звука
+
+[A]: Max Alekseyev (2:5015/60)
+
+Установи DART: www.polsci.wvu.edu/henry/files/drivers/dart.zip

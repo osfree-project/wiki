@@ -1,0 +1,48 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=63H, AL=01H ======
+
+===== Version =====
+
+2.25, 3.2 and higher
+
+===== Brief =====
+
+SET KOREAN (HANGEUL) INPUT MODE
+
+===== Family API =====
+
+
+===== Input =====
+
+  AX = 6301h
+  DL = new mode
+    00h return only full characters on DOS keyboard input functions
+    01h return partially-formed (interim) characters also
+
+===== Return =====
+
+  AL = status
+    00h successful
+    FFh invalid mode
+   
+===== Macro =====
+
+
+===== Notes =====
+
+  Novell DOS 7 simply stores DL in the caller's PSP (see #01378 at AH=26h). The US version of MS-DOS 3.30 treats this as an unused function, setting AL=00h and returning immediately; only the Far East versions of MS-DOS 3.2 and 3.3 supported this call
+
+===== See also =====
+
+  AH=07h - AH=08h - AH=0Bh - AX=6300h
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:int}}
+
+{{page>en:templates:fapi}}
+
+

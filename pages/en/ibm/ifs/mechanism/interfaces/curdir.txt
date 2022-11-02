@@ -1,0 +1,20 @@
+=== Per-disk current directories ===
+
+are described by the following structures. These structures can only be modified by the FSD during FS_ATTACH and FS_CHDIR operations.   
+
+<code c>
+/* file system independent - current directories */
+
+struct cdfsi {
+    unsigned short cdi_hVPB;           /* VPB handle for associated device */
+    unsigned short cdi_end;            /* offset to root of path */
+    char           cdi_flags;          /* FS independent flags */
+    char           cdi_curdir[260];    /* text of current directory */
+};
+
+/* file system dependent - current directories */
+
+struct cdfsd {
+    char           cdd_work[8];        /* work area */
+};
+</code>

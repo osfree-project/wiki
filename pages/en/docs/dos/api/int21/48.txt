@@ -1,0 +1,58 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=48H ======
+
+===== Version =====
+
+2 and higher
+
+===== Brief =====
+
+ALLOCATE MEMORYY
+
+===== Family API =====
+
+[[en:docs:fapi:dosallochuge|DosAllocHuge]], [[en:docs:fapi:dosallocseg|DosAllocSeg]]
+
+===== Input =====
+
+  AH = 48h
+  BX = number of paragraphs to allocate
+
+===== Return =====
+
+  CF clear if successful
+    AX = segment of allocated block
+  CF set on error
+    AX = error code (07h,08h) (see #01680 at AH=59h/BX=0000h)
+    BX = size of largest available block
+
+===== Macro =====
+
+<code asm>
+INCLUDE DOS.INC
+
+ALLOCATE_MEMORY bytes
+</code>
+
+
+===== Notes =====
+
+DOS 2.1-6.0 coalesces free blocks while scanning for a block to allocate
+
+.COM programs are initially allocated the largest available memory block, and should free some memory with AH=49h before attempting any allocations
+
+under the FlashTek X-32 DOS extender, EBX contains a protected-mode near pointer to the allocated block on a successful return
+          
+===== See also =====
+
+ **[[en:docs:dos:api:int21|INT 21H]]:** [[en:docs:dos:api:int21:49|49H]], [[en:docs:dos:api:int21:4a|4AH]], [[en:docs:dos:api:int21:58|58H]]
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:int}}
+
+{{page>en:templates:fapi}}
+

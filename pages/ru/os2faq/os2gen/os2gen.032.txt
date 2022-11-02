@@ -1,0 +1,5 @@
+[Q]: А как мне Borland C++ for DOS запyстить под OS/2?
+
+[A]: Maxim Donchenko
+
+Settings -> Session -> Dos settings -> DPMI_DOS_API = ENABLED

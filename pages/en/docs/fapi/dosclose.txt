@@ -1,0 +1,119 @@
+{{page>en:templates:fapiint}}
+
+====== DosClose ======
+
+This call closes a handle to a file, pipe, or device.
+
+===== Syntax =====
+
+<code c>
+DosClose (FileHandle)
+</code>
+
+===== Parameters =====
+
+
+  * FileHandle ([[HFILE]]) - input : Handle returned by a previous [[DosOpen]], [[DosMakeNmPipe]], or [[DosMakePipe]] call.
+
+===== Return Code =====
+
+
+rc ([[USHORT]]) - return
+
+Return code descriptions are:
+
+  * 0        NO_ERROR 
+  * 2        ERROR_FILE_NOT_FOUND
+  * 5        ERROR_ACCESS_DENIED
+  * 6        ERROR_INVALID_HANDLE
+
+===== Remarks =====
+
+
+Issuing DosClose with the handle to a file closes a handle to a file, pipe, or device.
+
+If one or more additional handles to a file have been created with [[DosDupHandle]], the directory is not updated and all internal buffers are not written to the medium until DosClose has been issued for the duplicated handles.
+
+Closing a handle to a device causes the device to be notified of the close, if appropriate. 
+
+==== Named Pipe Considerations ====
+
+DosClose closes a named pipe by handle. When all handles referencing one end of a pipe are closed, the pipe is considered broken.
+
+If the client end closes, no other process can re-open the pipe until the serving end issues a [[DosDisConnectNmPipe]] followed by a [[DosConnectNmPipe]].
+
+If the server end closes when the pipe is already broken, it is deallocated immediately; otherwise, the pipe is not deallocated until the last client handle is closed.
+
+===== Example Code =====
+
+==== C Binding ====
+
+<code c>
+  #define INCL_DOSFILEMGR
+  
+  USHORT  rc = DosClose(FileHandle);
+  
+  HFILE            FileHandle;    /* File handle */
+  USHORT           rc;            /* return code */
+</code>
+
+This example opens a file, then closes it. 
+<code c>
+  #define INCL_DOSFILEMGR
+  
+  #define OPEN_FILE 0x01
+  #define CREATE_FILE 0x10
+  #define FILE_ARCHIVE 0x20
+  #define FILE_EXISTS OPEN_FILE
+  #define FILE_NOEXISTS CREATE_FILE
+  #define DASD_FLAG 0
+  #define INHERIT 0x80
+  #define WRITE_THRU 0
+  #define FAIL_FLAG 0
+  #define SHARE_FLAG 0x10
+  #define ACCESS_FLAG 0x02
+  
+  #define FILE_NAME "test.dat"
+  #define FILE_SIZE 800L
+  #define FILE_ATTRIBUTE FILE_ARCHIVE
+  #define RESERVED 0L
+  
+  HFILE   FileHandle;
+  USHORT  Wrote;
+  USHORT  Action;
+  PSZ     FileData[100];
+  USHORT  rc;
+
+   Action = 2;
+   strcpy(FileData, "Data...");
+   if(!DosOpen(FILE_NAME,                /* File path name */
+                &FileHandle,             /* File handle */
+                &Action,                 /* Action taken */
+                FILE_SIZE,               /* File primary allocation */
+                FILE_ATTRIBUTE,          /* File attribute */
+                FILE_EXISTS | FILE_NOEXISTS,      /* Open function type */
+                DASD_FLAG | INHERIT |            /* Open mode of the file */
+                WRITE_THRU | FAIL_FLAG |
+                SHARE_FLAG | ACCESS_FLAG,
+                RESERVED))               /* Reserved (must be zero) */
+      rc = DosClose(FileHandle);         /* File Handle */
+</code>
+
+==== MASM Binding ====
+
+<code asm>
+  EXTRN  DosClose:FAR
+  INCL_DOSFILEMGR     EQU 1
+  
+  PUSH   WORD    FileHandle    ;File handle
+  CALL   DosClose
+</code>  
+
+Returns WORD
+
+===== Note =====
+
+Text based on [[http://www.edm2.com/index.php/DosClose_(FAPI)]]
+
+{{page>en:templates:fapi}}
+

@@ -1,0 +1,7 @@
+===== Extended Parent Directory Names =====
+
+**CMD.EXE** allows you to extend the traditional syntax for naming the parent directory, by adding additional [.] characters. Each additional [.] represents an additional directory level above the current directory. For example, //.\FILE.DAT// refers to a file in the current directory, //..\FILE.DAT// refers to a file one level up (in the parent directory), and //...\FILE.DAT// refers to a file two levels up (in the parent of the parent directory). If you are in the ''C:\DATA\FINANCE\JANUARY'' directory and want to copy the file ''LETTERS.DAT'' from the directory ''C:\DATA'' to drive A: 
+
+<code>
+        [C:\DATA\FINANCE\JANUARY] copy ...\LETTERS.DAT A:
+</code>

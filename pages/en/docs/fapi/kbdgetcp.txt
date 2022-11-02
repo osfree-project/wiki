@@ -1,0 +1,61 @@
+{{page>en:templates:fapiint}}
+====== KbdGetCp ======
+
+This call allows a process to query the code page being used to translate scan codes to ASCII characters.
+
+===== Syntax =====
+<code c>
+ KbdGetCp (Reserved, CodePageID, KbdHandle)
+</code>
+
+===== Parameters =====
+
+  * Reserved (ULONG) - input: Reserved and must be set to zero.
+  * CodePageID (PUSHORT) - output: Address of the code page ID located in the application's data area. The keyboard support copies the current code page ID for a specified keyboard handle into this word. The code page ID is equivalent to one of the code page IDs specified in the CONFIG.SYS CODEPAGE = statement or 0000.
+  * KbdHandle (HKBD) - input: Default keyboard or the logical keyboard.
+
+===== Return Code =====
+
+rc (USHORT) - return:Return code descriptions are:
+
+  * 0 NO_ERROR
+  * 373 ERROR_KBD_PARAMETER
+  * 439 ERROR_KBD_INVALID_HANDLE
+  * 445 ERROR_KBD_FOCUS_REQUIRED
+  * 447 ERROR_KBD_KEYBOARD_BUSY
+  * 464 ERROR_KBD_DETACHED
+  * 504 ERROR_KBD_EXTENDED_SG
+
+===== Remarks =====
+
+The CodePageID is the currently active keyboard code page. A value of 0 indicates the code page translation table in use is the ROM code page translation table provided by the hardware.
+
+===== Bindings =====
+
+====C====
+<code c>
+#define INCL_KBD
+
+USHORT  rc = KbdGetCp(Reserved, CodePageID, KbdHandle);
+
+ULONG   Reserved;     /* Reserved (must be zero) */
+PUSHORT CodePageID;   /* Code Page ID */
+HKBD    KbdHandle;    /* Keyboard handle */
+
+USHORT  rc;           /* return code */
+</code>
+
+====MASM====
+<code asm>
+EXTRN  KbdGetCp:FAR
+INCL_KBD    EQU 1
+
+PUSH   DWORD   Reserved     ;Reserved (must be zero)
+PUSH@  WORD    CodePageID   ;Code Page ID
+PUSH   WORD    KbdHandle    ;Keyboard handle
+CALL   KbdGetCp
+
+Returns WORD
+</code>
+
+{{page>en:templates:fapi}}

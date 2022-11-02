@@ -1,0 +1,47 @@
+===== Ссылки =====
+
+==== Внутренние ссылки ====
+
+  * [[ru:docs:index|Индекс документации osFree]]
+
+==== Внешние ссылки ====
+
+  * [[https://github.com|GitHub]]
+  * [[http://www.sourceforge.net/|SourceForge]]
+  * [[http://www.netlabs.org/|OS/2 Netlabs]]
+  * [[http://groups.yahoo.com/group/osfree|Неофициальная группа новостей osFree]]
+  * [[http://groups.yahoo.com/group/os3free|Другая неофициальная группа новотсей osFree]]
+  * [[http://voyager.netlabs.org/|Voyager]]
+  * [[http://os4you.org/168.98.html|Flash-boot howto. Информация об недокументированных интерфейсах во время загрузки]]
+  * [[http://www.cs.vu.nl/~ast/reliable-os/|Tanenbaum-Torvalds Debate: Part II]]
+  * [[http://wiki.laser.ru/os8/index.php/FreePM|Документация по FreePM (смесь русского и английского)]]
+  * [[http://os2linux.sourceforge.net/|Реализация OS/2 API для Linux]]
+  * [[https://hg.icculus.org/icculus/2ine/|2ine: Проект эмуляции OS/2 API под Linux]]
+  * [[http://homepage.ntlworld.com/jonathan.deboynepollard/Softwares/conapi/|32-битное консольное  API для OS/2]]
+  * [[http://www.microsoft.com/technet/archive/ntwrkstn/reskit/os2comp.mspx?mfr=true|Реализация OS/2 API от Microsoft (документация)]]
+  * [[http://sourceforge.net/projects/nudawn/|NuDawn]]
+  * [[http://sourceforge.net/projects/os2-oorexx/|OORexx for OS/2]]
+  * [[http://i1.dk/ntos2/|Open source реализация OS/2 API для Windows]]
+  * [[http://www.gnu.org/software/edma/edma.html|GNU EDMA]]
+  * [[http://www.gnome.org/projects/ORBit2/|ORBit2]]
+  * [[http://www.mico.org/|MICO]]
+  * [[http://www2.parc.com/istl/projects/ILU/ilu.html|ILU]]
+  * [[http://oxyd.alt2.spb.ru/|сайт Oxyd'а на около-osFree-шные темы]]
+  * [[http://www.r-5.org/|Сайт Сергея Посохова и его книга про OS/2 API]]
+  * [[http://os2.snc.ru/|Софт от Digi под OS/2]]
+  * [[http://home.clara.net/orac/os2dll.htm|Точки входа в OS/2 DLL]]
+  * [[http://www.edm2.com/|EDM/2]]
+  * osFree на Chaos Construction'11 [[http://www.youtube.com/watch?v=yxE6Jy3SQ04|(youtube)]] : [[ru:articles:cc-2011|(страница вики)]]
+
+==== ссылки про osFree в прессе ====
+
+  * [[http://osnews.com/comment.php?news_id=12771|первый скриншот на OSNews]]
+  * [[http://www.osnews.com/story.php/16543/A-Very-Critical-Look-at-OS-Re-creation-Projects/page1/A Very Critical Look at OS Re-creation Projects at OSNews]]
+  * [[http://www.pcpro.co.uk/columns/102194/technolog.html|PC Pro Columns: Technolog]]
+  * [[http://old.computerra.ru/interactive/370174/|Статья в Компьютерре-Online на тему OS/2, eComStation и osFree]] : [[ru:articles:computerra-online|локальная копия той же статьи]]
+
+==== разные статьи ====
+
+  * [[http://ru2.halfos.ru/core/articles/core003.html|Микроядро L4 как основа ядра ОС (первоисточник)]] : [[ru:articles:l4-as-a-base|локальная копия той же статьи]]
+  * [[http://citkit.ru/articles/359/|Вторая часть "Марлезонского балета". Дискуссия Таненбаума и Торвальдса: часть II]]
+  * [[http://wiki.laser.ru/os8/index.php/FreePM|Документация по FreePM (смесь русского и английского)]]

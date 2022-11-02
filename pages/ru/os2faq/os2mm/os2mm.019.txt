@@ -1,0 +1,10 @@
+[Q]: TRAP 000E после установки драйверов для Sonic Impact S90
+
+[A]: Igor Gruzdev (2:5030/827)
+
+Относительно именно воpтекса заpемь:
+
+DEVICE=E:\MMOS2\ASP4CORE.SYS /I:E:\MMOS2\VORTEX.INI
+DEVICE=E:\MMOS2\ASP4OS2.SYS /I:E:\MMOS2\VORTEX.INI /V
+REM *** DEVICE=E:\MMOS2\ASP4JOY.SYS
+REM *** DEVICE=E:\MMOS2\ASP4VDD.SYS ASPOS21$

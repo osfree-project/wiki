@@ -1,0 +1,13 @@
+==== FSD File Image ====
+
+An FSD loads from a file which is in the format of a standard OS/2 dynamic link library file. Exactly one FSD resides in each file. The FSD exports information to OS/2 using a set of predefined public names.   
+
+The FSD is initialized by a call to the exported entry point FS_INIT.   
+
+FS entry points for Mount, Read, Write, etc. are exported with known names as standard far entry points.   
+
+The FSD exports its name as a public ASCIIZ character string under the name 'FS_NAME'. All comparisons with user-specified strings are done similar to file names; case is ignored and embedded blanks are significant. FS_NAMEs, however, may be input to applications by users. Embedded blanks should be avoided. The name exported as FS_NAME need NOT be the same as the 1-8 FSD name in the boot sector of formatted media, although it may be. The ONLY name the kernel pays any attention to, and the only name accessible to user programs through the API, is the name exported as FS_NAME.   
+
+In addition to various entry points, the FSD must export a dword bit vector of attributes. Attributes are exported under the name 'FS_ATTRIBUTE'. FS_ATTRIBUTE specifies special properties of the FSD and is described in the next section. 
+
+  * [[en:ibm:ifs:mechanism:image:attr|FSD Atttribute]]

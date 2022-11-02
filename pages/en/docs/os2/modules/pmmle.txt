@@ -1,0 +1,16 @@
+{{logos:os2.gif?35x35}} 
+
+**Please help to find info about enries marked as //No info//**
+
+===== PMMLE =====
+
+This is not real DLL, but forwarders to [[PMCTLS]].DLL.
+
+^Ordinal ^Name ^Desc ^ Status ^
+| 1 | MLE_INITIALIZE | Forwarder to PMCTLS.31 | Done |
+| 2 | MULTILINEEDITPROC | Forwarder to PMCTLS.32 | Done |
+| 3 | BDMULTILINEEDITPROC | Forwarder to PMCTLS.33 | Done |
+
+
+{{page>en:templates:dlls}}
+

@@ -1,0 +1,43 @@
+{{page>en:templates:dpmi}}
+
+====== Int 2FH, AH=16H, AL=80H ======
+
+===== Version =====
+
+1.0
+
+===== Brief =====
+
+Release Current Virtual Machine's Time Slice
+
+===== Input =====
+
+	AX = 1680H
+
+===== Return =====
+
+ If function supported by host:
+   AL = 0
+
+ If function not supported by host:
+   AL = unchanged (80H)
+
+===== Notes =====
+
+This function is not specific to DPMI hosts. Some operating systems will recognize this call for programs running in real mode. Programmers are encouraged to use this call 
+in all DOS and DPMI-client programs. All DPMI hosts will hook Int 2FH and so a DPMI client can use this API without any other precautions. Non-DPMI programs that can run on DOS 
+2.xx or earlier should make sure that the Int 2FH vector is non-zero before executing the Int 2FH.
+
+When an application calls this function it will regain control at intervals, so it should continue to re-issue this function call so long as it has nothing to do.
+DPMI client and application vendors are encouraged to use this function. It can significantly improve the performance of a DOS-based multitasking host.
+          
+===== See also =====
+   
+
+===== Note =====
+
+Text based on [[http://www.delorie.com/djgpp/doc/dpmi/]]
+
+{{page>en:templates:dpmi:int}}
+
+

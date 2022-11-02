@@ -1,0 +1,21 @@
+==== 26 August 2008 ====
+
+  * We started collecting bugs in [[https://sourceforge.net/tracker/?atid=588144&amp;group_id=88854&amp;func=browse|bugtracker]]
+  * Build system significally improved (thanks to Valery Sedletski)
+  * Work on OS/2 server internal structure started (Thanks to Sven-Eric Rosen and Sascha Schmidt for working on initial parts)
+  * Support of original IBM OS/2 Kernel loading in our loader is started (Thanks to Mike Greene)
+
+  * We are looking for DOS and Win16 developers to work on DOS command line tools and Win16 applications (initial codebase available)
+  * We are looking for PHP developer to integrate our forum and core site
+
+{{tag>site development}}
+
+<aagrip@rcn.com> Alan Grippon 2008/09/07 21:54:
+
+I'd like to help out with the DOS commands if you need a hand.  My time is limited right now but I will eventually have more time to help out on other things.  I could send my resume if you want to see my background.  I also have lots of hardware and software to test and play with.  Email me and let me know.  [email hidden for spam protect]  By the way, I couldn't figure out how to get a log-on to your forums so I registered on your web site.  
+
+<prokushev@freemail.ru> Yuri Prokushev 2008/09/11 13:54:
+
+I sent email to you with some explanation of tasks.
+
+~~DISCUSSION~~

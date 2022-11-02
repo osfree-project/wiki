@@ -1,0 +1,13 @@
+[Q]: Как снять Local Security от Lan Server-а?
+
+[A]: Andrew Minenkov (2:5060/16)
+
+Use the following steps to back up your 386 HPFS access control profiles 
+on drive C to a file named OLDPROF and remove them from file system:
+
+1. Insert Server Install/Diskette 1 into Drive A
+2. At the [A:\] prompt, tipe the following command and press Enter:
+       PREPACL /P /B:C:\OLDPROF /D:C:
+
+У тебя останется обычный HPFS без всяких секьюрити (именно так я и поступаю, 
+когда приходится переустанавливать версии OS/2 и Лан Сервера).

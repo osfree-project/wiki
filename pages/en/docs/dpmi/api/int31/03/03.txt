@@ -1,0 +1,52 @@
+{{page>en:templates:dpmi}}
+
+====== Int 31H, AH=03H, AL=03H ======
+
+===== Version =====
+
+0.9
+
+===== Brief =====
+
+Allocate Real Mode Callback Address
+
+===== Input =====
+
+  AX = 0303H
+  DS:(E)SI = selector:offset of protected mode procedure to call
+  ES:(E)DI = selector:offset of 32H-byte buffer for real mode register data structure to be used when calling callback routine.    
+
+===== Return =====
+
+  if function successful
+  Carry flag = clear
+  CX:DX = segment:offset of real mode callback
+  
+  if function unsuccessful
+  Carry flag = set
+  AX = error code
+  8015H	callback unavailable
+
+===== Notes =====
+
+Returns a unique real mode segment:offset, known as a "real mode callback," that will transfer control from real mode to a protected mode procedure. Callback addresses obtained with this function can be passed by a protected mode program to a real mode application, interrupt handler, device driver, or TSR, so that the real mode program can call procedures within the protected mode program or notify the protected mode program of an event.
+
+DPMI hosts must provide a minimum of 16 callback addresses per client.
+
+A descriptor may be allocated for each callback to hold the real mode SS descriptor. Real mode callbacks are a limited system resource. A client should use the Free Real Mode Callback Address function (Int 31H Function 0304H) to release a callback that it is no longer using.
+
+For further information on writing real mode callback procedures, see that page.
+
+The contents of the real mode register data structure is not valid after the function call, but only at the time of the actual callback.
+
+       
+===== See also =====
+
+   
+
+===== Note =====
+
+Text based on [[http://www.delorie.com/djgpp/doc/dpmi/]]
+
+{{page>en:templates:dpmi:int}}
+

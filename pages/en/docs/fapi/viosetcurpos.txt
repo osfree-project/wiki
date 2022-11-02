@@ -1,0 +1,67 @@
+{{page>en:templates:fapiint}}
+====== VioSetCurPos ======
+ 
+This call sets the cursor's coordinates on the screen.
+
+===== Syntax =====
+<code c>
+VioSetCurPos (Row, Column, VioHandle)
+</code>
+===== Parameters =====
+
+  * Row ([[USHORT]]) - input : New cursor row position, 0 is the top row.
+  * Column ([[USHORT]]) - input : New cursor column position, 0 is the leftmost column.
+  * VioHandle ([[HVIO]]) - input : This must be zero unless the caller is a Presentation Manager application, in which case it must be the value returned by VioGetPs.
+
+===== Return Code =====
+
+rc ([[USHORT]]) - return
+
+Return code descriptions are:
+
+  * 0          NO_ERROR 
+  * 355        ERROR_VIO_MODE 
+  * 358        ERROR_VIO_ROW 
+  * 359        ERROR_VIO_COL 
+  * 436        ERROR_VIO_INVALID_HANDLE 
+  * 465        ERROR_VIO_DETACHED
+
+===== Bindings =====
+
+
+==== C Binding====
+
+<code c>
+#define INCL_VIO
+
+USHORT  rc = VioSetCurPos(Row, Column, VioHandle);
+
+USHORT           Row;           /* Row data */
+USHORT           Column;        /* Column data */
+HVIO             VioHandle;     /* Video handle */
+
+USHORT           rc;            /* return code */
+</code>
+
+====MASM Binding====
+
+<code asm>
+EXTRN  VioSetCurPos:FAR
+INCL_VIO            EQU 1
+
+PUSH   WORD    Row           ;Row data
+PUSH   WORD    Column        ;Column data
+PUSH   WORD    VioHandle     ;Video handle
+CALL   VioSetCurPos
+
+Returns WORD
+</code>
+
+
+
+===== Note =====
+
+Text based on [[http://www.edm2.com/index.php/VioSetCurPos_(FAPI)]]
+
+{{page>en:templates:fapi}}
+

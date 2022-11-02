@@ -1,0 +1,123 @@
+{{logos:os2.gif?35x35}} 
+
+**Please help to find info about enries marked as //No info//**
+
+====== EMXWRAP ======
+
+32-bit implementation fo Vio/Mou/Mon/Kbd functions compatible with EMXWRAP. In osFree EMXWRAP is virtual DLL. Real functions implementation in [[sub32|SUB32.DLL]]. For IBM 32-bit interface see [[OS2CHAR2]].DLL. JdeBP's 32-bit interface [[CON3216]].DLL
+
+If you place EXMWRAP from EMX package it will not loaded, because in osFree EMXWRAP is virtual.
+
+^ Ordinal ^ Name ^ Desc ^ Status ^
+| 1 | [[en:docs:os2:api:emxwrap:EMX_REVISION]] | | |
+| 30 | [[en:docs:os2:api:emxwrap:WinDefAVioWindowProc]] | | |
+| 101 | [[en:docs:os2:api:emxwrap:VioEndPopUp]] | | |
+| 102 | [[en:docs:os2:api:emxwrap:VioGetPhysBuf]] | | |
+| 103 | [[en:docs:os2:api:emxwrap:VioGetAnsi]] | | |
+| 105 | [[en:docs:os2:api:emxwrap:VioSetAnsi]] | | |
+| 106 | [[en:docs:os2:api:emxwrap:VioDeRegister]] | | |
+| 107 | [[en:docs:os2:api:emxwrap:VioScrollUp]] | | |
+| 108 | [[en:docs:os2:api:emxwrap:VioPrtSc]] | | |
+| 109 | [[en:docs:os2:api:emxwrap:VioGetCurPos]] | | |
+| 110 | [[en:docs:os2:api:emxwrap:VioWrtCellStr]] | | |
+| 111 | [[en:docs:os2:api:emxwrap:VioPopUp]] | | |
+| 112 | [[en:docs:os2:api:emxwrap:VioScrollRt]] | | |
+| 113 | [[en:docs:os2:api:emxwrap:VioWrtCharStr]] | | |
+| 115 | [[en:docs:os2:api:emxwrap:VioSetCurPos]] | | |
+| 118 | [[en:docs:os2:api:emxwrap:VioScrUnLock]] | | |
+| 119 | [[en:docs:os2:api:emxwrap:VioWrtTTY]] | | |
+| 121 | [[en:docs:os2:api:emxwrap:VioGetMode]] | | |
+| 122 | [[en:docs:os2:api:emxwrap:VioSetMode]] | | |
+| 123 | [[en:docs:os2:api:emxwrap:VioScrLock]] | | |
+| 124 | [[en:docs:os2:api:emxwrap:VioReadCellStr]] | | |
+| 125 | [[en:docs:os2:api:emxwrap:VioSavRedrawWait]] | | |
+| 126 | [[en:docs:os2:api:emxwrap:VioWrtNAttr]] | | |
+| 127 | [[en:docs:os2:api:emxwrap:VioGetCurType]] | | |
+| 128 | [[en:docs:os2:api:emxwrap:VioSavRedrawUndo]] | | |
+| 129 | [[en:docs:os2:api:emxwrap:VioGetFont]] | | |
+| 130 | [[en:docs:os2:api:emxwrap:VioReadCharStr]] | | |
+| 131 | [[en:docs:os2:api:emxwrap:VioGetBuf]] | | |
+| 132 | [[en:docs:os2:api:emxwrap:VioSetCurType]] | | |
+| 133 | [[en:docs:os2:api:emxwrap:VioSetFont]] | | |
+| 135 | [[en:docs:os2:api:emxwrap:VioModeUndo]] | | |
+| 137 | [[en:docs:os2:api:emxwrap:VioModeWait]] | | |
+| 140 | [[en:docs:os2:api:emxwrap:VioGetCp]] | | |
+| 142 | [[en:docs:os2:api:emxwrap:VioSetCp]] | | |
+| 143 | [[en:docs:os2:api:emxwrap:VioShowBuf]] | | |
+| 144 | [[en:docs:os2:api:emxwrap:VioScrollLf]] | | |
+| 145 | [[en:docs:os2:api:emxwrap:VioRegister]] | | |
+| 146 | [[en:docs:os2:api:emxwrap:VioGetConfig]] | | |
+| 147 | [[en:docs:os2:api:emxwrap:VioScrollDn]] | | |
+| 148 | [[en:docs:os2:api:emxwrap:VioWrtCharStrAtt]] | | |
+| 149 | [[en:docs:os2:api:emxwrap:VioGetState]] | | |
+| 150 | [[en:docs:os2:api:emxwrap:VioPrtScToggle]] | | |
+| 151 | [[en:docs:os2:api:emxwrap:VioSetState]] | | |
+| 152 | [[en:docs:os2:api:emxwrap:VioWrtNCell]] | | |
+| 153 | [[en:docs:os2:api:emxwrap:VioWrtNChar]] | | |
+| 155 | [[en:docs:os2:api:emxwrap:VioAssociate]] | | |
+| 156 | [[en:docs:os2:api:emxwrap:VioCreatePS]] | | |
+| 157 | [[en:docs:os2:api:emxwrap:VioDeleteSetId]] | | |
+| 158 | [[en:docs:os2:api:emxwrap:VioGetDeviceCellSize]] | | |
+| 159 | [[en:docs:os2:api:emxwrap:VioGetOrg]] | | |
+| 160 | [[en:docs:os2:api:emxwrap:VioCreateLogFont]] | | |
+| 161 | [[en:docs:os2:api:emxwrap:VioDestroyPS]] | | |
+| 162 | [[en:docs:os2:api:emxwrap:VioQuerySetIds]] | | |
+| 163 | [[en:docs:os2:api:emxwrap:VioSetOrg]] | | |
+| 164 | [[en:docs:os2:api:emxwrap:VioQueryFonts]] | | |
+| 165 | [[en:docs:os2:api:emxwrap:VioSetDeviceCellSize]] | | |
+| 166 | [[en:docs:os2:api:emxwrap:VioShowPS]] | | |
+| 170 | [[en:docs:os2:api:emxwrap:VioGlobalReg]] | | |
+| 175 | [[en:docs:os2:api:emxwrap:VioCheckCharType]] | | |
+| 201 | [[en:docs:os2:api:emxwrap:KbdSetCustXt]] | | |
+| 203 | [[en:docs:os2:api:emxwrap:KbdGetCp]] | | |
+| 204 | [[en:docs:os2:api:emxwrap:KbdCharIn]] | | |
+| 205 | [[en:docs:os2:api:emxwrap:KbdSetCp]] | | |
+| 207 | [[en:docs:os2:api:emxwrap:KbdSynch]] | | |
+| 208 | [[en:docs:os2:api:emxwrap:KbdRegister]] | | |
+| 209 | [[en:docs:os2:api:emxwrap:KbdStringIn]] | | |
+| 210 | [[en:docs:os2:api:emxwrap:KbdGetStatus]] | | |
+| 211 | [[en:docs:os2:api:emxwrap:KbdSetStatus]] | | |
+| 212 | [[en:docs:os2:api:emxwrap:KbdGetFocus]] | | |
+| 213 | [[en:docs:os2:api:emxwrap:KbdFlushBuffer]] | | |
+| 214 | [[en:docs:os2:api:emxwrap:KbdXlate]] | | |
+| 217 | [[en:docs:os2:api:emxwrap:KbdClose]] | | |
+| 218 | [[en:docs:os2:api:emxwrap:KbdFreeFocus]] | | |
+| 220 | [[en:docs:os2:api:emxwrap:KbdDeRegister]] | | |
+| 221 | [[en:docs:os2:api:emxwrap:KbdSetFgnd]] | | |
+| 222 | [[en:docs:os2:api:emxwrap:KbdPeek]] | | |
+| 223 | [[en:docs:os2:api:emxwrap:KbdOpen]] | | |
+| 224 | [[en:docs:os2:api:emxwrap:KbdGetHWID]] | | |
+| 225 | [[en:docs:os2:api:emxwrap:KbdSetHWID]] | | |
+| 301 | [[en:docs:os2:api:emxwrap:MouGetPtrShape]] | | |
+| 302 | [[en:docs:os2:api:emxwrap:MouSetPtrShape]] | | |
+| 303 | [[en:docs:os2:api:emxwrap:MouGetNumMickeys]] | | |
+| 306 | [[en:docs:os2:api:emxwrap:MouGetScaleFact]] | | |
+| 307 | [[en:docs:os2:api:emxwrap:MouFlushQue]] | | |
+| 308 | [[en:docs:os2:api:emxwrap:MouGetNumButtons]] | | |
+| 309 | [[en:docs:os2:api:emxwrap:MouClose]] | | |
+| 311 | [[en:docs:os2:api:emxwrap:MouSetScaleFact]] | | |
+| 313 | [[en:docs:os2:api:emxwrap:MouGetNumQueEl]] | | |
+| 314 | [[en:docs:os2:api:emxwrap:MouDeRegister]] | | |
+| 315 | [[en:docs:os2:api:emxwrap:MouGetEventMask]] | | |
+| 316 | [[en:docs:os2:api:emxwrap:MouSetEventMask]] | | |
+| 317 | [[en:docs:os2:api:emxwrap:MouOpen]] | | |
+| 318 | [[en:docs:os2:api:emxwrap:MouRemovePtr]] | | |
+| 319 | [[en:docs:os2:api:emxwrap:MouGetPtrPos]] | | |
+| 320 | [[en:docs:os2:api:emxwrap:MouReadEventQue]] | | |
+| 321 | [[en:docs:os2:api:emxwrap:MouSetPtrPos]] | | |
+| 322 | [[en:docs:os2:api:emxwrap:MouGetDevStatus]] | | |
+| 323 | [[en:docs:os2:api:emxwrap:MouSynch]] | | |
+| 324 | [[en:docs:os2:api:emxwrap:MouRegister]] | | |
+| 325 | [[en:docs:os2:api:emxwrap:MouSetDevStatus]] | | |
+| 326 | [[en:docs:os2:api:emxwrap:MouDrawPtr]] | | |
+| 327 | [[en:docs:os2:api:emxwrap:MouInitReal]] | | |
+| 329 | [[en:docs:os2:api:emxwrap:MouSetThreshold]] | | |
+| 330 | [[en:docs:os2:api:emxwrap:MouGetThreshold]] | | |
+| 401 | [[en:docs:os2:api:emxwrap:DosMonWrite]] | | |
+| 402 | [[en:docs:os2:api:emxwrap:DosMonRead]] | | |
+| 403 | [[en:docs:os2:api:emxwrap:DosMonClose]] | | |
+| 404 | [[en:docs:os2:api:emxwrap:DosMonOpen]] | | |
+| 405 | [[en:docs:os2:api:emxwrap:DosMonReg]] | | |
+
+
+{{page>en:templates:dlls}}

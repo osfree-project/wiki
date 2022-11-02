@@ -1,0 +1,60 @@
+==== FSH_ADDSHARE ====
+
+**Purpose**
+
+This function adds a name to the currently active sharing set.   
+
+**Calling Sequence**
+
+<code c>
+int far pascal FSH_ADDSHARE(pName, mode, hVPB, phShare)
+
+char far * pName;
+unsigned short mode;
+unsigned short hVPB;
+unsigned long far * phShare;
+</code>
+
+**Where**
+
+//pName //
+is a pointer to the ASCIIZ name to be added into the share set.   
+
+The name must be in canonical form: no '.' or '..' components, uppercase, no meta characters, and full path name specified.   
+
+//mode//
+is the sharing mode and access mode as defined in the //DosOpen// API. All other bits (direct open, write-through, etc.) must be zero.   
+
+//hVPB//
+is the handle to the volume where the named object is presumed to exist.   
+
+//phShare// 
+is the pointer to the location where a share handle is stored. This handle may be passed to //FSH_REMOVESHARE. //
+  
+//pName// is a pointer to the ASCIIZ name to be added into the share set.   
+
+The name must be in canonical form: no '.' or '..' components, uppercase, no meta characters, and full path name specified.   
+
+//mode// is the sharing mode and access mode as defined in the //DosOpen// API. All other bits (direct open, write-through, etc.) must be zero.   
+
+//hVPB// is the handle to the volume where the named object is presumed to exist.   
+
+//phShare// is the pointer to the location where a share handle is stored. This handle may be passed to //FSH_REMOVESHARE//.
+
+**Returns**
+
+If no error is detected, a zero error code is returned. If an error is detected, one of the following error codes is returned:   
+
+  * ERROR_SHARING_VIOLATION  -- the file is open with a conflicting sharing/access mode.
+  * ERROR_TOO_MANY_OPEN_FILES -- there are too many files open at the present time.
+  * ERROR_SHARING_BUFFER_EXCEEDED -- there is not enough memory to hold sharing information.
+  * ERROR_INVALID_PARAMETER -- invalid bits in mode.
+  * ERROR_FILENAME_EXCED_RANGE -- path name is too long. 
+
+**Remarks**
+
+Do not call //FSH_ADDSHARE// for character devices.   
+
+//FSH_ADDSHARE// may block.   
+
+Note:   OS/2 does not validate input parameters. Therefore, an FSD should call //FSH_PROBEBUF// where appropriate.   

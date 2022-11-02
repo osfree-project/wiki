@@ -1,0 +1,15 @@
+[Q]: Что делать, если OS/2 видит только 64MB памяти?
+
+[A]: Yuri Romantsov (2:5020/368.99)
+
+У кого MB ASUS P2B-? и биос 1008 и пpоблема с памятью типа пpи установке в BIOS
+"OS/2 memory > 64Mb = Enable" скачайте с www.asuscom.de 1009 биос.
+Лечит.
+
+[A]: Dmitry Ban (2:5020/1169.33)
+
+Попpобуй ftp://hobbes.nmsu.edu/pub/os2/system/patches/patchldr.zip
+
+[A]: Andrew Belov (2:5020/181.2)
+
+Начиная с ядра 14.063 (от 29/11/2000) OS2LDR не требует подобных патчей.

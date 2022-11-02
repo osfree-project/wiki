@@ -1,0 +1,19 @@
+==== MFS_TERM - Terminate the mini-FSD ====
+
+**Purpose**
+
+Inform the mini-FSD that it should prepare itself for termination.   
+
+**Calling Sequence**
+
+<code c>
+int far pascal MFS_TERM(void)
+</code>
+
+**Returns**
+
+If no error is detected, a zero error code is returned. If an error is detected, a non-zero error code is returned.   
+
+**Remarks**
+
+The system will NOT free any memory explicitly allocated by the mini-FSD through //MFSH_SEGALLOC// or //FSH_SEGALLOC//. It must be explicitly freed by the mini-FSD. (Memory allocated by the mini-FSD and 'given' to the FSD need not be freed.) The system will free all of the segments loaded as part of the mini-FSD image immediately after this call.   

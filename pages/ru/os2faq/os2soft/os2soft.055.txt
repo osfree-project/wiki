@@ -1,0 +1,45 @@
+[Q]: Как отключить GIF-animation в NN/2?
+
+[A]: Serguei Trouchelle (2:464/4077.101)
+
+Кpаткий пеpевод.
+
+Взять hiew, найти NETSCAPE2.0 и ANIMEXTS1.0 в netscape.exe и заменить точки на
+запятые.
+
+Вся анимация будет останавливаться после одного обоpота. Что есть pулес ;)
+
+* Forwarded (from: VIDRADA.COMP.OS.OS2.APPS) by serguei trouchelle
+* Originally from Jerry McBride (2:464/4077.128) to Martin Bartelds.
+* Original dated: Tue Oct 12, 19:40
+
+I JUST READ THIS TIP in comp.os2.beta and it WORKS! On my netscape 4.61ga,
+strong encryption, I used a binary editor (HEXED/2 from Hobbes) and searched
+for the string "NETSCAPE2.0" (minus the quotes) I changed the "." to a "," and
+then next to that string there's a "ANIMEXTS1." and I changed the "1" to a "2".
+
+Now when I'm browsing online and one of those PESKY animated graphics pops up,
+it run's once though then stops DEAD! No more wasted cpu on a crummy graphic I
+didn't want in the first place! YAHHHoooo!!!
+
+Your listed URL's now only display pictures! Not the cpu hogging movies they
+call advertizment!
+
+Here's the entire posted message I read on comp.os2.beta...
+
+
+- --- quote ---
+> Now there's something I'd very much like to see in Netscape
+> preferences.  The ability to turn off wiggle graphics and NOT get
+> piles of error messages!!!!!!!
+
+To make gif animations stop after one cycle, read this page:
+http://simmons.starkville.ms.us/tips/081097/
+
+In short, search for NETSCAPE2.0 and for ANIMEXTS1.0 and change them to be
+something else - I just changed the . to a , (in netscape.exe).
+
+        -Ariel
+
+PS. Use a binary safe editor.
+- --- end quote ---

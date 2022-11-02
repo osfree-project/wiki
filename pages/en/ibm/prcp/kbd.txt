@@ -1,0 +1,32 @@
+===== Keyboard Function Calls =====
+
+This section reflects the Keyboard API interface of OS/2 only. 
+
+For information regarding the keyboard IOCTL interface and keyboard monitor refer to IBM Operating System/2 Version 1.2 I/O Subsystems And Device Support Volume 1. 
+
+**Notes**: 
+
+  - Calls marked xPM are not supported by Presentation Manager, and must not be used by Presentation Manager applications. An error code is returned if any of these calls are issued. 
+  - Calls marked xWPM are not windowable and are not supported by Presentation Manager. They can be used in OS/2 mode. 
+  - Calls marked FAPI are present in the Family API. 
+
+^FUNCTION CALL  ^ICON  ^Description  ^
+|[[en:ibm:prcp:kbd:charin|KbdCharIn]] |FAPI xPM |This call returns a character data \\ record from the keyboard. |
+|[[en:ibm:prcp:kbd:close|KbdClose]] |xPM |This call closes the existing logical \\ keyboard identified by the keyboard handle. |
+|[[en:ibm:prcp:kbd:dereg|KbdDeRegister]] |xWPM |This call deregisters a keyboard \\ subsystem previously registered within a session. |
+|[[en:ibm:prcp:kbd:flushbuf|KbdFlushBuffer]] |FAPI xPM |This call clears the keystroke buffer.  |
+|[[en:ibm:prcp:kbd:freefocus|KbdFreeFocus]]  |xPM |This call frees the \\ logical-to-physical keyboard bond \\ created by KbdGetFocus |
+|[[en:ibm:prcp:kbd:getcp|KbdGetCp]]  |xPM |This call allows a process to query the \\ code page being used to translate \\ scan codes to ASCII characters.   |
+|[[en:ibm:prcp:kbd:getfocus|KbdGetFocus]] |xPM |This call binds the logical keyboard \\ to the physical keyboard.   |
+|[[en:ibm:prcp:kbd:gethwid|KbdGetHWId]] |xPM |Returns the attached keyboard's \\ hardware-generated Identification value.  |
+|[[en:ibm:prcp:kbd:getstatus|KbdGetStatus]] |FAPI xPM |This call gets the current state of the keyboard  |
+|[[en:ibm:prcp:kbd:open|KbdOpen]] |xPM |This call creates a new logical keyboard.  |
+|[[en:ibm:prcp:kbd:peek|KbdPeek]] |FAPI xPM |This call returns any available \\ character data record from the keyboard \\ without removing it from the buffer.  |
+|[[en:ibm:prcp:kbd:reg|KbdRegister]]  |xWPM |This call registers a keyboard \\ subsystem within a session.  |
+|[[en:ibm:prcp:kbd:setcp|KbdSetCp]]  |xPM  |This call allows the process to set \\ the code page used to translate key \\ strokes received from the keyboard.  |
+|[[en:ibm:prcp:kbd:setcustxt|KbdSetCustXt]]  |xPM |This call installs, on the specified handle, \\ the translate table which this \\ call points to. This translate table \\ affects only this handle.   |
+|[[en:ibm:prcp:kbd:setfgnd|KbdSetFgnd]] |xPM  |This call raises the priority of the foreground \\ keyboard's thread.  |
+|[[en:ibm:prcp:kbd:setstatus|KbdSetStatus]]  |FAPI xPM |This call sets the characteristics \\ of the keyboard.  |
+|[[en:ibm:prcp:kbd:strin|KbdStringIn]] |FAPI xPM |This call reads a character string \\ (character codes only)   \\ from the keyboard.   |
+|[[en:ibm:prcp:kbd:synch|KbdSynch]]  |xWPM |This call synchronizes access from a \\ keyboard subsystem to the keyboard \\ device driver. |
+|[[en:ibm:prcp:kbd:xlat|KbdXlate]] |xPM |This call translates scan codes with shift \\ states into ASCII codes.   |

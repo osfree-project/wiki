@@ -1,0 +1,45 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=2DH ======
+
+===== Version =====
+
+1 and higher
+
+===== Brief =====
+
+SET SYSTEM TIME
+
+===== Family API =====
+
+
+===== Input =====
+
+        AH = 2Dh
+        CH = hour
+        CL = minute
+        DH = second
+        DL = 1/100 seconds
+
+===== Return =====
+
+Return: AL = result
+            00h successful
+            FFh invalid time, system time unchanged
+===== Notes =====
+
+   DOS 3.3+ also sets CMOS clock; due to the limitations of the CLOCK$
+          driver interface, the CMOS date is also updated to the current
+          DOS date
+
+===== See also =====
+
+ AH=2Bh"DOS",AH=2Ch,INT 1A/AH=01h,INT 1A/AH=03h,INT 1A/AH=FFh"AT&T"
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:int}}
+
+{{page>en:templates:fapi}}

@@ -1,0 +1,42 @@
+==== FS_FSINFO ====
+
+**Purpose**
+
+Returns or sets information for a file system device.   
+
+**Calling Sequence**
+
+<code c>
+int far pascal FS_FSINFO(flag, hVPB, pData, cbData, level)
+
+unsigned short flag;
+unsigned short hVPB;
+char far * pData;
+unsigned short cbData;
+unsigned short level;
+</code>
+
+**Where**
+
+^//flag// ^indicates retrieval or setting of information.   ^
+|//flag// == 0 |indicates retrieving information. |
+|//flag// == 1 |indicates setting information on the media. |
+|All other values are reserved.   ||
+
+//hVPB// is the handle to the volume of interest.   
+
+//pData// is the address of the application output data area.   
+
+Addressing of this data area has not been validated by the kernel (see (//FSH_PROBEBUF//).   
+
+//cbData// is the length of the application data area.   
+
+For //flag// == 0, this is the length of the data the application wishes to retrieve. If there is not enough room for the entire level of data to be returned, the FSD will return a BUFFER OVERFLOW error. For //flag// == 1, this is the length of the data to be sent to the file system.   
+
+//level// is the information level to be returned.   
+
+//Level// selects among a series of structures of data to be returned or set. See //DosQFSInfo// and //DosSetFSInfo// for information. 
+
+**Remarks**
+
+None.   

@@ -1,0 +1,89 @@
+==== KbdGetHWId ====
+
+**Bindings**: [[gethwid#C bindings|C]], [[gethwid#MASM bindings|MASM]]
+
+Returns the attached keyboard's hardware-generated Identification value. 
+
+KbdGetHWId (KeyboardID, KbdHandle) 
+
+//KeyboardID// (**PKBDHWID**) - input 
+Pointer to the caller's data area where the following structure and data values are: 
+
+//length// (**USHORT**) - input/output 
+On input, this field should contain the length of the //KeyboardID// structure. The minimum input length value allowed is 2. On output, this field contains the actual number of bytes returned. 
+
+//keybdid// (**USHORT**) - output 
+OS/2 supported keyboards and their hardware generated IDs are as follows: 
+
+^ID ^Keyboard ^
+|0000H |Undetermined keyboard type |
+|0001H |PC-AT Standard Keyboard |
+|AB41H |101 Key Enhanced Keyboard |
+|AB41H |102 Key Enhanced Keyboard |
+|AB54H |88 and 89 Key Enhanced Keyboards |
+|AB85H |122 Key Enhanced Keyboard |
+
+//reserved// (**USHORT**) 
+Reserved and returned set to zero. 
+
+//reserved// (**USHORT**) 
+Reserved and returned set to zero. 
+
+//KbdHandle// (**HKBD**) - input 
+Word identifying the logical keyboard. 
+
+//rc// (**USHORT**) - return 
+Return code descriptions are: 
+
+|0 |NO_ERROR |
+|373 |ERROR_KBD_PARAMETER |
+|447 |ERROR_KBD_KEYBOARD_BUSY |
+|464 |ERROR_KBD_DETACHED |
+|504 |ERROR_KBD_EXTENDED_SG |
+
+**Remarks**
+
+In past OS/2 releases, all keyboards could be supported by knowing the hardware family information available with keyboard IOCTL 77H. However, with the addition of the 122-key keyboard, recognition was not containable by hardware family information alone. The 122-key keyboard has a number of differences from other keyboards. Therefore, applications performing keystroke specific functions may need to determine specifically which keyboard is attached. 
+
+This function is of particular usefulness for applications providing Custom Translate Tables and mapping keyboard layouts. 
+
+=== C bindings ===
+
+<code c>
+typedef struct _KBDHWID {
+  USHORT length;              /* length in bytes of this structure */
+  USHORT kbd_id;              /* attached keyboard's hardware ID
+                                  (returned) */
+  USHORT reserved1;           /* reserved (set to zero) */
+  USHORT reserved2;           /* reserved (set to zero) */
+}KBDHWID;
+
+#define INCL_KBD
+
+USHORT  rc = KbdGetHWId(KeyboardID, KbdHandle);
+
+PKBDHWID         KeyboardID;    /* Keyboard ID structure (returned) */
+HKBD             KbdHandle;     /* Keyboard handle  */
+
+USHORT           rc;            /* return code */
+</code>
+
+=== MASM ===
+
+<code asm>
+KBDHWID struc
+  length;             dw  ? ;length in bytes of this structure
+  kbd_id;             dw  ? ;attached keyboard's hardware ID (returned)
+  reserved1;          dw  ? ;reserved (set to zero)
+  reserved2;          dw  ? ;reserved (set to zero)
+KBDHWID ends
+
+EXTRN KbdGetHWId:FAR
+INCL_KBD            EQU 1
+
+PUSH@ OTHER  KeyboardID      ;Keyboard ID structure (returned)
+PUSH  WORD   KbdHandle       ;Keyboard handle
+CALL  KbdGetHWId
+
+Returns WORD
+</code>

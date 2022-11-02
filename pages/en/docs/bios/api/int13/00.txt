@@ -1,0 +1,48 @@
+{{page>en:templates:biosint}}
+
+====== Int 13H, AH=00H ======
+
+===== Version =====
+
+IBM 5150 and higher
+
+===== Brief =====
+
+Reset disk system
+
+===== Family API =====
+
+[[en:docs:fapi:DosBufReset]]
+
+===== Input =====
+
+  * AH = 00h
+  * DL = drive (if bit 7 is set both hard disks and floppy disks reset)
+
+===== Return =====
+
+  * AH = status (see #00234)
+    * CF clear if successful (returned AH=00h)
+    * CF set on error
+
+===== Macro =====
+
+<code asm>
+INCLUDE BIOS.INC
+
+@DskReset
+</code>
+
+===== Notes =====
+
+  * forces controller to recalibrate drive heads (seek to track 0)
+  * for PS/2 35SX, 35LS, 40SX and L40SX, as well as many other systems, both the master drive and the slave drive respond to the Reset function that is issued to either drive
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:biosapi}}
+
+{{page>en:templates:fapi}}
+

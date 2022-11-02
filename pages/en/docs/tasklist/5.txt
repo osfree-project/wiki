@@ -1,0 +1,28 @@
+{{page>en:templates:dosshell}}
+
+====== Int 2FH, AX=4A05H, SI=05H ======
+
+===== Version =====
+
+?
+
+===== Brief =====
+
+Switch to next task in task list
+
+===== Input =====
+
+	None
+  
+===== Return =====
+
+    CF is reset - ok
+    CF is set - error. Only one task in list
+
+===== Notes =====
+
+  Function switches Z order list so next task in task list become first in z-list, first in z-list become second in z-list and so on.
+  
+===== See also =====
+
+   

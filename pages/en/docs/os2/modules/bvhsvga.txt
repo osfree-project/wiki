@@ -1,0 +1,21 @@
+{{logos:os2.gif?35x35}} 
+
+**Please help to find info about enries marked as //No info//**
+
+===== BVHSVGA =====
+
+
+^Ordinal ^Name ^Desc ^ Status ^
+| 1 | SETNUMBER9CLK | | |
+| 2 | SETDIAMONDCLK | | |
+| 3 | _WDSetPanelClk | | |
+| 4 | DEVENABLE | | |
+| 5 | HWINPWORD | | |
+| 6 | HWINPBYTE | | |
+| 7 | _WDPanelOn | | |
+| 8 | HWOUTPBYTE | | |
+| 9 | _ThinkPadHighestRes | | |
+| 10 | HWOUTPWORD | | |
+
+{{page>en:templates:dlls}}
+

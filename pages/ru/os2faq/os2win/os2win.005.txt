@@ -1,0 +1,37 @@
+[Q]: Как превратить обычный Windows 3.1 в Win-OS/2?
+
+[A]: jari laaksonen
+
+Если немного поколдовать:
+
+Here are the files you need from Win-OS/2 to get Ms-Windows 3.1 to
+run under OS/2 2.1GA:
+
+in \windows directory:
+  winos2.com
+  winsheld.exe
+
+in \windows\system directory:
+  mouse.drv
+  os2gdi.exe
+  os2k386.exe
+  os2user.exe
+  winsclip.dll
+  winsdde.dll
+  winsmsg.dll
+  <video drivers, e.g. supervga.drv + swinvga.drv>
+
+Add these lines into system.ini:
+
+[boot]
+sdisplay.drv=swinvga.drv
+useos2shield=1
+os2shield=winsheld.exe
+MAVDMApps=
+WAVDMAPPS=
+
+(sdisplay.drv means seamless driver)
+
+Only problem here is that from DOS boot you need to change the mouse.drv to the
+original because the win-os/2 version prevents Windows loading (and vice
+versa).

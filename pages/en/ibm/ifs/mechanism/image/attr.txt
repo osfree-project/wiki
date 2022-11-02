@@ -1,0 +1,27 @@
+=== FSD Attribute ===
+
+The format of the OS/2 FS_ATTRIBUTE is defined in Figure 1-4 and the definition list that follows it.   
+
+^  31 ^  30  ^  29  ^  28  ^  27  ^  26  ^  25  ^  24  ^   23  ^  22  ^  21  ^  20  ^  19  ^  18  ^  17 ^ 16 ^
+|  E   |  V    |  V  |  V  |  R  |  R  | R  |  R  |  R  |  R  |  R |  R  |  R  |  R  | R  |  R  
+|  x  |  e  |  e  |  e  |  e  |  e  |  e  |  e  |  e  |  e  |  e  |  e  |  e  |  e  |  e  |  e  |
+|  A   | r  |   r  |   r  |  s   | s  |  s  |  s  |  s   |  s  |  s  |  s  |  s    | s  |  s  |  s  |
+|  t   |  s  |  s  |  s  |  v  |   v  |  v  |  v  |  v   |  v  |  v  |  v  |  v  |  v  |  v  |  v  |
+| |
+|  R  |  R |  R  | R  | R  |  R  |  R  |   R  | R |  R  |  R |  R  |  L   | F   |  U |  R  |
+|  e  |  e  |  e  |  e  | e   |  e  |  e  |   e  |  e |  e  |  e |  e  |  v  |  I    |  N  |  e  |
+|  s  |  s  |  s  |  s  | s   |  s  |  s  |   s  |   s |  s  |  s  |  s  |  l   |  /   |  C  | m  |
+|  v  |  v  |  v  |  v  | v   |  v  |  v  |   v  | v   |  v  |  v  |  v  |  7   | O  |     |  t   |
+^ 15   ^  14  ^  13  ^  12  ^  11  ^  10  ^   9   ^   8   ^   7   ^   6   ^   5   ^   4   ^   3   ^    2   ^   1   ^   0  ^
+
+Figure 1-4. OS/2 FSD Attribute   
+
+^Bits ^Description   ^  ^
+|31 |FSD Additional attributes. |If 1, FSD has additional attributes. If 0, FS_ATTRIBUTE is the only FSD attribute information.   |
+|30-28 |VERSION NUMBER ^- FSD version number.   |
+|27-4   |RESERVED   | |
+|3        |LEVEL7        |- QPathInfo Level 7 bit. Set if FSD is case-preserving. If this bit is set, the kernel will call the FS_PATHINFO entry point with a level equal to 7. The output buffer is to be filled with a case-preserved copy of the path that was passed in by the user.   |
+|2        |FILEIO | - File I/O bit. Set if FSD wants to see file locking/unlocking operations and compacted file I/O operations. If not set, the file I/O calls will be broken up into individual lock/unlock/read/write/seek calls and the FSD will not see the lock/unlock calls. FSDs that do not support file locking can set this bit to enable compacted file I/O operations.   |
+|1        | UNC            |- Universal Naming Convention bit. Set if FSD supports the Universal Naming Convention. OS/2 Version 2.0 supports multiple loaded UNC redirectors.   |
+|0        | REMOTE  |- Remote File System (Redirector). This bit tells the system whether the FSD uses static or dynamic media attachment. Local FSDs always use dynamic media attachment. Remote FSDs always use static media attachment. This bit is clear if it is a dynamic media attachment and set, if a static attachment. No FSD supports both static and dynamic media attachment. To support proper file locking, a remote FSD should also set the FILEIO bit. |
+ 

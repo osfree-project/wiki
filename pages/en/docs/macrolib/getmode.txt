@@ -1,0 +1,38 @@
+{{page>en:templates:biosint}}
+
+====== @GetMode ======
+
+===== Version =====
+
+IBM 5150 and higher
+
+===== Brief =====
+
+Get the current video mode and page
+
+===== BIOS Interrupt =====
+
+[[en:docs:bios:api:int10|INT10H]]: [[en:docs:bios:api:int10:0F|0FH]]
+
+===== Family API =====
+
+[[en:docs:fapi:VioGetMode]]
+
+===== Syntax =====
+
+<code asm>
+@GetMode
+</code>
+
+===== Parameters =====
+
+none
+
+===== Return =====
+
+  * AL	    = Mode
+  * AH	    = Width in characters
+  * BH	    = Page
+
+
+{{page>en:templates:biosapi}}

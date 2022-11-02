@@ -1,0 +1,13 @@
+===== Critical Errors =====
+
+
+**OS/2** watches for physical errors during input and output operations. Physical errors are those due to hardware problems, such as trying to read a floppy disk while the drive door is open. 
+
+These errors are called **critical errors** because **OS/2**, **CMD.EXE**, or your application program cannot proceed until the error is resolved. 
+
+When a critical error occurs, you will see a popup window asking you to choose one of four error handling options. The message comes from **OS/2** or **CMD.EXE**, and will vary slightly depending on whether you are in full-screen or windowed mode. You can respond with a mouse click or menu selection. The options and their meanings are similar in all cases: 
+
+|**Return error code to program**. |Tell the program that the operation failed. This option returns an error code to **CMD.EXE** or to the application program that was running when the error occurred. **CMD.EXE** generally stops the current ommand when an operation fails. |
+|**End program/command/operation**. |Choose this option to stop the program that was running when the error occurred and abort **CMD.EXE**. |
+|**Retry command or operation**. |Choose this option if you have corrected the problem. |
+|**Display help**. |Display further information on the error. |

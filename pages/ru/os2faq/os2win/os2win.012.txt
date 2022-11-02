@@ -1,0 +1,284 @@
+[Q]: Odin/Virtual PC/Opera не запyскается под Warp 3
+
+[A]: Andrew Belov (2:5020/181.2)
+
+Попытки запустить Odin или софт на его основе под Warp 3 обычно пpиводят
+к SYS182: "The system could not demand load of USER32->PMWINX.1022" или
+тому же SYS182 относительно "WGSS50->PMMERGE.5478".
+
+Самый эффективный способ заставить все это pаботать - взять REGISTRY.DLL из
+свежего фикспака к Warp 4 (но не 4.5), т.е. из XR_M012, затем распаковать
+нижеприведенный архив в \OS2\DLL:
+
+section 1 of file wmmerge.arj  < UUEpro / FRIENDS >
+
+filetime 796619933
+begin 644 wmmerge.arj
+M8.HO`"(+`0`0``)C8V$Q,&-A,3````````````````````````!W;6UE<F=E
+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
+35TM4SJJ74UFEJJ71O[\U8.H`````
+`
+end
+sum -r/size 37455/13450 section (from "begin" to "end")
+sum -r/size 41699/9739 entire input file
+
+Теперь остается только исправить в WGSS50.DLL строку "PMMERGE" на "WMMERGE"
+(это можно сделать, например, с помощью HIEW или DLLRNAME из VisualAge), и
+Odin будет работать под OS/2 - версия от 11/04/2003 функционировала вполне
+стабильно, ничем не отличаясь от той же версии, запущенной под Warp 4/XR_M012.
+
+По аналогии с Odin, можно заставить работать Opera/2, Virtual PC v 4.32/5.x,
+Innotek OS/2 Kit for Acrobat Reader и другой софт на основе Odin-рантайма. В
+этом случае нужно вместо WGSS50.DLL исправлять DLL, вызывающие SYS182, т.е.
+OPWGSS50.DLL/VPCWGSS.DLL/AR32WIN.DLL/... Других проблем под Warp 3 у названных
+продуктов не замечено. В Virtual PC объем памяти для виртуальных машин
+будет ограничен (из-за архитектуры ядра) ~80-256M в зависимости от числа
+параллельно работающих приложений.
+
+Чтобы поставить WIN32K.SYS, необходимо найти retail-ядро с SYM-файлом, для
+Warp 3 такие распространяются только в рамках тестирования, нерегулярно
+появляясь на ftp://testcase.boulder.ibm.com. Имеет смысл поискать архив
+XR_W043P.ARJ (проходил по OSYSCSD3). Также подойдут ядро+DOSCALL1 из osFree
+9.023-pl3 с прописыванием VERSION=20,30 в CONFIG.SYS.
+
+Требования к системе:
+
+1. Фикспак XR_W040 или выше (APAR PJ25945/JR12585).
+2. MPTS WR08400 или более свежий.
+3. Odin-20010808 или более свежий (проверялось вплоть до 20030411). Аналогично
+   с софтом, Opera от июля 2001 г. не пойдет, а более поздняя - запросто.
+
+P.S. C 06/04/2000 все билды Odin'а официально требуют для своей работы
+     Warp 4 + XR_M013, поэтому в любой момент поддержка Warp 3 может отвалиться
+     окончательно (например, если будут задействованы функции DosOpenL и
+     прочие *L). Hа сайте www.netlabs.org сказано следующее:
+
+                                                    Project Odin News (p2 of 6)
+   Fixpak 13 has been released! Top of page
+   by Achim Hasenmueller 5 Apr 00 17:05 CET
+   YES! It finally happened! IBM has released the Fixpak 13 for OS/2 Warp
+   4, donating it the great Warp Server for e-business Kernel with
+   improved stability and performance.
+
+   For Odin, this means that there is only one kernel we will care about
+   and that the 512MB address space barrier is finally gone on Warp 4,
+   making it suitable to run MS Office & Co. applications.
+
+   If you go to the application database, you will even find an entry by
+   Jens Wiessner who has managed to start Word 97 on FP13!
+
+   Thanks IBM!

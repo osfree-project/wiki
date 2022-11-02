@@ -1,0 +1,30 @@
+[Q]: Как pасшиpить LIBPATH, не пеpезагpужая машины?
+
+[A]: Denis Tonn
+
+There are two new Environment variables, BEGINLIBPATH and ENDLIBPATH.  When 
+SET to a PATH string, they allow you to dynamically add to either the 
+Begining or End of the active CONFIG.SYS set LIBPATH. This will allow you 
+to keep the LIBPATH short (faster) in the config.sys and also customize 
+for those infrequently used apps. If you have occasion to use this feature, 
+let us know what you think.
+
+[A]: Alexander Belyaev (2:5035/13.15)
+
+Перевод:
+
+Есть две переменных окружения : BEGINLIBPATH и ENDLIBPATH . При
+внесении их в переменную PATH они позволяют вам добавлять
+переменную LIBPATH соответственно в начало или конец активного config.sys.
+Это позволяет сделать строку LIBPATH короче ( быстрее ) и выкинуть из нее
+ссылки на редко используемые приложения ( подгружая ссылки по мере
+необходимости ). Если Вам подвернется благоприятный случай для использования
+этих команд, дайте нам знать, что Вы думаете по этому поводу.
+
+Hапример, если добавить в некоторой сессии следующую переменную
+
+SET BEGINLIBPATH=D:\MYAPP\DLL;
+
+то вначале динамические библиотеки для этой сессиии будут искаться в
+в каталоге D:\MYAPP\DLL  , а потом - в переменной LIBPATH,
+определенной в config.sys

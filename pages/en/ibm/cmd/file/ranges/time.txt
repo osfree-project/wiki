@@ -1,0 +1,16 @@
+===== Time Ranges =====
+
+A time range specifies a file modification time without reference to the date. For example, to select files modified between noon and 2:00 pm on any date, use **/[t12:00p,2:00p]**. The times in a time range can either be in 12-hour format, with a trailing "a" for AM or "p" for PM, or in 24-hour format. 
+
+If you omit the second argument in a time range, you will select files that were modified between the first time and the current time, on any date. You can also use offsets, beginning with a plus sign [**+**] or a minus sign [**-**] for either or both of the arguments in a time range. The offset values are interpreted as minutes. Some examples: 
+
+^Specification       ^Selects Files ^
+|**/[t12:00p,+120]**     |modified between noon and 2:00 PM on any date |
+|**/[t-120,+120]**         |modified between two hours ago and the current time on any date |
+|**/[t0:00,11:59]**        |modified in the morning on any date |
+
+The HPFS file system maintains 3 sets of date and time for each file: creation, last access, and last write. By default, time ranges work with the last write time stamp. You can use the "last access" (a) or "created" (c) time stamp in a time range with the syntax: 
+
+<code>
+        /[ta...]  or  /[tc...]
+</code>

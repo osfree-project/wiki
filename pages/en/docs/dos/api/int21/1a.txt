@@ -1,0 +1,41 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=1AH ======
+
+===== Version =====
+
+1 and higher
+
+===== Brief =====
+
+SET DISK TRANSFER AREA ADDRESS
+
+===== Family API =====
+
+none
+
+===== Input =====
+
+        AH = 1Ah
+        DS:DX -> Disk Transfer Area (DTA)
+
+===== Return =====
+
+none
+
+===== Notes =====
+
+Notes:  the DTA is set to PSP:0080h when a program is started
+        under the FlashTek X-32 DOS extender, the pointer is in DS:EDX
+          
+===== See also =====
+
+AH=11h,AH=12h,AH=2Fh,AH=4Eh,AH=4Fh
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:int}}
+
+{{page>en:templates:fapi}}

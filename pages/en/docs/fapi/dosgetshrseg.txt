@@ -1,0 +1,63 @@
+{{page>en:templates:fapiint}}
+
+====== DosGetShrSeg ======
+
+This call accesses a shared memory segment previously allocated by another process.
+
+===== Syntax =====
+<code c>
+DosGetShrSeg (Name, Selector)
+</code>
+
+===== Parameters =====
+
+  * Name ([[PSZ]]) - input : Address of the name string associated with the shared memory segment to be accessed. The name is an ASCIIZ string in the format of an OS/2 filename in a subdirectory called \SHAREMEM\, for example, \SHAREMEM\PUBLIC.DAT.
+  * Selector ([[PSEL]]) - output : Address of the selector for the shared memory segment.
+
+===== Return Code =====
+
+rc ([[USHOR]]T) - return: Return code
+
+  *0 NO_ERROR
+  *2 ERROR_FILE_NOT_FOUND
+  *4 ERROR_TOO_MANY_OPEN_FILES
+  *123 ERROR_INVALID_NAME
+
+===== Remarks =====
+
+DosGetShrSeg provides access to a named shared segment allocated by another process with [[DosAllocShrSeg]]. The selector returned by DosGetShrSeg is the same as the one returned by the [[DosAllocShrSeg]] call.
+
+A usage count is maintained for a named shared segment. Issuing DosGetShrSeg increments the count, and issuing [[DosFreeSeg]] decrements the count. When the usage count equals zero, the named shared segment is deallocated. Once the segment has been deallocated, it must be reinitialized by a call to [[DosAllocShrSeg]].
+
+To access shared memory that is allocated by another process with [[DosAllocSeg]] and [[DosAllocHuge]] requests, a process issues [[DosGetSeg]].
+
+===== Bindings =====
+
+==== C ====
+
+<code c>
+#define INCL_DOSMEMMGR
+
+USHORT  rc = DosGetShrSeg(Name, Selector);
+
+PSZ     Name;          /* Name string */
+PSEL    Selector;      /* Selector of shared segment */
+
+USHORT  rc;            /* return code /*
+</code>
+
+==== MASM ====
+
+<code asm>
+EXTRN  DosGetShrSeg:FAR
+INCL_DOSMEMMGR      EQU 1
+
+PUSH@  ASCIIZ  Name          ;Name string
+PUSH@  WORD    Selector      ;Selector of shared segment (returned)
+CALL   DosGetShrSeg
+
+Returns WORD
+</code>
+
+{{page>en:templates:fapi}}
+

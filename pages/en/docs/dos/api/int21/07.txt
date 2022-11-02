@@ -1,0 +1,45 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=07H ======
+
+===== Version =====
+
+1 and higher
+
+===== Brief =====
+
+DIRECT CHARACTER INPUT, WITHOUT ECHO
+
+===== Family API =====
+
+[[en:docs:fapi:DosRead]]
+
+===== Input =====
+
+   AH = 07h
+
+===== Return =====
+
+  AL = character read from standard input
+
+===== Notes =====
+
+ does not check ^C/^Break
+
+ standard input is always the keyboard under DOS 1.x, but may be redirected under DOS 2+
+
+ if the interim console flag is set (see AX=6301h), partially-formed double-byte characters may be returned
+
+===== See also =====
+
+AH=01h,AH=06h,AH=08h,AH=0Ah
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:int}}
+
+{{page>en:templates:fapi}}
+
+

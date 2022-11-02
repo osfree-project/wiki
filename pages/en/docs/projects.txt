@@ -1,0 +1,31 @@
+===== osFree and related projects =====
+
+==== Comparison of different OS/2 cloning projects ====
+
+^Name ^Resource ^Goals of the project ^
+|osFree   |[[http://www.osfree.org/]] | Microkernel OS with OS/2 Personality using the base OS/2 technologies |
+|Voyager  |[[http://voyager.netlabs.org/]] | OS/2 compatibility on WPS level |
+|OS2Linux |[[http://sourceforge.net/projects/os2linux/]] |A library for compatibility with programs using OS/2 API's on Linux (like LibC) |
+|OS/2 API emulation for NT |[[http://i1.dk/ntos2/]] |A library for recompiling OS/2 programs to WinNT platform (about 110 OS/2 API's implemented) |
+|NuDawn   |[[http://sourceforge.net/projects/nudawn/]] | WINE analogue, but for emulating OS/2 API's |
+|FreeOS   |[[http://web.archive.org/web/20020328012952/http://soulmatrix.dynodns.net/freeos/]] | OS/2 cloning project. Did not left the discussion stage. No real development. |
+|ReactOS  |[[http://www.reactos.org/]] | Windows NT cloning project. One of its subsystems is ROS/2, essentially -  OS/2 Personality support |
+|OS64     | https://groups.yahoo.com/neo/groups/os64/info | Goals and tasks unknown, declared some relation with OS/2 |
+|OS8/FreePM |[[http://web.archive.org/web/20071214042403/http://wiki.laser.ru/os8/index.php/FreePM]] | FreePM project and some info collection, regarding the different OS/2 technologies |
+|somFree    |[[http://sourceforge.net/projects/somfree/]] | somFree project is an Open Source SOM replacement |
+|docShell   |[[http://sourceforge.net/projects/docshell/]]| docShell project is an Open Source OpenDoc replacement, based on somFree |
+|2ine     |[[https://hg.icculus.org/icculus/2ine/]]| 2ine project aims to emulate OS/2 API on top of Linux |
+
+==== Other projects' code adoption ====
+
+osFree project is limited in available resources, so, when developing, the principle "Take and adopt" is often used. 
+
+^OS part   ^Source repository ^Enhancement cause ^
+|Bootoader  |GRUB Legacy |Providing the support of IFS technology |
+|Kernel       |DROPS/Fiasco |The base for Personality neutral servers implementation |
+|REXX       |ReginaREXX/OOREXX |Scripting language support |
+|PM         |FreePM |Making a minimally working/usable version |
+|SOM/WPS    |Voyager |A "reverse" adaptation to PM with preserving of the compatibility |
+|GNU/Linux Personality |L4Linux/Afterburner/GNU/Debian |Direct code reuse |
+
+~~DISCUSSION~~

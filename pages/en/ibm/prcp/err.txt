@@ -1,0 +1,409 @@
+===== Errors Returned from Base OS/2 Calls =====
+
+^# ^Identifier ^Description ^
+|1 |ERROR_INVALID_FUNCTION |Invalid function number.  |
+|2 |ERROR_FILE_NOT_FOUND |File not found.  |
+|3 |ERROR_PATH_NOT_FOUND |Path not found.  |
+|4 |ERROR_TOO_MANY_OPEN_FILES |Too many open files (no handles left).  |
+|5 |ERROR_ACCESS_DENIED |Access denied.  |
+|6 |ERROR_INVALID_HANDLE |Invalid handle.  |
+|7 |ERROR_ARENA_TRASHED |Memory control blocks destroyed.  |
+|8 |ERROR_NOT_ENOUGH_MEMORY |Insufficient memory.  |
+|9 |ERROR_INVALID_BLOCK |Invalid memory-block address.  |
+|10 |ERROR_BAD_ENVIRONMENT |Invalid environment.  |
+|11 |ERROR_BAD_FORMAT |Invalid format.  |
+|12 |ERROR_INVALID_ACCESS |Invalid access code.  |
+|13 |ERROR_INVALID_DATA |Invalid data.  |
+|14 | |Reserved.  |
+|15 |ERROR_INVALID_DRIVE |Invalid drive specified.  |
+|16 |ERROR_CURRENT_DIRECTORY |Attempting to remove current directory.  |
+|17 |ERROR_NOT_SAME_DEVICE |Not same device.  |
+|18 |ERROR_NO_MORE_FILES |No more files.  |
+|19 |ERROR_WRITE_PROTECT |Attempt to write on write-protected diskette.  |
+|20 |ERROR_BAD_UNIT |Unknown unit.  |
+|21 |ERROR_NOT_READY |Drive not ready.  |
+|22 |ERROR_BAD_COMMAND |Unknown command.  |
+|23 |ERROR_CRC |Data error (CRC).  |
+|24 |ERROR_BAD_LENGTH |Bad request structure length.  |
+|25 |ERROR_SEEK |Seek error.  |
+|26 |ERROR_NOT_DOS_DISK |Unknown media type.  |
+|27 |ERROR_SECTOR_NOT_FOUND |Sector not found.  |
+|28 |ERROR_OUT_OF_PAPER |Printer out of paper.  |
+|29 |ERROR_WRITE_FAULT |Write fault.  |
+|30 |ERROR_READ_FAULT |Read fault.  |
+|31 |ERROR_GEN_FAILURE |General failure.  |
+|32 |ERROR_SHARING_VIOLATION |Sharing violation.  |
+|33 |ERROR_LOCK_VIOLATION |Lock violation.  |
+|34 |ERROR_WRONG_DISK |Invalid disk change.  |
+|35 |ERROR_FCB_UNAVAILABLE |FCB unavailable.  |
+|36 |ERROR_SHARING_BUFFER_EXCEEDED |Sharing buffer overflow.  |
+|37-49 | |Reserved.  |
+|50 |ERROR_NOT_SUPPORTED |Network request not supported.  |
+|65 | |Access denied.  |
+|73-79 | |Reserved.  |
+|80 |ERROR_FILE_EXISTS |File exists.  |
+|81 |ERROR_DUP_FCB |Reserved.  |
+|82 |ERROR_CANNOT_MAKE |Cannot make directory entry.  |
+|83 |ERROR_FAIL_I24 |Fail on INT 24.  |
+|84 |ERROR_OUT_OF_STRUCTURES |Too many redirections.  |
+|85 |ERROR_ALREADY_ASSIGNED |Duplicate redirection.  |
+|86 |ERROR_INVALID_PASSWORD |Invalid password.  |
+|87 |ERROR_INVALID_PARAMETER |Invalid parameter.  |
+|88 |ERROR_NET_WRITE_FAULT |Network device fault.  |
+|89 |ERROR_NO_PROC_SLOTS |No process slots available.  |
+|90 |ERROR_NOT_FROZEN |System error.  |
+|91 |ERR_TSTOVFL |Timer service table overflow.  |
+|92 |ERR_TSTDUP |Timer service table duplicate.  |
+|93 |ERROR_NO_ITEMS |No items to work on.  |
+|95 |ERROR_INTERRUPT |Interrupted system call.  |
+|99 |ERROR_DEVICE_IN_USE |Device in use.  |
+|100 |ERROR_TOO_MANY_SEMAPHORES |User/system open semaphore limit exceeded.  |
+|101 |ERROR_EXCL_SEM_ALREADY_OWNED |Exclusive semaphore already owned.  |
+|102 |ERROR_SEM_IS_SET |DosCloseSem found semaphore set.  |
+|103 |ERROR_TOO_MANY_SEM_REQUESTS |Too many exclusive semaphore requests.  |
+|104 |ERROR_INVALID_AT_INTERRUPT_TIME |Operation invalid at interrupt time.  |
+|105 |ERROR_SEM_OWNER_DIED |Previous semaphore owner terminated without freeing semaphore.  |
+|106 |ERROR_SEM_USER_LIMIT |Semaphore limit exceeded.  |
+|107 |ERROR_DISK_CHANGE |Insert drive B disk into drive A.  |
+|108 |ERROR_DRIVE_LOCKED |Drive locked by another process.  |
+|109 |ERROR_BROKEN_PIPE |Write on pipe with no reader.  |
+|110 |ERROR_OPEN_FAILED |Open/create failed due to explicit fail command.  |
+|111 |ERROR_BUFFER_OVERFLOW |Buffer passed to system call too small to hold return data.  |
+|112 |ERROR_DISK_FULL |Not enough space on the disk.  |
+|113 |ERROR_NO_MORE_SEARCH_HANDLES |Cannot allocate another search structure and handle.  |
+|114 |ERROR_INVALID_TARGET_HANDLE |Target handle in DosDupHandle invalid.  |
+|115 |ERROR_PROTECTION_VIOLATION |Bad user virtual address.  |
+|116 |ERROR_VIOKBD_REQUEST |Error on display write or keyboard read.  |
+|117 |ERROR_INVALID_CATEGORY |Category for DevIOCtl not defined.  |
+|118 |ERROR_INVALID_VERIFY_SWITCH |Invalid value passed for verify flag.  |
+|119 |ERROR_BAD_DRIVER_LEVEL |Level four driver not found.  |
+|120 |ERROR_CALL_NOT_IMPLEMENTED |Invalid function called.  |
+|121 |ERROR_SEM_TIMEOUT |Time out occurred from semaphore API function.  |
+|122 |ERROR_INSUFFICIENT_BUFFER |Data buffer too small.  |
+|123 |ERROR_INVALID_NAME |Illegal character or bad file-system name.  |
+|124 |ERROR_INVALID_LEVEL |Non-implemented level for information retrieval or setting.  |
+|125 |ERROR_NO_VOLUME_LABEL |No volume label found with DosQFsInfo command.  |
+|126 |ERROR_MOD_NOT_FOUND |Module handle not found with getprocaddr, getmodhandle.  |
+|127 |ERROR_PROC_NOT_FOUND |Procedure address not found with getprocaddr.  |
+|128 |ERROR_WAIT_NO_CHILDREN |DosCwait finds no children.  |
+|129 |ERROR_CHILD_NOT_COMPLETE |DosCwait children not terminated.  |
+|130 |ERROR_DIRECT_ACCESS_HANDLE |Handle operation invalid for direct disk-accesshandles.  |
+|131 |ERROR_NEGATIVE_SEEK |Attempting seek to negative offset.  |
+|132 |ERROR_SEEK_ON_DEVICE |Application trying to seek on device or pipe.  |
+|133 |ERROR_IS_JOIN_TARGET |Drive has previously joined drives.  |
+|134 |ERROR_IS_JOINED |Drive is already joined.  |
+|135 |ERROR_IS_SUBSTED |Drive is already substituted.  |
+|136 |ERROR_NOT_JOINED |Cannot delete drive that is not joined.  |
+|137 |ERROR_NOT_SUBSTED |Cannot delete drive that is not substituted.  |
+|138 |ERROR_JOIN_TO_JOIN |Cannot join to a joined drive.  |
+|139 |ERROR_SUBST_TO_SUBST |Cannot substitute to a substituted drive.  |
+|140 |ERROR_JOIN_TO_SUBST |Cannot join to a substituted drive.  |
+|141 |ERROR_SUBST_TO_JOIN |Cannot substitute to a joined drive.  |
+|142 |ERROR_BUSY_DRIVE |Specified drive is busy.  |
+|143 |ERROR_SAME_DRIVE |Cannot join or substitute a drive to a directory on the same drive.  |
+|144 |ERROR_DIR_NOT_ROOT |Directory must be a subdirectory of the root.  |
+|145 |ERROR_DIR_NOT_EMPTY |Directory must be empty to use join command.  |
+|146 |ERROR_IS_SUBST_PATH |Path specified is being used in a substitute.  |
+|147 |ERROR_IS_JOIN_PATH |Path specified is being used in join.  |
+|148 |ERROR_PATH_BUSY |Path specified is being used by another process.  |
+|149 |ERROR_IS_SUBST_TARGET |Cannot join or substitute drive having directory that is target of a previous substitute.  |
+|150 |ERROR_SYSTEM_TRACE |System trace error.  |
+|151 |ERROR_INVALID_EVENT_COUNT |DosMuxSemWait errors.  |
+|152 |ERROR_TOO_MANY_MUXWAITERS |System limit of 100 entries reached.  |
+|153 |ERROR_INVALID_LIST_FORMAT |Invalid list format.  |
+|154 |ERROR_LABEL_TOO_LONG |Volume label too big.  |
+|155 |ERROR_TOO_MANY_TCBS |Cannot create another TCB.  |
+|156 |ERROR_SIGNAL_REFUSED |Signal refused.  |
+|157 |ERROR_DISCARDED |Segment is discarded.  |
+|158 |ERROR_NOT_LOCKED |Segment not locked.  |
+|159 |ERROR_BAD_THREADID_ADDR |Bad thread-identity address.  |
+|160 |ERROR_BAD_ARGUMENTS |Bad environment pointer.  |
+|161 |ERROR_BAD_PATHNAME |Bad path name passed to exec.  |
+|162 |ERROR_SIGNAL_PENDING |Signal already pending.  |
+|163 |ERROR_UNCERTAIN_MEDIA |ERROR_I24 mapping.  |
+|164 |ERROR_MAX_THRDS_REACHED |No more process slots.  |
+|165 |ERROR_MONITORS_NOT_SUPPORTED |ERROR_I24 mapping.  |
+|166 |ERROR_UNC_DRIVER_NOT_INSTALLED |Default redir return code  |
+|167 |ERROR_LOCK_FAILED |Locking failed.  |
+|168 |ERROR_SWAPIO_FAILED |Swap IO failed.  |
+|169 |ERROR_SWAPIN_FAILED |Swap in failed.  |
+|170 |ERROR_BUSY |Busy.  |
+|180 |ERROR_INVALID_SEGMENT_NUMBER |Invalid segment number.  |
+|181 |ERROR_INVALID_CALLGATE |Invalid call gate.  |
+|182 |ERROR_INVALID_ORDINAL |Invalid ordinal.  |
+|183 |ERROR_ALREADY_EXISTS |Shared segment already exists.  |
+|184 |ERROR_NO_CHILD_PROCESS |No child process to wait for.  |
+|185 |ERROR_CHILD_ALIVE_NOWAIT |NoWait specified and child alive.  |
+|186 |ERROR_INVALID_FLAG_NUMBER |Invalid flag number.  |
+|187 |ERROR_SEM_NOT_FOUND |Semaphore does not exist.  |
+|188 |ERROR_INVALID_STARTING_CODESEG |Invalid starting code segment,incorrect END (label) directive.  |
+|189 |ERROR_INVALID_STACKSEG |Invalid stack segment.  |
+|190 |ERROR_INVALID_MODULETYPE |Invalid module type - dynamic-link library file cannot be used as an application. Application cannot be used as a dynamic-link library.  |
+|191 |ERROR_INVALID_EXE_SIGNATURE |Invalid EXE signature - file is DOS mode program or improper program.  |
+|192 |ERROR_EXE_MARKED_INVALID |EXE marked invalid - link detected errors when application created.  |
+|193 |ERROR_BAD_EXE_FORMAT |Bad EXE format - file is DOS mode program or improper program.  |
+|194 |ERROR_ITERATED_DATA_EXCEEDS_64K |Iterated data exceeds 64KB - more than 64KB of data in one of the segments of the file.  |
+|195 |ERROR_INVALID_MINALLOCSIZE |Invalid minimum allocation size - size is specified to be less than the size of the segment data in the file.  |
+|196 |ERROR_DYNLINK_FROM_INVALID_RING |Dynamic link from invalid privilege level - privilege level 2 routine cannot link to dynamic-link libraries.  |
+|197 |ERROR_IOPL_NOT_ENABLED |IOPL not enabled - IOPL set to "NO" in CONFIG.SYS.  |
+|198 |ERROR_INVALID_SEGDPL |Invalid segment descriptor privilege level - can only have privilege levels of 2 and 3.  |
+|199 |ERROR_AUTODATASEG_EXCEEDS_64k |Automatic data segment exceeds 64KB.  |
+|200 |ERROR_RING2SEG_MUST_BE_MOVABLE |Privilege level 2 segment must be movable.  |
+|201 |ERROR_RELOC_CHAIN_XEEDS_SEGLIM |Relocation chain exceeds segment limit.  |
+|202 |ERROR_INFLOOP_IN_RELOC_CHAIN |Infinite loop in relocation chain segment.  |
+|203 |ERROR_ENVVAR_NOT_FOUND |Environment variable not found.  |
+|204 |ERROR_NOT_CURRENT_CTRY |Not current country.  |
+|205 |ERROR_NO_SIGNAL_SENT |No signal sent - no process in the command subtree has a signal handler.  |
+|206 |ERROR_FILENAME_EXCED_RANGE |File name or extension greater than "8.3" characters.  |
+|207 |ERROR_RING2_STACK_IN_USE |Privilege level 2 stack in use.  |
+|208 |ERROR_META_EXPANSION_TOO_LONG |Meta (global) expansion is too long.  |
+|209 |ERROR_INVALID_SIGNAL_NUMBER |Invalid signal number.  |
+|210 |ERROR_THREAD_1_INACTIVE |Inactive thread.  |
+|211 |ERROR_INFO_NOT_AVAIL |File system information not available for this file.  |
+|212 |ERROR_LOCKED |Locked error.  |
+|213 |ERROR_BAD_DYNALINK |Attempted to execute non-family API in DOS mode.  |
+|214 |ERROR_TOO_MANY_MODULES |Too many modules.  |
+|215 |ERROR_NESTING_NOT_ALLOWED |Nesting not allowed.  |
+|217 |ERROR_ZOMBIE_PROCESS |Zombie process.  |
+|218 |ERROR_STACK_IN_HIGH_MEMORY |Stack in high memory.  |
+|219 |ERROR_INVALID_EXITROUTINE_RING |Invalid exit routine ring.  |
+|220 |ERROR_GETBUF_FAILED |Get buffer failed.  |
+|221 |ERROR_FLUSHBUF_FAILED |Flush buffer failed.  |
+|222 |ERROR_TRANSFER_TOO_LONG |Transfer is too long.  |
+|228 |ERROR_NO_CHILDREN |No child process.  |
+|229 |ERROR_INVALID_SCREEN_GROUP |Invalid session.  |
+|230 |ERROR_BAD_PIPE |Non-existent pipe or bad operation.  |
+|231 |ERROR_PIPE_BUSY |Pipe is busy.  |
+|232 |ERROR_NO_DATA |No data available on non-blocking read.  |
+|233 |ERROR_PIPE_NOT_CONNECTED |Pipe was disconnected by server.  |
+|234 |ERROR_MORE_DATA |More data is available.  |
+|240 |ERROR_VC_DISCONNECTED |Session was dropped due to errors.  |
+|250 |ERROR_CIRCULARITY_REQUESTED |Renaming a directory that would cause a circularity problem.  |
+|251 |ERROR_DIRECTORY_IN_CDS |Renaming a directory that is in use.  |
+|252 |ERROR_INVALID_FSD_NAME |Trying to access nonexistent FSD.  |
+|253 |ERROR_INVALID_PATH |Bad pseudo device.  |
+|254 |ERROR_INVALID_EA_NAME |Bad character in name, or bad cbName.  |
+|255 |ERROR_EA_LIST_INCONSISTENT |List does not match its size, or bad EAs in list.  |
+|256 |ERROR_EA_LIST_TOO_LONG |FEAList > 64K-1 bytes.  |
+|257 |ERROR_NO_META_MATCH |String doesn't match expression.  |
+|259 |ERROR_NO_MORE_ITEMS |DosQFSAttach ordinal query.  |
+|260 |ERROR_SEARCH_STRUC_REUSED |DOS mode findfirst/next search structure reused.  |
+|261 |ERROR_CHAR_NOT_FOUND |Character not found.  |
+|262 |ERROR_TOO_MUCH_STACK |Stack request exceeds system limit.  |
+|263 |ERROR_INVALID_ATTR |Invalid attribute.  |
+|264 |ERROR_INVALID_STARTING_RING |Invalid starting ring.  |
+|265 |ERROR_INVALID_DLL_INIT_RING |Invalid DLL INIT ring.  |
+|266 |ERROR_CANNOT_COPY |Cannot copy.  |
+|267 |ERROR_DIRECTORY |Used by DOSCOPY in doscall1.  |
+|268 |ERROR_OPLOCKED_FILE |Oplocked file.  |
+|269 |ERROR_OPLOCK_THREAD_EXISTS |Oplock thread exists.  |
+|270 |ERROR_VOLUME_CHANGED |Volume changed.  |
+|271-273 | |Reserved.  |
+|274 |ERROR_ALREADY_SHUTDOWN |System already shutdown.  |
+|275 |ERROR_EAS_DIDNT_FIT |EAS didnt fit.  |
+|303 |ERROR_INVALID_PROCID |Invalid process identity.  |
+|304 |ERROR_INVALID_PDELTA |Invalid priority delta.  |
+|305 |ERROR_NOT_DESCENDANT |Not descendant.  |
+|306 |ERROR_NOT_SESSION_MANAGER |Requestor not session manager.  |
+|307 |ERROR_INVALID_PCLASS |Invalid P class.  |
+|308 |ERROR_INVALID_SCOPE |Invalid scope.  |
+|309 |ERROR_INVALID_THREADID |Invalid thread identity.  |
+|310 |ERROR_DOSSUB_SHRINK |Cannot shrink segment - DosSubSet.  |
+|311 |ERROR_DOSSUB_NOMEM |No memory to satisfy request - DosSubAlloc .  |
+|312 |ERROR_DOSSUB_OVERLAP |Overlap of specified block with an allocated memory - DosSubFree.  |
+|313 |ERROR_DOSSUB_BADSIZE |Bad size parameter - DosSubAlloc or DosSubFree.  |
+|314 |ERROR_DOSSUB_BADFLAG |Bad flag parameter - DosSubSet.  |
+|315 |ERROR_DOSSUB_BADSELECTOR |Invalid segment selector.  |
+|316 |ERROR_MR_MSG_TOO_LONG |Message too long for buffer.  |
+|317 |ERROR_MR_MID_NOT_FOUND |Message identity number not found.  |
+|318 |ERROR_MR_UN_ACC_MSGF |Unable to access message file.  |
+|319 |ERROR_MR_INV_MSGF_FORMAT |Invalid message file format.  |
+|320 |ERROR_MR_INV_IVCOUNT |Invalid insertion variable count.  |
+|321 |ERROR_MR_UN_PERFORM |Unable to perform function.  |
+|322 |ERROR_TS_WAKEUP |Unable to wake up.  |
+|323 |ERROR_TS_SEMHANDLE |Invalid system semaphore.  |
+|324 |ERROR_TS_NOTIMER |No timers available.  |
+|326 |ERROR_TS_HANDLE |Invalid timer handle.  |
+|327 |ERROR_TS_DATETIME |Date or time invalid.  |
+|328 |ERROR_SYS_INTERNAL |Internal system error.  |
+|329 |ERROR_QUE_CURRENT_NAME |Current queue name does not exist.  |
+|330 |ERROR_QUE_PROC_NOT_OWNED |Current process does not own queue.  |
+|331 |ERROR_QUE_PROC_OWNED |Current process owns queue.  |
+|332 |ERROR_QUE_DUPLICATE |Duplicate queue name.  |
+|333 |ERROR_QUE_ELEMENT_NOT_EXIST |Queue element does not exist.  |
+|334 |ERROR_QUE_NO_MEMORY |Inadequate queue memory.  |
+|335 |ERROR_QUE_INVALID_NAME |Invalid queue name.  |
+|336 |ERROR_QUE_INVALID_PRIORITY |Invalid queue priority parameter.  |
+|337 |ERROR_QUE_INVALID_HANDLE |Invalid queue handle.  |
+|338 |ERROR_QUE_LINK_NOT_FOUND |Queue link not found.  |
+|339 |ERROR_QUE_MEMORY_ERROR |Queue memory error.  |
+|340 |ERROR_QUE_PREV_AT_END |Previous queue element was at end of queue.  |
+|341 |ERROR_QUE_PROC_NO_ACCESS |Process does not have access to queues.  |
+|342 |ERROR_QUE_EMPTY |Queue is empty.  |
+|343 |ERROR_QUE_NAME_NOT_EXIST |Queue name does not exist.  |
+|344 |ERROR_QUE_NOT_INITIALIZED |Queues not initialized.  |
+|345 |ERROR_QUE_UNABLE_TO_ACCESS |Unable to access queues.  |
+|346 |ERROR_QUE_UNABLE_TO_ADD |Unable to add new queue.  |
+|347 |ERROR_QUE_UNABLE_TO_INIT |Unable to initialize queues.  |
+|349 |ERROR_VIO_INVALID_MASK |Invalid function replaced.  |
+|350 |ERROR_VIO_PTR |Invalid pointer to parameter.  |
+|351 |ERROR_VIO_APTR |Invalid pointer to attribute.  |
+|352 |ERROR_VIO_RPTR |Invalid pointer to row.  |
+|353 |ERROR_VIO_CPTR |Invalid pointer to column.  |
+|354 |ERROR_VIO_LPTR |Invalid pointer to length.  |
+|355 |ERROR_VIO_MODE |Unsupported screen mode.  |
+|356 |ERROR_VIO_WIDTH |Invalid cursor width value.  |
+|357 |ERROR_VIO_ATTR |Invalid cursor attribute value.  |
+|358 |ERROR_VIO_ROW |Invalid row value.  |
+|359 |ERROR_VIO_COL |Invalid column value.  |
+|360 |ERROR_VIO_TOPROW |Invalid TopRow value.  |
+|361 |ERROR_VIO_BOTROW |Invalid BotRow value.  |
+|362 |ERROR_VIO_RIGHTCOL |Invalid right column value.  |
+|363 |ERROR_VIO_LEFTCOL |Invalid left column value.  |
+|364 |ERROR_SCS_CALL |Call issued by other than sm  |
+|365 |ERROR_SCS_VALUE |Value is not for save or restore.  |
+|366 |ERROR_VIO_WAIT_FLAG |Invalid wait flag setting.  |
+|367 |ERROR_VIO_UNLOCK |Screen not previously locked.  |
+|368 |ERROR_SGS_NOT_SESSION_MGR |Caller not session manager.  |
+|369 |ERROR_SMG_INVALID_SGID |Invalid session identity.  |
+|369 |ERROR_SMG_INVALID_SESSION_ID |Invalid session ID.  |
+|370 |ERROR_SMG_NOSG |No sessions available.  |
+|370 |ERROR_SMG_NO_SESSIONS |No sessions available.  |
+|371 |ERROR_SMG_GRP_NOT_FOUND |Session not found.  |
+|371 |ERROR_SMG_SESSION_NOT_FOUND |Session not found.  |
+|372 |ERROR_SMG_SET_TITLE |Title sent by shell or parent cannot be changed.  |
+|373 |ERROR_KBD_PARAMETER |Invalid parameter to keyboard.  |
+|374 |ERROR_KBD_NO_DEVICE |No device.  |
+|375 |ERROR_KBD_INVALID_IOWAIT |Invalid I/O wait specified.  |
+|376 |ERROR_KBD_INVALID_LENGTH |Invalid length for keyboard.  |
+|377 |ERROR_KBD_INVALID_ECHO_MASK |Invalid echo mode mask.  |
+|378 |ERROR_KBD_INVALID_INPUT_MASK |Invalid input mode mask.  |
+|379 |ERROR_MON_INVALID_PARMS |Invalid parameters to DosMon.  |
+|380 |ERROR_MON_INVALID_DEVNAME |Invalid device name string.  |
+|381 |ERROR_MON_INVALID_HANDLE |Invalid device handle.  |
+|382 |ERROR_MON_BUFFER_TOO_SMALL |Buffer too small.  |
+|383 |ERROR_MON_BUFFER_EMPTY |Buffer is empty.  |
+|384 |ERROR_MON_DATA_TOO_LARGE |Data record too large.  |
+|385 |ERROR_MOUSE_NO_DEVICE |Mouse device closed (invalid device handle).  |
+|386 |ERROR_MOUSE_INV_HANDLE |Mouse device closed (invalid device handle).  |
+|387 |ERROR_MOUSE_INV_PARMS |Parameters invalid for display mode.  |
+|388 |ERROR_MOUSE_CANT_RESET |Function assigned and cannot be reset.  |
+|389 |ERROR_MOUSE_DISPLAY_PARMS |Parameters invalid for display mode.  |
+|390 |ERROR_MOUSE_INV_MODULE |Module not valid.  |
+|391 |ERROR_MOUSE_INV_ENTRY_PT |Entry point not valid.  |
+|392 |ERROR_MOUSE_INV_MASK |Function mask invalid.  |
+|393 |NO_ERROR_MOUSE_NO_DATA |No valid data.  |
+|394 |NO_ERROR_MOUSE_PTR_DRAWN |Pointer drawn.  |
+|395 |ERROR_INVALID_FREQUENCY |Invalid frequency for beep.  |
+|396 |ERROR_NLS_NO_COUNTRY_FILE |Cannot find COUNTRY.SYS file.  |
+|397 |ERROR_NLS_OPEN_FAILED |Cannot open COUNTRY.SYS file.  |
+|398 |ERROR_NLS_NO_CTRY_CODE |Country code not found.  |
+|398 |ERROR_NO_COUNTRY_OR_CODEPAGE |Country code not found.  |
+|399 |ERROR_NLS_TABLE_TRUNCATED |Table returned information truncated, buffer too small.  |
+|400 |ERROR_NLS_BAD_TYPE |Selected type does not exist.  |
+|401 |ERROR_NLS_TYPE_NOT_FOUND |Selected type not in file.  |
+|402 |ERROR_VIO_SMG_ONLY |Valid from session manager only.  |
+|403 |ERROR_VIO_INVALID_ASCIIZ |Invalid ASCIIZ length.  |
+|404 |ERROR_VIO_DEREGISTER |VioDeRegister not allowed.  |
+|405 |ERROR_VIO_NO_POPUP |Pop-up window not allocated.  |
+|406 |ERROR_VIO_EXISTING_POPUP |Pop-up window on screen (NoWait).  |
+|407 |ERROR_KBD_SMG_ONLY |Valid from session manager only.  |
+|408 |ERROR_KBD_INVALID_ASCIIZ |Invalid ASCIIZ length.  |
+|409 |ERROR_KBD_INVALID_MASK |Invalid replacement mask.  |
+|410 |ERROR_KBD_REGISTER |KbdRegister not allowed.  |
+|411 |ERROR_KBD_DEREGISTER |KbdDeRegister not allowed.  |
+|412 |ERROR_MOUSE_SMG_ONLY |Valid from session manager only.  |
+|413 |ERROR_MOUSE_INVALID_ASCIIZ |Invalid ASCIIZ length.  |
+|414 |ERROR_MOUSE_INVALID_MASK |Invalid replacement mask.  |
+|415 |ERROR_MOUSE_REGISTER |Mouse register not allowed.  |
+|416 |ERROR_MOUSE_DEREGISTER |Mouse deregister not allowed.  |
+|417 |ERROR_SMG_BAD_ACTION |Invalid action specified.  |
+|418 |ERROR_SMG_INVALID_CALL |INIT called more than once or invalid session identity.  |
+|419 |ERROR_SCS_SG_NOTFOUND |New session number.  |
+|420 |ERROR_SCS_NOT_SHELL |Caller is not shell.  |
+|421 |ERROR_VIO_INVALID_PARMS |Invalid parameters passed.  |
+|422 |ERROR_VIO_FUNCTION_OWNED |Save/restore already owned.  |
+|423 |ERROR_VIO_RETURN |Non-destruct return (undo).  |
+|424 |ERROR_SCS_INVALID_FUNCTION |Caller invalid function.  |
+|425 |ERROR_SCS_NOT_SESSION_MGR |Caller not session manager.  |
+|426 |ERROR_VIO_REGISTER |Vio register not allowed.  |
+|427 |ERROR_VIO_NO_MODE_THREAD |No mode restore thread in SG.  |
+|428 |ERROR_VIO_NO_SAVE_RESTORE_THD |No save/rest thread in SG.  |
+|429 |ERROR_VIO_IN_BG |Function invalid in background.  |
+|430 |ERROR_VIO_ILLEGAL_DURING_POPUP |Function not allowed during pop-up window.  |
+|431 |ERROR_SMG_NOT_BASESHELL |Caller is not the base shell.  |
+|432 |ERROR_SMG_BAD_STATUSREQ |Invalid status requested.  |
+|433 |ERROR_QUE_INVALID_WAIT |NoWait parameter out of bounds.  |
+|434 |ERROR_VIO_LOCK |Error returned from Scroll Lock.  |
+|435 |ERROR_MOUSE_INVALID_IOWAIT |Invalid parameters for IOWait.  |
+|436 |ERROR_VIO_INVALID_HANDLE |Invalid VIO handle.  |
+|437 |ERROR_VIO_ILLEGAL_DURING_LOCK |Function not allowed during screen lock.  |
+|438 |ERROR_VIO_INVALID_LENGTH |Invalid VIO length.  |
+|439 |ERROR_KBD_INVALID_HANDLE |Invalid KBD handle.  |
+|440 |ERROR_KBD_NO_MORE_HANDLE |Ran out of handles.  |
+|441 |ERROR_KBD_CANNOT_CREATE_KCB |Unable to create kcb.  |
+|442 |ERROR_KBD_CODEPAGE_LOAD_INCOMPL |Unsuccessful code-page load.  |
+|443 |ERROR_KBD_INVALID_CODEPAGE_ID |Invalid code-page identity.  |
+|444 |ERROR_KBD_NO_CODEPAGE_SUPPORT |No code page support.  |
+|445 |ERROR_KBD_FOCUS_REQUIRED |Keyboard focus required.  |
+|446 |ERROR_KBD_FOCUS_ALREADY_ACTIVE |Calling thread has an outstanding focus.  |
+|447 |ERROR_KBD_KEYBOARD_BUSY |Keyboard busy.  |
+|448 |ERROR_KBD_INVALID_CODEPAGE |Invalid code page.  |
+|449 |ERROR_KBD_UNABLE_TO_FOCUS |Focus attempt failed.  |
+|450 |ERROR_SMG_SESSION_NON_SELECT |Session is not selectable.  |
+|451 |ERROR_SMG_SESSION_NOT_FOREGRND |Parent/child session not foreground.  |
+|452 |ERROR_SMG_SESSION_NOT_PARENT |Not parent of requested child.  |
+|453 |ERROR_SMG_INVALID_START_MODE |Invalid session start mode.  |
+|454 |ERROR_SMG_INVALID_RELATED_OPT |Invalid session start related option.  |
+|455 |ERROR_SMG_INVALID_BOND_OPTION |Invalid session bond option.  |
+|456 |ERROR_SMG_INVALID_SELECT_OPT |Invalid session select option.  |
+|457 |ERROR_SMG_START_IN_BACKGROUND |Session started in background.  |
+|458 |ERROR_SMG_INVALID_STOP_OPTION |Invalid session stop option.  |
+|459 |ERROR_SMG_BAD_RESERVE |Reserved parameters not zero.  |
+|460 |ERROR_SMG_PROCESS_NOT_PARENT |Session parent process already exists.  |
+|461 |ERROR_SMG_INVALID_DATA_LENGTH |Invalid data length.  |
+|462 |ERROR_SMG_NOT_BOUND |Parent not bound.  |
+|463 |ERROR_SMG_RETRY_SUB_ALLOC |Retry request block allocation.  |
+|464 |ERROR_KBD_DETACHED |This call not allowed for detached PID.  |
+|465 |ERROR_VIO_DETACHED |This call disallowed for detached pid.  |
+|466 |ERROR_MOU_DETACHED |This call disallowed for detached pid.  |
+|467 |ERROR_VIO_FONT |No font available to support mode.  |
+|468 |ERROR_VIO_USER_FONT |User font active.  |
+|469 |ERROR_VIO_BAD_CP |Invalid code page specified.  |
+|470 |ERROR_VIO_NO_CP |System displays do not support code page.  |
+|471 |ERROR_VIO_NA_CP |Current display does not support code page.  |
+|472 |ERROR_INVALID_CODE_PAGE |Invalid code page.  |
+|473 |ERROR_CPLIST_TOO_SMALL |Code page list is too small.  |
+|474 |ERROR_CP_NOT_MOVED |Code page not moved.  |
+|475 |ERROR_MODE_SWITCH_INIT |Mode switch initialization error.  |
+|476 |ERROR_CODE_PAGE_NOT_FOUND |Code page not found.  |
+|477 |ERROR_UNEXPECTED_SLOT_RETURNED |Internal error.  |
+|478 |ERROR_SMG_INVALID_TRACE_OPTION |Invalid start session trace indicator.  |
+|479 |ERROR_VIO_INTERNAL_RESOURCE |VIO internal resource error.  |
+|480 |ERROR_VIO_SHELL_INIT |VIO shell initialization error.  |
+|481 |ERROR_SMG_NO_HARD_ERRORS |No session manager hard errors.  |
+|482 |ERROR_CP_SWITCH_INCOMPLETE |DosSetCp unable to set KBD or VIO code page.  |
+|483 |ERROR_VIO_TRANSPARENT_POPUP |Error during VIO pop-up window.  |
+|484 |ERROR_CRITSEC_OVERFLOW |Critical section overflow.  |
+|485 |ERROR_CRITSEC_UNDERFLOW |Critical section underflow.  |
+|486 |ERROR_VIO_BAD_RESERVE |Reserved parameter is not zero.  |
+|487 |ERROR_INVALID_ADDRESS |Bad physical address.  |
+|488 |ERROR_ZERO_SELECTORS_REQUESTED |At least one selector must be requested.  |
+|489 |ERROR_NOT_ENOUGH_SELECTORS_AVA |Not enough GDT selectors to satisfy request.  |
+|490 |ERROR_INVALID_SELECTOR |Not a GDT selector.  |
+|491 |ERROR_SMG_INVALID_PROGRAM_TYPE |Invalid program type.  |
+|492 |ERROR_SMG_INVALID_PGM_CONTROL |Invalid program control.  |
+|493 |ERROR_SMG_INVALID_INHERIT_OPT |Bad inherit option.  |
+|494 |ERROR_VIO_EXTENDED_SG |   |
+|495 |ERROR_VIO_NOT_PRES_MGR_SG |   |
+|496 |ERROR_VIO_SHIELD_OWNED |   |
+|497 |ERROR_VIO_NO_MORE_HANDLES |   |
+|498 |ERROR_VIO_SEE_ERROR_LOG |   |
+|499 |ERROR_VIO_ASSOCIATED_DC |   |
+|500 |ERROR_KBD_NO_CONSOLE |   |
+|501 |ERROR_MOUSE_NO_CONSOLE |   |
+|502 |ERROR_MOUSE_INVALID_HANDLE |   |
+|503 |ERROR_SMG_INVALID_DEBUG_PARMS |   |
+|504 |ERROR_KBD_EXTENDED_SG |   |
+|505 |ERROR_MOU_EXTENDED_SG |   |
+|506 |ERROR_SMG_INVALID_ICON_FILE |   |

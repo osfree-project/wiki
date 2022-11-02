@@ -1,0 +1,52 @@
+{{page>en:templates:dpmi}}
+
+====== Int 31H, AH=02H, AL=05H ======
+
+===== Version =====
+
+0.9
+
+===== Brief =====
+
+Set Protected Mode Interrupt Vector
+
+===== Input =====
+
+  AX = 0205H
+  BL = interrupt number
+  CX:(E)DX = selector:offset of exception handler
+        
+===== Return =====
+
+  if function successful
+  Carry flag = clear
+  
+  if function unsuccessful
+  Carry flag = set
+  AX = error code
+  8022H	invalid selector
+
+===== Notes =====
+
+Sets the address of protected mode handler for the specified interrupt into the interrupt vector.
+
+The value passed in CX should be a valid protected mode code selector, not a real mode segment address.
+
+32-bit clients must supply a 32-bit offset in the EDX register. If the client's handler chains to the next exception handler it must do so using a 32-bit interrupt stack frame.
+
+DPMI hosts must support all 100H (256 decimal) interrupt vectors with this function.
+
+Hardware interrupts are sent to the primary client of the virtual machine while software interrupts are sent to the current client. (See Appendix A: Glossary for definitions of primary and current client.)
+
+Refer to the rules for descriptor usage in Appendix D. 
+    
+===== See also =====
+
+   
+
+===== Note =====
+
+Text based on [[http://www.delorie.com/djgpp/doc/dpmi/]]
+
+{{page>en:templates:dpmi:int}}
+

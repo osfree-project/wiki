@@ -1,0 +1,43 @@
+{{page>en:templates:dpmi}}
+
+====== Int 31H, AH=08H, AL=01H ======
+
+===== Version =====
+
+1.0
+
+===== Brief =====
+
+Free Physical Address Mapping
+
+===== Input =====
+
+  AX = 0801H
+  BX:CX = linear address returned by physical address mapping call
+    
+===== Return =====
+
+  if function successful
+  Carry flag = clear
+  
+  if function unsuccessful
+  Carry flag = set
+  AX = error code
+  8025H	invalid linear address
+
+===== Notes =====
+
+Releases a mapping of physical to linear addresses that was previously obtained with the Physical Address Mapping function (Int 31H Function 0800H).
+
+The client should call this function when it is finished using a device previously mapped to linear addresses with the Physical Address Mapping function (Int 31H Function 0800H). 
+
+===== See also =====
+
+   
+
+===== Note =====
+
+Text based on [[http://www.delorie.com/djgpp/doc/dpmi/]]
+
+{{page>en:templates:dpmi:int}}
+

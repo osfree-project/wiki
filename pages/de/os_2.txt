@@ -1,0 +1,33 @@
+**OS/2** ist ein Betriebssystem, das ursprünglich von Microsoft und IBM(später nurnoch IBM) in den frühen 80er Jahren bis in die späten 90er entwickelt wurde. osFree ist ein Versuch, dieses Betriebssystem zu emulieren und die Fähigkeiten in einer Umgebung ähnlich der der letzten Version, warp 4 (siehe rechts) zur Verfügung zu stellen. Unglücklicherweise wurde die Entwicklung von OS/2 1996 mit der Ankunft von OS/2 Warp 4 eingestellt und das Produkt wurde im Dezember 2005 aus IBMs Produktlinie entfernt. Allerdings nahm sich eine Firma namens Serenity Systems des Systems an und modernisierte es auf den heutigen Stand der Technik unter dem Namen eComStation, das noch zu kaufen ist. OS/2 hatte die Fähigkeit, nicht nur OS/2-Anwendungen, sondern auch 16-bit-Windows- und DOS-Programme auszuführen.
+
+==== Die Anfänge von OS/2 ====
+
+IBM und Microsoft veröffentlichten OS/2 Version 1 unter dem Markennamen Microsoft. Anfangs war es nicht mit einer grafischen Oberfläche ausgestattet, was jedoch später geändert wurde. OS/2 Version 2.1 wurde veröffentlich, jedoch, als Microsoft feststellte, dass ihr Produkt Windows ihnen mehr Profit brachte als OS/2, wurde die Entwicklung von OS/2 bald eingestellt und die Partnerschaft zwischen IBM und Microsoft bröckelte. Der Kernel von OS/2 2.1, der von Microsoft entwickelt wurde, wurde modifiziert und geändert und so zum Windows NT Kernel, der Kernel, der seinen Dienst in heutigen modernen Windows-Versionen tut, seit die Win9x-Line nach der Veröffentlichung von Windows ME nichtmehr weiterentwickelt wird.
+
+==== Die Warp-Jahre ====
+
+{{screenshots:os24_1stscreen.gif?200|OS/2 Screenshot}}
+
+IBM ließ sich von seinen Problemen mit Microsoft nicht abschrecken und setzte die OS/2-Entwicklung fort. Sie veröffentlichten eine 32-bit Version von OS/2 unter dem Namen OS/2 Warp 3. Diese Version führte die Workplace-Shell ein, die Benutzerumgebung, die in allen folgenden Versionen von OS/2 und eComStation eingesetzt wurde.
+
+Anschließend brachte IBM OS/2 Warp 4 auf den Markt - die letzte Version von OS/2 die veröffentlicht wurde. Warp 4 enthielt viele Verbesserungen gegenüber OS/2 Warp 3 und konnte Features aufweisen, die das Gegenüber von Microsoft nicht hatte, zumindest in der Standard-Version.
+
+==== Das Ende ====
+
+Nach der Veröffentlichung von OS/2 Warp 4 verschwand OS/2 langsam als ernsthafter Wettbewerber vom Markt. IBM machte keine weiteren Veröffentlichungen und das öffentliche Interesse schwand. Im Dezember 2005 entfernte IBM OS/2 offiziell aus seiner Produktlinie, nur zahlungswilligen Kunden wurde ein verlängerter Support gewährt. IBM favorisiert heute Unix-ähnliche Umgebungen wie Linux und stellt dafür einen Artikel für Wechsel-Willige zur Verfügung.
+
+==== Wiedererwachen und fortgesetzter Support ====
+
+Sogar nachdem IBM sich von OS/2 zurückgezogen hatte, verlängerte die Gesellschaft und Firmen die Lebensdauer.
+
+=== eComStation ===
+
+Serenity Systems hat eComStation veröffentlicht, ein System, das auf OS/2 Warp 4 basiert und diverse Erweiterungen enthält, unter Anderem eine stark modifizierte Version des Open-Source OS/2 Erweiterungs-kits - die in eComStation integrierte xWorkPlace-Shell.
+
+=== osFree ===
+
+osFree ist ein Projekt mit dem Ziel, einen quelloffenen OS/2-Clone zu programmieren, der kompatibel zu OS/2 Warp 4 ist und auch in etwa dessen Fähigkeiten hat (fürs Erste). Das Projekt stagnierte 2005, aber jetzt ist das Interesse an osFree wieder erwacht und das Projekt wird wieder aktiv weiterentwickelt.
+
+=== Voyager ===
+
+Das Voyager-Projekt hat ähnliche Ziele wie osFree, nämlich einen OS/2 clone zu erstellen. Allerdings geht dieses Projekt das Problem anders an als osFree.

@@ -1,0 +1,68 @@
+{{page>en:templates:fapiint}}
+
+====== MouGetDevStatus ======
+
+
+This call returns status flags for the installed mouse device driver.
+
+===== Syntax =====
+<code c>
+ MouGetDevStatus (DeviceStatus, DeviceHandle)
+</code>
+
+===== Parameters =====
+
+  * DeviceStatus (PUSHORT) - output: Address of the current status flag settings for the installed mouse device driver.
+
+The return value is a 2-byte set of bit flags.
+
+^ Bit ^ Description ^
+| 15-10 | Reserved, set to zero. |
+| 9    | Set if mouse data returned in mickeys, not pels. |
+| 8    | Set if the drawing operations for pointer draw routine are disabled. |
+| 7-4  | Reserved, set to zero. |
+| 3    | Set if pointer draw routine disabled by unsupported mode. |
+| 2    | Set if flush in progress. |
+| 1    | Set if block read in progress. |
+| 0    | Set if event queue busy with I/O. |
+
+  * DeviceHandle (HMOU) - input:  Mouse device handle from a previous MouOpen.
+
+===== Return Code =====
+
+rc (USHORT) - return:Return code descriptions are:
+
+  * 0   NO_ERROR
+  *385 ERROR_MOUSE_NO_DEVICE
+  *466 ERROR_MOU_DETACHED
+  *501 ERROR_MOUSE_NO_CONSOLE
+  *505 ERROR_MOU_EXTENDED_SG
+
+===== Bindings =====
+
+====C====
+<code c>
+#define INCL_MOU
+
+USHORT  rc = MouGetDevStatus(DeviceStatus, DeviceHandle);
+
+PUSHORT DeviceStatus;  /* Current status flags */
+HMOU    DeviceHandle;  /* Mouse device handle */
+
+USHORT  rc;            /* return code */
+</code>
+
+====MASM====
+<code asm>
+EXTRN  MouGetDevStatus:FAR
+INCL_MOU            EQU 1
+
+PUSH@  WORD    DeviceStatus  ;Current status flags
+PUSH   WORD    DeviceHandle  ;Mouse device handle
+CALL   MouGetDevStatus
+
+Returns WORD
+</code>
+
+{{page>en:templates:fapi}}
+

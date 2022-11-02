@@ -1,0 +1,33 @@
+{{logos:os2.gif?35x35}} 
+
+**Please help to find info about enries marked as //No info//**
+
+===== BDBVH =====
+
+
+^Ordinal ^Name ^Desc ^ Status ^
+| 2 	| BDBVHSETORIENTATION  | | |
+| 3 	| BDBVHQUERYORIENTATION  | | |
+| 4 	| BDBVHSETCSD  | | |
+| 5 	| BDBVHQUERYCSD  | | |
+| 6 	| BDBVHSETHOTKEYFLAG  | | |
+| 7 	| BDBVHQUERYHOTKEYFLAG  | | |
+| 8 	| BDBVHSETFIELDREV  | | |
+| 9 	| BDBVHQUERYFIELDREV  | | |
+| 10 	| BDBVHSETNL  | | |
+| 11 	| BDBVHQUERYNL  | | |
+| 12 	| BDBVHSETPUSHLEVEL  | | |
+| 13 	| BDBVHQUERYPUSHLEVEL  | | |
+| 14 	| BDBVHSETAUTOPUSHLTR  | | |
+| 15 	| BDBVHQUERYAUTOPUSHLTR  | | |
+| 16 	| BDBVHSETAUTOPUSHRTL  | | |
+| 17 	| BDBVHQUERYAUTOPUSHRTL  | | |
+| 18 	| BDBVHSETAUTOSHAPECTR  | | |
+| 19 	| BDBVHGETCURPOS  | | |
+| 20 	| ENDPOPUPHANDLING  | | |
+| 21 	| NLSQUERYBIDISEGADDRESS  | | |
+| 22 	| NLSRECORDBDDSEG  | | |
+| 23 	| DEVENABLE  | | |
+| 24 	| _PrivateMouFunc  | | | 
+
+{{page>en:templates:dlls}}

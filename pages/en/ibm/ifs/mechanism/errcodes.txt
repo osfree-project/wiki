@@ -1,0 +1,9 @@
+=== Error Codes ===
+
+FSDs should use existing error codes when possible. New error codes must be in the range reserved for FSDs. The FS_FSCTL interface must support returning information about new error codes.   
+
+The set of error codes for errors general to all FSDs is 0xEE00 - 0xEEFF. The following errors have been defined:   
+
+  * ERROR_VOLUME_NOT_MOUNTED = 0xEE00 - the FSD did not recognize the volume. 
+
+The set of error codes which are defined by each FSD is 0xEF00 - 0xFEFF.   

@@ -1,0 +1,47 @@
+[Q]: Имеется видюшка ATI c 8 мегами. Проблемы с загрузкой оси.
+
+[A]: George Shapovalov (2:5020/341.26)
+
+=== Hачало Ati.Bug ===
+ATI TECHNOLOGIES INC.                                CUSTOMER SUPPORT
+Ref ID: 2573                                              ATInfo-BASE
+---------------------------------------------------------------------
+The following information applies to IBM OS/2 WARP 4.0
+
+TOPIC:  HANGS BOOTING OS/2 WARP 4.0 USING A 3D RAGE II WITH 8MB SGRAM
+
+
+---------------------------------------------------------------------
+PRODUCT:     3D PRO TURBO PC2TV 8MB
+---------------------------------------------------------------------
+PROBLEM:      System hangs loading OS/2 WARP 4.0 with a 8MB 3D RAGE
+              PRO TURBO installed.
+---------------------------------------------------------------------
+SOLUTION: The following procedure will enable you to use the
+          3D PRO TURBO 8MB card with OS/2 WARP 4.0.
+
+          1. Remove the memory module from your 3D PRO TURBO card.
+          2. Boot to VGA display mode using the following procedure,
+              During the OS/2 Warp boot process, pressing ALT-F1 when the
+              block cursor appears in the upper left hand corner will
+              display a boot menu.  Selecting "v" will boot OS/2 WARP in
+              VGA display mode.
+          3. Uninstall and re-install the 3.1 OS/2 display drivers.
+          4. Shutdown OS/2 WARP.
+          5. Re-install the memory module onto your 3D PRO TURBO card.
+          6. Restart OS/2 WARP.
+          !  You should be able to access all display modes up to 1280x1024
+             at 16.7 million colors.
+
+          Note: This issue is currently under investigation and will,
+                hopefully, be resolved with the next release of the
+                OS/2 display driver.
+
+**  For more information contact ATI Customer Support and  **
+    reference ATInfo-BASE file:  2573
+
+=====================================================================
+All company and/or product names are trademarks and/or registered
+trademarks of their respective manufacturers
+=====================================================================
+=== Конец Ati.Bug ===

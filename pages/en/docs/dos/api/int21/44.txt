@@ -1,0 +1,30 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=44H ======
+
+===== Input ======
+
+ AH=44H, AL=Subfunction
+
+^ Subfunction                        ^ Description                                       ^ Version ^
+| [[en:docs:dos:api:int21:44:00|00]] | GET DEVICE INFORMATION                            | 2.0+    |
+| [[en:docs:dos:api:int21:44:01|01]] | SET DEVICE INFORMATION                            | 2.0+    |
+| [[en:docs:dos:api:int21:44:02|02]] | READ FROM CHARACTER DEVICE CONTROL CHANNEL        | 2.0+    |
+| [[en:docs:dos:api:int21:44:03|03]] | WRITE TO CHARACTER DEVICE CONTROL CHANNEL         | 2.0+    |
+| [[en:docs:dos:api:int21:44:04|04]] | READ FROM BLOCK DEVICE CONTROL CHANNEL            | 2.0+    |
+| [[en:docs:dos:api:int21:44:05|05]] | WRITE TO BLOCK DEVICE CONTROL CHANNEL             | 2.0+    |
+| [[en:docs:dos:api:int21:44:06|06]] | GET INPUT STATUS                                  | 2.0+    |
+| [[en:docs:dos:api:int21:44:07|07]] | GET OUTPUT STATUS                                 | 2.0+    |
+| [[en:docs:dos:api:int21:44:08|08]] | CHECK IF BLOCK DEVICE REMOVABLE                   | 3.0+    |
+| [[en:docs:dos:api:int21:44:09|09]] | CHECK IF BLOCK DEVICE REMOTE                      | 3.1+    |
+| [[en:docs:dos:api:int21:44:0A|0A]] | CHECK IF HANDLE IS REMOTE                         | 3.1+    |
+| [[en:docs:dos:api:int21:44:0B|0B]] | SET SHARING RETRY COUNT                           | 3.1+    |
+| [[en:docs:dos:api:int21:44:0C|0C]] | GENERIC CHARACTER DEVICE REQUEST                  | 3.2+    |
+| [[en:docs:dos:api:int21:44:0D|0D]] | GENERIC BLOCK DEVICE REQUEST                      | 3.2+    |
+| [[en:docs:dos:api:int21:44:0E|0E]] | GET LOGICAL DRIVE MAP                             | 3.2+    |
+| [[en:docs:dos:api:int21:44:0F|0F]] | SET LOGICAL DRIVE MAP                             | 3.2+    |
+| [[en:docs:dos:api:int21:44:10|10]] | QUERY GENERIC IOCTL CAPABILITY (HANDLE)           | 5.0+    |
+| [[en:docs:dos:api:int21:44:11|11]] | QUERY GENERIC IOCTL CAPABILITY (DRIVE)            | 5.0+    |
+
+{{page>en:templates:int}}
+

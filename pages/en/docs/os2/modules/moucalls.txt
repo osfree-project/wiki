@@ -1,0 +1,45 @@
+{{logos:os2.gif?35x35}} 
+
+===== MOUCALLS =====
+
+This forwarder DLL to DOSCALLS.DLL. 
+
+==== Entry points ====
+
+^ Ordinal ^ Name ^ Description ^ Status ^ FAPI ^ Version ^
+| 1 | [[en:docs:os2:api:mou:mou16getptrshape|MouGetPtrShape]] | Forwarder to [[DOSCALLS]].719 | Done | No | 1.0 |
+| 2 | [[en:docs:os2:api:mou:mou16setptrshape|MouSetPtrShape]] | Forwarder to [[DOSCALLS]].720 | Done | No | 1.0 |
+| 3 | [[en:docs:os2:api:mou:mou16getnummickeys|MouGetNumMickeys]] | Forwarder to [[DOSCALLS]].721 | Done | No | 1.0 |
+| 4 | [[en:docs:os2:api:mou:mou16gethotkey|MouGetHotKey]] | Forwarder to [[DOSCALLS]].853 | Done | No | 1.0 |
+| 5 | [[en:docs:os2:api:mou:mou16shellinit|MouShellInit]] | Forwarder to [[DOSCALLS]].723 | Done | No | |
+| 6 | [[en:docs:os2:api:mou:mou16getscalefactor|MouGetScaleFact]] | Forwarder to [[DOSCALLS]].724 | Done | No | 1.0 |
+| 7 | [[en:docs:os2:api:mou:mou16flushque|MouFlushQue]] | Forwarder to [[DOSCALLS]].725 | Done | No | 1.0 |
+| 8 | [[en:docs:os2:api:mou:mou16getnumbuttons|MouGetNumButtons]] | Forwarder to [[DOSCALLS]].726 | Done | No | 1.0 |
+| 9 | [[en:docs:os2:api:mou:mou16close|MouClose]] | Forwarder to [[DOSCALLS]].727 | Done | No | 1.0 |
+| 10 | [[en:docs:os2:api:mou:mou16sethotkey|MouSetHotKey]] | Forwarder to [[DOSCALLS]].853 | Done | No | 1.0 |
+| 11 | [[en:docs:os2:api:mou:mou16setscalefact|MouSetScaleFact]] | Forwarder to [[DOSCALLS]].729 | Done | No | 1.0 |
+| 13 | [[en:docs:os2:api:mou:mou16getnumqueel|MouGetNumQueEl]] | Forwarder to [[DOSCALLS]].730 | Done | No | 1.0 |
+| 14 | [[en:docs:os2:api:mou:mou16deregister|MouDeRegister]] | Forwarder to [[DOSCALLS]].731 | Done | No | 1.0 |
+| 15 | [[en:docs:os2:api:mou:mou16geteventmask|MouGetEventMask]] | Forwarder to [[DOSCALLS]].732 | Done | No | 1.0 |
+| 16 | [[en:docs:os2:api:mou:mou16seteventmask|MouSetEventMask]] | Forwarder to [[DOSCALLS]].733 | Done | No | 1.0 |
+| 17 | [[en:docs:os2:api:mou:mou16open|MouOpen]] | Forwarder to [[DOSCALLS]].734 | Done | No | 1.0 |
+| 18 | [[en:docs:os2:api:mou:mou16removeptr|MouRemovePtr]] | Forwarder to [[DOSCALLS]].735 | Done | No | 1.0 |
+| 19 | [[en:docs:os2:api:mou:mou16getptrpos|MouGetPtrPos]] | Forwarder to [[DOSCALLS]].736 | Done | No | 1.0 |
+| 20 | [[en:docs:os2:api:mou:mou16readeventque|MouReadEventQue]] | Forwarder to [[DOSCALLS]].737 | Done | No | 1.0 |
+| 21 | [[en:docs:os2:api:mou:mou16setptrpos|MouSetPtrPos]] | Forwarder to [[DOSCALLS]].738 | Done | No | 1.0 |
+| 22 | [[en:docs:os2:api:mou:mou16getdevstatus|MouGetDevStatus]] | Forwarder to [[DOSCALLS]].739 | Done | No | 1.0 |
+| 23 | [[en:docs:os2:api:mou:mou16synch|MouSynch]] | Forwarder to [[DOSCALLS]].740 | Done | No | 1.0 |
+| 24 | [[en:docs:os2:api:mou:mou16register|MouRegister]] | Forwarder to [[DOSCALLS]].741 | Done | No | 1.0 |
+| 25 | [[en:docs:os2:api:mou:mou16setdevstatus|MouSetDevStatus]] | Forwarder to [[DOSCALLS]].742 | Done | No | 1.0 |
+| 26 | [[en:docs:os2:api:mou:mou16drawptr|MouDrawPtr]] | Forwarder to [[DOSCALLS]].743 | Done | No | 1.0 |
+| 27 | [[en:docs:os2:api:mou:mou16initreal|MouInitReal]] | Forwarder to [[DOSCALLS]].744 | Done | No | 1.0 |
+| 29 | [[en:docs:os2:api:mou:mou16getthreshold|MouGetThreshold]] | Forwarder to [[DOSCALLS]].722 | Done | No | |
+| 30 | [[en:docs:os2:api:mou:mou16setthreshold|MouSetThreshold]] | Forwarder to [[DOSCALLS]].728 | Done | No | |
+
+MouFree.12 is absent in latest OS/2 DLLs
+
+==== Versions ====
+
+{{page>en:templates:dlls}}
+{{page>en:templates:os2api}}
+

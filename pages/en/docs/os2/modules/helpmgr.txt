@@ -1,0 +1,86 @@
+{{logos:os2.gif?35x35}} 
+
+**Please help to find info about enries marked as //No info//**
+
+===== HELPMGR =====
+
+
+^Ordinal ^Name ^Desc ^ Status ^
+| 1 | WinCreateHelpInstance | | |
+| 2 | WinDestroyHelpInstance | | |
+| 3 | WinQueryHelpInstance | | |
+| 4 | WinAssociateHelpInstance | | |
+| 5 | WinLoadHelpTable | | |
+| 6 | WinCreateHelpTable | | |
+| 7 | HMWindowProc | | |
+| 8 | HelpProcessor | | |
+| 9 | CoverPageFrameWindowProc | | |
+| 10 | CoverPageWindowProc | | |
+| 11 | PageFrameWindowProc | | |
+| 12 | PageWindowProc | | |
+| 13 | FootnoteFrameWindowProc | | |
+| 14 | FootnoteWindowProc | | |
+| 15 | SearchDlgProc | | |
+| 16 | PrtPrintDlgProc | | |
+| 17 | ListWindowProc | | |
+| 18 | ListFrameWindowProc | | |
+| 19 | IndexWindowProc | | |
+| 20 | IndexFrameWindowProc | | |
+| 21 | TocWindowProc | | |
+| 22 | TocFrameWindowProc | | |
+| 23 | BmBookMarkDlgProc | | |
+| 24 | HistoryFrameWindowProc | | |
+| 25 | HistoryWindowProc | | |
+| 26 | WinCreateBookInstance | | |
+| 27 | BmCuaLogoDlgProc | | |
+| 28 | IoLoadAllToc | | |
+| 29 | IoLoadAllIndex | | |
+| 30 | IoFreeAllToc | | |
+| 31 | IoFreeAllIndex | | |
+| 32 | IoFreeIoInfolist | | |
+| 33 | FindWildPattern | | |
+| 34 | FindPattern | | |
+| 35 | FindTokenPattern | | |
+| 36 | GetStrToken | | |
+| 37 | HmSetHelpDatabase | | |
+| 38 | MscCleanup | | |
+| 39 | HpfsSplitPath | | |
+| 40 | ChopDot | | |
+| 41 | MakeHpfsFileList | | |
+| 42 | GoodList | | |
+| 43 | IsValidHpfsName | | |
+| 44 | HpfsMakeFullPathname | | |
+| 45 | MscAppendInf | | |
+| 46 | MscStricmp | | |
+| 47 | MscStrnicmp | | |
+| 48 | LibraryFrameWindowProc | | |
+| 49 | LibraryWindowProc | | |
+| 50 | WinxxCreateHelpInstance | | |
+| 51 | Win32CreateHelpInstance | | |
+| 52 | Win32DestroyHelpInstance | | |
+| 53 | Win32QueryHelpInstance | | |
+| 54 | Win32AssociateHelpInstance | | |
+| 55 | Win32LoadHelpTable | | |
+| 56 | Win32CreateHelpTable | | |
+| 57 | AcvpWindowProc | | |
+| 58 | AcvpFrameWindowProc | | |
+| 74 | DdfInitialize | | |
+| 75 | DdfPara | | |
+| 76 | DdfSetFormat | | |
+| 77 | DdfSetTextAlign | | |
+| 78 | DdfSetColor | | |
+| 79 | DdfInform | | |
+| 80 | DdfSetFontStyle | | |
+| 81 | DdfHyperText | | |
+| 82 | DdfBeginList | | |
+| 83 | DdfListItem | | |
+| 84 | DdfEndList | | |
+| 85 | DdfText | | |
+| 86 | DdfMetafile | | |
+| 87 | DdfSetFont | | |
+| 88 | DdfBitmap | | |
+| 89 | SearchMindex | | |
+| 90 | DbmStrtok2 | | |
+
+{{page>en:templates:dlls}}
+

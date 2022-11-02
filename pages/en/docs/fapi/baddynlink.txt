@@ -1,0 +1,9 @@
+{{logos:dos.gif?35x35}}
+
+====== BadDynLink ======
+
+Function called on loading error by DOS stub, if API entry can't be resolved. Function prints error message and terminates execution.
+
+Returns error code ERROR_BAD_DYNALINK
+
+{{page>en:templates:fapi}}

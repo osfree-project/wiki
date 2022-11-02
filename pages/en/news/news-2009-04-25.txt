@@ -1,0 +1,10 @@
+==== 25 April, 2009 ====
+
+EFNet bots changed
+
+EFNet bots osfreebot and osfree is dead. We are glad to present new bot: 
+osFree2. Thanks to Yoda for bot hosting.
+
+{{tag>irc}}
+
+~~DISCUSSION~~

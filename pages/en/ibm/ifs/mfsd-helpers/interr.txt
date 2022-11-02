@@ -1,0 +1,28 @@
+==== MFSH_INTERR - Internal Error ====
+
+**Purpose**
+
+Declare an internal error and halt the system.   
+
+**Calling Sequence**
+
+<code c>
+int far pascal MFSH_INTERR(pcMsg, cbMsg)
+
+char far * pcMsg;
+unsigned short cbMsg;
+</code>
+
+**Where**
+
+//pcMsg// is a pointer to the message text.   
+
+//cbMsg// is the length of the message text. 
+
+**Returns**
+
+There are no error returns.   
+
+**Remarks**
+
+This call should be used when an inconsistency is detected within the mini-FSD. This call does not return. An error message will be displayed and the system will be stopped. See the description of //FSH_INTERR//.   

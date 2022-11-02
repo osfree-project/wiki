@@ -1,0 +1,76 @@
+{{page>en:templates:fapiint}}
+
+====== VioWrtTTY ======
+===== Brief =====
+
+This call writes a character string to the display starting at the current cursor position.
+
+At the completion of the write, the cursor is positioned at the first position beyond the end of the string.
+
+===== Syntax =====
+
+<code c>
+ VioWrtTTY (CharStr, Length, VioHandle)
+</code>
+
+===== Parameters =====
+
+  * CharStr ([[PCH]]) - input : Address of the string to be written.
+  * Length ([[USHORT]]) - input :  Length of the character string in bytes.
+  * VioHandle ([[HVIO]]) - input : This must be zero unless the caller is a Presentation Manager application, in which case it must be the value returned by VioGetPs.
+
+===== Return Code =====
+ rc (USHORT) - return
+
+Return code descriptions are:
+
+  * 0    NO_ERROR
+  * 355  ERROR_VIO_MODE
+  * 436  ERROR_VIO_INVALID_HANDLE
+  * 465  ERROR_VIO_DETACHED
+
+===== Remarks =====
+If a string write gets to the end of the line and is not complete, the string write continues at the beginning of the next line. If the write gets to the end of the screen, the screen is scrolled, and the write continues until completed.
+
+The characters carriage return, line feed, backspace, tab, and bell are treated as commands rather than printable characters. Backspace is a non-destructive backspace. Tabs are expanded to provide standard 8-byte-wide fields. VioWrtTTY is the only video call affected by Ctrl-PrtSc and ANSI.
+
+Characters are written using the current attribute defined by ANSI or the default value 7.
+
+VioWrtTTY is supported in graphics mode to process ANSI sequences. This allows the application to enter and exit a graphics mode.
+
+==== Presentation Manager Considerations ====
+Write a character string from the current cursor position in TTY mode to the Advanced VIO presentation space. The cursor is positioned after the last character written at the end of the write.
+
+===== Bindings =====
+==== C Binding ====
+<code c>
+#define INCL_VIO
+
+USHORT  rc = VioWrtTTY(CharStr, Length, VioHandle);
+
+PCH     CharStr;       /* String to be written */
+USHORT  Length;        /* Length of string */
+HVIO    VioHandle;     /* Video handle */
+
+USHORT  rc;            /* return code */
+</code>
+
+==== MASM Binding ====
+<code asm>
+EXTRN      VioWrtTTY:FAR
+INCL_VIO   EQU 1
+
+PUSH@  OTHER   CharStr    ;String to be written
+PUSH   WORD    Length     ;Length of string
+PUSH   WORD    VioHandle  ;Video handle
+CALL   VioWrtTTY
+
+Returns WORD
+</code>
+
+===== Note =====
+
+Text based on [[http://www.edm2.com/index.php/VioWrtTTY_(FAPI)]]
+
+{{page>en:templates:fapi}}
+

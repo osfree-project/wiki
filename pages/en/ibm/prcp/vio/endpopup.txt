@@ -1,0 +1,51 @@
+==== VioEndPopup ====
+
+**Bindings**: [[endpopup#C bindings|C]], [[endpopup#MASM bindings|MASM]] 
+
+This call is issued by the application when it no longer requires the temporary screen obtained through a previous [[en:ibm:prcp:vio:popup|VioPopUp]] call. 
+
+//VioEndPopUp// (VioHandle) 
+
+//VioHandle// (**HVIO**) - input 
+A reserved word of 0s. 
+
+//rc// (**USHORT**) - return 
+Return code descriptions are: 
+
+|0 |NO_ERROR |
+|405 |ERROR_VIO_NO_POPUP |
+|436 |ERROR_VIO_INVALID_HANDLE |
+
+**Remarks** 
+
+When the application issues a [[en:ibm:prcp:vio:endpopup|VioEndPopUp]] call, all video calls are directed to the application's normal video buffer. 
+
+
+**PM Considerations** 
+
+An error is returned if issued with a non-zero handle. 
+
+=== C bindings ===
+
+<code c>
+#define INCL_VIO
+
+USHORT  rc = VioEndPopUp(VioHandle);
+
+HVIO             VioHandle;     /* Vio device handle */
+
+USHORT           rc;            /* return code */
+</code>
+
+=== MASM bindings ===
+
+<code asm>
+EXTRN  VioEndPopUp:FAR
+INCL_VIO            EQU 1
+
+PUSH   WORD    VioHandle     ;Vio device handle
+CALL   VioEndPopUp
+
+Returns WORD
+
+</code>

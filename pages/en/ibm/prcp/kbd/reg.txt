@@ -1,0 +1,76 @@
+==== KbdRegister ====
+
+**Bindings**: [[reg#C bindings|C]], [[reg#MASM bindings|MASM]]
+
+This call registers a keyboard subsystem within a session. 
+
+KbdRegister (ModuleName, EntryPoint, FunctionMask) 
+
+//ModuleName// (*PSZ*) - input 
+Address of the dynamic link module name. Maximum length is 9 bytes (including ASCIIZ terminator). 
+
+//EntryPoint// (**PSZ**) - input 
+Address of the dynamic link entry point name of a routine that receives control when any of the registered functions are called. Maximum length is 33 bytes (including ASCIIZ terminator). 
+
+//FunctionMask// (**ULONG**) - input 
+A bit mask where each bit identifies a keyboard function being registered. The bit values are: 
+
+^Bit ^Description ^
+|31-15 |Reserved, must be \\ set to zero. |
+|14 |KbdGetHWId |
+|13 |KbdSetCustXt |
+|12 |KbdXlate |
+|11 |KbdSetCp |
+|10 |KbdGetCp |
+|9 |KbdFreeFocus |
+|8 |KbdGetFocus |
+|7 |KbdClose |
+|6 |KbdOpen |
+|5 |KbdStringIn |
+|4 |KbdSetStatus |
+|3 |KbdGetStatus |
+|2 |KbdFlushBuffer |
+|1 |KbdPeek |
+|0 |KbdCharIn |
+
+//rc// (**USHORT**) - return 
+Return code descriptions are: 
+
+|0 |NO_ERROR |
+|408 |ERROR_KBD_INVALID_ASCIIZ |
+|409 |ERROR_KBD_INVALID_MASK |
+|410 |ERROR_KBD_REGISTER |
+|464 |ERROR_KBD_DETACHED |
+|504 |ERROR_KBD_EXTENDED_SG |
+
+**Remarks**
+
+There can be only one //KbdRegister// call outstanding for each session without an intervening KbdDeRegister. //[[en:ibm:prcp:kbd:dereg|KbdDeRegister]]// must be issued by the same process that issued the //KbdRegister//. 
+
+=== C bindings ===
+
+<code c>
+#define INCL_KBD
+
+USHORT  rc = KbdRegister(ModuleName, EntryPoint, FunctionMask);
+
+PSZ              ModuleName;    /* Module name */
+PSZ              EntryPoint;    /* Entry point name */
+ULONG            FunctionMask;  /* Function mask */
+
+USHORT           rc;            /* return code */
+</code>
+
+=== MASM bindings ===
+
+<code asm>
+EXTRN  KbdRegister:FAR
+INCL_KBD            EQU 1
+
+PUSH@  ASCIIZ  ModuleName    ;Module name
+PUSH@  ASCIIZ  EntryPoint    ;Entry point name
+PUSH   DWORD   FunctionMask  ;Function mask
+CALL   KbdRegister
+
+Returns WORD
+</code>

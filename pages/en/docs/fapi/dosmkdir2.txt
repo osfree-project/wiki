@@ -1,0 +1,129 @@
+{{page>en:templates:fapiint}}
+
+====== DosMkDir2 ======
+
+This call creates a subdirectory that has extended attributes associated with it.
+
+===== Syntax =====
+
+<code c>
+DosMkDir2 (DirName, EABuf, Reserved)
+</code>
+
+===== Parameters =====
+
+  * DirName ([[PSZ]]) - input : Address of the ASCIIZ directory path name, which may or may not contain a drive specification. If no drive is specified, the current drive is assumed.
+[[DosQSysInfo]] is called by an application during initialization to determine the maximum path length allowed by OS/2.
+  * EABuf ([[PEAOP]]) - input/output: Address of the extended attribute buffer, which contains an [[EAOP]] structure.
+  * Reserved ([[ULONG]]) - input: Reserved and must be set to zero.
+
+===== Return Code =====
+
+
+rc ([[USHORT]]) - return: Return code 
+
+  *0   NO_ERROR
+  *3   ERROR_PATH_NOT_FOUND
+  *5   ERROR_ACCESS_DENIED
+  *26  ERROR_NOT_DOS_DISK
+  *87  ERROR_INVALID_PARAMETER
+  *108 ERROR_DRIVE_LOCKED
+  *206 ERROR_FILENAME_EXCED_RANGE
+  *254 ERROR_INVALID_EA_NAME
+  *255 ERROR_EA_LIST_INCONSISTENT
+
+===== Remarks =====
+
+DosMkDir2 allows an application to define extended attributes for a subdirectory at the time of its creation.
+
+If any subdirectory names in the path do not exist, the subdirectory is not created. Upon return, a subdirectory is created at the end of the specified path.
+
+[[DosQSysInfo]] must be used by an application to determine the maximum path length supported by OS/2. The returned value should be used to dynamically allocate buffers that are to be used to store paths.
+
+If a program running with the NEWFILES bit set tries to create a directory with blanks immediately preceding the dot on a FAT drive, the system rejects the name. For example, if c: is a FAT drive, the name "file .txt" is rejected and the name "file.txt" is accepted.
+
+===== Bindings =====
+
+==== C ====
+
+<code c>
+typedef struct _GEA {       /* gea */
+  BYTE cbName;            /* name length not including NULL */
+  CHAR szName[1];         /* attribute name */
+} GEA;
+
+typedef struct _GEALIST {   /* geal */
+  ULONG  cbList;          /* total bytes of structure including full list */
+  GEA list[1];            /* variable length GEA structures */
+} GEALIST;
+
+typedef struct _FEA {       /* fea */
+  BYTE fEA;               /* flags */
+  BYTE cbName;            /* name length not including NULL */
+  USHORT cbValue;         /* value length */
+} FEA;
+
+typedef struct _FEALIST {   /* feal */
+  ULONG  cbList;          /* total bytes of structure including full list */
+  FEA list[1];            /* variable length FEA structures */
+} FEALIST;
+
+typedef struct _EAOP {      /* eaop */
+  PGEALIST fpGEAList;     /* general EA list */
+  PFEALIST fpFEAList;     /* full EA list */
+  ULONG  oError;
+} EAOP;
+
+#define INCL_DOSFILEMGR
+
+USHORT  rc = DosMkDir2(DirName, EABuf, Reserved);
+
+PSZ     DirName;       /* New directory name string */
+PEAOP   EABuf;         /* Extended attribute buffer */
+ULONG   0;             /* Reserved (must be zero) */
+
+USHORT  rc;            /* return code */
+</code>
+
+==== MASM ====
+
+<code asm>
+GEA    struc
+  gea_cbName      db  ?          ;name length not including NULL
+  gea_szName      db  1 dup (?)  ;attribute name
+GEA    ends
+
+GEALIST    struc
+  geal_cbList     dd  ?      ;total bytes of structure including full list
+  geal_list       db  size GEA * 1 dup (?) ;variable length GEA structures
+GEALIST    ends
+
+FEA   struc
+  fea_fEA         db  ? ;flags
+  fea_cbName      db  ? ;name length not including NULL
+  fea_cbValue     dw  ? ;value length
+FEA   ends
+
+FEALIST struc
+  feal_cbList     dd  ?      ;total bytes of structure including full list
+  feal_list       db  size FEA * 1 dup (?) ;variable length FEA structures
+FEALIST ends
+
+EAOP    struc
+  eaop_fpGEAList  dd  ? ;general EA list
+  eaop_fpFEAList  dd  ? ;full EA list
+  eaop_oError     dd  ? ;
+EAOP    ends
+
+EXTRN  DosMkDir2:FAR
+INCL_DOSFILEMGR     EQU 1
+
+PUSH@  ASCIIZ  DirName       ;New directory name string
+PUSH@  OTHER   EABuf         ;Extended attribute buffer
+PUSH   DWORD   0             ;Reserved (must be zero)
+CALL   DosMkDir2
+</code>
+
+Returns WORD
+
+{{page>en:templates:fapi}}

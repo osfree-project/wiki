@@ -1,0 +1,47 @@
+{{page>en:templates:biosint}}
+
+====== Int 10H, AH=0BH ======
+
+===== Version =====
+
+IBM 5150 and higher
+
+===== Brief =====
+
+Set background color/palette
+
+===== Family API =====
+
+
+===== Input =====
+
+  * AH = 0Bh
+  * BH = 00h
+    * BL = background/border color (border only in text modes)
+  * BH = 01h
+    * BL = palette ID
+      * 00h background, green, red, and brown/yellow
+      * 01h background, cyan, magenta, and white
+
+===== Return =====
+
+
+===== Macro =====
+
+<code asm>
+INCLUDE BIOS.INC
+
+@SetColor 2
+@SetPalet 1
+</code>
+
+===== Notes =====
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:biosapi}}
+
+{{page>en:templates:fapi}}
+

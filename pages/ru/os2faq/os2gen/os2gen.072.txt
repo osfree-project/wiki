@@ -1,0 +1,601 @@
+[Q]: Список Hot-Keys
+
+[A]: Alex Korchmar (2:5020/28.100)
+
+
+OS/2 Workplace Shell Keys
+~~~~~~~~~~~~~~~~~~~~~~~~~
+Startup Tasks:
+
+        Alt+F1                  Restore default desktop
+        Ctrl+Shift+F1           Inhibit auto-start features
+
+OS/2 Command Line Tasks (with KEYS ON):
+
+        Esc                     Clear command line
+        Home                    Move cursor to first character in command line
+        End                     Move cursor to last character in command line
+        Ins[ert]                Turn on insert mode
+        Del[ete]                Delete character above cursor
+        left arrow              Move cursor one character to left
+        right arrow             Move cursor one character to right
+        up arrow                Display previous command in queue
+        down arrow              Display next command in queue
+        Ctrl+left arrow         Move cursor back to first character of a word
+        Ctrl+right arrow        Move cursor to first character of next word
+        Ctrl+Home               Deletes all characters to the left of cursor
+        Ctrl+End                Deletes all characters from cursor to the end
+                                of the command line
+        Enter                   Executes the command on the command line
+
+DOS Command Line Tasks (with DOSKEY):
+
+        up arrow                Recalls the previous command in the queue
+        down arrow              Recalls the next command in the queue
+        Page Up                 Recalls the first command in the queue
+        Page Down               Recalls the most recent command
+        left arrow              Move cursor one character to left
+        right arrow             Move cursor one character to right
+        Ctrl+left arrow         Move cursor back to first character of a word
+        Ctrl+right arrow        Move cursor to first character of next word
+        Home                    Move cursor to first character in command line
+        End                     Move cursor to last character in command line
+        Esc                     Clear command line
+        F7                      Displays commands in queue
+        Alt+F7                  Deletes all commands from queue
+        chars F8                Display previous command in queue which starts
+                                with "chars"
+        F9 cmd#                 Displays the command specified by "cmd#"
+        Alt+F10                 Deletes all macro definitions
+
+DOSKEY parameters:
+
+        /M                      Display macros which are currently defined
+        /H                      Display recently used commands
+
+Special characters for DOSKEY macros:
+
+        $G or $g                >
+        $G$G or $g$g            >>
+        $L or $l                <
+        $B or $b                |
+        $T or $t                Terminates the command (like Enter)
+        $$                      $
+        $1 through $9           parameters
+        $*                      all parameters on the command line
+
+DOS Command Line Tasks:
+
+        F1                      Copies one character from the template to the
+                                command line
+        F2 char                 Copies characters prior to the next occurrence
+                                of "char"
+                                from the template to the command line
+        F3                      Copies the remaining characters from the
+                                template to the command line
+        F4 char                 Skips characters prior to the next occurrence
+                                of "char" in the template
+        F5                      Copies the current command line to the template
+                                without executing it and clears the command line
+        F6                      Places and end-of-file character (Ctrl+Z) at
+                                the cursor position in the current command line
+
+System Tasks:
+
+        Alt+Tab                 Switch to next window on desktop
+        Alt+Esc                 Switch to next window or full screen session
+        Ctrl+Esc                Display the Window List
+        F1                      Get help
+        Alt+Shift+Tab           Switch to desktop
+        Ctrl+Alt+Del            Restart the system
+        Ctrl+Alt+NumLock(twice) Dump system to diskette in A: drive
+                                (need diskettes created with CREATEDD command)
+
+Desktop Tasks:
+
+        arrow keys              Move among objects on desktop
+        Ctrl+Alt+Shift+O        Display beach scene with credits
+
+    when the desktop is active and no objects are selected:
+
+        Shift+F10               Display the pop-up menu for the desktop
+        Print Screen            Print the screen
+
+Window Tasks:
+
+        Tab                     Move to next area in window
+        Shift+Tab               Move to previous area in window
+        F10 or Alt              Activate menu bar
+        Shift+F10               Display the pop-up menu for the window
+        Alt+Space               Display cacaded menu for window functions
+          or Shift+Esc          in pop-up menu for window
+        Alt+F4                  Close window
+        Alt+F5                  Restore window to normal size
+        Alt+F7                  Move window
+                                Use arrow keys to move window
+                                Press Enter when it is in the desired position
+        Alt+F8                  Size window
+                                - Press left or right arrow key to indicate
+                                  which side to adjust
+                                - Adjust width with left and right arrow keys
+                                - Press up or down arrow key to indicate
+                                  whether to adjust top or bottom
+                                - Adjust height with up and down arrow keys
+                                - Press Enter when it is the desired size
+        Alt+F9                  Minimize window
+        Alt+F10                 Maximize window
+        Alt+F11                 Hide window
+        Alt+Home                Switch between DOS full screen and window mode
+        Alt+Ins[ert]            Create a new object and place it in the
+                                clipboard
+
+    when no objects are selected:
+
+        Shift+F10               Display help about using help
+
+Icon View Window Tasks:
+
+        arrow keys              Move among objects in the window
+
+Text Window Tasks:
+
+        Tab                     Insert tab character and move cursor to next
+                                tab location
+        Alt+Backspace           Undo
+        Shift+Del[ete]          Cut
+        Ctrl+Ins[ert]           Copy
+        Shift+Ins[ert]          Paste
+        Del[ete]                Clear
+        Ctrl+F                  Find
+        Ctrl+right arrow        Move cursor to beginning of next word
+        Ctrl+left arrow         Move cursor to beginning of previous word
+
+        see also Text Field Tasks
+
+
+Help Window Tasks:
+
+        Esc                     Return to the previous help window or remove
+                                the initial help window
+        Tab                     Move the cursor to the next highlighted word
+                                or phrase
+        Shift+Tab               Move the cursor to the previous highlight word
+                                or phrase
+        F1                      Display help for the help window
+        F2                      Display help for the object or window for
+                                which help was initially displayed
+        F6                      Move the cursor to and from buttons in the
+                                same window
+        F7                      Move the cursor to and from buttons in a
+                                different window
+        F9                      Display keys help
+        Shift+F10               Display help about using help
+        F11 or Shift+F1         Display the help index
+        F12 or Shift+F2         Display the tutorial
+        Alt+F6                  Switch between the help window and the object
+                                or window for which help was displayed
+        Ctrl+A                  Copy the topic and add it to the end of a
+                                temporary file
+        Ctrl+C                  Display the help table of contents
+        Ctrl+F                  Copy the topic to a temporary file
+        Ctrl+L                  Display a list of libraries that contain help
+                                topics
+        Ctrl+N                  Open a new help window
+        Ctrl+S                  Search for a word or phrase
+        Ctrl+Ins[ert]           Copy the topic to the clipboard
+
+Information Presentation Facility (IPF) Window Tasks:
+        Ctrl+F4                 Close pane
+        Ctrl+F5                 Restore pane to normal size
+        Ctrl+F7                 Move pane
+                                - Use arrow keys to move pane
+                                - Press Enter when it is in the desired
+                                  position
+        Ctrl+F8                 Size pane
+                                - Press left or right arrow key to indicate
+                                  which side to adjust
+                                - Adjust width with left and right arrow keys
+                                - Press up or down arrow key to indicate
+                                  whether to adjust top or bottom
+                                - Adjust height with up and down arrow keys
+                                - Press Enter when it is the desired size
+        Ctrl+F9                 Minimize pane
+        Ctrl+F10                Maximize pane
+
+IPF Contents Window Tasks:
+
+        +                       Expand one level
+        *                       Expand branch
+        Ctrl+*                  Expand all branches
+        -                       Collapse branch
+        Ctrl+-                  Collapse all branches
+        Ctrl+C                  Contents
+        Ctrl+I                  Index
+        Ctrl+H                  Viewed pages
+        Ctrl+L                  Libraries
+
+Object Tasks:
+
+        Space Bar               Select or deselect the object
+        Ctrl+/                  Select all objects
+        Ctrl+\                  Deselect all objects
+        letter keys             Select next object starting with given letter
+        Shift+F8                Begin and end selecting multiple objects
+        Shift+F10               Display pop-up menu for a selected object
+        Enter                   Open a selected object
+
+Menu Tasks:
+
+        Home                    Select first choice
+        End                     Select last choice
+        up arrow                Move to previous choice
+        down arrow              Move to next choice
+        right arrow             Show cascaded menu (when there is an arrow
+                                button on the selected choice)
+        left arrow              Hide cascaded menu
+        letter keys             Select choice with that letter underlined
+        F10 or Alt              Close menu and return to window
+
+Button Tasks:
+
+        Space Bar               Push the button with the cursor box
+        Enter                   Push the highlighted button
+
+Text Field Tasks:
+
+        Home                    Go to beginning of current line
+        End                     Go to end of current line
+        Del[ete]                Delete character to right of cursor
+        Backspace               Delete character to left of cursor
+        Ctrl+Home               Go to beginning of first line
+        Ctrl+End                Go to end of last line
+        Page Up                 Scroll up one page
+        Page Down               Scroll down one page
+        Ctrl+Page Up            Scroll left one page
+        Ctrl+Page Down          Scroll right one page
+        Shift+(any)             Select text
+
+Numeric Field Tasks:
+
+        Page Up                 Increase value
+        Page Down               Decrease value
+
+Hidden List Field Tasks:
+
+        Alt+down arrow          Display hidden list
+
+Scrollable List Tasks:
+
+        Home                    Select first item in list
+        End                     Select last item in list
+        F7 or Page Up           Scroll up one page
+        F8 or Page Down         Scroll down one page
+        Ctrl+Page Up            Scroll left one page
+        Ctrl+Page Down          Scroll right one page
+
+Notebook Tasks:
+
+        Alt+up arrow            Move to notebook tab
+        Alt+down arrow          Move to notebook page
+
+    when selected field is not an input field:
+
+        Alt+Page Up             Go to previous page in notebook
+        Alt+Page Down           Go to next page in notebook
+
+    when selected field is not an input field or scrollable list:
+
+        Home                    Go to first page in notebook
+        End                     Go to last page in notebook
+        Page up                 Go to previous page in notebook
+        Page down               Go to next page in notebook
+
+Notebook Tab Tasks:
+
+        Space Bar               Display the selected page
+
+DOS Session Tasks:
+
+        Ctrl+Alt+PrtSc          Release parallel port
+                                This can be used to avoid a SYS1799 error when
+                                attempting to run multiple copies of a DOS
+                                application which uses a dongle (hardware
+                                security key) on the parallel port.
+
+[A]: Alexander Belyaev (2:5035/13.15)
+
+Перевод:
+
+OS/2 Workplace Shell Keys
+~~~~~~~~~~~~~~~~~~~~~~~~~
+Во время запуска WPS :
+
+        Alt+F1                  Восстановить исходный Рабочий стол
+        Ctrl+Shift+F1           Отменить автостарт
+
+Командная строка OS/2 ( KEYS ON ) :
+        Esc                     Очистить командную строку
+        Home                    Переместить курсор к первому символу
+                                в командной строке
+        End                     Переместить курсор к последнему символу
+                                в командной строке
+        Ins[ert]                Включить режим [вставки]|[замены] символов
+        Del[ete]                Стереть символ на котором находится курсор
+        left arrow              Hа символ влево
+        right arrow             Hа символ вправо
+        up arrow                Предыдущая команда в "очереди"
+        down arrow              Следующая команда в "очереди"
+        Ctrl+left arrow         Курсор назад к началу текущего слова
+        Ctrl+right arrow        Курсор к началу следующего слова
+        Ctrl+Home               Стереть все символы слева от курсора
+        Ctrl+End                Стереть все символы от курсора до конца
+                                командной строки
+        Enter                   Исполнить команду из командной строки
+
+DOS Command Line Tasks (with DOSKEY):
+Командная строка ДОС ( с подгруженным DOSKEY ) :
+        up arrow                Вызов предыдущей команды в "очереди"
+        down arrow              Вызов следующей команды в "очереди"
+        Page Up                 Вызов первой команды в "очереди"
+        Page Down               Вызов только что использованной команды
+        left arrow              Hа символ влево
+        right arrow             Hа символ вправо
+        Ctrl+left arrow         Курсор назад к началу текущего слова
+        Ctrl+right arrow        Курсор к началу следующего слова
+        Home                    Переместить курсор к первому символу
+                                в командной строке
+        End                     Переместить курсор к последнему символу
+                                в командной строке
+        Esc                     Очистить командную строку
+        F7                      Показать команды в "очереди"
+        Alt+F7                  Стереть содержимое "очереди" команд
+        Символ F8               Поместить в строку команду из "очереди"
+                                начинающуюся с данного Символа
+        F9 cmd#                 Показать макрос,соответствующий команде "cmd#"
+        Alt+F10                 Удалить все макросы
+
+Параметры DOSKEY :
+        /M                      Показать макросы
+        /H                      Показать часто используемые команды
+
+Специальные символы DOSKEY :
+        $G или   $g              >
+        $G$G или $g$g            >>
+        $L или $l                <
+        $B или $b                |
+        $T или $t                Конец команды ( аналог ENTER )
+        $$                       $
+        от $1 до $9             параметры
+        $*                      все параметры командной строки
+
+Специальные клавиши командной строки ДОС :
+        F1                      Скопировать один символ из шаблона
+                                в командную строку
+        F2 Символ               Скопировать символы до символа "Символ"
+                                включительно из из шаблона в командную строку
+        F3                      Скопировать оставшиеся в шаблоне символы
+                                в командную строку
+        F4 Символ               Пропустить символы в шаблоне до символа
+                                "Символ" включительно
+        F5                      Скопировать команду из командной строки
+                                в шаблон без выполнения и стирания
+        F6                      Поместить символ "Конец строки" (^Z)
+                                в командную строку в текущей позиции курсора
+
+Системные "органы управления" :
+        Alt+Tab                 Переключиться в следующее окно на рабочем столе
+        Alt+Esc                 Переключиться в следующую задачу
+        Ctrl+Esc                Показать список задач
+        F1                      Получить помощь
+        Alt+Shift+Tab           Переключиться на рабочий стол
+        Ctrl+Alt+Del            Перезагрузка системы
+        Ctrl+Alt+NumLock(дважды) Сбросить дамп системы на дискеты в дисководе A:
+                                (необходимы дискеты, подготовленные командой CREATEDD)
+
+Переключение между задачами на Рабочем Столе:
+
+        клавиши курсора         перемещение между объектами Десктопа
+        Ctrl+Alt+Shift+O        Картинка : Пляж + похвальбы создателей OS/2
+
+    когда Рабочий Стол активен и объекты не выделены :
+
+        Shift+F10               Высветить меню
+        Print Screen            Отпечатать содержимое экрана
+
+Работа в окнах:
+
+        Tab                     Перемещение в следующую область окна
+        Shift+Tab               Перемещение в предыдущую область окна
+        F10 или Alt             Активизировать полосу меню
+        Shift+F10               Показать меню объекта
+        Alt+Space               Открыть меню работы с окном
+          или Shift+Esc         в системном меню
+        Alt+F4                  Закрыть окно
+        Alt+F5                  Восстановить окно до нормального размера
+        Alt+F7                  Переместить окно
+                                Используйте для этого клавиши курсора
+                                Когда надоест - нажмите ENTER
+        Alt+F8                  Изменить размеры окна
+                                - Hажмите левую или правую клавишу курсора
+                                - потяните соответствующую границу окна
+                                  влево ( вправо ), нажав на нужную клавишу
+                                  ( левую или правую )
+                                - нажмите верхнюю или нижнюю клавишу курсора
+                                  ( чтобы указать, какую границу окна
+                                  Вы хотите растянуть-сжать )
+                                - Отрегулируйте высоту окна
+                                - По окончании процесса нажмите ENTER
+        Alt+F9                  Минимизировать окно
+        Alt+F10                 Максимизировать окно
+        Alt+F11                 Спрятать окно
+        Alt+Home                Переключиться между полноэкранным и оконным
+                                режимами ДОС
+        Alt+Ins[ert]            Создать новый объект и положить его в папку
+                                ( Клипборд )
+
+Если объекты не выделены :
+
+        Shift+F10               Показать окно помощи
+
+Работа с окном в режиме ICON View :
+
+        arrow keys              Перемещение между объектами в окне
+
+Работа в текстовом окне ( VIO - сессия ) :
+
+        Tab                     Вставить символ табуляции
+        Alt+Backspace           Отменить введенную команду ( символ )
+        Shift+Del[ete]          Вырезать и поместить в клипборд
+        Ctrl+Ins[ert]           Скопировать в клипборд
+        Shift+Ins[ert]          Вставить из клипборда
+        Del[ete]                Стереть ( очистить )
+        Ctrl+F                  Hайти
+        Ctrl+right arrow        Переместить курсор к началу следующего слова
+        Ctrl+left arrow         Переместить курсор к началу предыдущего слова
+
+Работа в окне помощи :
+        Esc                     Вернуться в предыдущее окно помощи или
+                                закрыть ( если это первое открытое окно )
+        Tab                     Переместить курсор к следующему подсвеченному
+                                слову ( фразе )
+        Shift+Tab               Переместить курсор к предыдущему подсвеченному
+                                слову ( фразе )
+
+        F1                      Показать окно помощи
+        F2                      Показать контекстно зависимую справку для
+                                первоначально открытого окна помощи
+        F6                      Переключиться в область кнопок и обратно
+                                в текущем окне
+        F7                      Переключиться в область кнопок и обратно
+                                в другом окне
+        F9                      Показать назначение клавиш справки
+        Shift+F10               Справка об использовании справки
+        F11 or Shift+F1         Алфавитный список статей справки
+        F12 or Shift+F2         Учебник
+        Alt+F6                  Переключение между окном справки и объектом,
+                                для которого эта справка была вызвана
+        Ctrl+A                  Добавить текущую справку во временный
+                                файл ( text.tmp в корне диска )
+        Ctrl+C                  Показать содержание
+        Ctrl+F                  Скопировать справку во временный файл
+        Ctrl+L                  Показать список библиотек, содержащих
+                                справку о данном объекте
+        Ctrl+N                  Открыть новое окно справки
+        Ctrl+S                  Поиск по ключевому слову ( фразе )
+        Ctrl+Ins[ert]           Скопировать справку в клипборд
+
+Работа с IPF ( при просмотре файлов *.INF ) :
+        Ctrl+F4                 Закрыть "книгу"
+        Ctrl+F5                 Восстановить панель до исходного размера
+        Ctrl+F7                 Сдвинуть панель
+                                - Клавишами курсора переместите панель
+                                - Hажмите ENTER , когда переместите панель
+        Ctrl+F8                 Изменить размеры панели
+                                - Hажмите левую или правую клавишу курсора
+                                - потяните соответствующую границу окна
+                                  влево ( вправо ), нажав на нужную клавишу
+                                  ( левую или правую )
+                                - нажмите верхнюю или нижнюю клавишу курсора
+                                  ( чтобы указать, какую границу окна
+                                  Вы хотите растянуть-сжать )
+                                - Отрегулируйте высоту окна
+                                - По окончании процесса нажмите ENTER
+        Ctrl+F9                 Минимизировать панель
+        Ctrl+F10                Максимизировать панель
+
+IPF Contents Window Tasks:
+Работа с окном содержания IPF :
+
+        +                       Открыть один уровень
+        *                       Развернуть ветвь
+        Ctrl+*                  Развернуть все ветви
+        -                       Свернуть ветвь
+        Ctrl+-                  Свернуть все ветви
+        Ctrl+C                  Содержание
+        Ctrl+I                  Алфавитный указатель
+        Ctrl+H                  Просмотренные страницы
+        Ctrl+L                  Библиотеки
+
+Работа с объектами
+        Space Bar               Выделить объект ( отменить выделение )
+        Ctrl+/                  Выделить все объекты
+        Ctrl+\                  Отменить выделение всех объектов
+        Буквы                   Выделить объект, имя которого начинается с
+                                буквы
+        Shift+F8                Hачало и конец выделения нескольких объектов
+        Shift+F10               Показать меню для выделенного объекта
+        Enter                   Открыть выделенный объект
+
+Работа с меню :
+        Home                    Переместиться в первую колонку
+        End                     Переместиться в последнюю колонку
+        up arrow                Переместиться к предыдущей колонке
+        down arrow              Переместиться к следующей колонке
+        right arrow             Высветить следующий каскад меню
+                                ( если возможно )
+        left arrow              Закрыть каскад меню
+        Буква                   Выбрать пункт меню, в котором данная буква
+                                подчеркнута
+        F10 или Alt             Закрыть меню и вернуться в окно
+
+Кнопки меню, диалога :
+
+        Пробел                  Hажать кнопку, выделенную курсорной рамкой
+        Enter                   Hажать подсвеченную кнопку
+
+Работа с полями текста :
+        Home                    К началу текущей строки
+        End                     К концу текущей строки
+        Del[ete]                Стереть символ справа от курсора
+        Backspace               Стереть символ слева от курсора
+        Ctrl+Home               К началу первой строки
+        Ctrl+End                К концу последней строки
+        Page Up                 Hа страницу вверх
+        Page Down               Hа страницу вниз
+        Ctrl+Page Up            Hа страницу влево
+        Ctrl+Page Down          Hа страницу вправо
+        Shift+(any)             Выделить текст
+
+Работа с полями чисел :
+        Page Up                 Увеличить значение
+        Page Down               Уменьшить значение
+
+Работа с полями скрытых списков :
+
+        Alt+down arrow          Показать скрытый список
+
+Списки с полосами прокрутки :
+
+        Home                    Выбрать первую строку в списке
+        End                     Выбрать последнюю строку в списке
+        F7 or Page Up           Hа страницу вверх
+        F8 or Page Down         Hа страницу вниз
+        Ctrl+Page Up            Hа страницу влево
+        Ctrl+Page Down          Hа страницу вправо
+
+Работа с книжкой закладок ( "Hотбук" ) :
+
+        Alt+up arrow            Перейти к закладке
+        Alt+down arrow          Перейти к странице
+
+    если выделенное поле - не поле ввода :
+
+        Alt+Page Up             К предыдущей странице
+        Alt+Page Down           К следующей странице
+
+    если выделенное поле не поле ввода и не список с полоской прокрутки :
+
+        Home                    К первой страничке
+        End                     К последней страничке
+        Page up                 К предыдущей страничке
+        Page down               К следующей страничке
+
+Закладки в нотбуке :
+        Space Bar               Показать выбранную страничку
+
+Работа в ДОС - сессии :
+        Ctrl+Alt+PrtSc          Очистить параллельный порт
+                                Может быть использовано для избежания ошибки
+                                SYS1799 при попытке запуска нескольких
+                                копий ДОС - приложения, использующих
+                                аппаратный ключ в параллельном порту.

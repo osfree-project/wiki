@@ -1,0 +1,60 @@
+{{page>en:templates:fapiint}}
+
+====== MouDeRegister ======
+
+
+This call deregisters a mouse subsystem previously registered within a session. 
+
+===== Syntax =====
+<code c>
+ MouDeRegister ()
+</code>
+===== Parameters =====
+
+N/A
+
+===== Return Code =====
+
+rc (USHORT) - return:Return code descriptions are:
+
+  * 0 NO_ERROR
+  * 385 ERROR_MOUSE_NO_DEVICE
+  * 416 ERROR_MOUSE_DEREGISTER
+  * 466 ERROR_MOU_DETACHED
+  * 505 ERROR_MOU_EXTENDED_SG
+
+===== Remarks =====
+
+Processes issuing MouDeRegister calls must conform to the following rules:
+
+  *The process that issued the MouRegister must release the session (by a MouDeRegister) from the registered subsystem before another PID may issue MouRegister. 
+  *The process that issued the MouRegister is the only process that may issue MouDeRegister against the currently registered subsystem. 
+  *After the owning process has released the subsystem with a MouDeRegister, any other process in the session may issue a MouRegister and therefore modify the mouse support for the entire session.
+
+===== Bindings =====
+
+==== C ====
+<code c>
+#define INCL_MOU
+
+USHORT  rc = MouDeRegister(VOID);
+
+USHORT  rc;            /* return code */
+</code>
+
+====MASM====
+<code asm>
+EXTRN  MouDeRegister:FAR
+INCL_MOU            EQU 1
+
+CALL   MouDeRegister
+
+Returns WORD
+</code>
+
+===== Related Functions =====
+
+[[MouRegister]] 
+
+
+{{page>en:templates:fapi}}

@@ -1,0 +1,25 @@
+^ Function ^ Description ^ Status ^ Version ^
+| 00h | Get XMS Version Number | | |
+| 01h | Request High Memory Area | | |
+| 02h | Release High Memory Area | | |
+| 03h | Global Enable A20 | | |
+| 04h | Global Disable A20 | | |
+| 05h | Local Enable A20 | | |
+| 06h | Local Disable A20 | | |
+| 07h | Query A20 | | |
+| 08h | Query Free Extended Memory | | |
+| 09h | Allocate Extended Memory Block | | |
+| 0Ah | Free Extended Memory Block | | |
+| 0Bh | Move Extended Memory Block | | |
+| 0Ch | Lock Extended Memory Block | | |
+| 0Dh | Unlock Extended Memory Block | | |
+| 0Eh | Get Handle Information | | |
+| 0Fh | Reallocate Extended Memory Block | | |
+| 10h | Request Upper Memory Block | | |
+| 11h | Release Upper Memory Block | | |
+| 12h | Realloc Upper Memory Block | | |
+| 88h | Query any Free Extended Memory | | |
+| 89h | Allocate any Extended Memory Block | | |
+| 8Eh | Get Extended EMB Handle | | |
+| 8Fh | Realloc any Extended Memory | | |
+      

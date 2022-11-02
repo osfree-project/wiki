@@ -1,0 +1,7 @@
+==== Startseite der Dokumentation des Boot-Teams ====
+
+Hier finden Sie Informationen über den derzeitig in Entwicklung befindlichen osFree-Bootvorgang.
+
+  * [[de:docs:boot:freeldr|osFree Bootsequenz]]
+
+~~DISCUSSION~~

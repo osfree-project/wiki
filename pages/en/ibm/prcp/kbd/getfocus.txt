@@ -1,0 +1,55 @@
+==== KbdGetFocus ====
+
+**Bindings**: [[getfocus#C bindings|C]], [[getfocus#MASM bindings|MASM]]
+
+This call binds the logical keyboard to the physical keyboard. 
+
+KbdGetFocus (IOWait, KbdHandle) 
+
+//IOWait// (**USHORT**) - input 
+Wait if the physical keyboard is already in use by a logical keyboard. 
+
+^Value ^Definition ^
+|0 |Indicates that the caller wants to wait for the bond. |
+|1 |Indicates that the caller does not want to wait for the bond. |
+
+//KbdHandle// (**HKBD**) - input 
+Default keyboard or the logical keyboard. 
+
+//rc// (**USHORT**) - return 
+Return code descriptions are: 
+
+|0 |NO_ERROR |
+|439 |ERROR_KBD_INVALID_HANDLE |
+|446 |ERROR_KBD_FOCUS_ALREADY_ACTIVE |
+|447 |ERROR_KBD_KEYBOARD_BUSY |
+|464 |ERROR_KBD_DETACHED |
+|504 |ERROR_KDB_EXTENDED_SG |
+
+The keyboard handle identifies which logical keyboard to bind to. If the physical keyboard is not bound to a logical or default keyboard, then the bind proceeds immediately. The logical keyboard, identified by the handle, receives all further key strokes from the physical keyboard. If the physical keyboard is already in use by a logical keyboard, then the thread issuing //KbdGetFocus// waits until the bond can be made. Waiting threads do not execute in any definable order. 
+
+=== C bindings ===
+
+<code c>
+#define INCL_KBD
+
+USHORT  rc = KbdGetFocus(IOWait, KbdHandle);
+
+USHORT           IOWait;        /* Indicate if wait */
+HKBD             KbdHandle;     /* Keyboard handle */
+
+USHORT           rc;            /* return code */
+</code>
+
+=== MASM bindings ===
+
+<code asm>
+EXTRN  KbdGetFocus:FAR
+INCL_KBD            EQU 1
+
+PUSH   WORD    IOWait        ;Indicate if wait
+PUSH   WORD    KbdHandle     ;Keyboard handle
+CALL   KbdGetFocus
+
+Returns WORD
+</code>

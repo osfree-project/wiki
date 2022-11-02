@@ -1,0 +1,65 @@
+[Q]: Как запyстить WinOS/2 из 2.1 под WARP?
+
+[A]: Ronald Van Iwaarden (rvaniwaa@carbon.denver.colorado.edu)
+
+   I just installed a copy of the Gold OS/2 WARP 3.0 and wanted to run my
+WinOS/2 from 2.1 under WARP.  I now have both fullscreen and seemless support
+for WinOS/2.  This is how I did it:
+
+1) Copy the os2\mdos\winos2 tree to another drive, say g:.
+   To do this, here are the steps:
+   a) mkdir g:\os2
+   b) mkdir g:\os2\mdos
+   c) g:
+   d) cd \os2\mdos
+   e) xcopy /s c:\os2\mdos\winos2 .
+2) Install WARP on the original drive.
+3) Insert disk 9, go to your root drive and type the following:
+   unpack a:\winbase
+4) add the following lines to your config.sys:
+   device=c:\os2\mdos\vwin.sys
+   device=c:\os2\mdos\vw32s.sys
+5) In config.sys put g:\os2\mdos\winos2 in your path and dpath
+6) In autoexec.bat, put g:\os2\mdos\winos2 in the path.
+
+   Note that this is not supported by IBM and may result in all data on your
+hard drive being lost.  I will take no responsibility for any damage that
+occurs due to your implementation of the above.
+
+   However, if you want version 3.0 but need to run Windows progs, this is a
+way to get away without giving any more $ to MS and you get OS/2 fullpack now
+rather than in 1995!
+
+[A]: Alexander Belyaev (2:5035/13.15)
+
+Перевод:
+
+Я только что установил себе OS/2 Warp 3.0 и захотел запустить WinOS/2 от
+предыдущей версии. Теперь у меня есть поддержка полноэкранной WinOS/2 и
+WinOS/2 в окне.
+
+Вот как я это сделал :
+
+1) Скопировал дерево os2\mdos\winos2  на другой диск ( например, g: )
+   Для этого нужно выполнить следующие команды :
+   a) mkdir g:\os2
+   b) mkdir g:\os2\mdos
+   c) g:
+   d) cd \os2\mdos
+   e) xcopy /s c:\os2\mdos\winos2 .
+
+2) Установил WARP 3.0 на нужный диск.
+3) Вставил диск 9 в дисковод, зашел в корневой каталог
+раздела с осью и набрал команду
+   unpack a:\winbase
+
+4) Добавил следующие строчки в config.sys:
+   device=c:\os2\mdos\vwin.sys
+   device=c:\os2\mdos\vw32s.sys
+5) В config.sys поместил g:\os2\mdos\winos2 в строки path и dpath
+6) В autoexec.bat поместил g:\os2\mdos\winos2 в строку path.
+
+Предупреждаю, что эти действия не поддерживаются IBM, в результате все
+ваши данные могут быть потеряны.
+Hо если вам хочется получить OS/2 3.0 с поддержкой WinOS, но не хочется
+отдавать за это свои кровные доллары фирме Micro$oft, то это выход.

@@ -1,0 +1,52 @@
+{{page>en:templates:dpmi}}
+
+====== Int 31H, AH=06H, AL=01H ======
+
+===== Version =====
+
+0.9
+
+===== Brief =====
+
+Unlock Linear Region
+
+===== Input =====
+
+  AX = 0601H
+  BX:CX = starting linear address of memory to unlock
+  SI:DI = size of region to unlock (bytes)
+    
+===== Return =====
+
+  if function successful
+  Carry flag = clear
+  
+  if function unsuccessful
+  Carry flag = set
+  AX = error code
+  8002H	invalid state (page not locked)
+  8025H	invalid linear address (unallocated pages)
+
+===== Notes =====
+
+Unlocks a linear address range that was previously locked using the Lock Linear Region function (Int 31H Function 0600H).
+
+
+If the function returns an error, none of the memory has been unlocked.
+
+If the specified region overlaps part of a page at the beginning or end of the region, the page(s) will be unlocked.
+
+A lock count is maintained for each locked page; the page is not unlocked until the lock count is decremented to zero (i.e. the number of Lock Region Int 31H Function 0600H calls has been balanced by the same number of Unlock Region Int 31H Function 0601H calls).
+
+This function is ignored by DPMI implementations that do not support virtual memory; the function will return the Carry flag clear to indicate success, but has no other effect. DPMI hosts which support virtual memory may also choose to ignore this function, but such hosts must be able to handle page faults transparently at arbitrary points during a client's execution, including within interrupt and exception handlers. 
+
+===== See also =====
+
+   
+
+===== Note =====
+
+Text based on [[http://www.delorie.com/djgpp/doc/dpmi/]]
+
+{{page>en:templates:dpmi:int}}
+

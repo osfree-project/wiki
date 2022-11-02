@@ -1,0 +1,41 @@
+{{page>en:templates:dpmi}}
+
+====== Int 31H, AH=09H, AL=01H ======
+
+===== Version =====
+
+0.9
+
+===== Brief =====
+
+Get and Enable Virtual Interrupt State
+
+===== Input =====
+
+  AX = 0901H
+    
+===== Return =====
+
+  Virtual interrupts enabled
+  Carry flag = clear (this function always succeeds)
+  AL = 0 if virtual interrupts were previously disabled
+  AL = 1 if virtual interrupts were previously enabled
+
+===== Notes =====
+
+Enables the virtual interrupt flag and returns the previous state of the virtual interrupt flag.
+
+AH is not changed by this function. Therefore, the previous state can be restored by simply executing another Int 31H. See Int 31H Function 0900H.
+
+A client that does not need to know the prior interrupt state can execute the STI instruction rather than calling this function. The instruction may be trapped by the host and should be assumed to be very slow.
+
+===== See also =====
+
+   
+
+===== Note =====
+
+Text based on [[http://www.delorie.com/djgpp/doc/dpmi/]]
+
+{{page>en:templates:dpmi:int}}
+

@@ -1,0 +1,46 @@
+{{page>en:templates:dpmi}}
+
+====== Int 31H, AH=00H, AL=01H ======
+
+===== Version =====
+
+0.9
+
+===== Brief =====
+
+ Frees an LDT descriptor.
+
+===== Input =====
+
+   AX = 0001H
+   BX = selector for the descriptor to free
+
+===== Return =====
+
+  if function successful
+  Carry flag = clear
+  
+  if function unsuccessful
+  Carry flag = set
+  AX = error code
+  8022H	invalid selector
+  
+===== Notes =====
+
+Each descriptor allocated with Int 31H Function 0000H must be freed individually with this function, even if it was previously allocated as part of a contiguous array of descriptors.
+
+Under DPMI 1.0 hosts, any segment registers which contain the selector being freed are zeroed by this function.
+
+Refer to the rules for descriptor usage in Appendix D.
+          
+===== See also =====
+
+   
+
+===== Note =====
+
+Text based on [[http://www.delorie.com/djgpp/doc/dpmi/]]
+
+{{page>en:templates:dpmi:int}}
+
+

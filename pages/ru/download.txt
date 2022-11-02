@@ -1,0 +1,26 @@
+===== Последние файлы, доступные для скачивания =====
+
+Основная часть файлов osFree в данный момент доступна для скачивания через GitHub. В текущее время проект osFree находится в глубокой альфа-стадии. Для тестиования доступен ряд файлов в виде инсталляционных пакетов, кроме того, для просмотра доступны исходники через WebGit. Кроме того, есть прямой анонимный доступ к Git: [[https://github.com/osfree-project/osfree/|наш репозиторий]], используя ваш любимый Git-клиент. Более подробно о доступе к информации через Git вы можете прочитать на сайте [[https://github.com|GitHub]]. Тем не менее, основная часть этой информации есть на этом сайте.
+
+Также, доступен наш [[en:demo|Демо CD]].
+
+|{{logos:iso.png?20x20}} |{{downloads:osfree-demo-0.0.4.8.zip?nocache|osFree 0.0.4.8 ISO image}} |
+|{{logos:iso.png?20x20}} |{{downloads:osfree-demo-0.0.4.7-cc-edition.7z?nocache|osFree 0.0.4.7 CC Edition ISO image}} |
+|{{logos:iso.png?20x20}} |{{downloads:osfree-demo-0.0.4.6.zip?nocache|osFree 0.0.4.6 ISO image}} |
+|{{logos:iso.png?20x20}} |{{downloads:osfree-demo-0.0.4.5.zip?nocache|osFree 0.0.4.5 ISO image}} |
+|{{logos:iso.png?20x20}} |{{downloads:osfree-demo-0.0.4.1.zip?nocache|osFree 0.0.4.1 ISO image}} |
+|{{logos:iso.png?20x20}} |{{downloads:osfree-demo-0_0_4.zip?nocache|osFree 0.0.4 ISO image}} |
+|{{logos:zip.png?20x20}} |{{downloads:os3-dos-cmd_wpi.zip?nocache|Утилиты командной строки DOS osFree 0.0.3.1}} |
+|{{logos:zip.png?20x20}} |{{downloads:os3-os2-cmd-0_0_3_1_wpi.zip?nocache|Утилиты командной строки OS/2 osFree 0.0.3.1}} |
+|{{logos:zip.png?20x20}} |{{downloads:os3-os2-rexx_wpi.zip?nocache|osFree OS/2 Personality Classic REXX 0.0.2}} |
+|{{logos:zip.png?20x20}} |{{downloads:os3-os2-mm_wpi.zip?nocache|osFree OS/2 Personality Multimedia Subsystem 0.0.2}} |
+
+==== Более старые файлы ====
+
+|{{logos:zip.png?20x20}} |{{downloads:os3-os2-cmd_wpi.zip?nocache|osFree OS/2 Personality Command Line Tools 0.0.3}} |
+
+==== Исходный код osFree ====
+
+|{{logos:git.png?20x20}} |[[https://github.com/osfree-project/osfree/|Просмотр репозитория исходного кода osFree на GitHub через веб-интерфейс]] (здесь же можно скачать и последний снапшот) |
+
+~~DISCUSSION~~

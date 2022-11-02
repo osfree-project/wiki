@@ -1,0 +1,70 @@
+===== Информация о номере сборки бинарника =====
+
+Каждый исполняемый файл osFree сщдержит строку с информацией о номере сборки (buildlevel). Обычно эта информация размещается в ресурсах, но также может быть в секциях кода или данных.   
+
+Обычное место для информации о build level это строка DESCRIPTION в DEF-файле:
+
+<code>
+Description '@#osFree:9.23#@Control utility for ANSI'   
+</code>
+
+==== Минимальная  информация о build level ====
+
+Часто используется следующий синтаксис информации о build level:  
+
+<code>@#<Vendor>:<Revision>#@<Description></code>
+
+где <Vendor>, <Revision> и <Description> -- ASCII строки с соответствующей информацией. В EDM/2 [[http://www.edm2.com/index.php/Adding_BLDLEVEL_information_to_executables]] упомянуты некоторые ограничения для полей <Vendor>, <Revision> и <Description>, но в реальности, длина может быть любой и формат версии тоже может быть любым. Например, такое бывает во многиз ревизиях OS2KRNL.
+
+Пример:   
+
+<code>Description '@#osFree:9.23#@Control utility for ANSI'</code>
+
+==== Расширенная информация о build level, Тип I ====
+
+Сервисы MPTN и TCP/IP в osFree (OS/2) используют расширенную информацию о build level. 
+В большинстве случаев, такая информация не хранится как 'Description', а как ASCII константа в сегменте кода. По этой причине, стандартная OS/2 утилита 'bldlevel' не работает с такими файлами. Синтаксис таков:   
+
+<code>@#<Vendor>:<Revision>#@##built <BuildDate> – on 
+<BuildHost>;0.1@@<Description>[:<SubDescription>[:<SubDescription>…]</code>
+
+где 
+
+  * <BuildDate> дата и время сборки
+  * <BuildHost> машина, на которой производилась сборка
+  * <SubDescription> более точное описание программнеого модуля
+
+Пример:   
+
+<code>Description '@#osFree:9.23#@##build 5 Oct 2003  15:00:00 – on RACERPC;0.1@@Command line tools:Control utility for ANSI'</code>
+
+==== Расширенная информация о build level, Тип II ====
+
+Другим самым известным, и самым сложным типом информации о build level являются следующий:
+
+<code>@#<Vendor>:<Revision>#@1## DD.MM.YY hh:mm:ss      <BuildHost>:<ASDFeatureID>:<LanguageCode>:<CountryCode>:<Build>:<Unknown>:<FixPackVer>@@<Description></code>
+
+где
+
+  * DD.MM.YY Дата сборки в виде день/месяц/год, предваряемая одним пробелом
+  * hh:mm:ss  время сборки в виде час/минута/секунда, предваряемая одним пробелом
+  * <BuildHost> имя машины, на которой производилась сборка, предваряемое 8 пробелами
+  * <ASDFeatureID> идентификатор ASD feature
+  * <LanguageCode> код языка компонента
+  * <CountryCode> код страны компонента
+  * <Build> порядковый номер сборки
+  * <Unknown> неизвестная информация (должна быть пустой)
+  * <FixPackVer> версия FixPack-а (если компонент распространяется в составе фикспака).
+
+Замечание: Если вы оставите дату или время билда пустыми, вы должны оставить такое же количество места в виде пробелов, которое занимают дата и время сборки.
+
+Пример:
+
+<code>Description '@#osFree:9.23#@##1##RACERPC:0:866:7:436::WRR8706@@Control utility for ANSI'</code>
+
+В нынешее время, много проектоа используют этот последний вид BLDLEVEL информации.
+==== Related links ====
+
+  * [[http://www.edm2.com/index.php/Adding_BLDLEVEL_information_to_executables|Adding BLDLEVEL information to executables]]
+
+~~DISCUSSION~~

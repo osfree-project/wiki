@@ -1,0 +1,17 @@
+=== File search records ===
+
+<code c>
+/* file system independent - file search parameters */
+
+struct fsfsi {
+        unsigned short  fsi_hVPB;       /* volume info. */
+};
+
+/* file system dependent - file search parameters */
+
+struct fsfsd {
+        char            fsd_work[24];   /* work area */
+};
+</code>
+
+Existing file systems that conform to the Standard Application Program Interface (Standard API) described in this section, may not necessarily support all the described information kept on a file basis. When this is the case, file system drivers are required to return to the application a null (zero) value for the unsupported parameter (when the unsupported data are a subset of the data returned by the API) or to return a ERROR_NOT_SUPPORTED error (when all of the data returned by the API is unsupported).   

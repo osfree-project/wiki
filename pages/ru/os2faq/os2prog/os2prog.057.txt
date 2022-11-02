@@ -1,0 +1,135 @@
+[Q]: Запись детальной информации об Exception'е
+
+[A]: George Shapovalov (2:5020/341.26)
+
+520 645│except3.zip
+
+EXCEPTQ in a 32 bit DLL which implements an exception handler which saves the
+registers in a file named xxxx.TRP (xxxx=Pid,Tid) together with the Loaded
+modules code and data objects addresses, and also the failing thread stack dump
+and the process status as given by DosQProcStatus. Trapperq is an IBM C/2
+program which shows how to implement the call to 32 bits exception handler from
+a 16:16 bits program. enter Trapperq to generate a trap and the xxxx.TRP file.
+You are free to use that code as a sample for your programs. No support or
+guarantee from me implied.
+
+Cheers Marc Fiammante
+
+    С трешкой работает, а с четверкой еще не собирал. Поищи на хоббесах или в
+домейне в примерах. Если не найдешь, я тебе на емейл кину.
+Вот пример работы:
+
+#pragma handler(main)
+#pragma map (_Exception,"MYHANDLER")
+
+#include <stdio.h>
+#include <stdlib.h>
+
+void TrapFunc(void);
+
+main(){
+    printf("Exception handler has been set by compiler\n");
+    printf("Generating the TRAP from function\n");
+    TrapFunc();
+}
+void TrapFunc() {
+    char * Test;
+    Test=0;
+    *Test=0;
+}
+
+
+Вот пример трап-файла:
+
+--------------------------
+Exception C0000005 Occurred
+ at 00:03:17  02/09/100
+Invalid linear address 00000000
+
+OS/2 Version 2.40
+Failing code module internal name : SAMPLE
+Failing code module file name : E:\TEMP\SAMPLE.EXE
+Failing code Object # 1 at Offset 58
+      File     Line#  Public Symbol
+  ──────────── ────-  ────────────-
+     SAMPLE.C     44  TrapFunc (sample.obj) 0001:00000048
+List of auto variables at EBP 28854 in TrapFunc:
+Offset Name                 Type                              Value
+────── ──────────────────── ───────────────────────────────── ─────────────────
+-4     Test                 near pointer to 8 bit unsigned    0x0 invalid
+
+
+┌─────────────────────────────────────────────────────────────┐
+│ GS  : 0000     FS  : 150B     ES  : 0053     DS  : 0053     │
+│ EDI : 00000000 ESI : 00000000 EAX : 00000000 EBX : 00000000 │
+│ ECX : 00000000 EDX : 00000004                               │
+│ EBP : 00028854 EIP : 00010058 EFLG: 00012206 ESP : 00028850 │
+│ CS  : 005B     SS  : 0053                                   │
+└─────────────────────────────────────────────────────────────┘
+
+ Failing instruction at CS:EIP : 005B:00010058 is  mov      [eax],00
+
+
+┌────────────────────────────────────┐
+│ Register content analysis          │
+├────────────────────────────────────┤
+│ EAX does not point to valid memory │
+│ EBX does not point to valid memory │
+│ ECX does not point to valid memory │
+│ EDX does not point to valid memory │
+│ EDI does not point to valid memory │
+│ ESI does not point to valid memory │
+└────────────────────────────────────┘
+
+Thread slot 125 , Id 1 , priority 200
+Stack Bottom : 000208A0 (0017:08A0) ;Stack Top    : 000288A0 (0017:88A0)
+Process Id : 201 .EXE name : E:\TEMP\SAMPLE.EXE
+
+Call Stack:
+                                        Source    Line      Nearest
+   EBP      Address    Module  Obj#      File     Numbr  Public Symbol
+ ────────  ────────-  ──────── ────  ──────────── ────-  ────────────-
+ Trap  ->  000F:0058  SAMPLE   0001     SAMPLE.C     44  TrapFunc (sample.obj)
+0001:00000048
+
+ 00028854  :00010035  SAMPLE   0001     SAMPLE.C     39  main (sample.obj)
+0001:00000000
+
+  No auto variables found in main.
+
+ 0002886C  :00010101  SAMPLE   0001     SAMPLE.C     45  __RunExitList
+(edcstrt.ASM) 0001:00000060
+
+List of auto variables at EBP 28888 in TrapFunc:
+Offset Name                 Type                              Value
+────── ──────────────────── ───────────────────────────────── ─────────────────
+-4     Test                 near pointer to 8 bit unsigned    0x11150 unwritable
+
+ 00028888  DFDF:C098  DOSCALL1 0004
+Lost Stack chain - new EBP below previous
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│ List of currently accessed modules (DLLs) object addresses              │
+├─────────────────────────────────────────────────────────────────────────┤
+│ Module E:\TEMP\SAMPLE.EXE                               Handle 00004756 │
+│ Object Number    Address    Length     Flags      Type                  │
+│        000000    00010000   00003D94   00010015  - 16:16  Selector 000F │
+├─────────────────────────────────────────────────────────────────────────┤
+     [ ...съедено молью... ]
+├─────────────────────────────────────────────────────────────────────────┤
+│ Module D:\OS2\DLL\UCONV.DLL                             Handle 00000995 │
+│ Object Number    Address    Length     Flags      Type                  │
+│        000000    1FCF0000   000059D9   00012015  - 16:16  Selector FE7F │
+└─────────────────────────────────────────────────────────────────────────┘
+
+/*----- Stack Bottom ---*/
+
+/*----- Accessible Stack Bottom at 208A0 ---*/
+
+ 000208A0 :0000 0000 0000 0000 0000 0000 0000 0000   ................
+ 000208B0 :  lines not printed same as above
+
+ 00027FE0 :5300 0000 AD65 F91B 0000 0500 0000 F87F   S....e..........
+     [ ...съедено молью... ]
+ 00028890 :9412 0000 0000 0000 0000 0300 8413 0300 ................
+/*----- Stack Top -----*/

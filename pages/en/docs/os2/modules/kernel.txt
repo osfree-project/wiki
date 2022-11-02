@@ -1,0 +1,100 @@
+====== System services ======
+
+GetFreeSystemResources
+SystemParametersInfo
+GetWinFlags
+GetSystemMetrics
+GetVersion
+SetTimer, TimerProc, KillTimer
+SetDoubleClickTime, GetDoubleClickTime
+GetTickCount, GetCurrentTime
+GetTimerResolution
+LoadLibrary, FreeLibrary
+LoadModule, FreeModule
+GetModuleFileName, GetModuleHandle, GetModuleUsage
+GetProcAddress
+MakeProcInstance, FreeProcInstance
+LibMain
+WEP
+GetInstanceData
+GetFreeSpace
+GlobalAlloc, GlobalFree, LocalAlloc, LocalFree
+GlobalCompact, LocalCompact
+GlobalFix, GlobalUnfix
+GlobalFlags, LocalFlags
+GlobalHandle, LocalHandle
+GlobalLock, GlobalUnlock, LocalLock, LocalUnlock
+GlobalLRUNewest, GlobalLRUOldest
+GlobalNotify, NotifyProc
+GlobalReAlloc
+GlobalSize, LocalSize
+LocalInit, LocalShrink
+Catch, Throw
+Yield, DirectedYield
+GetCurrentTask
+GetNumTasks
+GetWindowTask
+IsTask
+WinHelp
+EnumTaskWindows, EnumTaskWndProc
+WinExec
+WinMain
+ExitWindows
+GetAsyncKeyState
+qGetInputState
+GetKeyboardState, SetKeyboardState
+GetKeyNameText
+GetKeyState
+GetKBCodePage
+OemKeyScan
+MapVirtualKey
+VkKeyScan
+SwapMouseButton
+GetKeyboardType
+FindResource
+LoadResource, FreeResource
+LockResource
+LoadString
+LoadIcon
+LoadBitmap
+SetResourceHandler, LoadProc
+SizeofResource
+LoadMenu
+LoadMenuIndirect
+LoadAccelerators
+AllocResource
+BuildCommDCB
+ClearCommBreak, SetCommBreak
+CloseComm, OpenComm
+EnableCommNotification
+EscapeCommFunction
+FlushComm
+GetCommError
+GetCommEventMask, SetCommEventMask
+GetCommState, SetCommState
+ReadComm, WriteComm
+TransmitCommChar, UngetCommChar
+GetDriveType
+GetSystemDirectory
+GetTempDrive
+GetTempFileName
+GetWindowsDirectory
+OpenFile
+SetHandleCount
+_lclose
+_lread
+_lcreat
+_llseek
+_lopen
+_lwrite
+RegCloseKey
+RegCreateKey, RegOpenKey
+RegDeleteKey
+RegEnumKey
+RegQueryValue, RegSetValue
+IsBadCodePtr
+IsBadHugeReadPtr
+IsBadHugeWritePtr
+IsBadReadPtr
+IsBadStringPtr
+IsBadWritePtr

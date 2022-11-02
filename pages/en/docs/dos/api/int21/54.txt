@@ -1,0 +1,42 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=54H ======
+
+===== Version =====
+
+2 and higher
+
+===== Brief =====
+
+GET VERIFY FLAG
+
+===== Family API =====
+
+
+===== Input =====
+
+	AH = 54h
+
+===== Return =====
+
+   AL = verify flag
+	    00h off
+	    01h on (all disk writes verified after writing)
+
+===== Notes =====
+
+	
+          
+===== See also =====
+
+  AH=2Eh
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:int}}
+
+{{page>en:templates:fapi}}
+
+

@@ -1,0 +1,34 @@
+{{page>en:templates:biosint}}
+
+====== @VideoState ======
+
+===== Version =====
+
+IBM 5150 and higher
+
+====== Brief ======
+
+Return Video State
+
+===== BIOS Interrupt =====
+
+[[en:docs:bios:api:int10|INT10H]]: [[en:docs:bios:api:int10:0F|0FH]]
+
+===== Family API =====
+
+[[en:docs:fapi:VioGetMode]]
+
+====== Syntax ======
+
+<code asm>
+@VideoState
+</code>
+
+====== Parameters ======
+
+none
+
+====== Return ======
+
+
+{{page>en:templates:biosapi}}

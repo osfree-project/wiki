@@ -1,0 +1,55 @@
+{{page>en:templates:fapiint}}
+
+====== MouDrawPtr ======
+
+This call allows a process to notify the mouse device driver that an area previously restricted to the pointer image is now available to the mouse device driver.
+
+===== Syntax =====
+<code c>
+ MouDrawPtr (DeviceHandle)
+</code>
+
+===== Parameters =====
+
+  * DeviceHandle (HMOU) - input: Mouse device handle from a previous MouOpen.
+
+===== Return Code =====
+
+rc (USHORT) - return:Return code descriptions are:
+
+  *0 NO_ERROR
+  *385 ERROR_MOUSE_NO_DEVICE
+  *466 ERROR_MOU_DETACHED
+  *501 ERROR_MOUSE_NO_CONSOLE
+  *505 ERROR_MOU_EXTENDED_SG
+
+===== Remarks =====
+
+The collision area (the pointer image restricted area) is established by MouOpen and by MouRemovePtr. MouDrawPtr nullifies the effect of the MouRemovePtr command. If there was no previous MouDrawPtr command or if a previous MouDrawPtr command has already nullified the collision area, the MouRemovePtr command is effectively a null operation.
+
+This call is required to begin session pointer image drawing. Immediately after MouOpen is issued, the collision area is defined as the size of the display. A MouDrawPtr is issued to begin pointer drawing after the MouOpen. 
+
+===== Bindings =====
+
+====C====
+<code c>
+#define INCL_MOU
+
+USHORT  rc = MouDrawPtr(DeviceHandle);
+
+HMOU    DeviceHandle;  /* Mouse device handle */
+USHORT  rc;            /* return code */
+</code>
+
+====MASM====
+<code asm>
+EXTRN  MouDrawPtr:FAR
+INCL_MOU            EQU 1
+
+PUSH   WORD    DeviceHandle  ;Mouse device handle
+CALL   MouDrawPtr
+
+Returns WORD
+</code>
+
+{{page>en:templates:fapi}}

@@ -1,0 +1,15 @@
+==== So you want to help with documentation? ====
+
+Well, there is a very simple rule you have to follow when creating the documentation: that rule is the concept of the namespace. Namespaces are things like the en in front of the page title. The namespaces allow us to create documentation for several languages without the need for several wikis, and it also allows us to separate the content so that we can have the documentation side-by-side with site things.
+
+=== Using Namespaces ===
+
+On this wiki, the namespace follows a pretty simple format. The international language code goes first. For example, **en** is for English pages, while **de** is for German pages. Next, a sub-namespace is used if it is documentation. The **docs** namespace is reserved for documents. If it is a part of the site, the **docs** namespace can be left alone and the page title can be used. A proper namespace could look like this: 
+
+<code>en:start</code>
+
+or this: 
+
+<code>en:docs:start</code>
+
+depending on its purpose. Now, there is an important technical limitation: because of the way the language switching bar was coded, you can only have 2 leveled namespaces at maximum! This means that the farthest you could bury your page is 1:2:3:pagename. 

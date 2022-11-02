@@ -1,0 +1,50 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=00H ======
+
+===== Version =====
+
+1 and higher
+
+===== Brief =====
+
+TERMINATE PROGRAM
+
+===== Family API =====
+
+[[en:docs:fapi:DosExit]]
+
+===== Input =====
+
+  AH = 00h
+  CS = PSP segment
+
+===== Return =====
+
+never returns
+
+===== Macro =====
+
+<code asm>
+INCLUDE DOS.INC
+
+TERMINATE_PROGRAM
+</code>
+
+===== Notes =====
+
+This function is obsolete. Use AH=[[en:docs:dos:api:int21:4c|INT 21/AH=4Ch]] instead. This function sets the program's return code (ERRORLEVEL) to 00h. Execution continues at the address stored in INT 22 after DOS performs whatever cleanup it needs to do (restoring the INT 22,INT 23,INT 24 vectors from the PSP assumed to be located at offset 0000h in the segment indicated by the stack copy of CS, etc.). If the PSP is its own parent, the process's memory is not freed; if INT 22 additionally points into the terminating program, the process is effectively NOT terminated. Not supported by MS Windows 3.0 DOSX.EXE DOS extender 
+
+===== See also =====
+
+AH=[[en:docs:dos:api:int21:4c|4CH]], AH=[[en:docs:dos:api:int21:26|26H]], AH=[[en:docs:dos:api:int21:31|31H]], [[en:docs:dos:api:int20|INT 20]]
+
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:int}}
+
+{{page>en:templates:fapi}}
+

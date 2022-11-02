@@ -1,0 +1,7 @@
+[Q]: Как вырубить перекодировку в PMMail 1.5
+
+[A]: Eugene Yefimenko (2:5020/11.9)
+
+1. Установи в Settings->Send->Default attachment type = UUENCODE
+2. Со смещением 11CE8 в pmmeail.exe лежит таблица перекодировки 
+на этот случай. Поставь 1:1 во второй половине.

@@ -1,0 +1,6 @@
+===== Report an issue =====
+~~NOCACHE~~
+
+[[:issue:list|Go to issues list]]
+
+{{issuetracker>project=osFree|status=all|severity=all|display=form}}

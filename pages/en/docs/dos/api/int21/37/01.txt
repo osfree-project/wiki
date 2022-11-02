@@ -1,0 +1,49 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=37H, AL=01H ======
+
+===== Version =====
+
+2 and higher
+
+===== Brief =====
+
+SET SWITCH CHARACTER
+
+===== Family API =====
+
+
+
+===== Input =====
+
+        AX = 3701h
+        DL = new switch character
+
+===== Return =====
+
+ AL = status
+            00h successful
+            FFh unsupported subfunction
+===== Macro =====
+
+
+===== Notes =====
+
+ documented in some OEM versions of some releases of DOS; DOS 2.x had
+          a SWITCHAR=c setting in CONFIG.SYS
+        supported by OS/2 compatibility box and Novell DOS 7
+        ignored by MS-DOS 5+ and DR DOS 3.41-6.0; DR DOS 6.0 and Novell DOS 7
+          leave AX unchanged
+
+===== See also =====
+
+ AX=3700h
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:int}}
+
+{{page>en:templates:fapi}}
+

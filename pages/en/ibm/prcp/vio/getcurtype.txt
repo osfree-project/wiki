@@ -1,0 +1,83 @@
+==== VioGetCurType ====
+
+**Bindings**: [[getcurtype#C bindings|C]], [[getcurtype#MASM bindings|MASM]]
+
+This call returns the cursor type. 
+
+//VioGetCurType// (CursorData, VioHandle) 
+
+//CursorData// (**PVIOCURSORINFO**) - output 
+Address of the cursor characteristics structure: 
+
+//startline// (**USHORT**) 
+Horizontal scan line in the character cell that marks the top line of the cursor. If the character cell has n scan lines, 0 is the top scan line of the character cell and (n-1) is the bottom scan line. 
+
+//endline// (**USHORT**) 
+Horizontal scan line in the character cell that marks the bottom line of the cursor. Scan lines within a character cell are numbered as defined in startline. 
+
+//cursorwidth// (**USHORT**) 
+Width of the cursor. In text modes, //cursorwidth// is the number of columns. The maximum number supported by the OS/2 base video subsystem is 1. In graphics modes, //cursorwidth// is the number of pels. 
+
+//cursorattrib// (**USHORT**) 
+A value of -1 denotes a hidden cursor, all other values in text mode denote normal cursor and in graphics mode denote color attribute. 
+
+//VioHandle// (HVIO) - input 
+This must be zero unless the caller is a Presentation Manager application, in which case it must be the value returned by [[en:ibm:prcp:vio:getps|VioGetPs]]. 
+
+//rc// (**USHORT**) - return 
+Return code descriptions are: 
+
+|0 |NO_ERROR |
+|355 |ERROR_VIO_MODE |
+|436 |ERROR_VIO_INVALID_HANDLE |
+|465 |ERROR_VIO_DETACHED |
+
+**Remarks** 
+
+If //CursorStartLine// and //CursorEndLine// were originally specified as percentages on [[en:ibm:prcp:vio:setcurtype|VioSetCurType]] (using negative values), the positive values into which they were translated are returned. Refer to [[en:ibm:prcp:vio:setcurtype|VioSetCurType]] for more information on how percentages can be used to set //CursorStartLine// and //CursorEndLine// independent of the number of scan lines per character cell. 
+
+
+**Family API Considerations** 
+
+In DOS mode, [[en:ibm:prcp:vio:getcurtype|VioGetCurType]] returns only two values for cursorattrib: 0 = visible cursor, and -1 = hidden cursor. 
+
+=== C bindings ===
+
+<code c>
+typedef struct _VIOCURSORINFO {  /* vioci */
+  USHORT   yStart;               /*cursor start line */
+  USHORT   cEnd;                 /* cursor end line */
+  USHORT   cx;                   /* cursor width */
+  USHORT   attr;                 /* -1=hidden cursor, any other=normal
+                                       cursor */
+} VIOCURSORINFO;
+
+#define INCL_VIO
+
+USHORT  rc = VioGetCurType(CursorData, VioHandle);
+
+PVIOCURSORINFO   CursorData;    /* Cursor characteristics */
+HVIO             VioHandle;     /* Vio handle */
+
+USHORT           rc;            /* return code */
+</code>
+
+=== MASM bindings ===
+
+<code c>
+VIOCURSORINFO struc
+  vioci_yStart dw  ? ;cursor start line
+  vioci_cEnd   dw  ? ;cursor end line
+  vioci_cx     dw  ? ;cursor width
+  vioci_attr   dw  ? ;-1=hidden cursor, any other=normal cursor
+VIOCURSORINFO ends
+
+EXTRN  VioGetCurType:FAR
+INCL_VIO            EQU 1
+
+PUSH@  OTHER   CursorData    ;Cursor characteristics
+PUSH   WORD    VioHandle     ;Vio handle
+CALL   VioGetCurType
+
+Returns WORD
+</code>

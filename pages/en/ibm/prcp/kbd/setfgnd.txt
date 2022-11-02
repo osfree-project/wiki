@@ -1,0 +1,43 @@
+==== KbdSetFgnd ====
+
+**Bindings**: [[setfgnd#C bindings|C]], [[setfgnd#MASM bindings|MASM]]
+
+This call raises the priority of the foreground keyboard's thread. 
+
+KbdSetFgnd ( ) 
+
+//rc// (**USHORT**) - return 
+Return code descriptions are: 
+
+|0 |NO_ERROR |
+|447 |ERROR_KBD_KEYBOARD_BUSY |
+|504 |ERROR_KBD_EXTENDED_SG |
+
+**Remarks**
+
+//KbdSetFgnd// marks the current process that owns the keyboard. Threads in this process receive a priority boost. The previous foreground keyboard threads lose their priority boost. 
+
+This function should only be issued by a Keyboard Subsystem during //[[charin|KbdCharIn]]// or //[[strin|KbdStringIn]]//
+processing. 
+
+=== C bindings ===
+
+<code c>
+#define INCL_KBD
+
+USHORT  rc = KbdSetFgnd(VOID);
+
+USHORT           rc;            /* return code
+</code>
+
+=== MASM bindings ===
+
+<code asm>
+EXTRN  KbdSetFgnd:FAR
+INCL_KBD            EQU 1
+
+CALL   KbdSetFgnd
+
+Returns WORD
+</code>
+

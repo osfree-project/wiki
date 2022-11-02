@@ -1,0 +1,31 @@
+[Q]: Чем под OS/2 можно .avi, .mov и .mpg смотpеть?
+
+[A]: Sasha Shost (2:5033/11)
+
+Warp Vision CLI:
+http://hobbes.nmsu.edu/pub/os2/apps/mmedia/warpvision.wpi
+
+Warp Vision GUI:
+ftp://ftp.netlabs.org/pub/wvgui/
+
+K Movie Player
+http://hobbes.nmsu.edu/pub/os2/apps/mmedia/video/players/kmp*
+
+MPlayer
+http://hobbes.nmsu.edu/pub/os2/apps/mmedia/video/players/mplayer*
+
+ffmpeg
+http://www.smedley.info/os2ports/index.php?page=ffmpeg
+
+[A]: Max Alekseyev (2:5015/60)
+
+MainActor/2, www.mainconcept.de
+
+[A]: Sergey Samsonov (2:50/912)
+
+AnPoCODEC.  apcodec*.* на hobbes.nmsu.edu
+
+[A]: Aliaksandr Dzeshchanka (2:450/146)
+
+Посмотpи на WarpMedia:
+http://hobbes.nmsu.edu/pub/os2/apps/mmedia/wmed_tp1x08.zip

@@ -1,0 +1,51 @@
+==== FS_FILEATTRIBUTE ====
+
+**Purpose**
+
+Query/Set the attribute of the specified file.   
+
+**Calling Sequence**
+
+<code c>
+int far pascal FS_FILEATTRIBUTE(flag, pcdfsi, pcdfsd, pName, iCurDirEnd,
+                                pAttr)
+
+unsigned short flag;
+struct cdfsi far * pcdfsi;
+struct cdfsd far * pcdfsd;
+char far * pName;
+unsigned short iCurDirEnd;
+unsigned short far * pAttr;
+</code>
+
+**Where**
+
+^//flag// ^indicates retrieval or setting of attributes, with:   ^
+|//flag// == 0 |indicates retrieving the attribute. |
+|//flag// == 1 |indicates setting the attribute. |
+|//flag// == all |other values, reserved.   |
+
+The value of //flag// passed to the FSD will be valid.   
+
+//pcdfsi// is a pointer to the file-system independent portion of an open file instance.   
+
+//pcdfsd// is a pointer to the file-system dependent portion of an open file instance.   
+
+//pName// is a pointer to the ASCIIZ name of the file or directory.   
+
+The FSD does not need to validate this pointer.   
+
+//iCurDirEnd// is the index of the end of the current directory in pName.   
+
+This is used to optimize FSD path processing. If //iCurDirEnd// == -1, there is no current directory relevant to the name text, that is, a device.   
+
+//pAttr// is a pointer to the attribute.
+
+|For //flag// == 0, |the FSD should store the attribute in the indicated location. |
+|For //flag// == 1, |the FSD should retrieve the attribute from this location and set it in the file or directory.   |
+
+The FSD does not need to validate this pointer. 
+
+Remarks 
+
+None   

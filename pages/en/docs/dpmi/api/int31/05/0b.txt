@@ -1,0 +1,60 @@
+{{page>en:templates:dpmi}}
+
+====== Int 31H, AH=05H, AL=0BH ======
+
+===== Version =====
+
+1.0
+
+===== Brief =====
+
+Get Memory Information
+
+===== Input =====
+
+  AX = 050BH
+  ES:(E)DI = selector:offset of 128-byte buffer
+    
+===== Return =====
+
+  if function successful
+  Carry flag = clear (this function always succeeds in DPMI 1.0)
+  and the buffer pointed to by ES:(E)DI is filled in with the following information:
+
+^ Offset ^ Length ^ Contents ^
+| 00H | 4 | Total allocated bytes of physical memory controlled by DPMI host |
+| 04H | 4 | Total allocated bytes of virtual memory controlled by DPMI host |
+| 08H | 4 | Total available bytes of virtual memory controlled by DPMI host |
+| 0CH | 4 | Total allocated bytes of virtual memory for this virtual machine |
+| 10H | 4 | Total available bytes of virtual memory for this virtual machine |
+| 14H | 4 | Total allocated bytes of virtual memory for this client |
+| 18H | 4 | Total available bytes of virtual memory for this client |
+| 1CH | 4 | Total locked bytes of memory for this client |
+| 20H | 4 | Maximum locked bytes of memory for this client |
+| 24H | 4 | Highest linear address available to this client |
+| 28H | 4 | Size in bytes of largest available free memory block |
+| 2CH | 4 | Size of minimum allocation unit in bytes |
+| 30H | 4 | Size of the allocation alignment unit in bytes |
+| 34H | 4CH | Reserved, currently zero |
+
+  if function unsuccessful
+  Carry flag = set (this function always fails in DPMI 0.9)
+
+===== Notes =====
+
+Returns information about available physical and virtual memory. Since DPMI clients will often run in multitasking environments, some of information related to shared resources returned by this function should only be considered as advisory.
+
+DPMI 1.0 clients should use this function in preference to Int 31H Function 0500H.
+
+The "total available bytes" field of the data structure pointed by ES:(E)DI means the total bytes minus all of the allocated bytes.
+
+===== See also =====
+
+   
+
+===== Note =====
+
+Text based on [[http://www.delorie.com/djgpp/doc/dpmi/]]
+
+{{page>en:templates:dpmi:int}}
+

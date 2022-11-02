@@ -1,0 +1,146 @@
+{{page>en:templates:fapiint}}
+
+====== KbdGetStatus ======
+
+This call gets the current state of the keyboard.
+
+===== Syntax =====
+<code c>
+KbdGetStatus (StatData, KbdHandle)
+</code>
+
+===== Parameters =====
+
+  * StatData (PKBDINFO) - output : Address of the keyboard status structure:
+    * length (USHORT) : Length, in bytes, of this data structure, including length.
+      * 10            Only valid value. 
+    * sysstate (USHORT) : State as follows:
+
+^ Bit ^ Description ^
+| 15-9 | Reserved, set to zero. |
+| 8 | Shift return is on. |
+| 7 | Length of the turn-around character (meaningful only if bit 6 is on). |
+| 6 | Turn-around character is modified. |
+| 5 | Interim character flags are modified. |
+| 4 | Shift state is modified. |
+| 3 | ASCII mode is on. |
+| 2 | Binary mode is on. |
+| 1 | Echo off. |
+| 0 | Echo on. |
+
+    * turnchardef (USHORT) : Definition of the turn-around character. In ASCII and extended-ASCII format, the turn-around character is defined as the carriage return. In ASCII format only, the turn-around character is defined in the low-order byte. 
+    * intcharflag (USHORT) : Interim character flags:
+
+^ Bit ^ Description ^
+| 15-8 | NLS shift state. |
+| 7 | Interim character flag is on. |
+| 6 | Reserved, set to zero. |
+| 5 | Application requested immediate conversion. |
+| 4-0 | Reserved, set to zero. |
+
+      * shiftstate (USHORT) : Shift state as follows:
+
+^ Bit ^ Description ^
+| 15 | SysReq key down |
+| 14 | CapsLock key down |
+| 13 | NumLock key down |
+| 12 | ScrollLock key down |
+| 11 | Right Alt key down |
+| 10 | Right Ctrl key down |
+| 9 | Left Alt key down |
+| 8 | Left Ctrl key down |
+| 7 | Insert on |
+| 6 | CapsLock on |
+| 5 | NumLock on |
+| 4 | ScrollLock on |
+| 3 | Either Alt key down |
+| 2 | Either Ctrl key down |
+| 1 | Left Shift key down |
+| 0 | Right Shift key down |
+
+  * KbdHandle (HKBD) - input : Default keyboard or the logical keyboard.
+
+===== Return Code =====
+
+rc ([[USHORT]]) - return
+
+Return code descriptions are:
+
+  * 0    NO_ERROR 
+  * 376        ERROR_KBD_INVALID_LENGTH 
+  * 439        ERROR_KBD_INVALID_HANDLE 
+  * 445        ERROR_KBD_FOCUS_REQUIRED 
+  * 447        ERROR_KBD_KEYBOARD_BUSY 
+  * 464        ERROR_KBD_DETACHED 
+  * 504        ERROR_KBD_EXTENDED_SG
+
+===== Remarks =====
+
+The initial state of the keyboard is established by the system at application load time. Some default states may be modified by the application through KbdSetStatus. KbdGetStatus returns only those keyboard parameters initially set by KbdSetStatus. The returned parameters are:
+
+  * Input Mode 
+  * Interim Character Flags 
+  * Shift State 
+  * Echo State 
+  * Turnaround Character 
+
+KbdGetStatus completes only when the handle has access to the physical keyboard (focus) or the handle is 0 and no other handle has the focus.
+
+==== Family API Considerations ====
+
+Some options operate differently in the DOS mode than in the OS/2 mode. Therefore, the following restrictions apply to KbdGetStatus when coding in the DOS mode:
+  * Interim character is not supported 
+  * TurnAround character is not supported 
+  * NLS_SHIFT_STATE is always NULL.
+  * KbdHandle is ignored.
+
+===== Bindings =====
+
+==== C Binding ====
+
+<code c>
+typedef struct _KBDINFO {     /* kbst */
+  USHORT cb;                  /* length in bytes of this structure */
+  USHORT fsMask;              /* bit mask of functions to be altered */
+  USHORT chTurnAround;        /* define TurnAround character */
+  USHORT fsInterim;           /* interim character flags */
+  USHORT fsState;             /* shift states */
+}KBDINFO;
+
+#define INCL_KBD
+
+USHORT  rc = KbdGetStatus(Structure, KbdHandle);
+
+PKBDINFO         Structure;     /* Data structure */
+HKBD             KbdHandle;     /* Keyboard handle */
+
+USHORT           rc;            /* return code */
+</code>
+
+==== MASM Binding ====
+
+<code c>
+KBDINFO struc
+  kbst_cb           dw  ? ;length in bytes of this structure
+  kbst_fsMask       dw  ? ;bit mask of functions to be altered
+  kbst_chTurnAround dw  ? ;define TurnAround character
+  kbst_fsInterim    dw  ? ;interim character flags
+  kbst_fsState      dw  ? ;shift states
+KBDINFO ends
+
+EXTRN  KbdGetStatus:FAR
+INCL_KBD            EQU 1
+
+PUSH@  OTHER   Structure     ;Data structure
+PUSH   WORD    KbdHandle     ;Keyboard handle
+CALL   KbdGetStatus
+
+Returns WORD
+</code>
+
+===== Note =====
+
+This text based on [[http://www.edm2.com/index.php/KbdGetStatus_(FAPI)]]
+
+{{page>en:templates:fapi}}
+

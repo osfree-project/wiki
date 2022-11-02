@@ -1,0 +1,46 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=33H, AL=02H ======
+
+===== Version =====
+
+3.0 and higher
+
+===== Brief =====
+
+GET AND SET EXTENDED CONTROL-BREAK CHECKING STATE
+===== Family API =====
+
+
+===== Input =====
+
+        AX = 3302h
+        DL = new state (00h for OFF, 01h for ON)
+
+===== Return =====
+
+ DL = old state of extended BREAK checking
+
+===== Macro =====
+
+
+===== Notes =====
+
+  this function does not use any of the DOS-internal stacks and may thus
+          be called at any time; one possible use is modifying Control-Break
+          checking from within an interrupt handler or TSR
+        not supported by DR DOS through version 6.0 (error code 01h);
+          newly-supported by Novell DOS 7
+
+===== See also =====
+
+ AH=33h
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:int}}
+
+{{page>en:templates:fapi}}
+

@@ -1,0 +1,26 @@
+{{logos:os2.gif?35x35}} 
+
+**Please help to find info about enries marked as //No info//**
+
+===== BVHVGA  =====
+
+
+^Ordinal ^Name ^Desc ^ Status ^
+| 1 | ACCESSBLINK | | |
+| 2 | CHARFONTEND | | |
+| 3 | ACCESSHARDWARE | | |
+| 4 | ACCESSOVERSCAN | | |
+| 5 | ACCESSREGISTER | | |
+| 6 | _VideoHardware | | |
+| 7 | _SetMach32TO60Hz | | |
+| 8 | SET132 | | |
+| 9 | ACCESSCURSORPOS | | |
+| 10 | ACCESSCURSORTYPE | | |
+| 11 | ACCESSUNDERSCORE | | |
+| 12 | ACCESSVIDEOENABLE | | |
+| 13 | DEVENABLE | | |
+| 14 | ACCESSCLUT | | |
+| 15 | SETMAPMASK | | |
+
+{{page>en:templates:dlls}}
+

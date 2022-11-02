@@ -1,0 +1,18 @@
+[Q]: А где в Авроре "Scheme Palette"?
+
+[A]: Basil A. Sidorov (basid@irk.ru)
+
+В шаблонах лежит шаблон. Hадо - кидай в <WP_CONFIG>.
+
+[A]: Valera Kolesnik (2:451/31)
+
+Или запусти rest.cmd с таким содержанием:
+
+=== Cut ===
+/* возращение на место забытого объекта */
+
+if RxFuncQuery('SysCreateObject') then
+  call RxFuncAdd 'SysCreateObject', 'RexxUtil', 'SysCreateObject'
+
+call SysCreateObject 'WPSchemePalette', 'Scheme palette', '<WP_CONFIG>'
+=== Cut ===

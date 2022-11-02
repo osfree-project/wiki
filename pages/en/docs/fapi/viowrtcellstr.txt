@@ -1,0 +1,75 @@
+{{page>en:templates:fapiint}}
+====== VioWrtCellStr ======
+ 
+This call writes a string of character-attribute pairs (cells) to the display. 
+
+===== Syntax =====
+<code c>
+ VioWrtCellStr (CellStr, Length, Row, Column, VioHandle)
+</code>
+===== Parameters =====
+
+  * CellStr (PCH) - input : Address of the string of character-attribute(s) cells to be written.
+  * Length (USHORT) - input : Length, in bytes, of the string to be written. Each character-attribute(s) cell is 2 or 4 bytes.
+  * Row (USHORT) - input : Starting cursor row.
+  * Column (USHORT) - input : Starting cursor column.
+  * VioHandle (HVIO) - input : This must be zero unless the caller is a Presentation Manager application, in which case it must be the value returned by VioGetPs.
+
+===== Return Code =====
+
+ rc (USHORT) - return
+
+Return code descriptions are:
+
+  * 0          NO_ERROR
+  * 355        ERROR_VIO_MODE 
+  * 358        ERROR_VIO_ROW 
+  * 359        ERROR_VIO_COL 
+  * 436        ERROR_VIO_INVALID_HANDLE 
+  * 465        ERROR_VIO_DETACHED
+
+===== Remarks =====
+
+If a string write gets to the end of the line and is not complete, the string write continues at the beginning of the next line. If the write gets to the end of the screen, the write terminates.
+
+==== PM Considerations ====
+
+Write a character-attribute string to the Advanced VIO presentation space. The caller must specify the starting location on the presentation space where the string is to be written. 
+===== Bindings =====
+
+==== C Binding====
+<code c>
+#define INCL_VIO
+
+USHORT  rc = VioWrtCellStr(CellStr, Length, Row, Column, VioHandle);
+
+PCH              CellStr;       /* String to be written */
+USHORT           Length;        /* Length of string */
+USHORT           Row;           /* Starting row position for output */
+USHORT           Column;        /* Starting column position for output */
+HVIO             VioHandle;     /* Video handle */
+
+USHORT           rc;            /* return code */
+</code>
+
+====MASM Binding====
+<code asm>
+EXTRN  VioWrtCellStr:FAR
+INCL_VIO            EQU 1
+
+PUSH@  OTHER   CellStr       ;String to be written
+PUSH   WORD    Length        ;Length of string
+PUSH   WORD    Row           ;Starting row position for output
+PUSH   WORD    Column        ;Starting column position for output
+PUSH   WORD    VioHandle     ;Video handle
+CALL   VioWrtCellStr
+
+Returns WORD
+</code>
+
+===== Note =====
+
+Text based on [[http://www.edm2.com/index.php/VioWrtCellStr_(FAPI)]]
+
+{{page>en:templates:fapi}}
+

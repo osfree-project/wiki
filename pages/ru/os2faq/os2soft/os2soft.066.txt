@@ -1,0 +1,36 @@
+[Q]: Конвертирование файлов Monkey Audio (APE + CUE) в WAV
+
+[A]: Sasha Shost (2:5033/11)
+
+ jmac на яве (http://jmac.sourceforge.net/)
+ требует java 1.4.2
+
+ пример декодинга ape в wav:
+ --decode.cmd--
+set JAVA_HOME=x:\java142 (место, где стоит java 1.4.2)
+set RUNJAVA="%JAVA_HOME%\bin\java"
+%RUNJAVA% -jar jmac.jar d x:/dir/file.ape x:/dir2/file.wav
+ --
+
+ ключи:
+Usage: <Command> <Input file (wav or ape)> <Output file (wav or ape)>
+
+Commands:
+
+d - decompress file
+
+cX - compress file
+     X = 1 (Fast compression)
+     X = 2 (Normal compression)
+     X = 3 (High compression)
+     X = 4 (Extra High compression)
+     X = 5 (Insane compression)
+
+v - verify file
+
+tX - convert file
+      X = 1 (Fast compression)
+      X = 2 (Normal compression)
+      X = 3 (High compression)
+      X = 4 (Extra High compression)
+      X = 5 (Insane compression)

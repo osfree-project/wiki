@@ -1,0 +1,22 @@
+{{logos:os2.gif?35x35}} 
+
+**Please help to find info about enries marked as //No info//**
+
+===== UCONV =====
+
+
+^Ordinal ^Name ^Desc ^ Status ^
+| 1 | UniCreateUconvObject | | |
+| 2 | UniUconvToUcs | | |
+| 3 | UniUconvFromUcs | | |
+| 4 | UniFreeUconvObject | | |
+| 7 | UniQueryUconvObject | | |
+| 8 | UniSetUconvObject | | |
+| 9 | UniQueryUconvCp | | |
+| 10 | UniMapCpToUcsCp | | |
+| 11 | UniStrFromUcs | | |
+| 12 | UniStrToUcs | | |
+| 13 | _UniMalloc | | |
+| 14 | _UniFree | | |
+
+{{page>en:templates:dlls}}

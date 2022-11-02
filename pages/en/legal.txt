@@ -1,0 +1,12 @@
+==== osFree licensing ====
+
+osFree is covered by various open source licenses. This is because some parts were directly taken and adopted from other open source projects. Here is list of the most used licenses
+
+^Part	                    ^License  ^
+|osFree command line tools  |[[en:legal:osfree|osFree]]  |
+|4OS2 command processor    |[[en:legal:4os2|4OS2]]  |
+|Regina REXX interpreter    |[[http://www.gnu.org/licenses/lgpl.txt|LGPL]]  |
+|OS/2 Toolkit headers      |[[en:legal:os2tk|OS/2 Developer's toolkit]]  |
+|Various tools and applications   |[[http://www.gnu.org/licenses/gpl.txt|GPL]]  |
+|Various tools and applications   |[[http://www.opensource.org/licenses/bsd-license.php|BSD]]  |
+|Various tools and applications   |[[wp>Public_domain|Public Domain]]  |

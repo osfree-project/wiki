@@ -1,0 +1,29 @@
+==== FSH_REMOVESHARE ====
+
+**Purpose**
+
+This function removes a previously-entered name from the sharing set.   
+
+**Calling Sequence**
+
+<code c>
+void far pascal FSH_REMOVESHARE(hShare)
+
+unsigned long hShare;
+</code>
+
+**Where**
+
+//hShare// is a share handle returned by a prior call to //FSH_ADDSHARE//. 
+
+**Returns**
+
+There are no error returns.   
+
+**Remarks**
+
+When a call to //FSH_REMOVESHARE// has been issued, the share handle is no longer valid.   
+
+//FSH_REMOVESHARE// may block.   
+
+**Note**:   OS/2 does not validate input parameters. An FSD, therefore, should call //FSH_PROBEBUF// where appropriate.   

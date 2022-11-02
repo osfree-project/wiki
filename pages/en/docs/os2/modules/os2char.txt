@@ -1,0 +1,24 @@
+{{logos:os2.gif?35x35}} 
+
+**Please help to find info about enries marked as //No info//**
+
+===== OS2CHAR =====
+
+This is forwarder DLL to [[DOSCALLS]].DLL
+
+^Ordinal ^Name ^Desc ^ Status ^
+| 1 |Dos16SMGetmem | Forwarder to DOSCALLS.682 | Done |
+| 8 |SMArraySize | Forwarder to DOSCALLS.862 | Done |
+| 2 |Dos16SMFreemem | Forwarder to DOSCALLS.683 | Done |
+| 9 |SMGINSTANCE | Forwarder to DOSCALLS.864 | Done |
+| 3 |Dos16SMGetSGCB | Forwarder to DOSCALLS.684 | Done |
+| 4 |Dos16SMInitSGCB | Forwarder to DOSCALLS.685 | Done |
+| 5 |SMQueueRamSem | Forwarder to DOSCALLS.858 | Done |
+| 6 |SMArray | Forwarder to DOSCALLS.859 | Done |
+| 7 |SMPIDArray | Forwarder to DOSCALLS.860 | Done |
+| 99 |SMInitialized | Forwarder to DOSCALLS.861 | Done |
+| 148 |BVHINSTANCE | Forwarder to DOSCALLS.865 BVH Instance variable | Done |
+| 149 |BVSGLOBAL | Forwarder to DOSCALLS.863 | Done |
+| 152 |OS2BaseInit | Forwarder to DOSCALLS.718 | Done |
+
+{{page>en:templates:dlls}}

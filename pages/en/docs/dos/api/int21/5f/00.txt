@@ -1,0 +1,50 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=5FH, AL=00H ======
+
+===== Version =====
+
+3.1 and higher
+
+===== Brief =====
+
+GET REDIRECTION MODE
+
+===== Family API =====
+
+
+===== Input =====
+
+    AX = 5F00h
+    BL = redirection type
+      03h printer
+      04h disk drive
+
+===== Return =====
+
+  CF set on error
+    AX = error code (see #01680 at AH=59h/BX=0000h)
+  CF clear if successful
+    BH = redirection state
+      00h off
+      01h on
+
+===== Macro =====
+
+
+===== Notes =====
+
+  Calls INT 2F/AX=111Eh with AX on top of the stack
+
+===== See also =====
+
+  AX=5F01h - INT 2F/AX=111Eh
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:int}}
+
+{{page>en:templates:fapi}}
+

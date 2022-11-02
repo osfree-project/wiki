@@ -1,0 +1,21 @@
+[Q]: DosWaitNPipe из DOS-окна
+
+[A]: Oleg Oleinick
+
+function DosWaitNPipe(AName: PChar; ATimeout: Longint): Integer; assembler;
+asm
+  push  DS
+  mov   AX, 5F38h
+  mov   BX, WORD PTR [ATimeout+2]
+  mov   CX, WORD PTR [ATimeout]
+  lds   DX, DWORD PTR [AName]
+  int   21h
+  jc    @End
+  xor   AX, AX
+@End:
+  pop   DS
+end;
+
+И вообще - заглядывайте иногда в Interrupts List by Ralf Brown - там много 
+чего есть. Есть способ запросить/изменить Title, стартовать сессию, есть 
+семафорный API и пр.

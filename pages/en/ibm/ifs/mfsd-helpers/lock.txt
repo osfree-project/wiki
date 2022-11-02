@@ -1,0 +1,30 @@
+==== MFSH_LOCK - Lock a segment ====
+
+**Purpose**
+
+Lock a segment in place in physical memory.   
+
+**Calling Sequence**
+
+<code c>
+int far pascal MFSH_LOCK(usSel, pulHandle)
+
+unsigned short usSel;
+unsigned long far * pulHandle;
+</code>
+
+**Where**
+
+//usSel// is the selector of the segment to be locked.   
+
+//pulHandle// is a pointer to a double word which is filled in by the helper with the lock handle. 
+
+**Returns**
+
+If no error is detected, a zero error code is returned. If an error is detected, one of the following error codes is returned:   
+
+  * ERROR_PROTECTION_VIOLATION -- the supplied address or selector is invalid. 
+
+**Remarks**
+
+This helper is for use by a mini-FSD with an imbedded device driver. It is the same as the standard device driver LOCK helper with the following assumptions: The lock is defined to be short term and will block until the segment is loaded.   

@@ -1,0 +1,27 @@
+{{page>en:templates:dosshell}}
+
+====== Int 2FH, AX=4A05H, SI=07H ======
+
+===== Version =====
+
+?
+
+===== Brief =====
+
+Get task list size
+
+===== Input =====
+
+    None
+  
+===== Return =====
+
+    AX - number of items in task list
+
+===== Notes =====
+
+  Function returns number of items in task list
+  
+===== See also =====
+
+   

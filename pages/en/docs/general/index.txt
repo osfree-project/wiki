@@ -1,0 +1,53 @@
+===== osFree Whitepaper =====
+
+{{logos:fiasco.png?35}}{{logos:os2.gif?35x35}}{{logos:dos.gif?35x35}}{{logos:win16.gif?28x35}}{{logos:win32.gif?28x35}}{{logos:linux.jpg?35x35}}{{logos:java.gif?35x35}}
+
+The osFree project is aimed at producing an operating system with support of OS/2 compatible personality as the base personality. We have used the following rules in our research and development:
+
+  * Usable
+  * Extensible
+  * Open
+  * Easy
+
+As a result, we have the following considerations:
+
+  * [[wp>IBM_Common_User_Access|CUA]] for usability (see IBM [[wp>IBM_System_Application_Architecture|SAA]] [[wp>IBM_Common_User_Access|CUA]])
+  * [[wp>Object-oriented_programming|OOP]] principles and modularity in both Microkernel interfaces and [[wp>IBM_System_Object_Model|SOM]], together with binary compatability, for extensibility
+  * Documentation and Open-source for openness
+  * All of the above for ease of use
+
+==== General design ====
+
+We propose to reuse some or most of OS/2 PPC design with some reformulation. Since OS/2 support is our primary target, of course, we propose to reuse most of OS/2 technologies.
+
+In general, we'll use L4 microkernel as a core of the system. On top of L4 we plan to implement the following personalities:
+
+  * Neutral personality
+  * OS/2 personality
+  * Linux personality
+  * MVM personality
+    * DOS personality
+    * Win16 personality
+  * Win32 personality
+
+**[[en:docs:general:neutral|Neutral personality]]** or **Personality-neutral services** is the real OS API. It is a set of servers and libraries giving away various services. All other personalities need to work via Neutral personality. Most probably, many Neutral services API's will be reused almost as is (in the form of simple wrappers). The Neutral Personality API can be compared with Native NT API -- they are almost functionally equivalent.
+
+**[[en:docs:general:os2|OS/2 personality]]** aimed to provide partial or full set of OS/2 API. At the first stage we want to implement core 32-bit API. In most cases OS/2 personality calls are planned to be just forwarders of calls to Neutral personality. 
+
+**[[en:docs:general:linux|Linux personality]]** aimed to provide full functionality of Linux. Linux is one of the current mainstream OSes. It provides lots of development tools, libraries and applications, and we want to use Linux as one of the main development platforms. We plan to reuse the L4Linux project for this. If everything will work fine, we'll just recompile the L4Linux project and reuse it.
+
+**[[en:docs:general:mvm|MVM personality]]** aimed to provide the functionality of an environment for running multiple Virtual Machines with unmodified OS'es. DOS and Win16 personalities will be based on MVM personality with support of Virtual Device Drivers
+
+**[[en:docs:dos|DOS personality]]** aimed to provide the functionality of DOS. DOS was supported by the original OS/2 and is still used by many people. For us, this direction of development is very perspective, though it has less priority than OS/2 personality development.  So, we don't want to lose too much forces on this goal, so we'll most probably reuse other projects here, like QEMU, VBOX, DosBox, DosEmu, FreeDos etc.
+
+**[[en:docs:win16|Win16 personality]]** aimed to provide partial or full functionality of Win16 up to version Windows ME. Win16 personality actually work under MVM prsonality. Seamless desktop integration are planned.
+
+**[[en:docs:general:win32|Win32 personality]]** aimed to provide partial or full functionality of Win32. Windows is also one of the mainstream OSes and we can't ignore its existence. **If** it will be possible to para-virtualize ReactOS then we'll also provide Win32 functionality (there is an idea of implementing a HAL, working above l4env/l4re). Otherwise Win32 support will come via WINE project.
+
+Of course you are free to add another personality.
+
+At present time we have closed view about file systems support and boot process. We are reusing OS/2 concept of [[en:ibm:ifs:index|IFS]]'es. Most notable differences from OS/2 PC are the absence of MiniFSD (like it is in OS/2 PPC) and 32-bit [[en:ibm:ifs:index|IFS]] main driver. For more information about the boot process look at [[en:docs:boot:index|Boot process guides and references]].
+
+For general development guidelines see [[en:develop:guidelines|Developer Reference]].
+
+~~DISCUSSION~~

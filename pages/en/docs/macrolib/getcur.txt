@@ -1,0 +1,37 @@
+{{page>en:templates:biosint}}
+
+====== @GetCur ======
+
+===== Version =====
+
+IBM 5150 and higher
+
+===== Brief =====
+
+Get Current Cursor Position and Size
+
+===== BIOS Interrupt =====
+
+[[en:docs:bios:api:int10|INT10H]]: [[en:docs:bios:api:int10:03|03H]]
+
+===== Family API =====
+
+[[en:docs:fapi:VioGetCurPos]] [[en:docs:fapi:VioGetCurType]]
+
+===== Syntax =====
+
+<code asm>
+@GetCur page
+</code>
+
+===== Parameters =====
+
+  * page (BYTE) - optional video page number
+
+===== Return =====
+
+  CH = start scan line
+  CL = end scan line
+  DH = row (00h is top)
+  DL = column (00h is left)
+

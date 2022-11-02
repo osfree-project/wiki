@@ -1,0 +1,21 @@
+===== About Command reference =====
+
+**CMD.EXE**
+
+Version 3.04 Help System 
+
+Text by //osFree team//, //Hardin Brothers//, //Tom Rawson//, and //Rex Conn// 
+
+Help Text Copyright 2003, //osFree team//. 
+Help Text Copyright 1993 - 2002, //JP Software Inc.//, All Rights Reserved. 
+
+Software Copyright 1988 - 2002, //Rex Conn// and //JP Software Inc//., All Rights Reserved. 
+
+**4DOS**, **4OS2**, and **4NT** are //JP Software Inc//.'s trademarks for its family of 
+character-mode command processors.  **4DOS** and **Take Command** are registered 
+trademarks of //JP Software Inc//.  //JP Software//, //jpsoft.com//, and all JP 
+Software designs and logos are also trademarks of //JP Software Inc//.  Other 
+product and company names are trademarks of their respective owners. 
+
+
+[2 Sep - 3.04B] 

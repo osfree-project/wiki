@@ -1,0 +1,31 @@
+{{page>en:templates:fapiint}}
+
+^ IOCtl Fcn ^ Mouse Router function ^ MOU API Function ^ Function Performed ^ Status ^^
+^ :::       ^ ::: ^ :::              ^ :::                ^ OS/2 ^ FAPI ^
+| IOMR_NB | FC_MOUGETNUMBUTTONS | [[MouGetNumButtons]] | Get # of mouse buttons | | 1.20 |
+| IOMR_MC | FC_MOUGETNUMMICKEYS | [[MouGetNumMickeys]] | Get# of mickeys/centimeter |
+| IOMR_GS | FC_MOUGETDEVSTATUS | [[MouGetDevStatus]] | Get device status flags |
+| IOMW_DS | FC_MOUSETDEVSTATUS | [[MouSetDevStatus]] | Set device status flags |
+| IOMR_QS | FC_MOUGETNUMQUEEL | [[MouGetNumQueEl]] | Get event queue status |
+| IOMR_RD | FC_MOUREADEVENTQUE | [[MouReadEventQue]] | Read event queue contents |
+| IOMR_GF | FC_MOUGETSCALEFACT | [[MouGetScaleFact]] | Get current scaling factors |
+| IOMW_SS | FC_MOUSETSCALEFACT | [[MouSetScaleFact]] | Set new scaling factors | | 1.20 |
+| IOMR_GM | FC_MOUGETEVENTMASK | [[MouGetEventMask]] | Get current event mask |
+| IOMW_EM | FC_MOUSETEVENTMASK | [[MouSetEventMask]] | Set new event mask |
+| N/A | FC_MOUOPEN | [[MouOpen]] | Open mouse support |
+| N/A | FC_MOUCLOSE | [[MouClose]] | Close mouse support |
+| N/A | N/A | [[MouRegister]] | Install a mouse subsystem |
+| N/A | N/A | [[MouDeRegister]] | Deinstall a mouse subsystem |
+| N/A | FC_MOUINITREAL | [[MouInitReal]] | Initialize DOS mode driver |
+| IOMW_SP | FC_MOUSETPTRSHAPE | [[MouSetPtrShape]] | Assign new pointer shape |
+| IOMW_GP | FC_MOUGETPTRSHAPE | [[MouGetPtrShape]] | Get pointer shape |
+| IOMW_DP | FC_MOUDRAWPTR | [[MouDrawPtr]] | Unmark collision area | | 1.20 |
+| IOMW_RP | FC_MOUREMOVEPTR | [[MouRemovePtr]] | Mark collision area | | 1.20 |
+
+Todo:
+
+ FC_MOUGETHOTKEY		EQU	09H
+ FC_MOUSETHOTKEY		EQU	0AH
+ FC_MOUGETPTRPOS		EQU	11H
+ FC_MOUSETPTRPOS		EQU	12H
+ FC_MOUFLUSHQUE		EQU	14H

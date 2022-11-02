@@ -1,0 +1,13 @@
+==== Disclaimer ====
+
+This document includes a written description of the Installable File System Driver Interface for IBM OS/2 Standard Edition Version 2.0.   
+
+INTERNATIONAL BUSINESS MACHINES CORPORATION PROVIDES THIS DOCUMENT "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.   
+
+IN NO EVENT WILL IBM BE LIABLE FOR ANY DAMAGES, INCLUDING BUT NOT LIMITED TO ANY LOST PROFITS, LOST SAVINGS OR ANY INCIDENTAL OR CONSEQUENTIAL DAMAGES, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES, OR FOR ANY CLAIM BY YOU BASED ON A THIRD PARTY CLAIM.   
+
+Some or all of the interfaces described in this document are unpublished. IBM reserves the right to change or delete them in future versions of OS/2, at IBM's sole discretion, without notice to you. IBM does not guarantee that compatibility of your applications can or will be maintained with future versions of OS/2.   
+
+This document could include technical inaccuracies or typographical errors. It is possible that this document may contain reference to, or information about, IBM products, programming or services that are not announced in your country. Such references or information must not be construed to mean that IBM intends to announce such IBM products, programming or services in your country. IBM may have patents or pending patent applications covering subject matter in this document. The furnishing of this document does not give you any license to these patents. You can send license inquiries, in writing, to the IBM Director of Commercial Relations, IBM Corporation, Armonk NY 10504.   
+
+Copyright International Business Machines Corporation 1991. All rights reserved. Note to U.S. Government Users - Documentation related to restricted rights - Use, duplication or disclosure is subject to restrictions set forth in GSA ADP Schedule Contract with IBM

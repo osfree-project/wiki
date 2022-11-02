@@ -1,0 +1,10 @@
+===== The osFree Webteam =====
+
+This page is root documentation page of the osFree webteam. We collect here rules and references for current and future web-site maintainers.
+
+  * [[en:docs:web:migration|Migration to the new engine]] document desribes main rules of miration to new CMS system
+  * [[en:docs:web:generation1|Generation 1 infrastructure]]
+  * [[en:docs:web:generation2|Generation 2 infrastructure]]
+  * [[en:docs:web:generation3|Generation 3 infrastructure]]
+
+~~DISCUSSION~~

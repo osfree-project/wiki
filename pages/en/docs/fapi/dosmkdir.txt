@@ -1,0 +1,77 @@
+{{page>en:templates:fapiint}}
+
+====== DosMkDir ======
+
+This call creates a subdirectory.
+
+===== Syntax =====
+
+<code c>
+DosMkDir (DirName, Reserved)
+</code>
+
+===== Parameters =====
+
+
+  * DirName ([[PSZ]]) - input : Address of the ASCIIZ directory path name, which may or may not include a drive specification. If no drive is specified, the current drive is assumed.
+
+[[DosQSysInfo]] is called by an application during initialization to determine the maximum path length allowed by OS/2.
+
+  *Reserved ([[ULONG]]) - input : Reserved and must be set to zero.
+
+===== Return Code =====
+
+rc ([[USHORT]]) - return
+
+Return code descriptions are:
+
+  * 0        NO_ERROR 
+  * 3        ERROR_PATH_NOT_FOUND 
+  * 5        ERROR_ACCESS_DENIED 
+  * 26       ERROR_NOT_DOS_DISK 
+  * 87       ERROR_INVALID_PARAMETER 
+  * 108      ERROR_DRIVE_LOCKED 
+  * 206      ERROR_FILENAME_EXCED_RANGE
+
+===== Remarks =====
+
+If any subdirectory names in the path do not exist, the subdirectory is not created. Upon return, a subdirectory is created at the end of the specified path.
+
+[[DosQSysInfo]] must be used by an application to determine the maximum path length supported by OS/2. The returned value should be used to dynamically allocate buffers that are to be used to store paths.
+
+If a program running with the NEWFILES bit set tries to create a directory with blanks immediately preceding the dot on a FAT drive, the system rejects the name. For example, if c: is a FAT drive, the name "file .txt" is rejected and the name "file.txt" is accepted. 
+
+===== Example Code =====
+
+==== C Binding ====
+
+<code c>
+  #define INCL_DOSFILEMGR
+  
+  USHORT  rc = DosMkDir(DirName, Reserved);
+  
+  PSZ              DirName;       /* New directory string name */
+  ULONG            0;             /* Reserved (must be zero) */
+  
+  USHORT           rc;            /* return code */
+</code>
+
+==== MASM Binding ====
+
+<code asm>
+  EXTRN  DosMkDir:FAR
+  INCL_DOSFILEMGR     EQU 1
+  
+  PUSH@  ASCIIZ  DirName       ;New directory name string
+  PUSH   DWORD   0             ;Reserved (must be zero)
+  CALL   DosMkDir
+</code>
+
+Returns WORD
+
+===== Note =====
+
+
+Text based on http://www.edm2.com/index.php/DosMkDir
+
+{{page>en:templates:fapi}}

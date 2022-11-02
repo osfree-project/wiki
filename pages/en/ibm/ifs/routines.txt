@@ -1,0 +1,80 @@
+===== FS Service Routines =====
+
+
+The following table summarizes the entry points that make up the interface between the kernel and the FSD.   
+
+Note: Names must be in all upper case, as required by OS/2 naming conventions.   
+
+
+^# ^FS Entry Point       ^Description                         ^FSDs Required \\ to export ^
+^   ^                                                                   ^^^:::  ^
+|1. |[[en:ibm:ifs:routines:allocpagespc|FS_ALLOCATEPAGESPACE]] |Adjust the size of paging file      |PAGE I/O |
+|2. |[[en:ibm:ifs:routines:attach|FS_ATTACH]]                  |Attach to an FSD                              |ALL |
+|3. |[[en:ibm:ifs:routines:cancellockreq|FS_CANCELLOCKREQUEST]] |Cancel file record lock request  |FILE I/O |
+|4. |[[en:ibm:ifs:routines:chdir|FS_CHDIR]]                     |Change/Verify directory path              |ALL |
+|5. |[[en:ibm:ifs:routines:chgfptr|FS_CHGFILEPTR]]          |Move a file's position pointer              |ALL |
+|6. |[[en:ibm:ifs:routines:close|FS_CLOSE]]                    |Release a file handle                         |ALL |
+|7. |[[en:ibm:ifs:routines:commit|FS_COMMIT]]                  |Flush a file's buffer to disk                  |ALL |
+|8. |[[en:ibm:ifs:routines:copy|FS_COPY]]                      |Copy a file                                        |ALL |
+|9. |[[en:ibm:ifs:routines:delete|FS_DELETE]]                   |Delete a file                                       |ALL |
+|10. |[[en:ibm:ifs:routines:dopageio|FS_DOPAGEIO]]              |Perform paging I/O operations            |PAGE I/O |
+|11. |[[en:ibm:ifs:routines:exit|FS_EXIT]]                        |End of a process cleanup                   |ALL |
+|12. |[[en:ibm:ifs:routines:fileattr|FS_FILEATTRIBUTE]]      |Query/Set file's attributes                    |ALL |
+|13. |[[en:ibm:ifs:routines:fileinfo|FS_FILEINFO]]                 |Query/Set file's information                 |ALL |
+|14. |[[en:ibm:ifs:routines:fileio|FS_FILEIO]]                     |Multi-function file I/O                           |ALL |
+|15. |[[en:ibm:ifs:routines:filelocks|FS_FILELOCKS]]             |Request a file record lock/unlock        |FILE I/O |
+|16. |[[en:ibm:ifs:routines:findclose|FS_FINDCLOSE]]            |Directory search close                        |ALL |
+|17. |[[en:ibm:ifs:routines:findfirst|FS_FINDFIRST]]              |Find first matching filename                 |ALL |
+|18. |[[en:ibm:ifs:routines:findfrname|FS_FINDFROMNAME]]     |Find matching filename from name      |ALL |
+|19. |[[en:ibm:ifs:routines:findnext|FS_FINDNEXT]]               |Find next matching filename                |ALL |
+|20. |[[en:ibm:ifs:routines:findnotifycls|FS_FINDNOTIFYCLOSE]] |Close FindNotify handle                     |ALL |
+|21. |[[en:ibm:ifs:routines:findnotifyfst|FS_FINDNOTIFYFIRST]]  |Monitor a directory for changes           |ALL |
+|22. |[[en:ibm:ifs:routines:findnotifynext|FS_FINDNOTIFYNEXT]]   |Resume reporting directory changes   |ALL |
+|23. |[[en:ibm:ifs:routines:flushbuf|FS_FLUSHBUF]]              |Commit file buffers to disk                   |ALL |
+|24. |[[en:ibm:ifs:routines:fsctl|FS_FSCTL]]                    |File system control                              |ALL |
+|25. |[[en:ibm:ifs:routines:fsinfo|FS_FSINFO]]                   |Query/Set file system information         |ALL |
+|26. |[[en:ibm:ifs:routines:init|FS_INIT]]                         |FSD initialization                                 |ALL |
+|27. |[[en:ibm:ifs:routines:ioctl|FS_IOCTL]]                     |I/O device control                               |ALL |
+|28. |[[en:ibm:ifs:routines:mkdir|FS_MKDIR]]                     |Make a directory                                |ALL |
+|29. |[[en:ibm:ifs:routines:mount|FS_MOUNT]]                   |Mount/unmount volumes                     |ALL |
+|30. |[[en:ibm:ifs:routines:move|FS_MOVE]]                      |Move a file or subdirectory                 |ALL |
+|31. |[[en:ibm:ifs:routines:newsize|FS_NEWSIZE]]                 |Change a file's logical size                 |ALL |
+|32. |[[en:ibm:ifs:routines:nmpipe|FS_NMPIPE]]                   |Do a named pipe operation                 |ALL |
+|33. |[[en:ibm:ifs:routines:opncrea|FS_OPENCREATE]]         |Open/create/replace files                    |ALL |
+|34. |[[en:ibm:ifs:routines:opnpgfile|FS_OPENPAGEFILE]]       |Create paging file and handle             |PAGE I/O |
+|35. |[[en:ibm:ifs:routines:pathinfo|FS_PATHINFO]]               |Query/Set a file's information               |ALL |
+|36. |[[en:ibm:ifs:routines:procname|FS_PROCESSNAME]]       |FSD unique name canonicalization     |ALL |
+|37. |[[en:ibm:ifs:routines:read|FS_READ]]                       |Read data from a file                          |ALL |
+|38. |[[en:ibm:ifs:routines:rmdir|FS_RMDIR]]                      |Remove a subdirectory                     |ALL |
+|39. |[[en:ibm:ifs:routines:setswap|FS_SETSWAP]]                |Notification of swapfile ownership       |ALL |
+|40. |[[en:ibm:ifs:routines:shtdwn|FS_SHUTDOWN]]              |Shutdown file system                       |ALL |
+|41. |[[en:ibm:ifs:routines:vfyuncname|FS_VERIFYUNCNAME]]     |Verify UNC server ownership            |UNC |
+|42. |[[en:ibm:ifs:routines:write|FS_WRITE]]                       |Write data to a file                            |ALL |
+
+
+Each FS entry point has a distinct parameter list composed of those parameters needed by that particular entry. Parameters include:   
+
+  * File pathname 
+  * Current disk/directory information 
+  * Open file information 
+  * Application data buffers 
+  * Descriptions of file extended attributes 
+  * Other parameters specific to an individual call 
+
+Most of the FS entry points have a level parameter for specifying the level of information they are provided or have to supply. FSDs must provide for additional levels which may be added in future versions of OS/2 by returning ERROR_NOT_SUPPORTED for any level they do not recognize.   
+
+File system drivers which support hierarchical directory structures must use '\' and '/' as path name component separators. File system drivers which do not support hierarchical directory structures must reject as illegal any use of '\' or '/' in path names. The file names '.' and '..' are reserved for use in hierarchical directory structures for the current directory and the parent of the current directory, respectively.   
+
+Unless otherwise specified in the descriptions below, data buffers may be accessed without concern for the accessibility of the data. OS/2 will either check buffers for accessibility and lock them, or transfer them into locally accessible data areas.   
+
+Simple parameters will be verified by the IFS router before the FS service routine is called.   
+
+Note: New with 2.0, some entry points need only be exported and supported by those FSDs which desire to service the pager (PAGE I/0), UNC servers (UNC) and/or file locking (FILE I/O). With these new entry point groups, a FSD must export all or none of the entry points within a particular group.   
+
+^These optional entry points are:   ^^
+|FS_ALLOCATEPAGESPACE       |(PAGE I/O) |
+|FS_CANCELLOCKREQUEST       |(FILE I/O) |
+|FS_DOPAGEIO                           |(PAGE I/O) |
+|FS_FILELOCKS                           |(FILE I/O) |
+|FS_OPENPAGEFILE                    |(PAGE I/O) |
+|FS_VERIFYUNCNAME                 |(UNC) |

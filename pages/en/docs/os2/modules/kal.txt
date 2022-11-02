@@ -1,0 +1,83 @@
+
+
+**Please help to find info about enries marked as //No info//**
+
+===== KAL=====
+
+This is (may be) not real DLL, but Kernel Abstraction Layer
+
+^ Ordinal ^ Name ^ Desc ^ Status ^
+| | KalMapInfoBlocks | | |
+| | KalInit | | Subject to remove |
+| | KalEnter | | |
+| | KalQuit | | |
+| | KalStartApp | | |
+| | KalOpenL | | |
+| | KalFSCtl | | |
+| | KalRead | | |
+| | KalWrite | | |
+| | KalLogWrite | | |
+| | KalExit | | |
+| | KalQueryCurrentDisk | | |
+| | KalSetCurrentDir | | |
+| | KalSetDefaultDisk | | |
+| | KalQueryCurrentDir | | |
+| | KalQueryProcAddr | | |
+| | KalQueryModuleHandle | | |
+| | KalQueryModuleName | | |
+| | KalPvtLoadModule | | Subject to remove |
+| | KalLoadModule | | |
+| | KalQueryProcType | | |
+| | KalQueryAppType | | |
+| | KalExecPgm | | |
+| | KalError | | |
+| | KalAllocMem | | |
+| | KalFreeMem | | |
+| | KalSetMem | | |
+| | KalQueryMem | | |
+| | KalAllocSharedMem | | |
+| | KalGetSharedMem | | |
+| | KalGetNamedSharedMem | | |
+| | KalGiveSharedMem | | |
+| | KalResetBuffer | | |
+| | KalSetFilePtrL | | |
+| | KalClose | | |
+| | KalQueryHType | | |
+| | KalQueryDBCSEnv | | |
+| | KalQueryCp | | |
+| | KalGetInfoBlocks | | |
+| | KalSetMaxFH | | |
+| | KalSetRelMaxFH | | |
+| | KalSleep | | |
+| | KalDupHandle | | |
+| | KalDelete | | |
+| | KalForceDelete | | |
+| | KalDeleteDir | | |
+| | KalCreateDir | | |
+| | KalFindFirst | | |
+| | KalFindNext | | |
+| | KalFindClose | | |
+| | KalQueryFHState | | |
+| | KalSetFHState | | |
+| | KalQueryFileInfo | | |
+| | KalQueryPathInfo | | |
+| | KalSetFileSizeL | | |
+| | KalMove | | |
+| | KalOpenEventSem | | |
+| | KalCloseEventSem | | |
+| | KalCreateEventSem | | |
+| | KalCreateThread | | |
+| | KalSuspendThread | | |
+| | KalResumeThread | | |
+| | KalWaitThread | | |
+| | KalKillThread | | |
+| | KalGetTID | | |
+| | KalGetPID | | |
+| | KalGetL4ID | | Subject to remove |
+| | KalGetTIDL4 | | Subject to remove |
+| | KalNewTIB | | Subject to remove |
+| | KalDestroy | | | 
+| | KalGetTIB | | |
+| | KalGetPIB | | |
+
+{{page>en:templates:dlls}}

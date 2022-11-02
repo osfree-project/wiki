@@ -1,0 +1,27 @@
+{{page>en:templates:dosshell}}
+
+====== Int 2FH, AX=4A05H, SI=04H ======
+
+===== Version =====
+
+?
+
+===== Brief =====
+
+Remove task from tasklist
+
+===== Input =====
+
+	BL - task number
+  
+===== Return =====
+
+      none
+
+===== Notes =====
+
+  Remove task from tasklist
+  
+===== See also =====
+
+   

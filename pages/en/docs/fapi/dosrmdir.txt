@@ -1,0 +1,74 @@
+{{page>en:templates:fapiint}}
+
+====== DosRmDir ======
+
+This call removes a subdirectory from the specified disk.
+
+===== Syntax =====
+
+<code c>
+DosRmDir (DirName, Reserved)
+</code>
+
+===== Parameters =====
+
+  *DirName ([[PSZ]]) - input : Address of the fully qualified path name of the subdirectory being removed.
+  *Reserved ([[ULONG]]) - input : Reserved must be set to zero.
+
+===== Return Code =====
+
+rc ([[USHORT]]) - return
+
+Return code descriptions are:
+
+  * 0        NO_ERROR 
+  * 2        ERROR_FILE_NOT_FOUND 
+  * 3        ERROR_PATH_NOT_FOUND 
+  * 5        ERROR_ACCESS_DENIED 
+  * 16       ERROR_CURRENT_DIRECTORY 
+  * 26       ERROR_NOT_DOS_DISK 
+  * 87       ERROR_INVALID_PARAMETER 
+  * 108      ERROR_DRIVE_LOCKED 
+  * 206      ERROR_FILENAME_EXCED_RANGE
+
+===== Remarks =====
+
+
+The subdirectory must be empty, which means it cannot contain hidden files or directory entries other than the "." and ".." entries. Files can be deleted with [[DosDelete]].
+
+The root directory and current directory cannot be removed. 
+
+===== Example Code =====
+
+==== C Binding ====
+<code c>
+
+  #define INCL_DOSFILEMGR
+  
+  USHORT  rc = DosRmDir(DirName, Reserved);
+  
+  PSZ              DirName;       /* Directory name string */
+  ULONG            0;             /* Reserved (must be zero) */
+  
+  USHORT           rc;            /* return code */
+</code>
+
+==== MASM Binding ====
+
+<code asm>
+  EXTRN  DosRmDir:FAR
+  INCL_DOSFILEMGR     EQU 1
+  
+  PUSH@  ASCIIZ  DirName       ;Directory name string
+  PUSH   DWORD   0             ;Reserved (must be zero)
+  CALL   DosRmDir
+</code>
+
+Returns WORD
+
+===== Note =====
+
+Text based on http://www.edm2.com/index.php/DosRmDir
+
+{{page>en:templates:fapi}}
+

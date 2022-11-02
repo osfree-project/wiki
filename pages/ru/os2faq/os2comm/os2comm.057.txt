@@ -1,0 +1,73 @@
+[Q]: NETADMIN под OS/2 не запускается ни с какими настройками
+
+[A]: Tim N. Tashpulatov (2:5030/23)
+
+Есть NetAdmin/2, PM-приложение. Замечательно работает. Требует только NDS
+логина, а не bindery, ну а это легко делается NW Requestor 2.11.
+
+[A]: Vladimir Solovyov (2:5053/23.8)
+
+Существует два решения проблемы :
+
+1. Описано Novell в документации к клиенту 2.11 (идет с Merlin'ом).
+Это называется VLMBOOT.
+
+Создать образ доса с примерно такими AUTOEXEC.BAT и CONFIG.SYS :
+
+=== AUTOEXEC.BAT ===
+@ECHO Off
+PATH A:\;A:\NWCLIENT\;a:\dos;c:\os2\mdos\;c:\srv;C:\OS2\MDOS\winos2
+SET TEMP=C:\TEMP
+SET TMP=C:\TEMP
+set WIN3DIR=C:\OS2\MDOS\WINOS2
+lh A:\NLSFUNC A:\COUNTRY.SYS
+lh A:\NWCLIENT\VLM.EXE
+a:\tbmi2.com       <<<<<<<<< найти в каталоге клиента Novell, хотя его могут
+                             засунуть в \OS2\MDOS\WINOS
+
+MODE CON CP PREPARE=((866) A:\EGA3.CPI)
+MODE CON CP SELECT=866
+chcp 866
+lh KEYB RU,,A:\KEYBRD2.SYS
+lh mouse
+L:
+LOGIN
+=== Cut ===
+
+=== Config.sys ===
+DEVICE=a:\HIMEM.SYS  <<<<<< Взять из \OS2\MDOS !!!!!!
+LASTDRIVE=Z
+FILES=80
+rem NUMLOCK=ON
+DEVICEhigh=A:\DISPLAY.SYS CON=(EGA,,3)
+COUNTRY=007,866,A:\COUNTRY.SYS
+BREAK=OFF
+BUFFERS=10
+FCBS=4,4
+dos=high,umb
+DEVICEHIGH=a:\FSFILTER.SYS
+DEVICEHIGH=a:\DOSVIPX.SYS <<<<<  взять в каталоге клиента Novell
+=== Cut ===
+
+После этого создать объект в Свойствах->Параметры ДОС->Другие параметры ДОС
+написать путь к тому образу. И загрузившись с него, залогинившись, можно
+пускать
+NETADMIN.
+
+2. Hадо всего лишь поставить клиента для Novell версии 2.12, он идет на одном
+диске с Novell IntranetWare 4.11. NETADMIN заработает сразу из осевого доса.
+Если поставить патч для клиента 2.12, то заработает и NWADMIN под WinOS2.
+
+Патч вот такой :
+
+TITLE:  OS2PT2.EXE; Client v2.12 for OS/2 Patch
+TID #:  2946186
+README FOR:  OS2PT2.EXE
+
+NOVELL PRODUCTS and VERSIONS:
+OS/2-NW312
+NetWare Client for OS/2 2.12
+Requester OS/2 2.12
+
+Брали патч вот здесь:
+ftp://ftp.novell.com/pub/updates/nw/inw411/os2pt2.exe

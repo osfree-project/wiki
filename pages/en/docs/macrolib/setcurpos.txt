@@ -1,0 +1,37 @@
+{{page>en:templates:biosint}}
+
+====== @SetCurPos ======
+
+===== Version =====
+
+IBM 5150 and higher
+
+===== Brief =====
+
+Set Cursor Position
+
+===== BIOS Interrupt =====
+
+[[en:docs:bios:api:int10|INT10H]]: [[en:docs:bios:api:int10:02|02H]]
+
+===== Family API =====
+
+[[en:docs:fapi:VioSetCurPos]]
+
+===== Syntax =====
+
+<code asm>
+@SetCurPos column, row, page
+</code>
+
+===== Parameters =====
+
+  * column (BYTE) - optional new cursor column (zero based). 0 by default.
+  * row (BYTE) - optional new cursor row (zero based). 0 by default.
+  * page (BYTE) - optional video page number (zero based). 0 by default.
+
+===== Return =====
+
+none
+
+{{page>en:templates:biosapi}}

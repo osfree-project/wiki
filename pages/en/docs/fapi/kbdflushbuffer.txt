@@ -1,0 +1,67 @@
+{{page>en:templates:fapiint}}
+
+====== KbdFlushBuffer ======
+
+This call clears the keystroke buffer.
+
+===== Syntax =====
+<code c>
+ KbdFlushBuffer (KbdHandle)
+</code>
+===== Parameters =====
+
+  * KbdHandle ([[HKBD]]) - input : Default keyboard or the logical keyboard.
+
+===== Return Code =====
+
+rc ([[USHORT]]) - return
+
+Return code descriptions are:
+
+  * 0          NO_ERROR 
+  * 439        ERROR_KBD_INVALID_HANDLE 
+  * 445        ERROR_KBD_FOCUS_REQUIRED 
+  * 447        ERROR_KBD_KEYBOARD_BUSY 
+  * 464        ERROR_KBD_DETACHED 
+  * 504        ERROR_KBD_EXTENDED_SG
+
+===== Remarks =====
+
+KbdFlushBuffer completes when the handle has access to the physical keyboard (focus), or is equal to zero and no other handle has the focus.
+
+==== Family API Considerations ====
+
+Some options operate differently in the DOS mode than in the OS/2 mode. The KbdHandle is ignored when coding in the DOS mode. 
+
+===== Bindings =====
+
+==== C Binding ====
+
+<code c>
+#define INCL_KBD
+
+USHORT  rc = KbdFlushBuffer(KbdHandle);
+
+HKBD    KbdHandle;     /* Keyboard handle */
+USHORT  rc;            /* return code */
+</code>
+
+==== MASM Binding ====
+
+<code asm>
+EXTRN  KbdFlushBuffer:FAR
+INCL_KBD            EQU 1
+
+PUSH   WORD    KbdHandle     ;Keyboard handle
+CALL   KbdFlushBuffer
+
+Returns WORD
+</code>
+
+
+
+===== Note =====
+
+Text based on [[http://www.edm2.com/index.php/KbdFlushBuffer_(FAPI)]]
+
+{{page>en:templates:fapi}}

@@ -1,0 +1,34 @@
+==== MFSH_SEGREALLOC - Change segment size ====
+
+**Purpose**
+
+Change the size of memory.   
+
+**Calling Sequence**
+
+<code c>
+int far pascal MFSH_SEGREALLOC(usSel, cbSeg)
+
+unsigned short usSel;
+unsigned long cbSeg;
+</code>
+
+**Where**
+
+//usSel// contains the selector of the segment to be resized.   
+
+//cbSeg// contains the new length of the segment. 
+
+**Returns**
+
+If no error is detected, a zero error code is returned. If an error is detected, on of the following error codes is returned:   
+
+  * ERROR_NOT_MEMORY -- too much memory is allocated. 
+  * ERROR_PROTECTION_VIOLATION -- the supplied selector is invalid. 
+  * ERROR_INVALID_PARAMETER -- the supplied length is invalid. 
+
+**Remarks**
+
+This call changes the size of a segment previously allocated with //MFSH_SEGALLOC//, or loaded as part of the mini-FSD image.   
+
+The segment may be grown or shrunk. When grown, the extra space is uninitialized. The segment may be moved in the process.   

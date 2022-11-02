@@ -1,0 +1,44 @@
+==== FSH_CALLDRIVER ====
+
+**Purpose**
+
+This routine allows FSDs to call a device driver's Extended Strategy entry point.   
+
+**Calling Sequence**
+
+<code c>
+int far pascal FSH_CALLDRIVER(pPkt, hVPB, fControl)
+
+void far * pPkt;
+unsigned short hVPB;
+unsigned short fControl;
+</code>
+
+**Where**
+
+//pPkt// is a pointer to device driver Extended strategy request packet.   
+
+//hVPB// is the volume handle for the source of I/O.   
+
+//fControl// is the bit mask of pop-up control actions: 
+
+|Bit 0 off |indicates volume change pop-up desired |
+|Bit 0 on |indicates no volume change pop-up |
+|All other bits are reserved and must be zero. ||
+
+**Returns**
+
+If no error is detected, a zero error code is returned. If an error is detected, one of the following error codes is returned:   
+
+  * ERROR_VOLUME_CHANGED -- is an indication that removable media volume change has occurred.
+  * ERROR_INVALID_PARAMETER -- the fControl flag word has reserved bits on. 
+
+**Remarks**
+
+This routine should be called for any Extended strategy requests going to a drive that has removable media.   
+
+For a detailed description of the Extended Strategy request interface please see the OS/2 Version 2.0 Physical Device Driver Reference   
+
+//FSH_CALLDRIVER// may block.   
+
+Note:   OS/2 does not validate input parameters. Therefore, an FSD should call //FSH_PROBEBUF// where appropriate.   

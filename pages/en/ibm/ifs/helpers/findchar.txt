@@ -1,0 +1,39 @@
+==== FSH_FINDCHAR ====
+
+**Purpose**
+
+This function provides the mechanism to find the first occurrence of any one of a set of characters in an ASCIIZ string, taking into account DBCS considerations.   
+
+**Calling Sequence**
+
+<code c>
+int far pascal FSH_FINDCHAR(nChars, pChars, ppStr)
+
+unsigned short nChars;
+char far * pChars;
+char far * far * ppStr;
+</code>
+
+**Where**
+
+//nChars// is the number of characters in the search list.   
+
+//pChars// is the array of characters to search for. These cannot be DBCS characters.   
+
+The NUL character cannot be searched for.   
+
+//ppSTR// is the pointer to the character pointer where the search is to begin. This pointer is updated upon return to point to the character found. This must be an ASCIIZ string. 
+
+**Returns**
+
+If no error is detected, a zero error code is returned. If an error is detected, one of the following error codes is returned:   
+
+  * ERROR_CHAR_NOT_FOUND -- indicates none of the characters were found. 
+
+**Remarks**
+
+The search will continue until a matching character is found or the end of the string is found.   
+
+The FSD is responsible for verifying the string pointers and checking for segment boundaries.   
+
+**Note**:   OS/2 does not validate input parameters. An FSD, therefore, should call //FSH_PROBEBUF// where appropriate.   

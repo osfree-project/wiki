@@ -1,0 +1,21 @@
+[Q]: Как убрать ссылки на несуществующие шрифты с помощью REXX?
+
+[A]: Yegor Dolzhikov (2:463/5050); Stas Mishchenkov (2:460/58)
+
+==== Cut [clnfonts.cmd] ====
+/*
+ Скpипт убиpает из OS2.INI ссылки на несуществующие шpифты.
+ Для деинсталляции какого-либо шpифта пpосто сотpите его файл на
+ диске и запустите этот скpипт.
+*/
+call RxFuncAdd 'SysLoadFuncs', 'RexxUtil', 'SysLoadFuncs'
+call SysLoadFuncs
+Call directory sysBootDrive()||'\'
+call SysIni 'USER', 'PM_Fonts', 'ALL:', 'st'
+if st.0=0 then exit
+do i=1 to st.0
+ filename = SysIni('USER', 'PM_Fonts', st.i)
+ if stream(filename, 'c', 'query exists')='' then
+  call SysIni 'USER', 'PM_Fonts', st.i, 'DELETE:'
+end
+==== eof [clnfonts.cmd] ====

@@ -1,0 +1,10 @@
+[Q]: А как запустить PhotoShop 3.05 под Win-Os2?
+
+[A]: Dmitry Niqiforoff (2:5057/3)
+
+  Ставишь PhotoShop. После этого сохраняешь из подкаталога
+\os2\mdos\winos2\system\win32s файлы OLE32.DLL и OLE2THK.DLL, сам подкаталог
+удаляешь, вместе с файлами w32sys.dll и win32s16.dll из подкаталога
+\os2\mdos\winos2\system. Запускаешь WinOS2 и ставишь Win32s v1.25. После
+установки сохраненные файлы из предыдущей установки (ole32.dll и ole2thk.dll)
+переписываешь в подкаталог \os2\mdos\winos2\system\win32s. Все.

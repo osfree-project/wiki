@@ -1,0 +1,35 @@
+==== MFSH_DOVOLIO - Read sectors ====
+
+**Purpose**
+
+Read the specified sectors.   
+
+**Calling Sequence**
+
+<code c>
+int far pascal MFSH_DOVOLIO(pcData, pcSec, ulSec)
+
+char far * pcData;
+unsigned short far * pcSec;
+unsigned long ulSec;
+</code>
+
+**Where**
+
+//pcData// is a pointer to the data area. The data area must be below the 1-Meg boundary.   
+
+//pcSec// is a pointer to the word which specifies the number of sectors to be read. On return, it is filled in by the helper with the number of sectors successfully read.   
+
+//ulSec// is the sector number for the beginning of the sector run. 
+
+**Returns**
+
+If no error is detected, a zero error code is returned. If an error is detected, one of the following error codes is returned:   
+
+  * ERROR_PROTECTION_VIOLATION -- the supplied address or length is invalid. 
+  * ERROR_INVALID_FUNCTION -- either bit 0 of the boot mode flags was set on entry to OS2LDR or the system is not in stage 1. 
+
+**Remarks**
+
+The only media which can be read by this call is the boot volume. The machine's interrupt 13H BIOS function is used to actually do the disk reads. The data area will be locked and unlocked by this helper. Soft errors are retried automatically. Hard errors are reported to the user through a message and the system is stopped.   
+

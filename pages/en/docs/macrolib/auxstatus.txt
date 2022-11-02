@@ -1,0 +1,28 @@
+{{page>en:templates:biosint}}
+
+====== @AuxStatus ======
+
+===== Brief =====
+
+===== BIOS Interrupt =====
+
+[[en:docs:bios:api:int|INTH]]: [[en:docs:bios:api::|H]]
+
+===== Family API =====
+
+[[en:docs:fapi:]]
+
+===== Syntax =====
+
+<code asm>
+@AuxStatus
+</code>
+
+===== Parameters =====
+
+none
+
+===== Return =====
+
+none
+

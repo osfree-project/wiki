@@ -1,0 +1,15 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=57H ======
+
+===== Input ======
+
+ AH=57H, AL=Subfunction
+
+^ Subfunction                        ^ Description                                       ^ Version ^
+| [[en:docs:dos:api:int21:57:00|00]] | GET FILE'S LAST-WRITTEN DATE AND TIME             | 2.0+    |
+| [[en:docs:dos:api:int21:57:01|01]] | SET FILE'S LAST-WRITTEN DATE AND TIME             | 2.0+    |
+
+
+{{page>en:templates:int}}
+

@@ -1,0 +1,100 @@
+{{logos:dos.gif?35x35}} {{logos:os2.gif?35x35}}
+
+===== VIOCALLS =====
+
+This is forwarder DLL to [[DOSCALLS]].DLL on latest OS/2 versions. No any real code here. [[en:docs:fapi|FAPI]] column is a Family API support. Version column is OS/2 version function introduced.
+
+==== Entry points ====
+
+^ Ordinal ^ Name ^ Description ^ Status ^ FAPI ^ Version ^
+| 1 |[[en:docs:os2:api:vio:VioEndPopup]]           | Forwarder to [[en:docs:os2:modules:DOSCALLS]].770 | Done | | 1.0 |
+| 2 |[[en:docs:os2:api:vio:VioGetPhysBuf]]         | Forwarder to [[en:docs:os2:modules:DOSCALLS]].771 | Done | Yes | 1.0 |
+| 3 |[[en:docs:os2:api:vio:VioGetAnsi]]            | Forwarder to [[en:docs:os2:modules:DOSCALLS]].772 | Done | Yes | 1.0 |
+| 4 |[[en:docs:os2:api:vio:VioFree]]               | Forwarder to [[en:docs:os2:modules:DOSCALLS]].773 | Done |
+| 5 |[[en:docs:os2:api:vio:VioSetAnsi]]            | Forwarder to [[en:docs:os2:modules:DOSCALLS]].774 | Done | Yes | 1.0 |
+| 6 |[[en:docs:os2:api:vio:VioDeRegister]]         | Forwarder to [[en:docs:os2:modules:DOSCALLS]].775 | Done | | 1.0 |
+| 7 |[[en:docs:os2:api:vio:VioScrollUp]]           | Forwarder to [[en:docs:os2:modules:DOSCALLS]].776 | Done | Yes | 1.0 |
+| 8 |[[en:docs:os2:api:vio:VioPrtSc]]              | Forwarder to [[en:docs:os2:modules:DOSCALLS]].777 | Done | | 1.0 |
+| 9 |[[en:docs:os2:api:vio:VioGetCurPos]]          | Forwarder to [[en:docs:os2:modules:DOSCALLS]].778 | Done | Yes | 1.0 |
+| 10 |[[en:docs:os2:api:vio:VioWrtCellStr]]        | Forwarder to [[en:docs:os2:modules:DOSCALLS]].779 | Done | Yes | 1.0 |
+| 11 |[[en:docs:os2:api:vio:VioPopUp]]             | Forwarder to [[en:docs:os2:modules:DOSCALLS]].780 | Done | | 1.0 |
+| 12 |[[en:docs:os2:api:vio:VioScrollRt]]          | Forwarder to [[en:docs:os2:modules:DOSCALLS]].781 | Done | Yes | 1.0 |
+| 13 |[[en:docs:os2:api:vio:VioWrtCharStr]]        | Forwarder to [[en:docs:os2:modules:DOSCALLS]].782 | Done | Yes | 1.0 |
+| 14 |[[en:docs:os2:api:vio:Avs_Prtsc]]            | Forwarder to [[en:docs:os2:modules:DOSCALLS]].783 | Done |
+| 15 |[[en:docs:os2:api:vio:VioSetCurPos]]         | Forwarder to [[en:docs:os2:modules:DOSCALLS]].784 | Done | Yes | 1.0 |
+| 16 |[[en:docs:os2:api:vio:VioSrfUnblock]]        | Forwarder to [[en:docs:os2:modules:DOSCALLS]].785 | Done |
+| 17 |[[en:docs:os2:api:vio:VioSrfBlock]]          | Forwarder to [[en:docs:os2:modules:DOSCALLS]].786 | Done |
+| 18 |[[en:docs:os2:api:vio:VioScrUnlock]]         | Forwarder to [[en:docs:os2:modules:DOSCALLS]].787 | Done | Yes | 1.0 |
+| 19 |[[en:docs:os2:api:vio:VioWrtTty]]            | Forwarder to [[en:docs:os2:modules:DOSCALLS]].788 | Done | Yes | 1.0 |
+| 20 |[[en:docs:os2:api:vio:VioSave]]              | Forwarder to [[en:docs:os2:modules:DOSCALLS]].789 | Done |
+| 21 |[[en:docs:os2:api:vio:VioGetMode]]           | Forwarder to [[en:docs:os2:modules:DOSCALLS]].790 | Done | Yes | 1.0 |
+| 22 |[[en:docs:os2:api:vio:VioSetMode]]           | Forwarder to [[en:docs:os2:modules:DOSCALLS]].791 | Done | Yes | 1.0 |
+| 23 |[[en:docs:os2:api:vio:VioScrLock]]           | Forwarder to [[en:docs:os2:modules:DOSCALLS]].792 | Done | Yes | 1.0 |
+| 24 |[[en:docs:os2:api:vio:VioReadCellStr]]       | Forwarder to [[en:docs:os2:modules:DOSCALLS]].793 | Done | Yes | 1.0 |
+| 25 |[[en:docs:os2:api:vio:VioSavRedrawWait]]     | Forwarder to [[en:docs:os2:modules:DOSCALLS]].794 | Done | | 1.0 |
+| 26 |[[en:docs:os2:api:vio:VioWrtNAttr]]          | Forwarder to [[en:docs:os2:modules:DOSCALLS]].795 | Done | Yes | 1.0 |
+| 27 |[[en:docs:os2:api:vio:VioGetCurType]]        | Forwarder to [[en:docs:os2:modules:DOSCALLS]].796 | Done | Yes | 1.0 |
+| 28 |[[en:docs:os2:api:vio:VioSavRedrawUndo]]     | Forwarder to [[en:docs:os2:modules:DOSCALLS]].797 | Done | | 1.0 |
+| 29 |[[en:docs:os2:api:vio:VioGetFont]]           | Forwarder to [[en:docs:os2:modules:DOSCALLS]].798 | Done | | 1.0 |
+| 30 |[[en:docs:os2:api:vio:VioReadCharStr]]       | Forwarder to [[en:docs:os2:modules:DOSCALLS]].799 | Done | Yes | 1.0 |
+| 31 |[[en:docs:os2:api:vio:VioGetBuf]]            | Forwarder to [[en:docs:os2:modules:DOSCALLS]].800 | Done | Yes | 1.0 |
+| 32 |[[en:docs:os2:api:vio:VioSetCurType]]        | Forwarder to [[en:docs:os2:modules:DOSCALLS]].801 | Done | Yes | 1.0 |
+| 33 |[[en:docs:os2:api:vio:VioSetFont]]           | Forwarder to [[en:docs:os2:modules:DOSCALLS]].802 | Done | | 1.0 |
+| 34 |[[en:docs:os2:api:vio:VioHetInit]]           | Forwarder to [[en:docs:os2:modules:DOSCALLS]].803 | Done | | |
+| 35 |[[en:docs:os2:api:vio:VioModeUndo]]          | Forwarder to [[en:docs:os2:modules:DOSCALLS]].804 | Done | | 1.0 |
+| 36 |[[en:docs:os2:api:vio:VioSswSwitch]]         | Forwarder to [[en:docs:os2:modules:DOSCALLS]].805 | Done | | |
+| 37 |[[en:docs:os2:api:vio:VioModeWait]]          | Forwarder to [[en:docs:os2:modules:DOSCALLS]].806 | Done | | 1.0 |
+| 38 |[[en:docs:os2:api:vio:Avs_PrtscToggle]]      | Forwarder to [[en:docs:os2:modules:DOSCALLS]].807 | Done | | |
+| 40 |[[en:docs:os2:api:vio:VioGetCp]]             | Forwarder to [[en:docs:os2:modules:DOSCALLS]].808 | Done | | 1.0 |
+| 41 |[[en:docs:os2:api:vio:VioRestore]]           | Forwarder to [[en:docs:os2:modules:DOSCALLS]].809 | Done | | |
+| 42 |[[en:docs:os2:api:vio:VioSetCp]]             | Forwarder to [[en:docs:os2:modules:DOSCALLS]].810 | Done | | 1.0 |
+| 43 |[[en:docs:os2:api:vio:VioShowBuf]]           | Forwarder to [[en:docs:os2:modules:DOSCALLS]].811 | Done | Yes | 1.0 |
+| 44 |[[en:docs:os2:api:vio:VioScrollLf]]          | Forwarder to [[en:docs:os2:modules:DOSCALLS]].812 | Done | Yes | 1.0 |
+| 45 |[[en:docs:os2:api:vio:VioRegister]]          | Forwarder to [[en:docs:os2:modules:DOSCALLS]].813 | Done | | 1.0 |
+| 46 |[[en:docs:os2:api:vio:VioGetConfig]]         | Forwarder to [[en:docs:os2:modules:DOSCALLS]].814 | Done | | 1.0 |
+| 47 |[[en:docs:os2:api:vio:VioScrollDn]]          | Forwarder to [[en:docs:os2:modules:DOSCALLS]].815 | Done | Yes | 1.0 |
+| 48 |[[en:docs:os2:api:vio:VioWrtCharStrAtt]]     | Forwarder to [[en:docs:os2:modules:DOSCALLS]].816 | Done | Yes | 1.0 |
+| 49 |[[en:docs:os2:api:vio:VioGetState]]          | Forwarder to [[en:docs:os2:modules:DOSCALLS]].817 | Done | | 1.0 |
+| 50 |[[en:docs:os2:api:vio:VioPrtScToggle]]       | Forwarder to [[en:docs:os2:modules:DOSCALLS]].818 | Done | | 1.0 |
+| 51 |[[en:docs:os2:api:vio:VioSetState]]          | Forwarder to [[en:docs:os2:modules:DOSCALLS]].819 | Done | | 1.0 |
+| 52 |[[en:docs:os2:api:vio:VioWrtNCell]]          | Forwarder to [[en:docs:os2:modules:DOSCALLS]].820 | Done | Yes | 1.0 |
+| 53 |[[en:docs:os2:api:vio:VioWrtNChar]]          | Forwarder to [[en:docs:os2:modules:DOSCALLS]].821 | Done | Yes | 1.0 |
+| 54 |[[en:docs:os2:api:vio:VioShellInit]]         | Forwarder to [[en:docs:os2:modules:DOSCALLS]].822 | Done | | |
+| 55 |[[en:docs:os2:api:vio:VioAssociate]]         | Forwarder to [[en:docs:os2:modules:DOSCALLS]].823 | Done | | |
+| 56 |[[en:docs:os2:api:vio:VioCreatePS]]          | Forwarder to [[en:docs:os2:modules:DOSCALLS]].824 | Done | | |
+| 57 |[[en:docs:os2:api:vio:VioDeleteSetId]]       | Forwarder to [[en:docs:os2:modules:DOSCALLS]].825 | Done | | |
+| 58 |[[en:docs:os2:api:vio:VioGetDeviceCellSize]] | Forwarder to [[en:docs:os2:modules:DOSCALLS]].826 | Done | | |
+| 59 |[[en:docs:os2:api:vio:VioGetOrg]]            | Forwarder to [[en:docs:os2:modules:DOSCALLS]].827 | Done | | |
+| 60 |[[en:docs:os2:api:vio:VioCreateLogFont]]     | Forwarder to [[en:docs:os2:modules:DOSCALLS]].828 | Done | | |
+| 61 |[[en:docs:os2:api:vio:VioDestroyPS]]         | Forwarder to [[en:docs:os2:modules:DOSCALLS]].829 | Done | | |
+| 62 |[[en:docs:os2:api:vio:VioQuerySetIds]]       | Forwarder to [[en:docs:os2:modules:DOSCALLS]].830 | Done | | |
+| 63 |[[en:docs:os2:api:vio:VioSetOrg]]            | Forwarder to [[en:docs:os2:modules:DOSCALLS]].831 | Done | | |
+| 64 |[[en:docs:os2:api:vio:VioQueryFonts]]        | Forwarder to [[en:docs:os2:modules:DOSCALLS]].832 | Done | | |
+| 65 |[[en:docs:os2:api:vio:VioSetDeviceCellSize]] | Forwarder to [[en:docs:os2:modules:DOSCALLS]].833 | Done | | |
+| 66 |[[en:docs:os2:api:vio:VioShowPS]]            | Forwarder to [[en:docs:os2:modules:DOSCALLS]].834 | Done | | |
+| 67 |[[en:docs:os2:api:vio:VioGetPSAddress]]      | Forwarder to [[en:docs:os2:modules:DOSCALLS]].835 | Done | | |
+| 68 |[[en:docs:os2:api:vio:VioQueryConsole]]      | Forwarder to [[en:docs:os2:modules:DOSCALLS]].836 | Done | | |
+| 69 |[[en:docs:os2:api:vio:VioRedrawSize]]        | Forwarder to [[en:docs:os2:modules:DOSCALLS]].837 | Done | | |
+| 70 |[[en:docs:os2:api:vio:VioGlobalReg]]         | Forwarder to [[en:docs:os2:modules:DOSCALLS]].838 | Done | | |
+| 71 |[[en:docs:os2:api:vio:XVioSetCAState]]       | Forwarder to [[en:docs:os2:modules:DOSCALLS]].839 | Done | | |
+| 72 |[[en:docs:os2:api:vio:XVioCheckCharType]]    | Forwarder to [[en:docs:os2:modules:DOSCALLS]].840 | Done | | |
+| 73 |[[en:docs:os2:api:vio:XVioDestroyCA]]        | Forwarder to [[en:docs:os2:modules:DOSCALLS]].841 | Done | | |
+| 74 |[[en:docs:os2:api:vio:XVioCreateCA]]         | Forwarder to [[en:docs:os2:modules:DOSCALLS]].842 | Done | | |
+| 75 |[[en:docs:os2:api:vio:VioCheckCharType]]     | Forwarder to [[en:docs:os2:modules:DOSCALLS]].843 | Done | | |
+| 76 |[[en:docs:os2:api:vio:XVioGetCAState]]       | Forwarder to [[en:docs:os2:modules:DOSCALLS]].844 | Done | | |
+
+VioInit.39 is absent in latest OS/2 DLL
+
+==== Versions ====
+
+^ Date&Time ^ SHA1 ^ BldLevel/Version ^ Size ^ Comments ^
+|2012-01-25 16:59 | | 14.100 | 2,048 bytes | osFree Video API |
+|2002-03-08 20:16 | | N/A | 2,048 bytes | |
+|1992-02-06 17:09 | 5ca3aa177b710c5b7cee426833b9dc3d5304b694 | IBM Personal Computer DOS  Version 0.00  Video Router | 16,087 | IBM OS/2 SDK 1.3 CSD1 |
+|1988-08-08 00:00 | 10ce3788f8731040a2ca6a994b4ca95c34787de6 | IBM Personal Computer DOS  Version 0.00  Video Router | 14,441 bytes | MS OS/2 SDK 1.05 |
+|1987-12-15 00:00 | bcec5125a963b52fd6c33c21317325f5cd3f3aa9 | Microsoft OS/2 Version 0.00  Video Router | 13,981 bytes | MS OS/2 SDK 1.02 |
+|1987-10-21 00:00 | | IBM Personal Computer DOS  Version 0.00  Video Router | 13,981 bytes | MS OS/2 1.0 |
+
+
+{{page>en:templates:dlls}}
+{{page>en:templates:fapi}}

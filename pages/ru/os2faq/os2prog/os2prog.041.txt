@@ -1,0 +1,50 @@
+[Q]: Применение команды rdtsc для измерения интервалов времени
+
+[A]: Julius Goryavsky (2:5030/16.32)
+
+   Этот счетчик увеличивается на 1 на каждом такте CPU, то
+есть для 100MHz pentium-а - 100000000 pаз в секунду ! Его
+wrap пpоизойдет чеpез ~6000 лет... Так как счетчик - 64
+битный.
+
+   Из ASM использовать его очень пpосто:
+
+rdtsc           macro
+                db      0Fh, 31h
+endm
+                .486p
+                .model  flat
+                .code
+                public  GetPentiumTSC
+GetPentiumTSC   proc    near
+                mov     ecx , [esp + 4]
+                rdtsc
+                mov     [ecx] , eax
+                mov     [ecx + 4] , edx
+                xor     eax , eax
+                ret
+GetPentiumTSC   endp
+                end
+
+   Вызов из C: QWORD - двойное слово - длиной 8 байтов,
+(Хотя Intel считает что двойное слово - это 4 байта... :-))
+
+   APIRET APIENTRY GetPentiumTSC (QWORD * tsc);
+   .....
+   QWORD time;
+   .....
+   rc = GetPentiumTSC (&time);
+
+   А вот и OBJ: он очень маленький, так что модеpатоp не
+должен pазозлиться...
+
+section 1 of uuencode 5.21 of file gettsc.obj    by R.E.M.
+
+begin 644 gettsc.obj
+M@`P`"F=E='1S8RYA<VUQEAT```1&3$%4!5]$051!!5]415A4!$1!5$$$0T]$ 
+M1;Z8!P"I#@`$!@&?F`<`J0```P4!KYH"``)BD!0``0$-1V5T4&5N=&EU;513 
+F0P```&&(!```H@'1H!(``0``BTPD!`\QB0&)400SP,/PB@(``'0`
+`
+end
+sum -r/size 38769/205 section (from "begin" to "end")
+sum -r/size 59743/128 entire input file

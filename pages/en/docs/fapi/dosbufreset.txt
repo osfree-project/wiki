@@ -1,0 +1,119 @@
+{{page>en:templates:fapiint}}
+
+====== DosBufReset ======
+
+This call flushes a requesting process's cache buffers for a specific file handle or for all file handles attached to that process. This call is also used with the handle of a named pipe to synchronize a dialog between communicating processes.
+
+===== Syntax =====
+
+<code c>
+DosBufReset (FileHandle)
+</code>
+
+===== Parameters =====
+
+
+  *FileHandle ([[HFILE]]) - input : File handle whose buffers are to be flushed. If FileHandle = 0xFFFFH, all of the process's file handles are flushed.
+
+===== Return Code =====
+
+ rc ([[USHORT]]) - return
+  
+Return code descriptions are:
+
+  * 0        NO_ERROR 
+  * 2        ERROR_FILE_NOT_FOUND 
+  * 5        ERROR_ACCESS_DENIED 
+  * 6        ERROR_INVALID_HANDLE
+
+===== Remarks =====
+
+
+Upon issuing DosBufReset for a file handle, the file's buffers are flushed to disk and its directory entry updated as if the file had been closed; however the file remains in an open state.
+
+Usage of this call to write out all files belonging to the requesting process should be administered with caution. When the files reside on removable media (diskettes), a call to DosBufReset could have the undesirable effect of requiring the user to insert and remove a large number of diskettes.
+
+====Named Pipe Considerations====
+
+Issuing DosBufReset for a named pipe performs an operation that is analogous to forcing the buffer cache to disk. The request blocks the calling process at one end of the pipe until all data it has written has been read at the other end of the pipe.
+
+===== Example Code =====
+
+==== C Binding ====
+
+<code c>
+
+#define INCL_DOSFILEMGR
+
+USHORT  rc = DosBufReset(FileHandle);
+
+HFILE            FileHandle;    /* File handle */
+
+USHORT           rc;            /* return code */
+</code>
+This example opens a file, writes some data to the file's buffer, then flushes the file's system buffer. 
+<code c>
+#define INCL_DOSFILEMGR
+
+#define OPEN_FILE 0x01
+#define CREATE_FILE 0x10
+#define FILE_ARCHIVE 0x20
+#define FILE_EXISTS OPEN_FILE
+#define FILE_NOEXISTS CREATE_FILE
+#define DASD_FLAG 0
+#define INHERIT 0x80
+#define WRITE_THRU 0
+#define FAIL_FLAG 0
+#define SHARE_FLAG 0x10
+#define ACCESS_FLAG 0x02
+
+#define FILE_NAME "test.dat"
+#define FILE_SIZE 800L
+#define FILE_ATTRIBUTE FILE_ARCHIVE
+#define RESERVED 0L
+
+HFILE   FileHandle;
+USHORT  Wrote;
+USHORT  Action;
+PSZ     FileData[100];
+USHORT  rc;
+
+Action = 2;
+strcpy(FileData, "Data...");
+if(!DosOpen(FILE_NAME,                /* File path name */
+            &FileHandle,             /* File handle */
+            &Action,                 /* Action taken */
+            FILE_SIZE,               /* File primary allocation */
+            FILE_ATTRIBUTE,          /* File attribute */
+            FILE_EXISTS | FILE_NOEXISTS,      /* Open function type */
+            DASD_FLAG | INHERIT |            /* Open mode of the file */
+            WRITE_THRU | FAIL_FLAG |
+            SHARE_FLAG | ACCESS_FLAG,
+            RESERVED))               /* Reserved (must be zero) */
+
+if(!DosWrite(FileHandle,           /* File handle */
+             (PVOID) FileData,     /* User buffer */
+             sizeof(FileData),     /* Buffer length */
+             &Wrote))              /* Bytes written */
+
+rc = DosBufReset(FileHandle);    /* File handle */
+</code>
+
+==== MASM Binding ====
+
+<code asm>
+EXTRN  DosBufReset:FAR
+INCL_DOSFILEMGR     EQU 1
+
+PUSH   WORD    FileHandle    ;File handle
+CALL   DosBufReset
+</code>
+Returns WORD
+
+===== Note =====
+
+
+Text based on [[http://www.edm2.com/index.php/DosBufReset]]
+
+{{page>en:templates:fapi}}
+

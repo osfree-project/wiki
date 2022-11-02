@@ -1,0 +1,51 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=66H, AL=02H ======
+
+===== Version =====
+
+3.3 and higher
+
+===== Brief =====
+
+SET GLOBAL CODE PAGE TABLE
+
+===== Family API =====
+
+
+===== Input =====
+
+	AX = 6602h
+  BX = active code page (see #01757)
+  DX = system code page (active page at boot time)
+
+  
+===== Return =====
+
+   CF set on error
+  AX = error code (see #01680 at AH=59h/BX=0000h)
+  CF clear if successful
+  AX = EB41h (Novell NWDOS v7.0 when NLSFUNC not installed and request was for previously-active code page)
+
+===== Macro =====
+
+
+===== Notes =====
+
+
+   Not all code pages are available in all versions of DOS or DOS-compatibles, and many (particularly EBCDIC) have not been implemented for *any* DOS to date. CECP = 'Country Extended CodePage' by IBM.. Unicode (UCS-2) is a 16-bit character codeset, covering all commonly used characters from almost any language. Not all definitions are fixed at the time of this writing. Unicode will be the future of character coding for the foreseeable future, but is only the "basic multilingual plane" (BMP) subset of 32-bit ISO 10646 codes (UCS-4), a single character set standard covering requirements for all countries and languages, which is still under construction.. The MS Windows 'ANSI' codepage 1252 (based on the MS Windows 3.0+ implementation) appears to be 100% compatible with the code sets used by Amiga OS and Acorn Archimedes RISC-OS and is also a linear subset of the 16bit UniCode code set (UCS-2); the actual ANSI codepage is defined by ISO 8859-1 (Latin 1).. At least applications for OS/2 Warp 3 Presentation Manager can use EBCDIC codepages, but the codepage ID assignments for EBCDIC codepages are not known for OS/2. OS/2 SAA codepages are not supported in CONFIG.SYS. Codepage 65400 "Glyphs" is not actually a codepage, but a way to directly access the first 256 of the 383 glyphs from the current font set.. Novell DOS 7/DR DOS 6/Caldera OpenDOS undocumented codepage 853 does not necessarily match with MS-DOS' undocumented codepage 853.. Undocumented codepages 667 and 668 can be found in Russian's PTS/DOS 6.51 and S/DOS 1.x DISPLAY.CPI and contain some Eastern European characters.. Novell NetWare 3.xx clients support UniCode and codepages 437, 850, 860, 863, 865, 897, 932, and 1252 (possibly more). NetWare 4.xx clients also support 1250, 1251, 1256. Personal NetWare 1.0 (PNW), as it was distributed in Europe, supports UniCode and codepages 437, 850 and 1252. Novell's Client32 for DOS/Windows supports 874, 932, 936, 949, 950, 1250 - 1257. For codesets not yet available, Novell offers a reduced ASCII 7-bit support through a codepage 0 used as a translation table to UniCode, that supports characters 32-127 except 92 ('\').
+
+
+===== See also =====
+
+   AX=6601h
+   
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:int}}
+
+{{page>en:templates:fapi}}
+
+

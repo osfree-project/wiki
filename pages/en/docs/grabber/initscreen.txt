@@ -1,0 +1,19 @@
+{{page>en:templates:dosshell}}
+
+====== InitScreen ======
+
+===== Brief =====
+
+Initialize screen to a known mode
+
+===== Entry =====
+
+  * DS=CS
+
+===== Return =====
+
+None
+
+===== Note =====
+
+Call this function before execute MS-DOS app, or before switch to it.

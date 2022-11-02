@@ -1,0 +1,40 @@
+==== MFSH_SEGALLOC - Allocate a segment ====
+
+**Purpose**
+
+Allocate memory.   
+
+**Calling Sequence**
+
+<code c>
+int far pascal MFSH_SEGALLOC(usFlag, cbSeg, pusSel)
+
+unsigned short usFlag;
+unsigned long cbSeg;
+unsigned short far * pusSel;
+</code>
+
+**Where**
+
+//usFlag// is set to 1 if the memory must be below the 1-meg boundary or 0 if its location does not matter.   
+
+//cbSeg// contains the length of the segment.   
+
+//pusSel// is a pointer to a word in which the helper returns the selector of the segment. 
+
+**Returns**
+
+If no error is detected, a zero error code is returned. If an error is detected, one of the following error codes is returned:   
+
+  * ERROR_NOT_ENOUGH_MEMORY -- too much memory is allocated. 
+  * ERROR_PROTECTION_VIOLATION -- the supplied address is invalid. 
+  * ERROR_INVALID_PARAMETER -- either the supplied flag or length is invalid. 
+
+**Remarks**
+
+This function allocates memory with the following attributes:   
+
+  * Allocated from the GDT
+  * Non-swappable 
+
+Memory not allocated specifically below the 1-Meg boundary may be given to the FSD by passing the selectors through //pMiniFSD// (see //MFS_INIT// and //FS_INIT//).   

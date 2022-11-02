@@ -1,0 +1,36 @@
+===== Using the Keystack =====
+
+The Keystack overcomes two weaknesses of input redirection: some programs ignore standard input and read the keyboard directly, and input redirection doesn't end until the program or command terminates. You can't, for example, use redirection to send the opening commands to a program and then type the rest of the commands yourself. But the Keystack lets you do exactly that. 
+
+The Keystack sends keystrokes to an application program. Once the Keystack is empty, the program will receive the rest of its input from the keyboard. The Keystack is useful when you want a program to take certain actions automatically when it starts. It is most often used in batch files and aliases. The Keystack is invoked with the **[[KEYSTACK]]** command. 
+
+**KEYSTACK** depends on a program called **KEYSTACK.EXE**. This file must be in the same directory as **CMD.EXE**, or in a directory listed in your **[[PATH]]**. You don't have to take any special action to activate **KEYSTACK.EXE**; **CMD.EXE** will run it automatically when you use the **[[KEYSTACK]]** command. If **CMD.EXE** cannot find **KEYSTACK.EXE**, the **KEYSTACK** command will display an error message. 
+
+To place the letters, digits, and punctuation marks you would normally type for your program into the keystack, enclose them in double quotes: 
+
+<code winbatch>
+        [c:\] keystack "myfile"
+</code>
+
+Many other keys can be entered into the Keystack using their names. This example puts the **F1** key followed by the **Enter** key in the keystack: 
+
+<code winbatch>
+        [c:\] keystack F1 Enter
+</code>
+
+See [[Keys and Key Names]] for details on how key names are entered. See the **[[KEYSTACK]]** command for information on using numeric key values along with or instead of key names, and other details about using the Keystack. 
+
+The following command creates an alias that will run a //FoxPro// report called **TIMEREP** (it should be entered on one line): 
+
+<code winbatch>
+        [c:\] alias timerep `keystack "use times index times" Enter
+              "report form timerep to print" Enter "quit" Enter & foxpro`
+</code>
+
+This command creates an alias called **timerep** which puts the following characters on the keystack: 
+
+the characters **"use times index times"** the **Enter** key's code the characters "report form timerep to print" the **Enter** key's code the characters "quit" and one more **Enter** key 
+
+The alias then runs the program //FOXPRO// which receives those characters just as if you had typed them. 
+
+When you use the Keystack, remember that you must put the keystrokes into the Keystack before you run the program that will receive them. The Keystack will hold the keystrokes until the program asks for them. 

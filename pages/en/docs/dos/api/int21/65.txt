@@ -1,0 +1,32 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=65H ======
+
+===== Input ======
+
+ AH=65H, AL=Subfunction
+
+^ Subfunction                        ^ Description                                       ^ Version ^
+| [[en:docs:dos:api:int21:65:00|00]] | SET GENERAL INTERNATIONALIZATION INFO             | 7.1+    |
+| [[en:docs:dos:api:int21:65:01|01]] | get general internationalization info             | 3.3+    |
+| [[en:docs:dos:api:int21:65:02|02]] | get pointer to uppercase table                    | 3.3+    |
+| [[en:docs:dos:api:int21:65:03|03]] | get pointer to lowercase table                    | 6.2+    |
+| [[en:docs:dos:api:int21:65:04|04]] | get pointer to filename uppercase table           | 3.3+    |
+| [[en:docs:dos:api:int21:65:05|05]] | get pointer to filename terminator table          | 3.3+    |
+| [[en:docs:dos:api:int21:65:06|06]] | get pointer to collating sequence table           | 3.3+    |
+| [[en:docs:dos:api:int21:65:07|07]] | get pointer to Double-Byte Character Set table    | 4+      |
+| [[en:docs:dos:api:int21:65:20|20]] | capitalize character                              | 4+      |
+| [[en:docs:dos:api:int21:65:21|21]] | capitalize string                                 | 4+      |
+| [[en:docs:dos:api:int21:65:22|22]] | capitalize ASCIZ string                           | 4+      |
+| [[en:docs:dos:api:int21:65:23|23]] | DETERMINE IF CHARACTER REPRESENTS YES/NO RESPONSE | 4+      |
+| [[en:docs:dos:api:int21:65:a0|A0]] | capitalize filename character                     | 4+      |
+| [[en:docs:dos:api:int21:65:a1|A1]] | capitalize counted filename string                | 4+      |
+| [[en:docs:dos:api:int21:65:a2|A2]] | capitalize ASCIZ filename                         | 4+      |
+
+
+{{page>en:templates:int}}
+
+
+
+
+

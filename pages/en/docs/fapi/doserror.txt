@@ -1,0 +1,91 @@
+{{page>en:templates:fapiint}}
+
+====== DosError ======
+This call allows an OS/2 process to receive hard error notification without generating a hard error signal.
+
+===== Syntax =====
+<code c>
+DosError (Flag)
+</code>
+
+===== Parameters =====
+
+  * Flags ([[USHORT]]) - input : Bit field, defined in the following example (the unused high-order bits are reserved and must be set to zero).
+^ Bit ^ Description ^
+| 15-2 | Reserved, set to zero |
+| 1 | 0 = Enable exception popups.        1 = Disable exception popups |
+| 0 | 0 = Disable hard error popups (fail requests).       1 = Enable hard error popups |
+
+===== Return Code =====
+
+rc ([[USHORT]]) - return
+
+Return code descriptions are:
+
+  *0  NO_ERROR
+  *87 ERROR_INVALID_PARAMETER
+
+===== Remarks =====
+
+DosError allows an OS/2 process to disable user notification if a program (or untrapped numeric processor) exception occurs. If end user notification is disabled, and if one of these exceptions occurs, the process is terminated.
+
+Hard errors generated under a process that has issued a DosError call are failed, and the appropriate error code is returned. The default situation is both hard error pop-ups and exception pop-ups are enabled, if DosError is not issued.
+
+==== Family API Considerations ====
+
+Some options operate differently in the DOS mode than in the OS/2 mode. Therefore, the following restriction applies to DosError when coding for the DOS mode:
+
+For Flag, a value of 0000 causes all subsequent INT 24s to be failed until a subsequent call with a value of 1 is issued.
+
+Note: Since INT 24 is not issued in DOS mode, this call has no effect when running in DOS mode.
+
+===== Bindings =====
+
+==== C Binding ====
+
+<code c>
+#define INCL_DOSMISC
+
+USHORT  rc = DosError(Flag);
+USHORT  Flags;        /* Action flags */
+
+USHORT  rc;            /* return code */
+</code>
+
+==== MASM Binding ====
+
+<code asm>
+EXTRN  DosError:FAR
+INCL_DOSMISC   EQU 1
+
+PUSH   WORD    Flags    ;Action flags
+CALL   DosError
+
+Returns WORD
+</code>
+
+==== Example Code ====
+
+This example disables hard error popups and exception popups, then re-enables them. 
+<code c>
+#define INCL_DOSQUEUES
+
+#define ENABLE_EXCEPTION 0
+#define DISABLE_EXCEPTION 2
+#define ENABLE_HARDERROR 1
+#define DISABLE_HARDERROR 0
+#define DISABLE_ERRORPOPUPS DISABLE_EXCEPTION | DISABLE_HARDERROR
+#define ENABLE_ERRORPOPUPS ENABLE_EXCEPTION | ENABLE_HARDERROR
+
+USHORT rc;
+
+ rc = DosError(DISABLE_ERRORPOPUPS); /* Action flag */
+ rc = DosError(ENABLE_ERRORPOPUPS);  /* Action flag */
+</code>
+
+===== Note =====
+
+Text based on [[http://www.edm2.com/index.php/DosError_(FAPI)]]
+
+{{page>en:templates:fapi}}
+

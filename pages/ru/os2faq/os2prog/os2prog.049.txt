@@ -1,0 +1,84 @@
+[Q]: Сопоставление с шаблоном. Звёздочки, вопросики. Паскаль.
+
+[A]: Vadim Rumyantsev (2:5030/301)
+
+
+UNIT UslPatrn;
+
+
+
+INTERFACE
+
+
+
+function MatchLineOk (pattern, line : string) : boolean;
+function MatchFileOk (pattern, name : string) : boolean;
+
+
+
+IMPLEMENTATION
+
+
+
+uses Dos;
+
+
+
+function MatchLineOk;
+
+
+
+function SubOk (ppos, lpos : byte) : boolean;
+
+begin
+
+  if ppos > length (pattern) then
+    SubOk := lpos > length (line)
+  else if lpos > length (line) then
+    SubOk := (pattern [ppos] = '*') and SubOk (ppos+1, lpos)
+  else if pattern [ppos] = '*' then begin
+    SubOk := false;
+    for lpos := length (line) + 1 downto lpos do
+      if SubOk (ppos+1, lpos) then begin
+        SubOk := true;
+        break
+      end
+  end
+  else
+    SubOk := ((pattern [ppos] = '?') or
+              (pattern [ppos] = line [lpos])) and
+             SubOk (ppos+1, lpos+1)
+
+end;
+
+
+
+begin
+
+  MatchLineOk := SubOk (1, 1)
+
+end;
+
+
+
+function MatchFileOk;
+
+var
+  pd, nd : DirStr;
+  pn, nn : NameStr;
+  px, nx : ExtStr;
+
+begin
+
+  FSplit (pattern, pd, pn, px);
+  FSplit (name,    nd, nn, nx);
+
+  MatchFileOk := ((pd = '') or (pd = nd)) and
+                 MatchLineOk (pn, nn) and
+                 MatchLineOk (px, nx)
+
+end;
+
+
+
+END.

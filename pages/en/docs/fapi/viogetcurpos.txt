@@ -1,0 +1,64 @@
+{{page>en:templates:fapiint}}
+
+====== VioGetCurPos ======
+
+This call returns the coordinates of the cursor.
+
+===== Syntax =====
+<code c>
+VioGetCurPos (Row, Column, VioHandle)
+</code>
+
+===== Parameters =====
+
+   * Row ([[PUSHORT]]) - output : Address of the current Row position of the cursor where 0 is the top row.
+   * Column ([[PUSHORT]]) - output : Address of the current column position of the cursor where 0 is the leftmost column.
+   * VioHandle ([[HVIO]]) - input : This must be zero unless the caller is a Presentation Manager application, in which case it must be the value returned by VioGetPs.
+
+===== Return Code =====
+
+rc ([[USHORT]]) - return
+
+Return code descriptions are:
+
+  * 0          NO_ERROR 
+  * 355        ERROR_VIO_MODE 
+  * 436        ERROR_VIO_INVALID_HANDLE 
+  * 465        ERROR_VIO_DETACHED
+
+===== Bindings =====
+
+====C Binding====
+<code c>
+#define INCL_VIO
+
+USHORT  rc = VioGetCurPos(Row, Column, VioHandle);
+
+PUSHORT          Row;           /* Row return data */
+PUSHORT          Column;        /* Column return data */
+HVIO             VioHandle;     /* Vio handle */
+
+USHORT           rc;            /* return code */
+</code>
+
+==== MASM Binding ====
+
+<code asm>
+EXTRN  VioGetCurPos:FAR
+INCL_VIO            EQU 1
+
+PUSH@  WORD    Row           ;Row return data
+PUSH@  WORD    Column        ;Column return data
+PUSH   WORD    VioHandle     ;Vio handle
+CALL   VioGetCurPos
+
+Returns WORD
+</code>
+
+
+===== Note =====
+
+Text based on [[http://www.edm2.com/index.php/VioGetCurPos_(FAPI)]]
+
+{{page>en:templates:fapi}}
+

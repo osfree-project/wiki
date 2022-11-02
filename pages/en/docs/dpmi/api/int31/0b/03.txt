@@ -1,0 +1,41 @@
+{{page>en:templates:dpmi}}
+
+====== Int 31H, AH=0BH, AL=03H ======
+
+===== Version =====
+
+0.9
+
+===== Brief =====
+
+Reset Debug Watchpoint
+
+===== Input =====
+
+  AX = 0B03H
+  BX = watchpoint handle
+
+===== Return =====
+
+  if function successful
+  Carry flag = clear
+  
+  if function unsuccessful
+  Carry flag = set
+  AX = error code
+  8023H	invalid handle
+  
+===== Notes =====
+
+Resets the state of a previously defined debug watchpoint; i.e. a subsequent call to Int 31H Function 0B02H will indicate that the debug watchpoint has not been encountered.
+
+===== See also =====
+
+   
+
+===== Note =====
+
+Text based on [[http://www.delorie.com/djgpp/doc/dpmi/]]
+
+{{page>en:templates:dpmi:int}}
+

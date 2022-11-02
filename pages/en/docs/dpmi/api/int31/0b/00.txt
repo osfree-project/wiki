@@ -1,0 +1,54 @@
+{{page>en:templates:dpmi}}
+
+====== Int 31H, AH=0BH, AL=00H ======
+
+===== Version =====
+
+0.9
+
+===== Brief =====
+
+Set Debug Watchpoint
+
+===== Input =====
+
+  AX = 0B00H
+  BX:CX = linear address of watchpoint
+  DL = size of watchpoint (1, 2, or 4 bytes)
+  DH = type of watchpoint
+
+^ Value ^ Breakpoint Type ^
+| 0 | execute |
+| 1 | write |
+| 2 | read/write |
+
+===== Return =====
+
+  if function successful
+  Carry flag = clear
+  BX = watchpoint handle
+  
+  if function unsuccessful
+  Carry flag = set
+  AX = error code
+  8016H	too many breakpoints
+  8021H	invalid value (in DL or DH)
+  8025H	invalid linear address (linear address not mapped or alignment error)
+===== Notes =====
+
+Sets a debug watchpoint at the specified linear address.
+
+Under DPMI 1.0, the handle will be in the range 0-14. Under DPMI 0.9, the handle range is not limited.
+
+The watchpoint handle corresponds to the bit number in the Virtual DR6 returned in the exception frame (see Int 31H Function 0212H and page 18 of the DPMI spec).
+
+===== See also =====
+
+   
+
+===== Note =====
+
+Text based on [[http://www.delorie.com/djgpp/doc/dpmi/]]
+
+{{page>en:templates:dpmi:int}}
+

@@ -1,0 +1,45 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=5DH, AL=07H ======
+
+===== Version =====
+
+3.1 and higher
+
+===== Brief =====
+
+GET REDIRECTED PRINTER MODE
+
+===== Family API =====
+
+
+===== Input =====
+
+        AX = 5D07h
+
+===== Return =====
+
+ DL = mode
+	    00h redirected output is combined
+	    01h redirected output in separate print jobs
+
+===== Macro =====
+
+
+===== Notes =====
+
+   MS-DOS and DR DOS 3.41/5.0 simply push AX on the stack and call
+	  INT 2F/AX=1125h
+
+===== See also =====
+
+  AX=5D08h,AX=5D09h,INT 2F/AX=1125h
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:int}}
+
+{{page>en:templates:fapi}}
+

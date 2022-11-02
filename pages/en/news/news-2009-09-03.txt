@@ -1,0 +1,17 @@
+==== 3 September, 2009 ====
+
+0.0.4 release
+
+We released this preview to show actual possibility of LX executables 
+(native OS/2 executable file format) to be run on top of L4. Output 
+from LX executable is "I am really small!" phrase. Other things are 
+debug output. Our executable uses msg.dll which uses doscalls.dll. 
+So, linking also works. Also we present here osFree loader which 
+allows to load as Multiboot compatible kernels as native OS/2 kernel. 
+Loader is modular and easy to extend. Next release will provide some 
+interactive like directory browsing and files execution. See roadmap 
+at www.osfree.org for more info.
+
+{{tag>development milestone roadmap}}
+
+~~DISCUSSION~~

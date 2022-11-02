@@ -1,0 +1,54 @@
+{{page>en:templates:fapiint}}
+
+====== DosSelectDisk ======
+
+This call selects the drive specified as the default drive for the calling process.
+
+===== Syntax =====
+
+<code c>
+DosSelectDisk (DriveNumber)
+</code>
+
+===== Parameters =====
+
+  *DriveNumber ([[USHORT]]) - input : New default drive number, where 1 = A and 2 = B and so on.
+
+===== Return Code =====
+
+rc ([[USHORT]]) - return
+  
+Return code descriptions are:
+
+  * 0   NO_ERROR
+  * 15  ERROR_INVALID_DRIVE 
+
+===== Example Code =====
+
+==== C Binding ====
+
+<code c>
+  #define INCL_DOSFILEMGR
+  
+  USHORT  rc = DosSelectDisk(DriveNumber);
+  USHORT           DriveNumber;   /* Default drive number */
+  USHORT           rc;            /* return code */
+</code>
+
+==== MASM Binding ====
+
+<code asm>
+  EXTRN  DosSelectDisk:FAR
+  INCL_DOSFILEMGR     EQU 1
+  
+  PUSH   WORD    DriveNumber   ;Default drive number
+  CALL   DosSelectDisk
+</code>
+Returns WORD
+
+===== Note =====
+
+Text based on http://www.edm2.com/index.php/DosSelectDisk
+
+{{page>en:templates:fapi}}
+

@@ -1,0 +1,54 @@
+{{page>en:templates:dpmi}}
+
+====== Int 31H, AH=00H, AL=02H ======
+
+===== Version =====
+
+0.9
+
+===== Brief =====
+
+Segment to Descriptor
+
+===== Input =====
+
+  AX = 0002H
+  BX = real mode segment address
+
+===== Return =====
+
+  if function successful
+  Carry flag = clear
+  AX = selector for real mode segment
+  
+  if function unsuccessful
+  Carry flag = set
+  AX = error code
+  8011H	descriptor unavailable
+  
+===== Notes =====
+
+Maps a real mode segment (paragraph) address onto an LDT descriptor that can be used by a protected mode program to access the same memory.
+
+
+The descriptor's limit will be set to 64 KB.
+
+Multiple calls to this function with the same segment address will return the same selector.
+
+The intent of this function is to provide clients with easy access to commonly used real mode segments such as the BIOS data area at segment 0040H and the video refresh buffers at segments A000H, B000H, and B800H. Clients should not call this function to obtain descriptors to private data areas.
+
+Descriptors created by this function can never be modified or freed. For this reason, the function should be used sparingly. Clients which need to examine various real mode addresses using the same selector should allocate a descriptor with Int 31H Function 0000H and change the base address in the descriptor as necessary, using the Set Segment Base Address function (Int 31H Function 0007H).
+
+Refer to the rules for descriptor usage in Appendix D. 
+    
+===== See also =====
+
+   
+
+===== Note =====
+
+Text based on [[http://www.delorie.com/djgpp/doc/dpmi/]]
+
+{{page>en:templates:dpmi:int}}
+
+

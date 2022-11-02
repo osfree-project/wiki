@@ -1,0 +1,13 @@
+The Boot team develops and maintain osFree boot system.
+
+We provide following things:
+
+  * [[en:blackbox|MicroFSD/BlackBox stub]] for IFS developers
+  * [[en:freeldr|Flexible and extensible OS's loader (FreeLDR)]]
+  * [[en:docs:boot:index|Documentation about osFree boot process and FreeLDR]]
+
+All of us shown here:
+
+  * [[en:teams:boot:members|Team members]]
+
+~~DISCUSSION~~

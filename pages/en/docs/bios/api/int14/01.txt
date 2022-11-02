@@ -1,0 +1,49 @@
+{{page>en:templates:biosint}}
+
+====== Int 14H, AH=01H ======
+
+===== Version =====
+
+IBM 5150 and higher
+
+===== Brief =====
+
+Write character to port
+
+===== Family API =====
+
+[[en:docs:fapi:DosWrite]]
+
+===== Input =====
+
+  * AH = 01h
+  * AL = character to write
+  * DX = port number (00h-03h) (04h-43h for Digiboard XAPCM232.SYS)
+
+===== Return =====
+
+  * AH bit 7 clear if successful
+  * AH bit 7 set on error
+  * AH bits 6-0 = port status (see #00304)
+
+===== Macro =====
+
+<code asm>
+INCLUDE BIOS.INC
+
+@AuxSendChar 0, 'A'
+</code>
+
+===== Notes =====
+
+  * various network and serial-port drivers support the standard BIOS functions with interrupt-driven I/O instead of the BIOS's polled I/O
+  * the 1993/04/08 Compaq system ROM uses only the low two bits of DX
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:biosapi}}
+
+{{page>en:templates:fapi}}
+

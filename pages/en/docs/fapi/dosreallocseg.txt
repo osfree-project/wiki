@@ -1,0 +1,75 @@
+{{page>en:templates:fapiint}}
+
+====== DosReallocSeg ======
+
+This call reallocates a segment after discard or changes the size of a segment already allocated.
+
+====== Syntax ======
+<code c>
+DosReallocSeg (Size, Selector)
+</code>
+
+====== Parameters ======
+
+  * Size ([[USHORT]]) - input : New requested segment size (in bytes). A value of 0 indicates 65536 bytes.
+  * Selector ([[SEL]]) - input : Segment to be resized.
+
+====== Return Code ======
+
+rc ([[USHORT]]) - return
+
+Return code descriptions are:
+
+  * 0        NO_ERROR
+  * 5        ERROR_ACCESS_DENIED
+  * 8        ERROR_NOT_ENOUGH_MEMORY
+
+====== Remarks ======
+
+DosReallocSeg is called to change the size of an unshared or shared segment allocated with a [[DosAllocSeg]] request.
+
+Normally, segments allocated as shared (AllocFlags bits 0 and 1 were set) cannot be decreased in size. However, if AllocFlags bit 3 was also set, the shared segment's size can be decreased.
+
+DosReallocSeg is also called to reallocate a segment allocated as discardable (AllocFlags bit 2 set) after the segment is discarded by the system. The call to DosReallocSeg automatically locks the segment for access by the caller, the same as if a DosLockSeg had been issued.
+
+Note: This request may be issued from privilege level 2 or 3, and the segment being resized can be either a privilege level 2 or privilege level 3 segment.
+
+To change the size of huge memory allocated by DosAllocHuge, see DosReallocHuge.
+
+===== Family API Considerations =====
+
+Some options operate differently in the DOS mode than in the OS/2 mode. Therefore, the following restriction applies to DosReallocSeg when coding for the DOS mode. The requested Size value is rounded up to the next paragraph (16-byte). 
+====== Bindings ======
+
+===== C Binding =====
+
+<code c>
+#define INCL_DOSMEMMGR
+
+USHORT  rc = DosReallocSeg(Size, Selector);
+
+USHORT           Size;          /* New size requested in bytes */
+SEL              Selector;      /* Selector */
+
+USHORT           rc;            /* return code */
+</code>
+===== MASM Binding =====
+
+<code asm>
+EXTRN  DosReallocSeg:FAR
+INCL_DOSMEMMGR      EQU 1
+
+PUSH   WORD    Size          ;New size requested in bytes
+PUSH   WORD    Selector      ;Selector
+CALL   DosReallocSeg
+
+Returns WORD
+</code>
+
+
+
+===== Note =====
+
+Text based on [[http://www.edm2.com/index.php/DosReallocSeg]]
+
+{{page>en:templates:fapi}}

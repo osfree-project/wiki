@@ -1,0 +1,46 @@
+=== Credits ===
+
+osFree project does not aim to rewrite everything from scratch. We realize that our resources are limited. So, we must reuse existing code as much as possible. We have already taken a number of [[wp>FOSS]] and Public domain software as a base of our [[wp>Operating_System|OS]] components. Here is their list (may be, incomplete, sorry if it is).
+
+Much thanks to those projects: (software or documentation)
+
+  * [[http://regina-rexx.sourceforge.net/|Regina REXX]] - our Classic REXX replacement
+  * [[http://hessling-editor.sourceforge.net/|THE]] - our TEDIT replacement
+  * And lot of other things from Mark Hessling. His products allowed us not to reinvent the wheel.
+  * [[http://os2linux.sourceforge.net/|OS2Linux]] project as a base for CPI implementation on top of Fiasco microkernel.
+  * [[http://frepm.sourceforge.net/|FreePM]] project as base of PM reimplementation
+  * [[http://os.inf.tu-dresden.de/drops/|DROPS]] as base of most Personality Neutral Servers.
+  * [[http://os.inf.tu-dresden.de/L4/LinuxOnL4/|L4Linux]] as Linux personality core.
+  * [[en:docs:cmd:index|osFree/CMD]] project as base for most of command line tools
+  * [[en:freeldr|FreeLDR]] project which was evolved in full featured kernel loader.
+  * [[http://www.gnu.org/software/grub/|GRUB]] which was good codebase for [[en:freeldr|FreeLDR]] project.
+  * [[http://mcpp.sourceforge.net/|MCPP]] used as SOM CPP base.
+  * [[https://sourceforge.net/projects/somfree/|somFree]] used as SOM replacement base
+  * [[http://heikon.home.tlink.de/|GBM]] used as core of Image Format I/O Procedures
+  * [[http://www.os2world.com/cdwriting/jpgio/jpgio.htm|JPGIO]] used as core of Image Format I/O Procedures
+  * [[http://www.zlib.net/|ZLIB]] used in many parts
+  * [[http://www.libpng.org/|LIBPNG]] used in many parts
+  * [[http://www.ijg.org/|LIBJPEG]] used in many parts
+  * [[http://www.libgd.org/|GDLIB]] used in FreePM
+  * [[http://www.libtiff.org/|LIBTIFF]] used in many parts
+  * [[http://os.inf.tu-dresden.de/fiasco/|Fiasco]] reused as microkernel
+  * PParser from FPK used as UNI2H tool base
+  * [[https://github.com/nepx/twin|TWIN library as win16 base]]
+  * [[http://minstall.netlabs.org/|MINSTALL]] by Martin Kiewitz
+  * [[http://ru.ecomstation.ru/projects/eschemes-deluxe/?action=down|MMImage Pak]] as Image File Format I/O Procedures
+  * [[http://r6.ca/MMAudioPak/|MMAudio Pak 2]] as Audio File Format I/O Procedures
+  * [[http://www.freedos.org/|FreeDOS]] parts as DOS subsystem base
+  * Ralf Brown documentation (Interrupt list). Great source of DOS and DOS VM information.
+  * [[https://github.com/OS2World/UTIL-SYSTEM-ALVM|ALVM]]
+  * [[https://github.com/altsan/os2-lvmpm|LVMPM]]
+  * [[http://www.altsan.org/os2/toolkits/lvm/|LVMTK]]
+  * [[https://github.com/Baron-von-Riedesel/HX|HX DOS Extender]]
+  * [[https://trac.netlabs.org/cwmmclasses|CWMM Classes]]
+  * Open Watcom
+  * [[https://github.com/Baron-von-Riedesel/JWasm|JWasm]]
+  * ACPITK
+  * XWPHelpers
+  * 4os2
+  * [[https://trac.netlabs.org/xworkplace|XWorkplace]]
+
+and other projects here. Please add it if we missed one.

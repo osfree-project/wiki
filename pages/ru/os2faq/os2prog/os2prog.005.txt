@@ -1,0 +1,216 @@
+[Q]: Библиотеки для программирования на Rexx
+
+[A]: Sergey Shikov (2:5020/157.108)
+
+Для начала - ydbautil. IMHO наиболее полная библиотека того, чего в REXX обычно
+недостает с начала работы. В настоящее время я пользуюсь Release 1.8.
+
+Вторая библиотека - rxasync, предназначена для работы с COM-портами. Полный 
+набор функций низкого уровня, т.е. без протоколов, упаковки, модемов.
+
+Rxsocket - набор функций для работы с TCP/IP из REXX.
+
+Rxipc - Inter Process Communication для REXX. Перекрывается возможностями 
+ydbautil. Более подробно сказать что-либо сложно.
+
+EPMBBS - пакет для написания макро к EPM на REXX и собственном макроязыке 
+EPM-а.
+
+Есть еще библиотеки, позволяющие использовать некоторый набор controls в 
+PM-программах из REXX, обычно Message Box, Input Line с кнопками Ok и Cancel,
+List Box и т.п. Hо для такого случая, IMHO лучше VX-REXX не придумать. 
+
+Вот список функций, которые имеются в ydbautil:
+
+   Function Package utility functions
+   ----------------------------------
+   RxYdbaUtilInit        - Register all YDBAUTIL Rexx functions
+   RxYdbaUtilTerm        - De-Register all YDBAUTIL Rexx functions
+   RxYdbaUtilQuery       - Query function package version and available
+                           external function entry point names
+
+   UPM/Net Related
+   -----------
+   RxUpm                 - Rexx interface to UPM
+   RxNet                 - Rexx interface to certain NET calls
+                           (also some UPM-related calls)
+
+   System-Info related
+   -------------------
+   RxProcId              - Get process' own PID and TID information
+   RxGetInfoBlocks       - Get information about current process/thread
+   RxQueryAppType        - Get information about an executable file
+   RxQuerySysInfo        - Invoke DosQuerySysInfo
+   RxQProcStatus         - Obtain Process Status Information (like PSTAT)
+   RxSetError            - Set DosError settings (enable/disable HardError
+                           and Exception popups)
+   RxReplaceModule       - Replace an active .DLL or .EXE file
+   RxExitList            - Use DosExitList
+   RxDevConfig           - Obtain device configuration information
+   RxDevIOCtl            - Do DosDevIOCtl calls (to talk to character devices 
+                           directly)
+
+   Rexx programming and debugging functions
+   ----------------------------------------
+   RxVlist               - List, manipulate Rexx variable pool
+   RxGlobalVar           - Put,Get,Delete system-wide global variables
+   RxScount              - Count strings (needle) in another string (haystack)
+   RxPmPrintf            - Write lines to a PMPrintf Monitor
+   RxCallInStore         - Execute a string as a program
+   RxTokenize            - Tokenize ("Compile") a program string
+   RxPullQueue           - Pull items from any Rexx data queue
+   RxAddQueue            - Add items to any Rexx data queue
+   RxQueued              - Query number of items on any Rexx data queue
+   RxQExists             - Query existence of a Rexx Queue
+   RxSearchPath          - Find a file in a path
+   RxRegisterFunctionExe - Use "RexxRegisterFunctionExe()"
+   RxRegisterExitDll     - Use "RexxRegisterExitDll()"
+   RxRegisterExitExe     - Use "RexxRegisterExitExe()"
+   RxQueryExit           - Use "RexxQueryExit()"
+   RxDeregisterExit      - Use "RexxDeregisterExit()"
+
+   I/O related
+   -----------
+   RxRsoe2f              - Redirect StdOut/StdErr to a file (by file name)
+   RxRsoe2q              - Redirect StdOut/StdErr to a rexx queue 
+                           (by queue name)
+   RxSoSe2H              - Redirect StdOut/StdErr to a file (by file handle)
+   RxSi2H                - Redirect StdIn from a file (by file handle)
+   RxRSi2F               - Redirect StdIn from a file (by file name)
+   RxOpen                - Open a file (with full DosOpen capabilities)
+   RxRead                - Read data from a file handle
+   RxWrite               - Write data to a file handle
+   RxCloseH              - Close a file handle
+   RxExecI               - Read data into a Rexx queue or stem from a file
+   RxExecO               - Write data from a Rexx queue or stem to a file
+   RxVioPopUp            - Start a VioPopUp display screen
+   RxVioEndPopUp         - Close a VioPopUp display screen
+   RxVioWrtCharStrAtt    - Write characters to a VioPopUp display screen
+   RxKbCharIn            - Get a character from a VioPopUp display screen
+   RxDupHandle           - Do a "DosDupHandle()"
+   RxSetFHState          - Set file handle state
+   RxQueryFHState        - Query file handle state
+
+   OS/2 Pipes
+   ----------
+   RxCreateNPipe         - Create a named pipe
+   RxConnectNPipe        - Connect to a named pipe
+   RxDisConnectNPipe     - Disconnect from a named pipe
+   RxCreatePipe          - Create an un-named pipe
+   RxDestroyPipe         - Destroy a pipe
+
+   OS/2 Queues
+   ----------
+   RxCreateQueue         - DosCreateQueue
+   RxOpenQueue           - DosOpenQueue
+   RxPeekQueue           - DosPeekQueue
+   RxReadQueue           - DosReadQueue
+   RxWriteQueue          - DosWriteQueue
+   RxPurgeQueue          - DosPurgeQueue
+   RxQueryQueue          - DosQueryQueue
+   RxCloseQueue          - DosCloseQueue
+   RxReadQueueStr        - Returns data from de-referenced queue pointer
+
+   NetBios information
+   -------------------
+   RxNbSessionStatus     - Obtain NETBIOS session status information
+
+   Tasking, threads, etc.
+   ----------------------
+   RxSetPriority         - Set the priority of processes or threads
+             Process - Related
+   RxKillProcess         - Kill an OS/2 process by process-id
+   RxExecPgm             - Execute a program using DosExecPgm
+   RxWaitChild           - Wait for a child process to end
+   RxStartSession        - Start a program in another session 
+                           (DosStartSession)
+   RxStartRexxSession    - Start a Rexx program in another session
+   RxDetachRexxPgm       - Detach a Rexx program
+             Thread - Related
+   RxCreateRexxThread    - Execute a Rexx program on another thread
+   RxCreateThread        - Call a procedure address on another thread
+   RxKillThread          - Kill a thread by thread-id
+   RxResumeThread        - Resume thread execution by thread-id
+   RxSuspendThread       - Suspend thread execution by thread-id
+   RxCallEntryPoint      - Call a (non-Rexx) routine by entry point address
+
+   OS/2 Memory managment
+   ---------------------
+   RxStructMap           - Generate a structure map for RxStruct2Stem()
+   RxStruct2Stem         - Map structure elements into a stem
+   RxStem2Struct         - Map a stem into structure elements
+   RxStorage             - Query/Alter storage by address
+   RxAdd2Ptr             - Pointer Arithmetic (Add/Subtract)
+   RxThunkAddr           - Thunk an address Flat->Segmented, Segmented->Flat
+   RxAllocMem            - Allocate Memory
+   RxFreeMem             - Free Memory
+   RxAllocSharedMem      - Allocated Shared memory (named or un-named)
+   RxGetSharedMem        - Get (gettable) shared memory
+   RxGiveSharedMem       - Give (giveable) shared memory
+   RxGetNamedSharedMem   - Get named shared memory
+   RxSetMem              - Set memory attributes
+   RxQueryMem            - Query memory attributes
+   RxSubAllocMem         - Suballocate memory
+   RxSubFreeMem          - Free suballocated memory
+   RxSubSetMem           - Set memory for suballocation
+   RxSubUnsetMem         - Unset previously "SubSet" memory
+
+   OS/2 Semaphores
+   ---------------
+              Event Semaphore
+   RxCreateEventSem      - Create an event semaphore
+   RxCloseEventSem       - Close an event semaphore
+   RxOpenEventSem        - Open an event semaphore
+   RxPostEventSem        - Post an event semaphore
+   RxQueryEventSem       - Query an event semaphore
+   RxResetEventSem       - Reset an event semaphore
+   RxWaitEventSem        - Wait on an event semaphore
+              Mutex Semaphore
+   RxCreateMutexSem      - Create a Mutex semaphore
+   RxOpenMutexSem        - Invoke DosOpenMutexSem
+   RxCloseMutexSem       - Invoke DosCloseMutexSem
+   RxQueryMutexSem       - Invoke DosQueryMutexSem
+   RxReleaseMutexSem     - Invoke DosReleaseMutexSem
+   RxRequestMutexSem     - Invoke DosRequestMutexSem
+              MuxWait Semaphore
+   RxCreateMuxWaitSem    - Invoke DosCreateMuxWaitSem
+   RxCloseMuxWaitSem     - Invoke DosCloseMuxWaitSem
+   RxOpenMuxWaitSem      - Invoke DosOpenMuxWaitSem
+   RxWaitMuxWaitSem      - Invoke DosWaitMuxWaitSem
+   RxAddMuxWaitSem       - Invoke DosAddMuxWaitSem
+   RxDeleteMuxWaitSem    - Invoke DosDeleteMuxWaitSem
+   RxQueryMuxWaitSem     - Invoke DosQueryMuxWaitSem
+
+   DLL Handling
+   ------------
+   RxLoadModule          - Load a DLL
+   RxFreeModule          - Free a DLL
+   RxQueryModuleName     - Query the fully qualified name of a DLL (by handle)
+   RxQueryModuleHandle   - Query the module handle of a DLL (by name)
+   RxQueryProcType       - Query the addressing mode of an entry point in a DLL
+   RxQueryProcAddr       - Query the procedure address of an entry point in 
+                           a DLL
+
+   Rexx Macro Space Handling
+   -------------------------
+   RxAddMacro            - Add a particular Macro Space function
+   RxDropMacro           - Drop a particular Macro Space function
+   RxClearMacroSpace     - Clear the Rexx Macro Space
+   RxSaveMacroSpace      - Save a particular Macro Space function to a file
+   RxLoadMacroSpace      - Load a particular Macro Space function from a file
+   RxQueryMacro          - Query the position of a particular Macro Space
+                           function
+   RxReorderMacro        - Reorder a function's position in a Macro Space
+
+   PM / Wp related functions
+   -------------------------
+   RxWinQueryObject      - Query object handle of a WP object
+   RxWinDestroyObject    - Destroy a WP object
+
+
+[A]: Valera Kolesnik (2:451/31)
+
+Из RXU v1.a help:
+
+Starting with this version of the RXU function package, all the pieces of the
+package will have the name RXU (no longer any references to YDBAUTIL).

@@ -1,0 +1,35 @@
+==== MFSH_PHYSTOVIRT - Convert physical to virtual adress ====
+
+**Purpose**
+
+Translate the physical address of a data buffer into a virtual address.   
+
+**Calling Sequence**
+
+<code c>
+int far pascal MFSH_PHYSTOVIRT(ulAddr, usLen, pusSel)
+
+unsigned long ulAddr;
+unsigned short usLen;
+unsigned short far * pusSel;
+</code>
+
+**Where**
+
+//ulAddr// is the physical address to be translated.   
+
+//usLen// is the length of the segment for the physical address.   
+
+//pusSel// is a pointer to the word in which the selector or segment is returned. 
+
+**Returns**
+
+If an error is not detected, a zero error code is returned. If an error is detected, the following error is returned:   
+
+  * ERROR_PROTECTION_VIOLATION -- the supplied address is invalid. 
+
+**Remarks**
+
+This helper is for use by a mini-FSD with an imbedded device driver. It is the same as the standard device driver helper PHYSTOVIRT. A segment/offset pair is returned in real mode for addresses below the 1-Meg boundary. Else a selector/offset pair is returned.   
+
+A caller must issue a corresponding UNPHYSTOVIRT before returning to its caller or using any other helpers.   

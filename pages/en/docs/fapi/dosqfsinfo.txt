@@ -1,0 +1,142 @@
+{{page>en:templates:fapiint}}
+
+====== DosQFSInfo ======
+
+This call queries information from a file system device.
+
+===== Syntax =====
+
+<code c>
+DosQFSInfo (DriveNumber, FSInfoLevel, FSInfoBuf, FSInfoBufSize)
+</code>
+
+===== Parameters =====
+
+  * DriveNumber ([[USHORT]]) - input : Logical drive number (0 = default, 1 = A, and so on).
+
+When a logical drive is specified, the media in the drive is examined (local drive only) and the request is passed to the FSD responsible for managing that media or to the FSD that is attached to the drive.
+
+  * FSInfoLevel ([[USHORT]]) - input : Level of file information required.
+  * FSInfoBuf ([[PBYTE]]) - output : Address of the storage area where the system returns the requested level of file information.
+  * FSInfoBufSize ([[USHORT]]) : Length of the buffer.
+
+==== Level 1 Information ====
+
+For FSInfoLevel = 1, information is returned in the following structure:
+
+  *filesysid ([[ULONG]]) - File system ID.
+  *sectornum ([[ULONG]]) - Number of sectors per allocation unit.
+  *unitnum ([[ULONG]]) -  Number of allocation units.
+  *unitavail ([[ULONG]]) - Number of allocation units available.
+  *bytesnum ([[USHORT]]) - Number of bytes per sector.
+
+==== Level 2 Information ====
+
+For FSInfoLevel = 2, the information is returned in the following format:
+
+  *reserved ([[ULONG]]) - Reserved
+  *volumelength ([[BYTE]]) - Length of the volume label, not including the null.
+  *volumelabel ([[CHAR]]) - Volume label ASCIIZ string. 
+
+===== Return Code =====
+
+rc ([[USHORT]]) - return
+
+Return code descriptions are:
+  * 0          NO_ERROR 
+  * 15         ERROR_INVALID_DRIVE 
+  * 111        ERROR_BUFFER_OVERFLOW 
+  * 124        ERROR_INVALID_LEVEL 
+  * 125        ERROR_NO_VOLUME_LABEL
+
+===== Remarks =====
+
+Trailing blanks supplied at volume label definition time are not considered to be part of the label and are therefore not returned as valid label data. Volume label is limited to a length of 11 bytes.
+
+Volume Serial Number is a unique 32-bit number used by OS/2 to positively identify its disk/diskette volumes. The hard error prompts the user for an unmounted removable volume by displaying both the Volume Serial Number (as an 8 digit hexadecimal number) and the Volume Label.
+
+If there is no volume serial number on the disk/diskette, the volume serial number information is returned as binary zeros. If there is no volume label on the disk/diskette, the volume label information is returned as blank spaces. If there is no volume serial number and/or volume label for disk/diskette volumes formatted by DOS 3.X, this information is not displayed by the Hard Error Handler.
+
+===== Example Code =====
+
+==== C Binding ====
+
+<code c>
+typedef struct _FSALLOCATE {
+    ULONG  idFileSystem;  /* file system ID */
+    ULONG  cSectorUnit;   /* number sectors per allocation unit */
+    ULONG  cUnit;         /* number of allocation units */
+    ULONG  cUnitAvail;    /* available allocation units */
+    USHORT cbSector;      /* bytes per sector */
+} FSALLOCATE;
+
+typedef struct _FDATE {   /* fdate */
+ 
+  unsigned day   : 5;     /* binary day for directory entry */
+  unsigned month : 4;     /* binary month for directory entry */
+  unsigned year  : 7;     /* binary year for directory entry */
+ 
+} FDATE;
+
+typedef struct _FTIME {       /* ftime */
+ 
+  unsigned twosecs : 5;   /* binary number of two-second increments */
+  unsigned minutes : 6;   /* binary number of minutes */
+  unsigned hours   : 5;   /* binary number of hours */
+ 
+} FTIME;
+
+typedef struct _FSINFO {    /* fsinf */
+    FDATE fdateCreation;
+    FTIME ftimeCreation;
+    VOLUMELABEL vol;
+} FSINFO;
+
+typedef struct _VOLUMELABEL { /* vol */
+    BYTE cch;
+    CHAR szVolLabel[12];
+} VOLUMELABEL;
+
+#define INCL_DOSFILEMGR
+
+USHORT  rc = DosQFSInfo(DriveNumber, FSInfoLevel, FSInfoBuf, FSInfoBufSize);
+
+USHORT           DriveNumber;   /* Drive number */
+USHORT           FSInfoLevel;   /* File system data required */
+PBYTE            FSInfoBuf;     /* File system info buffer */
+USHORT           FSInfoBufSize; /* File system info buffer size */
+
+USHORT           rc;            /* return code */
+</code>
+
+==== MASM Binding ====
+
+<code asm>
+
+FSALLOCATE struc
+    fsalloc_idFileSystem        dd  ?
+    fsalloc_cSectorUnit         dd  ?
+    fsalloc_cUnit               dd  ?
+    fsalloc_cUnitAvail          dd  ?
+    fsalloc_cbSector            dw  ?
+FSALLOCATE ends
+
+EXTRN  DosQFSInfo:FAR
+INCL_DOSFILEMGR     EQU 1
+
+PUSH   WORD    DriveNumber   ;Drive number
+PUSH   WORD    FSInfoLevel   ;File system data required
+PUSH@  OTHER   FSInfoBuf     ;File system info buffer (returned)
+PUSH   WORD    FSInfoBufSize ;File system info buffer size
+CALL   DosQFSInfo
+</code>
+
+Returns WORD
+
+===== Note =====
+
+Text based on http://www.edm2.com/index.php/DosQFSInfo
+
+{{page>en:templates:fapi}}
+
+

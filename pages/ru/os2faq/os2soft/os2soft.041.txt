@@ -1,0 +1,7 @@
+[Q]: В Mozilla Browser/Messenger иногда пропадают русские буквы
+
+[A]: Stas Mishchenkov (2:460/58)
+
+Должен заметить, что Иннотековская Шрифтовая Машина (InnoTek Font Engine for
+OS/2 http://www.innotek.de/products/ft2lib/) у меня вылечила мерзейший глюк
+со шрифтами в Мозилке, за что им огромное спасибо.

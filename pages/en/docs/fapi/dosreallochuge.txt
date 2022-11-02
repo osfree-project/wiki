@@ -1,0 +1,82 @@
+{{page>en:templates:fapiint}}
+
+====== DosReallocHuge ======
+
+This call changes the size of memory originally allocated by DosAllocHuge.
+
+===== Syntax =====
+<code c>
+DosReallocHuge (NumSeg, Size, Selector)
+</code>
+
+===== Parameters =====
+
+  * NumSeg ([[USHORT]]) - input : Number of 65536 byte segments requested.
+  * Size ([[USHORT]]) - input : Number of bytes requested in the last non-65536 byte segment. A value of 0 indicates none.
+  * Selector ([[SEL]]) - input : Selector returned on a previous DosAllocHuge.
+
+===== Return Code =====
+
+rc ([[USHOR]]T) - return
+
+Return code descriptions are:
+
+  * 0         NO_ERRORç
+  * 8         ERROR_NOT_ENOUGH_MEMORY
+  * 87        ERROR_INVALID_PARAMETER
+
+===== Remarks =====
+
+DosReallocHuge is called to change the size of unshared or shared huge memory allocated by DosAllocHuge. The selector used for this call must be the one returned by the DosAllocHuge request.
+
+Normally, segments allocated as shared (AllocFlags bits 0 and 1 were set) cannot be decreased in size. However, if AllocFlags bit 3 was also set, the shared segment's size can be decreased.
+
+DosReallocHuge is also called to reallocate a segment allocated as discardable (AllocFlags bit 2 set) after the segment is discarded by the system. The call to DosReallocHuge automatically locks the segment for access by the caller, the same as if a DosLockSeg had been issued.
+
+'''Note:''' This request may be issued from privilege level 2 or 3. However, only a privilege level 3 huge segment is valid.
+
+==== Family API Considerations ====
+
+Some options operate differently in the DOS mode than in the OS/2 mode. Therefore, the following restriction applies to DosReallocHuge when coding for the DOS mode:
+
+The requested Size value is rounded up to the next paragraph (16-byte). 
+
+===== Bindings =====
+
+==== C Binding ====
+
+<code c>
+#define INCL_DOSMEMMGR
+
+USHORT  rc = DosReallocHuge(NumSeg, Size, Selector);
+
+USHORT           NumSeg;        /* Number of 65536-byte segments
+                                    requested */
+USHORT           Size;          /* Number of bytes in last segment */
+SEL              Selector;      /* Selector */
+
+USHORT           rc;            /* return code */
+</code>
+
+==== MASM Binding ====
+
+<code asm>
+EXTRN  DosReallocHuge:FAR
+INCL_DOSMEMMGR      EQU 1
+
+PUSH   WORD    NumSeg        ;Number of 65536-byte segments requested
+PUSH   WORD    Size          ;Number of bytes in last segment
+PUSH   WORD    Selector      ;Selector
+CALL   DosReallocHuge
+
+Returns WORD
+</code>
+
+
+
+===== Note =====
+
+Text based on [[http://www.edm2.com/index.php/DosReallocHuge]]
+
+{{page>en:templates:fapi}}
+

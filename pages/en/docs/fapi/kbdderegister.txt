@@ -1,0 +1,43 @@
+{{page>en:templates:fapiint}}
+
+====== KbdDeRegister ======
+
+This call deregisters a keyboard subsystem previously registered within a session. Only the process that issued the [[KbdRegister]] may issue KbdDeRegister.
+
+===== Syntax =====
+<code c>
+ KbdDeRegister ()
+</code>
+
+===== Return Code =====
+
+rc (USHORT) - return:Return code descriptions are:
+
+  * 0 NO_ERROR
+  * 411 ERROR_KBD_DEREGISTER
+  * 464 ERROR_KBD_DETACHED
+  * 504 ERROR_KBD_EXTENDED_SG
+
+===== Bindings =====
+
+====C====
+<code c>
+#define INCL_KBD
+
+USHORT  rc = KbdDeRegister(VOID);
+
+USHORT  rc;            /* return code */
+</code>
+
+====MASM====
+<code asm>
+EXTRN KbdDeRegister:FAR
+INCL_KBD            EQU 1
+
+CALL   KbdDeRegister
+
+Returns WORD
+</code>
+
+{{page>en:templates:fapi}}
+

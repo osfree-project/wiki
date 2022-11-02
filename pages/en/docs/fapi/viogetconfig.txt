@@ -1,0 +1,101 @@
+{{page>en:templates:fapiint}}
+
+====== VioGetConfig ======
+
+This call returns the video display configuration.
+
+===== Syntax =====
+<code c>
+ VioGetConfig (ConfigID, ConfigData, VioHandle)
+</code>
+===== Parameters =====
+
+  * ConfigID ([[USHORT]]) - input: Identifies for which display configuration information is being requested:
+    * 0 - Current configuration
+    * 1 - Primary configuration
+    * 2 - Secondary configuration
+
+For OS/2 1.2, when ConfigID = 0, the current configuration is returned rather than the primary configuration (as was returned in OS/2 1.0 and 1.1). This change makes the OS/2 mode version of VioGetConfig match the family API version that has returned the current configuration starting with OS/2 1.0. OS/2 1.0 and 1.1 applications that issued VioGetConfig to determine the display configuration benefit from this change. The application can run on the configuration selected by the operator (by issuing the MODE command before invoking the application) rather than switching away from the operator selected display.
+
+  * ConfigData ([[PVIOCONFIGINFO]]) - output: Address of structure where the display configuration is returned.
+  * VioHandle ([[HVIO]]) - input : This must be zero unless the caller is a Presentation Manager application, in which case it must be the value returned by VioGetPs.
+
+===== Return Code =====
+
+rc ([[USHORT]]) - return
+
+Return code descriptions are:
+
+  *0 NO_ERROR
+  *421 ERROR_VIO_INVALID_PARMS
+  *436 ERROR_VIO_INVALID_HANDLE
+  *438 ERROR_VIO_INVALID_LENGTH
+  *465 ERROR_VIO_DETACHED
+
+===== Remarks =====
+
+The values returned may not be correct if the adapter cannot be properly identified by the Base Video Handler (BVH) selected at system installation time. It can also be incorrect if the physical setup does not match that indicated by the presence of the adapter or by adapter switches. For example, it is impossible to detect the absence of a display on a CGA or the display attached to an EGA, despite the setup switches.
+
+===== Bindings =====
+
+==== C ====
+
+<code c>
+typedef struct _VIOCONFIGINFO {  /* vioin  */
+  USHORT  cb     ;               /* Length of this data structure */
+  USHORT  adapter;               /* Display adapter type */
+  USHORT  display;               /* Display/monitor type */
+  ULONG   cbMemory;              /* Amount of memory on the adapter
+                                     in bytes */
+  USHORT  Configuration;
+  USHORT  VDHVersion;
+  USHORT  Flags;
+  ULONG   HWBufferSize;
+  ULONG   FullSaveSize;
+  ULONG   PartSaveSize;
+  USHORT  EMAdaptersOFF;         /* Offset to emulated adapter types */
+  USHORT  EMDisplaysOFF;         /* Offset to emulated display types */
+} VIOCONFIGINFO;
+
+#define INCL_VIO
+
+USHORT  rc = VioGetConfig(ConfigID, ConfigData, VioHandle);
+
+USHORT           ConfigID;      /* Configuration ID */
+PVIOCONFIGINFO   ConfigData;    /* Configuration data */
+HVIO             VioHandle;     /* Vio handle */
+
+USHORT           rc;            /* return code */
+</code>
+
+====MASM====
+<code asm>
+VIOCONFIGINFO struc
+  vioin_cb            dw  ? ;Length of this data structure
+  vioin_adapter       dw  ? ;Display adapter type
+  vioin_display       dw  ? ;Display/monitor type
+  vioin_cbMemory      dd  ? ;Amount of memory on the adapter in bytes
+  vioin_Configuration dw  ? ;
+  vioin_VDHVersion    dw  ? ;
+  vioin_Flags         dw  ? ;
+  vioin_HWBufferSize  dd  ? ;
+  vioin_FullSaveSize  dd  ? ;
+  vioin_PartSaveSize  dd  ? ;
+  vioin_EMAdaptersOFF dw  ? ;Offset to emulated adapter types
+  vioin_EMDisplaysOFF dw  ? ;Offset to emulated display types
+VIOCONFIGINFO ends
+
+EXTRN  VioGetConfig:FAR
+INCL_VIO            EQU 1
+
+PUSH   WORD    ConfigID      ;Configuration ID
+PUSH@  OTHER   ConfigData    ;Configuration data
+PUSH   WORD    VioHandle     ;Vio handle
+CALL   VioGetConfig
+
+Returns WORD
+</code>
+
+
+{{page>en:templates:fapi}}
+

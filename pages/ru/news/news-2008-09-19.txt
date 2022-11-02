@@ -1,0 +1,7 @@
+==== 19 сентября 2008 ====
+
+IRC-канал #osfree теперь работает в сетях EFnet и eCSnet под управлением ботов osfreebot и eCoLabs/osfree. Спасибо Digi за помощь.
+
+{{tag>irc}}
+
+~~DISCUSSION~~

@@ -1,0 +1,70 @@
+{{page>en:templates:fapiint}}
+====== DosGetProcAddr ======
+ 
+This call returns a far address to a desired procedure within a dynamic link module.
+
+===== Syntax =====
+
+<code c>
+DosGetProcAddr (ModuleHandle, ProcName, ProcAddress)
+</code>
+
+===== Parameters =====
+
+
+  *ModuleHandle ([[HMODULE]]) - input: Handle of the dynamic link module.
+  *ProcName ([[PSZ]]) - input: Address of a name string that contains the referenced procedure name.
+
+Alternatively, if the selector portion of the pointer is null, the offset portion of the pointer is an explicit entry number (ordinal) within the dynamic link module.
+
+DosGetProcAddr for entries within the DOSCALLS module are only supported for ordinal references. References to the DOSCALLS module by name strings are not supported and return an error. Dynamic link ordinal numbers for DOSCALLS routines are resolved by linking with DOSCALLS.LIB.
+  *ProcAddress ([[PFN]] FAR *) - output: Procedure address.
+
+===== Return Code =====
+
+rc ([[USHORT]]) - return:Return code descriptions are:
+
+  * 0  NO_ERROR
+  * 6  ERROR_INVALID_HANDLE
+  *95 ERROR_INTERRUPT
+  *127 ERROR_PROC_NOT_FOUND
+
+===== Remarks =====
+
+
+A 32-bit address, consisting of a selector and offset, is returned for a specified procedure.
+
+To free the dynamic link module, issue [[DosFreeModule]]. After DosFreeModule is issued, procedure entry addresses returned for this handle or no longer valid.
+
+Other run-time dynamic link calls are [[DosLoadModule]], [[DosGetModName]], and [[DosGetModHandle]].
+
+===== Bindings =====
+
+====C====
+<code c>
+#define INCL_DOSMODULEMGR
+
+USHORT  rc = DosGetProcAddr(ModuleHandle, ProcName, ProcAddress);
+
+HMODULE  ModuleHandle;  /* Module handle */
+PSZ      ProcName;      /* Module name string */
+PFN FAR *ProcAddress;   /* Procedure address (returned) */
+
+USHORT   rc;            /* return code */
+</code>
+====MASM====
+<code asm>
+EXTRN  DosGetProcAddr:FAR
+INCL_DOSMODULEMGR   EQU 1
+
+PUSH   WORD    ModuleHandle  ;Module handle
+PUSH@  ASCIIZ  ProcName      ;Module name string
+PUSH@  DWORD   ProcAddress   ;Procedure address (returned)
+CALL   DosGetProcAddr
+
+Returns WORD
+</code>
+
+[[http://www.edm2.com/index.php/DosGetProcAddr]]
+
+{{page>en:templates:fapi}}

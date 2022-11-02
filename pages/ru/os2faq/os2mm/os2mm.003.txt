@@ -1,0 +1,12 @@
+[Q]: Почему .AVI от Misrosoft Video for Windows не пpоигpываются в MMPM?
+
+[A]: Dmitry Niqiforoff (2:5057/3)
+
+Hужно найти архив APCODEC3.ZIP, распаковать его и проинсталлировать с 
+помощью Multimedia Install из комплекта MMPM. Этот архив содержит кодеки 
+для MS-Video, RLE и Cinepak.
+
+[A]: Max Alekseyev (2:5015/60)
+                             
+Как минимум уже APCODEC6 имеется. Кстати, есть и другая альтернатива MainCodec 
+(mcodc100.zip), которая мне лично больше по душе.

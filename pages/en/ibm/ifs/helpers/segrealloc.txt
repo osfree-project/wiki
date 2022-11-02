@@ -1,0 +1,35 @@
+==== FSH_SEGREALLOC ====
+
+**Purpose**
+
+This function changes the size of a segment previously allocated with //FSH_SEGALLOC// or loaded as part of the FSD image.   
+
+**Calling Sequence**
+
+<code c>
+int far pascal FSH_SEGREALLOC(sel, cbSeg)
+
+unsigned short sel;
+unsigned long cbSeg;
+</code>
+
+**Where**
+
+//sel// is the selector to be changed.   
+
+//cbSeg// is the new size to set for the segment. 
+
+**Returns**
+
+If no error is detected, a zero error code is returned. If an error is detected, one of the following error codes is returned:   
+
+  * ERROR_NOT_ENOUGH_MEMORY -- too much memory is allocated. 
+  * ERROR_INVALID_ACCESS -- the selector is invalid 
+
+**Remarks**
+
+The segment may be grown or shrunk. The segment may be moved in the process. When grown, the extra space is uninitialized.   
+
+//FSH_SEGREALLOC// may block.   
+
+**Note**:   OS/2 does not validate input parameters. An FSD, therefore, should call //FSH_PROBEBUF// where appropriate.   

@@ -1,0 +1,6 @@
+[Q]: Как привязать ассоциации объектов WPS к FC/2?
+
+[A]: Andrew Cherepivsky (2:5020/1302)
+
+[Associations]
+*: rexxtry.cmd call sysopenobject strip('!f',, '"'), "DEFAULT", "TRUE"

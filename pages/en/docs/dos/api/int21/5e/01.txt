@@ -1,0 +1,46 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=5EH, AL=01H ======
+
+===== Version =====
+
+3.1 and higher
+
+===== Brief =====
+
+SET MACHINE NAME
+
+===== Family API =====
+
+
+===== Input =====
+
+	AX = 5E01h
+	CH = 00h undefine name (make it invalid)
+	   <> 0	 define name
+	CL = name number
+	DS:DX -> 15-character blank-padded ASCIZ name
+
+===== Return =====
+
+  nothing
+
+===== Macro =====
+
+
+===== Notes =====
+
+  
+
+===== See also =====
+
+  AX=5E00h
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:int}}
+
+{{page>en:templates:fapi}}
+

@@ -1,0 +1,22 @@
+==== FSH_GETPRIORITY ====
+
+**Purpose**
+
+This function allows an FSD to retrieve the I/O priority of the current thread.   
+
+**Calling Sequence**
+
+<code c>
+int far pascal FSH_GETPRIORITY(void)
+</code>
+
+**Returns**
+
+This function returns the I/O of the current thread: 
+
+  * 0x0000 - background 
+  * 0x1111 - foreground   
+
+**Remarks**
+
+//FSH_GETPRIORITY// will not block.   

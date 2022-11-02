@@ -1,0 +1,48 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=5BH ======
+
+===== Version =====
+
+3 and higher
+
+===== Brief =====
+
+CREATE NEW FILE
+
+===== Family API =====
+
+
+===== Input =====
+
+		AH = 5Bh
+	CX = file attribute (see #01420 at AX=4301h)
+	DS:DX -> ASCIZ filename
+
+===== Return =====
+
+  CF clear if successful
+	    AX = file handle opened for read/write in compatibility mode
+	CF set on error
+	    AX = error code (03h,04h,05h,50h) (see #01680)
+
+===== Notes =====
+
+	unlike AH=3Ch, this function will fail if the specified file exists
+	  rather than truncating it; this permits its use in creating semaphore
+	  files because it is an atomic "test and set" operation
+	under the FlashTek X-32 DOS extender, the filename pointer is in DS:EDX
+
+          
+===== See also =====
+
+  AH=3Ch,AH=5Ah
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:int}}
+
+{{page>en:templates:fapi}}
+

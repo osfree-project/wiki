@@ -1,0 +1,159 @@
+{{page>en:templates:fapiint}}
+
+====== DosFileLocks ======
+
+This call locks and unlocks a range in an opened file.
+
+===== Syntax =====
+<code c>
+DosFileLocks (FileHandle, UnLockRange, LockRange) 
+</code>
+
+===== Parameters =====
+
+  * FileHandle ([[HFILE]]) - input : File handle.
+  * UnLockRange ([[PLONG]]) - input : Address of the structure containing the offset and length of a range to be unlocked. A doubleword of zero indicates that unlocking is not required.
+  * FileOffset ([[ULONG]]) : The offset to the beginning of the range to be unlocked.
+  * RangeLength ([[ULONG]]) : The length of the range to be unlocked.
+  * LockRange ([[PLONG]]) - input : Address of the structure containing the offset and length of a range to be locked. A doubleword of zero indicates that locking is not required.
+  * FileOffset ([[ULONG]]) : The offset to the beginning of the range to be locked.
+  * RangeLength ([[ULONG]]) : The length of the range to be locked.
+
+===== Return Code =====
+
+rc ([[USHORT]]) - return
+
+Return code descriptions are:
+
+  * 0   NO_ERROR
+  * 6   ERROR_INVALID_HANDLE
+  * 33  ERROR_LOCK_VIOLATION
+  * 36  ERROR_SHARING_BUFFER_EXCEEDED
+
+===== Remarks =====
+
+DosFileLocks provides a mechanism that allows a process to lock a region in a file for read/write access. The time a region is locked should be short.
+
+Instead of denying another process read/write access to the entire file by means of access and sharing modes specified with [[DosOpen]] or [[DosOpen2]] requests, a process attempts to lock only the range needed for read/write access and examines the error code returned.
+
+A range to be locked must first be cleared of any locked subranges or overlapping ranges. The locked region can be located anywhere in the file, and locking beyond end-of-file is not considered an error.
+
+Once a lock is successful, read/write access by another process to the specified range is denied until the range is unlocked. If both unlocking and locking are specified by a DosFileLocks request, the unlocking operation is performed first. After unlocking is completed, locking is done.
+
+Duplicating the handle duplicates access to any locked regions; however, access to locked regions is not duplicated across the [[DosExecPgm]] call.
+
+If a file is closed (either by a [[DosClose]] request or by a process terminating) and locks are still in effect, the locks are released in no defined order.
+
+==== Family API Considerations ====
+
+Some options operate differently in the DOS mode than in OS/2 mode. Therefore, the following restrictions apply to DosFileLocks when coding for the DOS mode:
+  * If Block = 1 is specified, an "invalid range lock list" or "invalid unlock list" error is returned. 
+  * NewLockIDList is not supported.
+
+==== Bindings ====
+
+=== C Binding ===
+
+<code c>
+#define INCL_DOSFILEMGR
+
+USHORT  rc = DosFileLocks(FileHandle, UnLockRange, LockRange);
+
+HFILE            FileHandle;    /* File handle */
+PLONG            UnLockRange;   /* UnLock range */
+PLONG            LockRange;     /* Lock range */
+
+USHORT           rc;            /* return code */
+</code>
+=== Example ===
+
+
+This example opens a file, writes some data to it, locks a block of the data, and then unlocks it.
+<code c>
+#define INCL_DOSFILEMGR
+
+#define OPEN_FILE 0x01
+#define CREATE_FILE 0x10
+#define FILE_ARCHIVE 0x20
+#define FILE_EXISTS OPEN_FILE
+#define FILE_NOEXISTS CREATE_FILE
+#define DASD_FLAG 0
+#define INHERIT 0x80
+#define WRITE_THRU 0
+#define FAIL_FLAG 0
+#define SHARE_FLAG 0x10
+#define ACCESS_FLAG 0x02
+
+#define FILE_NAME "test.dat"
+#define FILE_SIZE 800L
+#define FILE_ATTRIBUTE FILE_ARCHIVE
+#define RESERVED 0L
+#define NULL_RANGE 0L
+
+HFILE   FileHandle;
+USHORT  Wrote;
+USHORT  Action;
+PSZ     FileData[100];
+USHORT  rc;
+
+struct LockStrc
+   {
+   long Offset;
+   long Range;
+   } Area;
+
+int i;
+
+   Action = 2;
+   strcpy(FileData, "Data...");
+   Area.Offset = 4;
+   Area.Range = 100;
+
+   if(!DosOpen(FILE_NAME,                /* File path name */
+                &FileHandle,             /* File handle */
+                &Action,                 /* Action taken */
+                FILE_SIZE,               /* File primary allocation */
+                FILE_ATTRIBUTE,          /* File attribute */
+                FILE_EXISTS | FILE_NOEXISTS,              /* Open function
+                                                                    type */
+                DASD_FLAG | INHERIT |            /* Open mode of the file */
+                WRITE_THRU | FAIL_FLAG |
+                SHARE_FLAG | ACCESS_FLAG,
+                RESERVED))               /* Reserved (must be zero) */
+      {
+      for(i=0; i<200; ++i)
+         DosWrite(FileHandle,            /* File handle */
+                  FileData,              /* User buffer */
+                  sizeof(FileData),      /* Buffer length */
+                  &Wrote);               /* Bytes written */
+      rc = DosFileLocks(FileHandle,            /* File handle */
+                        NULL_RANGE,            /* Unlock range */
+                        (PLONG) &Area);       /* Lock range */
+      rc = DosFileLocks(FileHandle,            /* File handle */
+                        (PLONG) &Area,        /* Unlock range */
+                        NULL_RANGE);           /* Lock range */
+      }
+</code> 
+
+=== MASM Binding ===
+
+<code asm>
+EXTRN  DosFileLocks:FAR
+INCL_DOSFILEMGR     EQU 1
+
+PUSH   WORD    FileHandle    ;File handle
+PUSH@  OTHER   UnLockRange   ;UnLock range
+PUSH@  OTHER   LockRange     ;Lock range
+CALL   DosFileLocks
+
+Returns WORD
+</code>
+
+
+===== Note =====
+
+
+Text based on [[http://www.edm2.com/index.php/DosFileLocks]]
+
+{{page>en:templates:fapi}}
+

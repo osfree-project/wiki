@@ -1,0 +1,19 @@
+===== Installable File System Guide and Reference =====
+
+==== Introduction ====
+
+Installable File System (IFS) is a mechanizm of custom file system type support. It allow osFree access to files stored on corresponding file system without recompilation of different parts of OS.
+
+IFS consist of 3 parts:
+
+  * MicroFSD
+  * IFS
+  * File system utils support library
+
+MicroFSD is a micro file system driver which allow to access filesystem for lowlevel services like boot loader or kernel loader. IFS provides access for high-level components like file server and so on.  File system utillities support library provides set of service funtion like file system check and recovery tools.
+
+==== MicroFSD ====
+
+==== IFS ====
+
+==== File system utils library ====

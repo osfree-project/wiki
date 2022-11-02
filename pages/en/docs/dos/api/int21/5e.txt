@@ -1,0 +1,23 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=5dH ======
+
+===== Input ======
+
+ AH=5dH, AL=Subfunction
+
+^ Subfunction                        ^ Description                                       ^ Version ^
+| [[en:docs:dos:api:int21:5e:00|00]] | GET MACHINE NAME                                  | 3.1+    |
+| [[en:docs:dos:api:int21:5e:01|01]] | SET MACHINE NAME                                  | 3.1+    |
+| [[en:docs:dos:api:int21:5e:02|02]] | SET NETWORK PRINTER SETUP STRING                  | 3.1+    |
+| [[en:docs:dos:api:int21:5e:03|03]] | GET NETWORK PRINTER SETUP STRING                  | 3.1+    |
+| [[en:docs:dos:api:int21:5e:04|04]] | SET PRINTER MODE                                  | 3.1+    |
+| [[en:docs:dos:api:int21:5e:05|05]] | GET PRINTER MODE                                  | 3.1+    |
+
+
+{{page>en:templates:int}}
+
+
+
+
+

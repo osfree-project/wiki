@@ -1,0 +1,82 @@
+{{page>en:templates:fapiint}}
+====== VioSetCurType ======
+ 
+This call sets the cursor type.
+
+===== Syntax =====
+<code c>
+VioSetCurType (CursorData, VioHandle)
+</code>
+
+===== Parameters =====
+
+  * CursorData ([[PVIOCURSORINFO]]) - input : Address of the cursor characteristics structure:
+    *startline ([[USHORT]]) : Horizontal scan line in the character cell that marks the top line of the cursor. If the character cell has n scan lines, 0 is the top scan line of the character cell and (n - 1) is the bottom scan line. 
+    *endline ([[USHORT]]) : Horizontal scan line in the character cell that marks the bottom line of the cursor. Scan lines within a character cell are numbered as defined in startline. The maximum value allowed is 31. 
+    *cursorwidth ([[USHORT]]) : Width of the cursor. In text modes, cursorwidth is the number of columns. The maximum number supported by the OS/2 base video subsystem is 1. In graphics modes, cursorwidth is the number of pels.
+A value of 0 specifies the default width. In text modes, this is 1 column. In graphics modes, this is the number of pels equivalent to the width of one character. 
+    * cursorattrib ([[USHORT]]) : A value of -1 denotes a hidden cursor, all other values denote a normal cursor.
+  *VioHandle ([[HVIO]]) - input : This must be zero unless the caller is a Presentation Manager application, in which case it must be the value returned by VioGetPs.
+
+===== Return Code =====
+
+rc ([[USHORT]]) - return
+
+Return code descriptions are:
+  * 0          NO_ERROR 
+  * 355        ERROR_VIO_MODE 
+  * 356        ERROR_VIO_WIDTH 
+  * 421        ERROR_VIO_INVALID_PARMS 
+  * 436        ERROR_VIO_INVALID_HANDLE 
+  * 465        ERROR_VIO_DETACHED
+
+===== Remarks =====
+
+
+===== Bindings =====
+
+==== C Binding====
+<code c>
+typedef struct _VIOCURSORINFO {  /* vioci */
+  USHORT   yStart;               /*cursor start line */
+  USHORT   cEnd;                 /* cursor end line */
+  USHORT   cx;                   /* cursor width */
+  USHORT   attr;                 /* -1=hidden cursor, any other=normal
+                                       cursor */
+} VIOCURSORINFO;
+
+#define INCL_VIO
+
+USHORT  rc = VioSetCurType(CursorData, VioHandle);
+
+PVIOCURSORINFO   CursorData;    /* Cursor characteristics */
+HVIO             VioHandle;     /* Video handle */
+
+USHORT           rc;            /* return code */
+</code>
+
+====MASM Binding====
+<code asm>
+VIOCURSORINFO struc
+  vioci_yStart dw  ? ;cursor start line
+  vioci_cEnd   dw  ? ;cursor end line
+  vioci_cx     dw  ? ;cursor width
+  vioci_attr   dw  ? ;-1=hidden cursor, any other=normal cursor
+VIOCURSORINFO ends
+
+EXTRN  VioSetCurType:FAR
+INCL_VIO            EQU 1
+
+PUSH@  OTHER   CursorData    ;Cursor characteristics
+PUSH   WORD    VioHandle     ;Video handle
+CALL   VioSetCurType
+
+Returns WORD
+</code>
+
+===== Note =====
+
+Text based on [[http://www.edm2.com/index.php/VioSetCurType_(FAPI)]]
+
+{{page>en:templates:fapi}}
+

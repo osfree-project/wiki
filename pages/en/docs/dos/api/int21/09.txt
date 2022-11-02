@@ -1,0 +1,44 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=09H ======
+
+===== Version =====
+
+1 and higher
+
+===== Brief =====
+
+WRITE STRING TO STANDARD OUTPUT
+
+===== Family API =====
+
+[[en:docs:fapi:DosWrite]]
+
+===== Input =====
+
+  AH = 09h
+  DS:DX -> '$'-terminated string
+
+===== Return =====
+
+  AL = 24h (the '$' terminating the string, despite official docs which state that nothing is returned) (at least DOS 2.1-7.0 and NWDOS)
+
+===== Notes =====
+
+ ^C/^Break are checked, and INT 23 is called if either pressed standard output is always the screen under DOS 1.x, but may be redirected under DOS 2+
+
+ under the FlashTek X-32 DOS extender, the pointer is in DS:EDX
+
+===== See also =====
+
+AH=02h,AH=06h"OUTPUT"
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:int}}
+
+{{page>en:templates:fapi}}
+
+

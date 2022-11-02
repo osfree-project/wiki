@@ -1,0 +1,18 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=33H ======
+
+===== Input ======
+
+ AH=33H, AL=Subfunction
+
+^ Subfunction                        ^ Description                                       ^ Version ^
+| [[en:docs:dos:api:int21:33:00|00]] | get current extended break state                  | 2.0+    |
+| [[en:docs:dos:api:int21:33:01|01]] | set state of extended Ctrl+C/Ctrl+Break checking  | 2.0+    |
+| [[en:docs:dos:api:int21:33:02|02]] | GET AND SET EXTENDED CONTROL-BREAK CHECKING STATE | 3.0+    |
+| [[en:docs:dos:api:int21:33:03|03]] | GET CURRENT CPSW STATE                            | 3.4/4.0 |
+| [[en:docs:dos:api:int21:33:04|04]] | SET CPSW STATE                                    | 3.4/4.0 |
+| [[en:docs:dos:api:int21:33:05|05]] | GET BOOT DRIVE                                    | 4.0+    |
+| [[en:docs:dos:api:int21:33:06|06]] | GET TRUE VERSION NUMBER                           | 5.0+    |
+
+{{page>en:templates:int}}

@@ -1,0 +1,7 @@
+[Q]: Как заставить Lotus Word Pro читать виндовые RTF-ы (pешение)
+
+[A]: Aleksey Peshkov (2:5020/201.1011)
+
+copy \LOTUSW4\WORDPRO\lwp1252.cst \LOTUSW4\WORDPRO\lwp1251.cst
+
+Такое вот изящное pешение :)

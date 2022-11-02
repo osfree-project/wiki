@@ -1,0 +1,21 @@
+[Q]: Как избавиться от чёрных иконок в продуктах Visual Age?
+
+[A]: Alex Samorukov (2:463/598)
+
+Если вы используете Gradd или SDD драйвера, то в визуальных билдерах VA JAVA и
+VA C++ вас ждут чёрные иконки. Я весьма долго и безуспешно пытался найти фиксы
+к VA JAVA от IBM. IBM же делает вид, что не знает о этой проблеме ...
+
+А вылечилось всё так:
+
+1) Качаем постфикс к 13 фиксу для отсутствия чёрных иконок в impos2.
+ftp://ftp.software.ibm.com/ps/products/os2/fixes/v4warp/english-us/xr_m013/impos2.zip
+
+2) Качаем постфикс pmmerge.
+ftp://ftp.software.ibm.com/ps/products/os2/fixes/v4warp/english-us/xr_m013/pmmerge.zip
+Копируем в /os2/dll/ из первого архива pmmerge.dll, а из второго - softdraw.dll
+(иначе OS/2 не запустится)
+
+3) Reboot and enjoy.
+Сразу уточню, что эксперементы проводились на Aurora w/o fixes (для другой
+системы рещение может быть иным).

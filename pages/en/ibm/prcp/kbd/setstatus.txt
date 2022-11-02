@@ -1,0 +1,136 @@
+==== KbdSetStatus ====
+
+**Bindings**: [[setstatus#C bindings|C]], [[setstatus#MASM bindings|MASM]]
+
+This call sets the characteristics of the keyboard. 
+
+KbdSetStatus (StatData, KbdHandle) 
+
+//StatData// (**PKBDINFO**) - input 
+Address of the keyboard status structure: 
+
+//length// (**USHORT**) 
+Length, in bytes, of this data structure, including length. 
+
+|10 |Only valid value. |
+
+//sysstate// (**USHORT**) 
+The system state altered by this call. If bits 0 and 1 are off, the echo state of the system is not altered. If bits 2 and 3 are off, the binary and ASCII state of the system is not altered. If bits 0 and 1 are on, or if bits 2 and 3 are on, the function returns an error. If binary mode is set, echo is ignored. 
+
+^Bit ^Description ^
+|15-9 |Reserved, set to zero |
+|8 |Shift return is on |
+|7 |Length of the turn-around character (meaningful only if bit 6 is on). |
+|6 |Turn-around character is modified |
+|5 |Interim character flags are modified |
+|4 |Shift state is modified |
+|3 |ASCII mode is on |
+|2 |Binary mode is on |
+|1 |Echo off |
+|0 |Echo on |
+
+//turnchardef// (**USHORT**) 
+Definition of the turn-around character. In ASCII and extended-ASCII format, the turn-around character is defined as the carriage return. In ASCII format only, the turn-around character is defined in the low-order byte. 
+
+//intcharflag// (**USHORT**) 
+Interim character flags: 
+
+^Bit ^Description ^
+|15-8 |NLS shift state. |
+|7 |Interim character flag is on |
+|6 |Reserved, set to zero |
+|5 |Application requested immediate conversion |
+|4-0 |Reserved, set to zero |
+
+//shiftstate// (**USHORT**) 
+Shift state. 
+
+^Bit ^Description ^
+|15 |SysReq key down |
+|14 |CapsLock key down |
+|13 |NumLock key down |
+|12 |ScrollLock key down |
+|11 |Right Alt key down |
+|10 |Right Ctrl key down |
+|9 |Left Alt key down |
+|8 |Left Ctrl key down |
+|7 |Insert on |
+|6 |CapsLock on |
+|5 |NumLock on |
+|4 |ScrollLock on |
+|3 |Either Alt key down |
+|2 |Either Ctrl key down |
+|1 |Left Shift key down |
+|0 |Right Shift key down |
+
+//KbdHandle// (**HKBD**) - input 
+Default keyboard or the logical keyboard. 
+
+//rc// (**USHORT**) - return 
+Return code descriptions are: 
+
+|0 |NO_ERROR |
+|376 |ERROR_KBD_INVALID_LENGTH |
+|377 |ERROR_KBD_INVALID_ECHO_MASK |
+|378 |ERROR_KBD_INVALID_INPUT_MASK |
+|439 |ERROR_KBD_INVALID_HANDLE |
+|445 |ERROR_KBD_FOCUS_REQUIRED |
+|447 |ERROR_KBD_KEYBOARD_BUSY |
+|464 |ERROR_KBD_DETACHED |
+|504 |ERROR_KBD_EXTENDED_SG |
+
+**Remarks**
+
+Shift return (bit 8 in sysstate) must be disabled in ASCII mode. 
+
+//KbdSetStatus// is ignored for a Vio-windowed application. 
+
+**Family API Considerations**
+
+Some options operate differently in the DOS mode than in the OS/2 mode. Therefore, the following restrictions apply to //KbdSetStatus// when coding in the DOS mode: 
+
+  * //KbdSetStatus// does not accept a bit mask of 10 (ASCII on, Echo Off). 
+  * Raw (binary) Mode and Echo On are not supported and return an error if requested. 
+  * //KbdHandle// is ignored. 
+  * Interim character is not supported. 
+  * Turnaround character is not supported. 
+
+=== C bindings ===
+
+<code c>
+typedef struct _KBDINFO {     /* kbst */
+  USHORT cb;                  /* length in bytes of this structure */
+  USHORT fsMask;              /* bit mask of functions to be altered */
+  USHORT chTurnAround;        /* define TurnAround character */
+  USHORT fsInterim;           /* interim character flags */
+  USHORT fsState;             /* shift states */
+}KBDINFO;
+
+#define INCL_KBD
+
+USHORT  rc = KbdSetStatus(Structure, KbdHandle);
+
+PKBDINFO         Structure;     /* Data structure */
+HKBD             KbdHandle;     /* Keyboard Handle */
+
+USHORT           rc;            /* return code */
+</code>
+
+=== MASM bindings ===
+
+<code asm>
+KBDINFO struc
+  kbst_cb           dw  ? ;length in bytes of this structure
+  kbst_fsMask       dw  ? ;bit mask of functions to be altered
+  kbst_chTurnAround dw  ? ;define TurnAround character
+  kbst_fsInterim    dw  ? ;interim character flags
+  kbst_fsState      dw  ? ;shift states
+KBDINFO ends
+
+EXTRN  KbdSetStatus:FAR
+INCL_KBD            EQU 1
+
+PUSH@  OTHER   Structure     ;Data structure
+PUSH   WORD    KbdHandle     ;Keyboard Handle
+CALL   KbdSetStatus
+</code>

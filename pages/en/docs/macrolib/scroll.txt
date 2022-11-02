@@ -1,0 +1,39 @@
+{{page>en:templates:biosint}}
+
+====== @Scroll ======
+
+===== Version =====
+
+IBM 5150 and higher
+
+===== Brief =====
+
+Scroll Screen Area Up or Down
+
+===== Syntax =====
+
+<code asm>
+@Scroll distance, atrib, upcol, uprow, downcol, downrow
+</code>
+
+===== BIOS Interrupt =====
+
+[[en:docs:bios:api:int10|INT10H]]: [[en:docs:bios:api:int10:06|06H]] [[en:docs:bios:api:int10:07|07H]]
+
+===== Family API =====
+
+[[en:docs:fapi:VioScrollUp]][[en:docs:fapi:VioScrollDn]]
+
+===== Parameters =====
+
+  * distance (BYTE) - rows to scroll
+  * atrib (BYTE) - fill attribute
+  * upcol (BYTE) - upper left column
+  * uprow (BYTE) - upper left row
+  * downcol (BYTE) - down right column
+  * downrow (BYTE) - down right row
+
+===== Return =====
+
+
+{{page>en:templates:biosapi}}

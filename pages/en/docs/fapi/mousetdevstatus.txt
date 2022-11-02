@@ -1,0 +1,77 @@
+{{page>en:templates:fapiint}}
+
+====== MouSetDevStatus ======
+
+
+This call sets the mouse device driver status flags for the installed mouse device driver.
+
+===== Syntax =====
+<code c>
+ MouSetDevStatus (DeviceStatus, DeviceHandle)
+</code>
+
+===== Parameters =====
+
+  * DeviceStatus (PUSHORT) - input : Address of the desired status flag settings.
+
+The passed parameter is a 2-byte set of flags. Only the high-order byte has meaning.
+
+^ Bit ^ Description ^
+| 15-10 | Reserved, set to zero. |
+| 9 | Set if mouse device is to return data in mickeys. |
+| 8 | Set if the drawing operations for the pointer draw routine are to be disabled. |
+| 7-0 | Reserved, set to zero. |
+
+  * DeviceHandle (HMOU) - input : Handle of the mouse device from a previous MouOpen.
+
+===== Return Code =====
+
+rc (USHORT) - return:Return code descriptions are:
+
+  * 0  NO_ERROR
+  *385 ERROR_MOUSE_NO_DEVICE
+  *387 ERROR_MOUSE_INV_PARMS
+  *466 ERROR_MOU_DETACHED
+  *501 ERROR_MOUSE_NO_CONSOLE
+  *505 ERROR_MOU_EXTENDED_SG
+
+===== Remarks =====
+
+MouSetDevStatus is the complement to MouGetDevStatus. However, not all status flags may be set with MouSetDevStatus. Only the flags corresponding to the following functions may be modified:
+
+  * Return data in mickeys.
+
+Normally, mouse data is returned to the application with the absolute display mode coordinates of the pointer image position on the display screen. By setting this status flag, mouse data is returned in relative mickeys, a unit of mouse movement.
+
+  * Don't call pointer draw device.
+
+Normally, the pointer draw device driver is called for all drawing operations. By setting this status flag, the mouse device driver does not call the pointer draw device driver. The application must draw any required pointer image on the screen.
+
+===== Bindings =====
+
+====C====
+<code c>
+#define INCL_MOU
+
+USHORT  rc = MouSetDevStatus(DeviceStatus, DeviceHandle);
+
+PUSHORT DeviceStatus;  /* Status flags */
+HMOU    DeviceHandle;  /* Mouse device handle */
+
+USHORT  rc;            /* return code */
+</code>
+
+====MASM====
+<code asm>
+EXTRN  MouSetDevStatus:FAR
+INCL_MOU            EQU 1
+
+PUSH@  WORD    DeviceStatus  ;Status flags
+PUSH   WORD    DeviceHandle  ;Mouse device handle
+CALL   MouSetDevStatus
+
+Returns WORD
+</code>
+
+
+{{page>en:templates:fapi}}

@@ -1,0 +1,27 @@
+{{page>en:templates:dosshell}}
+
+====== Int 2FH, AX=4A05H, SI=06H ======
+
+===== Version =====
+
+?
+
+===== Brief =====
+
+Get task name
+
+===== Input =====
+
+    BL - item position in task list
+  
+===== Return =====
+
+    ES:SI - task name
+
+===== Notes =====
+
+  Function returns task name for item in task list
+  
+===== See also =====
+
+   

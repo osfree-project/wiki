@@ -1,0 +1,12 @@
+[Q]: Как поменять Mouse Sensitivity в DOS-боксах?
+
+[A]: Konstantin Okunkow (2:5020/950)
+
+ACCMOUSE.COM  Изменение акселерации мыши в DOS-сессиях
+                               смещение     аксерерация
+                                   4       по горизонтали
+                                   7       по вертикали
+begin 755 accmouse.com
+,N!H`NTH`N4H`S3/#
+`
+end

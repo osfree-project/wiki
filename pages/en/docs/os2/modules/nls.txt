@@ -1,0 +1,31 @@
+{{logos:os2.gif?35x35}} {{logos:dos.gif?35x35}}
+
+====== NLS =======
+
+This is not real code, only forwarders to [[en:docs:os2:modules:DOSCALLS]].DLL.
+
+===== Entry points =====
+
+^ Ordinal ^ Name ^ Description ^ Status ^ FAPI ^ Version ^
+| 1 |DosCaseMap | Forwarder to DOSCALLS.391 | Done | Yes | 1.0 |
+| 2 |DosGetCollate | Forwarder to DOSCALLS.392 | Done | Yes | 1.0 |
+| 3 |DosGetCtryInfo | Forwarder to DOSCALLS.393 | Done | Yes | 1.0 |
+| 4 |DosGetDBCSEv | Forwarder to DOSCALLS.394 | Done | Yes | 1.0 |
+| 5 |DosQueryCtryInfo | Forwarder to DOSCALLS.395 | Done | No | |
+| 6 |DosQueryDBCSEnv | Forwarder to DOSCALLS.396 | Done | No | |
+| 7 |DosMapCase | Forwarder to DOSCALLS.397 | Done | No | |
+| 8 |DosQueryCollate | Forwarder to DOSCALLS.398 | Done | No | |
+
+===== Versions =====
+
+^ Date&Time ^ SHA1 ^ BldLevel/Version ^ Size ^ Comments ^
+|2012-02-02 10:27 | | 14.100 | 589 bytes | osFree National Language Support API |
+|2002-03-08 20:16 | | N/A | 512 bytes | |
+|1992-02-07 01:17 | 0b3dd7a8a723f7af38f5fb4c0f03980b1e29b7fd | N/A | 4,023 bytes | IBM OS/2 SDK 1.3 CSD1 |
+|1988-08-08 00:00 | b5105c0d97d3722f4d8e02d275f342f56b7432e3 | N/A | 4,166 bytes | MS OS/2 SDK 1.05 |
+|1987-12-15 00:00 | 76f78acd4395b144589d1b46a00b9df0cc3194d7 | N/A | 5,162 bytes | MS OS/2 SDK 1.02 |
+|1987-10-21 00:00 | | | ?? bytes | MS OS/2 1.0 |
+
+{{page>en:templates:dlls}}
+{{page>en:templates:os2api}}
+{{page>en:templates:fapi}}

@@ -1,0 +1,33 @@
+==== FSH_GETVOLPARM ====
+
+**Purpose**
+
+This function allows an FSD to retrieve file-system-independent and file-system-dependent data from a VPB. Since the FS router passes in a VPB handle, individual FSDs need to map the handle into pointers to the relevant portions.   
+
+**Calling Sequence**
+
+<code c>
+void far pascal FSH_GETVOLPARM(hVPB, ppVPBfsi, ppVPBfsd)
+
+unsigned short hVPB;
+struc vpfsi far * far * ppVPBfsi;
+struc vpfsd far * far * ppVPBfsd;
+</code>
+
+**Where**
+
+//hVPB// is the volume handle of interest.   
+
+//ppVPBfsi// indicates the location where the pointer to file-system-independent data is stored.   
+
+//ppVPBfsd// indicates the location where the pointer to file-system-dependent data is stored. 
+
+**Returns**
+
+There are no error returns.   
+
+**Remarks**
+
+//FSH_GETVOLPARM// will not block.   
+
+**Note**:   OS/2 does not validate input parameters. An FSD, therefore, should call //FSH_PROBEBUF// where appropriate.   

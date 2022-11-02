@@ -1,0 +1,48 @@
+[Q]: XDS (Modula-2 and Oberon-2 compilers) инфоpмация
+
+[A]: Dmitry V. Leskov (SNOWMAN@iis.nsk.su)
+
+---------------------------------------------------------------------
+xTech Ltd. is pleased to inform that the XDS-related mailing list have been
+set up. We intend to use it to keep in touch with our customers, beta
+testers, and all who evaluates our pre-releases.
+
+A few words for those who have no idea what XDS is. XDS is a professional
+multi-platform development system featuring Modula-2 and Oberon-2 languages.
+The Modula-2 compiler complies with ISO Modula-2 standard which is about to
+be published soon. Full set of ISO libraries is provided. OS/2 and Win32
+editions come with IDE and host OS API definition modules.
+
+For more information about XDS, please visit our Web pages at:
+
+http://www.iis.nsk.su/xtech/xds/
+http://www.dct.com/~johnm/xds.html   (US mirror)
+
+Now, back to the mailing list. The following kinds of information
+will be posted to this list on a regular basis:
+  - Announce new XDS implementations, (pre-)releases, betas, updates etc.
+  - Announce new tools, utilities, libraries etc.
+  - Known and fixed bug lists with workarounds
+  - XDS FAQ, tips, trick, hints and stuff like that
+
+At the same time, we invite all XDS users to ask questions, make contacts,
+share their XDS experience by means of this list.
+
+To subscribe to the XDS mailing list, send message with the following body:
+    subscribe xds
+    end
+
+to majordomo@listserv.iis.nsk.su.
+
+To submit a posting to the list, send it to xds@listserv.iis.nsk.su.
+
+To learn more about listserver commands, send message
+    help
+    end
+
+to majordomo@listserv.iis.nsk.su
+
+[A]: Max Alekseyev (2:5015/60)
+
+XDS официально прекратила поддержку OS/2. И даже старые версии теперь
+недоступны с их сайта.

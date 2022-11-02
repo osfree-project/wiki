@@ -1,0 +1,14 @@
+==== 12 September 2008 ====
+
+New developer joined osFree project. Alan Grippon will work on DOS command line tools.
+
+  * We are looking for Win16 developers to work on Win16 applications (initial codebase available)
+  * We are looking for PHP developer to integrate our forum and core site
+
+{{tag>development}}
+
+<gnubie10-elevator@yahoo.com.br> Ricardo Nishimura 2008/09/12 18:36:
+
+I want to join the project. Can you contact me?
+
+~~DISCUSSION~~

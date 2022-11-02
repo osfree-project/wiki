@@ -1,0 +1,40 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=34H ======
+
+===== Version =====
+
+2 and higher
+
+===== Brief =====
+
+GET INTERRUPT VECTOR
+
+===== Family API =====
+
+
+===== Input =====
+
+        AH = 35h
+        AL = interrupt number
+
+===== Return =====
+
+ ES:BX -> current interrupt handler
+
+===== Notes =====
+
+ under DR DOS 5.0+, this function does not use any of the DOS-internal
+          stacks and may thus be called at any time
+          
+===== See also =====
+
+AH=25h,AX=2503h
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:int}}
+
+{{page>en:templates:fapi}}

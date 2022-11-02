@@ -1,0 +1,49 @@
+{{page>en:templates:dpmi}}
+
+====== Int 31H, AH=0DH, AL=01H ======
+
+===== Version =====
+
+1.0
+
+===== Brief =====
+
+Free Shared Memory
+
+===== Input =====
+
+  AX = 0D01H
+  SI:DI = handle of shared memory block to free
+    
+===== Return =====
+
+  if function successful
+  Carry flag = clear
+  
+  if function unsuccessful
+  Carry flag = set
+  AX = error code
+  8023H	invalid handle
+
+===== Notes =====
+
+Deallocates a shared memory block.
+
+The shared memory handle becomes invalid after the shared memory block is deallocated, and should not be used in any other function call (such as serialization).
+
+The host maintains virtual machine use counts and a global use count for each shared memory block. A virtual machine use count is the number of allocation calls (Int 31H Function 0D00H) that have been issued by a particular virtual machine for the shared block, while the global use count corresponds to the number of virtual machines which have access to the block. When a virtual machine use count reaches zero, the clients in that virtual machine no longer have addressability to the shared memory block; when the global use count reaches zero, the shared memory block is destroyed by the host.
+
+It is the client's responsibility to free any descriptors that it has allocated to map the shared memory block.
+
+Applications should not depend on this function to release a previous successful serialization for the same shared memory block. Serialization is only released by this function when the virtual machine use count goes to 0 (i.e., the client no longer has access to the shared memory block).
+
+===== See also =====
+
+   
+
+===== Note =====
+
+Text based on [[http://www.delorie.com/djgpp/doc/dpmi/]]
+
+{{page>en:templates:dpmi:int}}
+

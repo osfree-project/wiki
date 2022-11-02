@@ -1,0 +1,20 @@
+==== September 06, 2007 ====
+
+According to our [[en:roadmap|roadmap]] we are now at version 0.0.3 now. 
+We have a general working of FreeLDR (except config parser and VBE support) 
+for stage 0.0.2 and a working CONFIG.SYS parser for stage 0.0.3. We still 
+are thinking about real requirements for version 0.0.4 at the present time 
+because we have working LX parser prototype and most of IFS must be in 
+Personality Neutral services. So, we are planning to slightly review the 0
+.0.x series roadmap for better representation of our current situation and 
+needs. Most probably, we will introduce following changes: 
+
+|0.0.2     |EXT2FS must be finished (in general) and boot sequence must be implemented. GRUB must be removed. MicroFSD is 16-bit (OS/2 compatible), IFS is 32-bit (not OS/2 compatible). MicroFSD must load FreeLDR and execute it. FreeLDR must load L4 kernel and root task (osFree kernel stub). LILO must not be required for EXT2FS.  |Done |
+|**Note:** MiniFSD is absent because not required for microkernel architecture.  |||
+|0.0.3     |osFree kernel must parse CONFIG.SYS using file provider server (not real device driver loading) and show config tree. |Done |
+|0.0.4     |LX loader and module linker (using file provider server). osFree kernel must load and execute PROTSHELL application. |Not Done |
+|0.0.5     |Filesystem API implementation. LX loader must allow loading of ‘Hello, world’ task via file provider and execute it. ‘Hello, world’ task is CMD.EXE prototype. |Not Done |
+
+{{tag>development}}
+
+~~DISCUSSION~~

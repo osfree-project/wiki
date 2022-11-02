@@ -1,0 +1,11 @@
+{{page>en:templates:dosint}}
+
+====== PROGRAM TERMINATION ADDRESS ======
+
+  Desc: This vector specifies the address of the routine which is to be given control after a program is terminated; it should never be called directly, since it does not point at an interrupt handler
+
+  Notes: This vector is restored from the DWORD at offset 0Ah in the PSP during termination, and then a FAR JMP is performed to the address in INT 22. Normally points at the instruction immediately following INT 21/AH=4Bh call which loaded the current program
+
+
+{{page>en:templates:int}}
+

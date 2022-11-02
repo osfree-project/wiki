@@ -1,0 +1,60 @@
+{{page>en:templates:dpmi}}
+
+====== Int 31H, AH=0CH, AL=00H ======
+
+===== Version =====
+
+1.0
+
+===== Brief =====
+
+Install Resident Service Provider Callback
+
+===== Input =====
+
+  AX = 0C00H
+  ES:(E)DI = selector:offset of 40-byte buffer with the following structure:
+
+^ Offset ^ Length ^ Contents ^
+| 00H | 8 | Descriptor for 16-bit data segment |
+| 08H | 8 | Descriptor for 16-bit code segment |
+| 10H | 2 | Offset of 16-bit callback procedure |
+| 12H | 2 | Reserved |
+| 14H | 8 | Descriptor for 32-bit data segment |
+| 1CH | 8 | Descriptor for 32-bit code segment |
+| 24H | 4 | Offset of 32-bit callback procedure |
+
+===== Return =====
+
+  if function successful
+  Carry flag = clear
+  
+  if function unsuccessful
+  Carry flag = set
+  AX = error code
+  8021H	invalid value (access rights/type bytes invalid, or offset outside segment limits)
+  8025H	invalid linear address (descriptor references a linear address range outside that allowed for DPMI clients)
+  8015H	callback unavailable (host unable to allocate resources for resident handler initialization callback)  
+===== Notes =====
+
+Protected mode resident service providers (protected mode TSRs) can provide services to 16-bit DPMI programs, 32-bit DPMI programs, or both. A resident service provider uses this function to request notification from the host whenever another DPMI program in the same virtual machine is loaded or terminated.
+
+
+A DPMI client that uses this function declares its intent to provide resident protected mode services. The client must subsequently terminate and stay resident using Int 31H Function 0C01H. DPMI clients which intend to stay resident only to provide services to real mode programs should not use this function.The data structure provides room for a data descriptor, a code descriptor, and an offset for both 16-bit and 32-bit protected modes. The client can conveniently initialize the descriptor fields to valid values by fetching copies of its current code and data descriptors with Int 31H Function 000BH.
+
+If only one mode is supported by the resident service provider, then the code descriptor for the unsupported mode should be initialized to zero.
+
+This function is called on the locked protected mode stack.
+
+For further details on programming of resident service providers, see that page.
+
+===== See also =====
+
+   
+
+===== Note =====
+
+Text based on [[http://www.delorie.com/djgpp/doc/dpmi/]]
+
+{{page>en:templates:dpmi:int}}
+

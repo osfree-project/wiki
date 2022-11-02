@@ -1,0 +1,78 @@
+{{page>en:templates:fapiint}}
+
+====== VioReadCharStr ======
+
+This call reads a string of characters from the display starting at the specified location.
+
+===== Syntax =====
+<code c>
+VioReadCharStr (CharStr, Length, Row, Column, VioHandle) 
+</code>
+===== Parameters =====
+
+  * CharStr ([[PCH]]) - output : Address of the buffer where the character string is returned.
+  * Length ([[PUSHORT]]) - input/output : Address of the buffer length in bytes.
+  * Row ([[USHORT]]) - input : Starting row of the field to read, 0 is the top row.
+  * Column ([[USHORT]]) - input : Starting column of the field to read, 0 is the leftmost column.
+  * VioHandle ([[HVIO]]) - input : This must be zero unless the caller is a Presentation Manager application, in which case it must be the value returned by VioGetPs.
+
+===== Return Code =====
+
+rc ([[USHORT]]) - return
+
+Return code descriptions are:
+
+  * 0          NO_ERROR 
+  * 355        ERROR_VIO_MODE 
+  * 358        ERROR_VIO_ROW 
+  * 359        ERROR_VIO_COL 
+  * 436        ERROR_VIO_INVALID_HANDLE 
+  * 465        ERROR_VIO_DETACHED
+
+===== Remarks =====
+
+If a string read comes to the end of the line and is not complete, then the string read continues at the beginning of the next line. If the read comes to the end of the screen and is not complete, the read terminates and the length is set to the number of characters read.
+
+==== PM Considerations ====
+
+VioReadCharStr reads a character string from the Advanced VIO presentation space starting at the specified location.
+
+===== Bindings =====
+
+====C Binding====
+<code c>
+#define INCL_VIO
+
+USHORT  rc = VioReadCharStr(CharStr, Length, Row, Column, VioHandle);
+
+PCH              CharStr;       /* Character buffer */
+PUSHORT          Length;        /* Length of buffer */
+USHORT           Row;           /* Starting row location */
+USHORT           Column;        /* Starting column location */
+HVIO             VioHandle;     /* Video handle */
+
+USHORT           rc;            /* return code */
+</code>
+
+====MASM Binding====
+<code asm>
+EXTRN  VioReadCharStr:FAR
+INCL_VIO            EQU 1
+
+PUSH@  OTHER   CharStr       ;Character buffer
+PUSH@  WORD    Length        ;Length of buffer
+PUSH   WORD    Row           ;Starting row location
+PUSH   WORD    Column        ;Starting column location
+PUSH   WORD    VioHandle     ;Video handle
+CALL   VioReadCharStr
+
+Returns WORD
+</code>
+
+
+===== Note =====
+
+Text based on [[http://www.edm2.com/index.php/VioReadCharStr_(FAPI)]]
+
+{{page>en:templates:fapi}}
+

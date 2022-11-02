@@ -1,0 +1,85 @@
+===== Initial memory map =====
+
+The standard PC has the following memory map:
+
+^Addresses                    ^Name                              ^Description                                 ^
+|0x000000-0x09FFFF     |Conventional memory      |RAM, which can be used by user|
+|0x0A0000-0x0BFFFF     |Video memory                  |RAM, used by video adapter       |
+|0x0C0000-0x0CFFFF    |Adapter's ROM                |ROM, used by different adapters|
+|0x0D0000-0x0DFFFF    |Page Frame                     |RAM used to map Expanded memory|
+|0x0E0000-0x0FFFFF     |BIOS                                |PC BIOS ROM|
+
+Conventional memory mapped as:
+
+^Addresses                    ^Name                               ^Description          ^
+|0x000000-0x0003FF     |Interrupt Vectors              |This memory used to control Inerrupts|
+|0x000400-0x0004FF     |BIOS Data Area               |Used by ROM BIOS|
+
+==== After BIOS POST ====
+
+^Addresses                     ^Name                               ^Description         ^
+|0x000000-0x0003FF      |Interrupt Vectors              |This memory used to control Inerrupts|
+|0x000400-0x0004FF     |BIOS Data Area                |Used by ROM BIOS|
+|0x000500-0x007BFF     |Free                                   |Free, unused memory|
+|0x007C00-0x007DFF     |MBR                                  |Master Boot Record
+|0x007E00-0x09FFFF      |Free Conventional memory|RAM, which can be used by user|
+|0x0A0000-0x0BFFFF      |Video memory                   |RAM, used by video adapter|
+|0x0C0000-0x0CFFFF     |Adapter's ROM                 |ROM, used by different adapters|
+|0x0D0000-0x0DFFFF     |Page Frame                      |RAM used to map Expanded memory|
+|0x0E0000-0x0FFFFF      |BIOS                                 |PC BIOS ROM|
+
+==== After MBR ====
+
+This information correct for our [[en:boot:mbr|MBR]]
+
+^Addresses                     ^Name                                ^Description         ^
+|0x000000-0x0003FF      |Interrupt Vectors               |This memory used to control Inerrupts|
+|0x000400-0x0004FF     |BIOS Data Area                 |Used by ROM BIOS|
+|0x000500-0x0005FF      |Free                                   |Free, unused memory|
+|0x000600-0x0007FF      |MBR                                   |Master Boot Record|
+|0x000800-0x007BFF      |Free                                   |Free, unused memory|
+|0x007C00-0x007DFF     |Boot record                        |Boot Record loaded from boot sector of active partition|
+|0x007E00-0x007FFF      |MBR Work area                  |This area was used as MBR work area|
+|0x008000-0x09FFFF      |Free Conventional memory|RAM, which can be used by user|
+|0x0A0000-0x0BFFFF      |Video memory                    |RAM, used by video adapter|
+|0x0C0000-0x0CFFFF     |Adapter's ROM                  |ROM, used by different adapters|
+|0x0D0000-0x0DFFFF     |Page Frame                       |RAM used to map Expanded memory|
+|0x0E0000-0x0FFFFF      |BIOS                                  |PC BIOS ROM|
+
+==== After boot record ====
+
+This information correct for our [[en:boot:bootsector|bootsector]]
+
+^Addresses                     ^Name                                 ^Description                    ^
+|0x000000-0x0003FF      |Interrupt Vectors                |This memory used to control Inerrupts|
+|0x000400-0x0004FF      |BIOS Data Area                 |Used by ROM BIOS|
+|0x000500-0x0005FF      |Free                                    |Free, unused memory|
+|0x000600-0x0007FF      |MBR                                    |Master Boot Record|
+|0x000800-0x007BFF      |Free                                    |Free, unused memory|
+|0x007C00-0x007DFF     |Boot record                         |Boot Record loaded from boot sector of active partition|
+|0x007E00-0x007FFF      |Boot record Work area       |This area was used as Boot Record work area|
+|0x008000-(MuFSDStart-1) |Free                                |Free, unused memory|
+|MuFSDStart-MuFSDEnd     |MicroFSD                        |MicroFSD/BlackBox code|
+|(MuFSDEnd+1)-0x09FFFF  |Free Conventional memory |RAM, which can be used by user|
+|0x0A0000-0x0BFFFF       |Video memory                    |RAM, used by video adapter|
+|0x0C0000-0x0CFFFF       |Adapter ROMs                  |ROMs, used by different adapters|
+|0x0D0000-0x0DFFFF       |Page Frame                       |RAM used to map Expanded memory|
+|0x0E0000-0x0FFFFF        |BIOS                                 |PC BIOS ROM|
+
+MuFSDStart=0x008000 or 0x090000. Now we use 0x090000 as LILO does but have a plan to use 0x008000 for more compact memory reuse and less possibility of overlapping.
+
+MuFSDEnd is (0x008000+MicroFSD_file_length-1)
+
+==== After MicroFSD/BlackBox ====
+
+Memory map after MicroFSD/BlackBox work known via MemoryMap structure.
+
+==== After FreeLDR ====
+
+Memory map after FreeLDR work known via Multiboot Information block.
+
+==== After L4Ka::Kickstart ====
+
+Memory map after L4Ka:Kickstart work known to microkernel via Kernel Interface Page. Other tasks has access to memory via sigma0 server. Strating from this point all memory operation controlled by L4 microkernel.
+
+~~DISCUSSION~~

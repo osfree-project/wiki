@@ -1,0 +1,9 @@
+===== Web team =====
+
+This is home of The osFree Web Team. We are provide representation of osFree in the Net and maintain web services for other teams.
+
+  * [[en:docs:web:index|Team documentation]]
+  * [[en:teams:web:members|Team members]]
+  * [[:forum:site|Team discussions]]
+
+~~DISCUSSION~~

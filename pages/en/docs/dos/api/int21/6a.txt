@@ -1,0 +1,44 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=6AH ======
+
+===== Version =====
+
+4 and higher
+
+===== Brief =====
+
+FFLUSH - COMMIT FILE
+
+===== Family API =====
+
+
+===== Input =====
+
+  AH = 6Ah
+  BX = file handle
+
+===== Return =====
+
+  CF clear if successful
+  all data still in DOS disk buffers is written to disk immediately,
+  and the file's directory entry is updated
+  CF set on error
+  AX = error code (see #01680 at AH=59h/BX=0000h)
+
+===== Notes =====
+
+
+          
+===== See also =====
+
+   
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:int}}
+
+{{page>en:templates:fapi}}
+

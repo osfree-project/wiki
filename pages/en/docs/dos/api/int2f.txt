@@ -1,0 +1,10 @@
+{{page>en:templates:dosint}}
+
+====== INT 2FH ======
+
+^ AX ^ Description ^
+| [[en:docs:tasklist|4AH]] | Task list     |
+| [[en:docs:switcher|4BH]] | Task switcher |
+| [[en:docs:dpmi|16H]]     | DPMI |
+
+{{page>en:templates:int}}

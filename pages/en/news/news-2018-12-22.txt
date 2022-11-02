@@ -1,0 +1,12 @@
+==== 22 December, 2018 ====
+
+Forum migration to pbpbb3.
+
+Today we migrated our forum from myUPB to phpbb3. Also, from now, 
+wiki logins are integrated with forum, so, once you login to wiki,
+you're logged-in in forum, and vice versa. We migrated all old wiki
+users, so, login/password are still the same.
+
+{{tag>site migration forum wiki}}
+
+~~DISCUSSION~~

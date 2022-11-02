@@ -1,0 +1,121 @@
+{{page>en:templates:fapiint}}
+
+====== DosGetMessage ======
+
+Retrieves a message from the specified system message file, and inserts variable text-string information into the message.
+
+===== Syntax =====
+
+<code c>
+DosGetMessage (IvTable, IvCount, DataArea, DataLength, MsgNumber, FileName, MsgLength)
+</code>
+
+===== Parameters =====
+
+  * IvTable ([[PCHAR]] FAR *) - input : Address of a list of double-word pointers. Each pointer points to an ASCIIZ or null-terminated DBCS string (variable insertion text). 0 to 9 strings can be present.
+  * IvCount ([[USHOR]]T) - input:Count of variable insertion text strings is 0-9. If IvCount is 0, IvTable is ignored.
+  * DataArea ([[PCHAR]]) - output:Address of the requested message. If the message is too long to fit in the caller's buffer, as much of the message text is returned as possible, with the appropriate error return code.
+  * DataLength ([[USHORT]]) - input:Length, in bytes, of the user's storage area.
+  * MsgNumber ([[USHORT]]) - input:Requested message number.
+  * FileName ([[PSZ]]) - input:Address of the optional drive, path, and filename of the file where the message can be found. If messages are bound to the .EXE file using MSGBIND utility, then filename is the name of the message file from which the messages are extracted.
+  * MsgLength ([[PUSHORT]]) - output:Address of the length, in bytes, of the message.
+
+===== Return Codes =====
+
+rc ([[USHORT]]) - return
+
+Return code descriptions are:
+
+  * 0   NO_ERROR
+  * 2   ERROR_FILE_NOT_FOUND
+  * 206 ERROR_FILENAME_EXCED_RANGE
+  * 316 ERROR_MR_MSG_TOO_LONG
+  * 317 ERROR_MR_MID_NOT_FOUND
+  * 318 ERROR_MR_UN_ACC_MSGF
+  * 319 ERROR_MR_INV_MSFG_FORMAT
+  * 320 ERROR_MR_INV_IVCOUNT
+  * 321 ERROR_MR_UN_PERFORM
+
+===== Remarks =====
+
+If IvCount is greater than 9, DosGetMessage returns an error that indicates IvCount is out of range. If the numeric value of x in the %x sequence for %1through%9 is less than or equal to IvCount, text insertion by substitution for %x, is performed for all occurrences of %x in the message. Otherwise text insertion is ignored and the %x sequence is returned in the message unchanged. Text insertion is performed for all text strings defined by IvCount and IvTable.
+
+Variable data insertion is not dependent on blank character delimiters nor are blanks automatically inserted.
+
+For warning and error messages, the message ID (seven alphanumeric characters consisting of three upper case characters as the component ID, concatenated with a four-digit message number) followed by a colon and a blank character are returned to the caller as part of the message text. (DosGetMessage determines the type of message based on the message classification generated in the output file of the MKMSGF utility.)
+
+The following is an example of a sample error message returned with the message ID:
+
+  SYS0100: File not found
+
+DosGetMessage retrieves messages previously prepared by the utility MKMSGF to create a message file, or MSGBIND to bind a message segment to an .EXE file. DosGetMessage tries to retrieve the message from RAM in the message segment bound to the .EXE program. If the message cannot be found, DosGetMessage retrieves the message from the message file on DASD (direct access storage device, such as a diskette or fixed-disk).
+
+If the file name is not a fully-qualified name, DosGetMessage searches the following directories for default drive and path:
+
+  * The system root directory 
+  * The current working directory 
+  * Directories listed in the DPATH statement (OS/2 mode only)
+  * Directories listed in the APPEND statement (DOS mode only). 
+
+If a message cannot be retrieved because of a DASD error or file not found condition, a default message is placed in the user's buffer area. A message is placed in the buffer area based on the following error conditions:
+  * The message number cannot be found in the message file.
+  * The message file cannot be found.
+  * The system detected a disk error trying to access the message file, or the message file format is incorrect. o
+  * IvCount is out of range.
+  * A system error occurred trying to allocate storage. 
+
+When these conditions occur, the default message allows the application program to issue a message and prompt that enables recovery opportunity.
+
+The residency of the message in RAM (EXE bound) or on DASD is transparent to the caller and handled by DosGetMessage. In either case the message is referenced by message number and file name.
+
+In order for DosGetMessage to be properly resolved, an application must be linked with DOSCALLS.LIB.
+
+==== Family API Considerations ====
+
+Some options operate differently in the DOS mode than in OS/2 mode. Therefore, the following restriction applies to DosGetMessage when coding for the DOS mode:
+
+If the message file name is not a fully qualified name, DosGetMessage searches the root directory of the default drive for the message file, instead of the root directory of the startup drive. 
+
+===== Bindings =====
+
+==== C Bindigns ====
+<code c>
+ #define INCL_DOSMISC
+ 
+ USHORT  rc = DosGetMessage(IvTable, IvCount, DataArea, DataLength,
+                              MsgNumber, FileName, MsgLength);
+  
+ PCHAR FAR *      IvTable;       /* Table of variables to insert */
+ USHORT           IvCount;       /* Number of variables */
+ PCHAR            DataArea;      /* Message buffer (returned) */
+ USHORT           DataLength;    /* Length of buffer */
+ USHORT           MsgNumber;     /* Number of the message */
+ PSZ              FileName;      /* Message file path name string */
+ PUSHORT          MsgLength;     /* Length of message (returned) */
+ 
+ USHORT           rc;            /* return code */
+</code>
+
+==== MASM Bidings ====
+<code asm>
+ EXTRN  DosGetMessage:FAR
+ INCL_DOSMISC      EQU 1  
+
+ PUSH@  OTHER   IvTable       ;Table of variables to insert
+ PUSH   WORD    IvCount       ;Number of variables
+ PUSH@  OTHER   DataArea      ;Message buffer (returned)
+ PUSH   WORD    DataLength    ;Length of buffer
+ PUSH   WORD    MsgNumber     ;Number of the message
+ PUSH@  ASCIIZ  FileName      ;Message file path name string
+ PUSH@  WORD    MsgLength     ;Length of message (returned)
+ CALL   DosGetMessage
+</code>
+
+ Returns WORD
+
+===== Note =====
+
+Text based on [[http://www.edm2.com/index.php/DosGetMessage]]
+
+{{page>en:templates:fapi}}
+

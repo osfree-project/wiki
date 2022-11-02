@@ -1,0 +1,48 @@
+==== MouSynch ====
+
+**Bindings**: [[synch#C bindings|C]], [[synch#MASM bindings|MASM]]
+
+This call provides synchronous access for a mouse subsystem to the mouse device driver. 
+
+//MouSynch// (IOWait) 
+
+//IOWait// (**USHORT**) - input 
+Wait for access. The flag Word is defined as follows: 
+
+^Value ^Definition ^
+|0 |Control immediately returned to requestor. |
+|1 |Requestor waits until mouse device driver is free. |
+
+//rc// (**USHORT**) - return 
+Return code descriptions are: 
+
+|0 |NO_ERROR |
+|121 |ERROR_SEM_TIMEOUT |
+
+**Remarks** 
+
+[[en:ibm:prcp:mou:synch|MouSynch]] blocks all other threads within a session until the semaphore clears (returns from the subsystem to the router). To ensure proper synchronization, MouSynch should be issued by a mouse subsystem if it intends to access dynamically modifiable shared data for each session or if it intends to issue a [[en:ibm:prcp:cpi:dosdevioctl|DosDevIOCtl]]. [[en:ibm:prcp:mou:synch|MouSynch]] does not protect globally shared data from threads in other sessions. 
+
+=== C bindings ===
+
+<code c>
+#define INCL_MOU
+
+USHORT  rc = MouSynch(IOWait);
+
+USHORT           IOWait;        /* Indicate wait/no wait */
+
+USHORT           rc;            /* return code */
+</code>
+
+=== MASM bindings ===
+
+<code asm>
+EXTRN  MouSynch:FAR
+INCL_MOU            EQU 1
+
+PUSH   WORD    IOWait        ;Indicate wait/no wait
+CALL   MouSynch
+
+Returns WORD
+</code>

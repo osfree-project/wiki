@@ -1,0 +1,25 @@
+{{page>en:templates:biosint}}
+
+====== BIOS API ======
+
+All registers saved on entry and restores on return
+
+===== BIOS Interrupts =====
+
+^ Interrupt vector ^ Description ^ Version ^
+| [[en:docs:bios:api:int10|10H]]| Video I/O | 5150+ |
+| [[en:docs:bios:api:int11|11H]]| Equipment | 5150+ |
+| [[en:docs:bios:api:int12|12H]]| Memory size | 5150+ |
+| [[en:docs:bios:api:int13|13H]]| Diskette I/O | 5150+ |
+| [[en:docs:bios:api:int14|14H]]| RS232 I/O | 5150+ |
+| [[en:docs:bios:api:int15|15H]]| Cassette I/O | 5150, 4860 |
+| [[en:docs:bios:api:int16|16H]]| Keyboard I/O | 5150+ |
+| [[en:docs:bios:api:int17|17H]]| Printer I/O | 5150+ |
+| 18H| ROM BASIC | 5150+ |
+| 19H| Bootstrap | 5150+ |
+| [[en:docs:bios:api:int1A|1AH]]| Time and date | 5150+ |
+
+{{page>en:templates:biosapi}}
+
+
+

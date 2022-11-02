@@ -1,0 +1,24 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=5FH ======
+
+===== Input ======
+
+ AH=5FH, AL=Subfunction
+
+^ Subfunction                        ^ Description                                       ^ Version ^
+| [[en:docs:dos:api:int21:5f:00|00]] | GET REDIRECTION MODE                              | 3.1+    |
+| [[en:docs:dos:api:int21:5f:01|01]] | SET REDIRECTION MODE                              | 3.1+    |
+| [[en:docs:dos:api:int21:5f:02|02]] | GET REDIRECTION LIST ENTRY                        | 3.1+    |
+| [[en:docs:dos:api:int21:5f:03|03]] | REDIRECT DEVICE                                   | 3.1+    |
+| [[en:docs:dos:api:int21:5f:04|04]] | CANCEL REDIRECTION                                | 3.1+    |
+| [[en:docs:dos:api:int21:5f:05|05]] | GET EXTENDED REDIRECTION LIST ENTRY               | 4+    |
+| [[en:docs:dos:api:int21:5f:07|07]] | ENABLE DRIVE                                      | 5+    |
+| [[en:docs:dos:api:int21:5f:08|08]] | DISABLE DRIVE                                     | 5+    |
+ 
+{{page>en:templates:int}}
+
+
+
+
+

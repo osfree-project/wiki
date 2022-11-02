@@ -1,0 +1,27 @@
+==== FS_EXIT ====
+
+**Purpose**
+
+Release FSD resources still held after process termination.   
+
+**Calling Sequence**
+
+<code c>
+void far pascal FS_EXIT(uid, pid, pdb);
+
+unsigned short uid;
+unsigned short pid;
+unsigned short pdb;
+</code>
+
+**Where**
+
+//uid// is the user ID of the process. This will be a valid value.   
+
+//pid// is the process ID of the process. This will be a valid value.   
+
+//pdb// is the DOS mode process ID of the process. This will be a valid value. 
+
+**Remarks**
+
+Because all files are closed when a process terminates, this call is not needed to release file resources. It is, however, useful if resources are being held due to unterminated searches (as in searches initiated from the DOS mode).  

@@ -1,0 +1,60 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=1CH ======
+
+===== Version =====
+
+1 and higher
+
+===== Brief =====
+
+GET DRIVE PARAMETER BLOCK FOR DEFAULT DRIVE
+
+===== Family API =====
+
+
+===== Input =====
+
+        AH = 1Fh
+
+===== Return =====
+
+ AL = sectors per cluster (allocation unit), or FFh if invalid drive
+        CX = bytes per sector
+        DX = total number of clusters
+        DS:BX -> media ID byte (see #01356)
+
+===== Notes =====
+
+  this call was undocumented prior to the release of DOS 5.0; however,
+          only the DOS 4.0+ version of the DPB has been documented
+
+Format of DOS 1.1 and MS-DOS 1.25 drive parameter block:
+Offset  Size    Description     (Table 01357)
+ 00h    BYTE    sequential device ID
+ 01h    BYTE    logical drive number (0=A:)
+ 02h    WORD    bytes per sector
+ 04h    BYTE    highest sector number within a cluster
+ 05h    BYTE    shift count to convert clusters into sectors
+ 06h    WORD    starting sector number of first FAT
+ 08h    BYTE    number of copies of FAT
+ 09h    WORD    number of directory entries
+ 0Bh    WORD    number of first data sector
+ 0Dh    WORD    highest cluster number (number of data clusters + 1)
+ 0Fh    BYTE    sectors per FAT
+ 10h    WORD    starting sector of directory
+ 12h    WORD    address of allocation table
+Note:   the DOS 1.0 table is the same except that the first and last fields
+          are missing; see INT 21/AH=32h for the DOS 2+ version
+         
+===== See also =====
+
+SeeAlso: AH=32h,AX=7302h
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:int}}
+
+{{page>en:templates:fapi}}

@@ -1,0 +1,27 @@
+==== MFSH_UNLOCK - Unlock a segment ====
+
+**Purpose**
+
+Unlock a segment which was previous locked by calling //MFSH_LOCK//. 
+
+**Calling Sequence**
+
+<code c>
+int far pascal MFSH_SEGREALLOC(ulHandle)
+
+unsigned long ulHandle;
+</code>
+
+**Where**
+
+//ulHandle// contains the handle returned from //MFSH_LOCK// of the segment to unlock. 
+
+**Returns**
+
+If no error is detected, a zero error code is returned. If an error is detected, the following error code is returned:   
+
+  * ERROR_PROTECTION_VIOLATION -- the supplied address is invalid. 
+
+**Remarks**
+
+This helper is for use by a mini-FSD with an imbedded device driver. It is the same as the standard device driver helper UNLOCK.   

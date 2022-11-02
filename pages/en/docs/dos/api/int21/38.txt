@@ -1,0 +1,12 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=38H ======
+
+^ Subfunction                        ^ Desctiption          ^ Version      ^
+| [[en:docs:dos:api:int21:38:00|00]] | Get current country info | 2.0+         |
+| [[en:docs:dos:api:int21:38:01|01]] | Get/set specified country info | 3.0+         |
+
+
+{{page>en:templates:int}}
+
+{{page>en:templates:fapi}}

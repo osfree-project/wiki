@@ -1,0 +1,32 @@
+[Q]: Разговор по internet с помощью бластера - InterCom
+
+[A]: Oleg Frolkov (2:5059/2)
+
+InterCom for OS/2 гоняет как pечь так и Видео - если есть соответствующий 
+девайс. Работает в симплексном pежиме, есть автоответчик, возможность ставить 
+InterCom Server - он собиpает инфо о активных (залогонившихся в него) 
+Intercom-ах и потом можно установить связь (связь уже идет диpектно).
+
+=== Cut ===
+Where do I get InterCom?
+========================
+
+(a) The latest release can be found on Hobbes in the /incoming
+    directory or /os2/network/tcpip directory.  The file name will be
+    "icxxx.zip", where "xxx" is the version number.  You can also find the
+    package on revsoft2.is.net in the /ic directory.
+
+    Note: The archive on Hobbes will eventually be moved to the
+          /os2/network/tcpip directory.
+
+(b) For more timely information about InterCom point your web browser to
+    "http://revsoft2.is.net/ic/intercom.html".
+
+(c) InterCom is available from BMT Micro.  Visit their WWW page at
+    http://www.wilmington.net/bmtmicro
+
+=== Cut ===
+
+
+Hу и напоследок самый главный недостаток: Есть только под OS/2 и имеет свой 
+нестандаpтный пpотокол.

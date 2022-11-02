@@ -1,0 +1,15 @@
+[Q]: DOS Window и Win-OS/2 Window тормозят под Авророй, что делать?
+
+[A]: Jury Anisimoff (2:5022/27.5)
+
+Закомментаpить DISKCACHE в config.sys
+Помоему это в FAQ давно поpа ;)
+
+[A]: Andrew Belov (2:5020/181.2)
+
+В ядрах 14.064c и выше эта ошибка исправлена.
+
+[A]: Edward Fedorov (mced@home.ru)
+
+[если стоит Mixomate]: settings->update2  и сменить 'high resolution' timer на
+другой..

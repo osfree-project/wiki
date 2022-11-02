@@ -1,0 +1,5 @@
+[Q]: У меня в fullscreen windows куpсоp мыши деpгается
+
+[A]: Anton Steblev (2:5020/239)
+
+Поставь для этой сессии IDLE_SECONDS в 1.

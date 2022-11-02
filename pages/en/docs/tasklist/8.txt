@@ -1,0 +1,52 @@
+{{page>en:templates:dosshell}}
+
+====== Int 2FH, AX=4A05H, SI=08H ======
+
+===== Version =====
+
+?
+
+===== Brief =====
+
+Get switcher control data
+
+===== Input =====
+
+None
+  
+===== Return =====
+
+DX:AX - Switcher control data
+
+===== Notes =====
+
+Function returns switcher control data
+
+Format is following:
+
+^ Offset ^ Description   ^
+|   0    | Switcher id?  |
+|   1    | unknown       |
+|   5    | Command line params |
+|  135   | unknown |
+|  292   | Current task id |
+|  294   | Last ERRORLEVEL |
+|  296   | Unknown |
+|  301   | Number of entries |
+|  302   | First entrie num |
+|  303   | Entrie 1 |
+|  385   | Entrie 2 |
+|  467   | Entrie 3 |
+| ... | ... |
+
+By default 16 entries
+
+Each entrie consist of
+
+^ Offset ^ Description ^
+| 0 | Name |
+| 80 | Flags |
+  
+===== See also =====
+
+   

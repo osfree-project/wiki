@@ -1,0 +1,63 @@
+{{page>en:templates:fapiint}}
+
+====== DosGetMachineMode ======
+
+This call returns the current mode of the processor, whether the processor is running in the DOS mode or the OS/2 mode. This allows an application to determine whether a dynamic link call is valid or not.
+
+===== Syntax =====
+
+<code c>
+DosGetMachineMode (MachineMode)
+</code>
+
+===== Parameters =====
+
+
+  * MachineMode ([[PBYTE]]) - output: Address of the value to indicate the current processor mode. This value may be:
+    *0 - DOS (real) mode
+    *1 - OS/2 (protected) mode.
+
+===== Return Code =====
+
+rc ([[USHORT]]) - return
+
+Return code description is:
+
+  *0 NO_ERROR
+
+===== Remarks =====
+
+All dynamic link calls are available to an application if the MachineMode value indicates the program is in OS/2 mode. This method provides a self-tailoring application that allows the application to adapt to the execution environment by limiting or enhancing the functions it provides.
+
+If the MachineMode value indicates the program is in DOS mode (or real), the application is limited to a subset of dynamic link calls listed in the [[en:docs:fapi|Family API]].
+
+===== Example Code =====
+
+==== C Binding ====
+
+<code c>
+  #define INCL_DOSMISC
+  
+  USHORT  rc = DosGetMachineMode(MachineMode);
+  PBYTE   MachineMode;   /* Processor mode (returned) */
+  USHORT  rc;            /* return code /*/
+</code>
+
+==== MASM Binding ====
+
+<code asm>
+  EXTRN  DosGetMachineMode:FAR
+  INCL_DOSMISC      EQU 1
+  
+  PUSH@  BYTE    MachineMode   ;Processor mode (returned)
+  CALL   DosGetMachineMode
+</code>
+
+Returns WORD
+
+===== Note =====
+
+Text based on [[http://www.edm2.com/index.php/DosGetMachineMode]]
+
+{{page>en:templates:os2api}}
+{{page>en:templates:fapi}}

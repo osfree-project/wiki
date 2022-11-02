@@ -1,0 +1,13 @@
+===== Fundamental concepts =====
+
+  * client - separate program using the PM API. There could be several clients on different machines. Client is a program, which at present time must have application type "Windowable"
+  * server - server, who operates clients. The server displays the Desktop picture on one or several devices. The server communicates with the clients, also, the communication between the clients is possible
+  * the number of client, issued by server after connecting with the client
+
+|HAB   |- handle of anchor block - the index of thread, which is given by, and maintained by server. During the creation of the index the server checks the presence of the client in list and validity of thread ordinal. Index is an index of the element into the array of structures _FreePM_HABserverinf (see also client structure _FreePM_HABinf) |
+|HWND  |- a window handle is a kind of the index given to a window, issued by server to client. Index is an index of the element of the array of structures struct WND |
+|DC    |- device context. It is unknown what this means for IBM-ers. The index into the array of F_.DC. structures contains the number of device, a window handle, and maybe something more. |
+|HPS   |- Presentation Space Handle, the index into the array of structures F_PS, which does contain DC, the current color, the current type of line, the current initial point and something describing the geometry of the visible window border.|
+
+|messages | they can be transferred between the windows. if the message is to be passed between the windows of one client, then it does not leave the client |
+|message queue | it is on the server and on the client at the same time |

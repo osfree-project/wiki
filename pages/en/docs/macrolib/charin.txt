@@ -1,0 +1,32 @@
+{{page>en:templates:biosint}}
+
+====== @CharIn ======
+
+===== Brief =====
+
+Read char from keyboard
+
+===== BIOS Interrupt =====
+
+[[en:docs:bios:api:int|INTH]]: [[en:docs:bios:api::|H]]
+
+===== Family API =====
+
+[[en:docs:fapi:]]
+
+===== Syntax =====
+
+<code asm>
+INCLUDE BIOS.INC
+
+@CharIn
+</code>
+
+===== Parameters =====
+
+none
+
+===== Return =====
+
+  * AH = BIOS scan code
+  * AL = ASCII character

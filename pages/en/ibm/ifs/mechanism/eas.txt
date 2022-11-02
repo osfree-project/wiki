@@ -1,0 +1,25 @@
+==== Extended attributes ====
+
+Extended attributes (EAs) are a mechanism whereby an application can attach information to a file system object (directories or files) describing the object to another application, to the operating system, or to the FSD managing that object.   
+
+EAs associated with a file object are not part of a file object's data, but are maintained separately and managed by the file system that manages that object.   
+
+Each extended attribute consists of a name and a value. An EA name consists of ASCII text, chosen by the application developer, that is used to identify a particular EA. EA names are restricted to the same character set as a filename. An EA value consists of arbitrary data, that is, data of any form. Because of this OS/2 does not check data that is associated with an EA.   
+
+So that EA data is understandable to other applications, conventions have been established for: 
+
+  * Naming EAs 
+  * Indicating the type of data contained in EAs 
+
+In addition, a set of standard EAs (SEAs) have been defined. SEAs define a common set of information that can be associated with most files (for example, file type and file purpose). Through SEAs, many applications can access the same, useful information associated with files.   
+
+Applications are not limited to using SEAs to associate information with files. They may define their own application-specific extended attributes. Applications define and associate extended attributes with a file object through file system function calls.   
+
+See the OS/2 Version 2.0 Programming Guide for a complete description of EA naming conventions and data types and standard extended attributes. See also the OS/2 Version 2.0 Control Program Programming Reference for a complete description of the file system function calls.   
+
+EAs may be viewed as a property list attached to file objects. The services for manipulating EAs are: add/replace a series of name/value pairs, return name/value pairs given a list of names, and return the total set of EAs.   
+
+There are two formats for EAs as passed to OS/2 Version 2.0 API: Full EAs (FEA) and Get EAs (GEA).   
+
+  * [[en:ibm:ifs:mechanism:eas:feas|FEAs]]
+  * [[en:ibm:ifs:mechanism:eas:geas|GEAs]]

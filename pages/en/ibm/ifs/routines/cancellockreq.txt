@@ -1,0 +1,36 @@
+==== FS_CANCELLOCKREQUEST ====
+
+**Purpose**
+
+Cancels an outstanding FS_FILELOCKS request on a file.   
+
+**Calling Sequence**
+
+<code c>
+int far pascal FS_CANCELLOCKREQUEST(psffsi, psffsd, pLockRange)
+
+struct sffsi far * psffsi;
+struct sffsd far * psffsd;
+struct filelock far * pLockRange;
+</code>
+
+**Where**
+
+//psffsi// is a pointer to the file-system-independent portion of an open file instance.   
+
+//psffsd// is a pointer to the file-system-dependent portion of an open file instance.   
+
+//pLockRange// is a pointer to a filelock structure. The filelock structure has the following format:   
+
+<code c>
+struct FileLock {
+    unsigned long FileOffset;   /* offset where the lock/unlock begins  */
+    unsigned long RangeLength;  /* length of region locked/unlocked     */
+}
+</code>
+
+**Remarks**
+
+This entry point was added to support the 32-bit //DosCancelLockRequest// API.   
+
+This function provides a simple mechanism for canceling the lock range request of an outstanding FS_FILELOCKS call. If two threads in a process are blocked on a lock range and a cancel request is issued by another thread, both blocked threads will be released.   

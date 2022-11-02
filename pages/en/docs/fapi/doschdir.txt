@@ -1,0 +1,92 @@
+{{page>en:templates:fapiint}}
+====== DosChDir ======
+
+This call defines the current directory for the requesting process.
+
+===== Syntax =====
+
+<code c>
+DosChDir (DirName, Reserved)
+</code>
+
+===== Parameters =====
+
+
+  *DirName ([[PSZ]]) - input : Address of the ASCIIZ directory path name.
+  *Reserved ([[ULONG]]) - input : Reserved and must be set to zero.
+
+===== Return Code =====
+
+
+rc ([[USHORT]]) - return
+
+Return code descriptions are:
+  * 0  NO_ERROR
+  * 2  ERROR_FILE_NOT_FOUND 
+  * 3  ERROR_PATH_NOT_FOUND
+  * 5  ERROR_ACCESS_DENIED
+  * 8  ERROR_NOT_ENOUGH_MEMORY 
+  * 26  ERROR_NOT_DOS_DISK
+  * 87  ERROR_INVALID_PARAMETER
+  * 108  ERROR_DRIVE_LOCKED
+  * 206  ERROR_FILENAME_EXCED_RANGE
+
+===== Remarks =====
+
+
+The directory path is not changed if any member of the path does not exist. The current directory changes only for the requesting process.
+
+For FSDs, the case of the current directory is set according to the DirName passed in, not according to the case of the directories on disk. For example, if the directory "c:\bin" is created and DosChDir is called with DirName "c:\bin", the current directory returned by [[DosQCurDir]] will be "c:\bin".
+
+Programs running without the NEWFILES bit set are allowed to DosChDir to a non-8.3 filename format directory.
+
+[[DosQSysInfo]] must be used by an application to determine the maximum path length supported by OS/2. The returned value should be used to dynamically allocate buffers that are to be used to store paths. 
+
+===== Example Code =====
+
+==== C Binding ====
+
+<code c>
+#define INCL_DOSFILEMGR
+
+USHORT  rc = DosChDir(DirName, Reserved);
+
+PSZ              DirName;       /* Directory path name */
+ULONG            0;             /* Reserved (must be zero) */
+
+USHORT           rc;            /* return code */
+</code>
+This example changes directories to \os2\system. 
+<code c>
+#define INCL_DOSFILEMGR
+
+#define PATH "\\os2\\system"
+#define RESERVED 0L
+
+USHORT rc;
+
+rc = DosChDir(PATH, RESERVED);
+
+</code>
+
+==== MASM Binding ====
+
+
+<code asm>
+EXTRN  DosChDir:FAR
+INCL_DOSFILEMGR     EQU 1
+  
+PUSH@  ASCIIZ  DirName       ;Directory path name string
+PUSH   DWORD   0             ;Reserved (must be zero)
+CALL   DosChDir
+</code>
+
+Returns WORD
+
+===== Note =====
+
+
+Text based on http://www.edm2.com/index.php/DosChDir
+
+{{page>en:templates:fapi}}
+

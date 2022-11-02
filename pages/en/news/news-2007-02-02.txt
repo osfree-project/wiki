@@ -1,0 +1,15 @@
+==== Febuary 2, 2007 ====
+
+The osFree web team has decided to change several things. First and 
+foremost, unregistered users cannot comment on news stories. Secondly, 
+the ability for you to register your own account has been disabled to 
+prevent spam dummy accounts from registering. From now on, you must 
+request an osFree wiki account either by contacting the admins (if 
+you are a developer you probably already received an account from 
+one of the admins) via email or the forums. These changes were 
+initiated as a preemptive retaliation to a recently registered 
+spam account.
+
+{{tag>site}}
+
+~~DISCUSSION~~

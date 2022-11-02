@@ -1,0 +1,67 @@
+{{page>en:templates:fapiint}}
+
+====== VioScrUnLock ======
+
+This call releases ownership of (unlocks) the physical display buffer.
+
+===== Syntax =====
+<code c>
+VioScrUnLock (VioHandle)
+</code>
+===== Parameters =====
+
+  * VioHandle ([[HVIO]]) - input : Reserved word of 0s.
+
+===== Return Code =====
+
+rc ([[USHORT]]) - return
+
+Return code descriptions are:
+
+  * 0          NO_ERROR 
+  * 367        ERROR_VIO_UNLOCK 
+  * 430        ERROR_VIO_ILLEGAL_DURING_POPUP 
+  * 436        ERROR_VIO_INVALID_HANDLE 
+  * 465        ERROR_VIO_DETACHED 
+  * 494        ERROR_VIO_EXTENDED_SG
+
+===== Remarks =====
+
+This call releases the screen lock that is set by VioScrLock. The VioScrUnLock call must be issued by a thread in the same process as the thread that issued VioScrLock.
+
+==== Family API Considerations ====
+
+Some options operate differently in the DOS mode than in the OS/2 mode. Therefore, the following restriction applies to VioScrUnLock when coding in the DOS mode:
+
+The status always indicates the unlock is successful (return code = 0). 
+
+===== Bindings =====
+
+==== C Binding====
+<code c>
+#define INCL_VIO
+
+USHORT  rc = VioScrUnLock(VioHandle);
+
+HVIO             VioHandle;     /* Video handle */
+
+USHORT           rc;            /* return code */
+</code>
+
+====MASM Binding====
+<code asm>
+EXTRN  VioScrUnLock:FAR
+INCL_VIO            EQU 1
+
+PUSH   WORD    VioHandle     ;Video handle
+CALL   VioScrUnLock
+
+Returns WORD
+</code>
+
+===== Note =====
+
+Text based on [[http://www.edm2.com/index.php/VioScrUnLock_(FAPI)]]
+
+{{page>en:templates:fapi}}
+

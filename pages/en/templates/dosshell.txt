@@ -1,0 +1,6 @@
+{{logos:dos.gif?35x35}} {{logos:win16.gif}}
+
+**Note: This API calls are shared between DOS and Win16 personality.**
+
+DOSSHELL is a stripped down version of 16-bit Windows. Some APIs shared and same. DOSSHELL uses older version of API, but Win16 has more advanced APIs.
+

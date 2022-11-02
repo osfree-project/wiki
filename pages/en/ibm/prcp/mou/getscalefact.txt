@@ -1,0 +1,72 @@
+==== MouGetScaleFact ====
+
+**Bindings**: [[getscalefact#C bindings|C]], [[getscalefact#MASM bindings|MASM]]
+
+This call returns a pair of 1-word scaling factors for the current mouse device. 
+
+//MouGetScaleFact// (ScaleStruct, DeviceHandle) 
+
+//ScaleStruct// (**PSCALEFACT**) - output 
+Address of the control block structure that contains the current row and column coordinate scaling factors. The scaling factors must be greater than or equal to 1 
+and less than or equal to (32K - 1). 
+
+//rowscale// (**USHORT**) 
+Row scaling factor. 
+
+//colscale// (**USHORT**) 
+Column scaling factor. 
+
+See [[en:ibm:prcp:mou:setscalefact|MouSetScaleFact]] for more information. 
+
+//DeviceHandle// (**HMOU**) - input 
+Contains the handle of the mouse device obtained from a previous [[en:ibm:prcp:mou:open|MouOpen]]. 
+
+//rc// (**USHORT**) - return 
+Return code descriptions are: 
+
+|0 |NO_ERROR |
+|385 |ERROR_MOUSE_NO_DEVICE |
+|466 |ERROR_MOU_DETACHED |
+|501 |ERROR_MOUSE_NO_CONSOLE |
+|505 |ERROR_MOU_EXTENDED_SG |
+
+**Remarks** 
+
+The units of the scale factor depend on the mode of the display screen for the session. If the screen is operating in text mode, the scaling units are relative to characters. If the screen is 
+operating in graphics mode, the scaling units are relative to pels. 
+
+=== C bindings ===
+
+<code c>
+typedef struct _SCALEFACT {   /* mousc */
+  USHORT rowScale;            /* row scaling factor */
+  USHORT colScale;            /* column coordinate scaling factor */
+} SCALEFACT;
+
+#define INCL_MOU
+
+USHORT  rc = MouGetScaleFact(ScaleStruct, DeviceHandle);
+
+PSCALEFACT       ScaleStruct;   /* 2-word structure */
+HMOU             DeviceHandle;  /* Mouse device handle */
+
+USHORT           rc;            /* return code */
+</code>
+
+=== MASM bindings ===
+
+<code asm>
+SCALEFACT struc
+  mousc_rowScale  dw  ? ;row scaling factor
+  mousc_colScale  dw  ? ;column coordinate scaling factor
+SCALEFACT ends
+
+EXTRN  MouGetScaleFact:FAR
+INCL_MOU            EQU 1
+
+PUSH@  OTHER   ScaleStruct   ;2-word structure
+PUSH   WORD    DeviceHandle  ;Mouse device handle
+CALL   MouGetScaleFact
+
+Returns WORD
+</code>

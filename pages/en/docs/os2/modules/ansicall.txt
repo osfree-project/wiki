@@ -1,0 +1,48 @@
+{{logos:os2.gif?35x35}} 
+
+====== ANSICALL ======
+
+This is forwarder DLL to DOSCALLS.DLL. No any real code here.
+
+===== Entry points =====
+
+^ Ordinal ^Type ^ Entry ^ Description ^ Status ^ FAPI ^ Version ^
+| 1 | 16 |[[en:docs:os2:api:ansi:AnsiInject]] | Inject ANSI Device Status Record output to KbdHandler buffer. Forwarder to DOSCALLS.848 | Done | No | Pre-1.0 |
+| 2 | 16 |[[en:docs:os2:api:ansi:AnsiKeydef]] | ANSI keyboard key reassignment. Forwarder to DOSCALLS.849 | Done | No | Pre-1.0 |
+| 3 | 16 |[[en:docs:os2:api:ansi:AnsiInterp]] | ANSI Control Code Sequence interpreter. Forwarder to DOSCALLS.850 | Done | No | Pre-1.0 |
+
+===== Versions =====
+
+^ Date&Time ^ SHA1 ^ BldLevel/Version ^ Size ^ Comments ^
+|2011-09-17 06:13 | | 14.100 | 463 bytes | By OSFree. Alternative Version. ANSI escape sequence API. |
+|2002-03-08 19:16 | | N/A | 512 bytes | By IBM |
+|1992-02-06 16:52 | 36bdd7601ef3c615cabcae2e78db29220e774145 | IBM Personal Computer DOS Version x.xx Protect Mode ANSI | 3,339 bytes | IBM OS/2 SDK 1.3 CSD1 |
+|1989-11-10 12:00 | 62ba219e963eff15d36678b384033b373adb8379 | IBM Personal Computer DOS Version x.xx Protect Mode ANSI | 4133 | IBM OS2 1.20 Extended Edition (3.5-1.44mb)/install |
+|1989-09-21 17:37 | c438e3b19c87b1555a8b3d35d7b770335d866cf8 |                                        Protect Mode ANSI | 3616 | Microsoft OS2 1.10 Standard Edition [AST OEM] (3.5-1.44mb)/install |
+|1989-08-31 12:00 | 62ba219e963eff15d36678b384033b373adb8379 | IBM Personal Computer DOS Version x.xx Protect Mode ANSI | 4133 | IBM OS2 1.20 Standard Edition (3.5-1.44mb)/install |
+|1989-07-25 12:00 | c438e3b19c87b1555a8b3d35d7b770335d866cf8 |                                        Protect Mode ANSI | 3616 | Microsoft OS2 1.10 Standard Edition [Compaq OEM (1.01 rev C)] (5.25-1.2mb)/install |
+|1989-02-28 12:00 | c438e3b19c87b1555a8b3d35d7b770335d866cf8 |                                        Protect Mode ANSI | 3616 | Microsoft OS2 1.10 Standard Edition [Zenith OEM] (3.5-1.44mb)/disk01 |
+|1988-08-08 00:00 | 6b761b46f4eaba4eafed58302be0c2ab6d565f83 | IBM Personal Computer DOS Version x.xx Protect Mode ANSI | 3,616 bytes | MS OS/2 SDK 1.05 |
+|1988-04-11 13:00 | 38a7c7b1bcf5f849fcaf9ac2408640ab9dce97d7 | Microsoft OS/2 Version x.xx Protect Mode ANSI | 3,637 bytes | Microsoft OS2 1.00 Standard Edition [Tandy OEM] (5.25-1.2mb)/Install |
+|1988-11-30 12:00 | 816c548cff5462f4119feceddbcc56ac19831689 | IBM Personal Computer DOS Version x.xx Protect Mode ANSI | 3616 | IBM OS2 1.10 Extended Edition (3.5-1.44mb)/install |
+|1988-10-26 12:00 | 816c548cff5462f4119feceddbcc56ac19831689 | IBM Personal Computer DOS Version x.xx Protect Mode ANSI | 3616 | IBM OS2 1.10 Standard Edition (3.5-1.44mb)/install |
+|1988-10-12 10:07 | 178531e5248ee4cc3e7409aa8585557996321886 | IBM Personal Computer DOS Version x.xx Protect Mode ANSI | 3637 | OS2 1.0 Debugger Disk (October 12 1988) (5.25-1.2mb) |
+|1987-12-15 00:00 | 38a7c7b1bcf5f849fcaf9ac2408640ab9dce97d7 | Microsoft OS/2 Version x.xx Protect Mode ANSI | 3,637 bytes | MS OS/2 SDK 1.02  (3.25)/Install |
+|1987-10-21 12:00 | 178531e5248ee4cc3e7409aa8585557996321886 | IBM Personal Computer DOS Version x.xx Protect Mode ANSI | 3 637 | IBM OS2 1.00 Extended Edition (3.5-1.44mb)/disk01 |
+|1987-10-21 12:00 | 178531e5248ee4cc3e7409aa8585557996321886 | IBM Personal Computer DOS Version x.xx Protect Mode ANSI | 3 637 | IBM OS2 1.00 Extended Edition (3.5-1.44mb)/install |
+|1987-10-21 12:00 | 178531e5248ee4cc3e7409aa8585557996321886 | IBM Personal Computer DOS Version x.xx Protect Mode ANSI | 3 637 | IBM OS2 1.00 Standard Edition (3.5-1.2mb)/disk01 |
+|1987-10-21 12:00 | 178531e5248ee4cc3e7409aa8585557996321886 | IBM Personal Computer DOS Version x.xx Protect Mode ANSI | 3 637 | IBM OS2 1.00 Standard Edition (3.5-1.2mb)/install |
+|1987-10-21 12:00 | 178531e5248ee4cc3e7409aa8585557996321886 | IBM Personal Computer DOS Version x.xx Protect Mode ANSI | 3 637 | IBM OS2 1.00 Standard Edition (3.5-1.44mb)/disk01 |
+|1987-10-21 12:00 | 178531e5248ee4cc3e7409aa8585557996321886 | IBM Personal Computer DOS Version x.xx Protect Mode ANSI | 3 637 | IBM OS2 1.00 Standard Edition (3.5-1.44mb)/install |
+|1987-10-21 12:00 | 178531e5248ee4cc3e7409aa8585557996321886 | IBM Personal Computer DOS Version x.xx Protect Mode ANSI | 3 637 | IBM OS2 1.00 Standard Edition [German] (3.5-1.44mb)/disk1 |
+|1987-12-15 00:00 | 38a7c7b1bcf5f849fcaf9ac2408640ab9dce97d7 | Microsoft OS/2 Version x.xx Protect Mode ANSI | 3,637 bytes | Microsoft OS2 1.00 Standard Edition (3.5-1.44mb)/Install |
+|1987-12-15 00:00 | 38a7c7b1bcf5f849fcaf9ac2408640ab9dce97d7 | Microsoft OS/2 Version x.xx Protect Mode ANSI | 3,637 bytes | Microsoft OS2 1.00 Standard Edition (3.5-1.44mb)/Program |
+|1987-12-23 14:34 | f25f68e46ccaebb71ba6f63220a9d0f73849fd64 | IBM Personal Computer DOS Version x.xx Protect Mode ANSI | 3627 | OS2 FOOTBALL Boot Disk (v4.41.00) (December 1987) (5.25-1.2mb) |
+|1987-12-15 00:00 | 38a7c7b1bcf5f849fcaf9ac2408640ab9dce97d7 | Microsoft OS/2 Version x.xx Protect Mode ANSI | 3,637 bytes | MS OS/2 SDK 1.02  (3.25)/Program |
+|1987-02-27 11:34 | 5dd8850a2f60b0c37aa0d3d0d1b0e58aff09b6d8 | .def file for ANSICALL.EXE dynamic link module; cp/dos v1.00 | 3165 | OS2 FOOTBALL Boot Disk (v7.68.17) (February 1987) (5.25-1.2mb) ANSICALL.EXE |
+|1987-01-07 12:19 | 5dd8850a2f60b0c37aa0d3d0d1b0e58aff09b6d8 | .def file for ANSICALL.EXE dynamic link module; cp/dos v1.00 | 3165 | OS2 SIZZLE Boot Disk (v7.68.18 DEBUG) (January 7 1987) (5.25-1.2mb) ANSICALL.EXE |
+|1987-01-07 12:19 | 5dd8850a2f60b0c37aa0d3d0d1b0e58aff09b6d8 | .def file for ANSICALL.EXE dynamic link module; cp/dos v1.00 | 3165 | OS2 SIZZLE Boot Disk (v7.68.18) (October 22 1986) (5.25-1.2mb) ANSICALL.EXE |
+|1986-10-22 19:20 | 88b0b5dccab9a3f27c1f458c635503ae9979602f | .def file for ANSICALL.EXE dynamic link module; cp/dos v1.00 | 3165 | OS2 CP-DOS Boot Disk (v7.68) (October 22 1986) (5.25-1.2mb) ANSICALL.EXE |
+
+{{page>en:templates:dlls}}
+{{page>en:templates:os2api}}

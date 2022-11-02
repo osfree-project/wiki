@@ -1,0 +1,29 @@
+===== Command History Window =====
+
+==== Command History Window Keys: ====
+
+|**PgUp** |(from the command line) Open the command history window. |
+|or **PgDn** |::: |
+|**UpArrow** |Scroll the display up one line. |
+|**DownArrow** |Scroll the display down one line. |
+|**LeftArrow** |Scroll the display left 4 columns. |
+|**RightArrow** |Scroll the display right 4 columns. |
+|**PgUp** |(inside the window) Scroll the display up one page. |
+|**PgDn** |(inside the window) Scroll the display down one page. |
+|**Ctrl-PgUp** |Go to the beginning of the history list. |
+|or **Home** |::: |
+|**Ctrl-PgDn** |Go to the end of the history list. |
+|or **End** |::: |
+|**Ctrl-D** |Delete the selected line from the history list. |
+|**Enter** |Execute the selected line. |
+|**Ctrl-Enter** |Move the selected line to the command line for editing. |
+
+You can view the command history in a scrollable command history window, and select the command to modify or re-execute from those displayed in the window. To activate the command history window press **PgUp** or **PgDn** at the command line. A window will appear in the upper right corner of the screen, with the command you most recently executed marked with a highlight. (If you just finished re-executing a command from the history, then the next command in sequence will be highlighted.) 
+
+The display is not circular as it is at the prompt; it has a fixed beginning and end. The **Ctrl-D** (delete from history) key works within the history window as it does at the command line. 
+
+Once you have selected a command in the history window, press Enter to execute it immediately, or **Ctrl-Enter** to move the line to the prompt for editing (you cannot edit the line directly in the history window). 
+
+You can bring up a "filtered" history window by typing some characters on the command line, then pressing **PgUp** or **PgDn**. Only those commands matching the typed characters will be displayed in the window. 
+
+See [[en:docs:os2:cmd:ref:misc:popup-win|Popup Windows]] for information on customizing window position, size, and color. 

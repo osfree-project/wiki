@@ -1,0 +1,11 @@
+==== January 10, 2007 ====
+
+The dotproject area is officially working for guests. You may now check 
+on our progress real time at any time quickly and easily. Also there is 
+a new, better theme integration into phpBB dubbed osfree3 for registered 
+user info. This does not mean we have our login systems integrated yet, 
+however.
+
+{{tag>site}}
+
+~~DISCUSSION~~

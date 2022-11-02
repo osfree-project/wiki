@@ -1,0 +1,49 @@
+==== MouDrawPtr ====
+
+**Bindings**: [[drawptr#C bindings|C]], [[drawptr#MASM bindings|MASM]]
+
+This call allows a process to notify the mouse device driver that an area previously restricted to the pointer image is now available to the mouse device driver. 
+
+//MouDrawPtr// (**DeviceHandle**) 
+
+//DeviceHandle// (**HMOU**) - input 
+Mouse device handle from a previous [[open|MouOpen]]. 
+
+//rc// (**USHORT**) - return 
+Return code descriptions are: 
+
+^0 ^NO_ERROR ^
+|385 |ERROR_MOUSE_NO_DEVICE |
+|466 |ERROR_MOU_DETACHED |
+|501 |ERROR_MOUSE_NO_CONSOLE |
+|505 |ERROR_MOU_EXTENDED_SG |
+
+**Remarks** 
+
+The collision area (the pointer image restricted area) is established by [[open|MouOpen]] and by [[removeptr|MouRemovePtr]]. [[drawptr|MouDrawPtr]] nullifies the effect of the [[removeptr|MouRemovePtr]] command. If there was no previous [[drawptr|MouDrawPtr]] command or if a previous [[drawptr|MouDrawPtr]] command has already nullified the collision area, the [[removeptr|MouRemovePtr]] command is effectively a null operation. 
+
+This call is required to begin session pointer image drawing. Immediately after [[open|MouOpen]] is issued, the collision area is defined as the size of the display. A [[drawptr|MouDrawPtr]] is issued to begin pointer drawing after the [[open|MouOpen]]. 
+
+=== C bindings ===
+
+<code c>
+#define INCL_MOU
+
+USHORT  rc = MouDrawPtr(DeviceHandle);
+
+HMOU             DeviceHandle;  /* Mouse device handle */
+
+USHORT           rc;            /* return code */
+</code>
+
+=== MASM bindings ===
+
+<code asm>
+EXTRN  MouDrawPtr:FAR
+INCL_MOU            EQU 1
+
+PUSH   WORD    DeviceHandle  ;Mouse device handle
+CALL   MouDrawPtr
+
+Returns WORD
+</code>

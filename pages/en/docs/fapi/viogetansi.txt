@@ -1,0 +1,54 @@
+{{page>en:templates:fapiint}}
+====== VioGetAnsi ======
+ 
+This call returns the current ANSI status On/Off state.
+
+===== Syntax =====
+<code c>
+VioGetAnsi (Indicator, VioHandle)
+</code>
+
+===== Parameters =====
+
+  * Indicator ([[PUSHORT]]) - output : Address of the current ANSI status. A value of 1 indicates ANSI is active, and a value of 0 indicates ANSI is not active.
+  * VioHandle ([[HVIO]]) - input : This must be zero unless the caller is a Presentation Manager application, in which case it must be the value returned by VioGetPs.
+
+===== Return Code =====
+
+rc ([[USHORT]]) - return
+
+Return code descriptions are:
+
+  * 0  NO_ERROR
+  *436 ERROR_VIO_INVALID_HANDLE
+  *465 ERROR_VIO_DETACHED
+
+===== Bindings =====
+
+====C====
+<code c>
+#define INCL_VIO
+
+USHORT  rc = VioGetAnsi(Indicator, VioHandle);
+
+PUSHORT Indicator;     /* On/Off indicator (returned) */
+HVIO    VioHandle;     /* Vio handle */
+
+USHORT  rc;            /* return code */
+</code>
+
+====MASM====
+<code asm>
+EXTRN  VioGetAnsi:FAR
+INCL_VIO            EQU 1
+
+PUSH@  WORD    Indicator     ;On/Off indicator (returned)
+PUSH   WORD    VioHandle     ;Vio handle
+CALL   VioGetAnsi
+
+Returns WORD
+</code>
+
+
+{{page>en:templates:fapi}}
+

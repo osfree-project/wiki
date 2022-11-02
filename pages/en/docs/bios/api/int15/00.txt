@@ -1,0 +1,46 @@
+{{page>en:templates:biosint}}
+
+====== Int 15H, AH=00H ======
+
+===== Version =====
+
+IBM 5150 and IBM 4860 only
+
+===== Brief =====
+
+Turn on tape drives motor
+
+===== Family API =====
+
+none
+
+===== Input =====
+
+  * AH = 00h
+
+===== Return =====
+
+  * CF set on error
+    * AH = 86h no cassette present
+  * CF clear if successful
+
+===== Macro =====
+
+<code asm>
+INCLUDE BIOS.INC
+
+@TapeOn
+</code>
+
+===== Notes =====
+
+
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:biosapi}}
+
+{{page>en:templates:fapi}}
+

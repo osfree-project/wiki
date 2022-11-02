@@ -1,0 +1,13 @@
+{{logos:os2.gif?35x35}} 
+
+**Please help to find info about enries marked as //No info//**
+
+===== BVHWNDW =====
+
+
+^Ordinal ^Name ^Desc ^ Status ^
+| 1 | BUFFERUPDATE | | |
+| 2 | DEVENABLE | | |
+| 3 | GETCONFIG | | |
+
+{{page>en:templates:dlls}}

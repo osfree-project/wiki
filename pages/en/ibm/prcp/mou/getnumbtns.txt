@@ -1,0 +1,52 @@
+==== MouGetNumButtons ====
+
+**Bindings**: [[getnumbtns#C bindings|C]], [[getnumbtns#MASM bindings|MASM]]
+
+This call returns the number of buttons supported on the installed mouse driver. 
+
+//MouGetNumButtons// (NumberOfButtons, DeviceHandle) 
+
+//NumberOfButtons// (**PUSHORT**) - output 
+Address of the number of physical buttons. The return values for the number of buttons supported are: 
+
+^Value ^Definition ^
+|1 |One mouse button |
+|2 |Two mouse buttons |
+|3 |Three mouse buttons. |
+
+//DeviceHandle// (**HMOU**) - input 
+Handle of the mouse device from a previous [[en:ibm:prcp:mou:open|MouOpen]]. 
+
+//rc// (**USHORT**) - return 
+Return code descriptions are: 
+
+|385 |ERROR_MOUSE_NO_DEVICE |
+|466 |ERROR_MOU_DETACHED |
+|501 |ERROR_MOUSE_NO_CONSOLE |
+|505 |ERROR_MOU_EXTENDED_SG |
+
+=== C bindings ===
+
+<code c>
+#define INCL_MOU
+
+USHORT  rc = MouGetNumButtons(NumberOfButtons, DeviceHandle);
+
+PUSHORT          NumberOfButtons;  /* Number of mouse buttons */
+HMOU             DeviceHandle;     /* Mouse device handle */
+
+USHORT           rc;               /* return code */
+</code>
+
+=== MASM bindings ===
+
+<code asm>
+EXTRN  MouGetNumButtons:FAR
+INCL_MOU            EQU 1
+
+PUSH@  WORD    NumberOfButtons ;Number of mouse buttons
+PUSH   WORD    DeviceHandle    ;Mouse device handle
+CALL   MouGetNumButtons
+
+Return WORD
+</code>

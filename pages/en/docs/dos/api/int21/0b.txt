@@ -1,0 +1,45 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=0BH ======
+
+===== Version =====
+
+1 and higher
+
+===== Brief =====
+
+GET STDIN STATUS
+
+===== Family API =====
+
+[[en:docs:fapi:DosRead]]
+
+===== Input =====
+
+  AH = 0Bh
+
+===== Return =====
+
+ AL = status 00h if no character available FFh if character is available
+
+===== Notes =====
+
+ ^C/^Break are checked, and INT 23 is called if either pressed
+
+ standard input is always the keyboard under DOS 1.x, but may be redirected under DOS 2+
+
+ if the interim console flag is set (see AX=6301h), this function returns AL=FFh if a partially-formed double-byte character is available
+
+===== See also =====
+
+AH=06h"INPUT",AX=4406h
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:int}}
+
+{{page>en:templates:fapi}}
+
+

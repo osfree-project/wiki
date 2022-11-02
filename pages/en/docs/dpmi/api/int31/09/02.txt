@@ -1,0 +1,36 @@
+{{page>en:templates:dpmi}}
+
+====== Int 31H, AH=09H, AL=02H ======
+
+===== Version =====
+
+0.9
+
+===== Brief =====
+
+Get Virtual Interrupt State
+
+===== Input =====
+
+  AX = 0902H
+    
+===== Return =====
+
+  Carry flag = clear (this function always succeeds)
+  AL = 0 if virtual interrupts are disabled
+  AL = 1 if virtual interrupts are enabled
+
+===== Notes =====
+
+This function should be used in preference to the PUSHF instruction to examine the interrupt flag, because the PUSHF instruction returns the physical interrupt flag rather than the virtualized (per-client) interrupt flag. On some DPMI hosts, the physical interrupt flag will always be enabled, even when hardware interrupts are not being passed through to the client.
+
+===== See also =====
+
+   
+
+===== Note =====
+
+Text based on [[http://www.delorie.com/djgpp/doc/dpmi/]]
+
+{{page>en:templates:dpmi:int}}
+

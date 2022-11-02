@@ -1,0 +1,58 @@
+{{page>en:templates:fapiint}}
+
+====== DosCLIAccess ======
+
+This call requests I/O privilege for disabling and enabling interrupts. Access to ports must be granted with DosPortAccess.
+
+===== Syntax =====
+
+<code c>
+DosCLIAccess ()
+</code>
+
+===== Return Code =====
+
+rc ([[USHORT]]) - return: Return code
+
+  *0 NO_ERROR
+
+===== Remarks =====
+
+Applications that only use CLI/STI in IOPL segments must request CLI/STI privilege from the operating system.
+
+Applications that use IN/OUT instructions to I/O ports must request I/O privilege with [[DosPortAccess]]. Request for port access also grants CLI/STI privilege from the operating system.
+
+===== Bindings =====
+
+==== C ====
+
+<code c>
+#define INCL_DOSDEVICES
+
+USHORT  rc = DosCLIAccess(VOID);
+USHORT  rc;            /* return code */
+</code>
+
+==== MASM ====
+
+<code asm>
+EXTRN  DosCLIAccess:FAR
+INCL_DOSDEVICES     EQU 1
+
+CALL   DosCLIAccess
+</code>
+
+Returns WORD
+
+==== Example ====
+
+This example requests I/O privilege for disabling and enabling interrupts.
+<code c>
+#define INCL_DOSDEVICES
+
+USHORT rc;
+
+   rc = DosCLIAccess();      /* Request I/O privilege */
+</code>
+
+{{page>en:templates:fapi}}

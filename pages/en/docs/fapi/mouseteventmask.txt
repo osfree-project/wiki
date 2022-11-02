@@ -1,0 +1,73 @@
+{{page>en:templates:fapiint}}
+
+====== MouSetEventMask ======
+
+This call assigns a new event mask to the current mouse device driver.
+
+===== Syntax =====
+<code c>
+ MouSetEventMask (EventMask, DeviceHandle)
+</code>
+
+===== Parameters =====
+
+  * EventMask (PUSHORT) - input : Address of a value in application storage used to indicate what mouse events are to be placed on the event queue (see MouReadEventQue) and which events are to be ignored.
+
+The EventMask bit values are described below:
+
+^ Bit ^ Description ^
+| 15-7 | Reserved, set to zero. |
+| 6 | Set to report button 3 press/release events, without mouse motion |
+| 5 | Set to report button 3 press/release events, with mouse motion |
+| 4 | Set to report button 2 press/release events, without mouse motion |
+| 3 | Set to report button 2 press/release events, with mouse motion |
+| 2 | Set to report button 1 press/release events, without mouse motion |
+| 1 | Set to report button 1 press/release events, with mouse motion |
+| 0 | Set to mouse motion events with no button press/release events. |
+
+A bit clear setting (set to zero) in an EventMask bit position indicates that the associated type of event is not reported to the application. Note also that the mouse buttons are always numbered from left to right. When the mouse is properly positioned for use, the left-hand button is button 1.
+
+  * DeviceHandle (HMOU) - input : Handle of the mouse device from a previous MouOpen.
+
+===== Return Code =====
+
+rc (USHORT) - return:Return code descriptions are:
+
+  * 0   NO_ERROR
+  * 385 ERROR_MOUSE_NO_DEVICE
+  * 466 ERROR_MOU_DETACHED
+  * 501 ERROR_MOUSE_NO_CONSOLE
+  * 505 ERROR_MOU_EXTENDED_SG
+
+===== Remarks =====
+
+Setting a bit in the event mask means that the associated event is reported on the mouse FIFO event queue. See MouReadEventQue for examples of event mask use.
+
+===== Bindings =====
+
+==== C ====
+<code c>
+#define INCL_MOU
+
+USHORT  rc = MouSetEventMask(EventMask, DeviceHandle);
+
+PUSHORT EventMask;     /* Mouse device event mask ptr */
+HMOU    DeviceHandle;  /* Mouse device handle */
+
+USHORT  rc;            /* return code */
+</code>
+
+====MASM====
+<code asm>
+EXTRN  MouSetEventMask:FAR
+INCL_MOU            EQU 1
+
+PUSH@  WORD    EventMask     ;Mouse device event mask ptr
+PUSH   WORD    DeviceHandle  ;Mouse device handle
+CALL   MouSetEventMask
+
+Returns WORD
+</code>
+
+
+{{page>en:templates:fapi}}

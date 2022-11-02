@@ -1,0 +1,15 @@
+[Q]: Порекомендуйте терминальную программу под OS/2
+
+[A]: Dmitry Zavalishin (2:5020/32)
+
+ZOC. Хитовая звонилка.
+
+[A]: Ilfat Kutdusov (2:5080/52)
+
+   Если пpивыкли к Telix и иже с ними то самый лучший ваpиант: LiveWire 3.2
+
+LiveWire/WPS 3.2
+================
+February 13, 1995
+
+http://hobbes.nmsu.edu/pub/os2/apps/term/lw321.zip

@@ -1,0 +1,45 @@
+{{page>en:templates:biosint}}
+
+====== Int 10H, AH=00H ======
+
+===== Version =====
+
+IBM 5150 and higher
+
+===== Brief =====
+
+Specify the display mode for the currently active display adapter
+
+===== osFree Macro Library =====
+
+[[en:docs:macrolib:@SetMode]]
+
+===== Family API =====
+
+[[en:docs:fapi:VioSetMode]]
+
+===== Input =====
+
+  * AH = 00h
+  * AL = Mode
+
+===== Return =====
+
+  * AL = video mode flag (Phoenix, AMI BIOS)
+    * 20h mode > 7
+    * 30h modes 0-5 and 7
+    * 3Fh mode 6
+  * AL = CRT controller mode byte (Phoenix 386 BIOS v1.10)
+
+===== Notes =====
+
+  * IBM standard modes do not clear the screen if the high bit of AL is set (EGA or higher only)
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:biosapi}}
+
+{{page>en:templates:fapi}}
+

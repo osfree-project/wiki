@@ -1,0 +1,102 @@
+[Q]: Netware's automagical login
+
+[A]: Egons Bush (2:5100/8)
+
+Есть еще один чуть кpивоватый способ, но за то не надо все конфигуpиpовать :)
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+/**  LOGINPW - Login to netware with supplied password **/
+/*    Syntax:  LOGINPW userid password                  */
+/*      or     LOGINPW server\userid password           */
+
+Trace off
+arg UserId Password .
+call APMT_INIT
+
+rc = START_PROGRAM("LOGIN.EXE", UserId)
+rc = SELECT_WINDOW("LOGIN.EXE",15)
+if rc <> 0 then call ErrMsg 'OS/2 Window cannot be found'
+
+search1 = 'ENTER YOUR PASSWORD:'
+call WaitForString search1
+if pos(search1, LastLine) > 0
+then do
+     rc = KEYBOARD(Password)
+     rc = KEYBOARD('ENTER')
+     end
+else call ErrMsg 'Password prompt could not be found'
+
+APMT_CLOSE:
+rc = END_SESSION();
+call DropFunc
+exit
+
+/******************************************************************/
+WaitForString:
+     arg waitstring
+     MaxTimes = 15          /* times to retry checking for string */
+     WaitTime = 2 * 1000    /* delay between checks of screen */
+     call get_LastLine
+     do i = 1 to MaxTimes while pos(waitstring, LastLine) = 0
+          rc = WAIT(waittime)
+         call get_LastLine
+          end
+     return
+
+get_LastLine:
+     rc = SYSMENU_SELECT("Copy All")
+     if rc > 0 then
+          call ErrMsg "This window doesn't have a 'Copy All' menu item"
+
+     if  QUERY_CLIPBOARD_TEXT("clip") = 0 then do
+          LastLine = ""
+          do i = clip.0 to 1 by -1 until LastLine <> ""
+               if (length(clip.i) > 1)
+               then parse upper var clip.i LastLine
+               end
+           end
+     else call ErrMsg "Query Clipboard failed"
+     return
+
+ErrMsg:
+     parse arg ErrStr
+     say ErrStr
+     rc = END_SESSION();
+
+errorexit:
+     call DropFUNC
+     exit
+
+DropFUNC:
+     call APMTDropFuncs;
+     call rxfuncdrop(APMTDropFuncs)
+     return
+
+APMT_INIT:
+     signal on error name  errorexit
+     call rxfuncadd  'APMTLoadFuncs',  'apmtext', 'APMTLoadFuncs'
+     call APMTLoadFuncs;
+     rc = INIT_SESSION();
+     if rc \= 0 then do
+          say apmtmsg
+          signal errorexit
+          end
+     signal on halt name APMT_CLOSE
+     return
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+ему нужен APMTST (IBMEWS). freq: APMTST.ZIP, 190K.
+
+Egons,
+Team OS/2
+
+ps: не я автоp этого .cmd.
+
+
+[A]: Alex Porollo (2:5052/5)
+
+В wps pасшиpителе nice/2 v5.0 pеализован более интеpесный способ. Hапpимеp
+можно отследить поля ввода имени пользователя и паpоля в nwtools и в случае
+удачного логина запустить cmd-шник с logon-ом в мелкомягкую сеть с подставление
+по желанию имени пользователя и паpоля. Так сейчас и живем.

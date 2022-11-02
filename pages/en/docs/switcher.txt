@@ -1,0 +1,13 @@
+{{page>en:templates:dosshell}}
+
+====== INT 2FH, AH=4BH ======
+
+^ AL ^ Description ^ Version ^
+| [[en:docs:switcher:1]] | BUILD CALLOUT CHAIN | ? |
+| [[en:docs:switcher:2]] | INSTALLATION CHECK | ? |
+| [[en:docs:switcher:3]] | ALLOCATE SWITCHER ID | ? |
+| [[en:docs:switcher:4]] | FREE SWITCHER ID | ? |
+| [[en:docs:switcher:5]] | IDENTIFY INSTANCE DATA | ? |
+| [[en:docs:switcher:80|80H]] |RESET INTERNAL VARIABLES | WSWAP.EXE |
+
+**Note: This API implemented by DOSSWAP.EXE under DOS and by WINOLDAP.MOD under Windows **

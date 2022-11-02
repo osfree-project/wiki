@@ -1,0 +1,117 @@
+{{page>en:templates:fapiint}}
+
+====== MouRegister ======
+
+This call registers a mouse subsystem within a session.
+
+===== Syntax =====
+<code c>
+ MouRegister (ModuleName, EntryName, Mask)
+</code>
+
+===== Parameters =====
+
+  * ModuleName (PSZ) - input : Address of the dynamic link module name. The maximum length is 9 bytes (including ASCIIZ terminator).
+  * EntryName (PSZ) - input : Address of the dynamic link entry point name of a routine that receives control when any of the registered functions are called. The maximum length is 33 bytes (including ASCIIZ terminator).
+  * Mask (ULONG) - input : A mask of bits, where each bit set to 1 identifies a mouse function being registered.
+
+===== Return Code =====
+
+rc (USHORT) - return:Return code descriptions are:
+
+  * 0 NO_ERROR
+  *385 ERROR_MOUSE_NO_DEVICE
+  *413 ERROR_MOUSE_INVALID_ASCIIZ
+  *414 ERROR_MOUSE_INVALID_MASK
+  *415 ERROR_MOUSE_REGISTER
+  *466 ERROR_MOU_DETACHED
+  *505 ERROR_MOU_EXTENDED_SG
+
+===== Remarks =====
+
+
+The Base Mouse Subsystem is the default mouse subsystem. There can be only one MouRegister outstanding for each session without an intervening MouDeRegister. MouDeRegister must be issued by the same process that issued MouRegister.
+
+When any registered function is called, control is routed to EntryName. When this routine is entered, four additional values are pushed onto the stack. The first is the index number (Word) of the function being called. The second is a near pointer (Word). The third is the caller's DS register (Word). The fourth is the return address (DWord) to the mouse router. For example, if MouGetNumMickeys were called and control routed to EntryName, the stack would appear as if the following instructions were executed:
+
+<code asm>
+ PUSH@ WORD    NumberOfMickeys
+ PUSH  WORD    DeviceHandle
+ CALL  FAR     MouGetNumMickeys
+ PUSH  WORD    Function Code
+ CALL  NEAR    Entry point in Mouse Router
+ PUSH  DS
+ CALL  FAR     EntryName.
+</code>
+
+When a registered function returns to the Mouse Router, AX is interpreted as follows:
+
+  * AX = 0    No error. Do not invoke the Base Mouse Subsystem routine. Return AX = 0.
+  * AX = -1   Invoke the BaseMouse Subsystem routine. Return AX = return code from the Base Mouse Subsystem.
+  * AX = error (if not 0 or -1) Do not invoke the Base Mouse Subsystem Routine. Return AX = error.
+
+When the mouse router receives a mouse call, it routes it to the Base Mouse Subsystem unless an application or other mouse subsystem has previously issued MouRegister for that call. If the call was registered, the subsystem is entered at the EntryName specified, and provided with the applicable function code.
+
+The registered function mask is used to determine whether a requested function is performed by the registered mouse subsystem or default to the Base Mouse Subsystem.
+
+The following list shows the relationship of the mouse API calls and the Function Code passed to either the Base Mouse Subsystem or a registered mouse subsystem.
+
+^ MOU API calls ^ Function Code ^ Function Mask ^
+|[[en:docs:fapi:MouGetNumButtons]]| FC_MOUGETNUMBUTTONS (00H) |00000001H|
+|[[en:docs:fapi:MouGetNumMickeys]]| FC_MOUGETNUMMICKEYS (01H) |00000002H|
+|[[en:docs:fapi:MouGetDevStatus]]| FC_MOUGETDEVSTATUS (02H) |00000004H|
+|[[en:docs:fapi:MouGetNumQueEl]]| FC_MOUGETNUMQUEEL (03H) |00000008H|
+|[[en:docs:fapi:MouReadEventQue]]| FC_MOUREADEVENTQUE (04H) |00000010H|
+|[[en:docs:fapi:MouGetScaleFact]]| FC_MOUGETSCALEFACT (05H) |00000020H|
+|[[en:docs:fapi:MouGetEventMask]]| FC_MOUGETEVENTMASK (06H) |00000040H|
+|[[en:docs:fapi:MouSetScaleFact]]| FC_MOUSETSCALEFACT (07H) |00000080H|
+|[[en:docs:fapi:MouSetEventMask]]| FC_MOUSETEVENTMASK (08H) |00000100H|
+|[[en:docs:fapi:MouGetHotKey]]| FC_MOUGETHOTKEY (09H) |00000200H|
+|[[en:docs:fapi:MouSetHotKey]]| FC_MOUSETHOTKEY (0AH) |00000400H|
+|[[en:docs:fapi:MouOpen]]| FC_MOUOPEN (0BH) |00000800H|
+|[[en:docs:fapi:MouClose]]| FC_MOUCLOSE (0CH) |00001000H|
+|[[en:docs:fapi:MouGetPtrShape]]| FC_MOUGETPTRSHAPE (0DH) |00002000H|
+|[[en:docs:fapi:MouSetPtrShape]]| FC_MOUSETPTRSHAPE (0EH) |00004000H|
+|[[en:docs:fapi:MouDrawPtr]]| FC_MOUDRAWPTR (0FH) |00008000H|
+|[[en:docs:fapi:MouRemovePtr]]| FC_MOUREMOVEPTR (10H) |00010000H|
+|[[en:docs:fapi:MouGetPtrPos]]| FC_MOUGETPTRPOS (11H) |00020000H|
+|[[en:docs:fapi:MouSetPtrPos]]| FC_MOUSETPTRPOS (12H) |00040000H|
+|[[en:docs:fapi:MouInitReal]]| FC_MOUINITREAL (13H) |00080000H|
+|[[en:docs:fapi:MouFlushQue]]| FC_MOUFLUSHQUE (14H) |00100000H|
+|[[en:docs:fapi:MouSetDevStatus]]| FC_MOUSETDEVSTATUS (15H) |00200000H|
+
+A registered mouse sybsystem must leave the stack, on exit, in the exact state it was received.
+
+===== Bindings =====
+
+====C====
+<code c>
+#define INCL_MOU
+
+USHORT  rc = MouRegister(ModuleName, EntryName, Mask);
+
+PSZ     ModuleName;    /* Module Name */
+PSZ     EntryName;     /* Entry Name */
+ULONG   Mask;          /* Function Mask */
+
+USHORT  rc;            /* return code */
+</code>
+
+====MASM====
+<code asm>
+EXTRN   MouRegister:FAR
+INCL_MOU            EQU 1
+
+PUSH@  ASCIIZ  ModuleName    ;Module Name
+PUSH@  ASCIIZ  EntryName     ;Entry Name
+PUSH   DWORD   Mask          ;Function Mask
+CALL   MouRegister
+
+Returns WORD
+</code>
+
+===== Related Functions =====
+
+[[MouDeRegister]]
+
+{{page>en:templates:fapi}}

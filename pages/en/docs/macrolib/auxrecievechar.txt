@@ -1,0 +1,43 @@
+{{page>en:templates:biosint}}
+
+====== @AuxRecieveChar ======
+
+===== Brief =====
+
+Recieve char from serial port
+
+===== BIOS Interrupt =====
+
+[[en:docs:bios:api:int|INTH]]: [[en:docs:bios:api::|H]]
+
+===== Family API =====
+
+[[en:docs:fapi:]]
+
+===== Syntax =====
+
+<code asm>
+@AuxRecieveChar
+</code>
+
+===== Parameters =====
+
+none
+
+===== Return =====
+
+  * AL = received character if AH bit 7 clear
+  * AH bit 7 clear if successful
+  * AH bit 7 set on error
+  * AH bits 6-0 = port status:
+
+^ Bit(s) ^ Description ^
+| 7 | timeout |
+| 6 | transmit shift register empty |
+| 5 | transmit holding register empty |
+| 4 | break detected |
+| 3 | framing error |
+| 2 | parity error |
+| 1 | overrun error |
+| 0 | receive data ready |
+

@@ -1,0 +1,50 @@
+{{page>en:templates:dpmi}}
+
+====== Int 31H, AH=07H, AL=02H ======
+
+===== Version =====
+
+0.9
+
+===== Brief =====
+
+Mark Page as Demand Paging Candidate
+
+===== Input =====
+
+  AX = 0702H
+  BX:CX = starting linear address of pages to mark as paging candidates
+  SI:DI = size of region to mark (bytes)
+    
+===== Return =====
+
+  if function successful
+  Carry flag = clear
+  
+  if function unsuccessful
+  Carry flag = set
+  AX = error code
+  8025H	invalid linear address (range unallocated)
+
+===== Notes =====
+
+Notifies the DPMI host that a range of pages may be placed at the head of the page-out candidate list, forcing these pages to be replaced ahead of other pages even if the memory has been accessed recently. The contents of the pages will be preserved.
+
+This function does not force the pages to be swapped to disk immediately and should be treated as advisory only.
+
+This function will always succeed on hosts that do not implement demand-paged virtual memory.
+
+Partial pages will not be marked.
+
+This function is useful, for example, if a client knows that a given piece of data will not be accessed for a long period of time. That data is ideal for swapping to disk so that the physical memory it occupies can be used for other purposes.
+
+===== See also =====
+
+   
+
+===== Note =====
+
+Text based on [[http://www.delorie.com/djgpp/doc/dpmi/]]
+
+{{page>en:templates:dpmi:int}}
+

@@ -1,0 +1,86 @@
+{{page>en:templates:fapiint}}
+
+====== DosAllocShrSeg ======
+
+This call allocates a named shared memory segment to a process.
+
+===== Syntax =====
+
+<code c>
+DosAllocShrSeg (Size, Name, Selector)
+</code>
+
+===== Parameters =====
+
+  * Size ([[USHORT]]) - input : Number of bytes requested. The value specified must be less than or equal to 65535. A value of 0 indicates 65536 bytes.
+  * Name ([[PSZ]]) - input : Address of the name string associated with the shared memory segment to be allocated. Name specifies the symbolic name for the shared memory segment. The name string is an ASCIIZ string in the format of an OS/2 file name in a subdirectory called \SHAREMEM\. The name string must include the prefix \SHAREMEM\. For example \SHAREMEM\name.
+  * Selector ([[PSEL]]) - output : Address where the selector of the allocated segment is returned.
+
+===== Return Code =====
+
+rc ([[USHORT]]) - return:Return code descriptions are:
+
+  *0 NO_ERROR
+  *8 ERROR_NOT_ENOUGH_MEMORY
+  *123 ERROR_INVALID_NAME
+  *183 ERROR_ALREADY_EXISTS
+
+===== Remarks =====
+
+DosAllocShrSeg allocates a named segment of up to 64KB in size, which is movable and swappable. The segment can be shared by any process that knows the name of the segment.
+
+To access the shared segment, another process issues [[DosGetShrSeg]], specifying the segment name. The selector returned by [[DosGetShrSeg]] is the same as the one returned by DosAllocShrSeg.
+
+The maximum number of segments a process can define with DosAllocShrSeg or access with [[DosGetShrSeg]] is 256.
+
+;Note: This request may be issued from privilege level 2. However, the segment is allocated as a privilege level 3 segment.
+
+===== Bindings =====
+
+==== C ====
+
+<code c>
+#define INCL_DOSMEMMGR
+
+USHORT  rc = DosAllocShrSeg(Size, Name, Selector);
+
+USHORT  Size;          /* Number of bytes requested */
+PSZ     Name;          /* Name string */
+PSEL    Selector;      /* Selector allocated (returned) */
+
+USHORT  rc;            /* return code */
+</code>
+
+==== MASM ====
+
+<code asm>
+EXTRN  DosAllocShrSeg:FAR
+INCL_DOSMEMMGR      EQU 1
+
+PUSH   WORD    Size          ;Number of bytes requested
+PUSH@  ASCIIZ  Name          ;Name string
+PUSH@  WORD    Selector      ;Selector allocated (returned)
+CALL   DosAllocShrSeg
+
+Returns WORD
+</code>
+
+===== Example Code =====
+
+This example requests a segment of memory with 27 bytes named "stock.dat". 
+<code c>
+#define INCL_DOSMEMMGR
+
+#define NUMBER_OF_BYTES 27
+#define NAME_SEG "\\SHAREMEM\\stock.dat"
+
+SEL    Selector;
+USHORT rc;
+
+   rc = DosAllocShrSeg(NUMBER_OF_BYTES,   /* # of bytes requested */
+                       NAME_SEG,          /* Name string */
+                       &Selector);        /* Selector allocated */
+</code>
+
+{{page>en:templates:fapi}}
+

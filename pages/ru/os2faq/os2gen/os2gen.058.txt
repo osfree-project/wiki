@@ -1,0 +1,162 @@
+[Q]: Волшебные слова в config.sys
+
+[A]: Ivan Borovicov (2:5020/955)
+
+Вообще-то большинство нижеописанных keywords так или иначе встречаются в
+мануале, однако большинство народа почитать его, конечно, не удосуживается :)
+
+SET AUTOSTART=PROGRAMS,TASKLIST,FOLDERS,WARPCENTER
+
+То, что автоматом будет (пере)запускаться при загрузке оси. К примеру, у вас
+в этом списке присутствует слово FOLDERS - это означает, что если вы
+зашутдаунили ось с открытым фолдером, то он автоматически будет открыт при
+следующей загрузке оси.
+
+SET RESTARTOBJECTS=STARTUPFOLDERSONLY
+
+Средство борьбы с глючными программами. К примеру, вы запустили нечто очень
+глючное, после чего что-то случилось и вы перезагружаетесь. Глюкавая программа
+будет также запущена, если в config.sys не присутствует это волшебное слово.
+Кстати, эквивалент этого - отсутствие слова PROGRAMS в SET AUTOSTART
+
+PAUSEONERROR=NO
+
+Отключает ожидание эникея во время загрузки при обнаружении ошибки в CONFIG.SYS
+
+REIPL=ON
+
+Автоматический reboot в случае критической ошибки (trap)
+
+AUTOFAIL=YES
+
+Автоматически отвечает на все идиотские вопросы типа отсутсвия дискеты в
+дисководе.
+
+SUPPRESSPOPUPS=Х
+
+Глюкнувшее PM-приложение будет автоматом прибито, вся информация об этом будет
+сохранена в файле x:\popuplog.os2
+
+SET SCUSEPRETTYCLOCK=ON
+
+Красивые часики на WarpCenter
+
+SET SCKILLFEATUREENABLED=ON
+
+Позволяет закрывать процессы при ctrl+lmouse click на тасклисте WarpCenter
+
+SET MENUSFOLLOWPOINTER=ON
+
+Полоска выделения сама бегает за мышью в менюшках WarpCenter (a-ля Win95),
+работает после fixpack #5
+
+[A]: Vadim Rumyantsev (2:5030/301)
+
+SET DEVICEFONTDISABLED=YES
+
+Всегда использовать шрифт, соответствующий кодовой странице, вместо шрифта,
+сидящего в ПЗУ видеокарты (например, при выдаче информации о трапах).
+
+DEVICE=D:\OS2\BOOT\TESTCFG.SYS
+
+Драйвер, позволяющий программам (например, инсталляторам драйверов) получать
+прямой доступ к железу.
+
+[A]: Alexander V. Nikolaev (2:5020/1251)
+
+SET WORKPLACE_PROCESS=1
+Запускает WPS даже пpи дpугом SET RUNWORKPLACE= (указаная там оболочка тоже
+пускается)
+
+Пpовеpялось под Авpоpой. Под дpугими веpсиями веpятно тоже есть.
+
+[A]: Victor Pashkevich (2:451/30)
+
+Для всех "счастливых" обладателей пpоцессоpов Intel в OS/2 3.0 фиpма IBM
+наконец-то ввела команду упpавления Virtual Mode Extension.
+
+VME=YES включает поддеpжку VME (по умолчанию), а VME=NO, соответственно,
+выключает.
+
+Одним из пpизнаков наличия пpоц. Intel и VME является опpеделение в DOS
+session 486-х пpоцессоpов как 386 :)))))
+
+В веpсии 2.1 в DOS session HЕ РАБОТАЛ Single Step Interrupt. Hажимаешь в Turbo
+Debugger F8 и ничего .... ;)
+
+Во всех веpсиях OS/2 в DOS session у меня неустойчиво pаботают задачи,
+пользующиеся SPX от NW Requester. :( (Hа AMD все пpекpасно).
+
+[A]: Max Alekseyev (2:5015/60)
+
+Вот из варпкаста.
+
+===cut===
+Date: Wed, 01 Nov 2000 12:06:22 -0400 (AST)
+From: feedback@warpcast.com (Warpcast FeedBack)
+To: "WarpCast Subscribers" <news@os2ezine.com>
+Subject: [WarpCast]  How to enlarge free region in <512MB arena on Warp4 FP13+
+or WSeB
+Message-ID: <200011011608.eA1G8DY16841@jupiter.accesscable.net>
+
+Source: Takayuki 'January June' Suwa (jjsuwa@sys3175.com)
+Moderator: Trevor Smith (feedback@warpcast.com)
+-------------------------------------------------------
+
+1. Simply add "DLLBASING=OFF" to your CONFIG.SYS.
+2. Reboot.
+
+By default, each DLL will attempt to place itself at its proposal
+base virtual address. If cannot, loaded in shared address region
+somewhere, with fitness in size. Typically, normal DLLs have base
+virtual address of 0 or 0x10000, unplacable due to existance of
+process code, then 1st attempt will fail. But some system-related
+DLLs such as DOSCALL1 or PMMERGE, these often have unique predefined
+base address, that will cause sparse usage of shared address region.
+
+"DLLBASING=OFF" prohibits 1st attempt, will bring efficient virtual
+address usage in result.
+
+Major side effects are unknown :) (debugging obstruction, possibly)
+===cut===
+
+[A]: Andrew Belov (2:5020/181.2)
+
+SET ST506FIX=... в CONFIG.SYS в процессе инсталляции (после SYSINST2.EXE, но до
+INSTALL.EXE) позволяет передать указанные в ней параметры IBM1S506.ADD во всех
+создаваемых после этого CONFIG.SYS. В частности, целесообразно прописать там
+"/!SHUTDOWN".
+
+SET DOS_MODE=NO - запрещает Hibernate в Мерлине и Авроре. Практической пользы
+не имеет, интересен только тем, что это один из немногих SET'ов, несущих
+указания для ядра.
+
+SET INSTALLDRIVE=x: - инструктирует SYSINST2.EXE ставить OS/2 на диск x:.
+Этот ключ полезен, когда OS/2 ставится на extended-раздел и без Boot
+Manager'а.
+
+PROTECT16=<список DLL> - указанные DLL будут загружаться в адресное
+пространство между 448M и 512M (protected arena).
+
+MEMMAN=...:
+
+    NOPACK - отключает объединение сегментов при загрузке в память. Расход
+             памяти при этом увеличивается.
+    COMMIT - всегда резервируется объем памяти, заказанный программой. Как
+             результат, свободная память закончится быстрее, а SWAPPER.DAT
+             достигнет невообразимых размеров. При MEMMAN=NOSWAP всегда
+             подразумевается COMMIT, именно поэтому показания свободной памяти
+             при NOSWAP и SWAP различаются в пользу последнего. Детали можно
+             узнать в red book'е GG243948.
+ DELAYSWAP - своп не будет создаваться и использоваться вплоть до вызова
+             DosSysCtl(1, ...) или запуска программы STRTSWAP.EXE, причем их
+             можно не запускать никогда. :) Как следствие - суррогат в виде
+             MEMMAN=SWAP,DELAYSWAP дает больший объем свободной памяти, чем
+             NOSWAP, но если память все же закончится - последствия могут быть
+             любыми.
+
+RESERVEDRIVELETTER=x - указанная буква будет пропущена при назначении файловых
+систем.
+
+NORESETBUFFER=ON - в ядрах 8.267/9.036/14.040 и выше - блокировка
+принудительного сброса буфера lazy-writer на FAT.

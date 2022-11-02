@@ -1,0 +1,27 @@
+==== BlackBox ====
+
+=== Introduction ===
+
+BlackBox (for FreeLDR) or MicroFSD (for IFS) is a same thing. It is the code which loads and executes OS loader. It can be organized differently and only interfaces with FreeLDR same. We provide here stub for IFS developers to make their life easy.
+
+For more information about IFS writing see [[en:ifs|IFS]] pages.
+
+=== Features ===
+
+For local disk-like systems we provide following things:
+
+  * Master Boot Record for hard disk-like organized systems
+    * small and compact
+    * supports loading of boot sectors from partitions
+  * [[en:boot:bootsector|boot sector]] which can be used in most cases to load required files and start FreeLDR
+    * small and compact
+    * can load fragmented files from disk
+    * executes FreeLDR with [[en:docs:boot:freeldr|OS/2 and FreeLDR compatible interface]]
+  * MicroFSD stub to make development of bootable IFS easily
+    * [[en:docs:boot:freeldr|FreeLDR and OS/2 compatible interfaces]]
+    * Full common logic. You need to modify only FS related code
+  * U*.DLL stub to write MBR, boot sector and MicroFSD into MBR, Boot Record and filesystem
+    * [[en:docs:ifs:utils|OS/2 and osFree compatable interface]]
+    * Full common logic. You need to modify only FS related code
+
+~~DISCUSSION~~

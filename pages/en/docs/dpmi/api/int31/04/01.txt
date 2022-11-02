@@ -1,0 +1,76 @@
+{{page>en:templates:dpmi}}
+
+====== Int 31H, AH=04H, AL=01H ======
+
+===== Version =====
+
+1.0
+
+===== Brief =====
+
+Get DPMI Capabilities
+
+===== Input =====
+
+  AX = 0401H
+  ES:(E)DI = selector:offset of 128-byte buffer
+
+===== Return =====
+
+  if function successful
+  Carry flag = clear (this function always succeeds in DPMI 1.0)
+  AX = capabilities flags
+
+^ Bits ^ Significance ^
+| 0 | 0 = PAGED ACCESSED/DIRTY capability not supported     1 = PAGED ACCESSED/DIRTY capability supported |
+| 1 | 0 = EXCEPTIONS RESTARTABILITY capability not supported    1 = EXCEPTIONS RESTARTABILITY capability supported |
+| 2 | 0 = DEVICE MAPPING capability not supported    1 = DEVICE MAPPING capability supported |
+| 3 | 0 = CONVENTIONAL MEMORY MAPPING capability not supported    1 = CONVENTIONAL MEMORY MAPPING capability supported |
+| 4 | 0 = DEMAND ZERO-FILL capability not supported    1 = DEMAND ZERO-FILL capability supported |
+| 5 | 0 = WRITE-PROTECT CLIENT capability not supported    1 = WRITE-PROTECT CLIENT capability supported |
+| 6 | 0 = WRITE-PROTECT HOST capability not supported    1 = WRITE-PROTECT HOST capability supported |
+| 7-15 | reserved |
+
+  CX = reserved, must be 0
+  DX = reserved, must be 0
+  ES:(E)DI = selector:offset of 128-byte buffer filled in by host with information as follows:
+
+^ Offset ^ Length ^ Contents ^
+| 0 | 1 | Host major version number as a decimal number |
+| 1 | 1 | Host minor version number as a decimal number |
+| 2 | 1-126 | ASCIIZ (null-terminated) string identifying the DPMI host vendor |
+
+  if function unsuccessful
+  Carry flag = set (this function always fails in DPMI 0.9)
+
+
+===== Notes =====
+
+Returns information about the capabilities of the DPMI host, including its support or lack of support for optional features in the DPMI Specification. Clients can use this information to optimize their use of system resources in the current environment.
+
+PAGE ACCESSED/DIRTY capability means the DPMI host maintains page dirty and accessed bits that can be read and written with the Get and Set Page Attributes functions (Int 31H Functions 0506H and 0507H). This capability must be supported, and must read and write the hardware-level dirty and accessed bits, if the DPMI host does not provide demand-paged virtual memory. If the DPMI host does support virtual memory, this capability is optional, and if present gives the client the ability to read and write virtual page dirty and accessed bits maintained by the host.
+
+EXCEPTION RESTARTABILITY capability means that a faulting instruction inside the host kernel can always be restarted if the client's exception handler corrects the reason for the exception and returns. Exception restartability allows a client to provide virtual memory under a DPMI host without virtual memory, or to support memory-mapped files under any DPMI host.
+
+DEVICE MAPPING capability means that the DPMI host supports the optional Map Device function (Int 31H Function 0508H).
+
+CONVENTIONAL MEMORY MAPPING capability means that the DPMI host supports the optional Map Conventional Memory function (Int 31H Function 0509H).
+
+DEMAND ZERO-FILL capability means the DPMI host guarantees that all committed pages are initialized to zero when they are created. If this capability is not supported, the contents of newly committed pages are undefined.
+
+WRITE-PROTECT CLIENT capability means the DPMI host guarantees that the client is running at a privilege level such that write protection of pages is effective for the client's accesses and will geneate page faults.
+
+WRITE-PROTECT HOST capability means the DPMI host guarantees that the host has configured the system such that write protection of pages is effective for the host's accesses and will generate page faults.
+
+The host major and minor version numbers are OEM-specific and are not the DPMI version numbers.
+       
+===== See also =====
+
+   
+
+===== Note =====
+
+Text based on [[http://www.delorie.com/djgpp/doc/dpmi/]]
+
+{{page>en:templates:dpmi:int}}
+

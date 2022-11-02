@@ -1,0 +1,41 @@
+=== Open files ===
+
+are described by data initialized at file open time and discarded at the time of last close of all file handles which had been associated with that open instance of that file. There may be multiple open file references to the same file at any one time.   
+
+All time stamps on files are stamped and propagated to other SFTs by OS/2 when the file is closed or committed (flushed). For example, if a file is opened at time 1, written at time 2, and closed at time 3, the last write time is time 3. Subdirectories need only have creation time stamps because the last write and last read time stamps on subdirectories are either very difficult to implement (propagate up to parent subdirectories), or are not very useful. An FSD, however, may implement them. FSDs are required to support direct access opens. These are indicated by a bit set in the sffsi.sfi_mode field.   
+
+<code c>
+/* file system independent - file instance */
+
+struct sffsi {
+    unsigned long   sfi_mode;       /* access/sharing mode */
+    unsigned short  sfi_hVPB;       /* volume info. */
+    unsigned short  sfi_ctime;      /* file creation time */
+    unsigned short  sfi_cdate;      /* file creation date */
+    unsigned short  sfi_atime;      /* file access time */
+    unsigned short  sfi_adate;      /* file access date */
+    unsigned short  sfi_mtime;      /* file modification time */
+    unsigned short  sfi_mdate;      /* file modification date */
+    unsigned long   sfi_size;       /* size of file */
+    unsigned long   sfi_position;   /* read/write pointer */
+
+/* the following may be of use in sharing checks */
+
+    unsigned short  sfi_UID;        /* user ID of initial opener */
+    unsigned short  sfi_PID;        /* process ID of initial opener */
+    unsigned short  sfi_PDB;        /* PDB (in 3.x box) of initial opener */
+    unsigned short  sfi_selfsfn;    /* system file number of file instance */
+    unsigned char   sfi_tstamp;     /* time stamp flags */
+    unsigned short  sfi_type;       /* type of object opened */
+    unsigned long   sfi_pPVDBFil;   /* performance counter data block pointer */
+    unsigned char   sfi_DOSattr;    /* DOS file attributes D/S/A/H/R */
+};
+
+/* file system dependent - file instance */
+
+struct sffsd {
+    char            sfd_work[30];   /* work area */
+};
+</code>
+
+The Program Data Block, or PDB (sfi_pdb), is the unit of sharing for DOS mode processes. For OS/2 mode processes, the unit of sharing is the Process ID, PID (sfi_pid). FSDs should use the combination PDB, PID, UID as indicating a distinct process.   

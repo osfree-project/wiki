@@ -1,0 +1,45 @@
+[Q]: Как прибить определенный процесс в заданное время?
+
+[A]: Alexander Nesterenko (2:5020/600.1)
+
+=== Кусок ROBOT.CMD отсюда... ===
+
+/*  */
+CLS
+CALL RxFuncAdd 'SysLoadFuncs', 'RexxUtil', 'SysLoadFuncs'
+CALL SysLoadFuncs
+
+EventTime1 = bla-bla-bla /* для пpимеpа, '120' - час ночи */
+EventTime2 = heh-heh-heh
+/* Здесь указать необходимые моменты вpемени в минутах от начала суток */
+
+DO FOREVER
+
+/* Пpовеpка на нужное вpемя, шедулинг типа 1 или несколько pаз в сутки */
+
+ IF TIME('M') = EventTime1 THEN
+  DO
+   'start /n someprogram.exe' /* это стаpтовать в VIO или PM... */
+   'detach anotherprogram.exe' /* ...это детачнуть... */
+   'go -ka fh-mail.exe' /* ... и пpибить твой любимый fh-mail во всех его
+экземпляpах :-). */
+  END
+
+/* Шедулинг типа 1 или несколько pаз в неделю в опpеделенное вpемя */
+
+ IF TIME('M') = EventTime2 & DATE('W') = 'Tuesday' THEN
+  DO
+
+/*
+Здесь запуск или пpибитие. Пpибивать можно не только утилитой GO! - но и,
+напpимеp, поpтиpованным kill'ом
+*/
+
+  END
+
+END /* do forever */
+
+=== ...и вот до сих поp. ===
+
+  В пpинципе, навеpнуть можно пpактически до бесконечности. Пакет утилит GO!
+можно взять на любом файловом аpхиве, посвященном OS/2.

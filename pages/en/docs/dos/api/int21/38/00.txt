@@ -1,0 +1,48 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=38H, AL=00H ======
+
+===== Version =====
+
+2 and higher
+
+===== Brief =====
+
+GET COUNTRY-SPECIFIC INFORMATION
+
+===== Family API =====
+
+
+
+===== Input =====
+
+        AX = 3800h get current-country info
+        DS:DX -> buffer for returned info (see #01398,#01399)
+
+===== Return =====
+
+  CF set on error
+            AX = error code (02h)
+        CF clear if successful
+            AX = country code (MS-DOS 2.11 only)
+            buffer at DS:DX filled
+            
+===== Macro =====
+
+
+===== Notes =====
+
+
+===== See also =====
+
+ AX=3801h
+
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:int}}
+
+{{page>en:templates:fapi}}
+

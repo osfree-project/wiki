@@ -1,0 +1,90 @@
+{{page>en:templates:fapiint}}
+
+====== DosGetDBCSEv ======
+
+This call obtains a DBCS (double byte character set) environmental vector that resides in the country information file. 
+
+===== Syntax =====
+<code c>
+ DosGetDBCSEv (Length, Country, MemoryBuffer) 
+</code>
+
+===== Parameters =====
+
+  * Length (USHORT) - input : Length, in bytes, of the data area (MemoryBuffer). This value should be at least 10.
+  * Country (PCOUNTRYCODE) - input : Address of the country information structure:
+    * countrycode (USHORT)  Country code identifier. 0 is the default country code. 
+    * codepage (USHORT)  Code page identifier. 0 is the code page of the current process.
+  * MemoryBuffer (PCHAR) - output : Address of the country dependent information for the DBCS environmental vector. This memory area is provided by the caller. The size of the area is provided by the input parameter Length. If it is too small to hold all the available information, then as much information as possible is provided in the available space.
+
+The format of the information returned in this buffer is:
+
+^ Word ^ Description ^
+| 1  |    First range definition for DBCS lead byte values High byte Binary start value (inclusive) for range one Low byte Binary stop value (inclusive) for range one. |
+| 2  |    Second range definition High byte Binary start value for range two    Low byte Binary stop value for range two |
+| N  |    Nth range definition      High byte Binary start value for Nth range         Low byte Binary stop value for Nth range. |
+| N + 1 | Two bytes of binary 0 terminate list. For example:         DB  81H,9FH          DB  E0H,FCH         DB  00H,00H |
+
+===== Return =====
+
+rc (USHORT) - return
+
+Return code descriptions are:
+
+  * NO_ERROR
+  * 396 ERROR_NLS_NO_COUNTRY_FILE 
+  * 397 ERROR_NLS_OPEN_FAILED 
+  * 398 ERROR_NO_COUNTRY_OR_CODEPAGE 
+  * 399 ERROR_NLS_TABLE_TRUNCATED 
+
+===== Remarks =====
+
+The returned DBCS environmental vector may be for the default country and current process code page or for a specific country and code page. For more information on code page see DosSetCp. 
+
+===== Bindings =====
+
+==== C Binding ====
+
+<code c>
+typedef struct _COUNTRYCODE {   /* ctryc */
+ 
+  USHORT country;               /* country code */
+  USHORT codepage;              /* code page */
+ 
+} COUNTRYCODE;
+
+#define INCL_DOSNLS
+
+USHORT  rc = DosGetDBCSEv(Length, Structure, MemoryBuffer);
+
+USHORT           Length;        /* Length of data area provided */
+PCOUNTRYCODE     Structure;     /* Input data structure */
+PCHAR            MemoryBuffer;  /* DBCS environmental vector (returned) *
+
+USHORT           rc;            /* return code */
+</code>
+
+==== MASM Binding ====
+
+<code asm>
+COUNTRYCODE struc
+  ctryc_country   dw  ? ;country code
+  ctryc_codepage  dw  ? ;code page 
+COUNTRYCODE ends
+
+EXTRN  DosGetDBCSEv:FAR
+INCL_DOSNLS         EQU 1
+
+PUSH   WORD    Length        ;Length of data area provided
+PUSH@  OTHER   Structure     ;Input data structure
+PUSH@  OTHER   MemoryBuffer  ;DBCS environmental vector (returned)
+CALL   DosGetDBCSEv
+
+Returns WORD
+</code>
+
+===== Note =====
+
+Text based on [[http://www.edm2.com/index.php/DosGetDBCSEv]]
+
+{{page>en:templates:fapi}}

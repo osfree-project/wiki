@@ -1,0 +1,54 @@
+[Q]: About priority levels in a nutshell
+
+[A]: Peter Knapper (3:772/1)
+
+ Q> Aha...there's my problem. So, LOWER Priority numbers are HIGHER Priority?
+
+Nope, lower = lower.....;-) Actually the lowest (and default) value is 1, BUT
+before you start tinkering with this it may be useful to understand what affect
+the ymay have. Here is an overview of how OS/2 processes are categorised.
+
+OS/2 provides 2 main methods for allowing a PROCESS to control how OS/2 services
+that processes needs, as a PRIORITY CLASS and a LEVEL within that CLASS, however
+not all PRIORITIES have levels... Confused? There is a logical reason why...
+
+There are 4 PRIORITY classes for OS/2 programs (lets leave device drivers, etc
+out of this, we are only talking about applications here). NOTE: Here the term
+"WINDOW" includes full screen tasks, they are actually "Full Screen Windows" in
+the system, similar to a Window on the Desktop... In decending order of
+importance -
+
+ - Time Critical
+   This is best used for sections of code that require very close
+   interaction with other components within the machine. A good
+   example is a Data communications application for processing FAX
+   messaging, the FAX protocol requires time dependant responses so
+   applications that "talk FAX" need CPU time NOW, so the probably
+   use this PRIORITY. A CLASS 1 FAX puts this processing in the S/W
+   rather than the modem so it is most dependant on getting CPU
+   time. A CLASS 2 FAX puts some of the critical parts back in the
+   modem, so the applicaiton does not need to be so demanding on
+   CPU time. Moral, always go for CLASS 2 capable FAX devices
+   wherever possible.
+
+ - Foreground
+   When a window on the desktop is the ACTIVE window, then it is at
+   this PRIORITY. IMPORTANT: Because only 1 WINDOW can be the ACTIVE
+   window at a time, there is no point in using a LEVEL value here,
+   and in fact althjough it can be specified, it is ignored whenever
+   the Window is ACTIVE.
+
+ - Regular
+   Windows that are not the ACTIVE window, normally reside at this
+   priority LEVEL. These applications can select a LEVEL that will
+   be used whenever they are NOT the ACTIVE Window.
+
+ - Idle
+   Tasks that perform "tidy up" tipe functions and are not dependant
+   on having processor time available. An example here would be an
+   application that displays CPU time usage, to know how much time
+   everything else is using, it would run at the LOWEST possible
+   level and thereby see how much processing power was left over.
+
+So you can see how a LEVEL may or may not affect applications with a different
+PRIORITY, and LEVEL only applies when that task is NOT the foreground task.

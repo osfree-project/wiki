@@ -1,0 +1,29 @@
+==== MFSH_UNPGYSTOVIRT - Mark a completion of use of virtual adress ====
+
+**Purpose**
+
+Release the selector allocated previously by calling //MFSH_PHYSTOVIRT//.   
+
+**Calling Sequence**
+
+<code c>
+int far pascal MFSH_UNPHYSTOVIRT(usSel)
+
+unsigned short usSel;
+</code>
+
+**Where**
+
+//usSel// contains the selector to released. 
+
+**Returns**
+
+If no error is detected, a zero error code is returned. If an error is detected, the following error code is returned:   
+
+  * ERROR_PROTECTION_VIOLATION -- the supplied selector is invalid. 
+
+**Remarks**
+
+This helper is for use by a mini-FSD with an imbedded device driver. It is the same as the standard device driver UNPHYSTOVIRT helper.   
+
+A caller must issue a corresponding UNPHYSTOVIRT after calling PHYSTOVIRT, before returning to its caller or using any other helpers.   

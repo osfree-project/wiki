@@ -1,0 +1,54 @@
+==== FS_FINDFROMNAME ====
+
+**Purpose**
+
+Find occurrence of a file name in a directory starting from a position or name.   
+
+**Calling Sequence**
+
+<code c>
+int far pascal FS_FINDFROMNAME(pfsfsi, pfsfsd, pData, cbData, pcMatch, level,
+                               position, pName, flags)
+
+struct fsfsi far * pfsfsi;
+struct fsfsd far * pfsfsd;
+char far * pData;
+unsigned short cbData;
+unsigned short far * pcMatch;
+unsigned short level;
+unsigned long position;
+char far * pName;
+unsigned short flags;
+</code>
+
+**Where**
+
+//pfsfsi// is a pointer to the file-system-independent file search structure. The FSD should not update this structure.   
+
+//pfsfsd// is a pointer to the file-system-dependent file search structure. The FSD may use this to store information about continuation of the search.   
+
+//pData// is the address of the application data area.   
+
+Addressing of this data area has not been validated by the kernel (see //FSH_PROBEBUF//). The FSD will fill in this area with a set of packed, variable- length structures that contain the requested data and matching file names in the format required for //DosFindFirst/DosFindNext//.   
+
+//cbData// is the length of the application data area in bytes.   
+
+//pcMatch// is a pointer to the number of matching entries. The FSD will return at most this number of entries. The FSD will store into it the number of entries actually placed in the data area. The FSD does not need to validate this pointer.   
+
+//level// is the information level to be returned. Level selects among a series of structures of data to be returned. The level passed to the FSD is valid.   
+
+//position// is the file-system-specific information about where to restart the search from. This information was returned by the FSD in the //ResultBuf// for an //FS_FINDFIRST/FS_FINDNEXT/FS_FINDFROMNAME// call.   
+
+//pName// is the filename from which to continue the search. The FSD does not need to validate this pointer.   
+
+//flags// indicates whether to return file position information. The flag passed to the FSD has a valid value. 
+
+**Remarks**
+
+The FSD may use the position or filename to determine the //position// > from which to resume the directory search. The FSD need not return position if it uses name and vice versa.   
+
+For //flags// == 1, the FSD must store in the position field adequate information to allow the search to be resumed from the file by calling //FS_FINDFROMNAME//. See //FS_FINDFIRST// for a description of the data format.   
+
+The FSD must ensure that enough information is stored in the fsfsd data structure to enable it to continue the search.   
+
+Note:   The FSD will be called with the //FINDFIRST/FINDFROMNAME// interface when the 32-bit //DosFindFirst/DosFindNext// APIs are called. THIS IS A CHANGE FROM 1.X IFS interface for redirector FSDs. The kernel will also be massaging the find records so that they appear the way the caller expects. Redirectors who have to resume searches should take this information into account. (i.e. You might want to reduce the size of the buffer sent to the server, so that the position fields can be added to the beginning of all the find records).   

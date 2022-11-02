@@ -1,0 +1,48 @@
+{{page>en:templates:biosint}}
+
+====== Int 10H, AH=0EH ======
+
+===== Version =====
+
+IBM 5150 and higher
+
+===== Brief =====
+
+Write in TTY mode
+
+===== Family API =====
+
+[[en:docs:fapi:VioWrtTTY]]
+
+===== Input =====
+
+  * AH = 0Eh
+  * AL = character to write
+  * BH = page number
+  * BL = foreground color (graphics modes only)
+
+===== Return =====
+
+===== Macro =====
+
+<code asm>
+INCLUDE BIOS.INC
+
+@WrtTTY 'A', 0
+
+</code>
+
+===== Notes =====
+
+  * characters 07h (BEL), 08h (BS), 0Ah (LF), and 0Dh (CR) are interpreted and do the expected things
+  * IBM PC ROMs dated 1981/4/24 and 1981/10/19 require that BH be the same as the current active page
+  * if the write causes the screen to scroll, BP is destroyed by BIOSes for which AH=06h destroys BP
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:biosapi}}
+
+{{page>en:templates:fapi}}
+

@@ -1,0 +1,24 @@
+====== FatalExit ======
+
+===== Syntax =====
+
+void FatalExit(int nErrCode);
+
+
+===== Returns =====
+
+None
+
+===== Description =====
+
+The FatalExit() function displays the error code nErrCode in the debugger and halts execution. If the debugger is
+running, the user can terminate the application or continue. If the debugger is not running, the application is
+terminated.
+
+===== Errors =====
+
+None
+
+===== See also =====
+
+FatalAppExit()

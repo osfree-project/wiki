@@ -1,0 +1,52 @@
+{{page>en:templates:dpmi}}
+
+====== Int 2FH, AH=16H, AL=8AH ======
+
+===== Version =====
+
+1.0
+
+===== Brief =====
+
+Get Vendor-Specific API Entry Point
+
+===== Input =====
+
+  AX = 168AH
+  DS:(E)SI = selector:offset of ASCIIZ (null-terminated) string identifying the DPMI host vendor
+
+===== Return =====
+
+  if function successful
+  AL = 0
+  ES:(E)DI = extended API entry point
+  and DS, FS, GS, EAX, EBX, ECX, EDX, ESI, and EBP are preserved.
+
+  if function unsuccessful
+  AL = unchanged (8AH)
+  
+===== Notes =====
+
+Returns an address which can be called to use host-specific extensions to the standard set of DPMI functions. This function is available only in protected mode.
+
+The ASCIIZ string specifies a host vendor name or some other unique identifier to obtain a specific extension entry point. The string comparison used to look up the API entry point is case-sensitive.
+
+Clients must use a FAR CALL to reach the extended API entry point.
+
+All extended API parameters are specified by the vendor.
+
+DPMI 1.0 clients should use this function in preference to Int 31H Function 0A00H. This method of API extension is preferable to the Int 31H extension as it avoids the creation of a long (and consequently slow) chain of Int 31H handlers which would slow down time-critical DPMI functions. Note that although this function was not documented for DPMI 0.9, it will work under any DPMI 0.9 host.
+
+
+          
+===== See also =====
+
+   
+
+===== Note =====
+
+Text based on [[http://www.delorie.com/djgpp/doc/dpmi/]]
+
+
+
+

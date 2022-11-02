@@ -1,0 +1,12 @@
+^ [[en:docs:bios:api|IBM PC BIOS API]] ^^
+| Video I/O | **[[en:docs:bios:api:int10|INT 10H]]**: [[en:docs:bios:api:int10:00|00H]], [[en:docs:bios:api:int10:01|01H]], [[en:docs:bios:api:int10:02|02H]], [[en:docs:bios:api:int10:03|03H]], [[en:docs:bios:api:int10:05|05H]], [[en:docs:bios:api:int10:06|06H]], [[en:docs:bios:api:int10:07|07H]], [[en:docs:bios:api:int10:08|08H]], [[en:docs:bios:api:int10:09|09H]], [[en:docs:bios:api:int10:0a|0AH]], [[en:docs:bios:api:int10:0b|0BH]], [[en:docs:bios:api:int10:0c|0CH]], [[en:docs:bios:api:int10:0d|0DH]], [[en:docs:bios:api:int10:0e|0EH]], [[en:docs:bios:api:int10:0f|0FH]] |
+| Hardware info | [[en:docs:bios:api:int11|INT 11H]], [[en:docs:bios:api:int12|INT 12H]] |
+| Serial I/O | **[[en:docs:bios:api:int14|INT 14H]]**: [[en:docs:bios:api:int14:00|00H]], [[en:docs:bios:api:int14:01|01H]], [[en:docs:bios:api:int14:02|02H]], [[en:docs:bios:api:int14:03|03H]] |
+| Tape I/O | **[[en:docs:bios:api:int15|INT 15H]]**: [[en:docs:bios:api:int15:00|00H]], [[en:docs:bios:api:int15:01|01H]], [[en:docs:bios:api:int15:02|02H]], [[en:docs:bios:api:int15:03|03H]] |
+| Keyboard I/O | **[[en:docs:bios:api:int16|INT 16H]]**: [[en:docs:bios:api:int16:00|00H]], [[en:docs:bios:api:int16:01|01H]], [[en:docs:bios:api:int16:02|02H]] |
+| Printer I/O | **[[en:docs:bios:api:int17|INT 17H]]**: [[en:docs:bios:api:int17:00|00H]], [[en:docs:bios:api:int17:01|01H]], [[en:docs:bios:api:int17:02|02H]] |
+| Disk I/O | **[[en:docs:bios:api:int13|INT 13H]]**: [[en:docs:bios:api:int13:00|00H]], [[en:docs:bios:api:int13:01|01H]], [[en:docs:bios:api:int13:02|02H]], [[en:docs:bios:api:int13:03|03H]], [[en:docs:bios:api:int13:04|04H]], [[en:docs:bios:api:int13:05|05H]] |
+| Date and Time | **[[en:docs:bios:api:int1a|INT 1AH]]**: [[en:docs:bios:api:int1a:00|00H]], [[en:docs:bios:api:int1a:01|01H]] |
+
+{{page>en:templates:macrolib}}
+

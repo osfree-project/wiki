@@ -1,0 +1,52 @@
+{{page>en:templates:biosint}}
+
+====== Int 10H, AH=08H ======
+
+===== Version =====
+
+IBM 5150 and higher
+
+===== Brief =====
+
+Get character and attribute undr cursor
+
+===== Family API =====
+
+[[en:docs:fapi:VioReadCellStr]] [[en:docs:fapi:VioReadCharStr]]
+
+===== Input =====
+
+  AH = 08h
+  BH = page number
+
+===== Return =====
+
+  AH - attribute
+  AL - character
+  
+===== Macro =====
+
+<code asm>
+INCLUDE BIOS.INC
+
+@GetChAtr 0
+</code>
+
+===== Notes =====
+
+  * for monochrome displays, a foreground of 1 with background 0 is underlined
+  * the blink bit may be reprogrammed to enable intense background colors using AX=1003h or by programming the CRT controller
+  * the foreground intensity bit (3) can be programmed to switch between character sets A and B on EGA and VGA cards, thus enabling 512 simultaneous characters on screen.  In this case the bit's usual function (intensity) is regularly turned off.
+  * in graphics modes, only characters drawn with white foreground pixels are matched by the pattern-comparison routine
+  * on the Tandy 2000, BH=FFh specifies that the current page should be used
+  * because of the IBM BIOS specifications, there may exist some clone BIOSes which do not preserve SI or DI; the Novell DOS kernel preserves SI, DI, and BP before many INT 10h calls to avoid problems due to those registers not being preserved by the BIOS.
+  * some IBM PC ROM BIOSes destroy BP when in graphics modes
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:biosapi}}
+
+{{page>en:templates:fapi}}
+

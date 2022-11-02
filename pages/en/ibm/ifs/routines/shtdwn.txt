@@ -1,0 +1,32 @@
+==== FS_SHUTDOWN ====
+
+**Purpose**
+
+Used to shutdown an FSD in preparation for power-off or IPL.   
+
+**Calling Sequence**
+
+<code c>
+int far pascal FS_SHUTDOWN(type, reserved)
+
+unsigned short type;
+unsigned long reserved;
+</code>
+
+**Where**
+
+^//type// ^indicates what type of a shutdown operation to perform.   ^
+|//type// == 0 |indicates that the shutdown sequence is beginning. The kernel will not allow any new I/O calls to reach the FSD. The only exception will be I/O to the swap file by the swap thread through the //FS_READ// and //FS_WRITE// entry points. The kernel will still allow any thread to call //FS_COMMIT//, //FS_FLUSHBUF// and //FS_SHUTDOWN//. The FSD should complete all pending calls that might generate disk corruption.   |
+|//type// == 1 |indicates that the shutdown sequence is ending. An //FS_COMMIT// has been called on every SFT open on the FSD and following that an //FS_FLUSHBUF// on all volumes has been called. All final clean up activity must be completed before this call returns.   |
+
+//reserved// reserved for future expansion. 
+
+**Remarks**
+
+From the perspective of an FSD, the shutdown sequence looks like this:   
+
+First, the system will call the FSD's //FS_SHUTDOWN// entry with //type// == 0. This notifies the FSD that the system will begin committing SFTs in preparation for system power off. The kernel will not allow any new IO calls to the FSD once it receives this first call, except from the swapper thread. The swapper thread will continue to call the //FS_READ// and //FS_WRITE// entry points to read and write the swap file. The swapper thread will not attempt to grow or shrink the swap file nor should the FSD reallocate it. The kernel will continue to allow //FS_COMMIT// and //FS_FLUSHBUF// calls from any thread. This call should not return from the FSD until disk data modifying calls have completed to insure that a thread already inside the FSD does not wake and change disk data.   
+
+After the first //FS_SHUTDOWN// call returns, the kernel will start committing SFTs. The FSD will see a commit for every SFT associated with it. During these //FS_COMMIT// calls, the FSD must flush any data associated with these SFTs to disk. The FSD must not allow any //FS_COMMIT// or //FS_FLUSHBUF// call to block permanently.   
+
+Once all of the SFTs associated with the FSD have been committed, //FS_SHUTDOWN// will be called with //type// == 1. This will tell the FSD to flush all buffers to disk. From this point, the FSD must not buffer any data destined for disk. Reads and writes to the swap file will continue, but the allocation of the swap file will not change. Once this call has completed, no file system corruption should occur if power is shut off.   

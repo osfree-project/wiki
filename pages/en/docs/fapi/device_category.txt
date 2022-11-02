@@ -1,0 +1,16 @@
+{{page>en:templates:fapiint}}
+
+====== Device Control Categories ======
+
+^ Category ^ Description ^
+| 1 | Serial Device Control |
+| 2 | Reserved |
+| 3 | Screen/Video control |
+| 4 | Keyboard Control |
+| 5 | Printer Control |
+| 6 | Light Pen Control |
+| 7 | [[Mouse Control]] |
+| 8 | Logical Disk Control |
+| 9 | Physical Disk Control |
+| 10 | Character Device Monitor Control |
+| 11 | General Device Control |

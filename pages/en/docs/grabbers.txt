@@ -1,0 +1,17 @@
+{{page>en:templates:dosshell}}
+
+GRB is a plain binary file with 0 offset. Entry table is stable and not changed. Application must check address 015h for short jump opcode. If opcode is valid then assume interface is here.
+
+^ Offset ^ Description ^ Version ^
+| [[en:docs:grabber:InquireGrab|0]] | [[en:docs:grabber:InquireGrab|InquireGrab]] | 1.01 |
+| [[en:docs:grabber:EnableGrab|3]] | [[en:docs:grabber:EnableGrab|EnableGrab]] | ? |
+| [[en:docs:grabber:DisableGrab|6]] | [[en:docs:grabber:DisableGrab|DisableGrab]] | ? |
+| [[en:docs:grabber:PromptGrab|9]] | [[en:docs:grabber:PromptGrab|PromptGrab]] | ? |
+| [[en:docs:grabber:InquireSave|12]] | [[en:docs:grabber:InquireSave|InquireSave]] | ? |
+| [[en:docs:grabber:SaveScreen|15]] | [[en:docs:grabber:SaveScreen|SaveScreen]] | ? |
+| [[en:docs:grabber:RestoreScreen|18]] | [[en:docs:grabber:RestoreScreen|RestoreScreen]] | ? |
+| [[en:docs:grabber:InitScreen|21]] | [[en:docs:grabber:InitScreen|InitScreen]] | ? |
+
+**Note: This API used by video device driver files with GRB extension. Used by DOSSWAP.EXE under DOS and by WINOLDAP.MOD under Windows to grab and restore screen**
+
+During setup GRB file will be renamed to WINOLDAP.GRB or DOSSHELL.GRB

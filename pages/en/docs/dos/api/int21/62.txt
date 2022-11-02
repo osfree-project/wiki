@@ -1,0 +1,39 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=62H ======
+
+===== Version =====
+
+3 and higher
+
+===== Brief =====
+
+GET CURRENT PSP ADDRESS
+
+===== Family API =====
+
+
+===== Input =====
+
+  AH = 62h
+
+===== Return =====
+
+ BX = segment of PSP for current process
+
+===== Notes =====
+
+	This function does not use any of the DOS-internal stacks and may thus be called at any time, even during another INT 21h call. The current PSP is not necessarily the caller's PSP. Identical to the undocumented AH=51h
+          
+===== See also =====
+
+   AH=50h - AH=51h
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:int}}
+
+{{page>en:templates:fapi}}
+

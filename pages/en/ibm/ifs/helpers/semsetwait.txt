@@ -1,0 +1,37 @@
+==== FSH_SEMSETWAIT ====
+
+**Purpose**
+
+This function allows an FSD to wait for an event. The event is signaled by a call to //FSH_SEMCLEAR//.   
+
+**Calling Sequence**
+
+<code c>
+int far pascal FSH_SEMSETWAIT(pSem, cmsTimeout)
+
+void far * pSem;
+unsigned long cmsTimeout;
+</code>
+
+**Where**
+
+//pSem// is the handle to the system semaphore or the long address of the ram semaphore.   
+
+//cmsTimeout// is the number of milliseconds to wait. 
+
+**Returns**
+
+If no error is detected, a zero error code is returned. If an error is detected, one of the following error codes is returned:   
+
+  * ERROR_SEM_TIMEOUT -- the time-out expired without gaining access to the semaphore. 
+  * ERROR_INTERRUPT -- the current thread received a signal. 
+  * ERROR_EXCL_SEM_ALREADY_OWNED -- the exclusive semaphore is already owned. 
+  * ERROR_PROTECTION_VIOLATION -- the semaphore is inaccessible. 
+
+**Remarks**
+
+The caller may return after the time-out period has expired without receiving an ERROR_SEM_TIMEOUT. Semaphore time-out values, therefore, should not be used for exact timing and sequence.   
+
+//FSH_SEMSETWAIT// may block.   
+
+**Note**:   OS/2 does not validate input parameters. An FSD, therefore, should call //FSH_PROBEBUF// where appropriate.   

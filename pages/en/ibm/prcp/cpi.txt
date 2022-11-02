@@ -1,0 +1,101 @@
+===== Control Program Function Calls =====
+
+This section reflects the Dos API interface of OS/2 only. 
+
+The Dos function calls can be used in full-screen and Presentation Manager sessions to perform basic operating-system operations, such as file input/output, memory allocation, and thread and process creation/control/communication. 
+
+**Notes**: 
+
+  - Calls marked xPM are not supported by Presentation Manager, and must not be used by Presentation Manager applications. An error code is returned if any of these calls are issued. 
+  - Calls marked xWPM are not windowable and are not supported by Presentation Manager. They can be used in OS/2 mode. 
+  - Calls marked FAPI are present in the Family API. 
+
+^# ^FUNCTION CALL ^ICON ^# ^FUNCTION CALL ^ICON ^
+|1 |[[DosAllocHuge]] |FAPI |88 |[[DosMove]] |FAPI |
+|2 |[[DosAllocSeg]] |FAPI |89 |[[DosMuxSemWait]] | |
+|3 |[[DosAllocShrSeg]] | |90 |[[DosNewSize]] |FAPI |
+|4 |[[DosBeep]] |FAPI |91 |[[DosOpen]] |FAPI |
+|5 |[[DosBufReset]] |FAPI |92 |[[DosOpen2]] |FAPI |
+|6 |[[DosCallback]] | |93 |[[DosOpenQueue]] | |
+|7 |[[DosCallNmPipe]] | |94 |[[DosOpenSem]] | |
+|8 |[[DosCaseMap]] |FAPI |95 |[[DosPeekNmPipe]] | |
+|9 |[[DosChDir]] |FAPI |96 |[[DosPeekQueue]] | |
+|10 |[[DosChgFilePtr]] |FAPI |97 |[[DosPFSActivate]] | |
+|11 |[[DosCLIAccess]] | |98 |[[DosPFSCloseUser]] | |
+|12 |[[DosClose]] |FAPI |99 |[[DosPFSInit]] | |
+|13 |[[DosCloseQueue]] | |100 |[[DosPFSQueryAct]] | |
+|14 |[[DosCloseSem]] | |101 |[[DosPFSVerifyFont]] | |
+|15 |[[DosConnectNmPipe]] | |102 |[[DosPhysicalDisk]] | |
+|16 |[[DosCopy]] | |103 |[[DosPortAccess]] |FAPI |
+|17 |[[DosCreateCSAlias]] |FAPI |104 |[[DosPtrace]] | |
+|18 |[[DosCreateQueue]] | |105 |[[DosPurgeQueue]] | |
+|19 |[[DosCreateSem]] | |106 |[[DosPutMessage]] |FAPI |
+|20 |[[DosCreateThread]] | |107 |[[DosQAppType]] | |
+|21 |[[DosCwait]] | |108 |[[DosQCurDir]] |FAPI |
+|22 |[[DosDelete]] |FAPI |109 |[[DosQCurDisk]] |FAPI |
+|23 |[[DosDevConfig]] |FAPI |110 |[[DosQFHandState]] |FAPI |
+|24 |[[DosDevIOCtl]] |FAPI |111 |[[DosQFileInfo]] |FAPI |
+|25 |[[DosDevIOCtl2]] | |112 |[[DosQFileMode]] |FAPI |
+|26 |[[DosDisConnectNmPipe]] | |113 |[[DosQFSAttach]] | |
+|27 |[[DosDupHandle]] |FAPI |114 |[[DosQFSInfo]] |FAPI |
+|28 |[[DosEditName]] | |115 |[[DosQHandType]] |FAPI |
+|29 |[[DosEnterCritSec]] | |116 |[[DosQNmPHandState]] | |
+|30 |[[DosEnumAttribute]] |FAPI |117 |[[DosQNmPipeinfo]] | |
+|31 |[[DosErrClass]] |FAPI |118 |[[DosQNmPipeSemState]] | |
+|32 |[[DosError]] |FAPI |119 |[[DosQPathInfo]] |FAPI |
+|33 |[[DosExecPgm]] |FAPI |120 |[[DosQSysInfo]] | |
+|34 |[[DosExit]] |FAPI |121 |[[DosQueryQueue]] | |
+|35 |[[DosExitCritSec]] | |122 |[[DosQVerify]] |FAPI |
+|36 |[[DosExitList]] | |123 |[[DosR2StackRealloc]] | |
+|37 |[[DosFileIO]] | |124 |[[DosRead]] |FAPI |
+|38 |[[DosFileLocks]] |FAPI |125 |[[DosReadAsync]] | |
+|39 |[[DosFindClose]] |FAPI |126 |[[DosReadQueue]] | |
+|40 |[[DosFindFirst]] |FAPI |127 |[[DosReallocHuge]] |FAPI |
+|41 |[[DosFindFirst2]] |FAPI |128 |[[DosReallocSeg]] |FAPI |
+|42 |[[DosFindNext]] |FAPI |129 |[[DosResumeThread]] | |
+|43 |[[DosFlagProcess]] | |130 |[[DosRmDir]] |FAPI |
+|44 |[[DosFreeModule]] | |131 |[[DosScanEnv]] | |
+|45 |[[DosFreeResource]] | |132 |[[DosSearchPath]] | |
+|46 |[[DosFreeSeg]] |FAPI |133 |[[DosSelectDisk]] |FAPI |
+|47 |[[DosFSAttach]] | |134 |[[DosSelectSession]] | |
+|48 |[[DosFSCtl]] | |135 |[[DosSemClear]] | |
+|49 |[[DosFSRamSemClear]] | |136 |[[DosSemRequest]] | |
+|50 |[[DosFSRamSemRequest]] | |137 |[[DosSemSet]] | |
+|51 |[[DosGetCollate]] |FAPI |138 |[[DosSemSetWait]] | |
+|52 |[[DosGetCp]] |FAPI |139 |[[DosSendSignal]] | |
+|53 |[[DosGetCtryInfo]] |FAPI |140 |[[DosSetCp]] |FAPI |
+|54 |[[DosGetDateTime]] |FAPI |141 |[[DosSetDateTime]] |FAPI |
+|55 |[[DosGetDBCSEv]] |FAPI |142 |[[DosSetFHandState]] |FAPI |
+|56 |[[DosGetEnv]] |FAPI |143 |[[DosSetFileInfo]] |FAPI |
+|57 |[[DosGetHugeShift]] |FAPI |144 |[[DosSetFileMode]] |FAPI |
+|58 |[[DosGetInfoSeg]] | |145 |[[DosSetFSInfo]] |FAPI |
+|59 |[[DosGetMachineMode]] |FAPI |146 |[[DosSetMaxFH]] | |
+|60 |[[DosGetMessage]] | |147 |[[DosSetNmPHandState]] | |
+|61 |[[DosGetModHandle]] | |148 |[[DosSetNmPipeSem]] | |
+|62 |[[DosGetModName]] | |149 |[[DosSetPathInfo]] |FAPI |
+|63 |[[DosGetPID]] |FAPI |150 |[[DosSetProcCp]] | |
+|64 |[[DosGetPPID]] | |151 |[[DosSetPrty]] | |
+|65 |[[DosGetProcAddr]] | |152 |[[DosSetSession]] | |
+|66 |[[DosGetPrty]] | |153 |[[DosSetSigHandler]] |FAPI |
+|67 |[[DosGetResource]] | |154 |[[DosSetVec]] |FAPI |
+|68 |[[DosGetResource2]] | |155 |[[DosSetVerify]] |FAPI |
+|69 |[[DosGetSeg]] | |156 |[[DosSizeSeg]] |FAPI |
+|70 |[[DosGetShrSeg]] | |157 |[[DosShutdown]] | |
+|71 |[[DosGetVersion]] |FAPI |158 |[[DosSleep]] |FAPI |
+|72 |[[DosGiveSeg]] | |159 |[[DosSMRegisterDD]] | |
+|73 |[[DosHoldSignal]] |FAPI |160 |[[DosStartSession]] | |
+|74 |[[DosInsMessage]] |FAPI |161 |[[DosStopSession]] | |
+|75 |[[DosKillProcess]] | |162 |[[DosSubAlloc]] |FAPI |
+|76 |[[DosLoadModule]] | |163 |[[DosSubFree]] |FAPI |
+|77 |[[DosLockSeg]] | |164 |[[DosSubSet]] |FAPI |
+|78 |[[DosMakeNmPipe]] | |165 |[[DosSuspendThread]] | |
+|79 |[[DosMakePipe]] | |166 |[[DosTimerAsync]] | |
+|80 |[[DosMemAvail]] | |167 |[[DosTimerStart]] | |
+|81 |[[DosMkDir]] |FAPI |168 |[[DosTimerStop]] | |
+|82 |[[DosMkDir2]] |FAPI |169 |[[DosTransactNmPipe]] | |
+|83 |[[DosMonClose]] |xPM |170 |[[DosUnlockSeg]] | |
+|84 |[[DosMonOpen]] |xPM |171 |[[DosWaitNmPipe]] | |
+|85 |[[DosMonRead]] |xPM |172 |[[DosWrite]] |FAPI |
+|86 |[[DosMonReg]] |xPM |173 |[[DosWriteAsync]] | |
+|87 |[[DosMonWrite]] |xPM |174 |[[DosWriteQueue]] | |
+

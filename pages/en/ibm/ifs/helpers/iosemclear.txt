@@ -1,0 +1,30 @@
+==== FSH_IOSEMCLEAR ====
+
+**Purpose**
+
+This function allows an FSD to clear the I/O event semaphore that is a part of the Extended Strategy request packet.   
+
+**Calling Sequence**
+
+<code c>
+int far pascal FSH_IOSEMCLEAR(pSem)
+</code>
+
+**Where**
+
+//pSem// is the handle to the I/O event semaphore. 
+
+**Returns**
+
+If no error is detected, a zero error code is returned. If an error is detected, one of the following error codes is returned:   
+
+  * ERROR_EXCL_ALREADY_OWNED -- the exclusive semaphore is already owned. 
+  * ERROR_PROTECTION_VIOLATION -- the semaphore is inaccessible. 
+
+**Remarks**
+
+//FSH_IOSEMCLEAR// may block.   
+
+For a detailed description of the Extended Strategy request interface, please see the OS/2 Version 2.0 Physical Device Driver Reference   
+
+**Note**:   OS/2 does not validate input parameters. An FSD, therefore, should call //FSH_PROBEBUF// where appropriate.   

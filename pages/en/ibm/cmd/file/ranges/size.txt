@@ -1,0 +1,16 @@
+===== Size Ranges =====
+
+Size ranges simply select files whose size is between the limits given. For example, **/[s10000,20000]** selects files between 10,000 and 20,000 bytes long. 
+
+Either or both values in a size range can end with "k" to indicate thousands of bytes, "K" to indicate kilobytes (1,024 bytes), "m" to indicate millions of bytes, or "M" to indicate megabytes (1,048,576 bytes). For example, the range above could be rewritten as **/[s10k,20k]**. 
+
+All ranges are inclusive. Both examples above will match files that are exactly 10,000 bytes and 20,000 bytes long, as well as all sizes in between. 
+
+The second argument of a size range is optional. If you use a single argument, like **/[s10k]**, you will select files of that size or larger. You can also precede the second argument with a plus sign [**+**]; when you do, it is added to the first value to determine the largest file size to include in the search. For example, **/[s10k,+1k]** select files from 10,000 through 11,000 bytes in size. 
+
+Some further examples of size ranges: 
+
+^Specification       ^Selects Files ^
+|**/[s0,0]**             |of length zero (empty) |
+|**/[s1M]**             |1 megabyte or more in length |
+|**/[s10k,+200]**   |between 10,000 and 10,200 bytes |

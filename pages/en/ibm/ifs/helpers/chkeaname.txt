@@ -1,0 +1,44 @@
+==== FSH_CHECKEANAME ====
+
+**Purpose**
+
+Check extended attribute name validity.   
+
+**Calling Sequence**
+
+<code c>
+int far pascal FSH_CHECKEANAME(iLevel, cbEAName, szEAName)
+
+unsigned short iLevel;
+unsigned long cbEAName;
+char far * szEAName;
+</code>
+
+**Where**
+
+//iLevel// is the extended attributes name checking level.   
+
+//iLevel// = 0x0001 indicates OS/2 Version 2.0 name checking.   
+
+//cbEAName// is the length of the extended attribute name, not including terminating NUL.   
+
+//szEAName// is the extended attribute name to check for validity. 
+
+**Returns**
+
+If no error is detected, a zero error code is returned. If an error is detected, one of the following error codes is returned:   
+
+  * ERROR_INVALID_NAME -- pathname contains invalid or wildcard characters, or is too long.
+  * ERROR_INVALID_PARAMETER -- invalid level. 
+
+**Remarks**
+
+This routine processes DBCS characters properly.   
+
+The set of invalid characters for EA names is the same as that for filenames. In OS/2 Version 2.0, the maximum length of an EA name, not including the terminating NUL, is 255 bytes. The minimum length is 1 byte.   
+
+The FSD is responsible for verifying the string pointers and checking for segment boundaries.   
+
+//FSH_CHECKEANAME// should be called for extended attribute names passed to the FSD.   
+
+**Note**:   OS/2 does not validate input parameters. Therefore, an FSD should call //FSH_PROBEBUF// where appropriate.   

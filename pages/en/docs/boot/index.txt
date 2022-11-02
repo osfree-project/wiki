@@ -1,0 +1,17 @@
+===== The Boot Team documentation root page =====
+
+Here you can find information about current boot process of osFree.
+
+  * [[en:docs:boot:flow|osFree boot sequence (execution flow)]]
+  * [[en:docs:boot:memmap|osFree boot sequence (Memory map changing)]]
+  * [[en:docs:boot:bootseq2|osFree boot sequence (Draft II)]]
+    * [[en:docs:boot:freeldr:history|A historical note about FreeLDR]]
+    * [[en:docs:boot:freeldr:os2csm|Ideas inspired by OS2CSM]]
+    * [[en:docs:boot:freeldr:ldr-design|FreeLDR design and ideas]]
+    * [[en:docs:boot:freeldr:relnotes|FreeLDR 0.0.2 release notes]]
+    * [[en:docs:boot:freeldr:bootos2|About OS/2 booter]]
+  * [[en:docs:boot:kickstart|osFree boot sequence (From Kernel execution to root server execution)]]
+  * [[en:docs:boot:mbr|osFree MBR loader]]
+  * [[en:docs:boot:bootsector|osFree boot sectors]]
+
+~~DISCUSSION~~

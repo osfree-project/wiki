@@ -1,0 +1,61 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=06H ======
+
+===== Version =====
+
+1 and higher
+
+===== Brief =====
+
+DIRECT CONSOLE OUTPUT/INPUT
+
+===== Family API =====
+
+[[en:docs:fapi:DosWrite]] [[en:docs:fapi:DosRead]]
+
+===== Input =====
+
+  AH = 06h
+  DL = output character (except FFh)
+  DL = FFh - input character
+  
+
+===== Return =====
+
+On output:
+
+  AL = character output (despite official docs which state nothing is returned) (at least DOS 2.1-7.0)
+
+On input:
+
+  ZF set if no character available
+            AL = 00h
+  ZF clear if character available
+            AL = character read
+
+===== Notes =====
+
+ does not check ^C/^Break
+
+ writes to standard output, which is always the screen under DOS 1.x, but may be redirected under DOS 2+
+
+ if the returned character is 00h, the user pressed a key with an extended keycode, which will be returned by the next call of this function
+
+ this function reads from standard input, which is always the keyboard under DOS 1.x, but may be redirected under DOS 2+
+
+ although the return of AL=00h when no characters are available is not documented, some programs rely on this behavior
+
+===== See also =====
+
+AH=02h,AH=09h,AH=0BH
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:int}}
+
+{{page>en:templates:fapi}}
+
+

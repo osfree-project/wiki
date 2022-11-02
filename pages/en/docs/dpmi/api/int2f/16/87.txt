@@ -1,0 +1,61 @@
+{{page>en:templates:dpmi}}
+
+====== Int 2FH, AH=16H, AL=87H ======
+
+===== Version =====
+
+0.9
+
+===== Brief =====
+
+Obtain Real-to-Protected Mode Switch Entry Point
+
+===== Input =====
+
+  * AX = 1687h
+
+===== Return =====
+
+  If function successful
+  AX = 0
+  BX = flags
+
+^ Bit ^ Significance ^
+| 0 | 0 = 32-bit programs are not supported |
+|:::| 1 = 32-bit programs are supported |
+| 1-15 | not used |
+
+  CL = processor type
+
+^ Value ^ Significance ^
+| 02H | 80286 |
+| 03H | 80386 |
+| 04H | 80486 |
+| 05H-FFH | Reserved for future Intel processors |
+
+  DH = DPMI major version as a decimal number (represented in binary)
+  DL = DPMI minor version as a decimal number (represented in binary)
+  SI = number of paragraphs required for DPMI host private data (may be 0)
+  ES:DI = segment:offset of procedure to call to enter protected mode
+  if function unsuccessful (no DPMI host present)
+  AX = nonzero
+
+===== Notes =====
+
+This function can be called in real mode only to test for the presence of a DPMI host, and to obtain an address of a mode switch routine that can be called to begin execution in protected mode.
+
+The entry point returned by Int 2FH Function 1687H is only called for the first switch to protected mode by a DPMI client. For further details on the protocol for switching to protected mode and the environment after switching to protected mode, see [[en:docs:dpmi:Client Initialization]].
+
+Under DPMI hosts, the major version number is returned in DH and the minor version number is returned in DL. There are two decimal digits for the minor version number with the least-significant digit representing the revision number of the minor version number. Under DPMI version 0.9 hosts, DH is returned as 0, and DL is returned as decimal 90 (5AH). In hypothetical DPMI version 2.3, DH would be returned as 2 and DL would be returned as 30 (1EH).
+
+===== See also =====
+
+
+
+===== Note =====
+
+Text based on [[http://www.delorie.com/djgpp/doc/dpmi/]]
+
+
+
+

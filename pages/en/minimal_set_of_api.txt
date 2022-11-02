@@ -1,0 +1,12 @@
+^Function name                 ^Ordinal        ^Module name     ^Declaration                       ^Comments        ^
+|[[docs:os2:api:doserror|DosError]]            |   |DOSCALLS  |APIRET DosError(ULONG error) |   |
+|DosQueryCurrentDir  |    |DOSCALLS  |APIRET DosQueryCurrentDir(ULONG disknum, PBYTE pBuf, PULONG pcbBuf); |  |
+|DosExecPgm              |    |DOSCALLS  |APIRET DosExecPgm(PCHAR pObjname, LONG cbObjname, ULONG execFlag, PSZ pArg, PSZ pEnv, PRESULT pRes, PSZ pName); |  |
+|[[docs:os2:api:viowrttty|VioWrtTTY]]         |  |EMXWRAP |USHORT VioWrtTTY(PCH CharStr, USHORT Length, HVIO VioHandle); |  |
+|DosSetDefaultDisk   |  |DOSCALLS |APIRET DosSetDefaultDisk(ULONG disknum); |  |
+|KbdStringIn               |  |EMXWRAP  |USHORT KbdStringIn(PCH pch, PSTRINGINBUF pchin, USHORT Flag, HKBD hkbd); |  |
+|DosQueryCurrentDisk |  |DOSCALLS |APIRET DosQueryCurrentDisk(PULONG pdisknum, PULONG plogical); |  |
+|DosSetCurrentDir     |  |DOSCALLS |APIRET DosSetCurrentDir(PSZ pszDir); |  |
+|DosWrite            |  |DOSCALLS |APIRET DosWrite(HFILE hFile, PVOID pBuffer, ULONG cbWrite, PULONG pcbActual); |  |
+|[[docs:os2:api:dosquerysysinfo|DosQuerySysInfo]]     |  |DOSCALLS |APIRET DosQuerySysInfo(ULONG iStart, ULONG iLast, PVOID pBuf, ULONG cbBuf); |  |
+|DosExit                      |  |DOSCALLS |DosExit(ULONG action, ULONG result); |  |

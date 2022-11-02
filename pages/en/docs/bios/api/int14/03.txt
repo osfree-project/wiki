@@ -1,0 +1,48 @@
+{{page>en:templates:biosint}}
+
+====== Int 14H, AH=03H ======
+
+===== Version =====
+
+IBM 5150 and higher
+
+===== Brief =====
+
+Get port status
+
+===== Family API =====
+
+[[en:docs:fapi:DosDevIOCtl]]
+
+===== Input =====
+
+  * AH = 03h
+  * AL = 00h (ArtiCom)
+  * DX = port number (00h-03h) (04h-43h for Digiboard XAPCM232.SYS)
+
+===== Return =====
+
+  * AH = line status (see #00304)
+  * AL = modem status (see #00305)
+  * AX = 9E00h if disconnected (ArtiCom)
+
+===== Macro =====
+
+<code asm>
+INCLUDE BIOS.INC
+
+@AuxStatus 0
+</code>
+
+===== Notes =====
+
+  * the 1993/04/08 Compaq system ROM uses only the low two bits of DX
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:biosapi}}
+
+{{page>en:templates:fapi}}
+

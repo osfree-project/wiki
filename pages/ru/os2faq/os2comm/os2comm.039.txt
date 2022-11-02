@@ -1,0 +1,5 @@
+[Q]: Как пpивинтить Warp Internet Access Kit к LAN?
+
+[A]: Dmitry Zavalishin (2:5020/32)
+
+Поставить MPTS, выкинуть из конфига  ifndisnl.sys, добавить ifndis.sys.

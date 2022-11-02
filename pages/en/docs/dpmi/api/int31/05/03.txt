@@ -1,0 +1,58 @@
+{{page>en:templates:dpmi}}
+
+====== Int 31H, AH=05H, AL=03H ======
+
+===== Version =====
+
+0.9
+
+===== Brief =====
+
+Resize Memory Block
+
+===== Input =====
+
+  AX = 0503H
+  BX:CX = new size of block (bytes, must be nonzero)
+  SI:DI = memory block handle
+
+===== Return =====
+
+  if function successful
+  Carry flag = clear
+  BX:CX = new linear address of memory block
+  SI:DI = new handle for memory block
+  
+  if function unsuccessful
+  Carry flag = set
+  AX = error code
+  8012H	linear memory unavailable
+  8013H	physical memory unavailable
+  8014H	backing store unavailable
+  8016H	handle unavailable
+  8021H	invalid value (BX:CX = 0)
+  8023H	invalid handle (in SI:DI)
+
+
+===== Notes =====
+
+Changes the size of a memory block that was previously allocated with either the Allocate Memory Block function (Int 31H Function 0501H) or the Allocate Linear Memory Block function (Int 31H Function 0504H).
+
+After this function returns, the previous handle for the memory block is invalid and should not be used.
+
+When increasing the size of a block, this function always creates committed pages. When decreasing the block size, this call will correctly free all possible page types (committed pages, uncommitted pages, and mapped pages). The linear address and handle of the memory block may change as a result of this call.
+
+It is the client's responsibility to update any descriptors that map the memory block with the new linear address after resizing the block.
+
+This function returns an error if the client attempts to resize a memory block to zero bytes.
+       
+===== See also =====
+
+   
+
+===== Note =====
+
+Text based on [[http://www.delorie.com/djgpp/doc/dpmi/]]
+
+{{page>en:templates:dpmi:int}}
+

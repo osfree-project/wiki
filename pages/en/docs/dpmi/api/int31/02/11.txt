@@ -1,0 +1,44 @@
+{{page>en:templates:dpmi}}
+
+====== Int 31H, AH=02H, AL=11H ======
+
+===== Version =====
+
+1.0
+
+===== Brief =====
+
+Get Extended Processor Exception Handler Vector (Real Mode)
+
+===== Input =====
+
+  AX = 0211H
+  BL = exception number (00H-1FH)
+        
+===== Return =====
+
+  if function successful
+  Carry flag = clear
+  CX:(E)DX = selector:offset of exception handler
+  
+  if function unsuccessful
+  Carry flag = set
+  AX = error code
+  8021H	invalid value (BL not in range 00H-1FH)
+
+===== Notes =====
+
+CX:(E)DX does not specify a real-mode segment:offset. The reason is that this function allows a client to get the address of the exception handler which will receive control in protected mode when the specified exception occurs in real mode (i.e. the host will provide an implied mode switch for the purposes of servicing the exception, then return to real mode after the handler exits).
+
+Real mode exceptions are sent to the primary client of the virtual machine.
+    
+===== See also =====
+
+   
+
+===== Note =====
+
+Text based on [[http://www.delorie.com/djgpp/doc/dpmi/]]
+
+{{page>en:templates:dpmi:int}}
+

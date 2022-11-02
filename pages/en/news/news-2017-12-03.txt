@@ -1,0 +1,17 @@
+==== 3 December, 2017 ====
+
+Migration to Genode is started.
+
+We started to create the required abstraction layers to make the osFree
+OS/2 personality more portable. This will allow us to also create L4Re
+and Genode ports. As our OS/2 personality is currently based on an outdated
+and abandoned L4Env OS framework, we need to migrate to a more alive and
+developing framework. Most promising is Genode OS framework, though, L4Re,
+which is a successor for L4Env is also evolving and it supports more hardware
+platforms, than Genode. So, ideally, we need ports of our OS/2 personality
+to both. Currently, Genode has more priority, the port is in progress.
+
+{{tag>genode l4env l4re migration os2 kernel personality framework}}
+
+~~DISCUSSION~~
+

@@ -1,0 +1,36 @@
+{{page>en:templates:biosint}}
+
+
+====== @SetMode ======
+
+===== Version =====
+
+IBM 5150 and higher
+
+===== Brief =====
+
+Set the current video mode
+
+===== BIOS Interrupt =====
+
+[[en:docs:bios:api:int10|INT10H]]: [[en:docs:bios:api:int10:00|00H]]
+
+===== Family API =====
+
+[[en:docs:fapi:VioSetMode]]
+
+===== Syntax =====
+
+<code asm>
+@SetMode mode
+</code>
+
+===== Parameters =====
+
+  * mode (BYTE) - mode
+
+===== Return =====
+
+None
+
+{{page>en:templates:biosapi}}

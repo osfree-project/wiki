@@ -1,0 +1,6 @@
+===== Petitions to opensource OS/2 =====
+
+There were two petitions to IBM corp. to open OS/2 sources. November 1 2005, OS/2 community created the 1st petition, asking to open the source code of this system. Despite that 11613 people subscribed the petition, IBM ignored it. In November 2007 community created the 2nd petition, which subscribed 3744 people. IBM rejected it Jan 16 2008, motivating it by technical, juridical and business causes.
+
+One of the rejection reasons was that much sources were owned by third parties. Many of these companies are already non-existing, also much code is owned by Microsoft. But we still hope to partial success because there's OS components which belong solely to IBM. Also, there must be noted that, according to some rumors, IBM lost much sources.
+

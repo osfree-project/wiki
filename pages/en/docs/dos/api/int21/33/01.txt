@@ -1,0 +1,48 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=33H, AL=01H ======
+
+===== Version =====
+
+2 and higher
+
+===== Brief =====
+
+set state of extended Ctrl-C/Ctrl-Break checking
+
+===== Family API =====
+
+
+===== Input =====
+
+        AH = 33h
+        AL = 01h
+        DL = new state
+                    00h off, check only on character I/O functions
+                    01h on, check on all DOS functions
+
+===== Return =====
+
+ (Novell DOS 7) DL = old state of extended Break checks
+
+===== Macro =====
+
+
+===== Notes =====
+
+   under DOS 3.1+ and DR DOS, this function does not use any of the
+          DOS-internal stacks and may thus be called at any time
+
+===== See also =====
+
+ AX=3302h
+
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:int}}
+
+{{page>en:templates:fapi}}
+

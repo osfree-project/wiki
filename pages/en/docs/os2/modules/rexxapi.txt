@@ -1,0 +1,59 @@
+{{logos:os2.gif?35x35}} 
+
+**Please help to find info about enries marked as //No info//**
+
+===== REXXAPI =====
+
+
+^Ordinal ^Name ^Desc ^ Status ^
+| 1 | RexxCreateQueue | | |
+| 2 | RexxDeleteQueue | | |
+| 3 | RexxAddQueue | | |
+| 4 | RexxPullQueue | | |
+| 5 | RexxQueryQueue | | |
+| 6 | RexxRegisterSubcomDll | | |
+| 7 | RexxRegisterSubcomExe | | |
+| 8 | RexxQuerySubcom | | |
+| 9 | RexxDeregisterSubcom | | |
+| 10 | RexxLoadSubcom | | |
+| 11 | RexxRegisterExitDll | | |
+| 12 | RexxRegisterExitExe | | |
+| 13 | RexxDeregisterExit | | |
+| 14 | RexxQueryExit | | |
+| 15 | RexxCallExit | | |
+| 16 | RexxCallSubcom | | |
+| 17 | RexxRegisterFunctionDll | | |
+| 18 | RexxRegisterFunctionExe | | |
+| 19 | RexxDeregisterFunction | | |
+| 20 | RexxQueryFunction | | |
+| 21 | RexxCallFunction | | |
+| 22 | RexxAddMacro | | |
+| 23 | RexxDropMacro | | |
+| 24 | RexxClearMacroSpace | | |
+| 25 | RexxLoadMacroSpace | | |
+| 26 | RexxQueryMacro | | |
+| 27 | RexxReorderMacro | | |
+| 28 | RexxSaveMacroSpace | | |
+| 29 | RexxExecuteMacroFunction | | |
+| 30 | RXMACROLOAD | Load functions into Macrospace | |
+| 31 | RXMACROSAVE | Save functions in Macrospace | |
+| 32 | RXSUBCOMLOAD | Load subcommand environment | |
+| 33 | RXMACRODROP | Delete function from Macrospace  | |
+| 34 | RXEXITQUERY | Query system exit environment name | |
+| 35 | RXMACROERASE | Erase functions from Macrospace | |
+| 36 | RXSUBCOMDROP | Deregister Subcommand Environment | |
+| 37 | RXMACROQUERY | Search for function in Macrospace | |
+| 38 | RXMACROCHANGE | Change or Add function to Macrospace | |
+| 39 | RXSUBCOMQUERY | Query subcommand environment name | |
+| 40 | RXFUNCTIONCALL | Call function | |
+| 41 | RXEXITREGISTER | Register system exit environment | |
+| 42 | RXMACROREORDER | Change search order in Macrospace | |
+| 43 | RXSUBCOMEXECUTE | Send commands to subcommand environment | |
+| 44 | RXSUBCOMREGISTER | Register subcommand environment | |
+| 45 | RXFUNCTIONQUERY | Query list of functions | |
+| 46 | RXFUNCTIONREGISTER | Register function | |
+| 47 | RXEXITDROP | Deregister system exit environment | |
+| 48 | RXFUNCTIONDEREGISTER | Remove function | |
+
+{{page>en:templates:dlls}}
+

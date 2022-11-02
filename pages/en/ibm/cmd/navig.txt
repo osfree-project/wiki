@@ -1,0 +1,45 @@
+===== Directory Navigation =====
+
+The operating system and command processor remember both a current or 
+default drive for your system as a whole, and a current or default 
+directory for every drive in your system.  The current directory on the 
+current drive is sometimes called the current working directory. 
+With traditional command processors, you change the current drive by 
+typing the new drive letter plus a colon at the prompt, and you change the 
+current working directory with the **CD** command.  **CMD.EXE** supports those 
+standard features, and offer a number of enhancements to make directory 
+navigation much simpler and faster. 
+
+The *CMD.EXE* directory navigation features are in three groups:  features 
+which help the command processor find the directory you want, methods for 
+initiating a directory change with a minimal amount of typing, and methods 
+for returning easily to directories you've recently used.  Each group is 
+summarized below. 
+
+==== Finding Directories ====
+
+Traditional command processors require you to explicitly type the name of the directory you want to change to. **CMD.EXE** support this method, and also offer two significant enhancements: 
+
+  * [[Extended Directory Searches]] allow the command processor to search a "database" of all the directories on your  system to find the one you want. 
+  * The **[[CDPATH]]** allows you to enter a specific list of directories to be searched, rather than searching a database. Use **[[CDPATH]]** instead of Extended Directory Searches if you find the extended searches too broad, or your hard drive has too many directories for an efficient search.
+
+==== Initiating a Directory Change ====
+
+**CMD.EXE** supports the traditional methods of changing directories, and also offers several more flexible approaches: 
+
+  * [[Automatic directory changes]] allow you to type a directory name at the prompt and switch to it automatically, without typing an explicit **[[CD]]** or similar command. 
+  * The **[[CD]]** command can change directories on a single drive, and can return to the most recently used directory. 
+  * The **[[CDD]]** command changes drive and directory at the same time, and can return to the most recently used drive and directory. 
+  * The **[[PUSHD]]** command changes changes the drive and directory like **[[CDD]]**, and records the previous directory in a directory "stack." 
+
+You can view the stack with **[[DIRS]]** and return to the directory on the top of the stack with **[[POPD]]**.
+
+**[[CDD]]**, **[[PUSHD]]**, and automatic directory changes can also change to a network drive and directory mapped to a drive letter or specified with a **[[UNC]]** name (see [[File Systems]] for more information about network directories). 
+
+==== Returning to a Previous Directory ====
+
+Traditional command processors do not remember previously-used directories, and can only "return" to a directory by changing back to it with a standard drive change or **[[CD]]** command.  **CMD.EXE** supports three additional methods for returning to a previous directory: 
+
+  * The **[[CD]]** - and **[[CDD]]** - commands can be used to return to the previous  working directory (the one you used immediately before the current directory).  Use these commands if you are working in two directories and lternating between them. 
+  * The [[directory history window]] allows you to select one of several recently-used directories from a popup list and  return to it immediately.  The window displays the contents of the directory history list. 
+  * The **[[POPD]]** command will return to the last directory saved by **[[PUSHD]]**. The directory stack holds 511 characters, enough for 20 to 40 typical drive and directory entries. 

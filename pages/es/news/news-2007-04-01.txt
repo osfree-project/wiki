@@ -1,0 +1,9 @@
+==== 4.1.07 ====
+
+Hemos integrado las entradas al sistema para dokuwiki y phpBB
+
+  * [[http://www.osfree.org/wiki/doku.php/tag:phpbb?do=showtag&tag=phpbb|phpbb,]]
+  * [[http://www.osfree.org/wiki/doku.php/tag:integrado?do=showtag&tag=integrado|integrado,]]
+  * [[http://www.osfree.org/wiki/doku.php/tag:dokuwiki?do=showtag&tag=dokuwiki|dokuwiki]]
+
+~~DISCUSSION~~

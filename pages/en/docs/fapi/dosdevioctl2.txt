@@ -1,0 +1,93 @@
+{{page>en:templates:fapiint}}
+
+====== DosDevIOCtl2 ======
+ 
+This call performs control functions on a device specified by an opened device handle.
+
+===== Syntax =====
+<code c>
+ DosDevIOCtl2 (Data, DataLength, ParmList, ParmListLength,
+               Function, Category, DevHandle)
+</code>
+===== Parameters =====
+
+  * Data ([[PVOID]]) - input : Address of the data area.
+  * DataLength ([[USHORT]]) - input : Length of the data buffer.
+  * ParmList ([[PVOID]]) - input : Address of the command-specific argument list.
+  * ParmListLength ([[USHORT]]) - input : Length of the command-specific argument list.
+  * Function ([[USHORT]]) - input : Device-specific function code.
+  * Category ([[USHORT]]) - input : Device category.
+  * DevHandle ([[HFILE]]) - input : Device handle returned by DosOpen or a standard (open) device handle.
+
+===== Return Code =====
+
+rc ([[USHORT]]) - return:Return code descriptions are:
+
+  * 0 NO_ERROR
+  * 1 ERROR_INVALID_FUNCTION
+  * 6 ERROR_INVALID_HANDLE
+  *15 ERROR_INVALID_DRIVE
+  *31 ERROR_GEN_FAILURE
+  *87 ERROR_INVALID_PARAMETER
+  *115 ERROR_PROTECTION_VIOLATION
+  *117 ERROR_INVALID_CATEGORY
+  *119 ERROR_BAD_DRIVER_LEVEL
+  *163 ERROR_UNCERTAIN_MEDIA
+  *165 ERROR_MONITORS_NOT_SUPPORTED
+
+===== Remarks =====
+
+Values returned in the range hex FF00 through FFFF are user dependent error codes. Values returned in the range hex FE00 through FEFF are device driver dependent error codes.
+
+Refer to the ''IBM Operating System/2 Version 1.2 I/O Subsystems And Device Support Volume 1'' for a complete listing of control functions (DevHlp calls).
+
+This function provides a generic, expandable IOCTL facility.
+
+A null (zero) value for Data specifies that this parameter is not defined for the generic IOCTL function being specified. A null value for Data causes the value passed in DataLength to be ignored.
+
+A null (zero) value for ParmList specifies that this parameter is not defined for the generic IOCTL function being specified. A null value for ParmList causes the value passed in ParmListLength to be ignored.
+
+The kernel formats a generic IOCTL packet and call the device driver. Since V1.0 and V1.1 device drivers do not understand generic IOCTL packets with DataLength and ParmListLength, the kernel does not pass these fields to the device driver. Device drivers that are marked as being level 2 or higher must support receipt of the generic IOCTL packets with associated length fields.
+
+Do not pass a non-null pointer with a zero length.
+
+===== Bindings =====
+
+==== C ====
+
+<code c>
+#define INCL_DOSDEVICES
+
+USHORT  rc = DosDevIOCtl2(Data, ParmList, Function, Category, DevHandle);
+
+PVOID   Data;          /* Data area */
+USHORT  DataLength     /* Data area length */
+PVOID   ParmList;      /* Command arguments */
+USHORT  ParmListLength /* Command arguments list length */
+USHORT  Function;      /* Device function */
+USHORT  Category;      /* Device category */
+HFILE   DevHandle;     /* Specifies the device */
+
+USHORT  rc;            /* return code */
+</code>
+
+==== MASM ====
+
+<code asm>
+EXTRN  DosDevIOCtl2:FAR
+INCL_DOSDEVICES     EQU 1
+
+PUSH@  OTHER   Data           ;Data area
+PUSH   WORD    DataLength     ;Data area length
+PUSH@  OTHER   ParmList       ;Command arguments
+PUSH   WORD    ParmListLength ;Command arguments list length
+PUSH   WORD    Function       ;Device function
+PUSH   WORD    Category       ;Device category
+PUSH   WORD    DevHandle      ;Device handle
+CALL   DosDevIOCtl2
+
+</code>
+
+Returns WORD
+
+{{page>en:templates:fapi}}

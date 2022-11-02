@@ -1,0 +1,89 @@
+{{page>en:templates:fapiint}}
+
+====== DosDelete ======
+
+This call removes a directory entry associated with a file name.
+
+===== Syntax =====
+
+<code c>
+DosDelete (FileName, Reserved)
+</code>
+
+===== Parameters =====
+
+  *FileName ([[PSZ]]) - input : Address of the name of the file to be deleted. [[DosQSysInfo]] is called by an application during initialization to determine the maximum path length allowed by OS/2.
+  * Reserved ([[ULONG]]) - input : Reserved and must be set to zero.
+
+===== Return Code =====
+
+
+  rc (USHORT) - return
+
+Return code descriptions are:
+
+  * 0         NO_ERROR 
+  * 2         ERROR_FILE_NOT_FOUND 
+  * 3         ERROR_PATH_NOT_FOUND 
+  * 5         ERROR_ACCESS_DENIED 
+  * 26        ERROR_NOT_DOS_DISK 
+  * 32        ERROR_SHARING_VIOLATION 
+  * 36        ERROR_SHARING_BUFFER_EXCEEDED 
+  * 87        ERROR_INVALID_PARAMETER 
+  * 206       ERROR_FILENAME_EXCED_RANGE
+
+===== Remarks =====
+
+Global file name characters are not permitted.
+
+A file whose read-only attribute is set cannot be deleted. To change the setting of the read-only bit, call [[DosSetFileMode]]. 
+
+===== Bindings =====
+
+==== C Binding ====
+
+<code c>
+  #define INCL_DOSFILEMGR
+  
+  USHORT  rc = DosDelete(FileName, Reserved);
+  
+  PSZ              FileName;      /* File name path */
+  ULONG            0;             /* Reserved (must be zero) */
+  
+  USHORT           rc;            /* return code */
+</code>
+
+==== Example ====
+
+This example deletes a file in the current directory named test.dat. 
+<code c>
+  #define INCL_DOSFILEMGR
+  
+  #define FILE_DELETE "test.dat"
+  #define RESERVED 0L
+  
+  USHORT rc;
+  
+   rc = DosDelete(FILE_DELETE,    /* File path name */
+                  RESERVED);      /* Reserved (must be zero) */
+</code>
+
+==== MASM Binding ====
+
+<code asm>
+  EXTRN  DosDelete:FAR
+  INCL_DOSFILEMGR     EQU 1
+  
+  PUSH@  ASCIIZ  FileName      ;Filename path name string
+  PUSH   DWORD   0             ;Reserved (must be zero)
+  CALL   DosDelete
+</code>
+Returns WORD
+
+===== Note =====
+
+
+Text based on [[http://www.edm2.com/index.php/DosDelete_(FAPI)]]
+
+{{page>en:templates:fapi}}
+

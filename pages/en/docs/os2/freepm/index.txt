@@ -1,0 +1,11 @@
+===== FreePM =====
+
+Material from [[http://wiki.laser.ru/os8/|OS8]].
+
+**FreePM** is a project aiming to create open source alternative for [[en:docs:os2:freepm:presentation_manager|Presentation Manager]] (a project developing the open source [[en:docs:os2:freepm:presentation_manager|Presentation Manager]]-compatible OS/2 [[ru:docs:freepm:gui|GUI]])
+
+  * [[en:docs:os2:freepm:terms|common terms]]
+  * [[en:docs:os2:freepm:workflow|how it works]]
+  * [[en:docs:os2:freepm:api|programming interface]]
+
+~~DISCUSSION~~

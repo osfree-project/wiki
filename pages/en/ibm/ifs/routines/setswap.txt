@@ -1,0 +1,30 @@
+==== FS_SETSWAP ====
+
+**Purpose**
+
+Perform whatever actions are necessary to support the swapper.   
+
+**Calling Sequence**
+
+<code c>
+int far pascal FS_SETSWAP(psffsi, psffsd)
+
+struct sffsi far * psffsi;
+struct sffsd far * psffsd;
+</code>
+
+**Where**
+
+//psffsi// is a pointer to the file-system-independent portion of an open file instance of the swapper file.   
+
+//psffsd// is a pointer to the file-system-dependent portion of an open file instance. 
+
+**Remarks**
+
+Swapping does not begin until this call returns successfully. This call is made during system initialization.   
+
+The FSD makes all segments that are relevant to swap-file I/O non-swappable (see //FSH_FORCENOSWAP//). This includes any data and code segments accessed during a read or write.   
+
+Any FSD that manages writeable media may be the swapper file system.   
+
+//FS_SETSWAP// may be called more than once for the same or different volumes or FSDs.   

@@ -1,0 +1,41 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=2AH ======
+
+===== Version =====
+
+1 and higher
+
+===== Brief =====
+
+GET SYSTEM DATE
+
+===== Family API =====
+
+
+===== Input =====
+
+        AH = 2Ah
+
+===== Return =====
+
+ CX = year (1980-2099)
+        DH = month
+        DL = day
+---DOS 1.10+---
+        AL = day of week (00h=Sunday)
+
+===== Notes =====
+
+
+===== See also =====
+
+ AH=2Bh"DOS",AH=2Ch,AH=E7h"Novell",INT 1A/AH=04h,INT 2F/AX=120Dh
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:int}}
+
+{{page>en:templates:fapi}}

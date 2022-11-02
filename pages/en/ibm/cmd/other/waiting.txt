@@ -1,0 +1,5 @@
+===== Waiting for Application to finish =====
+
+When you start an **OS/2** **Presentation Manager** application from the prompt, the command processor does not normally wait for the application to finish before returning to the prompt. This default behavior allows you to continue your work at the prompt while the application is running. You can force **CMD.EXE** to wait for applications to finish before continuing by selecting the "Wait for Completion" option on the Options 2 page of the [[OPTION]] dialogs, with the [[ExecWait]] directive in the .INI file, or with the [[START]] command's **/WAIT** switch (you can also use [[START]] to control many other aspects of how your applications are started). 
+
+Regardless of the [[ExecWait]] setting, **CMD.EXE** always waits for applications which are run from batch files before continuing with subsequent commands in the batch file. To start an application from a batch file and continue with the batch file immediately, without waiting for the application to finish, use the [[START]] command (without the **/WAIT** switch). 

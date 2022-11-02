@@ -1,0 +1,28 @@
+  * Install QEMU::Done::Sascha Schmidt::::
+  * Public::Loader::Create ext2fs partition::Done::Sascha Schmidt::::
+  * Public::Loader::Install LILO::Done::Sascha Schmidt::::
+  * Public::Loader::Install EXT2FS MicroFSD::Done::Sascha Schmidt::::
+  * GPL::Loader::Port FreeLDR to OpenWatcom::Done::Yuri Prokushev::::
+  * GPL::Loader::Port parts of GRUB Legacy Stage 2 loader to OpenWatcom::Done::Sascha Schmidt::::
+  * GPL::Loader::Modify GRUB disk io functions to use MicroFSD::Done::Sascha Schmidt::::
+  * GPL::Loader::Integrate GRUB parts into FreeLDR::Done::Sascha Schmidt::::
+  * GPL::Loader::Port assembler parts of GRUB to Watcom Assembler::Done::Valery Sedletski::::
+  * GPL::Loader::Execute L4 KickStart::Done::Sascha Schmidt::::
+  * GPL::Loader::Port MicroFSD to OpenWatcom::Done::Valery Sedletski::::
+  * GPL::Loader::Move MicroFSD to boot sector (remove LILO dependency)::Done::Valery Sedletski::::
+  * <del>GPL::Loader::Port MiniFSD to OpenWatcom::None::::::</del>
+  * <del>GPL::Loader::Port MiniFSD to 32-bit::None::::::</del>
+  * <del>GPL::Loader::Port EXT2.IFS to OpenWatcom::None::::::</del>
+  * <del>GPL::Loader::Port EXT2.IFS to 32-bit::None::::::</del>
+  * GPL::Loader::Port UEXT2.DLL to OpenWatcom::None::::::</del>
+  * <del>GPL::Loader::Move external Linux-like tools to UEXT2.DLL::None::::::</del>
+  * GPL::Boot::Build SDIOS and start extend it
+  * GPL::Boot::Create EXT2FS server like MINIXFS server
+  * GPL::Boot::Create OS/2 server stub
+  * Public::Distributive::Release 0.0.2 ISO-image::None::::::
+
+ During 0.0.2 we also ported some tools to OS/2. It is: 
+
+  * GENEXT2FS - ext2 filesystem image generator
+  * QEMU-IMG - tool, to manage disk image files
+  * Set of REXX tools to manake disk image files

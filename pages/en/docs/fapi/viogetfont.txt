@@ -1,0 +1,88 @@
+{{page>en:templates:fapiint}}
+
+====== VioGetFont ======
+
+
+This call returns either the font table of the size specified or the font in use.
+
+===== Syntax =====
+
+
+<code c>
+VioGetFont (RequestBlock, VioHandle)
+</code>
+
+===== Parameters =====
+
+  * RequestBlock ([[PVIOFONTINFO]]) - input/output: Address of the font structure that returns current RAM font or specified ROM or code page font depending on the request type.
+  * VioHandle ([[HVIO]]) - input : Reserved word of 0s.
+
+===== Return Code =====
+
+rc (USHORT) - return:Return code descriptions are:
+
+  *0 NO_ERROR
+  *355 ERROR_VIO_MODE
+  *421 ERROR_VIO_INVALID_PARMS
+  *438 ERROR_VIO_INVALID_LENGTH
+  *465 ERROR_VIO_DETACHED
+  *467 ERROR_VIO_FONT
+  *494 ERROR_VIO_EXTENDED_SG
+
+===== Remarks =====
+
+For reqtype = 1, return ROM font, the font size requested must be supported by the display adapter installed. The 8x8, 8x14, 9x14, 8x16, or 9x16 character font may be requested for the VGA or PS/2 Display Adapters. The 8x8, 8x14, or 9x14 font may be requested for the enhanced graphics adapter. The 8x8 font may be requested for the colour graphics adapter.
+
+Note: Although graphics mode support is provided in VioGetFont, this support is not provided by the Base Video Handlers provided with OS/2.
+
+For reqtype = 1, return ROM font, the far address returned is a ROM pointer only for those fonts where the font table for the full 256-character set is actually contained in ROM. Otherwise, the far address returned is a RAM pointer. Note that for 8x8 on the CGA, the font table for the full 256-character set is returned. For 9x14 or 9x16 the font table for the full 256-character set is also returned. Partial fonts are not returned. The 9x14 and 9x16 fonts are derived from variations of the 8x14 and 8x16 fonts, respectively, where the definitions of fonts for those characters that are different, are replaced.
+
+For VioGetFont specifying reqtype = 1, return ROM font, the font returned is derived from the fonts contained in the system, EGA, VGA, and PS/2 Display Adapter BIOS data areas as applicable. There is an exception for the EGA, VGA and PS/2 Display Adapter when [[VioSetCp]] or [[VioSetFont]] has been issued. In that case, the font of the size requested is returned from the active code page or the list of user fonts already set.
+
+===== Bindings =====
+
+==== C ====
+
+<code c>
+typedef struct _VIOFONTINFO { /* viofi */
+  USHORT  cb;                 /* length of this structure */
+  USHORT  type;               /* request type */
+  USHORT  cxCell;             /* pel columns in character cell */
+  USHORT  cyCell;             /* pel rows in character cell */
+  PVOID   pbData;             /* requested font table (returned) */
+  USHORT  cbData;             /* length of caller supplied data area (in bytes) */
+} VIOFONTINFO;
+
+#define INCL_VIO
+
+USHORT  rc = VioGetFont(RequestBlock, VioHandle);
+
+PVIOFONTINFO     RequestBlock;  /* Request block */
+HVIO             VioHandle;     /* Vio handle */
+
+USHORT           rc;            /* return code */
+</code>
+
+====MASM====
+<code asm>
+VIOFONTINFO struc
+  viofi_cb      dw  ? ;length of this structure
+  viofi_type    dw  ? ;request type
+  viofi_cxCell  dw  ? ;pel columns in character cell
+  viofi_cyCell  dw  ? ;pel rows in character cell
+  viofi_pbData  dd  ? ;requested font table (returned)
+  viofi_cbData  dw  ? ;length of caller supplied data area (in bytes)
+VIOFONTINFO ends
+
+EXTRN  VioGetFont:FAR
+INCL_VIO            EQU 1
+
+PUSH@  OTHER   RequestBlock  ;Request block
+PUSH   WORD    VioHandle     ;Vio handle
+CALL   VioGetFont
+
+Returns WORD
+</code>
+
+[[http://www.edm2.com/index.php/VioGetFont]]
+{{page>en:templates:fapi}}

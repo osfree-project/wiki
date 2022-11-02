@@ -1,0 +1,34 @@
+{{page>en:templates:biosint}}
+
+====== @GetChAtr ======
+
+===== Version =====
+
+IBM 5150 and higher
+
+===== Brief =====
+
+Get Character and Attribute
+
+===== BIOS Interrupt =====
+
+[[en:docs:bios:api:int10|INT10H]]: [[en:docs:bios:api:int10:08|08H]]
+
+===== Family API =====
+
+[[en:docs:fapi:VioReadCellStr]] [[en:docs:fapi:VioReadCharStr]]
+
+===== Syntax =====
+
+<code asm>
+@GetChAtr page
+</code>
+
+===== Parameters =====
+
+  * page (BYTE) - optional video page number
+
+===== Return =====
+
+
+{{page>en:templates:biosapi}}

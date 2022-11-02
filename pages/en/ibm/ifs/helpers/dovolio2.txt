@@ -1,0 +1,61 @@
+==== FSH_DOVOLIO2 ====
+
+**Purpose**
+
+This function is an FSD call that controls device driver operation independently from I/O operations.   
+
+**Calling Sequence**
+
+<code c>
+int far pascal FSH_DOVOLIO2(hDev, sfn, cat, func, pParm, cbParm, pData,
+                            cbData)
+
+unsigned long hDev;
+unsigned short sfn;
+unsigned short cat;
+unsigned short func;
+char far * pParm;
+unsigned short cbParm;
+char far * pData;
+unsigned short cbData;
+</code>
+
+**Where**
+
+//hDev// is the device handle obtained from VPB   
+
+//sfn// is the system file number from the open instance that caused the //FSH_DOVOLIO2// call.   
+
+This field should be passed unchanged from the //sfi-selfsfn// field. It no open instance corresponds to this call, this field should be set to 0xFFFF.   
+
+//cat// is the category of IOCTL to perform.   
+
+//func// is the function within the category of IOCTL.   
+
+//pParm// is the long address to the parameter area.   
+
+//cbParm// is the length of the parameter area.   
+
+//pData// is the long address to the data area.   
+
+//cbData// is the length of the data area. 
+
+**Returns**
+
+If no error is detected, a zero error code is returned. If an error is detected, one of the following error codes is returned:   
+
+  * ERROR_INVALID_FUNCTION -- indicates the function supplied is incompatible with the category and the device handle supplied. 
+  * ERROR_INVALID_CATEGORY -- indicates the category supplied is incompatible with the function and the device handle supplied. -- 
+  * Device-driver/device-manager errors listed /DDERR/ 
+
+**Remarks**
+
+This routine supports volume management for IOCTL operations. Any errors are reported to the hard error daemon before returning to the FSD. Any retries indicated by the hard error daemon or actions indicated by //DosError// are done within the call to //FSH_DOVOLIO2//.   
+
+The purpose of this routine is to enable volume tracking with IOCTLs. It is not available at the API level.   
+
+//FSH_DOVOLIO2// may block.   
+
+System does normal volume checking for this request.   
+
+**Note**:   OS/2 does not validate input parameters. An FSD, therefore, should call //FSH_PROBEBUF// where appropriate.   

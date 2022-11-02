@@ -1,0 +1,63 @@
+{{logos:os2.gif?35x35}} 
+
+**Please help to find info about enries marked as //No info//**
+
+===== PMSHLTKT =====
+
+^Ordinal ^Name ^Desc ^ Status ^
+| 1 | DOSREFRESHICONS | | |
+| 2 | GETICONDATA | | |
+| 3 | STRIPBLANKS | | |
+| 4 | GETICONHANDLEFORVIOEXE | | |
+| 5 | GETICONHANDLEFORPMEXE | | |
+| 6 | STRCAT | | |
+| 7 | STRCPY | | |
+| 8 | STRLEN | | |
+| 9 | ITOA | | |
+| 10 | STRCHR | | |
+| 11 | STRRCHR | | |
+| 12 | MEMCPY | | |
+| 13 | STRCMP | | |
+| 14 | ATOI | | |
+| 15 | ULTOA | | |
+| 16 | SETICONDATA | | |
+| 17 | ISDBCS | | |
+| 18 | NEXTPCH | | |
+| 19 | PREVPCH | | |
+| 20 | STRCMPI | | |
+| 21 | STRNCMPI | | |
+| 22 | STRNCAT_TRUNC | | |
+| 23 | STRNCAT | | |
+| 24 | STRNCPY_TRUNC | | |
+| 25 | STRNCPY | | |
+| 26 | STRSTR | | |
+| 27 | STRUPR | | |
+| 28 | XLATBLANK | | |
+| 29 | ATOL | | |
+| 30 | STRNCMP | | |
+| 31 | FSTRAVERSE | | |
+| 32 | FSQUERYDRIVEDATA | | |
+| 33 | FSRENAME | | |
+| 34 | FSCOPY | | |
+| 35 | FSMOVE | | |
+| 36 | FSDELETE | | |
+| 37 | OBJCREATEMSGPROC | | |
+| 38 | OBJDESTROYMSGPROC | | |
+| 39 | OBJSENDMSG | | |
+| 40 | FSTRAVINFO | | |
+| 41 | MRILOADRESOURCE | | |
+| 42 | STRPBRK | | |
+| 43 | _BldFEAList | | |
+| 44 | _BldMVMT | | |
+| 45 | ISNUMBER | | |
+| 46 | PRNCOPYDRIVER | | |
+| 47 | PRNQUERYEAVALUE | | |
+| 48 | PRNGETFILELIST | | |
+| 49 | WSPVAL | | |
+| 50 | INITLOCKHOOKPROC | | |
+| 51 | LOCKHOOKPROC | | |
+| 52 | LOCKDTPROC | | |
+| 53 | BLOCKHOOKPROC | | |
+| 54 | LOCKHWNDPROC | | |
+
+{{page>en:templates:dlls}}

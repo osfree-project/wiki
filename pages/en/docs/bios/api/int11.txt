@@ -1,0 +1,45 @@
+{{page>en:templates:biosint}}
+
+====== Int 11H ======
+
+===== Version =====
+
+IBM 5150 and later
+
+===== Brief =====
+
+Get equipment list
+
+===== Family API =====
+
+[[en:docs:fapi:DosDevConfig]]
+
+===== Input =====
+
+none
+
+===== Return =====
+
+  * (E)AX = BIOS equipment list word (see #00226,#03215 at INT 4B"Tandy")
+
+===== Macro =====
+
+<code asm>
+INCLUDE BIOS.INC
+
+@Equipment
+</code>
+
+===== Notes =====
+
+  * since older BIOSes do not know of the existence of EAX, the high word of EAX should be cleared before this call if any of the high bits will be tested
+
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:biosapi}}
+
+{{page>en:templates:fapi}}
+

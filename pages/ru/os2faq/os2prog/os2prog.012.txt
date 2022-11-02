@@ -1,0 +1,12 @@
+[Q]: Существуют ли аналоги OWL для OS/2?
+
+[A]: Dmitry Zavalishin (2:5020/32)
+
+Да. В Borland C 2.0 for OS/2 есть сам OWL, а в IBM C Set++ (Visual Age C++?)
+есть UI Class Lib - по отзывам, очень и очень неплох.
+
+[A]: Nick Vasilyev
+
+А еще есть:
+YACL - Yet Another Class Library (OS/2, Windows, Linux. Ultrix. SunOS)
+OCL - OS/2 Class Library

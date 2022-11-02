@@ -1,0 +1,31 @@
+{{page>en:templates:biosint}}
+
+====== @Cls ======
+
+===== Brief =====
+
+Clear screen
+
+===== BIOS Interrupt =====
+
+[[en:docs:bios:api:int10|INT10H]]: [[en:docs:bios:api:int10:|H]]
+
+===== Family API =====
+
+[[en:docs:fapi:]]
+
+===== Syntax =====
+
+<code asm>
+@Cls
+</code>
+
+===== Parameters =====
+
+none
+
+===== Return =====
+
+none
+
+{{page>en:templates:biosapi}}

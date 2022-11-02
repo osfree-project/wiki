@@ -1,0 +1,44 @@
+{{page>en:templates:biosint}}
+
+====== Int 16H, AH=00H ======
+
+===== Version =====
+
+IBM 5150 and higher
+
+===== Brief =====
+
+Read char from keyboard
+
+===== osFree Macro Library =====
+
+[[en:docs:macrolib:@CharIn]]
+
+===== Family API =====
+
+[[en:docs:fapi:KbdCharIn]]
+
+===== Input =====
+
+  * AH = 00h
+
+===== Return =====
+
+  * AH = BIOS scan code
+  * AL = ASCII character
+
+===== Notes =====
+
+  * on extended keyboards, this function discards any extended keystrokes, returning only when a non-extended keystroke is available
+  * the BIOS scan code is usually, but not always, the same as the hardware scan code processed by INT 09.  It is the same for ASCII keystrokes and most unshifted special keys (F-keys, arrow keys, etc.), but differs for shifted special keys
+  * some (older) clone BIOSes do not discard extended keystrokes and manage function AH=00h and AH=10h the same
+  * the K3PLUS v6.00+ INT 16 BIOS replacement doesn't discard extended keystrokes (same as with functions 10h and 20h), but will always translate prefix E0h to 00h. This allows old programs to use extended keystrokes and should not cause compatibility problems
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:biosapi}}
+
+{{page>en:templates:fapi}}
+

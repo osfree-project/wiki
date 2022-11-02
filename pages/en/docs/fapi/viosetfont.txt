@@ -1,0 +1,92 @@
+{{page>en:templates:fapiint}}
+
+====== VioSetFont ======
+
+This call downloads a display font. The font being set must be compatible with the current mode.
+
+===== Syntax =====
+<code c>
+ VioSetFont (RequestBlock, VioHandle)
+</code>
+===== Parameters =====
+
+  * RequestBlock ([[PVIOFONTINFO]]) - input: Address of the font structure containing the request.
+  * VioHandle ([[HVIO]]) - input: Reserved word of 0s.
+
+===== Return Code =====
+
+rc (USHORT) - return:Return code descriptions are:
+
+  *0 NO_ERROR
+  *355 ERROR_VIO_MODE
+  *421 ERROR_VIO_INVALID_PARMS
+  *436 ERROR_VIO_INVALID_HANDLE
+  *438 ERROR_VIO_INVALID_LENGTH
+  *465 ERROR_VIO_DETACHED
+  *467 ERROR_VIO_FONT
+  *468 ERROR_VIO_USER_FONT
+  *494 ERROR_VIO_EXTENDED_SG
+
+===== Remarks =====
+
+VioSetFont is applicable only for the enhanced graphics adapter, VGA or IBM Personal System/2 Display Adapter.
+
+Note: Although graphics mode support is provided in VioSetFont, this support is not provided by the Base Video Handlers provided with OS/2.
+
+When VioSetFont is issued, the current code page is reset. If [[VioGetCp]] is subsequently issued, the error code ERROR_VIO_USER_FONT is returned. Return code, ERROR_VIO_USER_FONT represents a warning. It indicates that although the font could not be loaded into the adapter using the current mode, the font was saved as part of a special user font code page for use with a later [[VioSetMode]]. Successfully setting a user font sets the special user font code page, just as if a code page of -1 was specified using [[VioSetCp]].
+
+The user font code page consists of the most recent user font of each size that was set by VioSetFont. For example, if two 8x12 fonts and three 8x16 fonts had been set, only two fonts, the most recent of the 8x12 and 8x16 fonts, would be saved.
+
+The special code page is used in the same way as those code pages specified on the CODEPAGE = statement in CONFIG.SYS.
+
+===== Bindings =====
+
+====C====
+<code c>
+typedef struct _VIOFONTINFO{ /* viofi */
+  USHORT  cb;                /* length of this structure */
+  USHORT  type;              /* request type */
+  USHORT  cxCell;            /* pel columns in character cell */
+  USHORT  cyCell;            /* pel rows in character cell */
+  PVOID   pbData;            /* requested font table (returned) */
+  USHORT  cbData;            /* length of caller supplied data area (in bytes) */
+} VIOFONTINFO;
+
+#define INCL_VIO
+
+USHORT  rc = VioSetFont(RequestBlock, VioHandle);
+
+PVIOFONTINFO     RequestBlock;  /* Request block */
+HVIO             VioHandle;     /* Video handle */
+
+USHORT           rc;            /* return code */
+</code>
+
+====MASM====
+<code asm>
+VIOFONTINFO struc
+  viofi_cb      dw  ? ;length of this structure
+  viofi_type    dw  ? ;request type
+  viofi_cxCell  dw  ? ;pel columns in character cell
+  viofi_cyCell  dw  ? ;pel rows in character cell
+  viofi_pbData  dd  ? ;requested font table (returned)
+  viofi_cbData  dw  ? ;length of caller supplied data area (in bytes)
+VIOFONTINFO ends
+
+EXTRN VioSetFont:FAR
+INCL_VIO            EQU 1
+
+PUSH@  OTHER   RequestBlock  ;Request block
+PUSH   WORD    VioHandle     ;Video handle
+CALL   VioSetFont
+
+Returns WORD
+</code>
+
+===== Related Functions =====
+
+[[VioGetFont]]
+
+[[http://www.edm2.com/index.php/VioSetFont]]
+
+{{page>en:templates:fapi}}

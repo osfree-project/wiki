@@ -1,0 +1,23 @@
+===== Generation 1 infrastructure =====
+
+**Note**: Generation 1 osfree.org not here now but links will redirect you to correct place
+
+First generation osFree.org consist of index.html file with frames descrioption, one (later - two) static page and set of pages by topic.
+
+Static pages:
+
+|index.html         |frames description and start page|
+|top.html            |top frame (was added later) with osFree logo|
+|menu.html         |navigation frame|
+
+Topic pages:
+
+|start.html           |news page|
+|objective.html    |project desctiption page|
+|developing.html |developers gudelines|
+|licence.html       |license page (note, file name misspelled)|
+|members.html   |list of osFree members|
+|download.html   |download area|
+|contact.html      |contact information|
+
+~~DISCUSSION~~

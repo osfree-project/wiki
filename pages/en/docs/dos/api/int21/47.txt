@@ -1,0 +1,46 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=47H ======
+
+===== Version =====
+
+2 and higher
+
+===== Brief =====
+
+"CWD" - GET CURRENT DIRECTORY
+
+===== Family API =====
+
+
+===== Input =====
+
+	AH = 47h
+	DL = drive number (00h = default, 01h = A:, etc)
+	DS:SI -> 64-byte buffer for ASCIZ pathname
+
+===== Return =====
+
+ CF clear if successful
+	    AX = 0100h (undocumented)
+	CF set on error
+	    AX = error code (0Fh) (see #01680 at AH=59h/BX=0000h)
+
+===== Notes =====
+
+  the returned path does not include a drive or the initial backslash
+	many Microsoft products for Windows rely on AX being 0100h on success
+	under the FlashTek X-32 DOS extender, the buffer pointer is in DS:ESI
+          
+===== See also =====
+
+ AH=19h,AH=3Bh,AH=71h,INT 15/AX=DE25h
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:int}}
+
+{{page>en:templates:fapi}}
+

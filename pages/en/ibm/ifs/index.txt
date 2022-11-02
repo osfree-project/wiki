@@ -1,0 +1,16 @@
+===== OS/2 Installable file systems =====
+
+^Cover page     ^ ^
+|  {{en:img0.gif}}  |  Installable File Systems \\ For OS/2 Version 2.0 \\ OS/2 File Systems Department \\ \\ PSPC Boca Raton, Florida \\ \\ \\ Translated to IPF by Andre Asselin \\ \\ Version 0.1\\ July 1993  |
+|  {{en:img1.gif}}  |::: |
+
+==== Table of Contents ====
+
+  * [[en:ibm:ifs:disclaimer|Disclaimer]]
+  * [[en:ibm:ifs:changes|Changes]]
+  * [[en:ibm:ifs:mechanism|Installable File System Mechanism]]
+  * [[en:ibm:ifs:routines|FS Service Routines]]
+  * [[en:ibm:ifs:helpers|FS Helper Functions]]
+  * [[en:ibm:ifs:boot|Remote IPL/Bootable IFS]]
+  * [[en:ibm:ifs:mfsd-entries|mini-FSD Entry Points]]
+  * [[en:ibm:ifs:mfsd-helpers|mini-FSD Helper Routines]]

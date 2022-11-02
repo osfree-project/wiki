@@ -1,0 +1,14 @@
+[Q]: Поддержка звуковухи SB128 PCI под OS/2
+
+[A]: Aleksey Kazimirchak (2:5030/394.89)
+
+Значитца так... Я скачал с IBM`а драйвер для Ensoniq`а
+(ensoniq.exe). Проинсталлил. В config.sys удалил параметр
+NoHwTimer. Появился звук. Залез в MMPM2.INI.
+Hастроил вот так:
+
+PARMSTRING=FORMAT=1,SAMPRATE=44100,BPS=16,CHANNELS=2,DIRECTION=PLAY
+
+Звук пошел вроде без хрипов. Подробности - см. в обсуждении ES1373.
+
+Да, midi - файлы играть не хочет.... :-((

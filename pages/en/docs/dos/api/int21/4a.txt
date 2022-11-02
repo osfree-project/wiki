@@ -1,0 +1,47 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=4AH ======
+
+===== Version =====
+
+2 and higher
+
+===== Brief =====
+
+RESIZE MEMORY BLOCK
+
+===== Family API =====
+
+
+===== Input =====
+
+	AH = 4Ah
+	BX = new size in paragraphs
+	ES = segment of block to resize
+
+===== Return =====
+
+   CF clear if successful
+	CF set on error
+	    AX = error code (07h,08h,09h) (see #01680 at AH=59h/BX=0000h)
+	    BX = maximum paragraphs available for specified memory block
+
+===== Notes =====
+
+	under DOS 2.1-6.0, if there is insufficient memory to expand the block
+	  as much as requested, the block will be made as large as possible
+	DOS 2.1-6.0 coalesces any free blocks immediately following the block
+	  to be resized
+          
+===== See also =====
+
+ AH=48h,AH=49h,AH=83h
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:int}}
+
+{{page>en:templates:fapi}}
+

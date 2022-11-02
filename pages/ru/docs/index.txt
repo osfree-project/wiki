@@ -1,0 +1,84 @@
+===== Документация по osFree =====
+
+Добро пожаловать в раздел документации по osFree на русском языке! Это смесь
+документации, сгенерированной при помощи doxygen и ручной правки. Выберите одну
+из нижеследующих категорий:
+
+==== Разное ====
+
+Различные общие идеи об osFree
+
+  * [[ru:docs:general:index|Концепция разработки и построения osFree]]
+  * [[ru:docs:general:architecture|Сборник идей по архитектуре osFree]]
+  * [[ru:develop:guidelines|Руководство разработчика]]
+  * [[ru:docs:web:index|Руководство веб-мастера]]
+  * [[en:docs:cvs|osFree SVN Readme]]
+  * [[en:docs:building_hard_disk_image_for_bochs|Building hard disk image for Bochs]]
+  * [[en:docs:distribution|Идеи насчет дистрибутива osFree]]
+
+==== Последовательность загрузки ====
+
+Здесь можно найти информацию о процессе загрузки osFree 
+
+  * [[ru:docs:boot:index|Справочники и руководства по процессу загрузки]]
+  * [[en:docs:boot:memmap|Последовательность загрузки osFree  (изменение карты памяти на разных этапах)]]
+  * [[ru:docs:boot:bootseq2|Последовательность загрузки osFree (Предварительный вариант II)]]
+    * [[en:docs:boot:freeldr:history|Исторические замечания о FreeLDR]]
+    * [[en:docs:boot:freeldr:os2csm|Идеи, возникшие по поводу OS2CSM]]
+    * [[en:docs:boot:freeldr:ldr-design|Дизайн FreeLDR и идеи]]
+    * [[en:docs:boot:freeldr:relnotes|FreeLDR 0.0.2 замечания по релизу]]
+    * [[en:docs:boot:freeldr:bootos2|Об OS/2 бутере]]
+  * [[en:docs:boot:kickstart|Последовательность загрузки osFree (От старта ядра до запуска root сервера)]]
+  * [[ru:docs:boot:mbr|MBR-загрузчик osFree]]
+  * [[ru:docs:boot:bootsector|бутсекторы для osFree]]
+
+==== Микроядро ====
+
+Микроядро, вначале это было  L4Ka::Pistachio, теперь Fiasco.OC
+
+=== Старые документы про  L4 X.2 ===
+
+  * {{downloads:docs:idl4_manual.pdf|IDL4 Manual}}
+  * {{downloads:docs:l4-x2-r5.pdf|L4 Version X.2 Reference Manual}}
+  * [[en:docs:kickstart|Документация L4Ka:Kickstart]]
+  * [[en:docs:kernel:build|Процесс сборки L4Ka::Pistachio]]
+  * [[en:docs:kernel:fiasco:build|Процесс сборки Fiasco и L4Linux]]
+
+=== Новые документы, Fiasco.OC ===
+
+**TODO**
+
+==== Personality-нейтральные сервисы ====
+
+Тонкий слой API между микроядром и OS Personalities (набор серверов и 
+библиотек)
+
+**UPDATE THIS!**
+
+  * Корневой сервер
+  * Сервер ввода-вывода
+  * [[en:api:kbd|Сервер клавиатуры]]
+  * [[en:api:vio|Сервер VIO]]
+  * [[en:docs:virtual_file_system_servers|Серверы l4vfs]]
+
+==== OS/2 personality ====
+
+Секция, посвященная разработке OS/2 API.
+
+  * [[en:docs:os2:architecture|Идеи по архитектуре OS/2 personality]]
+  * [[en:docs:os2:ifs|Инсталлируемые файловые системы]]
+  * [[en:docs:os2:ixf|Инсталлируемые форматы исполняемых файлов]]
+  * [[en:docs:os2:cmd:index|Руководство по утилитам командной строки]]
+  * [[en:docs:os2:modules|Модули и их точки входа]]
+  * [[en:docs:os2:pm:index|Presentation Manager]]
+  * [[ru:docs:os2:freepm:index|Документация FreePM]]
+  * [[ru:docs:os2:bld:index|Документация по Build Level]]
+  * [[en:ibm:index|Документация IBM OS/2 Toolkit и DDK]]
+  * [[en:docs:os2:api:vio|VIO API]]
+  * [[en:docs:os2:api:cpi|CPI API]]
+  * [[en:docs:general:mvm|MVM сервер]]
+  * [[en:docs:os2:os2srv|Главный сервер OS/2 personality]]
+  * [[en:docs:os2:os2exec|Сервер os2exec]]
+  * [[en:docs:os2:os2fs|Сервер файловых систем]]
+  * [[en:docs:os2:kal|Слой абстрагирования от ядра]]
+  * [[en:docs:os2:doscall|Библиотека DOSCALLS.DLL]]

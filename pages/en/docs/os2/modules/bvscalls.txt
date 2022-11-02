@@ -1,0 +1,60 @@
+{{logos:os2.gif?35x35}} 
+
+**Please help to find info about enries marked as //No info//**
+
+===== BVSCALLS =====
+
+This is forwarder DLL to [[DOSCALLS]].DLL
+
+^Ordinal ^Name ^Desc ^ Status ^
+| 1 |BVSGETPTRDRAWNAME | Forwarder to DOSCALLS.847 | Done |
+| 3 |BVSMAIN | Forwarder to DOSCALLS.845 | Done |
+| 4 |BVSREDRAWSIZE | Forwarder to DOSCALLS.846 | Done |
+
+BVSMAIN functions number
+
+^ Number ^ Name ^
+| 0 | VioGetPhysBuf |
+| 1 | VioGetBuf |
+| 2 | VioShowBuf |
+| 3 | VioGetCurPos |
+| 4 | VioGetCurType |
+| 5 | VioGetMode |
+| 6 | VioSetCurPos |
+| 7 | VioSetCurType |
+| 8 | VioSetMode |
+| 9 | VioReadCharStr |
+| 10 | VioReadCellStr |
+| 11 | VioWrtNChar |
+| 12 | VioWrtNAttr |
+| 13 | VioWrtNCell |
+| 14 | VioWrtCharStr |
+| 15 | VioWrtCharStrAtt |
+| 16 | VioWrtCellStr |
+| 17 | VioWrtTTY |
+| 18 | VioScrollUp |
+| 19 | VioScrollDn |
+| 20 | VioScrollLf |
+| 21 | VioScrollRt |
+| 22 | VioSetAnsi |
+| 23 | VioGetAnsi |
+| 24 | VioPrtSc |
+| 25 | VioScrLock |
+| 26 | VioScrUnLock |
+| 27 | VioSavRedrawWait |
+| 28 | VioSavRedrawUndo |
+| 29 | VioPopUp |
+| 30 | VioEndPopUp |
+| 31 | VioPrtScToggle |
+| 32 | VioModeWait |
+| 33 | VioModeUndo |
+| 34 | VioGetFont |
+| 35 | VioGetConfig |
+| 36 | VioSetCp |
+| 37 | VioGetCp |
+| 38 | VioSetFont |
+| 39 | VioGetState |
+| 40 | VioSetState |
+              
+
+{{page>en:templates:dlls}}

@@ -1,0 +1,84 @@
+{{page>en:templates:fapiint}}
+
+====== DosFindClose ======
+
+This call closes the association between a directory handle and a [[DosFindFirst]] or [[DosFindNext]] directory search function.
+
+===== Syntax =====
+
+<code c>
+DosFindClose (DirHandle)
+</code>
+
+===== Parameters =====
+
+  * DirHandle ([[HDIR]]) - input : bHandle previously associated with a [[DosFindFirst]] by the system, or used with a [[DosFindNext]] directory search function.
+
+===== Return Code =====
+
+rc ([[USHORT]]) - return
+
+Return code descriptions are:
+
+  * 0  NO_ERROR
+  * 6  ERROR_INVALID_HANDLE Remarks
+
+===== Remarks =====
+
+When DosFindClose is issued, a subsequent [[DosFindNext]] for the closed DirHandle fails unless an intervening [[DosFindFirst]] has been issued specifying DirHandle.
+
+===== Bindings =====
+
+==== C Binding ====
+
+<code c>
+#define INCL_DOSFILEMGR
+
+USHORT  rc = DosFindClose(DirHandle);
+
+HDIR    DirHandle;     /* Directory search handle */
+USHORT  rc;            /* return code */
+</code>
+
+==== MASM Binding ====
+
+<code asn>
+EXTRN  DosFindClose:FAR
+INCL_DOSFILEMGR     EQU 1
+
+PUSH   WORD    DirHandle     ;Directory search handle
+CALL   DosFindClose
+
+</code>
+
+Returns WORD
+
+==== Example ====
+
+This example searches for a file, then closes the search.
+<code c>
+#define INCL_DOSFILEMGR
+#define SEARCH_PATTERN "*.*"
+#define FILE_ATTRIBUTE 0
+#define RESERVED 0L
+
+HDIR  FindHandle;
+
+   FindHandle = 0x0001;
+   FindCount = 1;
+
+   rc = DosFindFirst(SEARCH_PATTERN,        /* File pattern */
+                     &FindHandle,           /* Directory search handle */
+                     FILE_ATTRIBUTE,        /* Search attribute */
+                     &FindBuffer,           /* Result buffer */
+                     sizeof(FindBuffer),    /* Result buffer length */
+                     &FindCount,            /* # of entries to find */
+                     RESERVED);             /* Reserved (must be zero) */
+   rc = DosFindClose(FindHandle);           /* Directory search handle */
+</code>
+
+===== Note =====
+
+Text based on [[http://www.edm2.com/index.php/DosFindClose_(OS/2_1.x)]]
+
+{{page>en:templates:fapi}}

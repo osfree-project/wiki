@@ -1,0 +1,44 @@
+==== FSH_REGISTERPERFCTRS ====
+
+**Purpose**
+
+This function allows the FSD to register with the PERFVIEW product. The FSD passes pointers to its counter data and text blocks.   
+
+**Calling Sequence**
+
+<code c>
+int far pascal FSH_REGISTERPERFCTRS(pDataBlk, pTextBlk, fsFlags)
+
+void far * pDataBlk;
+void far * pTextBlk;
+unsigned short fsFlags;
+</code>
+  
+**Where**
+
+//pDataBlk// is a pointer to the data block where the actual counters reside.   
+
+//pTextBlk// is a pointer to the block that contains instance and name information about counters in the associated //DataBlk//.   
+
+//fsFlags// indicates what type of addressing is going to be used.   
+
+|Bit 0 off |indicates 16:16 pointers |
+|Bit 0 on |indicates 0:32 pointers   |
+
+All other bits are reserved and must be zero. 
+
+**Returns**
+
+If no error is detected, a zero error code is returned. If an error is detected, one of the following error codes is returned:   
+
+  * ERROR_INVALID_PARAMETER -- the flag word is invalid.  
+  * ERROR_PVW_INVALID_COUNTER_BLK -- the specified buffer is not in the correct PERFVIEW data block format  
+  * ERROR_PVW_INVALID_TEXT_BLK -- the specified buffer is not in the correct PERFVIEW text block format 
+
+**Remarks**
+
+For a detailed description of the PERFVIEW interface and its associated data structures please see the OS/2 Version 2.0 PERFVIEW OEMI Document.   
+
+//FSH_REGISTERPERFCTRS// may block.   
+
+**Note**:   OS/2 does not validate input parameters. An FSD, therefore, should call //FSH_PROBEBUF// where appropriate.   

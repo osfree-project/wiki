@@ -1,0 +1,44 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=2EH ======
+
+===== Version =====
+
+1 and higher
+
+===== Brief =====
+
+ SET VERIFY FLAG
+
+===== Family API =====
+
+
+===== Input =====
+
+        AH = 2Eh
+        DL = 00h (DOS 1.x/2.x only)
+        AL = new state of verify flag
+            00h off
+            01h on
+
+===== Return =====
+
+none
+
+===== Notes =====
+
+  default state at system boot is OFF
+        when ON, all disk writes are verified provided the device driver
+          supports read-after-write verification
+
+===== See also =====
+
+ AH=54h
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:int}}
+
+{{page>en:templates:fapi}}

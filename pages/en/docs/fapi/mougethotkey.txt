@@ -1,0 +1,26 @@
+{{page>en:templates:fapiint}}
+
+====== MouSetHotKey ======
+
+Returns mouse button or buttons defined as system hot key.
+
+===== Syntax =====
+<code c>
+ MouSetHotKey(HotKey, DeviceHandle)
+</code>
+
+===== Parameters =====
+
+
+  * HotKey ()
+  * DeviceHandle (HMOU)
+
+===== Return Code =====
+
+  * ERROR_MOUSE_NO_DEVICE
+
+=====Related Functions=====
+[[MouSetHotKey]]
+
+{{page>en:templates:fapi}}
+

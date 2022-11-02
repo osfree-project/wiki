@@ -1,0 +1,49 @@
+{{page>en:templates:dpmi}}
+
+====== Int 31H, AH=00H, AL=00H ======
+
+===== Version =====
+
+0.9
+
+===== Brief =====
+
+Allocate LDT Descriptors
+
+===== Input =====
+
+  AX = 0000H
+  CX = number of descriptors to allocate
+
+===== Return =====
+
+  if function successful
+  Carry flag = clear
+  AX = base selector
+  
+  if function unsuccessful
+  Carry flag = set
+  AX = error code
+  8011H	descriptor unavailable
+  
+===== Notes =====
+
+Allocates one or more descriptors in the task's Local Descriptor Table (LDT). The descriptor(s) allocated must be initialized by the application with other function calls.
+
+If more than one descriptor was requested, the function returns a base selector referencing the first of a contiguous array of descriptors. The selector values for subsequent descriptors in the array can be calculated by adding the value returned by Int 31H Function 0003H.
+
+The allocated descriptor(s) will be set to "data" with the present bit set and a base and limit of zero. The privilege level of the descriptor(s) will match the application's code segment privilege level.
+
+Refer to the rules for descriptor usage in Appendix D.
+          
+===== See also =====
+
+   
+
+===== Note =====
+
+Text based on [[http://www.delorie.com/djgpp/doc/dpmi/]]
+
+{{page>en:templates:dpmi:int}}
+
+

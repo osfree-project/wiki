@@ -1,0 +1,18 @@
+{{page>en:templates:biosint}}
+
+====== Int 14H ======
+
+Serial Port BIOS API. All registers saved on entry and restores on return.
+
+===== BIOS Interrupts =====
+
+^ Function ^ Macro ^ Description ^ Version ^
+| [[en:docs:bios:api:int14:00|00H]] | [[en:docs:macrolib:@AuxInit]]((osFree extension)) | Init Serial port | 5150+ |
+| [[en:docs:bios:api:int14:01|01H]] | [[en:docs:macrolib:@AuxSendChar]]((osFree extension)) | Send char to port | 5150+ |
+| [[en:docs:bios:api:int14:02|02H]] | [[en:docs:macrolib:@AuxRecieveChar]]((osFree extension)) | Recieve char from port | 5150+ |
+| [[en:docs:bios:api:int14:03|03H]] | [[en:docs:macrolib:@AuxStatus]]((osFree extension)) | Get Current port status | 5150+ |
+
+{{page>en:templates:biosapi}}
+
+{{page>en:templates:fapi}}
+

@@ -1,0 +1,129 @@
+[Q]: Есть ли аналог GetRight под OS/2?
+
+[A]: Valeri Tokarev (2:5000/104.38)
+
+/* скрипт для urlres */
+'urlres http://ibg.rsl.ru/files/os2faqs.zip  -p http://192.168.6.5:3128/'
+'urlres ftp://ftp.leo.org/pub/comp/os/os2/leo/devtools/utils/dmake40os2.zip -p
+http://192.168.6.5:3128/'
+'urlres  ftp://hobbes.nmsu.edu/pub/os2/dev/emx/contrib/gcc/lobj-bin.zip -p
+http://192.168.6.5:3128/'
+'urlres  ftp://ftp.iem.ac.ru/pub/vnc/pmvnc004.zip -p http://192.168.6.5:3128/'
+'urlres  ftp://ftp.kemsc.ru/pub/sen/hiew610.zip -p http://192.168.6.5:3128/'
+'urlres http://www.geocities.com/SiliconValley/Pines/7885/PC2/pc2v210.zip -p
+http://192.168.6.5:3128/'
+
+=== Cut ===
+URL Resume v0.12
+================
+URL Resume is a simple command line HTTP file transfer utility that has the
+ability to resume a partially complete web download. For this to work the
+server must be HTTP 1.1 compatible (which many are these days).
+
+Usage is very easy. Firstly, ensure that the part of the file that has already
+been downloaded is in the current directory. Then use the command:
+
+ urlresume full_url [-p proxy_url]
+
+where full_url is the full URL of the file you're trying to get. The leading
+http:// can be omitted (only http URLs are supported).
+
+If the site is password protected, you can include your userid and password
+in the standard format, EG http://userid:password@www.securehost.com/doc.html
+This will cause urlresume to send an HTTP 'Basic' authorisation.
+
+A proxy can be specified using the -p switch. This will typically take the
+form: urlresume www.company.com/files/file.zip -p proxy.myisp.com:8080
+
+Hint: if you originally tried the download from Netscape, right click the link
+and select 'Copy this Link Location' then paste the URL to the command line.
+
+URL Resume is not limited to continuing downloads. It is quite able to start
+a new transfer, allowing batched file transfers and other uses.
+
+Legal Stuff
+-+---------
+  URL Resume is distributed as Freeware. This means that you are free to copy
+
+See http://silk.apana.org.au/utils.html for updates.
+Brian Havard
+=== Cut ===
+
+Практически отовсюду тянется и докачивается (вызовы в цикле на бобике)
+Скачанные файлы не трогает и не повторяет, ОК?
+
+[A]: Aliaksandr Dzeshchanka (2:450/146)
+
+Есть целый вагон внешних пpиблyд для запyска GNU WGET, самая
+фyнкциональная и пока что пpодолжающая писаться (сеpедина маpта 2001) - PM
+Download Center By Daniel Jorge Caetano (http://www.quasarbbs.com/daniel/)
+
+■■■ Features
+
+ - PM Shell interface.
+ - Almost no CPU overhead.
+ - When it detects  one URL at  the desktop or  waiting directory it
+   starts the download automaticaly.
+ - Use the "Create  URL  Object" from  Communicator to  easily start
+   your downloads.
+ - Select the time between checks from 15s to 300s.
+ - "Multithread". You can open several downloads at the same time.
+ - Acts directly on WGet error message, to correctly take the proper
+   action.
+ - You can change the maximum  number of downloads "on the fly". You
+   can select from 1 to 16 downloads.
+ - Correctly  manages  unexpected shutdown/power off/connection down
+   or program abortions, so you can be sure your file WILL be fine.
+ - Easy to configure.
+ - Great 40x40 icons (32x32 version also present)
+ - Enable/Disable all downloads with a click
+ - Change all  parameters (including  WGet, directories, etc) on the
+   fly.
+ - Delete URLs easily
+ - Freeze a URL for future download.
+ - Stop a download, if you want to.
+ - Change download order at any time.
+ - Select between WGet being launched normaly or hidden.
+ - Internet Connection Verify
+ - Select between the program start shown or hidden
+ - Select between "wide window" or "Small Window" WGet mode.
+ - Download filters!
+ - Now it supports  directories  with  spaces (such  as "Ambiente de
+   Trabalho", on Brazilian-Portuguese version of OS/2.
+ - Two directories to scan: the  Virtual Destkop  plus any other you
+   wish.
+ - Used URLs are optionally backuped in a repository folder.
+ - URL Properties editable.
+ - Optional Logging facility.
+ - Desktop directory auto-detection.
+ - No "phamtom" objects left on scan folders.
+ - Cool configuration page.
+
+
+
+■■■ Coming Soon Features... and limitations
+
+ - Proxy Configuration
+ - User Agent configuration for WGet
+ - Name/Password logging for each URL
+ - Capture "Link Click" of  Netscape, so you'll be  able to download
+   just like you do with GetRight. (Not very soon)
+ - Dran'n'Drop (not very soon).
+ - Mirror option (maybe never... maybe a new exclusive program. ;-)
+ - Filters for local placement of files
+ - Online Help
+ - Timed start/stop of downloads.
+ - Not working URLs folder (???)
+ - Serach on ftpserach for another hosts for download.
+ - Stripped downloads (the file is downloaded by 4 WGets at the same
+   time (I think it's not possible using WGet, but maybe...)
+ - URL on .HISTORY and not on .SUBJECT (need to contact WGet author)
+ - Add option to use cURL as download program.
+ - Make your suggestion.
+
+[A]: Vadim Priluzkiy (2:5030/301.28)
+
+PM - Downloader
+Понимает файлы больше 2Gb (на JFS), умеет работать через прокси, приятный и
+удобный интерфейс, управление черей пайпы, FAR-like регистрация для жителей
+xUSSR.  Живёт по адресу: http://eros2.by.ru

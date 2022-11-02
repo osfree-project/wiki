@@ -1,0 +1,16 @@
+{{logos:os2.gif?35x35}} 
+
+===== MONCALLS =====
+
+This DLL is forwarder to [[en:docs:os2:modules:DOSCALLS]].DLL. No real code here.
+
+^ Ordinal ^ Name ^ Description ^ Status ^ FAPI ^ Version ^
+| 1 | [[en:docs:os2:api:mon:dos16monwrite|DosMonWrite]] | Forwarder to DOSCALLS.609  | Done | No | 1.0 |
+| 2 | [[en:docs:os2:api:mon:dos16monread|DosMonRead]] | Forwarder to DOSCALLS.608  | Done | No | 1.0 |
+| 3 | [[en:docs:os2:api:mon:dos16monclose|DosMonClose]] | Forwarder to DOSCALLS.607 | Done | No | 1.0 |
+| 4 | [[en:docs:os2:api:mon:dos16monopen|DosMonOpen]] | Forwarder to DOSCALLS.606 | Done | No | 1.0 |
+| 5 | [[en:docs:os2:api:mon:dos16monreg|DosMonReg]] | Forwarder to DOSCALLS.610 | Done | No | 1.0 |
+
+
+{{page>en:templates:dlls}}
+{{page>en:templates:os2api}}

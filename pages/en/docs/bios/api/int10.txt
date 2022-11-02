@@ -1,0 +1,30 @@
+{{page>en:templates:biosint}}
+
+====== Int 10H ======
+
+Video BIOS API. All registers saved on entry and restores on return.
+
+===== BIOS Interrupts =====
+
+^ Function ^ Macro ^ Description ^ Version ^
+| [[en:docs:bios:api:int10:00|00H]] | [[en:docs:macrolib:@SetMode]]((Defined in MASM 5.x)) | Set Video Mode | 5150+ |
+| [[en:docs:bios:api:int10:01|01H]] | [[en:docs:macrolib:@SetCurSz]]((Defined in MASM 5.x)) | Set Cursor Shape Size | 5150+ |
+| [[en:docs:bios:api:int10:02|02H]] | [[en:docs:macrolib:@SetCurPos]]((Defined in MASM 5.x)) | Set Cursor Position | 5150+ |
+| [[en:docs:bios:api:int10:03|03H]] | [[en:docs:macrolib:@GetCur]]((Defined in MASM 5.x)) | Get Current Cursor Position | 5150+ |
+| 04H | | READ LIGHT PEN POSITION | 5150+ |
+| [[en:docs:bios:api:int10:05|05H]]| [[en:docs:macrolib:@SetPage]]((Defined in MASM 5.x)) | Set Active Video Page | 5150+ |
+| [[en:docs:bios:api:int10:06|06H]]| [[en:docs:macrolib:@ScrollUp]]((osFree extension)) | Scroll Screen Area Up | 5150+ |
+| [[en:docs:bios:api:int10:07|07H]]| [[en:docs:macrolib:@ScrollDn]]((osFree extension)) | Scroll Screen Area Down | 5150+ |
+| [[en:docs:bios:api:int10:08|08H]]| [[en:docs:macrolib:@GetChAtr]]((Defined in MASM 5.x)) | Get Character Attribute | 5150+ |
+| [[en:docs:bios:api:int10:09|09H]]| [[en:docs:macrolib:@PutChAtr]]((Defined in MASM 5.x)) | Print Char With Attribute | 5150+ |
+| [[en:docs:bios:api:int10:0A|0AH]]| [[en:docs:macrolib:@PutCh]]((Defined in MASM 5.x)) | Print Char | 5150+ |
+| [[en:docs:bios:api:int10:0B|0BH]]| [[en:docs:macrolib:@SetColor]]((Defined in MASM 5.x))/[[en:docs:macrolib:@SetPalet]]((Defined in MASM 5.x)) | Set Palette/Color | 5150+ |
+| [[en:docs:bios:api:int10:0C|0CH]]| [[en:docs:macrolib:@SetDot]]((osFree extension)) | Draw Pixel | 5150+ |
+| [[en:docs:bios:api:int10:0D|0DH]]| [[en:docs:macrolib:@GetDot]]((osFree extension)) | Get Pixel | 5150+ |
+| [[en:docs:bios:api:int10:0E|0EH]]| [[en:docs:macrolib:@WrtTTY]]((osFree extension)) | Write char in TTY mode | 5150+ |
+| [[en:docs:bios:api:int10:0F|0FH]]| [[en:docs:macrolib:@VideoState]]((osFree extension))/[[en:docs:macrolib:@GetMode]]((Defined in MASM 5.x)) | Get Current Video Mode/State | 5150+ |
+
+{{page>en:templates:biosapi}}
+
+{{page>en:templates:fapi}}
+

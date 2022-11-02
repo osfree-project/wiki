@@ -1,0 +1,65 @@
+==== FS_MOVE ====
+
+**Purpose**
+
+Moves (renames) the specified file or subdirectory.   
+
+**Calling Sequence**
+
+<code c>
+int far pascal FS_MOVE(pcdfsi, pcdfsd, pSrc, iSrcCurDirEnd, pDst,
+                       iDstCurDirEnd, flags)
+
+struct cdfsi far * pcdfsi;
+struct cdfsd far * pcdfsd;
+char far * pSrc;
+unsigned short iSrcCurDirEnd;
+char far * pDst;
+unsigned short iDstCurDirEnd;
+unsigned short flags;
+</code>
+
+**Where**
+
+//pcdfsi// is a pointer to the file-system-independent working directory structure.   
+
+//pcdfsd// is a pointer to the file-system-dependent working directory structure.   
+
+//pSrc// is a pointer to the ASCIIZ name of the source file or directory.   
+
+The FSD does not need to verify this pointer.   
+
+//iSrcCurDirEnd// is the index of the end of the current directory in //pSrc//.   
+
+This is used to optimize FSD path processing. If //iSrcCurDirEnd// == -1 there is no current directory relevant to the source name text.   
+
+//pDst// is a pointer to the ASCIIZ name of the destination file or directory.   
+
+The FSD does not need to verify this pointer.   
+
+//iDstCurDirEnd// is the index of the end of the current directory in //pDst//.   
+
+This is used to optimize FSD path processing. If //iDstCurDirEnd// == -1 there is no current directory relevant to the destination name text.   
+
+//flags// indicates destination name type.   
+
+//Flags// == 0x0040 indicates non-8.3 filename format. All other values are reserved. 
+
+**Remarks**
+
+The file specified in filename should be moved to or renamed as the destination filename, if possible.   
+
+Neither the source nor the destination filename may contain wildcard characters.   
+
+//FS_MOVE// may be used to change the case in filenames.   
+
+The non-8.3 filename format attribute in the directory entry for the destination name should be set according to the value in flags.   
+
+In the case of a subdirectory move, the system does the following checking:   
+
+  * No files in this directory or its subdirectories are open. 
+  * This directory or any of its subdirectories is not the current directory for any process in the system. 
+
+In addition, the system also checks for circularity in source and target directory names; that is, the source directory is not a prefix of the target directory.   
+
+Note:   OS/2 does not validate input parameters. Therefore, an FSD should call //FSH_PROBEBUF// where appropriate.   

@@ -1,0 +1,9 @@
+====== News ======
+~~NOCACHE~~
+**[ [[news:allnewsdata|all news]] | [[news:news|write news]] | [[news:newsdata?do=edit|edit news]] ]**
+ 
+{{anss>flash200,40%,right,10}}
+{{anss>author}} 
+ \\ 
+ \\ 
+{{anss>allnews}}

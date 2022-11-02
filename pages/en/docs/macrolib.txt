@@ -1,0 +1,303 @@
+{{page>en:templates:macroint}}
+
+====== osFree Macro Library ======
+
+===== Introduction =====
+
+ALP/MASM compatible macro library for BIOS and DOS. Original MASM provides macros for BIOS and DOS interrupts as well as OS/2 and Windows macros. osFree Macro Library is a open source replacement of MASM macros. osFree macro library is for Microsoft MASM, IBM MASM, IBM ALP, JWASM and other MASM compatible assemblers. It has more type check and some BIOS bugs workaround. At the present time BIOS and DOS APIs are supported.
+
+This library based on IBM 5150 Technical Reference #6322507 of Apr 1984, MACRO.DOC from MASM 5.x, Ralf Brown Interrupt list.
+
+Functions, found in later BIOSes mostly not covered, but can be added in future. Main goal of osFree Macro Library is to provide support for Family API development. Macro names mostly constructed from MASM 5.x, MASM 6.x and ALP documentation.
+
+
+===== Using macros =====
+
+osFree Macro Library consist of BIOS.INC, MOUSE.INC, DPMI.INC and DOS.INC. To use macros just include BIOS.INC, DOS.INC, MOUSE.INC, DPMI.INC or all. For example:
+
+<code asm>
+INCLUDE BIOS.INC
+
+@SetPage       ; Set default video page (zero page)
+</code>
+
+===== Files =====
+
+osFree Macro Library provides four include files:
+
+  * BIOS.INC
+  * DOS.INC
+  * MOUSE.INC
+  * DPMI.INC
+
+BIOS.INC contains macros for BIOS interrupts. 
+DOS.INC contains macros for DOS interrupts.
+MOUSE.INC contains macros for MOUSE interrupts.
+DPMI.INC contains macros for DPMI interrupts.
+
+==== BIOS.INC ====
+
+^ Macro ^ Description ^
+| [[en:docs:macrolib:@SetMode]] | Set current video mode |
+| [[en:docs:macrolib:@SetCurSz]] | Set cursor size |
+| [[en:docs:macrolib:@SetCurPos]] | Set cursor position |
+| [[en:docs:macrolib:@GetCur]] | Get cursor shape and position |
+| [[en:docs:macrolib:@SetPage]] | Set active video page |
+| [[en:docs:macrolib:@ScrollUp]] | Scroll screen area up |
+| [[en:docs:macrolib:@ScrollDn]] | Scroll screen area down |
+| [[en:docs:macrolib:@Scroll]] | Scroll sreen area up or down |
+| [[en:docs:macrolib:@GetChAtr]] | Get char and attribute from screen |
+| [[en:docs:macrolib:@PutChAtr]] | Put char and attribute to screen |
+| [[en:docs:macrolib:@PutCh]] | Put char to screen |
+| [[en:docs:macrolib:@SetPalet]] | Set pallete |
+| [[en:docs:macrolib:@SetColor]] | Set border color |
+| [[en:docs:macrolib:@SetDot]] | Set pixel dot on screen |
+| [[en:docs:macrolib:@GetDot]] | Get pixel dot from screen |
+| [[en:docs:macrolib:@WrtTTY]] | Write char in TTY mode |
+| [[en:docs:macrolib:@VideoState]] | Get video state |
+| [[en:docs:macrolib:@GetMode]] | Get video mode |
+| [[en:docs:macrolib:@GetDisplay]] | Get display info |
+| [[en:docs:macrolib:@GetVideoState]] | Get extended video state |
+| [[en:docs:macrolib:@GetEGAInfo]] | Get EGA information |
+| [[en:docs:macrolib:@Cls]] | Clear screen |
+| [[en:docs:macrolib:@AuxInit]] | Initialize serial port |
+| [[en:docs:macrolib:@AuxSendChar]] | Send char to serial port |
+| [[en:docs:macrolib:@AuxRecieveChar]] | Recieve char from serial port |
+| [[en:docs:macrolib:@AuxStatus]] | Get serial port status |
+| [[en:docs:macrolib:@PrnPrint]] | Print char to printer |
+| [[en:docs:macrolib:@PrnInit]] | Initialize printer |
+| [[en:docs:macrolib:@PrnStatus]] | Get printer status |
+| [[en:docs:macrolib:@KbdStatus]] | Get keyboard status |
+| [[en:docs:macrolib:@CharIn]] | Input char from keyboard |
+| [[en:docs:macrolib:@CharPeek]] | Peek char from keyboard buffer |
+| [[en:docs:macrolib:@SetTime]] | Set time tick |
+| [[en:docs:macrolib:@GetTime]] | Get time tick |
+| [[en:docs:macrolib:@TapeOn]] | Turn tape motor on |
+| [[en:docs:macrolib:@TapeOff]] | Turn tape motor off |
+| [[en:docs:macrolib:@TapeRead]] | Read block from tape |
+| [[en:docs:macrolib:@TapeWrite]] | Write block to tape |
+| [[en:docs:macrolib:@Equipment]] | Get equipment list |
+| [[en:docs:macrolib:@MemSize]] | Get memory size |
+| [[en:docs:macrolib:@DskReset]] | Reset disk system |
+| [[en:docs:macrolib:@DskStatus]] | Get last disk operation status|
+| [[en:docs:macrolib:@DskRead]] | Read sector |
+| [[en:docs:macrolib:@DskWrite]] | Write sector |
+| [[en:docs:macrolib:@DskVerify]] | Verify sector |
+| [[en:docs:macrolib:@DskFormat]] | Format track |
+
+==== DOS.INC ====
+
+^ Macro ^ Description ^
+| [[en:docs:macrolib:TERMINATE]] |  |
+| [[en:docs:macrolib:FLUSH]] |  |
+| [[en:docs:macrolib:FILE_UNLOCK]] |  |
+| [[en:docs:macrolib:ABS_DISK_READ]] |  |
+| [[en:docs:macrolib:ABS_DISK_WRITE]] |  |
+| [[en:docs:macrolib:STAY_RESIDENT]] |  |
+| [[en:docs:macrolib:TERMINATE_PROGRAM]] |  |
+| [[en:docs:macrolib:READ_KBD_AND_ECHO]] |  |
+| [[en:docs:macrolib:DISPLAY_CHAR]] |  |
+| [[en:docs:macrolib:@DispCh]] |  |
+| [[en:docs:macrolib:AUX_INPUT]] |  |
+| [[en:docs:macrolib:AUX_OUTPUT]] |  |
+| [[en:docs:macrolib:PRINT_CHAR]] |  |
+| [[en:docs:macrolib:@PrtCh]] |  |
+| [[en:docs:macrolib:DIR_CONSOLE_IO]] |  |
+| [[en:docs:macrolib:DIR_CONSOLE_INPUT]] |  |
+| [[en:docs:macrolib:READ_KBD]] |  |
+| [[en:docs:macrolib:DISPLAY]] |  |
+| [[en:docs:macrolib:@DispStr]] |  |
+| [[en:docs:macrolib:GET_STRING]] |  |
+| [[en:docs:macrolib:@GetStr]] |  |
+| [[en:docs:macrolib:CHECK_KBD_STATUS]] |  |
+| [[en:docs:macrolib:FLUSH_AND_READ_KBD]] |  |
+| [[en:docs:macrolib:RESET_DISK]] |  |
+| [[en:docs:macrolib:LFN_RESET_DISK]] |  |
+| [[en:docs:macrolib:SELECT_DISK]] |  |
+| [[en:docs:macrolib:@SetDrv]] |  |
+| [[en:docs:macrolib:OPEN]] |  |
+| [[en:docs:macrolib:CLOSE]] |  |
+| [[en:docs:macrolib:SEARCH_FIRST]] |  |
+| [[en:docs:macrolib:SEARCH_NEXT]] |  |
+| [[en:docs:macrolib:DELETE]] |  |
+| [[en:docs:macrolib:READ_SEQ]] |  |
+| [[en:docs:macrolib:WRITE_SEQ]] |  |
+| [[en:docs:macrolib:CREATE]] |  |
+| [[en:docs:macrolib:RENAME]] |  |
+| [[en:docs:macrolib:CURRENT_DISK]] |  |
+| [[en:docs:macrolib:@GetDrv]] |  |
+| [[en:docs:macrolib:SET_DTA]] |  |
+| [[en:docs:macrolib:@SetDTA]] |  |
+| [[en:docs:macrolib:DEF_DRIVE_DATA]] |  |
+| [[en:docs:macrolib:DRIVE_DATA]] |  |
+| [[en:docs:macrolib:READ_RAN]] |  |
+| [[en:docs:macrolib:WRITE_RAN]] |  |
+| [[en:docs:macrolib:FILE_SIZE]] |  |
+| [[en:docs:macrolib:SET_RELATIVE_RECORD]] |  |
+| [[en:docs:macrolib:SET_VECTOR]] |  |
+| [[en:docs:macrolib:@SetInt]] |  |
+| [[en:docs:macrolib:CREATE_PSP]] |  |
+| [[en:docs:macrolib:RAN_BLOCK_READ]] |  |
+| [[en:docs:macrolib:RAN_BLOCK_WRITE]] |  |
+| [[en:docs:macrolib:PARSE]] |  |
+| [[en:docs:macrolib:GET_DATE]] |  |
+| [[en:docs:macrolib:@GetDate]] |  |
+| [[en:docs:macrolib:SET_DATE]] |  |
+| [[en:docs:macrolib:@SetDate]] |  |
+| [[en:docs:macrolib:GET_TIME]] |  |
+| [[en:docs:macrolib:@GetTime]] |  |
+| [[en:docs:macrolib:SET_TIME]] |  |
+| [[en:docs:macrolib:@SetTime]] |  |
+| [[en:docs:macrolib:VERIFY]] |  |
+| [[en:docs:macrolib:GET_DTA]] |  |
+| [[en:docs:macrolib:@GetDTA]] |  |
+| [[en:docs:macrolib:GET_VERSION]] |  |
+| [[en:docs:macrolib:@GetVer]] |  |
+| [[en:docs:macrolib:KEEP_PROCESS]] |  |
+| [[en:docs:macrolib:@TSR]] |  |
+| [[en:docs:macrolib:CTRL_C_CK]] |  |
+| [[en:docs:macrolib:GET_VECTOR]] |  |
+| [[en:docs:macrolib:@GetInt]] |  |
+| [[en:docs:macrolib:GET_DISK_SPACE]] |  |
+| [[en:docs:macrolib:@ChkDrv]] |  |
+| [[en:docs:macrolib:GET_COUNTRY]] |  |
+| [[en:docs:macrolib:GET_UPPERCASE_TABLE]] |  |
+| [[en:docs:macrolib:SET_COUNTRY]] |  |
+| [[en:docs:macrolib:MAKE_DIR]] |  |
+| [[en:docs:macrolib:@MkDir]] |  |
+| [[en:docs:macrolib:LFN_MAKE_DIR]] |  |
+| [[en:docs:macrolib:REM_DIR]] |  |
+| [[en:docs:macrolib:@RmDir]] |  |
+| [[en:docs:macrolib:LFN_REM_DIR]] |  |
+| [[en:docs:macrolib:CHANGE_DIR]] |  |
+| [[en:docs:macrolib:@ChDir]] |  |
+| [[en:docs:macrolib:LFN_CHANGE_DIR]] |  |
+| [[en:docs:macrolib:CREATE_HANDLE]] |  |
+| [[en:docs:macrolib:@MakFil]] |  |
+| [[en:docs:macrolib:OPEN_HANDLE]] |  |
+| [[en:docs:macrolib:@OpenFil]] |  |
+| [[en:docs:macrolib:CLOSE_HANDLE]] |  |
+| [[en:docs:macrolib:@ClosFil]] |  |
+| [[en:docs:macrolib:READ_HANDLE]] |  |
+| [[en:docs:macrolib:@Read]] |  |
+| [[en:docs:macrolib:WRITE_HANDLE]] |  |
+| [[en:docs:macrolib:@Write]] |  |
+| [[en:docs:macrolib:DELETE_ENTRY]] |  |
+| [[en:docs:macrolib:@DelFil]] |  |
+| [[en:docs:macrolib:LFN_DELETE_ENTRY]] |  |
+| [[en:docs:macrolib:MOVE_PTR]] |  |
+| [[en:docs:macrolib:@MovePtrAbs]] |  |
+| [[en:docs:macrolib:@MovePtrRel]] |  |
+| [[en:docs:macrolib:@GetFilSz]] |  |
+| [[en:docs:macrolib:CHANGE_MODE]] |  |
+| [[en:docs:macrolib:LFN_CHANGE_MODE]] |  |
+| [[en:docs:macrolib:IOCTL_DATA]] |  |
+| [[en:docs:macrolib:IOCTL_CHAR]] |  |
+| [[en:docs:macrolib:IOCTL_STATUS]] |  |
+| [[en:docs:macrolib:IOCTL_STATUS]] |  |
+| [[en:docs:macrolib:IOCTL_CHANGE]] |  |
+| [[en:docs:macrolib:IOCTL_RBLOCK]] |  |
+| [[en:docs:macrolib:IOCTL_RHANDLE]] |  |
+| [[en:docs:macrolib:IOCTL_RETRY]] |  |
+| [[en:docs:macrolib:GENERIC_IOCTL_HANDLES]] |  |
+| [[en:docs:macrolib:GENERIC_IOCTL_BLOCK]] |  |
+| [[en:docs:macrolib:IOCTL_GET_DRIVE_MAP]] |  |
+| [[en:docs:macrolib:IOCTL_SET_DRIVE_MAP]] |  |
+| [[en:docs:macrolib:XDUP]] |  |
+| [[en:docs:macrolib:XDUP2]] |  |
+| [[en:docs:macrolib:GET_DIR]] |  |
+| [[en:docs:macrolib:@GetDir]] |  |
+| [[en:docs:macrolib:ALLOCATE_MEMORY]] |  |
+| [[en:docs:macrolib:@GetBlok]] |  |
+| [[en:docs:macrolib:FREE_MEMORY]] |  |
+| [[en:docs:macrolib:@FreeBlok]] |  |
+| [[en:docs:macrolib:SET_BLOCK]] | Set memory block size |
+| [[en:docs:macrolib:@ModBlok]] | Modify memory block |
+| [[en:docs:macrolib:EXEC]] |  |
+| [[en:docs:macrolib:EXEC_OVL]] |  |
+| [[en:docs:macrolib:@Exec]] |  |
+| [[en:docs:macrolib:@Exit]] |  |
+| [[en:docs:macrolib:END_PROCESS]] |  |
+| [[en:docs:macrolib:RET_CODE]] |  |
+| [[en:docs:macrolib:@GetRet]] |  |
+| [[en:docs:macrolib:FIND_FIRST_FILE]] |  |
+| [[en:docs:macrolib:@GetFirst]] |  |
+| [[en:docs:macrolib:FIND_NEXT_FILE]] |  |
+| [[en:docs:macrolib:@GetNext]] |  |
+| [[en:docs:macrolib:GET_VERIFY]] |  |
+| [[en:docs:macrolib:RENAME_FILE]] |  |
+| [[en:docs:macrolib:@MoveFil]] |  |
+| [[en:docs:macrolib:LFN_RENAME_FILE]] |  |
+| [[en:docs:macrolib:GET_SET_DATE_TIME]] |  |
+| [[en:docs:macrolib:ALLOC_STRAT]] |  |
+| [[en:docs:macrolib:GET_ERROR]] |  |
+| [[en:docs:macrolib:CREATE_TEMP]] |  |
+| [[en:docs:macrolib:CREATE_NEW]] |  |
+| [[en:docs:macrolib:LOCK_FILE]] |  |
+| [[en:docs:macrolib:UNLOCK]] |  |
+| [[en:docs:macrolib:GET_MACHINE_NAME]] |  |
+| [[en:docs:macrolib:PRINTER_SETUP]] |  |
+| [[en:docs:macrolib:GET_LIST]] |  |
+| [[en:docs:macrolib:REDIR]] |  |
+| [[en:docs:macrolib:CANCEL_REDIR]] |  |
+| [[en:docs:macrolib:GET_PSP]] |  |
+| [[en:docs:macrolib:DISPLAY_ASCIZ]] |  |
+| [[en:docs:macrolib:MOVE_STRING]] |  |
+| [[en:docs:macrolib:CONVERT]] |  |
+| [[en:docs:macrolib:CONVERT_TO_BINARY]] |  |
+| [[en:docs:macrolib:CONVERT_DATE]] |  |
+| [[en:docs:macrolib:PACK_DATE]] |  |
+| [[en:docs:macrolib:@GetKey]] |  |
+
+==== MOUSE.INC ====
+
+^ Macro ^ Description ^
+| [[en:docs:macrolib:@MouInit]] | Init driver |
+| [[en:docs:macrolib:@MouShowPointer]] | Show Mouse Cursor |
+| [[en:docs:macrolib:@MouStatus]] | Mouse Cursor Status |
+| [[en:docs:macrolib:@MouSetPos]] | Set Mouse Cursor Position |
+| [[en:docs:macrolib:@MouSetMickey]] | Set Mouse Mickey/Pixel ratio |
+| [[en:docs:macrolib:@MouRegion]] | Mouse Cursor Region |
+
+
+==== DPMI.INC ====
+
+^ Macro ^ Description ^
+| [[en:docs:macrolib:@DPMI_AllocDesc]] |  |
+| [[en:docs:macrolib:@DPMI_FreeDesc]] |  |
+| [[en:docs:macrolib:@DPMI_Seg2Desc]] |  |
+| [[en:docs:macrolib:@DPMI_GetIncValue]] |  |
+| [[en:docs:macrolib:@DPMI_LockSel]] |  |
+| [[en:docs:macrolib:@DPMI_UnlockSel]] |  |
+| [[en:docs:macrolib:@DPMI_GetBase]] |  |
+| [[en:docs:macrolib:@DPMI_SetBase]] |  |
+| [[en:docs:macrolib:@DPMI_SetLimit]] |  |
+| [[en:docs:macrolib:@DPMI_SetAccRights]] |  |
+| [[en:docs:macrolib:@DPMI_CreateCSAlias]] |  |
+| [[en:docs:macrolib:@DPMI_GetDescriptor]] |  |
+| [[en:docs:macrolib:@DPMI_SetDescriptor]] |  |
+| [[en:docs:macrolib:@DPMI_DOSALLOC]] |  |
+| [[en:docs:macrolib:@DPMI_DOSFREE]] |  |
+| [[en:docs:macrolib:@DPMI_GetRMIntVec]] |  |
+| [[en:docs:macrolib:@DPMI_SetRMIntVec]] |  |
+| [[en:docs:macrolib:@DPMI_GetExcVec]] |  |
+| [[en:docs:macrolib:@DPMI_SetExcVec]] |  |
+| [[en:docs:macrolib:@DPMI_GetPMIntVec]] |  |
+| [[en:docs:macrolib:@DPMI_SetPMIntVec]] |  |
+| [[en:docs:macrolib:@DPMI_SimRMInt]] |  |
+| [[en:docs:macrolib:@DPMI_CallRMFarProc]] |  |
+| [[en:docs:macrolib:@DPMI_CallRMIRProc]] |  |
+| [[en:docs:macrolib:@DPMI_AllocRMCallback]] |  |
+| [[en:docs:macrolib:@DPMI_FreeRMCallback]] |  |
+| [[en:docs:macrolib:@DPMI_GETRMSA]] |  |
+| [[en:docs:macrolib:@DPMI_GETVERSION]] |  |
+| [[en:docs:macrolib:@DPMI_GETFREEMEMINFO]] |  |
+| [[en:docs:macrolib:@DPMI_ALLOCMEM]] |  |
+| [[en:docs:macrolib:@DPMI_FREEMEM]] |  |
+| [[en:docs:macrolib:@DPMI_GETPAGESIZE]] |  |
+| [[en:docs:macrolib:@DPMI_MAPPHYS]] |  |
+
+
+{{page>en:templates:biosapi}}
+
+

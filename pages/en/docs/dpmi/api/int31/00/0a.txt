@@ -1,0 +1,50 @@
+{{page>en:templates:dpmi}}
+
+====== Int 31H, AH=00H, AL=0AH ======
+
+===== Version =====
+
+0.9
+
+===== Brief =====
+
+Create Alias Descriptor
+
+===== Input =====
+
+  AX = 000AH
+  BX = selector
+
+===== Return =====
+
+  if function successful
+  Carry flag = clear
+  AX = data selector (alias)
+  
+  if function unsuccessful
+  Carry flag = set
+  AX = error code
+  8011H	descriptor unavailable
+  8022H	invalid selector
+
+===== Notes =====
+
+Creates a new LDT data descriptor that has the same base and limit as the specified descriptor.
+
+The selector supplied to the function may be either a data selector or an executable selector. Note that the published 0.9 specification was in error to say that the function generates an error on a data descriptor.
+
+The descriptor alias returned by this function will not track changes to the original descriptor. In other words, if an alias is created with this function, and the base or limit of the original segment is then changed, the two descriptors will no longer map the same memory.
+
+Refer to the rules for descriptor usage in Appendix D.
+    
+===== See also =====
+
+   
+
+===== Note =====
+
+Text based on [[http://www.delorie.com/djgpp/doc/dpmi/]]
+
+{{page>en:templates:dpmi:int}}
+
+

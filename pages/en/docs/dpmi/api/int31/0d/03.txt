@@ -1,0 +1,52 @@
+{{page>en:templates:dpmi}}
+
+====== Int 31H, AH=0DH, AL=03H ======
+
+===== Version =====
+
+1.0
+
+===== Brief =====
+
+Free Serialization on Shared Memory
+
+===== Input =====
+
+  AX = 0D03H
+  SI:DI = shared memory block handle
+  DX = option flags
+
+^ Bit ^ Significance ^
+| 0 | 0 = release exclusive serialization     1 = release shared serialization |
+| 1 | 0 = don't free pending serialization    1 = free pending serialization (see Note) |
+| 2-15 | reserved, must be zero |
+    
+===== Return =====
+
+  if function successful
+  Carry flag = clear
+  
+  if function unsuccessful
+  Carry flag = set
+  AX = error code
+  8002H	invalid state (client does not own a successful serialization of the specified type)
+  8023H	invalid handle
+
+===== Notes =====
+
+Releases a shared memory block serialization that was previously obtained with Int 31H Function 0D02H.
+
+For each client, the DPMI host maintains four different local (virtual machine) serialization counts (exclusive, shared, pending shared, and pending exclusive) for each shared memory block, as well as a global serialization count. The global serialization count is only updated when the sum of a virtual machine's exclusive and shared serialization counts goes from 0 to 1 (serialize) or 1 to 0 (free).
+
+A client's interrupt handler can call this function with bit 1 of DX set to cancel a serialization request that has suspended the main thread of execution of the same client. In such cases, the original serialization request will return with the Carry flag set and AX = 8005H.
+
+===== See also =====
+
+   
+
+===== Note =====
+
+Text based on [[http://www.delorie.com/djgpp/doc/dpmi/]]
+
+{{page>en:templates:dpmi:int}}
+

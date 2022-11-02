@@ -1,0 +1,73 @@
+{{page>en:templates:fapiint}}
+
+====== MouSetScaleFact ======
+
+This call assigns to the current mouse device driver a new pair of 1-word scaling factors.
+
+===== Syntax =====
+<code c>
+ MouSetScaleFact (ScaleStruct, DeviceHandle)
+</code>
+
+===== Parameters =====
+
+  * ScaleStruct (P[[SCALEFACT]]) - input : Address of the control block structure that contains the current row and column coordinate scaling factors.
+  * DeviceHandle (HMOU) - input : Handle of the mouse device from a previous MouOpen.
+
+===== Return Code =====
+
+
+rc (USHORT) - return:Return code descriptions are:
+
+  *0 NO_ERROR
+  *385 ERROR_MOUSE_NO_DEVICE
+  *387 ERROR_MOUSE_INV_PARMS
+  *466 ERROR_MOU_DETACHED
+  *501 ERROR_MOUSE_NO_CONSOLE
+  *505 ERROR_MOU_EXTENDED_SG
+
+===== Remarks =====
+
+
+MouSetScaleFact sets the mickey-to-pixel ratio for mouse motion. The row scale and column scale ratios specify a number of mickeys for each 8 pixels. The default value for the row scale is 16 mickeys for each 8 pixels. The default value for the column scale is 8 mickeys to 8 pixels.
+
+The number of pixels moved does not have to correspond 1-to-1 with the number of mickeys the mouse moves. The scaling factor defines a sensitivity for the mouse that is a ratio of the number of mickeys required to move the cursor 8 pixels on the screen. The sensitivity determines at what rate the cursor moves on the screen.
+
+===== Bindings =====
+
+====C====
+<code c>
+typedef struct _SCALEFACT { /* mousc */
+  USHORT rowScale;          /* row scaling factor */
+  USHORT colScale;          /* column coordinate scaling factor */
+} SCALEFACT;
+
+#define INCL_MOU
+
+USHORT  rc = MouSetScaleFact(ScaleStruct, DeviceHandle);
+
+PSCALEFACT ScaleStruct;   /* 2-word structure */
+HMOU       DeviceHandle;  /* Mouse device handle */
+
+USHORT     rc;            /* return code */
+</code>
+
+====MASM====
+<code asm>
+SCALEFACT struc
+  mousc_rowScale  dw  ? ;row scaling factor
+  mousc_colScale  dw  ? ;column coordinate scaling factor
+SCALEFACT ends
+
+EXTRN  MouSetScaleFact:FAR
+INCL_MOU            EQU 1
+
+PUSH@  OTHER   ScaleStruct   ;2-word structure
+PUSH   WORD    DeviceHandle  ;Mouse device handle
+CALL   MouSetScaleFact
+
+Returns WORD
+</code>
+
+{{page>en:templates:fapi}}
+

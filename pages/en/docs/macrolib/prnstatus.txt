@@ -1,0 +1,29 @@
+{{page>en:templates:biosint}}
+
+====== @PrnStatus ======
+
+===== Brief =====
+
+
+===== BIOS Interrupt =====
+
+[[en:docs:bios:api:int|INTH]]: [[en:docs:bios:api::|H]]
+
+===== Family API =====
+
+[[en:docs:fapi:]]
+
+===== Syntax =====
+
+<code asm>
+@PrnStatus
+</code>
+
+===== Parameters =====
+
+none
+
+===== Return =====
+
+none
+

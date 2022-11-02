@@ -1,0 +1,38 @@
+===== Start Developing osFree =====
+
+
+==== Getting started ====
+
+There are many ways you can participate in this project. While developing an operating system to a large extent is about programming, there is also a huge need for people that can write documentation and people that can test the things that the developers and writers do. See our current [[en:teams|roster of developers]].
+
+We welcome all people that want to help us out, and as this is a non-profit project we understand that some of you can only spend a little time and that some of you may be able to spend lots of time one week and nothing for many months.
+
+If you want to participate please contact us via the [[http://osfree.org/forum/|forums]] or [[irc://irc.inet.tele.dk/osFree|IRC channel]] and tell us what you can / want to do.
+
+==== Using osFree ====
+
+For now osFree in not good for real usage. But always people are interested in new software. So you can [[en:download|download]] and try to use osFree for toy tasks now.
+
+==== Testing osFree ====
+
+We already released some components for testing purposes. You can download them at [[en:download|download]] page. Packages are provided in [[http://home.clara.net/orac/os2.htm#warpin|WarpIn]] format. You can try to use these packages as drop-in replacements of OS/2 parts.
+
+==== Developing osFree ====
+
+If you are a programmer you could start coding at once. Start by reading the [[en:develop:guidelines|Developer Guidelines]] page and downloading the current code. While we don't require you to use Git it's the easiest way to get into our team.
+
+==== Content writers ====
+
+We always need to promote project. We need a lot of texts to be written. If you can write good articles then this is your task. You can work on content of this site using Wiki engine or write articles for the press. Languages are different. (though, English gives the most wide audience).
+
+==== Administrative tasks ====
+
+Such big project requires to have administration team. We need to maintain and update CMS all the time. Also work on different tasks like trademarks registrations and foundation support.
+
+==== Finance ====
+
+We're working for free now, but we need some finances for hosting, domain name support, hardware for developers and other things. You can help us by donating some money or hardware. Or by collecting money. Also you can search for various third-party sponsors for the project.
+
+==== Art ====
+
+OS/2 traditionally did not addressed visual design issues. OS/2 itself designed so what it can't be decorated well. In most programs only greyscale colors can be used. We dont want to be grey. We want to be attractive for end-users. So, if you are designer, art master and so on, then help make our world colorful.

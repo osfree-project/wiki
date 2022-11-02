@@ -1,0 +1,1 @@
+**Note:** This is legacy API call. It is recommended to use 32-bit equivalent

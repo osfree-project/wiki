@@ -1,0 +1,36 @@
+==== FS_RMDIR ====
+
+**Purpose**
+
+Removes a subdirectory from the specified disk.   
+
+**Calling Sequence**
+
+<code c>
+int far pascal FS_RMDIR(pcdfsi, pcdfsd, pName, iCurDirEnd)
+
+struct cdfsi far * pcdfsi;
+struct cdfsd far * pcdfsd;
+char far * pName;
+unsigned short iCurDirEnd;
+</code>
+
+**Where**
+
+//pcdfsi// is a pointer to the file-system-independent working directory structure.   
+
+//pcdfsd// is a pointer to the file-system-dependent working directory structure.   
+
+//pName// is a pointer to the ASCIIZ name of the directory to be removed.   
+
+The FSD does not need to verify this pointer.   
+
+//iCurDirEnd// is the index of the end of the current directory in //pName//.   
+
+This is used to optimize FSD path processing. If //iCurDirEnd// == -1, there is no directory relevant to the name text, that is a device. 
+
+**Remarks**
+
+OS/2 assures that the directory being removed is not the current directory nor the parent of any current directory of any process.   
+
+The FSD should not remove any directory that has entries other than '.' and '..' in it.   

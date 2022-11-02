@@ -1,0 +1,61 @@
+{{page>en:templates:fapiint}}
+====== VioSetAnsi ======
+ 
+This call activates or deactivates ANSI support.
+
+===== Syntax =====
+<code c>
+ VioSetAnsi (Indicator, VioHandle)
+</code>
+===== Parameters =====
+
+  * Indicator ([[USHORT]]) - input: Equals 1 to activate ANSI support or 0 to deactivate ANSI.
+  * VioHandle ([[HVIO]]) - input: This must be zero unless the caller is a Presentation Manager application, in which case it must be the value returned by VioGetPs.
+
+===== Return Code =====
+
+rc ([[USHORT]]) - return
+
+Return code descriptions are:
+
+  *0 NO_ERROR
+  *355 ERROR_VIO_MODE
+  *421 ERROR_VIO_INVALID_PARMS
+  *430 ERROR_VIO_ILLEGAL_DURING_POPUP
+  *436 ERROR_VIO_INVALID_HANDLE
+  *465 ERROR_VIO_DETACHED
+
+===== Remarks =====
+
+For ANSI support, "ON" is the default.
+
+===== Bindings =====
+
+====C====
+<code c>
+#define INCL_VIO
+
+USHORT  rc = VioSetAnsi(Indicator, VioHandle);
+
+USHORT  Indicator;     /* On/Off indicator */
+HVIO    VioHandle;     /* Video handle */
+
+USHORT  rc;            /* return code */
+</code>
+
+====MASM====
+<code asm>
+EXTRN  VioSetAnsi:FAR
+INCL_VIO            EQU 1
+
+PUSH   WORD    Indicator     ;On/Off indicator
+PUSH   WORD    VioHandle     ;Video handle
+CALL   VioSetAnsi
+
+Returns WORD
+</code>
+
+
+
+{{page>en:templates:fapi}}
+

@@ -1,0 +1,45 @@
+{{page>en:templates:biosint}}
+
+====== Int 17H, AH=01H ======
+
+===== Version =====
+
+IBM 5150 and higher
+
+===== Brief =====
+
+Initialize printer port
+
+===== Family API =====
+
+[[en:docs:fapi:DosDevIOCtl]]
+
+===== Input =====
+
+  * AH = 01h
+  * DX = printer number (00h-02h)
+
+===== Return =====
+
+  * AH = printer status (see #00631)
+
+===== Macro =====
+
+<code asm>
+INCLUDE BIOS.INC
+
+@PrnInit 0
+</code>
+
+===== Notes =====
+
+  * some printers report that they are ready immediately after initialization when they actually are not; a more reliable result may be obtained by calling AH=02h after a brief delay
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:biosapi}}
+
+{{page>en:templates:fapi}}
+

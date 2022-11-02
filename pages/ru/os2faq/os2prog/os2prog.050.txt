@@ -1,0 +1,38 @@
+[Q]: class Buffer - "резиновый буфер"
+
+[A]: John Gladkih (2:5051/16)
+
+--- UUEncode - Start - buffer.zip - 1347 Bytes -
+begin 644 buffer.zip
+M4$L#!!0````(`'%-D"$JS'#W-`,``&8)```*````8G5F9F5R+F-P<*U574_;
+M,!1]'A+_P8!$$M*BM&-C:TBEL3$)B3VQM]*'D#C$74BJQ!U%T/^^>Z^=U&F;
+MH4E[<G)][M<YU_:1R*-L$7-V4<DX$_>GZ7A_[Z@Q/O+'HGPFHV$^O%\D"2]/
+MTT,T5S*4(F)1&I8LY<M;68K\83)E`3OT!L/W9Q\^GG_Z_.7RZ[>K[X<^.ER2
+M]VBD5IN)7+*H1TO,'#;:WV,L6I0W/+=9Q)P>_L^+RF:>_HEY)D,;P?M[+V@0
+MB<T.R(HFQC0$2AAXE%)#5-0:H_\"!=:X2I9@R?D3-32I05,?-TM><6D[\+U"
+M].]"Q*SN9KZ0U[DL;$5$E+:*@_*#P,S^HDM`[$F1Q38E=G01FV6PN@Y7]35M
+M<"!0-'\F[QZ#.+VZ8,=O`%@S`ERUU6->3_.SSJ>]W#49FD4N.<8EPZJA:((=
+MN2Y#E:.TBP\;"'L0E>2ETGC-2?4D9)3:VD1TD.IAQ9DW4LD;0KVFF?N2A[]\
+M`VO=Y=:H<Z^T-D-9K];.8#%/PD4F-1P5B](+;SGTV.LK?(Z]Y7E2CXV6SHQZ
+M=[<.:]J7.\WK0\)LB#T^<XZ]I9<`F7\'1ZF)4\B56GA6\2U7G!Q(X.BPJPZ5
+M5'A#*S64-(]:KJ2`8^J3S5_'/[%QJ%R(SSJ/Q-6/V^NW0[?W83`\QX<E.*&Q
+MA@&C\75K!90^06!-+:4/?*ZL;GUPRK:9-:P&B[O%YTT>DOI?!^'_*/ZVWATZ
+M`'EB?B-BN&QKVMN,$\`>.'YK"\_L#*50P]96"C<%Z20NX"Z`I:T/A=QB2N],
+MQ/0@H+-8;P#BG7()&%[9^#.9N2Y>,,JA(6K5R<0NG_H&GAT$4&;K\C6OQAG=
+MBH#HSQJN$1^P6??AH8)_EJ'(=C&K&**80]8B$<@:!QX[/M9E!L@%&/O]!H<E
+MDZOH#\9>S9-9L7`'3<T`:CQ5U<(=[AP%_8+I6A76HPZ-V!37>$>VPV0\D;>I
+M2*1ZO=/BJ?7<P?^X81LID8LRIRQKN33.D&7K/<,V`:)ZI!Q&C_T`W3=+=V'+
+M*+]/P>L6L-2Z@V+.RU`6Y62J6A!YS)>M)L@R#K;Z8/W!1BO:#F%L$A0=IWC$
+MDT2E_@-02P,$%`````@`'4V0(;0(R`D]`0``=@(```@```!B=69F97(N:'51
+M36O"0!"]!_(?1KPD14%OI>*A@E)!+[4]%)&09F?-0+H;-I.V5NQO;W:SK4;H
+M90_O:^;-]DE"3Z`DA2)*UB_)['FQF#\F#W$8A$&_9>"2L'A6I%4%LUI*-&%P
+M#`.`BKXP8<AJLT(U@%)7`Q!8<#JQAK)^+2B[L\(L3PW<5&P<`3XE`E(,%:>&
+M&__T=C1P@$M8*N+I>`3QQ.J_O2&&HZ61$6P8G-JX=TT"RIJ7BG74#LMR;_WE
+MVF%=N,F@\LFD5-CL*WQ%HHLV(9N&4/OHW.=JR'R]6?[#&JR0+^,*E+S)2?K-
+M<OTQ'3M#=XU[HVLE7/.K=;MKVEN`2\*WD@_.8)!KHZ#7"+>CG9?X3RM0[3F_
+ME#7?YR7GZ;,#H].0C*P`8OL.AW^GMP-UB29E;;:[M@HI@9^NRLG5Z:,2)'\`
+M4$L!`A4&%`````@`<4V0(2K,</<T`P``9@D```H``````````0`@`("!````
+M`&)U9F9E<BYC<'!02P$"%084````"``=39`AM`C("3T!``!V`@``"```````
+J```!`"``@(%<`P``8G5F9F5R+FA02P4&``````(``@!N````OP0`````
+end
+size 1347

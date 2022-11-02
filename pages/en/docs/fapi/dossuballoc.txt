@@ -1,0 +1,69 @@
+{{page>en:templates:fapiint}}
+
+====== DosSubAlloc ======
+
+This call suballocates portions of a segment allocated by [[DosAllocSeg]] or [[DosAllocShrSeg]], and initialized by [[DosSubSet]].
+
+===== Syntax =====
+<code c>
+DosSubAlloc (SegSelector, BlockOffset, Size)
+</code>
+
+===== Parameters =====
+
+  * SegSelector ([[SEL]]) - input : Data segment selector that allocates the memory.
+  * BlockOffset ([[PUSHORT]]) - output : Address of the allocated block offset.
+  * Size ([[USHORT]]) - input : Memory block size requested in bytes.
+
+===== Return Code =====
+
+rc ([[USHORT]]) - return
+
+Return code descriptions are:
+
+  * 0          NO_ERROR
+  * 311        ERROR_DOSSUB_NOMEM 
+  * 313        ERROR_DOSSUB_BADSIZE
+
+===== Remarks =====
+
+Before a segment allocated by [[DosAllocSeg]] or [[DosAllocShrSeg]] can be suballocated, it must first be initialized for suballocation by a call to [[DosSubSet]].
+
+Allocation size must be a multiple of four bytes. Otherwise, it is rounded up to a multiple of four bytes. The maximum value for the size parameter is the size that was set with [[DosSubSet]] minus 8. Note that no paragraph (16-byte) alignment is required; all requests are serviced on a byte alignment basis.
+
+A suballocated block of memory in a suballocated segment is freed by a call to [[DosSubFree]]. 
+
+===== Example Code =====
+
+==== C Binding ====
+
+<code c>
+#define INCL_DOSMEMMGR
+
+USHORT  rc = DosSubAlloc(SegSelector, BlockOffset, Size);
+
+SEL              SegSelector;   /* Segment selector */
+PUSHORT          BlockOffset;   /* Block Offset (returned) */
+USHORT           Size;          /* Size of requested block */
+
+USHORT           rc;            /* return code */
+</code>
+
+==== MASM Binding ====
+
+<code asm>
+EXTRN  DosSubAlloc:FAR
+INCL_DOSMEMMGR      EQU 1
+
+PUSH   WORD    SegSelector   ;Segment selector
+PUSH@  WORD    BlockOffset   ;Block Offset (returned)
+PUSH   WORD    Size          ;Size of requested block
+CALL   DosSubAlloc
+</code>
+Returns WORD
+
+===== Note =====
+
+Text based on [[http://www.edm2.com/index.php/DosSubAlloc]]
+
+{{page>en:templates:fapi}}

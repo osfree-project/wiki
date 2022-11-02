@@ -1,0 +1,66 @@
+[Q]: New API's in Warp 4
+
+[A]: Richard Reuters (2:2433/601.11)
+
+Here is a (uncomplete) list of new API's in Warp 4:
+
+DosQueryThreadContext
+FFSTProbe                               FFST.H
+FFSTQueryConfiguration                  FFST.H
+FFSTSetConfiguration                    FFST.H
+LayoutCreateObject                      LAYOUT.H
+LayoutDestroyObject                     LAYOUT.H
+LayoutSetValues                         LAYOUT.H
+LayoutQueryValues                       LAYOUT.H
+LayoutTransformText                     LAYOUT.H
+LayoutEditShape                         LAYOUT.H
+LogOpenFile                             LFDEF.H
+LogCloseFile                            LFDEF.H
+LogReadEntry                            LFDEF.H
+LogFormatEntry                          LFDEF.H
+LogOpenEventNotification                LFDEF.H
+LogCloseEventNotification               LFDEF.H
+LogChangeEventFilter                    LFDEF.H
+LogWaitEvent                            LFDEF.H
+PrtNewPage                              PMSPL.H
+PrtResetAbort                           PMSPL.H
+WinDBCSIMEControl                       OS2NLS.H
+WinDBCSLoadFontDriver                   OS2NLS.H
+WinDBCSModeControl                      OS2NLS.H
+WinDBCSQueryFDDescription               OS2NLS.H
+WinDBCSUnloadFontDriver                 OS2NLS.H
+DevPostEscape                           PMDEV.H
+GpiBeginInkPath                         PMGPI.H
+GpiCreateEllipticRegion                 PMGPI.H
+GpiCreatePolygonRegion                  PMGPI.H
+GpiCreateRoundRectRegion                PMGPI.H
+GpiEndInkPath                           PMGPI.H
+GpiQueryFontMappingFlags                PMGPI.H
+GpiQueryNearestPaletteIndex             PMGPI.H
+GpiQueryRasterizerCaps                  PMGPI.H
+GpiQueryTabbedTextExtent                PMGPI.H
+GpiResizePalette                        PMGPI.H
+GpiResumePlay                           PMGPI.H
+GpiSetFontMappingFlags                  PMGPI.H
+GpiStrokeInkPath                        PMGPI.H
+GpiSuspendPlay                          PMGPI.H
+GpiTabbedCharStringAt                   PMGPI.H
+PrfCreateGroup                          PMSHL.H
+PrfQueryProgramCategory                 PMSHL.H
+PrfQueryProgramHandle                   PMSHL.H
+SplQpClose                              PMSPL.H
+SplQpControl                            PMSPL.H
+SplQpInstall                            PMSPL.H
+SplQpOpen                               PMSPL.H
+SplQpPrintSeparator                     PMSPL.H
+SplQpPrint                              PMSPL.H
+SplQpQueryDt                            PMSPL.H
+SplQpQueryFlags                         PMSPL.H
+SplQueryDriver                          PMSPL.H
+SplSetDriver                            PMSPL.H
+DrgQueryFormat                          PMSTDDLG.H
+WinQueryClipRegion                      PMWIN.H
+WinSetClipRegion                        PMWIN.H
+WinNotebookButtonFromID                 WPOBJECT.H
+WinWaitForShell                         WPOBJECT.H
+ShlGetUserWordPtr                       WPOBJECT.H

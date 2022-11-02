@@ -1,0 +1,49 @@
+{{page>en:templates:fapiint}}
+====== VioDeRegister ======
+
+This call deregisters a alternate video subsystem previously registered within a session.
+===== Syntax =====
+
+
+<code c>
+VioDeRegister()
+</code>
+
+===== Parameters =====
+
+rc (USHORT) - return:Return code descriptions are:
+
+  *0 NO_ERROR
+  *404 ERROR_VIO_DEREGISTER
+  *430 ERROR_VIO_ILLEGAL_DURING_POPUP
+  *465 ERROR_VIO_DETACHED
+  *494 ERROR_VIO_EXTENDED_SG
+
+===== Remarks =====
+
+VioDeRegister must be issued by the same process that issued the previous [[VioRegister]]. After VioDeRegister is issued, subsequent video calls are processed by the Base Video Subsystem.
+
+===== Bindings =====
+
+====C====
+<code c>
+#define INCL_VIO
+
+USHORT  rc = VioDeRegister(VOID);
+USHORT  rc;            /* return code */
+</code>
+
+====MASM====
+<code asm>
+EXTRN  VioDeRegister:FAR
+INCL_VIO            EQU 1
+
+CALL   VioDeRegister
+
+Returns WORD
+</code>
+
+[[http://www.edm2.com/index.php/VioDeRegister]]
+
+
+{{page>en:templates:fapi}}

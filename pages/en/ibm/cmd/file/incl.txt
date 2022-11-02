@@ -1,0 +1,33 @@
+===== Include Lists =====
+
+Any internal command that accepts multiple filenames will also accept one or more include lists. An include list is simply a group of filenames, with or without wildcards, separated by semicolons [;]. All files in the include list must be in the same directory. You may not add a space on either side of the semicolon. 
+
+For example, you can shorten this command which uses multiple file names: 
+
+
+        [c:\] copy a:\details\file1.txt a:\details\file1.doc c:
+
+
+to this using an include list: 
+
+
+        [c:\] copy a:\details\file1.txt;file1.doc c:
+
+
+Include lists are similar to multiple filenames, but have three important differences. First, you don't have to repeat the path to your files if you use an include list, because all of the included files must be in the same directory. Second, if you use include lists, you aren't as likely to accidentally overwrite files if you forget a destination path for commands like COPY, because the last name in the list will be part of the include list, and won't be seen as the destination file name. (Include lists can only be used as the source parameter - the location files are coming from - for COPY and other similar commands. They cannot be used to specify a destination for files.) 
+
+Third, [[en:docs:os2:cmd:file:mult|multiple filenames]] and [[en:docs:os2:cmd:file:incl|include lists]] are processed differently by the [[en:docs:os2:cmd:internal:dir|DIR]] and [[en:docs:os2:cmd:internal:select|SELECT]] commands. If you use multiple filenames, all of the files matching the first filename are processed, then all of the files matching the second name, and so on. When you use an include list, all files that match any entry in the include list are processed together, and will appear together in the directory display or [[en:docs:os2:cmd:internal:select|SELECT]] list. You can see this difference clearly if you experiment with both techniques and the [[en:docs:os2:cmd:internal:dir|DIR]] command. For example: 
+
+<code>
+        [c:\] dir *.txt *.doc
+</code>
+
+will list all the //.TXT// files with a directory header, the file list, and a summary of the total number of files and bytes used. Then it will do the same for the //.DOC// files. However, 
+
+<code>
+        [c:\] dir *.txt;*.doc
+</code>
+
+will display all the files in one list. 
+
+Like [[en:docs:os2:cmd:file:wild|extended wildcards]] and [[en:docs:os2:cmd:file:mult|multiple filenames]], the [[en:docs:os2:cmd:file:incl|include list]] feature will work with internal commands, but not with external programs (unless they have been programmed especially to support them). The maximum length of an include list is 260 characters. 

@@ -1,0 +1,78 @@
+{{page>en:templates:biosint}}
+
+====== @AuxInit ======
+
+===== Brief =====
+
+Initialize serial port
+
+===== BIOS Interrupt =====
+
+[[en:docs:bios:api:int|INTH]]: [[en:docs:bios:api::|H]]
+
+===== Family API =====
+
+[[en:docs:fapi:]]
+
+===== Syntax =====
+
+<code asm>
+@AuxInit port, settings
+</code>
+
+===== Parameters =====
+
+  * port (WORD) - port number
+  * settings (BYTE) - port settings
+
+Baud rates is passed in the high order 3 bits as follows:
+
+| 000 | 110 baud |
+| 001 | 150 baud |
+| 010 | 300 baud |
+| 011 | 600 baud |
+| 100 | 1200 baud |
+| 101 | 2400 baud |
+| 110 | 4800 baud |
+| 111 | 9600 baud |
+
+
+Bits 4-3 define parity:
+| 00| no parity |
+| 10 | no parity |
+| 01 | odd parity |
+| 11 | even parity |
+
+Bit 2 defines stop bits:
+| 0 | 1 stop bit |
+| 1 | 2 stop bits |
+
+Bits 1-0 character length:
+| 10 | 7 bits |
+| 11 | 8 bits |
+
+===== Return =====
+
+  * AX - port status
+
+Bitfields for serial line status (AH):
+^ Bit(s) ^ Description ^
+| 7 | timeout |
+| 6 | transmit shift register empty |
+| 5 | transmit holding register empty |
+| 4 | break detected |
+| 3 | framing error |
+| 2 | parity error |
+| 1 | overrun error |
+| 0 | receive data ready |
+
+Bitfields for modem status (AL):
+^ Bit(s) ^ Description ^
+| 7 | carrier detect |
+| 6 | ring indicator |
+| 5 | data set ready |
+| 4 | clear to send |
+| 3 | delta carrier detect |
+| 2 | trailing edge of ring indicator |
+| 1 | delta data set ready |
+| 0 | delta clear to send |

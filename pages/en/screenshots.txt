@@ -1,0 +1,37 @@
+==== osFree screenshots ====
+
+Click on a thumbnail to enlarge. Oldest screenshots are shown first.
+
+=== Version 0.0.2 ===
+
+All screenshots in this section are of software currently under development.
+
+^Boot Sequence      ^With Original Bootsector  ^
+| {{screenshots:boot001.jpg?200|osFree 0.0.2 Boot Sequence(In Development)}}  |{{screenshots:boot.png?200| osFree 0.0.2 Boot Sequence(In Development)}} |
+^Boot Sequence with LILO ((Here you can see result of FreeLDR, Kickstart, L4Ka:Pistachio, sigma0 server and initial screen of pingpong application.)) ^OS/2 Test Application ((Here you can see result of GRUB, Bootstrap, Fiasco and core servers with ongoing port/reimplementation of OS2Linux for L4 microkernel. Output to log server.)) ^
+|{{screenshots:pingpong.png?200|osFree 0.0.2 Boot Sequence(In Development)}} |{{screenshots:os2linuxtest.png?200|osFree 0.0.2 OS/2 test application (In Development)}} |
+^OS/2 Application Output ((Same as above, but output to graphical L4Con console.)) ^
+|{{screenshots:boot002.png?200|Output of test application to L4Con server.}} |
+
+=== Version 0.0.3 ===
+
+^OS/2 Personality server ((CONFIG.SYS already parsed and start of PROTSHELL execution)) ^
+|{{screenshots:os2server1.png?200|CONFIG.SYS parsed...}} |
+^FreeLdr boot menu ((simple menu)) ^FreeLdr boot menu ((full-featured menu)) ^
+|{{screenshots:bootmenu.png?200|FreeLdr boot menu}} |{{screenshots:bootmenu2.png?200|FreeLdr boot menu}} |
+
+=== Version 0.0.4 ===
+
+^OS/2 LX Executable (Win32 host) ((This is native OS/2 application in LX format executed under OS/2 Personality server on top of Win32 host)) ^OS/2 LX Executable (L4 host) ((This is native OS/2 application in LX format executed under OS/2 Personality server on top of L4 host)) ^
+|{{screenshots:mini33onwin32.png?200|LX executable works...}} |{{screenshots:mini33onl4.png?200|LX executable works...}} |
+^FreeDOS startup ^argenv.exe (arguments and environment test) ^
+|{{screenshots:snapshot1.png?200|FreeDOS startup}} |{{screenshots:argenv.gif?200|argenv test}} |
+^sort.exe (DosOpen test) ^
+|{{screenshots:sort.gif?200|sort.exe}} |
+
+=== Version 0.0.5 ===
+
+^FreeLDR 0.0.5 main screen ((menu screen)) ^
+|{{screenshots:freeldr005.gif?200|FreeLDR 0.0.5}} |
+
+~~DISCUSSION~~

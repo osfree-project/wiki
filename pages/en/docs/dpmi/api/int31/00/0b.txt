@@ -1,0 +1,48 @@
+{{page>en:templates:dpmi}}
+
+====== Int 31H, AH=00H, AL=0BH ======
+
+===== Version =====
+
+0.9
+
+===== Brief =====
+
+Get Descriptor
+
+===== Input =====
+
+  AX = 000BH
+  BX = selector
+  ES:(E)DI = selector:offset of 8-byte buffer
+
+===== Return =====
+
+  if function successful
+  Carry flag = clear
+  and buffer pointed to by ES:(E)DI contains descriptor
+  
+  if function unsuccessful
+  Carry flag = set
+  AX = error code
+  8022H	invalid selector
+
+===== Notes =====
+
+Copies the local descriptor table (LDT) entry for the specified selector into an 8-byte buffer.
+
+32-bit programs must use ES:EDI to point to the buffer. 16-bit programs should use ES:DI.
+
+Refer to the rules for descriptor usage in Appendix D.
+    
+===== See also =====
+
+   
+
+===== Note =====
+
+Text based on [[http://www.delorie.com/djgpp/doc/dpmi/]]
+
+{{page>en:templates:dpmi:int}}
+
+

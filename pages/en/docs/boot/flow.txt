@@ -1,0 +1,10 @@
+===== Workflow =====
+
+^HDD              ^Floppy           ^Net              ^CD-ROM  ^
+|MBR | | | |
+|Boot sector |Boot sector | | |
+|PreLDR |PreLDR |PreLDR |PreLDR |
+|FreeLDR  |FreeLDR  |FreeLDR |FreeLDR |
+|Multiboot kernel |Multiboot kernel |Multiboot kernel |Multiboot kernel |
+
+~~DISCUSSION~~

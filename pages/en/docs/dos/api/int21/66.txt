@@ -1,0 +1,19 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=66H ======
+
+===== Input ======
+
+ AH=66H, AL=Subfunction
+
+^ Subfunction                        ^ Description                                       ^ Version ^
+| [[en:docs:dos:api:int21:66:01|01]] | GET GLOBAL CODE PAGE TABLE                        | 3.3+    |
+| [[en:docs:dos:api:int21:66:02|02]] | SET GLOBAL CODE PAGE TABLE                        | 3.3+    |
+
+
+{{page>en:templates:int}}
+
+
+
+
+

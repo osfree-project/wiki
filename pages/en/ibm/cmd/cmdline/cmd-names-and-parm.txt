@@ -1,0 +1,18 @@
+===== Command Names and Parameters =====
+
+When you enter a command you type its name at the prompt, followed by a space and any parameters for the command. For example, all of these could be valid commands: 
+
+<code>
+      [c:\] dir
+      [c:\] copy file1 file2 d:\
+      [c:\] f:\util\mapmem /v
+      [c:\] "c:\my programs\jp software\take command\tcmdos2.exe" /l
+</code>
+
+The last three commands above include both a command name, and one or more parameters. There are no spaces within the command name (except in quoted file names), but there is a space between the command name and any parameeters, and there are spaces between the parameters. 
+
+Some commands may work when parameters are entered directly after the command (without an intervening space, //e.g.// **dir/p**), or when several parameters are entered without spaces between them (//e.g.// **dir /2/p**). A very few older programs may even require this approach. However leaving out spaces in this way is usually technically incorrect, and is not recommended as a general practice, as it may not work for all commands. 
+
+If the command name includes a path, the elements must be separated with backslashes (//e.g.// f:\util\mapmem). If you are accustomed to Unix syntax where forward slashes are used in command paths, and want **CMD.EXE** to recognize this approach, you can set [[en:docs:os2:cmd:ini:directives:cfg:unix-paths|UnixPaths]] to Yes in //CMD.INI//. 
+
+For more information on command entry see [[en:docs:os2:cmd:cmdline:mult-cmds|Multiple Commands]] and [[en:docs:os2:cmd:cmdline:cmdline-len-limits|Command-Line Length Limits]]. For details on how CMD.EXE handles the various elements it finds on the command line see [[en:docs:os2:cmd:batch:cmdparse|Command Parsing]]. 

@@ -1,0 +1,83 @@
+==== MouRemovePtr ====
+
+**Bindings**: [[removeptr#C bindings|C]], [[removeptr#MASM bindings|MASM]]
+
+This call allows a process to notify the mouse device driver that the area defined by the passed parameters is for the exclusive use of the application. This area is defined as the collision area and is not available to the mouse device driver when drawing pointer images. 
+
+//MouRemovePtr// (PtrArea, DeviceHandle) 
+
+//PtrArea// (**PNOPTRRECT**) - input 
+Address of the pointer shape collision area structure: 
+
+//leftrow// (**USHORT**) 
+Upper left row coordinate (pels or characters). 
+
+//leftcol// (**USHORT**) 
+Upper left column coordinate (pels or characters). 
+
+//rightrow// (**USHORT**) 
+Lower right row coordinate (pels or characters). 
+
+//rightcol// (**USHORT**) 
+Lower right column coordinate (pels or characters). 
+
+//DeviceHandle// (**HMOU**) - input 
+Handle of the mouse device from a previous [[en:ibm:prcp:mou:open|MouOpen]]. 
+
+//rc// (**USHORT**) - return 
+Return code descriptions are: 
+
+|0 |NO_ERROR |
+|385 |ERROR_MOUSE_NO_DEVICE |
+|387 |ERROR_MOUSE_INV_PARMS |
+|466 |ERROR_MOU_DETACHED |
+|501 |ERROR_MOUSE_NO_CONSOLE |
+|505 |ERROR_MOU_EXTENDED_SG |
+
+**Remarks** 
+
+[[en:ibm:prcp:mou:removeptr|MouRemovePtr]] may be issued by any process in the session. However, only one collision area is active at a time. Each [[en:ibm:prcp:mou:removeptr|MouRemovePtr]] command has the effect of resetting the collision area to the location and area specified by the current command. 
+
+If the logical pointer position is outside of the collision area specified by the latest [[en:ibm:prcp:mou:removeptr|MouRemovePtr]] command, the pointer image is drawn. 
+
+The [[en:ibm:prcp:mou:drawptr|MouDrawPtr]] command effectively cancels the [[en:ibm:prcp:mou:removeptr|MouRemovePtr]] command and allows the pointer to be drawn anywhere on the screen, until a new [[en:ibm:prcp:mou:removeptr|MouRemovePtr]] command is issued. 
+
+=== C bindings ===
+
+<code c>
+typedef struct _NOPTRRECT {   /* mourt */
+  USHORT row;                 /* upper left row coordinates */
+  USHORT col;                 /* upper left column coordinates */
+  USHORT cRow;
+  USHORT cCol;
+} NOPTRRECT;
+
+#define INCL_MOU
+
+USHORT  rc = MouRemovePtr(PtrArea, DeviceHandle);
+
+PNOPTRRECT       PtrArea;       /* Address of pointer data block */
+HMOU             DeviceHandle;  /* Mouse device handle */
+
+USHORT           rc;            /* return code */
+</code>
+
+=== MASM bindings ===
+
+<code asm>
+NOPTRRECT struc
+ mourt_row  dw  ? ;upper left row coordinates
+ mourt_col  dw  ? ;upper left column coordinates
+ mourt_cRow dw  ?
+ mourt_cCol dw  ?
+NOPTRRECT ends
+
+EXTRN MouRemovePtr:FAR
+INCL_MOU            EQU 1
+
+PUSH@  OTHER   PtrArea       ;Address of pointer data block
+PUSH   WORD    DeviceHandle  ;Mouse device handle
+CALL   MouRemovePtr
+
+Returns WORD
+</code>

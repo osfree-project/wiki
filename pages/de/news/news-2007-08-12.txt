@@ -1,0 +1,9 @@
+==== 12. August 2007 ====
+
+Wir haben heute begonnen, die Quellen über SVN verfügbar zu machen. Unser erstes Ziel damit ist, eine gemeinsame Arbeitsumgebung zu konfigurieren. Da wir bisher leider noch keinen eigenen SVN-Server haben verwenden wir den von SourceForge zur Verfügung gestellten. Die osFree-Seite bei SourceForge ist unter [[https://sourceforge.net/projects/osfree/]] zu finden.
+
+Derzeit funktioniert noch NICHT alles was verfügbar ist, es wurden noch nicht einmal alle Teile der Quellen hochgeladen! Trotzdem ist es natürlich gerne gesehen, wenn die Chance genutzt wird und osFree verbessert wird! ;-)
+
+{{tag>}}
+	
+~~DISCUSSION~~

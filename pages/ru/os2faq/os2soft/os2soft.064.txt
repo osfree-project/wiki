@@ -1,0 +1,129 @@
+[Q]: Чем отличается eWorkPlace (eCS 1.1) от XWorkPlace?
+
+[A]: Eugene Gorbunoff (2:5030/769)
+
+Features                                            present     removed
+==========================================================================
+
+General:
+
+    Icon replacements                                           X
+
+    Object page                                     X
+        Has been merged with the "Icon" page.
+
+    More system sounds                              X
+
+    Disable default menu items individually         X
+
+Folder features:
+
+    Configurable context menus via config folder    X
+
+    Select by name                                  X
+    Copy Filename                                   X
+    Move "refresh now" to main context menu                     X
+
+    Display "small icons" etc. in "View" submenu    X
+
+    New "Create another" with positioning           X
+
+    Folder status bars                              X
+        configurable codes (status bars page 2)                 X
+
+    Folder content menus                                        X
+        Will remain in XCenter object buttons however.
+
+    Quick-open folders                                          X
+
+    Full path in title                              X
+
+    Snap to grid                                                X
+
+    Folder hotkeys                                  X
+
+    Display folder hotkeys in context menus         X
+
+    Auto-scrolling of tree views                    X
+        (now enabled by default)
+
+    Extended folder sorting                         X
+        This is totally transparent to the user
+        and isn't any more complicated than the
+        standard folder sorting.
+
+    Replacement folder refresh                      X
+        Enabled by default.
+
+    Folder default view override                    X
+        (no longer make folders open in the
+        same view as the parent)
+
+    Folder default documents                                    X
+
+    Replace "File exists"                           X
+
+    Turbo folders                                               X
+
+Disk features:
+    Replace "drive not ready"                                   X
+        Has been removed because people are still
+        reporting problems with ZIP drives and such.
+
+    Replace "Details" page                          X
+
+Data file features:
+    Extended associations                                       X
+        Has been removed for now because I was unable
+        to get a decent default setup ready in time.
+        Will come back if I manage to do this before eCS 1.1.
+
+    Replacement "File" page                         X
+        Replaces three file pages into one.
+
+    New second "File" page which lists EAs                      X
+
+    File attributes in context menu                 X
+
+Desktop features
+    Remove "Sort" and "Arrange" for desktop         X
+        As opposed to all the other menu items,
+        this should be disabled for the desktop
+        per default. People hit "Sort" too
+        easily for the desktop.
+
+Program file features
+    New settings pages "Module", "Resources" ...                X
+        Most useful for programmers, I guess.
+
+Hook features:
+
+    Pager (virtual desktops)                        X
+
+    Sliding focus                                               X
+
+    Sliding menus                                   X
+        (I propose to leave this in to make
+        menus behave like with Win95.)
+
+    Mouse button 3 features                         X
+
+    Auto-hide mouse                                             X
+
+    Move ptr to default button                                  X
+
+    Object hotkeys                                  X
+        Win95 has this built in, so we should
+        have this also.
+
+XShutdown, restart Desktop                                      X
+Shutdown folder                                                 X
+
+Startup features:
+    Replacement startup folder                                  X
+
+    Desktop start logos                                         X
+
+    Extended archiving                              X
+
+    Enable NumLock on startup                       X

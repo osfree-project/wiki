@@ -1,0 +1,13 @@
+==== Win16 personality ====
+
+  * [[en:docs:bios:api|BIOS API]]
+  * [[en:docs:dos|DOS API]]
+  * [[en:docs:xms:api|XMS API]]
+  * [[en:docs:tasklist|Task List API]]
+  * [[en:docs:dpmi|DOSX API]]
+  * [[en:docs:win16:logo|LOGO API]]
+  * [[en:docs:grabbers|Screen grabbers API]]
+  * [[en:docs:switcher|Task switcher API]]
+  * [[en:docs:win16:modules:kernel|KERNEL library]]
+  * [[en:docs:win16:modules:gdi|GDI library]]
+  * [[en:docs:win16:modules:user|USER library]]

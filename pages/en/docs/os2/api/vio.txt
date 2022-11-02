@@ -1,0 +1,194 @@
+{{page>en:templates:fapiint}}
+
+====== OS/2 Video Subsystem ======
+
+===== Family API (OS/2 mode) =====
+
+OS/2 Video Subsystem (VIO in short) aimed to provide text-mode and graphics-mode (full screen sessions only) video output. Original VIO supports 43 functions which mostly improvement of Video BIOS INT 10H API. Functions are much richer comparing to Video BIOS. It is supports Logical Video Buffer, which allow to have output in background sessions, while screen no accesable. Temporary video session allow to build message notifications system to handle errors and exceptions. Most of functions (41 function) can be replaced by user-defined functions by Alternate Video System. Alternate Video System can hanlde function and then return to caller or pass control lower, to Base Video System. You can register not all but some Alternate Video Subsystem functions, and user Base Video Subsystem for othe functions. Some VIO functions supported in Dual-mode applications by Family API. Under DOS functions simplier but powerfull yes. Many command line tools are Dual Mode applications, as well as many MS-DOS base Microsoft products also dual-mode applications. VIO also provides limited set of graphic mode support. VIO originalli is 16-bit and implemented starting from fist version of OS/2.
+
+<diagram>
+|  AAA |AAA=Application
+| |!@4 |
+| BBB  |BBB=[[en:docs:os2:modules:VIOCALLS]]
+| |!@4 |
+| CCC  |CCC=VIO router
+| |!@4 |
+| BBB |BBB=Alternate Video Subsystem
+| |!@4 |
+| CCC  |CCC=VIO router
+| |!@4 |
+| EEE  |EEE=[[en:docs:os2:modules:BVSCALLS|Base Video Subsystem]]
+</diagram>
+
+OS/2 Video subsystem placed in VIOCALLS.DLL. Called VIO function passes control to internal VIO router function which, depends on registered functions replacement, routes call to Base Video Subsystem (BVSCALLS.DLL) or to registered Alternate Video Subsystem.
+
+In pseudo code it looks like this
+
+<code>
+Application calls VioGetAnsi in VIOCALLS
+VioGetAnsi calls VioRoute
+if AVS registered then
+  VioRoute calls AVS VioGetAnsi
+  if AVS VioGetAnsi requires to call BVS then
+    VioRouter сalls BVS VioGetAnsi
+else
+  VioRouter calls BVS VioGetAnsi
+Return to application
+</code>
+
+OS/2 1.1 introduced Program Manager and VIO was extended to support windowed OS/2 text-based sessions. This extended Vio was named as Advanced VIO.
+
+Such route specific to OS/2 1.0 and 1.1. OS/2 1.2 includes additional functionality. Base Video Subsystem now uses Base Video Handlers to access hardware. Also Global Video Sybsystem hook was added. Base Vide Handler is a sort of video hardware abstraction layer. Global Video Subsystem allow to add notification hooks after VioRoute call.
+
+<diagram>
+|  AAA |AAA=Application
+| |!@4 |
+| BBB  |BBB=[[en:docs:os2:modules:VIOCALLS]]
+| |!@4 |
+| CCC  |CCC=VIO router
+| |!@4 |
+| DDD  |DDD=Alternate Video Subsystem
+| |!@4 |
+| CCC  |CCC=VIO router
+| |!@4 |
+| EEE  |EEE=[[en:docs:os2:modules:BVSCALLS|Base Video Subsystem]]
+| |!@4 |
+| EEE  |EEE=Base Video Handlers
+| |!@4 |
+| EEE  |EEE=[[en:docs:os2:modules:BVSCALLS|Base Video Subsystem]]
+| |!@4 |
+| CCC  |CCC=VIO router
+| |!@4 |
+| DDD  |DDD=Global Video Subsystem
+</diagram>
+
+In pseudo code it looks like this
+
+<code>
+Application calls VioGetAnsi in VIOCALLS
+VioGetAnsi calls VioRoute
+if AVS registered then
+  VioRoute calls AVS VioGetAnsi
+  if AVS VioGetAnsi requires to call BVS then
+    VioRouter сalls BVS VioGetAnsi
+else
+  VioRouter calls BVS VioGetAnsi
+If GVS registered then
+  VioRouter calls GVS VioGetAnsi
+Return to application
+</code>
+
+In OS/2 2.0 and later VIO still 16-bit. In late OS/2 versions (3.x?) actual code of Video subsystem and Base Video Subsysten was moved to DOSCALLS.DLL (see Fig). VIOCALLS and BVSCALLS is a forwarders to DOSCALLS. 
+
+As not part of official OS/2 distribution three independed versions of 32-to-16 bit wrapper subsystems was developed (See Fig). EXMWRAP.DLL was part of eComstation 1.0 and later releases.
+
+<diagram>
+|  AAA | | BBB | | BBB | | BBB |AAA=16/32-bit Application|BBB=32-bit Application|
+| |!   | | | | !@4 | | | | !@4 | | | | !@4 |
+| |!   | | | AAA | | BBB | | CCC |AAA=[[en:docs:os2:modules:EMXWRAP]]|BBB=[[en:docs:os2:modules:OS2CHAR2]]|CCC=[[en:docs:os2:modules:CON3216]]
+| |!@4 | | | | ! | | | | ! | | | | ! |
+| BBB  |-@8|-|^|-|-|-|^|-|-|-|'|BBB=[[en:docs:os2:modules:VIOCALLS]]
+| |!@4 |
+| BBB  |BBB=[[en:docs:os2:modules:DOSCALLS]]
+| |!@4 |
+| CCC  |CCC=VIO router
+| |!@4 |
+|DDD|DDD=Alternate Video Subsystem
+| |!@4 |
+| CCC  |CCC=VIO router
+| |!@4 |
+| EEE  |EEE=[[en:docs:os2:modules:BVSCALLS|Base Video Subsystem]]
+| |!@4 |
+| BBB  |BBB=[[en:docs:os2:modules:DOSCALLS]]
+| |!@4 |
+| EEE  |EEE=Base Video Handlers
+| |!@4 |
+| EEE  |EEE=[[en:docs:os2:modules:BVSCALLS|Base Video Subsystem]]
+| |!@4 |
+| CCC  |CCC=VIO router
+| |!@4 |
+|DDD|DDD=Global Video Subsystem
+</diagram>
+
+<code>
+Application calls VioGetAnsi in VIOCALLS
+VIOCALLS forwards to DOSCALLS
+VioGetAnsi calls VioRoute
+if AVS registered then
+  VioRoute calls AVS VioGetAnsi
+  if AVS VioGetAnsi requires to call BVS then
+    VioRouter сalls BVS VioGetAnsi
+    BVSCALLS forwards to DOSCALLS
+else
+  VioRouter calls BVS VioGetAnsi
+  BVSCALLS forwards to DOSCALLS
+If GVS registered then
+  VioRouter calls GVS VioGetAnsi
+Return to application
+</code>
+
+osFree attempts to combine all aproaches and provide following callflow
+
+<diagram>
+| AAA | | BBB |  | BBB |  | BBB |AAA=16/32-bit Application|BBB=32-bit Application|
+||!@4 | ||| ! |||| !@4 |||| !@4 |
+|DDD| || ! ||| CCC || BBB |CCC=[[en:docs:os2:modules:CON3216]]|BBB=[[en:docs:os2:modules:OS2CHAR2]]|DDD=[[en:docs:os2:modules:VIOCALLS]]
+||!@4 | |||!@4 ||||  !  ||||  !  |
+|BBB|-@2| AAA|-@8|-|^|-|-|-| ' |AAA=[[en:docs:os2:modules:EMXWRAP]]|BBB=[[en:docs:os2:modules:DOSCALLS]]
+||||| |!@4 |
+||||| BBB  |BBB=[[en:docs:os2:modules:SUB32]]
+||||| |!@4 |
+||||| CCC  |CCC=VIO router
+||||| |!@4 |
+||||| DDD  |DDD=Alternate Video Subsystem
+||||| |!@4 |
+||||| CCC  |CCC=VIO router
+||||| |!@4 |
+||||| EEE  |EEE=[[en:docs:os2:modules:BVSCALLS|Base Video Subsystem]]
+||||| |!@4 |
+||||| BBB  |BBB=[[en:docs:os2:modules:DOSCALLS]]
+||||| |!@4 |
+||||| EEE  |EEE=Base Video Handlers
+||||| |!@4 |
+||||| EEE  |EEE=[[en:docs:os2:modules:BVSCALLS|Base Video Subsystem]]
+||||| |!@4 |
+||||| CCC  |CCC=VIO router
+||||| |!@4 |
+||||| DDD |DDD=Global Video Subsystem
+</diagram>
+
+===== Family API (DOS mode) =====
+
+Under DOS original IBM Family API or JdeBP's Family API applications uses following call route
+
+<diagram>
+|  AAA |AAA=Application
+| |!@4 |
+| BBB  |BBB=[[en:docs:os2:libraries:API]].LIB/[[en:docs:os2:libraries:FAPI]].LIB/FAMAPI.LIB
+</diagram>
+
+Under HX DOS Extender OS/2 Emulation Family API applications uses following route
+
+<diagram>
+|  AAA |AAA=Application
+| |!@4 |
+| BBB  |BBB=[[en:docs:os2:modules:VIOCALLS]]
+</diagram>
+
+Under DOS osFree Family API supports following route
+
+<diagram>
+|  AAA |AAA=Application
+| |!@4 |
+| BBB  |BBB=[[en:docs:os2:modules:VIOCALLS]]
+| |!@4 |
+| CCC  |CCC=VIO router
+| |!@4 |
+| DDD|DDD=Alternate Video Subsystem
+| |!@4 |
+| CCC  |CCC=VIO router
+| |!@4 |
+| EEE  |EEE=[[en:docs:os2:modules:BVSCALLS|Base Video Subsystem]]
+</diagram>
+
+

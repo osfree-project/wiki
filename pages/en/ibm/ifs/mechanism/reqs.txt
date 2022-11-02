@@ -1,0 +1,18 @@
+==== FSD Calling Conventions and Requirement ====
+
+Calling conventions between FS router, FSD, and FS helpers are:   
+
+  * Arguments will be pushed in left-to-right order onto the stack. 
+  * The callee is responsible for cleaning up the stack. 
+  * Registers DS, SI, DI, BP, SS, SP are preserved. 
+  * Return conditions appear in AX with the convention that AX == 0 indicates successful completion. AX != 0 indicates an error with the value of AX being the error code. 
+
+Interrupts must ALWAYS be enabled and the direction flag should be presumed to be undefined. Calls to the FS helpers will change the direction flag at will.   
+
+In OS/2, file system drivers are always called in kernel protect mode. This has the advantage of allowing the FSD to execute code without having to account for preemption; no preemption occurs when in kernel mode. While this greatly simplifies FSD structure, it forces the FSD to yield the CPU when executing long segments of code. In particular, an FSD must not hold the CPU for more than 2 milliseconds at a time. The FSD helper FSH_YIELD is provided so that FSDs may relinquish the CPU.   
+
+File system drivers cannot have any interrupt-time activations. Because they occupy high, movable, and swappable memory, there is no guarantee of addressability of the memory at interrupt time.   
+
+Each FS service routine may block.   
+
+  * [[en:ibm:ifs:mechanism:errcodes|Error Codes]]

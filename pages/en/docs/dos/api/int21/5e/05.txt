@@ -1,0 +1,47 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=5EH, AL=05H ======
+
+===== Version =====
+
+3.1 and higher
+
+===== Brief =====
+
+GET PRINTER MODE
+
+===== Family API =====
+
+
+===== Input =====
+
+		AX = 5E05h
+	BX = redirection list index (see AX=5F02h)
+
+===== Return =====
+
+    CF set on error
+	    AX = error code (see #01680 at AH=59h/BX=0000h)
+	CF clear if successful
+	    DX = printer mode (see AX=5E04h)
+
+===== Macro =====
+
+
+===== Notes =====
+
+  calls INT 2F/AX=111Fh with 5E05h on stack
+	supported by DR DOS 3.41+
+
+===== See also =====
+
+   AX=5E04h"DOS",INT 2F/AX=111Fh
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:int}}
+
+{{page>en:templates:fapi}}
+

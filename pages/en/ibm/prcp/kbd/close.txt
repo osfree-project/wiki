@@ -1,0 +1,52 @@
+==== KbdClose ====
+
+Bindings: [[close#C bindings|C]], [[close#MASM bindings|MASM]]
+
+This call closes the existing logical keyboard identified by the keyboard handle. 
+
+KbdClose (KbdHandle) 
+
+//KbdHandle// (**HKBD**) - input 
+Default keyboard or the logical keyboard. 
+
+//rc// (**USHORT**) - return 
+Return code descriptions are: 
+
+|0 |NO_ERROR |
+|439 |ERROR_KBD_INVALID_HANDLE |
+|464 |ERROR_KBD_DETACHED |
+|504 |ERROR_KBD_EXTENDED_SG |
+
+**Remarks** 
+
+//KbdClose// blocks while another thread has the keyboard focus (by way of //[[en:ibm:prcp:kbd:getfocus|KbdGetFocus]]//) until the thread with the focus issues //[[en:ibm:prcp:kbd:freefocus|KbdFreeFocus]]//. Therefore, to prevent KbdClose from blocking, it is recommended that //KbdClose// be issued only while the current thread has the focus. For example: 
+
+  * KbdGetFocus Wait until focus available on handle 0. 
+  * KbdClose Close a logical keyboard handle. 
+  * KbdClose Close another logical keyboard handle. 
+  * KbdClose Close still another logical keyboard handle. 
+  * KbdFreeFocus Give up the focus on handle 0. 
+
+=== C bindings ===
+
+<code c>
+#define INCL_KBD
+
+USHORT  rc = KbdClose(KbdHandle);
+
+HKBD             KbdHandle;     /* Keyboard handle */
+
+USHORT           rc;            /* return code */
+</code>
+
+=== MASM bindings ===
+
+<code asm>
+EXTRN  KbdClose:FAR
+INCL_KBD            EQU 1
+
+PUSH   WORD    KbdHandle     ;Keyboard handle
+CALL   KbdClose
+
+Returns WORD
+</code>

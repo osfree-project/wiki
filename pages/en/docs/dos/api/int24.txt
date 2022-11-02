@@ -1,0 +1,46 @@
+{{page>en:templates:dosint}}
+
+====== Int 24H ======
+
+===== Version =====
+
+1 and higher
+
+===== Brief =====
+
+CRITICAL ERROR HANDLER
+
+===== Family API =====
+
+
+===== Input =====
+
+  none
+
+===== Return =====
+
+  none
+
+===== Macro =====
+
+
+===== Notes =====
+
+     invoked when a critical (usually hardware) error is encountered by DOS
+	  (see #02543); should never be called directly
+	when DOS terminates a program, it copies the previous value of the
+	  INT 24 vector out of the PSP (see #01378) and into the interrupt
+	  vector table
+
+===== See Also =====
+
+  INT 21/AH=95h,INT 21/AH=59h/BX=0000h,INT 21/AH=92h"PTS-DOS"
+  
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:int}}
+
+{{page>en:templates:fapi}}
+

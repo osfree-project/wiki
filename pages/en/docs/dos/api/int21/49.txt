@@ -1,0 +1,47 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=49H ======
+
+===== Version =====
+
+2 and higher
+
+===== Brief =====
+
+FREE MEMORY
+
+===== Family API =====
+
+
+===== Input =====
+
+	AH = 49h
+	ES = segment of block to free
+
+===== Return =====
+
+  CF clear if successful
+	CF set on error
+	    AX = error code (07h,09h) (see #01680 at AH=59h/BX=0000h)
+
+===== Notes =====
+
+  	apparently never returns an error 07h, despite official docs; DOS 2.1+
+	  code contains only an error 09h exit
+	DOS 2.1-6.0 does not coalesce adjacent free blocks when a block is
+	  freed, only when a block is allocated or resized
+	the code for this function is identical in DOS 2.1-6.0 except for
+	  calls to start/end a critical section in DOS 3.0+
+          
+===== See also =====
+
+ AH=48h,AH=4Ah
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:int}}
+
+{{page>en:templates:fapi}}
+

@@ -1,0 +1,48 @@
+===== IBM OS/2 Documentation Index =====
+
+__These are original docs from OS/2 Warp Toolkit\\ and DDK (converted to DokuWiki syntax):__
+
+^  {{en:os2ball.jpg}}  ^  {{en:os2warp.gif}}  ^
+|  **DDK, IFS etc.**  |  **OS/2 Warp Toolkit**  |
+|[[en:docs:old:ifs|Installable File System documentation (ifs.inf)]] |[[en:docs:old:prcp|Control Program API guide, 16-bit functions (prcp.inf)]] |
+|[[en:docs:old:pddref|Physical Device Driver reference (pddref.inf)]] |[[en:docs:old:cp1|Control Program API guide, part 1 (cp1.inf)]] |
+|[[en:docs:old:display|Display Device Driver reference (pddref.inf)]] |[[en:docs:old:cp2|Control Program API guide, part 2 (cp2.inf)]] |
+|[[en:docs:old:pdrref|Presentation Device Driver reference (pdrref.inf)]] |[[en:docs:old:cp3|Control Program API guide, part 3 (cp3.inf)]] |
+|[[en:docs:old:gradd|GRADD Driver reference (gradd.inf)]] |[[en:ibm:gpi1:index|GPI guide, part 1 (gpi1.inf)]] |
+|[[en:docs:old:printer|Printer Driver reference (printer.inf)]] |[[en:docs:old:gpi2|GPI guide, part 2 (gpi2.inf)]] |
+|[[en:docs:old:penos2|Pen Driver reference (penos2.inf)]] |[[en:docs:old:gpi3|GPI guide, part 3 (gpi3.inf)]] |
+|[[en:docs:old:vddref|Virtual Device Driver reference (vddref.inf)]] |[[en:docs:old:gpi4|GPI guide, part 4 (gpi4.inf)]] |
+|[[en:docs:old:storage|Storage Device Driver reference (storage.inf)]] |[[en:docs:old:pm1|PM guide, part 1 (pm1.inf)]] |
+|[[en:docs:old:mmpm2|MMPM/2 reference (mmpm2.inf)]] |[[en:docs:old:pm2|PM guide, part 2 (pm2.inf)]] |
+|[[en:docs:old:ipfc20|IPF reference (ipfc20.inf)]] |[[en:docs:old:pm3|PM guide, part 3 (pm3.inf)]] |
+|[[en:docs:old:alpref|ALP reference (alpref.inf)]] |[[en:docs:old:pm4|PM guide, part 4 (pm4.inf)]] |
+|[[en:docs:old:ap2|Automated Audio device test tool (ap2.inf)]] |[[en:docs:old:pm5|PM guide, part 5 (pm5.inf)]] |
+|[[en:docs:old:useddk|How to use your ddk (useddk.inf)]] |[[en:docs:old:wps1|WPS programming guide, part 1 (wps1.inf)]] |
+|[[en:docs:old:inout|I/O driver reference (in_out.inf)]] |[[en:docs:old:wps2|WPS programming guide, part 2 (wps2.inf)]] |
+|  |[[en:docs:old:wps3:index|WPS programming guide, part 3 (wps3.inf)]] |
+|  |[[en:docs:old:wpsguide|WPS programming guide (wpsguide.inf)]] |
+|  |[[en:docs:old:mmapg|Multimedia application programming guide (mmapg.inf)]] |
+|  |[[en:docs:old:mmrep1|Multimedia Programming guide (mmrep1.inf)]] |
+|  |[[en:docs:old:mmrep2|Multimedia Programming guide (mmrep2.inf)]] |
+|  |[[en:docs:old:mmrep3|Multimedia Programming guide (mmrep3.inf)]] |
+|  |[[en:docs:old:mmsspg|Multimedia subsystem programming guide (mmsspg.inf)]] |
+|  |[[en:docs:old:ipfref|IPF reference (ipfref.inf)]] |
+|  |[[en:docs:old:rexxpg|REXX programming guide (rexxpg.inf)]] |
+|  |[[en:docs:old:open32|Open32 programming guide (open32.inf)]] |
+|  |[[en:docs:old:somguide|SOM programming guide (somguide.inf)]] |
+|  |[[en:docs:old:somref|SOM programming reference (somref.inf)]] |
+|  |[[en:docs:old:tcppr|TCP/IP programming guide (tcppr.inf)]] |
+|  |[[en:docs:old:toolsref|Tools reference (toolsref.inf)]] |
+|  |[[en:docs:pdguide|Problem Determination programming guide (pdguide.inf)]] |
+|  |[[en:docs:old:pmbdtech|Bidirectional Language programming guide (pmbdtech.inf)]] |
+|  |[[en:docs:old:rc16|Legacy 16-bit resource compiler guide (rc16.inf)]] |
+|  |[[en:docs:old:oglbase|OpenGL programming guide (oglbase.inf)]] |
+|  |[[en:docs:old:nmake|nmake guide (nmake32.inf)]] |
+|  |[[en:docs:old:dbghbk|Debugging Handbook (sg244640.inf)]] |
+|  |[[en:docs:old:wsock|Winsock for Win-OS/2 programming guide (winsoc11.inf)]] |
+|  |[[en:docs:old:xpg4|C Library reference (xpg4ref.inf)]] |
+|  |[[en:docs:old:usetlkt|Using Your Toolkit (usetlkt.inf)]] |
+|  |[[en:docs:old:addendum|Addendum (addendum.inf)]] |
+|  |[[en:docs:old:dnal|SystemView Agent DMI Programmer's guide (dnal1mst.inf)]] |
+|  |[[en:docs:old:dpil|SystemView Agent DPI Programmer's guide (dpil1mst.inf)]] |
+|  |[[en:docs:old:srvr|OS/2 Server Family Programmer's guide (srvfpgr.inf)]] |

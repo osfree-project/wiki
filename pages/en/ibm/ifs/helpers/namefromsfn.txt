@@ -1,0 +1,36 @@
+==== FSH_NAMEFROMSFN ====
+
+**Purpose**
+
+This call allows an FSD to retrieve the full path name for an object to which an SFN refers.   
+
+**Calling Sequence**
+
+<code c>
+int far pascal FSH_NAMEFROMSFN(sfn, pName, pcbName)
+
+unsigned short sfn;
+char far * pName;
+unsigned short far * pcbName;
+</code>
+
+**Where**
+
+//sfn// is the system file number of a file instance, obtained from the //sfi_selfsfn// field of the file-system-independent part of the SFT for the object.   
+
+//pName// is the location of where the returned full path name is to be stored.   
+
+//pcbName// is the location of where the FSD places the size of the buffer pointed to by //pName//. On return, the kernel will fill this in with the length of the path name. This length does not include the terminating null character. The size of the buffer should be long enough to hold the full path name, or else an error will be returned. 
+
+**Returns**
+
+If no error is detected, a zero error code is returned. If an error is detected, one of the following error codes is returned:   
+
+  * ERROR_INVALID_HANDLE -- the SFN is invalid. 
+  * ERROR_BUFFER_OVERFLOW -- the buffer is too short for the returned path. 
+
+**Remarks**
+
+//FSH_NAMEFROMSFN// will not block.   
+
+**Note**: OS/2 does not validate input parameters; the FSD should call //FSH_PROBEBUF// where appropriate.   

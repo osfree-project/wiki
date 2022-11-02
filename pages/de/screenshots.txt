@@ -1,0 +1,15 @@
+Zur Vergößerung auf das gewünschte Miniaturbild klicken. Die ältesten Screenshots werden oben angezeigt.
+
+==== Version 0.0.2 ====
+
+Alle Screenshots in diesem Bereich sind von derzeit in Entwicklung befindlicher Software.
+
+^Boot Sequence  ^With Original Bootsector ^
+|{{screenshots:boot001.jpg?200|osFree 0.0.2 Boot Sequence(In Development)}} |{{screenshots:boot.png?200|osFree 0.0.2 Boot Sequence(In Development)}} |
+^Boot Sequence with LILO ((Here you can see result of FreeLDR, Kickstart, L4Ka:Pistachio, sigma0 server and initial screen of pingpong application.)) ^OS/2 Test Application ((Here you can see result of GRUB, Bootstrap, Fiasco and core servers with ongoing port/reimplementation of OS2Linux for L4 microkernel. Output to log server.)) ^
+|{{screenshots:pingpong.png?200|osFree 0.0.2 Boot Sequence(In Development)}} |{{screenshots:os2linuxtest.png?200|osFree 0.0.2 OS/2 test application (In Development)}} }
+^OS/2 Application Output ((Same as above, but output to graphical L4Con console.)) ^OS/2 Personality server ((CONFIG.SYS ist geparsed worden und PROTSHELL würde hier ausgeführt
+Writing /home/hosted/osFree/httpd/html/wiki/data/meta/de/screenshots.comments failed)) ^
+|{{screenshots:boot002.png?200|Output of test application to L4Con server.}} |{{screenshots:os2server1.png?200|CONFIG.SYS parsed...}} |
+
+=== Discussion ===

@@ -1,0 +1,153 @@
+===== OS2Server Guide and Reference =====
+
+==== Introduction ====
+
+Goal of OS2Server server is a provide OS/2 Personality on top of L4 microkernel. OS2Server is isolation layer of OS/2 application from another personalities and L4 microkernel itself.
+
+==== How it organized ====
+
+OS2Server consist of:
+
+  * Configuration file parser
+  * Set of interfaces to kernel and various servers required to implement OS/2 Personality API
+
+OS2Server uses file provider interface to load config.sys and parses it. While parsing is in progress server loop active already because parsing work in separate thread. Parser thread also starts all RUN and CALL applications pointed in CONFIG.SYS and last task it executes is a PROTSHELL task. CONFIG.SYS stataments processed in folowing way:
+
+  - Skip all BASEDEV stataments
+  - Skip all DEVICE stataments
+  - Skip all IFS stataments
+  - Generate environment according SET stataments
+  - Execute all applications pointed by CALL statament
+  - Execute all applications pointed by RUN statament
+  - Execute application pointed by PROTSHELL statament
+
+==== Configuration ====
+
+OS2Server and OS/2 Personality environment configured via text config file named CONFIG.SYS. CONFIG.SYS mostly same as in original OS/2 except some osFree specific things. As example, IFS, BASEDEV and DEVICE statament are ignored because all drivers works in Neutral Personality. Also, additional stataments are supported, like DRIVEMAPPING statament which maps drive letters to Neutral Personality Virtual File System (L4VFS). Here is list of all CONFIG.SYS stataments and variables (most of them not supported yet if no any description of statament here):
+
+  * AUTOFAIL
+  * BUFFERS
+  * CALL Executes corresponding applications which pointed by this statament.
+  * CLOCKSCALE
+  * CLOSEFILES
+  * CODEPAGE
+  * COUNTRY
+  * DEVINFO_KBD
+  * DEVINFO_VIO
+  * DISKCACHE
+  * DLLBASING
+  * DUMPPROCESS
+  * EARLYMEMINIT
+  * FAKEISS
+  * I13PAGES
+  * IBM_JAVA_OPTIONS
+  * IOPL
+  * IROPT
+  * JAVANOFPK
+  * LASTDRIVE
+  * LDRSTACKOPT
+  * LIBPATH
+  * MAXWAIT
+  * MEMMAN
+  * MODE
+  * NDWTIMER
+  * PAUSEONERROR
+  * PRINTMONBUFSIZE
+  * PRIORITY
+  * PRIORITY_DISK_IO
+  * PROTECTONLY
+  * **PROTSHELL** statament containg name of main OS/2 task which executed on OS/2 Personality startup. It can be command line processor, GUI, task manager or any other task which will be starting point for other tasks.
+  * RASKDATA
+  * REIPL
+  * REMOTE_INSTALL_STATE
+  * RESERVEDRIVELETTER
+  * RUN Start during startup VIO (not PM) programs after all device statements.
+  * SETBOOT
+  * SOURCEPATH
+  * STRACE
+  * SUPPRESSPOPUPS
+  * SWAPPATH
+  * SXFAKEHWFPU
+  * SYSDUMP
+  * THREADS
+  * TIMESLICE
+  * TRACE
+  * TRACEBUF
+  * TRAPDUMP
+  * TRAPLOG
+  * TRUEMODE
+  * VIRTUALADDRESSLIMIT
+  * VME
+  * WORKPLACE_NATIVE
+  * WORKPLACE_PRIMARY_CP
+  * WORKPLACE_PROCESS
+  * WP_OBJHANDLE
+
+In addition to CONFIG.SYS file OS2Server supports some set of command line arguments:
+
+  * -s, –server (default=BMODFS) file provider name which used to load CONFIG.SYS
+  * -n, –name (default=config.sys) file name of configuration file. It can be not CONFIG.SYS, but any pointed here file
+
+==== Interfaces ====
+
+<code> 
+interface os2server
+ {
+ }
+</code>
+
+==== os2server execution via l4vfs ====
+
+<code>
+	title = os2server demo (l4vfs)
+	kernel = $(ROOT)/bootstrap -serial
+	modaddr 0x02000000
+	module = $(ROOT)/$(ABI)/fiasco -nowait -nokdb -serial -jdb_never_stop -tbuf_entries=32768 -jdb_cmd=JH
+	module = $(ROOT)/$(ABI)/sigma0
+	module = $(ROOT)/$(ABI)/roottask \
+	task modname "l4io" boot_priority 0xC0 \
+	task modname "sigma0" boot_priority 0xA0 \
+	task modname "roottask" boot_priority 0xA0 \
+	task modname "log" boot_priority 0xC0 \
+	task modname "simple_file_server" attached 8 modules
+	module = $(ROOT)/$(ABI)/names
+	module = $(ROOT)/$(ABI)/log
+	module = $(ROOT)/$(ABI)/dm_phys
+	module = $(ROOT)/$(ABI)/simple_ts -t 300
+	module = $(ROOT)/$(ABI)/rtc
+	module = $(ROOT)/$(ABI)/l4io --noirq
+	module = $(ROOT)/$(ABI)/name_server -p
+	module = $(ROOT)/$(ABI)/simple_file_server -v 12
+	module = $(ROOT)/$(ABI)/libloader.s.so libloader.s.so
+	module = $(CFG)/os2-l4vfs.cfg os2-l4vfs.cfg
+	module = $(ROOT)/$(ABI)/con_demo1 con_demo1
+	module = $(ROOT)/$(ABI)/con_demo2 con_demo2
+	module = $(ROOT)/$(ABI)/con_demo3 con_demo3
+	module = $(ROOT)/$(ABI)/os2server os2server
+	module = $(CFG)/config.sys config.sys
+	module = $(ROOT)/$(ABI)/VioWrtTTY_test VioWrtTTY_test
+	module = $(ROOT)/$(ABI)/fstab -v 12 -b / -m /sfs
+	module = $(ROOT)/$(ABI)/fprov_proxy
+	module = $(ROOT)/$(ABI)/l4con --l4io
+	module = $(ROOT)/$(ABI)/l4exec
+	module = $(ROOT)/$(ABI)/loader --fprov=fprov_proxy_fs /sfs/os2-l4vfs.cfg
+	vbeset 0x111
+
+	# cfg_os2
+	verbose 0
+	modpath "/sfs"
+	sleep 0
+	task "con_demo1" ""
+	priority 0xA0
+	task "con_demo2" ""
+	priority 0xA0
+	task "con_demo3" ""
+	priority 0xA0
+	task "os2server" "--server fprov_proxy_fs --name /sfs/config.sys"
+	priority 0xA0
+
+config.sys:
+	PROTSHELL=/sfs/VioWrtTTY_test
+</code>
+
+~~DISCUSSION~~

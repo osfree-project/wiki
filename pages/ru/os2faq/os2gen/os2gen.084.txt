@@ -1,0 +1,39 @@
+[Q]: Где взять Team OS/2 FAQ
+
+[A]: (ccs95@aber.ac.uk)
+
+The Team OS/2 FAQ version 2.4 has been released.
+It is available on the Web from:
+    http://www.aber.ac.uk/~ccs95/teamfaq.html
+    http://www.teamos2.org/faq
+
+A text version (TMFAQ24.ZIP) will be available from:
+    ftp.leo.org     /pub/comp/os2/info
+    hobbes.nmsu.edu /os2/newsltr
+    ftp.teamos2.org     /pub/info/faq
+
+but I recommend the HTML version, which has live links to useful files etc.
+
+I'll resume posting the text version to news.answers etc. in the near future.
+(This time, I really will, since I seem to have ironed out the glitches
+in the FAQ posting software.)
+
+[A]: Alexander Belyaev (2:5035/13.15)
+
+Перевод:
+
+Появилась версия 2.4
+Ее можно взять на 
+    http://www.aber.ac.uk/~ccs95/teamfaq.html
+    http://www.teamos2.org/faq
+
+Текстовая версия (TMFAQ24.ZIP) доступна на
+
+    ftp.leo.org     /pub/comp/os2/info
+    hobbes.nmsu.edu /os2/newsltr
+    ftp.teamos2.org     /pub/info/faq
+
+но я рекомендую HTML- версию
+
+Последняя веpсия - 2.41
+ftp://hobbes.nmsu.edu/pub/os2/info/faq/tmfaq241.zip

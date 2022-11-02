@@ -1,0 +1,59 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=44H, AL=0DH ======
+
+===== Version =====
+
+3.2 and higher
+
+===== Brief =====
+
+GENERIC BLOCK DEVICE REQUEST
+
+===== Family API =====
+
+
+===== Input =====
+
+	AX = 440Dh
+	BL = drive number (00h=default,01h=A:,etc)
+	CH = category code (see #01558)
+	CL = minor code (function) (see #01559)
+	DS:DX -> (DOS) parameter block (see #01560,#01562,#01563,#01564,#01565)
+	SI:DI -> (OS/2 comp box) parameter block (see #01566,#01568,#01569,#01572)
+
+===== Return =====
+
+   CF set on error
+	    AX = error code (01h,02h,etc.) (see #01680 at AH=59h/BX=0000h)
+	CF clear if successful
+	    DS:DX -> data block if CL=60h or CL=61h
+
+===== Macro =====
+
+
+===== Notes =====
+
+    	DOS 4.01 seems to ignore the high byte of the number of directory
+	  entries in the BPB for diskettes.
+	functions 46h and 66h undocumented in DOS 4.x, documented for DOS 5+
+	the DUBLDISK.SYS v2.6 driver only supports minor codes 60h and 67h
+	DR DOS 3.41-6.0 only support minor codes 40h-42h and 60h-62h; all
+	  other minor codes return error code 16h
+	some PCMCIA calls reportedly appear to be dangerous for MS-DOS versions
+	  prior to 5.0
+	minor code 60h normally produces no I/O except with AutoMount=1 for
+	  DBLSPACE/DRVSPACE
+
+===== See also =====
+
+    AX=440Ch,AX=440Dh/CX=084Ah,AX=440Dh/CX=0871h,AH=69h,INT 2F/AX=0802h, INT 2F/AX=122Bh
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:int}}
+
+{{page>en:templates:fapi}}
+

@@ -1,0 +1,246 @@
+{{page>en:templates:fapiint}}
+
+====== DosFindFirst ======
+
+This call finds the first file object or group of file objects whose name(s) match the specification.
+
+===== Syntax =====
+<code c>
+ DosFindFirst (FileName, DirHandle, Attribute,
+               ResultBuf, ResultBufLen, SearchCount, Reserved)
+</code>
+===== Parameters =====
+
+  * FileName ([[PSZ]]) - input : Address of the ASCIIZ path name of the file or subdirectory to be found. The name component may contain global file name characters. 
+  * DirHandle ([[PHDIR]]) - input/output : Address of the handle associated with a specific DosFindFirst request. The values that can be specified are:
+    * 0001H - Assign handle 1, which is always available to a process. 
+    * FFFFH - The system allocates and returns a handle. If on input FFFFH is specified, on output DirHandle contains the handle allocated by the system.
+
+The DosFindFirst handle is used with subsequent DosFindNext requests. Reuse of this handle in another DosFindFirst closes the association with the previous DosFindFirst and opens a new association.
+
+* Attribute ([[USHORT]]) - input : Attribute value that determines the file objects to be searched for.
+
+^ Bit ^ Description ^
+| 15-6 | Reserved and must be zero |
+| 5 | File archive |
+| 4 | Subdirectory |
+| 3 | Reserved and must be zero |
+| 2 | System file |
+| 1 | Hidden file |
+| 0 | Read only file |
+
+These bits may be set individually or in combination. For example, an attribute value of 0021H (bits 5 and 0 set to 1) indicates a read-only file that should be archived. 
+            
+If Attribute is 0, normal file entries are found. Entries for subdirectories, hidden, and system files, are not returned. If Attribute is set for hidden or system files, or directory entries, it is considered an inclusive search. All normal file entries plus all entries matching the specific attributes are returned. Set Attribute to hidden+system+directory (all three bits on) to look at all directory entries except the volume label. 
+            
+Attribute cannot specify the volume label. Volume labels are queried using DosQFSInfo. Attributes of a file are queried and set with DosQFileMode and DosSetFileMode. 
+
+  * ResultBuf ([[PFILEFINDBUF]]) - output : Address of the structure that contains the returned directory information. The information reflects the last DosClose, DosBufReset, DosSetFileMode, DosSetFileInfo, and DosSetPathInfo calls.
+
+  * filedate ([[FDATE]]) : Structure containing the date of file creation.
+
+^ Bit ^ Description ^
+| 15-9 | Year, in binary, of file creation |
+| 8-5 | Month, in binary, of file creation |
+| 4-0 | Day, in binary, of file creation |
+
+  * filetime ([[FTIME]]) : Structure containing the time of file creation.
+
+^ Bit ^ Description ^
+| 15-11 | Hours, in binary, of file creation |
+| 10-5 | Minutes, in binary, of file creation |
+| 4-0 | Seconds, in binary number of two-second increments, of file creation |
+
+  * fileaccessdate ([[FDATE]]) : Structure containing the date of last access. See FDATE in filedate. 
+
+  * fileaccesstime ([[FTIME]]) : Structure containing the time of last access. See FTIME in filetime. 
+
+  * writeaccessdate ([[FDATE]]) : Structure containing the date of last write. See FDATE in filedate. 
+
+  * writeaccesstime ([[FTIME]]) : Structure containing the time of last write. See FTIME in filetime. 
+
+  * filesize ([[ULONG]]): File size. 
+
+  * filealloc ([[ULONG]]) : Allocated file size. 
+
+  * fileattrib ([[USHORT]]) : Attributes of the file, defined in DosSetFileMode. 
+
+  * length ([[UCHAR]]) : Length of the ASCIIZ name string.
+
+  * matchfilename ([[CHAR]]) : ASCIIZ name string for the first occurrence of FileName. 
+
+  * ResultBufLen ([[USHORT]]) - input : Length of ResultBuf 
+
+  * SearchCount ([[PUSHORT]]) - input/output : Address of the number of matching entries requested in ResultBuf. On return, this field contains the number of entries placed into ResultBuf. 
+
+  * Reserved ([[ULONG]]) - input : Reserved, must be set to zero. 
+
+===== Return Code =====
+
+rc ([[USHORT]]) - return
+
+Return code descriptions are:
+
+  * 0        NO_ERROR
+  * 2        ERROR_FILE_NOT_FOUND 
+  * 3        ERROR_PATH_NOT_FOUND 
+  * 6        ERROR_INVALID_HANDLE 
+  * 18       ERROR_NO_MORE_FILES 
+  * 26       ERROR_NOT_DOS_DISK 
+  * 87       ERROR_INVALID_PARAMETER 
+  * 108      ERROR_DRIVE_LOCKED 
+  * 111      ERROR_BUFFER_OVERFLOW 
+  * 113      ERROR_NO_MORE_SEARCH_HANDLES 
+  * 206      ERROR_FILENAME_EXCED_RANGE
+
+===== Remarks =====
+
+DosFindFirst returns directory entries (up to the number requested in SearchCount) for as many files or subdirectories whose names and attributes match the specification and whose information fits in ResultBuf. On output, SearchCount contains the actual number of directory entries returned.
+
+DosFindNext uses the directory handle associated with DosFindFirst to continue the search started by the DosFindFirst request.
+
+Any non-zero return code indicates no handle has been allocated, including such non-error indicators as ERROR_NO_MORE_FILES.
+
+DosQSysInfo is called by an application to determine the maximum path length allowed by OS/2.
+
+For programs running without the NEWFILES bit set, only 8.3 filename format names are returned. These names are changed to uppercase.
+
+==== Family API Considerations ====
+
+Some options operate differently in the DOS mode than in OS/2 mode. Therefore, the following restrictions apply to DosFindFirst when coding for the DOS mode:
+
+DirHandle must always equal hex 0001H or FFFFH on the initial call to DosFindFirst. Subsequent calls to DosFindFirst must have a DirHandle of hex 0001H unless a DosFindClose had been issued. In this case, 0001H or FFFFH is allowed. 
+
+===== Example Code =====
+
+==== C Binding ====
+
+<code c>
+typedef struct _FDATE {   /* fdate */
+ 
+  unsigned day   : 5;     /* binary day for directory entry */
+  unsigned month : 4;     /* binary month for directory entry */
+  unsigned year  : 7;     /* binary year for directory entry */
+ 
+} FDATE;
+
+typedef struct _FTIME {       /* ftime */
+ 
+  unsigned twosecs : 5;       /* binary number of two-second increments */
+  unsigned minutes : 6;       /* binary number of minutes */
+  unsigned hours   : 5;       /* binary number of hours */
+ 
+} FTIME;
+
+typedef struct _FILEFINDBUF {   /* findbuf */
+ 
+  FDATE  fdateCreation;         /* file date of creation */
+  FTIME  ftimeCreation;         /* file time of creation */
+  FDATE  fdateLastAccess;       /* file date of last access */
+  FTIME  ftimeLastAccess;       /* file time of last access */
+  FDATE  fdateLastWrite;        /* file date of last write */
+  FTIME  ftimeLastWrite;        /* file time of last write */
+  ULONG  cbFile;                /* file end of data */
+  ULONG  cbFileAlloc;           /* file allocation */
+  USHORT attrFile;              /* file attribute */
+  UCHAR  cchName;               /* length of ASCIIZ name string */
+  CHAR   achName[CCHMAXPATHCOMP]; /* ASCIIZ name string */
+ 
+} FILEFINDBUF;
+
+#define INCL_DOSFILEMGR
+
+USHORT  rc = DosFindFirst(FileName, DirHandle, Attribute, ResultBuf,
+                             ResultBufLen, SearchCount, Reserved);
+
+PSZ              FileName;      /* File path name */
+PHDIR            DirHandle;     /* Directory search handle */
+USHORT           Attribute;     /* Search attribute */
+PFILEFINDBUF     ResultBuf;     /* Result buffer */
+USHORT           ResultBufLen;  /* Result buffer length *
+PUSHORT          SearchCount;   /* Number of entries to find */
+ULONG            0;             /* Reserved (must be zero) */
+
+USHORT           rc;            /* return code */
+
+</code>
+
+This example searches for a file matching the pattern 'te??.dat.' 
+<code c>
+#define INCL_DOSFILEMGR
+
+#define NORMAL_FILES 0
+#define HIDDEN_FILES 2
+#define SEARCH_PATTERN "te??.dat"
+#define FILE_ATTRIBUTE NORMAL_FILES | HIDDEN_FILES
+#define RESERVED 0L
+
+HDIR        FindHandle;
+FILEFINDBUF FindBuffer;
+USHORT      FindCount;
+USHORT      rc;
+
+   FindHandle = 0x0001;
+   FindCount = 1;
+
+   rc = DosFindFirst(SEARCH_PATTERN,        /* File pattern */
+                     &FindHandle,           /* Directory search handle */
+                     FILE_ATTRIBUTE,        /* Search attribute */
+                     &FindBuffer,           /* Result buffer */
+                     sizeof(FindBuffer),    /* Result buffer length */
+                     &FindCount,             /* # of entries to find */
+                     RESERVED);             /* Reserved (must be zero) */
+</code>
+==== MASM Binding ====
+
+<code asm>
+FDATE   struc
+ 
+  fdate_fs  dw  ?
+ 
+FDATE   ends
+
+FTIME   struc
+ 
+  ftime_fs  dw  ?
+ 
+FTIME   ends
+
+FILEFINDBUF struc
+ 
+  findbuf_fdateCreation   dw (size FDATE)/2 dup (?) ;file date of creation
+  findbuf_ftimeCreation   dw (size FTIME)/2 dup (?) ;file time of creation
+  findbuf_fdateLastAccess dw (size FDATE)/2 dup (?) ;file date of last access
+  findbuf_ftimeLastAccess dw (size FTIME)/2 dup (?) ;file time of last access
+  findbuf_fdateLastWrite  dw (size FDATE)/2 dup (?) ;file date of last write
+  findbuf_ftimeLastWrite  dw (size FTIME)/2 dup (?) ;file time of last write
+  findbuf_cbFile          dd  ? ;file end of data
+  findbuf_cbFileAlloc     dd  ? ;file allocation
+  findbuf_attrFile        dw  ? ;file attribute
+  findbuf_cchName         db  ? ;length of ASCIIZ name string
+  findbuf_achName         db  CCHMAXPATHCOMP dup (?) ;length of ASCIIZ name string
+ 
+FILEFINDBUF ends
+
+EXTRN  DosFindFirst:FAR
+INCL_DOSFILEMGR     EQU 1
+
+PUSH@  ASCIIZ  FileName      ;File path name string
+PUSH@  WORD    DirHandle     ;Directory search handle (returned)
+PUSH   WORD    Attribute     ;Search attribute
+PUSH@  OTHER   ResultBuf     ;Result buffer
+PUSH   WORD    ResultBufLen  ;Result buffer length
+PUSH@  WORD    SearchCount   ;Number of entries to find
+PUSH   DWORD   0             ;Reserved (must be zero)
+CALL   DosFindFirst
+
+</code>
+Returns WORD
+
+
+===== Note =====
+
+
+Text based on [[http://www.edm2.com/index.php/DosFindFirst_(FAPI)]]
+
+{{page>en:templates:fapi}}

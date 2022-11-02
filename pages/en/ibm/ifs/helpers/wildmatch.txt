@@ -1,0 +1,38 @@
+==== FSH_WILDMATCH ====
+
+**Purpose**
+
+This function provides the mechanism for using OS/2 wildcard semantics to form a match between an input string and a pattern, taking into account DBCS considerations.   
+
+**Calling Sequence**
+
+<code c>
+int far pascal FSH_WILDMATCH(pPat, pStr)
+
+char far * pPat;
+char far * pStr;
+</code>
+
+**Where**
+
+//pPat// is the pointer to an ASCIIZ pattern string. Wildcards are present and are interpreted as described below.   
+
+//ppStr// is the pointer to the test string. 
+
+**Returns**
+
+If no error is detected, a zero error code is returned. If an error is detected, the following error code is returned:   
+
+  * ERROR_NO_META_MATCH -- the wildcard match failed. 
+
+**Remarks**
+
+Wildcards provide a general mechanism for pattern matching file names. There are two distinguished characters that are relevant to this matching. The '?' character matches one character (not bytes) except at a '.' or at the end of a string, where it matches zero characters. The '*' matches zero or more characters (not bytes) with no implied boundaries except the end-of-string.   
+
+For example, "a*b" matches "ab" and "aCCCCCCCCC" while "a?b" matches "aCb" but does not match "aCCCCCCCCCb"   
+
+See the section on meta characters in this document for additional information.   
+
+The FSD should uppercase the pattern and string before calling //FSH_WILDMATCH// to achieve a case-insensitive compare.   
+
+**Note**: OS/2 does not validate input parameters. An FSD, therefore, should call //FSH_PROBEBUF// where appropriate.   

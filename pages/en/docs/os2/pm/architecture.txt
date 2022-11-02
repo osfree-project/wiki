@@ -1,0 +1,35 @@
+===== osFree PM Architecture =====
+
+=== Graphical Program Interface (GPI) ===
+
+The GPI ((Graphical Program Interface)) is the graphical engine of Presentation Manager. It is  based on PM GRE ((Graphics Runtime Engine)). The GPI/GRE is the counterparts of Windows GDI. The GPI/GRE pair is designed as an enhanced version of Windows Graphics Engine. Contrary to Windows, they are decomposed to two layers. The GPI is the high-level layer.
+
+The Windows programs API's operate directly on DC ((Device Context)). OS/2 PM is redesigned, so Programs operate on PS ((Presentation Space)), not the DC. The DC is something related to the instance of graphics device (the video screen, a window or printer). 
+
+The PS is a higher level abstraction. It can be treated as a canvas in other graphics libraries. It maintain such things as current background/foreground color, a palette, a brush shape, a current font etc. Also, the PS can be associated/deassociated to/from the DC, or migrate from one DC to another. This gives a flexibility to graphics API.
+
+The GPI functions have the "Gpi" prefix and reside in PMGPI.DLL. They are buillt on top of GRE functions. 
+
+=== Graphics Runtime Environment (OS/2 PM GRE) and Presentation Drivers ===
+
+The GRE is a low-level graphics API which operates DC's. It handles all kinds of graphics devices like video cards and printers.
+
+The GRE contains an array of pointers called the Dispatch Table. This table stores pointers to the most lowlevel GRE functrions. 
+
+The graphics device drivers are called also "presentation drivers". The presentation drivers get an instance of Dispatch Table, and hook in GRE by installing their own functions pointers in the Dispatch Table, and preserving the old ones.
+
+=== The GRADD model ===
+
+=== Video Protected Mode Interface (PMI) ===
+
+==== VIO/KBD/MOU (Console API) ====
+
+=== VIO and BVH's (Base Video Handlers) ===
+
+==== Framebuffer Interface ====
+
+=== Virtual Framebuffer over GRADD driver ===
+
+=== BVH and PM GRE on top of a Framebuffer interface ===
+
+~~DISCUSSION~~

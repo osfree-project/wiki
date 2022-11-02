@@ -1,0 +1,22 @@
+==== November 3 2006 ====
+
+After a little work, Kevin Garricks (aka Jay) has been completed the dokuwiki 
+area of the site. There are a few little glitches here and there in the site’s 
+design, but they are nothing that would be of any consequence, and will not 
+detract from the usability nor attractiveness of the site for the user. If 
+you wish to contribute with the growth of the wiki and osFree’s development 
+and documentation you must ask on the forum for us to upgrade your account 
+to “user” or “developer” in order to get started. Unapproved users will be 
+added to another user group which will not be able to make any modifications. 
+
+=== List of Current Problems ===
+
+  * Edit Toolbar does not show fully. <del>Will be fixed with later DokuWiki release & upgrade</del>. **DONE**
+  * Table of contents <del>appears sideways from Table of contents title</del>. **DONE**
+  * Admin CP has div problems at times.
+
+None of these will really affect you terribly. Please deal with the 2 & 3 while I try to resolve 
+
+{{tag>site}}
+
+~~DISCUSSION~~

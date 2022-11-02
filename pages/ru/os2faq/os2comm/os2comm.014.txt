@@ -1,0 +1,131 @@
+[Q]: Routing for OS/2
+
+[A]: Tony Rall (trall@almaden.ibm.com)
+
+Organization : IBM Almaden Research Center (2:50/128.0@fidonet)
+
+                        Routing for OS/2 TCP/IP
+
+(Wherever "SLIP" is indicated below, any supported point-to-point
+protocol could be substituted.  From the routing standpoint, it makes no
+difference.  Currently, August 1994, SLIP is the only such protocol
+supported by OS/2 TCP/IP.)
+
+In the examples below, IP addresses are shown using the following
+shorthand:
+
+  L1 = IP address for interface 1 on subnet L.  For example, if the
+  subnet address is 128.1.2.0 (subnet mask = 255.255.255.0), the IP
+  address would be 128.1.2.1.
+
+Most, if not all, of the changes suggested below for SETUP.CMD and
+TCPSTART.CMD (these are in the TCPIP\BIN directory) can be accomplished
+by completing the Network, Routing, and Autostart sections of the TCP/IP
+configuration notebook (TCPIPCFG.EXE) rather than simply editing the
+indicated files.
+
+Routing on a machine with a single interface
+--------------------------------------------
+
+  --------------- LAN
+  |      |      |
+  L1     L2     L3-----other subnets
+                router
+
+  * Static routing
+      Simple, cheap, but no recovery from router failure.  In SETUP.CMD,
+      for machines such as L1 and L2, add:
+        route -f add default L3 1
+      The network administrator should provide you with the router's IP
+      address.
+  * Dynamic routing
+      Not very complicated, some cost (requires another process (demon)
+      running on your machine that listens for certain broadcast
+      packets), can provide automatic recovery from router failure and
+      configuration changes.  To use this, at least one router on your
+      network must also support RIP, a routing protocol most commonly
+      used on end-user networks.  In TCPSTART.CMD, add (or uncomment):
+        start routed -q
+      or (to avoid having the demon's window appear on your screen):
+        start /min routed -q
+      or (to avoid routed even showing up in your window list):
+        detach routed -q
+      You don't need any route statements in SETUP.CMD.
+
+Routing a LAN via SLIP to the internet
+--------------------------------------
+
+  --------------- LAN
+  |      |      |         SLIP link
+  L1     L2     L3/S1-------------------S2/I1---(the internet)
+
+  In this setup, the administrator of the S2/I1 machine (usually a
+  commercial Internet provider) must be aware that you have a "network"
+  at your end of the SLIP link and not simply a single machine.  That
+  administrator usually must assign you the local network address (L)
+  that you will be using (as well as the SLIP addresses (S1 and S2).  In
+  some cases, the SLIP addresses will be handled dynamically; this would
+  usually be handled in SLIPUP.CMD, rather than in SETUP.CMD, on L3/S1.
+  (I hope that the LAN addresses, L1, L2, and L3, are not dynamic - I
+  wouldn't know how to handle that.)
+
+  * The non-SLIP LAN machines (L1, L2)
+      In SETUP.CMD, add:
+        route -f add default L3 1
+  * The SLIP-LAN machine (two IP addresses:  L3 and S1)
+      In SETUP.CMD, add:
+        route -f add default S2 1
+      In TCPSTART.CMD, you may need to start routed (but without the
+      "-q" option) - see below:
+        start routed
+  * Routing required on the "internet" side
+      If routed is not being used by L3/S1, a network route (on S2/I1)
+      is needed to the LAN:
+        route add net L S1 1
+      If routed is being used by L3/S1, no route statements should be
+      needed on S2/I1.
+
+Routing a LAN (office) machine via SLIP to a home machine
+---------------------------------------------------------
+
+         SLIP link
+  S1-------------------S2/I1---(the office network)
+  home                 office
+
+  In this setup, the administrator of the office network must provide
+  you with your IP addresses.  You need at least 3 of them:  S1, S2, and
+  I1.  Ideally S1 and S2 will be on a different subnet than I1 - ask for
+  this configuration.  If your network administrator will only provide
+  addresses in the same network, you must use the "proxy arp" solution
+  below.
+
+  * The home machine
+      In SETUP.CMD, add:
+        route -f add default S2 1
+  * The office (SLIP-LAN) machine
+    * Routing to a SLIP subnet
+      You simply must be running a routing protocol out the LAN (I1)
+      interface.  In TCPSTART.CMD, you need to start routed (but without
+      the "-q" option):
+        start routed
+    * Proxy arp solution - no separate SLIP subnet
+      In this case, all of the IP addresses (S1, S2, I1) that you've
+      been assigned are on the same subnet.  Normal routing techniques
+      will not work because the S1 address (no other LAN machine needs
+      to talk to S2) is not physically on the same network as I1.  So
+      we try to use a technique call "proxy arp":  the office machine
+      will respond on the I network to arp queries for S1 with its own
+      adapter address.
+
+      First you have to determine the LAN adapter address of the I1
+      interface.  Issue "netstat -n" and copy the displayed "physical
+      address" for the I1 interface.  In SETUP.CMD, after the "arp -f"
+      statement add:
+        arp -s S1 12:34:56:78:90:12 pub
+      where 12:34:56:78:90:12 is the adapter address of I1.
+
+      This tells TCP/IP that when it receives an arp message for IP
+      address S1, that it should respond with its own adapter address.
+      Thus other machines on the I subnet, when wanting to send to S1,
+      will actually transmit to I1.  The S2/I1 machine should forward
+      the packet over the SLIP link to S1.

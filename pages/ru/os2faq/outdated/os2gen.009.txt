@@ -1,0 +1,35 @@
+[Q]: А как сделать, чтоб новый каталог в "Рабочем Столе" не появлялся на WPS?
+
+[A]: Rick DeBay
+
+Peventing The WPS from Automatically Reflecting Changes In The
+                      Filesystem Folders
+
+Add SET AUTOREFRESHFOLDERS=NO to the config.sys to prevent the
+WPS from automatically reflecting changes in the filesystem in
+ folders. The WPS will still record the changes within its own
+tables, and won't loose track of moved files. For systems with
+a busy hard drive (such as file servers) this will cut down on
+ CPU usage by the WPS (especially since folders, once opened,
+                  don't go to sleep anymore).
+
+If you have no FAT drives, remove the DISKCACHE statement from
+ the config.sys. If you have FAT drives, chances are the cache
+is too large. The default (the D parameter) is to allocate 10%
+        of installed memory.
+
+[A]: Alexander Belyaev (2:5035/13.15)
+
+Перевод:
+
+Чтобы WPS не отражал изменения в структуре каталогов автоматически
+
+Добавьте SET AUTOREFRESHFOLDERS=NO в config.sys чтобы WPS не отражал 
+изменения в структуре каталогов автоматически. WPS будет записывать
+все изменения в структуре в свои таблицы, но не будет стирать следы
+перемещенных файлов. Для систем с сильно загруженным диском 
+( таких как файл-серверы ) это снизит загрузку процессора WPS-ом
+Если у вас нет разделов с FAT, удалите строку DISKCACHE 
+из config.sys. Если FAT присутствует, проследите, чтобы размер
+кэша был не слишком велик. По умолчанию (параметр D ) выбирается
+равным 10% установленного ОЗУ. 

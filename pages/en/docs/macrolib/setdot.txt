@@ -1,0 +1,37 @@
+{{page>en:templates:biosint}}
+
+====== @SetDot ======
+
+===== Version =====
+
+IBM 5150 and higher
+
+===== Brief =====
+
+Draw Pixel
+
+===== BIOS Interrupt =====
+
+[[en:docs:bios:api:int10|INT10H]]: [[en:docs:bios:api:int10:0C|0CH]]
+
+===== Family API =====
+
+No equivalent
+
+===== Syntax =====
+
+<code asm>
+@SetDot	color, row, col, page
+</code>
+
+===== Parameters =====
+
+  * color (BYTE) - color
+  * col (BYTE) - column
+  * row (BYTE) - row
+  * page (BYTE) - optional video page number
+
+===== Return =====
+
+
+{{page>en:templates:biosapi}}

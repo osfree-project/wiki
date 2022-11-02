@@ -1,0 +1,47 @@
+==== MouDeRegister ====
+
+**Bindings**: [[dereg#C bindings|C]], [[dereg#MASM bindings|MASM]]
+
+This call deregisters a mouse subsystem previously registered within a session. 
+
+//MouDeRegister// ( ) 
+
+//rc// (**USHORT**) - return 
+Return code descriptions are: 
+
+^0 ^NO_ERROR ^
+|385 |ERROR_MOUSE_NO_DEVICE |
+|416 |ERROR_MOUSE_DEREGISTER |
+|466 |ERROR_MOU_DETACHED |
+|505 |ERROR_MOU_EXTENDED_SG |
+
+**Remarks**
+
+Processes issuing [[en:ibm:prcp:mou:dereg|MouDeRegister]] calls must conform to the following rules: 
+
+  * The process that issued the [[en:ibm:prcp:mou:register|MouRegister]] must release the session (by a [[en:ibm:prcp:mou:dereg|MouDeRegister]]) from the registered subsystem before another **PID** may issue [[en:ibm:prcp:mou:register|MouRegister]]. 
+
+  * The process that issued the [[en:ibm:prcp:mou:register|MouRegister]] is the only process that may issue [[en:ibm:prcp:mou:dereg|MouDeRegister]] against the currently registered subsystem. 
+
+  * After the owning process has released the subsystem with a [[en:ibm:prcp:mou:dereg|MouDeRegister]], any other process in the session may issue a [[en:ibm:prcp:mou:register|MouRegister]] and therefore modify the mouse support for the entire session. 
+
+=== C bindings ===
+
+<code c>
+#define INCL_MOU
+
+USHORT  rc = MouDeRegister(VOID);
+
+USHORT           rc;            /* return code */
+</code>
+
+=== MASM bindings ===
+
+<code asm>
+EXTRN  MouDeRegister:FAR
+INCL_MOU            EQU 1
+
+CALL   MouDeRegister
+
+Returns WORD
+</code>

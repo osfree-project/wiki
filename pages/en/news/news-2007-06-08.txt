@@ -1,0 +1,11 @@
+==== June 8, 2007 ====
+
+The dotProject portion of our site has been restored after a long time of being 
+unable to be used by either guests or the osFree staff, upgraded as there was an 
+oppertuinity to do so. In addition to this recently we’ve had a large amount of 
+downtime due to some big problems with one of our host’s hard drives. But now, 
+you can now enjoy viewing the site again and most importantly the project’s status.
+
+{{tag>osfree downtime site}}
+
+~~DISCUSSION~~

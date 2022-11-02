@@ -1,0 +1,110 @@
+{{page>en:templates:dosint}}
+
+====== INT 21H ======
+
+^ AH ^ Description ^ Version ^
+| [[en:docs:dos:api:int21:00|00H]] | Program terminate | 1.0+ |
+| [[en:docs:dos:api:int21:01|01H]] | Character input | 1.0+ |
+| [[en:docs:dos:api:int21:02|02H]] | Character output | 1.0+ |
+| [[en:docs:dos:api:int21:03|03H]] | Auxiliary input | 1.0+ |
+| [[en:docs:dos:api:int21:04|04H]] | Auxiliary output | 1.0+ |
+| [[en:docs:dos:api:int21:05|05H]] | Printer output | 1.0+ |
+| [[en:docs:dos:api:int21:06|06H]] | Direct console I/O | 1.0+ |
+| [[en:docs:dos:api:int21:07|07H]] | Direct console input without echo | 1.0+ |
+| [[en:docs:dos:api:int21:08|08H]] | Console input without echo | 1.0+ |
+| [[en:docs:dos:api:int21:09|09H]] | Display string | 1.0+ |
+| [[en:docs:dos:api:int21:0a|0AH]] | Buffered keyboard input | 1.0+ |
+| [[en:docs:dos:api:int21:0b|0BH]] | Get input status | 1.0+ |
+| [[en:docs:dos:api:int21:0c|0CH]] | Flush input buffer and input | 1.0+ |
+| [[en:docs:dos:api:int21:0d|0DH]] | Disk reset | 1.0+ |
+| [[en:docs:dos:api:int21:0e|0EH]] | Set default drive | 1.0+ |
+| [[en:docs:dos:api:int21:0f|0FH]] | Open file | 1.0+ |
+| [[en:docs:dos:api:int21:10|10H]] | Close file | 1.0+ |
+| [[en:docs:dos:api:int21:11|11H]] | Find first file | 1.0+ |
+| [[en:docs:dos:api:int21:12|12H]] | Find next file | 1.0+ |
+| [[en:docs:dos:api:int21:13|13H]] | Delete file | 1.0+ |
+| [[en:docs:dos:api:int21:14|14H]] | Sequential read | 1.0+ |
+| [[en:docs:dos:api:int21:15|15H]] | Sequential write | 1.0+ |
+| [[en:docs:dos:api:int21:16|16H]] | Create or truncate file | 1.0+ |
+| [[en:docs:dos:api:int21:17|17H]] | Rename file | 1.0+ |
+| [[en:docs:dos:api:int21:19|19H]] | Get default drive | 1.0+ |
+| [[en:docs:dos:api:int21:1a|1AH]] | Set disk transfer address | 1.0+ |
+| [[en:docs:dos:api:int21:1b|1BH]] | Get allocation info for default drive | 1.0+ |
+| [[en:docs:dos:api:int21:1c|1CH]] | Get allocation info for specified drive | 1.0+ |
+| [[en:docs:dos:api:int21:1f|1FH]] | Get disk parameter block for default drive | 1.0+ |
+| [[en:docs:dos:api:int21:21|21H]] | Random read | 1.0+ |
+| [[en:docs:dos:api:int21:22|22H]] | Random write | 1.0+ |
+| [[en:docs:dos:api:int21:23|23H]] | Get file size in records | 1.0+ |
+| [[en:docs:dos:api:int21:24|24H]] | Set random record number | 1.0+ |
+| [[en:docs:dos:api:int21:25|25H]] | Set interrupt vector | 1.0+ |
+| [[en:docs:dos:api:int21:26|26H]] | Create PSP | 1.0+ |
+| [[en:docs:dos:api:int21:27|27H]] | Random block read | 1.0+ |
+| [[en:docs:dos:api:int21:28|28H]] | Random block write | 1.0+ |
+| [[en:docs:dos:api:int21:29|29H]] | Parse filename | 1.0+ |
+| [[en:docs:dos:api:int21:2a|2AH]] | Get date | 1.0+ |
+| [[en:docs:dos:api:int21:2b|2BH]] | Set date | 1.0+ |
+| [[en:docs:dos:api:int21:2c|2CH]] | Get time | 1.0+ |
+| [[en:docs:dos:api:int21:2d|2DH]] | Set time | 1.0+ |
+| [[en:docs:dos:api:int21:2e|2EH]] | Set verify flag | 1.0+ |
+| [[en:docs:dos:api:int21:2f|2FH]] | Get disk transfer address | 2.0+ |
+| [[en:docs:dos:api:int21:30|30H]] | Get DOS version | 2.0+ |
+| [[en:docs:dos:api:int21:31|31H]] | Terminate and stay resident | 2.0+ |
+| [[en:docs:dos:api:int21:32|32H]] | Get disk parameter block for specified drive | 2.0+ |
+| [[en:docs:dos:api:int21:33|33H]] | Extended functions | 2.0+ |
+| [[en:docs:dos:api:int21:34|34H]] | Get InDOS flag pointer | 2.0+ |
+| [[en:docs:dos:api:int21:35|35H]] | Get interrupt vector | 2.0+ |
+| [[en:docs:dos:api:int21:36|36H]] | Get free disk space | 2.0+ |
+| [[en:docs:dos:api:int21:37|37H]] | Extended functions | 2.0+ |
+| [[en:docs:dos:api:int21:38|38H]] | Get or set country info | 2.0+ |
+| [[en:docs:dos:api:int21:39|39H]] | Create subdirectory | 2.0+ |
+| [[en:docs:dos:api:int21:3a|3AH]] | Remove subdirectory | 2.0+ |
+| [[en:docs:dos:api:int21:3b|3BH]] | Change current directory | 2.0+ |
+| [[en:docs:dos:api:int21:3c|3CH]] | Create or truncate file | 2.0+ |
+| [[en:docs:dos:api:int21:3d|3DH]] | Open file | 2.0+ |
+| [[en:docs:dos:api:int21:3e|3EH]] | Close file | 2.0+ |
+| [[en:docs:dos:api:int21:3f|3FH]] | Read file or device | 2.0+ |
+| [[en:docs:dos:api:int21:40|40H]] | Write file or device | 2.0+ |
+| [[en:docs:dos:api:int21:41|41H]] | Delete file | 2.0+ |
+| [[en:docs:dos:api:int21:42|42H]] | Move file pointer | 2.0+ |
+| [[en:docs:dos:api:int21:43|43H]] | Extended functions | 2.0+ |
+| [[en:docs:dos:api:int21:44|44H]] | Extended functions | 2.0+ |
+| [[en:docs:dos:api:int21:45|45H]] | Duplicate handle | 2.0+ |
+| [[en:docs:dos:api:int21:46|46H]] | Redirect handle | 2.0+ |
+| [[en:docs:dos:api:int21:47|47H]] | Get current directory | 2.0+ |
+| [[en:docs:dos:api:int21:48|48H]] | Allocate memory | 2.0+ |
+| [[en:docs:dos:api:int21:49|49H]] | Release memory | 2.0+ |
+| [[en:docs:dos:api:int21:4a|4AH]] | Reallocate memory | 2.0+ |
+| [[en:docs:dos:api:int21:4b|4BH]] | Execute program | 2.0+ |
+| [[en:docs:dos:api:int21:4c|4CH]] | Terminate with return code | 2.0+ |
+| [[en:docs:dos:api:int21:4d|4DH]] | Get program return code | 2.0+ |
+| [[en:docs:dos:api:int21:4e|4EH]] | Find first file | 2.0+ |
+| [[en:docs:dos:api:int21:4f|4FH]] | Find next file | 2.0+ |
+| [[en:docs:dos:api:int21:50|50H]] | Set current PSP | 2.0+ |
+| [[en:docs:dos:api:int21:51|51H]] | Get current PSP | 2.0+ |
+| [[en:docs:dos:api:int21:52|52H]] | Get DOS internal pointers (SYSVARS) | 2.0+ |
+| [[en:docs:dos:api:int21:53|53H]] | Create disk parameter block | 2.0+ |
+| [[en:docs:dos:api:int21:54|54H]] | Get verify flag | 2.0+ |
+| [[en:docs:dos:api:int21:55|55H]] | Create program PSP | 2.0+ |
+| [[en:docs:dos:api:int21:56|56H]] | Rename file | 2.0+ |
+| [[en:docs:dos:api:int21:57|57H]] | Extended functions | 2.0+ |
+| [[en:docs:dos:api:int21:58|58H]] | Get or set allocation strategy | 2.11+ |
+| [[en:docs:dos:api:int21:59|59H]] | Get extended error info | 3.0+ |
+| [[en:docs:dos:api:int21:5a|5AH]] | Create unique file | 3.0+ |
+| [[en:docs:dos:api:int21:5b|5BH]] | Create new file | 3.0+ |
+| [[en:docs:dos:api:int21:5c|5CH]] | Lock or unlock file | 3.0+ |
+| [[en:docs:dos:api:int21:5d|5DH]] | File sharing functions | 3.0+ |
+| [[en:docs:dos:api:int21:5e|5EH]] | Network functions | 3.0+ |
+| [[en:docs:dos:api:int21:5f|5FH]] | Network redirection functions | 3.0+ |
+| [[en:docs:dos:api:int21:60|60H]] | Qualify filename | 3.0+ |
+| [[en:docs:dos:api:int21:62|62H]] | Get current PSP | 3.0+ |
+| [[en:docs:dos:api:int21:63|63H]] | Get DBCS lead byte table pointer | 3.0+ |
+| [[en:docs:dos:api:int21:64|64H]] | Set wait for external event flag | 3.2+ |
+| [[en:docs:dos:api:int21:65|65H]] | Get extended country info | 3.3+ |
+| [[en:docs:dos:api:int21:66|66H]] | Get or set code page | 3.3+ |
+| [[en:docs:dos:api:int21:67|67H]] | Set handle count | 3.3+ |
+| [[en:docs:dos:api:int21:68|68H]] | Commit file | 3.3+ |
+| [[en:docs:dos:api:int21:69|69H]] | Get or set media id | 4.0+ |
+| [[en:docs:dos:api:int21:6a|6AH]] | Commit file | 4.0+ |
+| [[en:docs:dos:api:int21:6c|6CH]] | Extended open/create file | 4.0+ |
+
+{{page>en:templates:int}}

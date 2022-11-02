@@ -1,0 +1,19 @@
+===== Page and File Prompts =====
+
+Several CMD.EXE commands can generate prompts, which wait for you to press a key to view a new page or to perform a file activity. 
+
+When CMD.EXE is displaying information in page mode, for example with a DIR /P or SET /P command, it displays the message 
+
+<code>
+        Press Esc to Quit or any other key to continue...
+</code>
+
+At this prompt, you can press Esc, Ctrl-C, or Ctrl- Break if you want to quit the command. You can press almost any other key to continue with the command and see the next page of information. 
+
+During file processing, if you have activated prompting with a command like DEL /P, you will see this prompt before processing every file: 
+
+<code>
+        Y/N/R ?
+</code>
+
+You can answer this prompt by pressing Y for "Yes, process this file;" N for "No, do not process this file;" R for "process the Remainder of the files without further prompting." You can also press Ctrl-C, Ctrl-Break, or Esc at this prompt to cancel the remainder of the command. 

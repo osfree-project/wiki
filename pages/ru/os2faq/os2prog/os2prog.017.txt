@@ -1,0 +1,18 @@
+[Q]: А где брать документацию?
+
+[A]: Dmitry Zavalishin (2:5020/32)
+
+Весьма изрядно доков входит в OS/2 Toolkit или в Visual Age C++, включая его
+trial версию. Рекомендую не упустить. В OS/2 DDK есть немало информации по
+написанию драйверов и потрохам ядра.
+
+Еще немного имен файлов, проходивших по файл-эхам:
+
+Структура и интерфейсы IFS            ifsinf.zip    MFE.OS2
+Object Rexx reference                 OBJREXXO.ZIP  MFE.OS2
+IBM Joystick driver for OS/2 dox      JOYDOCS.ZIP   MFE.OS2
+Games Toolkit Guide & Reference       GMTLKBAS.ZIP  MFE.OS2
+3D Render Engine description          BRENDER.ZIP   MFE.OS2
+Direct Audio interface docs           DIRAUD.ZIP    MFE.OS2
+Realtime MIDI system                  RTMIDI.ZIP    MFE.OS2
+Resource Monitor calls - .H+.LIB      RMCALLS.ZIP   MFE.OS2

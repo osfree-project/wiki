@@ -1,0 +1,26 @@
+===== Generation 2 infrastructure =====
+
+**Note**: Generation 2 of osfree.org site now not used but old links works just fine.
+
+Second generation osFree.org consist of index.php file with arguments passed into PHP script.
+
+Was support following arguments for different content:
+
+<code> ''add here'' </code>
+
+Also 2nd generation osfree.org contaims this files for redirection to newer location.
+
+|index.html          |-> index.php                             |was site start point|
+|top.html             |-> index.php                             |was logo frame|
+|menu.html         |-> index.php                              |was menu frame|
+|start.html          |-> index.php                              |was news page|
+|objective.html    |-> index.php                              |was project description page|
+|developing.html |-> index.php?gobaby=coding    |was developers gudelines|
+|licence.html       |-> index.php?gobaby=license   |was license page (note, file name misspelled)|
+|members.html    |-> index.php?gobaby=develop  |was list of osFree members|
+|download.html    |-> index.php?gobaby=download  |was download area|
+|contact.html       |-> index.php?gobaby=forum     |was contact information|
+
+!!!Finish page!!!
+
+~~DISCUSSION~~

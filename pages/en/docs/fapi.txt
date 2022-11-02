@@ -1,0 +1,44 @@
+{{page>en:templates:fapiint}}
+
+====== Family API ======
+
+Family API (FAPI) is a subset of [[en:docs:os2:api:cpi|Control Program API]] which can be used to write binary portable applications. Such applications can be run as on OS/2 as on DOS system without any modifications. It is known 2 versions of original Family API 1.00 and 1.10. Also exists side Family API implementation. FAMAPI by Jonathan de Boyne Pollard and HX DOS Extender API by Andreas Grech. Versions up to 1.10 is a original OS/2 Family API. 1.20 and higher is a osFree extensions.
+
+====== Dual OS applications ======
+
+It is possible to write programs which will run on OS/2, DOS and Windows NT from one binary. Moreover, same source code can be used without any #ifdef and other preprocessor statements. Such portability achieved via Family API. Family API is OS/2 API emulation layer on top of DOS. OS/2 executable file is in NE (New Executable) file format. NE file consist of two parts:
+  - Legacy DOS MZ EXE format part;
+  - NE EXE part.
+
+Using Family API MZ part of file used to provide loading and dynamic linking mechanism to load and link NE. Also Family API file contains emulation library which translates OS/2 API calls to DOS interrupt calls. So, same file can be executed as in OS/2 as in DOS. Windows NT contains OS2 Subsystem (os2ss.exe) which provides OS/2 API layer on top of Windows NT kernel. So, Family API allows to support 3 OSes using one binary file.
+
+For current time only 16-bit Family API supported.
+
+====== Writing portable tools ======
+
+[[http://www.edm2.com/index.php/Hints_for_writing_simple_programs_for_both_OS/2_and_DOS]]
+
+====== Documentation ======
+
+[[en:docs:fapi:functions|Function reference]]
+
+======Compatibility======
+
+^    Feature          ^ DOS 16-bit Real Mode ^ DOS 16-bit Protected Mode ((Requires DPMI host with 16-bit client support)) ^ OS/2 16-bit Protected Mode ^
+| Max memory          | 640KB                | 16MB  ((Actually depends on DPMI host and current CPU)) |16MB |
+| Virtual memory      | No                   | No   | 1Gb |
+| Multitasking        | No                   | No   | Yes |
+| Multithreading      | No                   | No   | Yes |
+| Long filenames      | Yes ((Supported since version 1.20 Requires LFN driver under DOS or run in Windows 9x VDM.))                 | Yes ((Supported since version 1.20 Requires LFN driver under DOS or run in Windows 9x VDM.)) | Yes  ((Starting from OS/2 1.??)) |
+| Extended attributes | Yes ((Under OS/2 BOX only))               | Yes ((Under OS/2 BOX only)) | Yes ((Starting from OS/2 1.??)) |
+| App EXE name change | Yes ((Under DOS 3 and higher))  | Yes ((Under DOS 3 and higher))   | Yes |
+
+
+
+====== Remarks ======
+
+For implementation details refer to [[en:docs:fapi:Implementation details]] section.
+
+====== Notes ======
+
+This text based on http://www.edm2.com/index.php/Family_API

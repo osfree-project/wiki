@@ -1,0 +1,22 @@
+{{page>en:templates:dosshell}}
+
+====== INT 2FH, AX=4A05H ======
+
+SI= subfunction
+
+^ SI ^ Description ^ Version ^
+| [[en:docs:tasklist:0|0]] | Initialize task list API | ? |
+| [[en:docs:tasklist:1]] | Add Task to list | ? |
+| [[en:docs:tasklist:2]] | Switch to next task by Z order | ? |
+| [[en:docs:tasklist:3]] | Switch to previous task by Z order | ? |
+| [[en:docs:tasklist:4]] | Remove task from list | ? |
+| [[en:docs:tasklist:5]] | Go to next task in list | ? |
+| [[en:docs:tasklist:6]] | Get task name | ? |
+| [[en:docs:tasklist:7]] | Get task list size | ? |
+| [[en:docs:tasklist:8]] | Get control data | ? |
+| [[en:docs:tasklist:9]] | Get task list entry | ? |
+| [[en:docs:tasklist:10]] | Add parameters | ? |
+| [[en:docs:tasklist:11]] | Get last error | ? |
+| [[en:docs:tasklist:12]] | Put task on top of Z order | ? |
+
+**Note: This API implemented by DOSSHELL.COM under DOS and by DSWAP.EXE and WSWAP.EXE under Windows **

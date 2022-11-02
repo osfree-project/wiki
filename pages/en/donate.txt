@@ -1,0 +1,19 @@
+==== Donations ====
+
+As with many open source projects, we cannot pay full attention to the project, because we need to pay some attention to regular work to earn money for each developer. So far, we develop osFree as our spare-time activities. Also, we need to spend some money for hosting, domain name leasing, newer hardware. And, to spend less time to activities other than osFree, we need some additional money, which can be converted to freed time, so we can pay more attention to osFree development.
+
+So, we created a Patreon page to fund the project. You can become a patron at [[https://patreon.com/osfree|our Patreon page]] and make donations on a monthly basis. Each user can make a monthly donation of a small sum of money, starting at $1 or $5 and ending at $200 or so (the most valued sponsors and supporters deserve to be listed at [[en:credits|credits]] page). 
+
+Also, for one-time donations, we created a bitcoin wallet. Use a button below if you want to make a donation. It displays a wallet address, then shows a transaction result, success/error and the amount transferred. You can transfer some amount of your fiat currency to bitcoins to this wallet. You can find many exchange points on the internet. Just google, and you'll find many exchange points and their trustworthiness ratings (called monitorings). One of well-known exchange monitorings is [[http://bestchange.com]]. Here you can choose between many different payment systems and use exchange points with best exchange rates.
+
+Some people also said that Paypal is the most acceptable payment method for them. Though, as some of us live in Russia, this payment method is not very convenient for us. Unfortunately, russian Paypal wants us to create a NCO (non-commercial organization) and a corporate Paypal account, which is not acceptable for us at the moment. Maybe, someday we'll create a NCO, but to be realistic, we're now just one of two people having no juridical person. Maybe, someday, when osFree will grow, we'll have it, but not now. So, for now, we cannot accept Paypal, sorry. :(
+
+If you decided to make a donation, please donate via either, Patreon, or Bitcoin wallet, and leave a message in comments here. 
+
+On Patreon page, we will post our progress and news, in the blog articles. Please stay tuned.
+
+P.S.: Note that russian law thinks "donations == philantropy". So, you cannot donate to an individual or organisation. But you can make a gift to them. So, the most close notion to donation here is gift. Making a donation here is treated as a gift to the project participants.
+
+{{include>donate-btc.html}} {{include>donate-ltc.html}} [[https://patreon.com/osfree/|Patreon page]]
+
+~~DISCUSSION~~

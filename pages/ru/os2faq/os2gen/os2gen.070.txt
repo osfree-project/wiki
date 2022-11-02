@@ -1,0 +1,29 @@
+[Q]: Я сломал dual boot
+
+[A]: Unknown author
+
+ Q> How do I fix a corrupted Boot.dos file?  I have a friend who is
+ Q> using dual boot and has screwed it up..... and now can't get back
+ Q> to dos... Any ideas?
+
+You can adjust the file attributes and copy boot.os2 to
+boot.dos.  Then attempt to dual-boot to DOS and it will
+fail.  Now use the DOS SYS command to transfer a new boot
+sector and you're all set.  The next time you dual boot
+back to OS/2, the new boot.dos file will be created with
+the proper boot sector.
+
+[Q]: Alexander Belyaev (2:5035/13.15)
+
+Перевод:
+
+ Q> Как я могу исправить попорченный файл Boot.dos ? Мой друг использует
+ Q> dual boot, подкрутил там что-то .... и теперь не может вернуться в Дос.
+ Q> Есть мысли ?
+
+Вы можете, подправив атрибуты файла, скопировать boot.os2 в boot.dos
+Попытайтесь затем перегрузиться ( с помощью dual boot ) в ДОС - у Вас,
+естественно, ничего не получится.  :(
+Теперь, используя команду SYS, перенесите систему ДОС в бут-сектор
+и в следующий раз при использовании dual boot для возврата в OS/2
+файл boot.dos будет создан заново с правильными установками.

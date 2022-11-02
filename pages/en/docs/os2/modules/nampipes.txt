@@ -1,0 +1,25 @@
+{{logos:os2.gif?35x35}} 
+
+**Please help to find info about enries marked as //No info//**
+
+===== NAMPIPES =====
+
+This is forwarder DLL to [[DOSCALLS]].DLL
+
+^Ordinal ^Name ^Desc ^ Status ^
+| 1 |DosMakeNmPipe | Forwarder to DOSCALLS.399 | Done |
+| 2 |DosQNmPipeInfo | Forwarder to DOSCALLS.400 | Done |
+| 3 |DosConnectNmPipe | Forwarder to DOSCALLS.401 | Done |
+| 4 |DosDisconnectNmPipe | Forwarder to DOSCALLS.402 | Done |
+| 5 |DosQNmPHandState | Forwarder to DOSCALLS.403 | Done |
+| 6 |DosSetNmPHandState | Forwarder to DOSCALLS.404 | Done |
+| 7 |DosPeekNmPipe | Forwarder to DOSCALLS.405 | Done |
+| 8 |DosWaitNmPipe | Forwarder to DOSCALLS.406 | Done |
+| 9 |DosTransactNmPipe | Forwarder to DOSCALLS.407 | Done |
+| 10 |DosCallNmPipe | Forwarder to DOSCALLS.408 | Done |
+| 11 |DosRawReadNmPipe | Forwarder to DOSCALLS.409 | Done |
+| 12 |DosRawWriteNmPipe | Forwarder to DOSCALLS.410 | Done |
+| 13 |DosSetNmPipeSem | Forwarder to DOSCALLS.411 | Done |
+| 14 |DosQNmPipeSemState | Forwarder to DOSCALLS.412 | Done |
+
+{{page>en:templates:dlls}}

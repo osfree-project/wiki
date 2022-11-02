@@ -1,0 +1,14 @@
+{{logos:os2.gif?35x35}} 
+
+**Please help to find info about enries marked as //No info//**
+
+===== SOFTDRAW =====
+
+
+^Ordinal ^Name ^Desc ^ Status ^
+| 1 | SDEntry | | |
+| 2 | SDBitBlt | | |
+| 3 | SDLine | | |
+
+{{page>en:templates:dlls}}
+

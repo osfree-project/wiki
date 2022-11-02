@@ -1,0 +1,12 @@
+==== 8 April, 2009 ====
+
+FreePM project now part of osFree project
+
+FreePM project now part of osFree project. All source base now in osFree SVN and some goals 
+slightly changed (like SOM interfaces instead of C++ interfaces and binary level compatibility,
+instead of source level compatibility). Most of services disabled and now osFree project services 
+must be used. Thanks to Evgen Kotsuba for the help.
+
+{{tag>freepm}}
+
+~~DISCUSSION~~

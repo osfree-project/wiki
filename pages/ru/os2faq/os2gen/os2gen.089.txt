@@ -1,0 +1,52 @@
+[Q]: Хитрости Warp Center
+
+[A]: Pavel Grodek (2:5020/509.10)
+
+  The WarpCenter also includes a (hidden) interface to the new
+  process killing API that was added to OS/2 Warp 4 and FixPak 17+.
+  Add SET SCKILLFEATUREENABLED=1 to your CONFIG.SYS and
+  reboot. Then, by Ctrl-LMB clicking on the "task list" portion of
+  the WarpCenter, you can select which process you would like to kill.
+  Note that this does nothing for queue hangs, since you would not
+  be able to click to access the WarpCenter. :-) My thanks to
+  Hans-Juergen Rauscher for this undocumented little tidbit. Another
+  little WarpCenter trick involving the clock depends on the
+  addition of SET SCUSEPRETTYCLOCK=ON to the CONFIG.SYS.
+
+[A]: Alexander Belyaev (2:5035/13.15)
+
+ Перевод:
+
+  Hачиная с Fix #4 в Мерлине и #17 в Warp 3 добавились дополнительные
+  средства по убиению зависших приложений.
+  Добавьте  SET SCKILLFEATUREENABLED=1 в CONFIG.SYS и перезагрузите
+  систему. Теперь, удерживая Ctrl, щелкните левой клавишей мышки на иконке
+  "Список задач" в Варпцентре. Появится список процессов, каждый из которых
+  можно "отстрелить". Ксожалению, фича не работает, если подвисла очередь
+  сообщений :)
+  Еще можете добавить в CONFIG.SYS
+   SCUSEPRETTYCLOCK=ON       для изменения внешнего вида часиков
+   SET MENUSFOLLOWPOINTER=ON менюшки начинают "залипать", как в MD95
+
+[A]: Alex Samorukov (2:463/598)
+
+Если создать обьект <CCINBOX>, то после рестарта WPS появится иконка (рядом с
+кнопкой "I") которая и будет указывать на созданные обьект. Так, инсталятор
+Mozilla 1.2.1 именно это и делает:
+
+D:\apps\system\wpstool>GETSET.CMD CCINBOX
+OBJECT "WPProgram" "Mozilla Mail" "<MOZILLAFLDR>"
+       "EXENAME=D:\APPS\INTERNET\MOZILLA\MOZILLA.EXE;
+        STARTUPDIR=D:\APPS\INTERNET\MOZILLA;
+        PROGTYPE=PM;
+        PARAMETERS=-mail;
+        TITLE=Mozilla Mail;
+        NOPRINT=YES;
+        HIDEBUTTON=DEFAULT;
+        MINWIN=DEFAULT;
+        CCVIEW=DEFAULT;
+        DEFAULTVIEW=DEFAULT;
+        OBJECTID=<CCINBOX>;"
+
+Это явно придаток от Lotus CC:Mail, который по лени не выбросили. А теперь вот,
+"приготилось".

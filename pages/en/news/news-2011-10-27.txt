@@ -1,0 +1,14 @@
+==== 27 October, 2011 ====
+
+A presentation of osFree on CC'2011
+
+August 28, osFree team member Vadim Priluzkiy (aka Oxyd) has demonstrated 
+osFree OS/2 personality working together with l4linux over L4 microkernel. 
+The presentation was carried out during the Chaos Constructions'2011 yearly 
+Computer Art Festival. (http://party11.cc.org.ru), the presentation video 
+is here: http://youtube.com/watch?v=yxE6Jy3SQ04
+
+{{tag>promotion demonstration festival cc2011}}
+
+~~DISCUSSION~~
+

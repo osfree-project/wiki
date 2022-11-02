@@ -1,0 +1,30 @@
+==== FS_FINDCLOSE ====
+
+**Purpose**
+
+Provides the mechanism for an FSD to release resources allocated on behalf of //FS_FINDFIRST// and //FS_FINDNEXT//.   
+
+**Calling Sequence**
+
+<code c>
+int far pascal FS_FINDCLOSE(pfsfsi, pfsfsd)
+
+struct fsfsi far * pfsfsi;
+struct fsfsd far * pfsfsd;
+</code>
+
+**Where**
+
+//pfsfsi// is a pointer to the file-system-independent file search structure.   
+
+The FSD should not update this structure.   
+
+//pfsfsd// is a pointer to the file-system-dependent file search structure.   
+
+The FSD may use this to store information about continuation of its search. 
+
+**Remarks** 
+
+//DosFindClose// has been called on the handle associated with the search buffer. Any file system related information may be released.   
+
+If //FS_FINDFIRST// for a particular search returns an error, an //FS_FINDCLOSE// for that search will not be issued.   

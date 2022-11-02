@@ -1,0 +1,36 @@
+{{logos:os2.gif?35x35}} 
+
+**Please help to find info about enries marked as //No info//**
+
+===== BVHINIT =====
+
+minimal BVH, capable of writing via int 10h when booting 
+
+^Ordinal ^Name ^Desc ^ Status ^
+| 1 | CHARFONTEND | | |
+| 2 | ACCESSREGISTER | | |
+| 3 | DEVENABLE | Fills the entries in the Call Vector Table for all of the functions supported by this BVH. It is called as a subfunction of the Presentation Manager enable function entry point | |
+
+BVH functions (initialized via DevEnable)
+
+
+
+^Number ^Name ^Desc ^ Status ^
+| 100h (256) | Function 100h | Text Buffer Update | |
+| 101h (257) | Function 101h | Initialize Environment | |
+| 102h (258) | Function 102h | Save Environment | |
+| 103h (259) | Function 103h | Restore Environment | |
+| 104h (260) | Function 104h | Query Config Info | |
+| 105h (261) | Function 105h | DBCS Display Info | |
+| 108H (264) | Function 108h | Query Cursor Info | |
+| 109H (265) | Function 109h | Set Cursor Info | |
+| 10CH (268) | Function 10Ch | Query Mode | |
+| 10DH (269) | Function 10Dh | Set Mode | |
+| 112H (274) | Function 112h | Query Variable Info | |
+| 113H (275) | Function 113h | Set Variable Info | |
+| 117H (279) | Function 117h | Query LVB Info | |
+| 118H (280) | Function 118h | Get video state | |
+| 119H (281) | Function 119h | Set video state | |
+
+{{page>en:templates:dlls}}
+

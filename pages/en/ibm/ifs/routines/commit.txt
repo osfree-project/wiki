@@ -1,0 +1,48 @@
+==== FS_COMMIT ====
+
+**Purpose**
+
+Flush requesting process's cache buffers and update directory information for the file handle.   
+
+**Calling Sequence**
+
+<code c>
+int far pascal FS_COMMIT(type, IOflag, psffsi, psffsd)
+
+unsigned short type;
+unsigned short IOflag;
+struct sffsi far * psffsi;
+struct sffsd far* psffsd;
+</code>
+
+**Where**
+
+^//type// ^indicates what type of a commit operation this is.   ^
+|//type// == 1 |indicates that this is a commit for a specific handle. This type is specified if FS_COMMIT is called for a //DosBufReset// of a specific handle.   |
+|//type// == 2 |indicates that this is a commit due to a //DosBufReset// (-1).   |
+
+^//IOflag// ^indicates information about the operation on the handle.   ^
+|//IOflag// == 0x0010 |indicates write-through. |
+|//IOflag// == 0x0020 |indicates no-cache.   |
+
+//psffsi// is a pointer to the file-system-independent portion of an open file instance.   
+
+//psffsd// is a pointer to the file-system-dependent portion of an open file instance. 
+
+**Remarks** 
+
+This entry point is called only as a result of a //DosBufReset// function call. OS/2 reserves the right to call //FS_COMMIT// even if no changes have been made to the file.   
+
+For //DosBufReset// (-1), //FS_COMMIT// will be called for each open handle on the FSD.   
+
+The FSD should update access and modification times, if appropriate.   
+
+Any locally cached information about the file must be output to the media. The directory entry for the file is to be updated from the //sffsi// and //sffsd// data structures.   
+
+Since mini-FSDs used to boot IFSs are read-only file systems, they need not support the //FS_COMMIT// call.   
+
+Of the information passed in //IOflag//, the write-through bit is a MANDATORY bit in that any data written to the block device must be put out on the medium before the device driver returns. The no-cache bit, on the other hand, is an advisory bit that says whether the data being transferred is worth caching or not.   
+
+The FSD should copy all supported time stamps from the SFT to the disk. Beware that the last read time stamp may need to be written to the disk even though the file is clean. After this is done, the FSD should clear the sfi_tstamp field to avoid having to write to the disk again if the user calls commit repeatedly without changing any of the time stamps.   
+
+If the disk is not writeable and only the last read time stamp has changed, the FSD should either issue a warning or ignore the error. This relieves the user from having to un-protect an FSD floppy disk in order to read the files on it.   

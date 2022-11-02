@@ -1,0 +1,25 @@
+===== Mouse Function Calls =====
+
+This section reflects the Mouse API interface of OS/2 only. 
+
+For information regarding mouse device drivers, mouse pointer draw device, mouse installation and mouse IOCTLs, refer to IBM Operating System/2 Version 1.2 I/O Subsystems And Device Support Volume 1. 
+
+**Notes**: 
+  * Calls marked xWPM are not windowable and are not supported by Presentation Manager. They can be used in OS/2 mode. 
+  * Calls marked FAPI are present in the Family API. 
+
+  * Calls marked xPM are not supported by Presentation Manager, and must not be used by Presentation Manager applications. An error code is returned if any of these calls are issued. 
+
+^# ^FUNCTION CALL ^ICON ^# ^FUNCTION CALL ^ICON ^
+|1 |[[en:ibm:prcp:mou:close|MouClose]] |xPM |13 |[[en:ibm:prcp:mou:initreal|MouInitReal]] |xWPM |
+|2 |[[en:ibm:prcp:mou:dereg|MouDeRegister]] |xWPM |14 |[[en:ibm:prcp:mou:open|MouOpen]] |xPM |
+|3 |[[en:ibm:prcp:mou:drawptr|MouDrawPtr]] |xPM |15 |[[en:ibm:prcp:mou:readevtque|MouReadEventQue]] |xPM |
+|4 |[[en:ibm:prcp:mou:flushque|MouFlushQue]] |xPM |16 |[[en:ibm:prcp:mou:register|MouRegister]] |xWPM |
+|5 |[[en:ibm:prcp:mou:getdevstatus|MouGetDevStatus]] |xPM |17 |[[en:ibm:prcp:mou:removeptr|MouRemovePtr]] |xPM |
+|6 |[[en:ibm:prcp:mou:getevmask|MouGetEventMask]] |xPM |18 |[[en:ibm:prcp:mou:setdevstatus|MouSetDevStatus]] |xPM |
+|7 |[[en:ibm:prcp:mou:getnumbtns|MouGetNumButtons]] |xPM |19 |[[en:ibm:prcp:mou:setevtmask|MouSetEventMask]] |xPM |
+|8 |[[en:ibm:prcp:mou:getnummickeys|MouGetNumMickeys]] |xPM |20 |[[en:ibm:prcp:mou:setptrpos|MouSetPtrPos]] |xPM |
+|9 |[[en:ibm:prcp:mou:getnumqueel|MouGetNumQueEl]] |xPM |21 |[[en:ibm:prcp:mou:setptrshape|MouSetPtrShape]] |xPM |
+|10 |[[en:ibm:prcp:mou:getptrpos|MouGetPtrPos]] |xPM |22 |[[en:ibm:prcp:mou:setscalefact|MouSetScaleFact]] |xPM |
+|11 |[[en:ibm:prcp:mou:getptrshape|MouGetPtrShape]] |xPM |23 |[[en:ibm:prcp:mou:synch|MouSynch]] |xWPM |
+|12 |[[en:ibm:prcp:mou:getscalefact|MouGetScaleFact]] |xPM  | |||

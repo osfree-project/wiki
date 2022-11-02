@@ -1,0 +1,50 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=65H, AL=00H ======
+
+===== Version =====
+
+7.1 and higher
+
+===== Brief =====
+
+SET GENERAL INTERNATIONALIZATION INFO
+
+===== Family API =====
+
+
+===== Input =====
+
+	CF clear if successful
+  AX = system code page
+  CX = number of bytes copied from supplied buffer
+  CF set on error
+  AX = error code
+  
+===== Return =====
+
+   nothing.  next call to AH=59h will return values from fields AX,BX,CX,
+	  DX,DI, and ES in corresponding registers
+
+===== Macro =====
+
+
+===== Notes =====
+
+
+  This function will not overwrite the country or code-page numbers, but can be used to modify all other data about the country and code page
+
+
+===== See also =====
+
+   AH=65h"GET EXTENDED" - AH=70h
+   
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:int}}
+
+{{page>en:templates:fapi}}
+
+

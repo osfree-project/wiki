@@ -1,0 +1,50 @@
+[Q]: Втоpой пpоцессоp не опpеделяется осью (4.5x), что делать?
+
+[A]: Alex Sverdlin (2:5020/1057.117)
+
+Окончательный pецепт пеpехода от UNI к SMP таков:
+1. Кyпить мать
+2. Кyпить два пpоца из одной паpтии
+3. Заменить железо
+4. Заменить OS2LDR, OS2KRNL, DOSCALL1.DLL на SMP'шные (из \OS2\INSTALL)
+5. Добавить psd=os2apic.psd в конфиг
+6. Все
+
+[A]: unknown author
+
+Adding SMP capability to Warp 4 (XR_M013+)
+==========================================
+
+Here is a little tip to convert a Warp 4 Fixpack 13 PC into an unsupported
+Warp 4 Fixpack 13 SMP PC. All you need is 4 files from the XR_E001 fixpack 1
+for Warp Server eB.
+
+Do not do the following or you might get into trouble with IBM when you call
+for help<g>:
+
+1.) Do not get the following files from the WSeB fixpack
+
+FIX\OS2.1\DOSCALL1.SM_
+FIX\OS2.1\OS2KRNL.SM_
+FIX\OS2.1\OS2LDR.SM_
+FIX\OS2.1\OS2APIC.PS_
+
+2.) Do not unpack the files using UNPACK2
+3.) Do not copy OS2APIC.PSD into OS2\BOOT
+4.) Do not replace \OS2\DLL\DOSCALL1.DLL
+5.) Do not replace \OS2LDR
+6.) Do not replace \OS2KRNL
+7.) Do not put PSD=OS2APIC.PSD into your CONFIG.SYS
+
+If you run ODIN you also need the TRACE files for the SMP kernel from the
+OS2.1 directory or some things might not work (I haven't tried it yet).
+
+Btw. If you are running Lan Server 5 from Warp Server 4 Advanced under OS/2
+Warp 4 with HPFS386 do no do this. You will get a trap in NETWKSTA.200 during
+the Server startup. This seems to be a kernel bug because it works with the
+UNI kernel. I haven't found a workaround yet. Using only the Requester seems
+to work.
+
+Happy Patching
+
+NOSPAMMAN

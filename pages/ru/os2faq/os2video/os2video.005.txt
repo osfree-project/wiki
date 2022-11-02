@@ -1,0 +1,39 @@
+[Q]: Почему развертка монитора - только 60 Герц?
+
+[A]: Unknown author
+
+Hу скажем, тебя интересует режим 1024 * 768 * 256 * 85 Гц.
+Смотрим файл Svgadata.pmi, находим в нём строчку:
+
+[comment]
+Graphics Mode: 1024 x 768 x 256 colors.
+
+Смотрим ниже пункт [MonitorModeInfo] и в нём строку VerticalRefresh.
+Там их будет несколько. Я так думаю, если ещё одну добавить, то
+хуже не будет. Hо главное, чтобы хотя бы одна была равна 85.
+Потом правишь файл Video.cfg:
+
+[AdapterModeInfo]
+ModeId                  =    6
+XResolution             = 1024
+YResolution             =  768
+BitsPerPixel            =    8
+VerticalRefresh         =   85
+-> ^^^^^^^^^^^^^^^^^^^^^^^^ <-
+
+HorizontalRefresh       =  255
+VPolarityPositive       =    1
+HPolarityPositive       =    1
+ScreenTop               =65535
+ScreenBottom            =65535
+ScreenLeft              =65535
+ScreenRight             =65535
+
+Далее, чтобы не трогать настройки в WPS, в самом конце файла
+меняем в пункте ModeId режим на тот, в котором была изменена
+частота развёртки:
+
+[CurrentDesktopMode]
+ModeId                  =    6
+
+P.S. Hо это только для обычных драйверов, с GRADD я не пробовал.

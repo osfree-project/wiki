@@ -1,0 +1,110 @@
+{{page>en:templates:fapiint}}
+
+====== DosGetCollate ======
+
+This call obtains a collating sequence table (for characters hex 00H through FFH) that resides in the country information file. It is used by the [[SORT.EXE|SORT]] utility to sort text according to the collating sequence.
+
+===== Syntax =====
+<code c>
+DosGetCollate (Length, Country, MemoryBuffer, DataLength)
+</code>
+
+===== Parameters =====
+
+  * Length ([[USHORT]]) - input: Length, in bytes, of the data area (MemoryBuffer). A length value of 256 is sufficient.
+  * Country ([[PCOUNTRYCODE]]) - input: Address of the country information structure
+  * MemoryBuffer ([[PCHAR]]) - output: Address of the collating table. This memory area is provided by the caller. The size of the area is provided by the input parameter Length. If it is too small to hold all the available information then as much information as possible is provided in the available space (in the order that the data would appear). If the amount of returned data does not fill the memory area provided by the caller, the unaltered memory is set at 0.
+
+The buffer format for the returned information is:
+
+^ Byte ^ Description ^
+|  0   | Sort weight of ASCII (0) |
+|  1   | Sort weight of ASCII (1) |
+|   .  | |
+|   .  | |
+|   .  | |
+| 255  | Sort weight of ASCII (255) |
+
+  * DataLength ([[PUSHORT]]) - output : Address of the length, in bytes, of the collate table.
+
+===== Returns =====
+
+rc ([[USHORT]]) - return:Return code descriptions are:
+
+  *0 NO_ERROR
+  *396 ERROR_NLS_NO_COUNTRY_FILE
+  *397 ERROR_NLS_OPEN_FAILED
+  *398 ERROR_NO_COUNTRY_OR_CODEPAGE
+  *399 ERROR_NLS_TABLE_TRUNCATED
+
+===== Remarks =====
+
+The returned country-dependent information can be for the default country and current process code page or for a specific country and code page. For more information see [[DosSetCp]].
+
+===== Bindings =====
+
+==== C ====
+
+<code c>
+typedef struct _COUNTRYCODE {   /* ctryc */
+ 
+  USHORT country;               /* country code */
+  USHORT codepage;              /* code page */
+ 
+} COUNTRYCODE;
+
+#define INCL_DOSNLS
+
+USHORT  rc = DosGetCollate(Length, Structure, MemoryBuffer, DataLength);
+
+USHORT           Length;        /* Length of data area provided */
+PCOUNTRYCODE     Structure;     /* Input data structure */
+PCHAR            MemoryBuffer;  /* Collate table (returned) */
+PUSHORT          DataLength;    /* Length of collate table (returned) */
+
+USHORT           rc;            /* return code */
+</code>
+
+==== MASM ====
+
+<code asm>
+COUNTRYCODE struc
+  ctryc_country   dw  ? ;country code
+  ctryc_codepage  dw  ? ;code page
+COUNTRYCODE ends
+
+EXTRN  DosGetCollate:FAR
+INCL_DOSNLS         EQU 1
+
+PUSH   WORD    Length        ;Length of data area provided
+PUSH@  OTHER   Structure     ;Input data structure
+PUSH@  OTHER   MemoryBuffer  ;Collate table (returned)
+PUSH@  WORD    DataLength    ;Length of collate table (returned)
+CALL   DosGetCollate
+
+Returns WORD
+</code>
+
+===== Example =====
+
+This example gets a collating sequence table for codepage 850 and the current country.
+<code c>
+#define INCL_DOSNLS
+#define CURRENT_COUNTRY 0
+#define NLS_CODEPAGE 850
+
+COUNTRYCODE Country;
+CHAR        CollBuffer[256];
+USHORT      Length;
+USHORT      rc;
+
+ Country.country = CURRENT_COUNTRY;
+ Country.codepage = NLS_CODEPAGE;
+
+ rc = DosGetCollate(sizeof(CollBuffer), /* Length of data area provided */
+                    &Country,           /* Input data structure */
+                    CollBuffer,         /* Data area to contain collate table */
+                    &Length);           /* Length of table */
+</code>
+
+{{page>en:templates:fapi}}

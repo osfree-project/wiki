@@ -1,0 +1,36 @@
+==== KbdDeRegister ====
+
+**Bindings**: [[dereg#C bindings|C]], [[dereg#MASM bindings|MASM]]
+
+This call deregisters a keyboard subsystem previously registered within a session. Only the process that issued the //[[en:ibm:prcp:kbd:reg|KbdRegister]]// may issue //KbdDeRegister//. 
+
+KbdDeRegister ( ) 
+
+//rc// (**USHORT**) - return 
+Return code descriptions are: 
+
+|0 |NO_ERROR |
+|411 |ERROR_KBD_DEREGISTER |
+|464 |ERROR_KBD_DETACHED |
+|504 |ERROR_KBD_EXTENDED_SG |
+
+=== C bindings ===
+
+<code c>
+#define INCL_KBD
+
+USHORT  rc = KbdDeRegister(VOID);
+
+USHORT           rc;            /* return code */
+</code>
+
+=== MASM bindings ===
+
+<code asm>
+EXTRN KbdDeRegister:FAR
+INCL_KBD            EQU 1
+
+CALL   KbdDeRegister
+
+Returns WORD
+</code>

@@ -1,0 +1,38 @@
+{{page>en:templates:biosint}}
+
+====== @PutChAtr ======
+
+===== Version =====
+
+IBM 5150 and higher
+
+===== Brief =====
+
+Print Char With Attribute
+
+===== BIOS Interrupt =====
+
+[[en:docs:bios:api:int10|INT10H]]: [[en:docs:bios:api:int10:09|09H]]
+
+===== Family API =====
+
+[[en:docs:fapi:VioWrtNCell]] [[en:docs:fapi:VioWrtNAttr]] [[en:docs:fapi:VioWrtNChar]]
+
+===== Syntax =====
+
+<code asm>
+@PutChAtr char, atrib, page, repeat
+</code>
+
+===== Parameters =====
+
+  * char (BYTE) - code of character
+  * atrib (BYTE) - character attribute
+  * col (BYTE) - column
+  * row (BYTE) - row
+  * page (BYTE) - optional video page number
+
+===== Return =====
+
+{{page>en:templates:biosapi}}
+

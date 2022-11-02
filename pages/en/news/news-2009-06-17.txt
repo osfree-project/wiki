@@ -1,0 +1,11 @@
+==== 17 June, 2009 ====
+
+Better news service at #osFree
+
+Starting from now irc://irc.efnet.net#osfree channel supports rss news translation 
+to channel. You will see any changes of project immediatly. Thanks to Yoda for bot 
+extending.
+
+{{tag>irc}}
+
+~~DISCUSSION~~

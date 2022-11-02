@@ -1,0 +1,25 @@
+{{page>en:templates:dosint}}
+
+====== DOS API ======
+
+Most of DOS API calls are invoked using software interrupt INT 21H. In most cases AH register are set to function number.
+
+===== DOS Interrupts =====
+
+^ Interrupt vector ^ Description ^ Version ^ Notes ^
+| [[en:docs:dos:api:int20|20H]]| Terminate program | 1.0+ | Implemented in DOS kernel |
+| [[en:docs:dos:api:int21|21H]] | Main DOS API | 1.0+ | Implemented in DOS kernel |
+| [[en:docs:dos:api:int22|22H]] | Program terminate address | 1.0+ | Return address in calling program |
+| [[en:docs:dos:api:int23|23H]] | Control-C handler address | 1.0+ | Default handler is in the command shell (usually COMMAND.COM) |
+| [[en:docs:dos:api:int24|24H]] | Critical error handler address | 1.0+ | Default handler is in the command shell (usually COMMAND.COM) |
+| [[en:docs:dos:api:int25|25H]] | Absolute disk read | 1.0+ | Implemented in DOS kernel, enhanced in DOS 3.31 to support up to 2 GB partitions |
+| [[en:docs:dos:api:int26|26H]] | Absolute disk write | 1.0+ | Implemented in DOS kernel, enhanced in DOS 3.31 to support up to 2 GB partitions |
+| [[en:docs:dos:api:int27|27H]] | Terminate and stay resident | 1.0+ | Implemented in COMMAND.COM in DOS 1.0, DOS kernel in DOS 2.0+ |
+| [[en:docs:dos:api:int28|28H]] | Idle callout | 2.0+ | Called by DOS kernel when waiting for input |
+| [[en:docs:dos:api:int29|29H]] | Fast console output | 2.0+ | Implemented by the builtin console device driver or a replacement driver like ANSI.SYS |
+| [[en:docs:dos:api:int2A|2AH]] | Networking and critical section | 3.0+ | Called by DOS kernel to interface with networking software |
+| [[en:docs:dos:api:int2E|2EH]] | Reload transient | 2.0+ | Implemented in COMMAND.COM |
+| [[en:docs:dos:api:int2F|2FH]] | Multiplex | 3.0+ | Implemented in DOS kernel and various programs (PRINT, MSCDEX, DOSKEY, APPEND, etc.) depending on subfunction number |
+| [[en:docs:dpmi|31H]] | DPMI | | DPMI services |
+
+{{page>en:templates:int}}

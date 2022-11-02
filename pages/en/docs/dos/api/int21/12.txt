@@ -1,0 +1,44 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=12H ======
+
+===== Version =====
+
+1 and higher
+
+===== Brief =====
+
+FIND NEXT MATCHING FILE USING FCB
+
+===== Family API =====
+
+[[en:docs:fapi:DosFindNext]]
+
+===== Input =====
+
+        AH = 12h
+        DS:DX -> unopened FCB (see #01345)
+
+===== Return =====
+
+ AL = status
+            00h successful
+                Disk Transfer Area filled with unopened FCB
+            FFh no more matching filenames
+
+===== Notes =====
+
+Note:   (see AH=11h)
+        assumes that successful FindFirst executed on search FCB before call
+        
+===== See also =====
+
+AH=1Ah,AH=4Fh,INT 2F/AX=111Ch
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:int}}
+
+{{page>en:templates:fapi}}

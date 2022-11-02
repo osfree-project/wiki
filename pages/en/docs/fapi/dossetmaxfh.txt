@@ -1,0 +1,50 @@
+{{page>en:templates:fapiint}}
+
+====== DosSetMaxFH ======
+
+This call defines the maximum number of file handles for the current process.
+
+===== Syntax =====
+<code c>
+ DosSetMaxFH (NumberHandles)
+</code>
+===== Parameters =====
+
+  * NumberHandles (USHORT) - input : Total number of file handles to be provided.
+
+===== Return Code =====
+
+rc (USHORT) - return:Return code descriptions are:
+
+  *0  NO_ERROR
+  *8  ERROR_NOT_ENOUGH_MEMORY
+  *87 ERROR_INVALID_PARAMETER
+
+===== Remarks =====
+
+OS/2 initially allots 20 file handles to a process, which is the recommended amount for an application. However, if the system limit has not been reached, this amount can be increased with DosSetMaxFH. When this call is made, all open file handles are preserved.
+
+===== Bindings =====
+
+====C====
+<code c>
+#define INCL_DOSFILEMGR
+
+USHORT  rc = DosSetMaxFH(NumberHandles);
+
+USHORT  NumberHandles; /* Number of file handles */
+USHORT  rc;            /* return code */
+</code>
+
+====MASM====
+<code asm>
+EXTRN  DosSetMaxFH:FAR
+INCL_DOSFILEMGR     EQU 1
+
+PUSH   WORD    NumberHandles ;Number of file handles
+CALL   DosSetMaxFH
+
+Returns WORD
+</code>
+
+{{page>en:templates:fapi}}

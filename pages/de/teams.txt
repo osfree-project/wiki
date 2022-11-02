@@ -1,0 +1,9 @@
+osFree hat veile Mannschaften:
+
+  * [[de:teams:web|Der Webseiten Mannshaften]]
+  * [[de:teams:build|Der Bau Mannschaften]] verursacht die Werkzeuge für das Bilden von osFree
+  * [[de:teams:boot|Der Booten Mannschaften]]
+  * [[de:teams:cmd|Der CLI Mannschaften]] verursacht der Kommandozeile
+  * [[de:teams:doc|Der Dokumentation Mannschaften]]
+
+=== Discussion ===

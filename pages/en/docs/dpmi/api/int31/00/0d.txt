@@ -1,0 +1,50 @@
+{{page>en:templates:dpmi}}
+
+====== Int 31H, AH=00H, AL=0DH ======
+
+===== Version =====
+
+0.9
+
+===== Brief =====
+
+Allocate Specific LDT Descriptor
+
+===== Input =====
+
+  AX = 000DH
+  BX = selector
+
+===== Return =====
+
+  if function successful
+  Carry flag = clear
+  and descriptor has been allocated
+  
+  if function unsuccessful
+  Carry flag = set
+  AX = error code
+  8011H	descriptor unavailable (descriptor is in use)
+  8022H	invalid selector (references GDT or beyond the LDT limit)
+
+===== Notes =====
+
+The first 10H (16) descriptors (selector values 04H-7CH) are reserved for this function and must not be used by the DPMI host.
+
+Under DPMI 0.9 hosts, if another application has already been loaded, some of descriptors reserved for allocation by this function may be already in use and unavailable. Under DPMI 1.0 hosts, each client has its own LDT and thus will have the full 16 descriptors available for use with this function.
+
+Resident service providers (protected-mode TSRs) should not use this function.
+
+Refer to the rules for descriptor usage in Appendix D.
+    
+===== See also =====
+
+   
+
+===== Note =====
+
+Text based on [[http://www.delorie.com/djgpp/doc/dpmi/]]
+
+{{page>en:templates:dpmi:int}}
+
+

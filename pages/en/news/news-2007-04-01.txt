@@ -1,0 +1,7 @@
+==== April 1, 2007 ====
+
+PhpBB and Dokuwiki logins have been integrated.
+
+{{tag>site}}
+
+~~DISCUSSION~~

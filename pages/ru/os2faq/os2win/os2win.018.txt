@@ -1,0 +1,23 @@
+[Q]: eCS v 1.1: не переключается раскладка в Win-OS/2
+
+[A]: Yuri Proniakin (yup@ecomstation.ru)
+
+>     Hе могу переключиться в WIN-OS2 на английский. Только русский. Чего надо
+> сделать? Typeofswitch менял, все комбинации клавиш перепробовал. -(
+
+А что стоит в строчке "keyboard.dll=" секции [keyboard] файла
+\OS2\MDOS\WINOS2\SYSTEM.INI? Случайно не kbdru.dll? Если да, то убери.
+Это происки IBM-овского инсталлятора - в русской версии OS/2 он в строчки
+"keyboard.dll=" и "secondkeyb.dll=" записывает одну и ту же раскладку
+(русскую). Я это поборол, вот только не помню - для eCS 1.1 или 1.2.
+Правильная секция должна выглядеть так:
+===========
+[keyboard]
+typeofswitch=2
+subtype=
+type=4
+keyboard.dll=
+secondkeyb.dll=kbdru.dll
+oemansi.bin=xlat866.bin
+===========
+(Хотя я обычно меняю на "typeofswitch=3".)

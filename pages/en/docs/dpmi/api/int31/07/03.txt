@@ -1,0 +1,44 @@
+{{page>en:templates:dpmi}}
+
+====== Int 31H, AH=07H, AL=03H ======
+
+===== Version =====
+
+0.9
+
+===== Brief =====
+
+Discard Page Contents
+
+===== Input =====
+
+  AX = 0703h
+  BX:CX = starting linear address of pages to discard
+  SI:DI = size of region to discard (bytes)
+    
+===== Return =====
+
+  if function successful
+  Carry flag = clear
+  
+  if function unsuccessful
+  Carry flag = set
+  AX = error code
+  8025H	invalid linear address (range unallocated)
+
+===== Notes =====
+
+Discards the entire contents of a given linear memory range. This function is used when a memory object (such as a data structure) that occupies a given area of memory is no longer needed, so that the area will not be paged to disk unnecessarily. The contents of the discarded region will be undefined.
+
+Partial pages and locked pages will not be discarded.
+
+===== See also =====
+
+   
+
+===== Note =====
+
+Text based on [[http://www.delorie.com/djgpp/doc/dpmi/]]
+
+{{page>en:templates:dpmi:int}}
+

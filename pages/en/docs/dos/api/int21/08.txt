@@ -1,0 +1,43 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=08H ======
+
+===== Version =====
+
+1 and higher
+
+===== Brief =====
+
+CHARACTER INPUT WITHOUT ECHO
+
+===== Family API =====
+
+[[en:docs:fapi:DosRead]]
+
+===== Input =====
+
+  AH = 08h
+
+===== Return =====
+
+  AL = character read from standard input
+
+===== Notes =====
+
+ ^C/^Break are checked, and INT 23 executed if detected standard input is always the keyboard under DOS 1.x, but may be redirected under DOS 2+
+
+ if the interim console flag is set (see AX=6301h), partially-formed double-byte characters may be returned
+
+===== See also =====
+
+AH=01h,AH=06h,AH=07h,AH=0Ah,AH=64h"DOS 3.2+"
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:int}}
+
+{{page>en:templates:fapi}}
+
+

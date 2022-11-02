@@ -1,0 +1,13 @@
+==== Personality neutral servers ====
+
+The thin API layer between a microkernel and OS Personalities (consisting of
+libraries and servers)
+
+**UPDATE THIS!**
+
+  * Root server
+  * Port Input Output server
+  * [[en:api:kbd|KBD server]]
+  * [[en:api:vio|VIO server]]
+  * [[en:docs:virtual_file_system_servers|Virtual File System servers]]
+

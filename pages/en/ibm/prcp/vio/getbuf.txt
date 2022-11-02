@@ -1,0 +1,70 @@
+==== VioGetBuf ====
+
+**Bindings**: [[getbuf#C bindings|C]], [[getbuf#MASM bindings|MASM]]
+
+This call returns the address of the logical video buffer (LVB). 
+
+//VioGetBuf// (LVBPtr, Length, VioHandle) 
+
+//LVBPtr// (**PULONG**) - output 
+Address of the selector and offset of the logical video buffer. Applications should not assume the offset portion of this far address is 0. 
+
+//Length// (**PUSHORT**) - output 
+Address of the length buffer in bytes. The length is: number of rows * number of columns * size of cell. 
+
+//VioHandle// (**HVIO**) - input 
+This must be zero unless the caller is a Presentation Manager application, in which case it must be the value returned by [[en:ibm:prcp:vio:getps|VioGetPs]]. 
+
+//rc// (**USHORT**) - return 
+Return code descriptions are: 
+
+|0 |NO_ERROR |
+|355 |ERROR_VIO_MODE |
+|430 |ERROR_VIO_ILLEGAL_DURING_POPUP |
+|436 |ERROR_VIO_INVALID_HANDLE |
+|465 |ERROR_VIO_DETACHED |
+
+**Remarks** 
+
+An application using VioGetBuf can prepare a screen in the application's own logical video buffer (LVB) offline. When the application is in the foreground, the physical screen buffer is updated from the LVB when [[en:ibm:prcp:vio:showbuf|VioShowBuf]] is issued. When the application runs in the background, the physical screen buffer is updated when the application is switched to the foreground. 
+
+Once [[en:ibm:prcp:vio:getbuf|VioGetBuf]] is issued, all VioWrtXX calls issued while the application is running in the foreground are written to the physical display buffer and LVB. If a [[en:ibm:prcp:vio:getphysbuf|VioGetPhysBuf]] is subsequently issued, then the VioWrtXX calls are only written to the physical display buffer. They are no longer written to the LVB. 
+
+[[en:ibm:prcp:vio:getmode|VioGetMode]] may be used to determine the dimensions of the buffer. 
+
+If [[en:ibm:prcp:vio:setmode|VioSetMode]] is issued following a [[en:ibm:prcp:vio:getbuf|VioGetBuf]] call, the size of the logical video buffer is adjusted to correspond to the new mode. There is one logical video buffer per session (or presentation space if AVIO application) that corresponds to the current mode on the current display configuration. 
+
+
+**PM Considerations** 
+
+This function returns the address and length of the Advanced VIO presentation space. The presentation space may be used to directly manipulate displayed information. 
+
+=== C bindings ===
+
+<code c>
+#define INCL_VIO
+
+USHORT  rc = VioGetBuf(LVBPtr, Length, VioHandle);
+
+PULONG           LVBPtr;        /* Points to LVB */
+PUSHORT          Length;        /* Length of buffer */
+HVIO             VioHandle;     /* Vio handle */
+
+USHORT           rc;            /* return code */
+
+</code>
+
+=== MASM bindings ===
+
+<code masm>
+EXTRN  VioGetBuf:FAR
+INCL_VIO            EQU 1
+
+PUSH@  DWORD   LVBPtr        ;Points to LVB
+PUSH@  WORD    Length        ;Length of buffer
+PUSH   WORD    VioHandle     ;Vio handle
+CALL   VioGetBuf
+
+Returns WORD
+
+</code>

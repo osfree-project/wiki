@@ -1,0 +1,75 @@
+{{page>en:templates:fapiint}}
+
+====== DosSubSet ======
+
+This call is used to initialize a segment or to reset a reallocated segment for suballocation.
+
+===== Syntax =====
+<code c>
+DosSubSet (SegSelector, Flags, Size)
+</code>
+
+===== Parameters =====
+
+  * SegSelector ([[SEL]]) - input : Target data segment selector.
+  * Flags ([[USHORT]]) - input :
+
+  0 = Increasing the size of a segment already initialized.
+  1 = Initializing a segment.
+
+  * Size ([[USHORT]]) - input : Segment size in bytes.
+
+===== Return Code =====
+rc ([[USHORT]]) - return
+
+Return code descriptions are:
+
+  * 0          NO_ERROR
+  * 310        ERROR_DOSSUB_SHRINK
+  * 313        ERROR_DOSSUB_BADSIZE
+  * 314        ERROR_DOSSUB_BADFLAG
+
+===== Remarks =====
+
+To initialize a segment for suballocation, issue DosSubSet before issuing [[DosSubAlloc]] and set Flags = 1. The segment must have been allocated with [[DosAllocSeg]] or [[DosAllocShrSeg]].
+
+If a segment allocated by a [[DosAllocSeg]] call has already been set for suballocation, and a call to [[[DosSubAlloc]] returns ERROR_DOSSUB_NOMEM, the segment's size can be increased by a call to [[DosReallocSeg]]. After reallocation, the segment must be reset by a DosSubSet. Failure to reset the segment after changing its size can yield unpredictable results.
+
+The size parameter should be a multiple of four bytes, or it is rounded up to a multiple of four. Note in DosSubSet, a size parameter of 0 indicates the segment is 64KB, while in [[DosSubAlloc]] and [[DosSubFree]], a size parameter of 0 is an error. Other than this special case of 0 meaning 64KB, the minimum size that can be set is 12 bytes. 
+
+===== Example Code =====
+
+==== C Binding ====
+
+<code c>
+#define INCL_DOSMEMMGR
+
+USHORT  rc = DosSubSet(SegSelector, Flags, Size);
+
+SEL              SegSelector;   /* Segment selector */
+USHORT           Flags;         /* Parameter flags */
+USHORT           Size;          /* Size of a block */
+
+USHORT           rc;            /* return code */
+</code>
+
+==== MASM Binding ====
+
+<code asm>
+EXTRN  DosSubSet:FAR
+INCL_DOSMEMMGR      EQU 1
+
+PUSH   WORD    SegSelector   ;Segment selector
+PUSH   WORD    Flags         ;Parameter flags
+PUSH   WORD    Size          ;Size of a segment
+CALL   DosSubSet
+
+</code>
+
+Returns WORD
+
+===== Note =====
+
+Text based on http://www.edm2.com/index.php/DosSubSet
+
+{{page>en:templates:fapi}}

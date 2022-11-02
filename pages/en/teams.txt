@@ -1,0 +1,41 @@
+==== Developing and promotion of osFree supported by teams: ====
+
+  * [[en:teams:web|The Web Team]] controls and maintain “face” of osFree project - web services
+  * [[en:teams:build|The Build Team]] establish build environment tools set and build process. Build team also generates weekly builds of osFree.
+  * [[en:teams:boot|The Boot Team]] allow to boot osFree system on your computer.
+  * [[en:teams:cmd|The CLI Team]] design and establish command line interface
+  * [[en:teams:docs|The Documentation Team]] maintain documentation. It also controls some content of web pages. 
+
+Source code documentation maintained by correponding team.
+
+=== osFree developers (former or/and active) and contributors ===
+
+|Adrian Gschwend	|ktk [a t] netlabs.org	|CVS maintainer |
+|Anders Christensen	|anders [a t] pvv.unit.no	|Regina REXX interpreter developer |
+|Andrew Belov	|andrew_belov [a t] newmail.ru	|Developer |
+|Bartosz Tomasik	|bart2 [a t] asua.org.pl	|Developer |
+|Cristiano Guadagnino	|criguada [a t] tin.it	|Developer |
+|David C. Zimmerli	|davez [a t] nni.com	|FreeLoader Developer |
+|Eric Auer	|eric [a t] coli.uni-sb.de	|DISKCOMP/SORT Developer |
+|Henk Kelder	|Unknown	|Developer |
+|Jim Hall	|jhall [a t] freedos.org	|FIND Developer |
+|Jim Lynch	|Unknown	|SORT Developer |
+|John Martin Alfredsson	|jma [a t] jma.se	|Developer/ex-project coordinator |
+|JP Software	|http://www.jpsoft.com	|4OS2 command processor developer |
+|Ken Wright	|DaddyWarlock [a t] netscape.net	|Content editor |
+|Kim Haverblad	|kim [a t] os2world.com	|Webmaster (www.osfree.org) |
+|Knut St. Osmundsen	|knut.stange.osmundsen [a t] mynd.no	|COMP Developer |
+|Mark Hessling	|M.Hessling [a t] qut.edu.au	|Regina REXX interpreter developer |
+|Michal Meller	|mellerm [a t] witual.pl	|DISKCOMP developer |
+|Michal Necasek	|Michal [a t] prodigy.net	|Build environment/compiler |
+|Mike Greene	|Unknown	|RexxUtil and mkmsgf developer |
+|Mike Muuss	|Unknown	|PING Developer |
+|NewView project	|Unknown	|HELPMSG.DLL/VIEW.EXE Developer |
+|Patrick Haller	|patrick.haller [a t] haller-gmbh.de	|PING/TRACERTE Developer |
+|Sascha Schmidt	|sascha.schmidt [a t] asamnet.de	|Developer |
+|Stephen Lacy	|sl31 [a t] andrew.cmu.edu	|MORE Developer |
+|Sven Eric Rosen	|sven_rosen [a t] hotmail.com	|Developer |
+|Ulrich Moeller	|http://www.xworkplace.org	|xMakeIni Developer/CVS docs |
+|Vitus Jensen	|Unknown	|RCopy Developer |
+|Valery Sedletski	|_valerius [a t] mail.ru	|Developer/Web/Documentation/Build environment |
+|Yuri Prokushev	|prokushev [a t] freemail.ru	|Developer/Web/Documentation |

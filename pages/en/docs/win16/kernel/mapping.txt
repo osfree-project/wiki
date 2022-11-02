@@ -1,0 +1,154 @@
+{{page>en:templates:win16api}}
+
+Win16 to OS/2 API mapping draft
+
+^ Ordinal ^ Win16 ^ OS/2 ^
+| 001| [[en:docs:win16:api:kernel:fatalexit|FATALEXIT]] | |
+| 003| [[en:docs:win16:api:kernel|GETVERSION]] | No eq |
+| 004| [[en:docs:win16:api:kernel|LOCALINIT]] | [[en:docs:fapi:DosGetInfoSeg]] |
+| 005| [[en:docs:win16:api:kernel|LOCALALLOC]] | [[en:docs:fapi:DosSubAlloc]] |
+| 006| [[en:docs:win16:api:kernel|LOCALREALLOC]] |  |
+| 007| [[en:docs:win16:api:kernel|LOCALFREE]] | [[en:docs:fapi:DosSubFree]] |
+| 008| [[en:docs:win16:api:kernel|LOCALLOCK]] | |
+| 009| [[en:docs:win16:api:kernel|LOCALUNLOCK]] | |
+| 00a| [[en:docs:win16:api:kernel|LOCALSIZE]] | |
+| 00b| [[en:docs:win16:api:kernel|LOCALHANDLE]] | |
+| 00c| [[en:docs:win16:api:kernel|LOCALFLAGS]] | |
+| 00d| [[en:docs:win16:api:kernel|LOCALCOMPACT]] | |
+| 00e| [[en:docs:win16:api:kernel|LOCALNOTIFY]] | |
+| 00f| [[en:docs:win16:api:kernel|GLOBALALLOC]] | [[en:docs:fapi:DosAllocHuge]] |
+| 010| [[en:docs:win16:api:kernel|GLOBALREALLOC]] | [[en:docs:fapi:DosReallocHuge]] |
+| 011| [[en:docs:win16:api:kernel|GLOBALFREE]] | [[en:docs:fapi:DosFreeSeg]] |
+| 012| [[en:docs:win16:api:kernel|GLOBALLOCK]] | [[en:docs:fapi:DosLockSeg]] |
+| 013| [[en:docs:win16:api:kernel|GLOBALUNLOCK]] | [[en:docs:fapi:DosUnlockSeg]] |
+| 014| [[en:docs:win16:api:kernel|GLOBALSIZE]] | [[en:docs:fapi:DosSizeSeg]] |
+| 015| [[en:docs:win16:api:kernel|GLOBALHANDLE]] | |
+| 016| [[en:docs:win16:api:kernel|GLOBALFLAGS]] | |
+| 017| [[en:docs:win16:api:kernel|LOCKSEGMENT]] | |
+| 018| [[en:docs:win16:api:kernel|UNLOCKSEGMENT]] | |
+| 019| [[en:docs:win16:api:kernel|GLOBALCOMPACT]] | |
+| 01d| [[en:docs:win16:api:kernel|YIELD]] | |
+| 01e| [[en:docs:win16:api:kernel|WAITEVENT]] | |
+| 024| [[en:docs:win16:api:kernel|GETCURRENTTASK]] | |
+| 025| [[en:docs:win16:api:kernel|GETCURRENTPDB]] | |
+| 02d| [[en:docs:win16:api:kernel|LOADMODULE]] | |
+| 02e| [[en:docs:win16:api:kernel|FREEMODULE]] | |
+| 02f| [[en:docs:win16:api:kernel|GETMODULEHANDLE]] | |
+| 030| [[en:docs:win16:api:kernel|GETMODULEUSAGE]] | |
+| 031| [[en:docs:win16:api:kernel|GETMODULEFILENAME]] | |
+| 032| [[en:docs:win16:api:kernel|GETPROCADDRESS]] | |
+| 033| [[en:docs:win16:api:kernel|MAKEPROCINSTANCE]] | |
+| 034| [[en:docs:win16:api:kernel|FREEPROCINSTANCE]] | |
+| 036| [[en:docs:win16:api:kernel|GETINSTANCEDATA]] | |
+| 037| [[en:docs:win16:api:kernel|CATCH]] | |
+| 038| [[en:docs:win16:api:kernel|THROW]] | |
+| 039| [[en:docs:win16:api:kernel|GETPROFILEINT]] | |
+| 03a| [[en:docs:win16:api:kernel|GETPROFILESTRING]] | |
+| 03b| [[en:docs:win16:api:kernel|WRITEPROFILESTRING]] | |
+| 03c| [[en:docs:win16:api:kernel|FINDRESOURCE]] | |
+| 03d| [[en:docs:win16:api:kernel|LOADRESOURCE]] | |
+| 03e| [[en:docs:win16:api:kernel|LOCKRESOURCE]] | |
+| 03f| [[en:docs:win16:api:kernel|FREERESOURCE]] | |
+| 040| [[en:docs:win16:api:kernel|ACCESSRESOURCE]] | |
+| 041| [[en:docs:win16:api:kernel|SIZEOFRESOURCE]] | |
+| 042| [[en:docs:win16:api:kernel|ALLOCRESOURCE]] | |
+| 043| [[en:docs:win16:api:kernel|SETRESOURCEHANDLER]] | |
+| 044| [[en:docs:win16:api:kernel|INITATOMTABLE]] | |
+| 045| [[en:docs:win16:api:kernel|FINDATOM]] | |
+| 046| [[en:docs:win16:api:kernel|ADDATOM]] | |
+| 047| [[en:docs:win16:api:kernel|DELETEATOM]] | |
+| 048| [[en:docs:win16:api:kernel|GETATOMNAME]] | |
+| 049| [[en:docs:win16:api:kernel|GETATOMHANDLE]] | |
+| 04a| [[en:docs:win16:api:kernel|OPENFILE]] | |
+| 04d| [[en:docs:win16:api:kernel|AnsiNext]] | |
+| 04e| [[en:docs:win16:api:kernel|AnsiPrev]] | |
+| 04f| [[en:docs:win16:api:kernel|AnsiUpper]] | |
+| 050| [[en:docs:win16:api:kernel|AnsiLower]] | |
+| 051| [[en:docs:win16:api:kernel|_LCLOSE]] | |
+| 052| [[en:docs:win16:api:kernel|_LREAD]] | |
+| 053| [[en:docs:win16:api:kernel|_LCREAT]] | |
+| 054| [[en:docs:win16:api:kernel|_LLSEEK]] | |
+| 055| [[en:docs:win16:api:kernel|_LOPEN]] | |
+| 056| [[en:docs:win16:api:kernel|_LWRITE]] | |
+| 057| [[en:docs:win16:api:kernel|lstrcmp]] | |
+| 058| [[en:docs:win16:api:kernel|LSTRCPY]] | |
+| 059| [[en:docs:win16:api:kernel|LSTRCAT]] | |
+| 05a| [[en:docs:win16:api:kernel|LSTRLEN]] | |
+| 05b| [[en:docs:win16:api:kernel|INITTASK]] | |
+| 05c| [[en:docs:win16:api:kernel|GETTEMPDRIVE]] | |
+| 05d| [[en:docs:win16:api:kernel|GETCODEHANDLE]] | |
+| 05e| [[en:docs:win16:api:kernel|DEFINEHANDLETABLE]] | |
+| 05f| [[en:docs:win16:api:kernel|LOADLIBRARY]] | |
+| 060| [[en:docs:win16:api:kernel|FREELIBRARY]] | |
+| 061| [[en:docs:win16:api:kernel|GETTEMPFILENAME]] | |
+| 064| [[en:docs:win16:api:kernel|VALIDATECODESEGMENTS]] | |
+| 066| [[en:docs:win16:api:kernel|DOS3CALL]] | |
+| 067| [[en:docs:win16:api:kernel|NETBIOSCALL]] | |
+| 068| [[en:docs:win16:api:kernel|GETCODEINFO]] | |
+| 06a| [[en:docs:win16:api:kernel|SETSWAPAREASIZE]] | |
+| 06b| [[en:docs:win16:api:kernel|SETERRORMODE]] | |
+| 06c| [[en:docs:win16:api:kernel|SWITCHSTACKTO]] | |
+| 06d| [[en:docs:win16:api:kernel|SWITCHSTACKBACK]] | |
+| 06f| [[en:docs:win16:api:kernel|GLOBALWIRE]] | |
+| 070| [[en:docs:win16:api:kernel|GLOBALUNWIRE]] | |
+| 073| [[en:docs:win16:api:kernel|OUTPUTDEBUGSTRING]] | |
+| 079| [[en:docs:win16:api:kernel|LOCALSHRINK]] | |
+| 07f| [[en:docs:win16:api:kernel|GETPRIVATEPROFILEINT]] | |
+| 080| [[en:docs:win16:api:kernel|GETPRIVATEPROFILESTRING]] | |
+| 081| [[en:docs:win16:api:kernel|WRITEPRIVATEPROFILESTRING]] | |
+| 082| [[en:docs:win16:api:kernel|FILECDR]] | |
+| 083| [[en:docs:win16:api:kernel|GETDOSENVIRONMENT]] | |
+| 084| [[en:docs:win16:api:kernel|GETWINFLAGS]] | |
+| 086| [[en:docs:win16:api:kernel|GETWINDOWSDIRECTORY]] | |
+| 087| [[en:docs:win16:api:kernel|GETSYSTEMDIRECTORY]] | |
+| 088| [[en:docs:win16:api:kernel|GETDRIVETYPE]] | |
+| 089| [[en:docs:win16:api:kernel|FATALAPPEXIT]] | |
+| 08a| [[en:docs:win16:api:kernel|GETHEAPSPACES]] | |
+| 096| [[en:docs:win16:api:kernel|DIRECTEDYIELD]] | |
+| 098| [[en:docs:win16:api:kernel|GETNUMTASKS]] | |
+| 09a| [[en:docs:win16:api:kernel|GLOBALNOTIFY]] | |
+| 09c| [[en:docs:win16:api:kernel|LIMITEMSPAGES]] | |
+| 0a3| [[en:docs:win16:api:kernel|GLOBALLRUOLDEST]] | |
+| 0a4| [[en:docs:win16:api:kernel|GLOBALLRUNEWEST]] | |
+| 0a6| [[en:docs:win16:api:kernel|WINEXEC]] | |
+| 0a9| [[en:docs:win16:api:kernel|GETFREESPACE]] | |
+| 0aa| [[en:docs:win16:api:kernel|ALLOCCSTODSALIAS]] | |
+| 0ab| [[en:docs:win16:api:kernel|ALLOCDSTOCSALIAS]] | |
+| 0af| [[en:docs:win16:api:kernel|ALLOCSELECTOR]] | |
+| 0b0| [[en:docs:win16:api:kernel|FREESELECTOR]] | |
+| 0b1| [[en:docs:win16:api:kernel|PRESTOCHANGOSELECTOR]] | |
+| 0b8| [[en:docs:win16:api:kernel|GLOBALDOSALLOC]] | |
+| 0b9| [[en:docs:win16:api:kernel|GLOBALDOSFREE]] | |
+| 0ba| [[en:docs:win16:api:kernel|GETSELECTORBASE]] | |
+| 0bb| [[en:docs:win16:api:kernel|SETSELECTORBASE]] | |
+| 0bc| [[en:docs:win16:api:kernel|GETSELECTORLIMIT]] | |
+| 0bd| [[en:docs:win16:api:kernel|SETSELECTORLIMIT]] | |
+| 0bf| [[en:docs:win16:api:kernel|GLOBALPAGELOCK]] | |
+| 0c0| [[en:docs:win16:api:kernel|GLOBALPAGEUNLOCK]] | |
+| 0c4| [[en:docs:win16:api:kernel|SELECTORACCESSRIGHTS]] | |
+| 0c5| [[en:docs:win16:api:kernel|GLOBALFIX]] | |
+| 0c6| [[en:docs:win16:api:kernel|GLOBALUNFIX]] | |
+| 0c7| [[en:docs:win16:api:kernel|SETHANDLECOUNT]] | |
+| 0c8| [[en:docs:win16:api:kernel|VALIDATEFREESPACES]] | |
+| 0cb| [[en:docs:win16:api:kernel|DEBUGBREAK]] | |
+| 0cc| [[en:docs:win16:api:kernel|SWAPRECORDING]] | |
+| 0ce| [[en:docs:win16:api:kernel|ALLOCSELECTORARRAY]] | |
+| 0cf| [[en:docs:win16:api:kernel|ISDBCSLEADBYTE]] | |
+| 136| [[en:docs:win16:api:kernel|LOCALHANDLEDELTA]] | |
+| 140| [[en:docs:win16:api:kernel|ISTASK]] | |
+| 143| [[en:docs:win16:api:kernel|ISROMMODULE]] | |
+| 144| [[en:docs:win16:api:kernel|LOGERROR]] | |
+| 145| [[en:docs:win16:api:kernel|LOGPARAMERROR]] | |
+| 146| [[en:docs:win16:api:kernel|ISROMFILE]] | |
+| 14e| [[en:docs:win16:api:kernel|ISBADREADPTR]] | |
+| 14f| [[en:docs:win16:api:kernel|ISBADWRITEPTR]] | |
+| 150| [[en:docs:win16:api:kernel|ISBADCODEPTR]] | |
+| 151| [[en:docs:win16:api:kernel|ISBADSTRINGPTR]] | |
+| 15b| [[en:docs:win16:api:kernel|ISBADHUGEWRITEPTR]] | |
+| 15c| [[en:docs:win16:api:kernel|HMEMCPY]] | |
+| 15d| [[en:docs:win16:api:kernel|_HREAD]] | |
+| 15e| [[en:docs:win16:api:kernel|_HWRITE]] | |
+| 161| [[en:docs:win16:api:kernel|LSTRCPYN]] | |
+| 162| [[en:docs:win16:api:kernel|GETAPPCOMPATFLAGS]] | |
+| 163| [[en:docs:win16:api:kernel|GETWINDEBUGINFO]] | |
+| 164| [[en:docs:win16:api:kernel|SETWINDEBUGINFO]] | |

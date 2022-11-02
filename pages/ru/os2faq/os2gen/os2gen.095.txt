@@ -1,0 +1,48 @@
+[Q]: Куда писать багрепорты?
+
+[A]: Denis Kosorukov (2:50/450)
+
+Будучи на днях в IBM & Lotus получил информацию о том куда можно (да и нужно :)
+писать баг репорты.
+Для Lotus это Igor_Breus@lotus.com,писать можно как на русском,как и на
+английском.
+Всё что касается OS/2,то с этим отправляют к H.Смирнову,а поймать его.... :(
+Мож кто посодействует в отлавливании сего человека ? Серьёзно.
+
+[A]: Sergey I. Yevtushenko (evsi@naverex.kiev.ua)
+
+> Если нет, то пинай производителей мылом - главное выражения пожестче выбирай,
+> чтобы они поняли, что мало карточку сляпать нужно еще и драйвера для
+> пользователей _различных_ операционных систем написать.
+
+Очень помогает следующий прием:
+
+"Я давно и с большим удовольствием пользуюсь ХХХ вашей фирмы.
+И всегда был удовлетворен качеством продукции.
+Hо вот я обнаружил, что с новой XXX  YYY вашей фирмы не поставляются 
+драйвера для OS/2. Это меня сильно разочаровало, поскольку я использую 
+OS/2 и в офисе и дома и поддерживаю некоторое количество установок OS/2
+в других местах. Если вы не собираетесь выпускать драйвера для YYY , то
+я буду вынужден сменить оборудование, а также сообщить OS/2 community о
+том, что ваша фирма прекратила поддержку OS/2." 
+
+Hе трудно догадаться, что последняя фраза - ключевая. Достаточно 
+сказать, что после подобного письма (на аглицком, естественно) в 
+D-Link я получил драйвера для DFE-530 в течении суток, свеженькие, 
+прямо из тестовой лаборатории :)
+
+Вот оригинал моего письма в D-Link:
+
+> Hi!
+>
+> Would be great to know if you plan to make available drivers for DFE530TX LAN 
+> adapter for OS/2. I'm using D-Link LAN equipment for long time (more than 4
+> years) and always was satisfied with quality, price and availability of
+> drivers for D-Link products. But lack of OS/2 drivers for mentioned above LAN 
+> adapter looks very disappointing because all my computers runs some kind of
+> OS/2 (Warp 3.0, 4.0 and Warp Server). If you decide to drop support of OS/2
+> for you hardware products I'll be ought to choose another hardware vendor and 
+> will send this bad news to all OS/2 community. As I say above I was satisfied 
+> with D-Link products and don't want to do so. Another very disappointing thing
+> is that OS/2 drivers is mentioned in User's Guide but not available on
+> supplied diskette and D-Link site. Regards,    Sergey I. Yevtushenko.

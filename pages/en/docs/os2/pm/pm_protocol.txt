@@ -1,0 +1,26 @@
+===== FreePM server protocol =====
+
+Server handles messages in Fs_ClientWork in Fs_main.cpp. Currently following messages exists:
+
+^Message        ^Data           ^Description          ^Status          ^
+|F_CMD_GET_IHAB |    |    |Not implemented  |
+|F_CMD_CLIENT_EXIT |   |   |Not implemented   |
+|F_CMD_WINPOSTMSG  |   |   |Not implemented   |
+|F_CMD_WINSENDMSG   |   |   |Not implemented   |
+|F_CMD_WINQUERY_MSG   |   |   |Not implemented   |
+|F_CMD_WINGET_MSG   |    |   |Not implemented   |
+|F_CMD_WINCREATE_HWND  |   |   |Not implemented   |
+|F_CMD_WINSET_PARENT_HWND   |   |   |Not implemented   |
+|F_CMD_GET_HPS   |   |   |Not implemented   |
+|F_CMD_RELEASE_HPS   |    |    |Not implemented   |
+|F_CMD_WIN_SET_WND_SIZE   |    |    |Not implemented   |
+|F_CMD_WIN_SET_WND_POS    |    |    |Not implemented   |
+|F_CMD_WIN_GET_WND_SWP  |     |    |Not implemented   |
+|F_CMD_WIN_SHOW  |    |    |Not implemented   |
+|F_CMD_GPI_SET_COLOR     |    |    |Not implemented   |
+|F_CMD_GPI_MOVE   |    |    |Not implemented   |
+|F_CMD_GPI_LINE   |    |    |Not implemented   |
+|F_CMD_GPI_DRAW_LINE   |    |    |Not implemented |
+|F_CMD_GPI_DRAW_RECT   |    |    |Not implemented   |
+
+~~DISCUSSION~~

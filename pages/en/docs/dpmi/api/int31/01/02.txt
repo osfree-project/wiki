@@ -1,0 +1,57 @@
+{{page>en:templates:dpmi}}
+
+====== Int 31H, AH=01H, AL=02H ======
+
+===== Version =====
+
+0.9
+
+===== Brief =====
+
+Resize DOS Memory Block
+
+===== Input =====
+
+  AX = 0102H
+  BX = new block size in (16-byte) paragraphs
+  DX = selector of block to modify
+        
+===== Return =====
+
+  if function successful
+  Carry flag = clear
+  
+  if function unsuccessful
+  Carry flag = set
+  AX = error code
+  0007H	memory control blocks damaged (also returned by DPMI 0.9 hosts).
+  0008H	insufficient memory (also returned by DPMI 0.9 hosts).
+  0009H	incorrect memory segment specified (also returned by DPMI 0.9 hosts).
+  8011H	descriptor unavailable
+  8022H	invalid selector
+  BX = maximum possible block size (paragraphs)
+
+===== Notes =====
+
+Changes the size of a memory block that was previously al located with the Allocate DOS Memory Block function (Int 31H Function 0100H).
+
+Requests to increase the size of an existing DOS memory block may fail due to subsequent DOS memory block allocations causing fragmentation of DOS memory, or insufficient remaining DOS memory. In addition, the function will fail if the block is growing past a 64 KB boundary and the next descriptor in the LDT is not available.
+
+A request to decrease the size of a DOS memory block may cause some descriptors that were previously allocated to the block to be freed and the limit of the new last descriptor for the block to be changed.
+
+Under a DPMI 1.0 host, any segment registers which contain a selector being modified are reloaded by this function and any segment registers which contain a selector being freed are zeroed by this function.
+
+Client programs should never modify or free any descriptors allocated by this function. The Free DOS Memory Block function (Int 31H Function 0101H) will deallocate the descriptors automatically.
+
+Refer to the rules for descriptor usage in Appendix D.
+   
+===== See also =====
+
+   
+
+===== Note =====
+
+Text based on [[http://www.delorie.com/djgpp/doc/dpmi/]]
+
+{{page>en:templates:dpmi:int}}
+

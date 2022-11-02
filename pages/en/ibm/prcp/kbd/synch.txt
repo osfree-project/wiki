@@ -1,0 +1,49 @@
+==== KbdSynch ====
+
+**Bindings**: [[synch#C bindings|C]], [[synch#MASM bindings|MASM]]
+
+This call synchronizes access from a keyboard subsystem to the keyboard device driver. 
+
+KbdSynch (IOWait) 
+
+//IOWait// (**USHORT**) - input 
+Wait for the bond. Values are: 
+
+^Value ^Definition ^
+|0 |Indicates the requestor does not wait for access to the device driver. |
+|1 |Indicates the requestor waits for access to the device driver. |
+
+//rc// (**USHORT**) - return 
+Return code descriptions are: 
+
+|0 |NO_ERROR |
+|121 |ERROR_SEM_TIMEOUT |
+
+**Remarks**
+
+//KbdSynch// blocks all other threads within a session until return from the subsystem to the router. To ensure proper synchronization, //KbdSynch// should be issued by a keyboard subsystem if it intends to issue a //DosDevIOCtl// or access dynamically shared data. //KbdSynch// does not protect globally shared data from threads in other sessions. 
+
+=== C bindings ===
+
+<code c>
+#define INCL_KBD
+
+USHORT  rc = KbdSynch(IOWait);
+
+USHORT           IOWait;        /* Indicate if wait */
+
+USHORT           rc;            /* return code */
+</code>
+
+=== MASM bindings ===
+
+<code asm>
+EXTRN  KbdSynch:FAR
+INCL_KBD            EQU 1
+
+PUSH   WORD    IOWait        ;Indicate if wait
+CALL   KbdSynch
+
+Returns WORD
+</code>
+

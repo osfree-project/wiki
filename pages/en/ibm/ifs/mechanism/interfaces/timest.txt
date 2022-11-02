@@ -1,0 +1,25 @@
+=== Time Stamping ===
+
+All time stamps on files are stamped and propagated to other SFTs when the file is closed or committed (flushed). If a file is opened at time 1, written to at time 2, and closed at time 3, the last write time will be time 3. Subdirectories only have creation time stamps.   
+
+The sfi_tstamp field of the file instance structure sffsi contains six flags:   
+
+
+^Name            ^Value   ^Description  ^
+| ST_SCREAT   |    1     |  stamp creation time |
+| ST_PCREAT   |    2     |  propagate creation time |
+| ST_SWRITE    |    4     |  stamp last write time |
+| ST_PWRITE    |    8     |  propagate last write time |
+| ST_SREAD      |  16     |  stamp last read time |
+| ST_PREAD      |  32     |  propagate last read time |
+
+
+These flags are cleared when an SFT is created, and some of them may eventually be set by a file system worker routine. They are examined when the file is closed or flushed.   
+
+For each time stamp, there are three meaningful actions:   
+
+
+^ ST_Sxxx  ^ST_Pxxx    ^Action  ^
+| clear          | clear          | don't do anything |
+| set             | set             |stamp and propagate (to other SFTs and disk) |
+| clear          | set             |don't stamp, but propagate existing value |

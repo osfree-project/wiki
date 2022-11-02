@@ -1,0 +1,18 @@
+[Q]: Скомпиленная TP 6.0 программка дает 100% загрузку мерлина
+
+[A]: Alexander Samuylov (2:5030/39)
+
+#include <dos.h>
+void interrupt ( *OldInt28)(void);
+void interrupt int28(void)
+{
+    OldInt28();
+    enable();
+    _AX=0x1680;geninterrupt(0x2f);
+}
+void main(void)
+{
+    OldInt28 = getvect(0x28);
+    setvect(0x28, int28);
+   _dos_keep(0, (_SS + (_SP/16) - _psp));
+}

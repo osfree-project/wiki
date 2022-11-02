@@ -1,0 +1,33 @@
+[Q]: EMX vs. Innotek GCC: differences in build environment
+
+[A]: Dave Webster (Dave.Webster@bhmi.com)
+
+Here is what Innotek gcc 3.2.2 Beta 4 defines by default
+
+__32BIT__
+__EMX__
+__OS2__
+__i386__
+__i386
+unix
+__MT__
+__INNOTEK_LIBC=0x005
+
+And -Asystem of unix, posix and emx
+
+
+So the main way to differentiate between regular EMX and INNOTEK is checking
+for __INNOTEK_LIBC__.  Straight EMX will not have that defined.  In general
+anything that applies to EMX also applies to INNOTEK, but INNOTEK may have
+some requirements specific to it in addition to those for EMX.
+
+The main difference I have found between the latest pure EMX distribution,
+gcc 3.2.1 from Hobbes and Innotek gcc 3.2.2 Beta 3 and 4 is in the default
+stdc++ library.  EMX still defaults to -lstdcxx and uses classic iostream.h
+and such while Innotek defaults to the current std lib stuff (iostream) and
+-lstdc++ and lsupc++.  Also you should use g++ under Innotek for c++ and gcc
+only for straight "c" code.  Basically, Innotek is almost exactly like using
+gcc for Linux, which is why running configure in wxWindows tends to produce
+a Makefile identical to the gtk Makefile rather than EMX Makefile.  With
+beta 4 Innotek finally has defined -shared (along with some other OS/2 dll
+specific switches as outlined in the release notes).

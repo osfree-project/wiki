@@ -1,0 +1,29 @@
+[Q]: Доступные диски: как получить список из-под REXX
+
+[A]: Vadim Gaponov (2:5020/305.2)
+
+> Q: М.б. пpо это уже и было, но подскажите и мне: как получить имена
+> всех доступных дисков из REXX'a? Имена - в смысле A: C: D: E: и т.д.
+> Включая сетевые - Novell, NFS, LanServer и дp.
+
+>========================== Cut Here ================================
+/**/
+if RxFuncQuery("SysLoadFuncs") then
+do
+    call RxFuncAdd 'SysLoadFuncs', 'RexxUtil', 'SysLoadFuncs';
+    call SysLoadFuncs;
+end
+
+DrvMap = SysDriveMap() ;
+Say DrvMap
+Say "-------------------------------------"
+
+i = 1
+Do While Word( DrvMap, i ) \= ""
+
+    Say SysDriveInfo( Word( DrvMap, i ) )
+    i = i + 1 ;
+
+End
+Exit( 0 ) ;
+>========================= Final Cut  ===============================

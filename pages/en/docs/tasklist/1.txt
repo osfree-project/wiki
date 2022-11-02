@@ -1,0 +1,28 @@
+{{page>en:templates:dosshell}}
+
+====== Int 2FH, AX=4A05H, SI=01H ======
+
+===== Version =====
+
+?
+
+===== Brief =====
+
+Add task to list
+
+===== Input =====
+
+	ES:BP - Program name (command path)
+  
+===== Return =====
+
+   CF is set - error, to many tasks
+   CF is reset - all ok
+
+===== Notes =====
+
+  Function adds program to tasklist and place it first in Z order. Program name comes to Task Title, whole command line goes to Program Name.
+  
+===== See also =====
+
+   

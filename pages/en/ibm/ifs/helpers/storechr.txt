@@ -1,0 +1,30 @@
+==== FSH_STORECHAR ====
+
+**Purpose**
+
+This function provides the mechanism for storing a character into a string, taking into account DBCS considerations.   
+
+Calling Sequence 
+
+<code c>
+int far pascal FSH_STORECHAR(chDBCS, ppStr)
+
+unsigned short chDBCS;
+char far * far * ppStr;
+</code>
+
+**Where**
+
+//chDBCS// is the character to be stored. This may be either a single-byte character or a double-byte character with the first byte occupying the low-order position.   
+
+//ppStr// is the pointer to the character pointer where the character will be stored. This pointer is updated upon return. 
+
+**Returns**
+
+There are no error returns.   
+
+**Remarks**
+
+The FSD is responsible for verifying the string pointer and checking for segment boundaries.   
+
+**Note**:   OS/2 does not validate input parameters. An FSD, therefore, should call //FSH_PROBEBUF// where appropriate.   

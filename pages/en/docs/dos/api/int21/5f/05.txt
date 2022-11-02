@@ -1,0 +1,54 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=5FH, AL=05H ======
+
+===== Version =====
+
+4 and higher
+
+===== Brief =====
+
+GET EXTENDED REDIRECTION LIST ENTRY
+
+===== Family API =====
+
+
+===== Input =====
+
+    AX = 5F05h
+    BX = redirection list index
+    DS:SI -> buffer for ASCIZ source device name
+    ES:DI -> buffer for destination ASCIZ network path
+
+===== Return =====
+
+  CF set on error
+  AX = error code (see #01680 at AH=59h/BX=0000h)
+  CF clear if successful
+  AX = server's network process ID handle (10NET)
+  BH = device status flag (bit 0 clear if valid)
+  BL = device type (03h if printer, 04h if drive)
+  CX = stored parameter value (user data) from AX=5F03h
+  BP = NETBIOS local session number
+  DS:SI buffer filled
+  ES:DI buffer filled
+
+===== Macro =====
+
+
+===== Notes =====
+
+ The local session number allows sharing the redirector's session number. If an error is caused on the NETBIOS LSN, the redirector may be unable to correctly recover from errors. The DOS kernel calls INT 2F/AX=111Eh with AX on top of the stack. Supported by DR DOS 5.0. Also supported by 10NET v5.0
+
+===== See also =====
+
+  AX=5F06h"Network" - INT 2F/AX=111Eh
+  
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:int}}
+
+{{page>en:templates:fapi}}
+

@@ -1,0 +1,96 @@
+{{page>en:templates:fapiint}}
+
+====== DosMove ======
+
+This call moves a file object to another location and changes its name. 
+
+===== Syntax =====
+
+<code c>
+DosMove (OldPathName, NewPathName, Reserved)
+</code>
+
+===== Parameters =====
+
+  * OldPathName ([[PSZ]]) - input : Address of the old path name of the file to be moved.
+  * NewPathName ([[PSZ]]) - input : Address of the new path name of the file.
+  * Reserved ([[ULONG]]) - input : Reserved and must be set to zero.
+
+===== Return Code =====
+
+ rc ([[USHORT]]) - return
+
+Return code descriptions are:
+
+  * 0   NO_ERROR
+  * 2   ERROR_FILE_NOT_FOUND 
+  * 3   ERROR_PATH_NOT_FOUND 
+  * 5   ERROR_ACCESS_DENIED 
+  * 17   ERROR_NOT_SAME_DEVICE 
+  * 26   ERROR_NOT_DOS_DISK 
+  * 32   ERROR_SHARING_VIOLATION 
+  * 36   ERROR_SHARING_BUFFER_EXCEEDED 
+  * 87   ERROR_INVALID_PARAMETER 
+  * 108   ERROR_DRIVE_LOCKED 
+  * 206   ERROR_FILENAME_EXCED_RANGE 
+  * 250   ERROR_CIRCULARITY_REQUESTED 
+  * 251   ERROR_DIRECTORY_IN_CDS
+
+===== Remarks =====
+
+This call is often used to change only the name of a file or subdirectory, allowing the file object to remain in the same subdirectory. Global file name characters are not allowed in the source or target name.
+
+If the paths specified are different, this allows the subdirectory location of the file object to be changed as well. If a drive is specified for the target, it must be the same as the one specified or implied by the source.
+
+Any attempts to move a parent subdirectory to one of its descendant subdirectories are rejected, because a subdirectory cannot be both an ancestor and a descendant of the same subdirectory. Any attempts by a process to move the current subdirectory or any of its ancestors are also rejected.
+
+Attributes (times and dates) of the source file object are moved to the target. If read-only files exist in the target path, they are not replaced.
+
+[[DosQSysInfo]] is called during initialization by an application to determine the maximum path length allowed by OS/2.
+
+DosMove can be used to change the case of a file on an FSD drive. The following example would change the name of the file to "File.Txt".
+ DosMove("file.txt","File.Txt")
+
+==== Family API Considerations ====
+
+Some options operate differently in the DOS mode than in the OS/2 mode. Therefore, the following restriction applies to DosMove when coding for the DOS mode:
+
+File names passed to OldPathName and NewPathName are truncated by the system in the DOS mode only. The application must truncate all files passed to OldPathName and NewPathName in the OS/2 mode or an error code is returned.
+
+===== Example Code =====
+
+==== C Binding ====
+
+<code c>
+#define INCL_DOSFILEMGR
+
+USHORT  rc = DosMove(OldPathName, NewPathName, Reserved);
+
+PSZ              OldPathName;   /* Old path name string */
+PSZ              NewPathName;   /* New path name string */
+ULONG            0;             /* Reserved (must be zero) */
+
+USHORT           rc;            /* return code */
+</code>
+
+==== MASM Binding ====
+
+<code asm>
+EXTRN  DosMove:FAR
+INCL_DOSFILEMGR     EQU 1
+
+PUSH@  ASCIIZ  OldPathName   ;Old path name string
+PUSH@  ASCIIZ  NewPathName   ;New path name string
+PUSH   DWORD   0             ;Reserved (must be zero)
+CALL   DosMove
+</code>
+
+Returns WORD
+
+
+===== Note =====
+
+
+Text based on [[http://www.edm2.com/index.php/DosMove_(FAPI)]]
+
+{{page>en:templates:fapi}}

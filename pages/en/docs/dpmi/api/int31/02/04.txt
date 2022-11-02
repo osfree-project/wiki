@@ -1,0 +1,42 @@
+{{page>en:templates:dpmi}}
+
+====== Int 31H, AH=02H, AL=04H ======
+
+===== Version =====
+
+0.9
+
+===== Brief =====
+
+Get Protected Mode Interrupt Vector
+
+===== Input =====
+
+  AX = 0204H
+  BL = interrupt number
+        
+===== Return =====
+
+  Carry flag = clear (this function always succeeds)
+  CX:(E)DX = selector:offset of exception handler
+
+===== Notes =====
+
+Returns the address of the current protected mode interrupt handler for the specified interrupt.
+
+The value returned in CX is a valid protected mode selector, not a real mode segment address.
+
+32-bit clients will be returned a 32-bit offset in the EDX register.
+
+DPMI hosts must make all 100H (256) interrupt vectors available through this function.
+
+===== See also =====
+
+   
+
+===== Note =====
+
+Text based on [[http://www.delorie.com/djgpp/doc/dpmi/]]
+
+{{page>en:templates:dpmi:int}}
+

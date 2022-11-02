@@ -1,0 +1,32 @@
+[Q]: How to remove a volume label?
+
+[A]: Mark Lewis (1:3634/12)
+
+i just found that 'label d:[alt-1]' causes the label to be removed...
+
+D:\>ver
+
+The Operating System/2 Version is 3.00
+
+D:\>vol
+
+The volume label in drive D is FRED.
+The Volume Serial Number is A7CD:4415.
+
+D:\>label d:^A
+
+D:\>vol
+
+Volume in drive D has no label.
+The Volume Serial Number is A7CD:4415.
+
+
+the same thing with
+
+D:\>ver
+
+4OS2/32 2.51   OS/2 Version is 3.0
+
+except that the ^A doesn't show on the screen...
+
+Warp 3 w/no fixpaks...

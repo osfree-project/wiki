@@ -1,0 +1,92 @@
+{{page>en:templates:fapiint}}
+====== DosCreateCSAlias ======
+
+===== Syntax =====
+
+<code c>
+DosCreateCSAlias (DataSelector, CodeSelector)
+</code>
+
+===== Parameters =====
+
+  * DataSelector ([[SEL]]) - input : Data segment selector.
+  * CodeSelector ([[PSEL]]) - output : Address where the selector of the code segment alias descriptor is returned.
+
+===== Return Code =====
+
+
+rc ([[USHORT]]) - return
+
+Return code descriptions are:
+  * 0        NO_ERROR
+  * 5        ERROR_ACCESS_DENIED 
+
+===== Remarks =====
+
+A selector returned by a call to [[DosAllocSeg]] with no sharing options specified can be used as the data segment specified with DosCreateCSAlias. However, to be CS alias, the segment must be a privilege level 2 or privilege level 3 non-shared segment.
+
+A CS alias segment must be exclusively accessible by the process and cannot be a huge segment. Selectors of shared memory segments and dynamically linked global data segments cannot be used as input for DosCreateCSAlias.
+
+The code segment selector returned by DosCreateCSAlias is valid for CS. If a procedure is stored in the data segment, it can be called using the CS alias. The procedure may be called from privilege level 3 or I/O privilege level.
+
+Use [[DosFreeSeg]] to free a CS alias selector created with DosCreateCSAlias. Procedures in the segment can continue to be referenced if the data selector for the aliased segment is passed to DosFreeSeg, because the CS alias selector is not affected. Once both selectors have been passed to DosFreeSeg, the segment is deallocated.
+
+==== Family API Considerations ====
+
+The returned selector is the segment address of the allocated memory. When the returned selector or the original selector is freed, OS/2 immediately deallocates the block of memory.
+
+==== Example Code ====
+
+=== C Binding ===
+
+<code c>
+  #define INCL_DOSMEMMGR
+  
+  USHORT  rc = DosCreateCSAlias(DataSelector, CodeSelector);
+  
+  SEL              DataSelector;  /* Data segment selector */
+  PSEL             CodeSelector;  /* Code segment selector (returned) */
+  
+  USHORT           rc;            /* return code */
+</code>
+=== Example ===
+
+
+This example requests a block of memory (data segment) then requests a descriptor of the segment marking it as a code segment. 
+
+<code c>
+  #define INCL_DOSMEMMGR
+  
+  #define NUMBER_OF_BYTES 120
+  #define ALLOC_FLAG SEG_GETTABLE
+  
+  SEL    CodeSel;
+  SEL    Selector;
+  USHORT rc;
+  
+   if(!DosAllocSeg(NUMBER_OF_BYTES,         /* # of bytes requested */
+                   &Selector,               /* Selector allocated */
+                   ALLOC_FLAG))             /* Allocation flags */
+      rc = DosCreateCSAlias(Selector,       /* Data segment selector */
+                            &CodeSel);      /* Code segment selector */
+</code>
+
+=== MASM Binding ===
+<code asm>
+  EXTRN  DosCreateCSAlias:FAR
+  INCL_DOSMEMMGR      EQU 1
+  
+  PUSH   WORD    DataSelector  ;Data segment selector
+  PUSH@  WORD    CodeSelector  ;Code segment selector (returned)
+  CALL   DosCreateCSAlias
+</code>  
+Returns WORD
+
+
+==== Note ====
+
+
+Text based on [[http://www.edm2.com/index.php/DosCreateCSAlias]]
+
+{{page>en:templates:fapi}}
+

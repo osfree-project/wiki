@@ -1,0 +1,43 @@
+{{page>en:templates:biosint}}
+
+====== @SetCurSz ======
+
+===== Version =====
+
+IBM 5150 and higher
+
+===== Brief =====
+
+Set Cursor Shape Size
+
+===== BIOS Interrupt =====
+
+[[en:docs:bios:api:int10|INT10H]]: [[en:docs:bios:api:int10:01|01H]]
+
+===== Family API =====
+
+[[en:docs:fapi:VioSetCurType]]
+
+===== Syntax =====
+
+<code asm>
+INCLUDE BIOS.INC
+
+@SetCurSz first, last
+</code>
+
+===== Parameters =====
+
+  * first (BYTE) - first scan line
+  * last (BYTE) - last scan line
+
+===== Return =====
+
+
+none
+
+===== Notes =====
+
+  * Macro contains bug workaound: AMI 386 BIOS and AST Premier 386 BIOS will lock up the system if AL is not equal to the current video mode
+
+{{page>en:templates:biosapi}}

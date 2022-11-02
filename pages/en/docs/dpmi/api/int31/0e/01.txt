@@ -1,0 +1,56 @@
+{{page>en:templates:dpmi}}
+
+====== Int 31H, AH=0EH, AL=01H ======
+
+===== Version =====
+
+1.0
+
+===== Brief =====
+
+Set Coprocessor Emulation
+
+===== Input =====
+
+  AX = 0E01H
+  BX = coprocessor bits
+
+^ Bit ^ Significance ^
+| 0 | new value of MPv bit for client's virtual CR0    0 = disable numeric coprocessor for this client    1 = enable numeric coprocessor for this client |
+| 1 | new value of EMv bit for client's virtual CR0    0 = client will not supply coprocessor emulation    1 = client will supply coprocessor emulation |
+| 2-15 | not applicable |
+
+===== Return =====
+
+  if function successful
+  Carry flag = clear
+  
+  if function unsuccessful
+  Carry flag = set
+  AX = error code
+  8026H	invalid request (client requested disabling coprocessor on a processor which does not support this)
+    
+===== Notes =====
+
+Enables or disables the numeric coprocessor for this virtual machine and the reflection of coprocessor exceptions to the client.
+
+If the MPv bit is not set, the host may not need to save the coprocessor state for this virtual machine to improve system performance.
+
+If the virtual EM (EMv) bit is set, the host delivers all coprocessor exceptions to the client, so that the client can provide its own floating point emulation (whether or not a coprocessor is present or the host also has a floating point emulator). In other words, if the EMv bit is set, the host sets the EM bit in the real CR0 while the client is active, and reflects coprocessor not present faults (Int 7) to the client.
+
+Floating point emulation can be tested on a system with a numeric coprocessor by using this function to enable client handling of coprocessor exceptions and disable the coprocessor.
+
+The client should use Int 31H Function 0212H to register an exception handler for coprocessor not present faults (Int 7) prior to setting the EMv bit with this function.
+
+A client can determine the CPU type with Int 31H Function 0400H, and the presence or absence of a coprocessor with Int 31H Function 0E00H. The client should not draw any conclusions about the presence or absence of a coprocessor based on the CPU type alone.
+
+===== See also =====
+
+   
+
+===== Note =====
+
+Text based on [[http://www.delorie.com/djgpp/doc/dpmi/]]
+
+{{page>en:templates:dpmi:int}}
+

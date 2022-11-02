@@ -1,0 +1,88 @@
+{{page>en:templates:fapiint}}
+
+====== DosQFileMode ======
+
+This call queries the mode (attribute) of the specified file.
+
+===== Syntax =====
+
+<code c>
+DosQFileMode (FilePathName, CurrentAttribute, Reserved) 
+</code>
+
+===== Parameters =====
+
+  * FilePathName ([[PSZ]]) - input : Address of the file path name.
+
+[[DosQSysInfo]] is called by an application during initialization to determine the maximum path length allowed by OS/2. 
+
+  * CurrentAttribute ([[PUSHORT]]) - output : Address of the file's current attribute.
+
+^ Bit  ^ Description ^
+| 15-6 | Reserved |
+| 5    | File archive |
+| 4    | Subdirectory |
+| 3    | Reserved |
+| 2    | System file |
+| 1    | Hidden file |
+| 0    | Read only file |
+
+These bits can be set individually or in combination. For example, an attribute value of 0021H (bits 5 and 0 set to 1) indicates a read-only file that is archived.
+
+  * Reserved ([[ULONG]]) - input : Reserved must be set to zero.
+
+===== Return Code =====
+
+ rc ([[USHORT]]) - return
+
+Return code descriptions are:
+
+  * 0   NO_ERROR
+  * 2   ERROR_FILE_NOT_FOUND
+  * 3   ERROR_PATH_NOT_FOUND
+  * 26  ERROR_NOT_DOS_DISK
+  * 87  ERROR_INVALID_PARAMETER
+  * 108 ERROR_DRIVE_LOCKED
+  * 206 ERROR_FILENAME_EXCED_RANGE
+
+===== Remarks =====
+
+The "Volume Label" type attribute is not returned by DosQFileMode. [[DosQFSInfo]] may be used for this purpose.
+
+===== Example Code =====
+
+==== C Binding ====
+
+<code c>
+#define INCL_DOSFILEMGR
+
+USHORT  rc = DosQFileMode(FilePathName, CurrentAttribute, Reserved);
+
+PSZ     FilePathName;     /* File path name */
+PUSHORT CurrentAttribute; /* Data area (returned) */
+ULONG   0;                /* Reserved (must be zero) */
+
+USHORT  rc;               /* return code */
+</code>
+
+==== MASM Binding ====
+
+<code asm>
+EXTRN  DosQFileMode:FAR
+INCL_DOSFILEMGR     EQU 1
+
+PUSH@  ASCIIZ  FilePathName     ;File path name
+PUSH@  WORD    CurrentAttribute ;Data area (returned)
+PUSH   DWORD   0                ;Reserved (must be zero)
+CALL   DosQFileMode
+
+</code>
+
+Returns WORD
+
+===== Note =====
+
+
+Text based on http://www.edm2.com/index.php/DosQFileMode
+
+{{page>en:templates:fapi}}

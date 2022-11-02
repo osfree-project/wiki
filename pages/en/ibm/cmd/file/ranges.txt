@@ -1,0 +1,55 @@
+===== Date, Time and Size Ranges =====
+
+Most internal commands which accept wildcards also allow date, time, and size ranges to further define the files that you wish to work with. **CMD.EXE** will examine each file's size and timestamp (a record of when the file was created, last modified, or last accessed) to determine if the file meets the range criteria you have specified. 
+
+(**CMD.EXE** also supports [[en:docs:os2:cmd:file:exclusion|File Exclusion Ranges]] to exclude files from a command. These are similar to date, time, and size ranges, but have a slightly different purpose and therefore are documented separately.) 
+
+A range begins with the switch character (**/**), followed by a left square bracket ("**[**") and a character that specifies the range type: "s" for a size range, "d" for a date range, or "t" for a time range. The "s", "d", or "t" is followed by a start value, and an optional comma and end value. The range ends with a right square bracket ("**]**"). For example, to select files between 100 and 200 bytes long you could use the range **/[s100,200]**. 
+
+All ranges are inclusive. For example, a size range which selects files from 10,000 to 20,000 bytes long will match files that are exactly 10,000 bytes and 20,000 bytes long, as well as all sizes in between; a date range that selects files last modified between 10-27-97 and 10-30-97 will include files modified on each of those dates, and on the two days in between. 
+
+If you reverse range start and end values the command processor will recognize the reversal, and will use the second (lower) value as the start point of the range and the first (higher) value as its end point.   For example, the range above for files between 100 and 200 bytes long could also be entered as **/[s200,100]**. 
+
+See the individual range types for details on specifying ranges: 
+
+  * [[en:docs:os2:cmd:file:ranges:date|Date Ranges]]
+  * [[en:docs:os2:cmd:file:ranges:time|Time Ranges]]
+  * [[en:docs:os2:cmd:file:ranges:size|Size Ranges]]
+
+==== Using Ranges ====
+
+If you combine two types of ranges, a file must satisfy both ranges to be included. For example, **/[d2-8-97,2-9-97]** **/[s1024,2048]** means files last modified between February 8 and February 9, 1997, which are also between 1,024 and 2,048 bytes long. 
+
+When you use a date, time, or size range in a command, it should immediately follow the command name. Unlike some command switches which apply to only part of the command line, the range usually applies to all file names specified for the command. Any exceptions are noted in the descriptions of individual commands. 
+
+For example, to get a directory of all the //*.C// files dated October 1, 1997, you could use this command: 
+
+<code>
+        [c:\] dir /[d10-1-97,+0] *.c
+</code>
+
+To delete all of the 0-byte files on your hard disk, you could use this command: 
+
+<code>
+        [c:\] del /[s0,0] *.* /s
+</code>
+
+And to copy all of the non-zero byte files that you changed yesterday or today to your floppy disk, you can use this command: 
+
+<code>
+        [c:\] copy /[d-1] /[s1] *.* a:
+</code>
+
+The HPFS file system maintains 3 sets of dates and times for each file: creation, last access, and last write. By default, date and time ranges work with the last write time stamp. You can use the "last access" (a) or "created" (c) time stamp in a date or time range with the syntax: 
+
+<code>
+        /[da...]  or  /[dc...]  or  /[ta...]  or  /[tc...]
+</code>
+
+For example, to select files that were last accessed yesterday or today: 
+
+<code>
+        /[da-1]
+</code>
+
+Date, time, and size ranges can be used with the [[en:docs:os2:cmd:internal:attrib|ATTRIB]], [[en:docs:os2:cmd:internal:copy|COPY]], [[en:docs:os2:cmd:internal:del|DEL]], [[en:docs:os2:cmd:internal:describe|DESCRIBE]], [[en:docs:os2:cmd:internal:dir|DIR]], [[en:docs:os2:cmd:internal:except|EXCEPT]], [[en:docs:os2:cmd:internal:ffind|FFIND]], [[en:docs:os2:cmd:internal:for|FOR]], [[en:docs:os2:cmd:internal:list|LIST]], [[en:docs:os2:cmd:internal:move|MOVE]], [[en:docs:os2:cmd:internal:rd|RD]], [[en:docs:os2:cmd:internal:ren|REN]], [[en:docs:os2:cmd:internal:select|SELECT]], and [[en:docs:os2:cmd:internal:type|TYPE]] commands. They cannot be used with filename completion or in filename arguments for variable functions. 

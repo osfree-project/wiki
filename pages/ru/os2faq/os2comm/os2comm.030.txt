@@ -1,0 +1,120 @@
+[Q]: Как избавиться от Propagate Access пpи смене CD?
+
+[A]: Alex Zimarev (2:5020/468.5)
+
+расшарить CD-ROM в LS 4 можно и с помощью GUI (в третьем нельзя).
+
+1. Создается алиас, например CD для ресурса D:\, где D: - CD-ROM.
+2. Hа вопрос о создании access profile надо сказать <Hе создавать>
+3. Пойти в OS/2 System -> Drives, нажать правую кнопку мыши на иконке CD-ROM,
+   выбрать Manage access и задать необходимые permissions.
+
+[A]: (Richard Ashton, Richard@corixia.demon.co.uk)
+
+OK this time I am at work with the might of IBM's databases
+behind me so I wil just cut and pase a bit.
+
+***************************************************
+DETAILS OF RESOLUTION
+    There are two ways to set up a CD-ROM on the LAN.  The
+    first example is done from the command line, but must be
+    done each time the server is rebooted.  (It could be put
+    in the STARTUP.CMD.)  The second way, done from the
+    LAN Requester Full Screen Interface, takes a little more
+    time to set up; but it does not have to be done each time
+    the server is rebooted.
+
+    Note:  In the following examples:
+                    SERVNAME = The name of the server with the
+                               CD-ROM
+                    NETCDROM = The CD-ROM netname
+                    CDROMAL  = The CD-ROM alias
+                    E:       = The local drive letter assigned to
+                               the CD-ROM
+                    K:       = The redirected drive at the requester
+
+    1.  This example is done from the command line on the server
+        where the CD-ROM is installed:
+
+        a.  At the OS/2 command line, do a NET SHARE.
+            Example: NET SHARE NETCDROM=E:
+        b.  Create an access control profile.
+            Example: NET ACCESS E: /ADD
+        c.  Grant access to the users.
+            Example: NET ACCESS E: /GRANT USERS:R GUEST:R
+        d.  At the requester, do a NET USE.
+            Example: NET USE K: \\SERVNAME\NETCDROM
+        NOTE:  The access profile must be for "E:" not "E:\";
+               otherwise an APPLY will have to be done after each
+               CD-ROM change.
+
+    2.  This example is done from the LAN Requester Full Screen
+    Interface on the server where the CD-ROM is installed:
+
+    a.  Define an alias for the CD-ROM drive root directory:
+        1)  From the LAN Requester Main Panel, select
+            Definitions, then select Aliases from the popup.
+        2)  From the Aliases panel, select Files.
+        3)  From the Manage Aliases - Files panel, select
+            --NEW--, then select Create from the popup.
+        4)  Complete the Create Aliases - Files panel:
+                Alias:                        CDROMAL
+                Server name:                  SERVNAME
+                Server path to directory:     E:\
+                When shared:                  At server startup
+
+     b.  Create the access control profile for the CD-ROM:
+         1)  From the LAN Requester Main Panel, select
+             Definitions, then Access Controls from the popup.
+         2)  From Manage Access Control - Aliases, F10 to the
+             Action Bar, and select Servers, then Enter on the
+             Display Profiles by Server popup.
+         3)  From List of Servers, select --Here--.
+         4)  From Manage Access Control - Non-Alias, select
+             --New--, F10 to the Action bar, then select
+             Create on the popup.
+         5)  On the Create an Access Control Profile, enter or
+             select the following:
+                 Profile type:     E: (DO NOT add a \; eg, E:\)
+                 Resource Type:    File
+                 Permissions for
+                     User Group:   XR
+         6)  On Manage Access Control - Non-alias, select the
+             profile created in the previous step (eg. E:).
+             F10 to the Action bar, selection Actions, then
+             select User List from the popup.
+         7)  From Access Control Profile User List, cursor to
+             Guest and enter XR in Permissions.
+         8)  From Manage Access Control - Non-alias, select E:.
+             F10 to the action bar and select Actions, then
+             Apply from the popup.
+         9)  At the next popup, verify the drive letter is
+             correct, then press Enter to proceed.  (This will
+             search all the files currently loaded in the CD-ROM
+             and create many entries.)
+             NOTE:  A CD must be in the CD-ROM drive.
+
+     c.  Delete all the access control profiles for the
+         CD-ROM EXCEPT E:.  (This is the only access
+         control required for the drive.)
+
+     d.  At the requester, use the alias to access the shared
+         CD-ROM:
+                NET USE K: CDROMAL
+
+[A]: Ailsa Tomany (ailsa.tomany@almac.co.uk)
+
+You need to create a profile for the root drive without the backslash, and do 
+*not* bother to "apply" the profile.
+
+If CDROM is the F drive on the file server. Creat an alias eg
+Alias name : CDROM1
+Directory  : F:\
+server  : bla bla
+
+Then go to the Definitons menu, select Access Control Profiles, Select
+By Server.
+Highlight the new option, and then create.
+Enter a resource of F:    (note no backslash or anything)
+Users Permissions    :  whatever you want
+Then create access by Group and Users as required.

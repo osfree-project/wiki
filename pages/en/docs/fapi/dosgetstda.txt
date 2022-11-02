@@ -1,0 +1,48 @@
+{{page>en:templates:fapiint}}
+
+====== DosGetSTDA ======
+
+===== Brief =====
+
+The DosGetSTDA API is a 16-bit API that returns a copy of the system trace
+buffer (STDA).
+
+===== Syntax =====
+
+<code c>
+APIENTRY DosGetSTDA( SEL, SHORT, SHORT );
+</code>
+
+===== Parameters =====
+
+  * SEL is the selector to the private buffer
+  * SHORT is the offset to the private buffer
+  * SHORT is the size of the buffer (maximum value = 64KB) records
+
+===== Returns =====
+
+Returns:
+  * NO_ERROR - indicates correct operation, buffer is now filled with copy of the system trace buffer
+  * ERROR_SYSTEM_TRACE - System trace is not enabled
+
+===== Remarks =====
+
+
+DosGetSTDA returns a buffer that contains a copy of the system trace buffer.
+The buffer is circular with a header record that contains pointers to the first and
+last data bytes and a pointer to the next byte that was available for writing (the
+buffer is a snapshot of the system trace buffer at the time that the API was
+called). A set of trace records follows the header. Each trace record contains a
+trace event trailer and optionally a timestamp and/or a data field. A timestamp
+record is optional and will only exist if bit 2 of the flag field in the Trace Event
+Trailer is set to OFF.
+
+The trace event data contains the information describing each individual trace
+event. The events traced may be from OS/2 system supplied or other user
+supplied trace points. In either case the data is dependent on each individual
+trace point. Descriptions of the data and formatting instructions for the OS/2
+system supplied trace points can be found in the OS/2 Debugging Library,
+Volume 3 - System Trace Points Reference.
+
+
+{{page>en:templates:fapi}}

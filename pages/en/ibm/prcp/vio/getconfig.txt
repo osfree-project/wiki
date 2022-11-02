@@ -1,0 +1,215 @@
+==== VioGetConfig ====
+
+**Bindings**: [[getconfig#C bindings|C]], [[getconfig#MASM bindings|MASM]]
+
+This call returns the video display configuration. 
+
+//VioGetConfig// (ConfigID, ConfigData, VioHandle) 
+
+//ConfigID// (**USHORT**) - input 
+Identifies for which display configuration information is being requested: 
+
+^Value ^Definition ^
+|0 |Current configuration |
+|1 |Primary configuration |
+|2 |Secondary configuration |
+
+  
+For OS/2 1.2, when //ConfigID// = 0, the current configuration is returned rather than the primary configuration (as was returned in OS/2 1.0 and 1.1). This change makes the OS/2 mode version of [[en:ibm:prcp:vio:getconfig|VioGetConfig]] match the family API version that has returned the current configuration starting with OS/2 1.0. OS/2 1.0 and 1.1 applications that issued [[en:ibm:prcp:vio:getconfig|VioGetConfig]] to determine the display configuration benefit from this change. The application can run on the configuration selected by the operator (by issuing the MODE command before invoking the application) rather than switching away from the operator selected display. 
+
+//ConfigData// (**PVIOCONFIGINFO**) - output 
+Address of structure where the display configuration is returned. 
+
+//length// (**USHORT**) 
+Input parameter to [[en:ibm:prcp:vio:getconfig|VioGetConfig]]. Length specifies the length of the data structure in bytes including Length itself. The maximum size structure required in OS/2 1.0 and 1.1 is 10 bytes. 
+
+The maximum size structure required in OS/2 1.2 is variable and can be determined by issuing [[en:ibm:prcp:vio:getconfig|VioGetConfig]] with Length set to 2. When Length is set to 2 on input, [[en:ibm:prcp:vio:getconfig|VioGetConfig]] returns the size of the maximum structure required in the Length field on output. When Length is not equal to 2 on input, the Length field is modified on output to reflect the actual number of bytes returned. That is, if more than the maximum size was specified, the maximum size is returned. However, if less than the maximum size is specified, the value returned reflects the number of bytes of complete fields returned. 
+
+//adaptertype// (**USHORT**) 
+Display adapter type. 
+
+^Value ^Definition ^
+|0 |Monochrome-compatible |
+|1 |Color Graphics Adapter (CGA) |
+|2 |Enhanced Graphics Adapter (EGA) |
+|3 |VGA or PS/2 Display Adapter |
+|4-6 |Reserved |
+|7 |IBM Personal System/2 Display Adapter 8514/A |
+|8 |IBM PS/2 Image Adapter/A |
+|9 |IBM PS/2 XGA Display Adapter |
+
+  
+Values ranging from 0-4095 are reserved for IBM. 
+
+//displaytype// (**USHORT**) 
+Display or monitor type. 
+
+^Value ^Definition ^
+|0 |Monochrome display |
+|1 |Color display |
+|2 |Enhanced Color Display |
+|3 |PS/2 Monochrome Display 8503 |
+|4 |PS/2 Color Displays 8512 and 8513 |
+|5-8 |Reserved |
+|9 |PS/2 Color Display 8514 |
+|10 |IBM Plasma Display Panel |
+|11 |Monochrome Displays 8507 and 8604 |
+|12 |PS/2 Color Display 8515 |
+|13 |Reserved |
+
+  
+Values ranging from 0-4095 are reserved for IBM. 
+
+//adaptmem// (**ULONG**) 
+Amount of memory, in bytes, on the adapter. 
+
+//Configuration#// (**USHORT**) 
+Number of the display configuration that this data corresponds to. This is assigned by the video subsystem, not the Base Video Handler (BVH). 
+
+//VDHVersion// (**USHORT**) 
+This field is reserved. 
+
+//Flag bits// (**USHORT**) 
+Are defined as follows: 
+
+^Bit ^Description ^
+|15-1 |Reserved |
+|0 |Power up display configuration |
+
+//Hardware state buffer size// (**ULONG**) 
+Size of the buffer required by the Base Video Handler (BVH) to save the full hardware state excluding the physical display buffer. 
+
+//Max buffer size - full save// (**ULONG**) 
+Maximum size buffer required by the BVH to save the full physical display buffer. 
+
+//Max buffer size - partial save// (**ULONG**) 
+Maximum size buffer required by the BVH to save the portion of the physical display buffer that is overlaid by a pop-up. 
+
+//Offset to emulated adapter types// (**USHORT**) 
+Offset within the configuration data structure to the following information describing what other display adapters are emulated by this display adapter. 
+
+//Number of Data words// (**USHORT**) 
+Contains a one word field specifying a count of data words to follow. 
+
+//Data word 1// (**USHORT**) 
+Bits set in the data words identify display adapters emulated. Data word 1 has the following definition: 
+
+^Bit ^Description ^
+|0 |Monochrome/printer adapter |
+|1 |Color graphics adapter |
+|2 |Enhanced graphics adapter |
+|3 |VGA or PS/2 display adapter |
+|4-6 |Reserved |
+|7 |8514/A Adapter |
+|8 |IBM PS/2 Image Adapter/A |
+|9 |IBM PS/2 XGA Adapter |
+|10-15 |Reserved |
+
+//Data word 2// (**USHORT**) 
+Reserved. 
+
+//Data word N// (**USHORT**) 
+Reserved. 
+
+//Offset to emulated display types// (**USHORT**) 
+Offset within the configuration data structure to the following information describing what other displays are emulated by this display. 
+
+//Number of Data words// (**USHORT**) 
+One word field specifying a count of data words to follow. 
+
+//Data word 1// (**USHORT**) 
+Bits set in the data words identify displays emulated. Data word 1 has the following definition: 
+
+^Bit ^Description ^
+|0 |5151 monochrome display |
+|1 |5153 color display |
+|2 |5154 enhanced color display |
+|3 |8503 monochrome display |
+|4 |8512 or 8513 color display |
+|5-8 |Reserved |
+|9 |8514 color display |
+|10 |IBM Plasma Display Panel |
+|11 |Monochrome Displays 8507 and 8604 |
+|12 |8515 color display |
+|13-15 |Reserved |
+
+//Data word 2// (**USHORT**) 
+Reserved 
+
+//Data word N// (**USHORT**) 
+Reserved. 
+
+//VioHandle// (**HVIO**) - input 
+This must be zero unless the caller is a Presentation Manager application, in which case it must be the value returned by [[en:ibm:prcp:vio:getps|VioGetPs]]. 
+
+//rc// (**USHORT**) - return 
+Return code descriptions are: 
+
+|0 |NO_ERROR |
+|421 |ERROR_VIO_INVALID_PARMS |
+|436 |ERROR_VIO_INVALID_HANDLE |
+|438 |ERROR_VIO_INVALID_LENGTH |
+|465 |ERROR_VIO_DETACHED |
+
+**Remarks** 
+
+The values returned may not be correct if the adapter cannot be properly identified by the Base Video Handler (BVH) selected at system installation time. It can also be incorrect if the physical setup does not match that indicated by the presence of the adapter or by adapter switches. For example, it is impossible to detect the absence of a display on a CGA or the display attached to an EGA, despite the setup switches. 
+
+=== C bindings ===
+
+<code c>
+typedef struct _VIOCONFIGINFO {  /* vioin  */
+  USHORT  cb     ;               /* Length of this data structure */
+  USHORT  adapter;               /* Display adapter type */
+  USHORT  display;               /* Display/monitor type */
+  ULONG   cbMemory;              /* Amount of memory on the adapter
+                                     in bytes */
+  USHORT  Configuration;
+  USHORT  VDHVersion;
+  USHORT  Flags;
+  ULONG   HWBufferSize;
+  ULONG   FullSaveSize;
+  ULONG   PartSaveSize;
+  USHORT  EMAdaptersOFF;         /* Offset to emulated adapter types */
+  USHORT  EMDisplaysOFF;         /* Offset to emulated display types */
+} VIOCONFIGINFO;
+
+#define INCL_VIO
+
+USHORT  rc = VioGetConfig(ConfigID, ConfigData, VioHandle);
+
+USHORT           ConfigID;      /* Configuration ID */
+PVIOCONFIGINFO   ConfigData;    /* Configuration data */
+HVIO             VioHandle;     /* Vio handle */
+
+USHORT           rc;            /* return code */
+</code>
+
+=== MASM bindings ===
+
+<code asm>
+VIOCONFIGINFO struc
+  vioin_cb            dw  ? ;Length of this data structure
+  vioin_adapter       dw  ? ;Display adapter type
+  vioin_display       dw  ? ;Display/monitor type
+  vioin_cbMemory      dd  ? ;Amount of memory on the adapter in bytes
+  vioin_Configuration dw  ? ;
+  vioin_VDHVersion    dw  ? ;
+  vioin_Flags         dw  ? ;
+  vioin_HWBufferSize  dd  ? ;
+  vioin_FullSaveSize  dd  ? ;
+  vioin_PartSaveSize  dd  ? ;
+  vioin_EMAdaptersOFF dw  ? ;Offset to emulated adapter types
+  vioin_EMDisplaysOFF dw  ? ;Offset to emulated display types
+VIOCONFIGINFO ends
+
+EXTRN  VioGetConfig:FAR
+INCL_VIO            EQU 1
+
+PUSH   WORD    ConfigID      ;Configuration ID
+PUSH@  OTHER   ConfigData    ;Configuration data
+PUSH   WORD    VioHandle     ;Vio handle
+CALL   VioGetConfig
+
+Returns WORD
+</code>

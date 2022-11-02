@@ -1,0 +1,7 @@
+[Q]: А есть ли аналог Delphi под OS/2?
+
+[A]: Unknown author
+
+ SpeedSoft Sibyl for OS/2 - visual development enviroment. Совместима с
+ Дельфи на уровне исходников. Генерит приложения для OS/2, MD95, NT из
+ одного исходника.

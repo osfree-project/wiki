@@ -1,0 +1,70 @@
+==== MouGetPtrPos ====
+
+**Bindings**: [[getptrpos#C bindings|C]], [[getptrpos#MASM bindings|MASM]]
+
+This call queries the mouse driver to determine the current row and column coordinate position of the mouse pointer. 
+
+//MouGetPtrPos// (PtrPos, DeviceHandle) 
+
+//PtrPos// (**PPTRLOC**) - output 
+Address of the mouse pointer position structure: 
+
+//pointerrow// (**USHORT**) 
+Current pointer row coordinate (pels or characters). 
+
+//pointercol// (**USHORT**) 
+Current pointer column coordinate (pels or characters). 
+
+//DeviceHandle// (**HMOU**) - input 
+Contains the handle of the mouse device obtained from a previous MouOpen. 
+
+//rc// (**USHORT**) - return 
+Return code descriptions are: 
+
+|0 |NO_ERROR |
+|385 |ERROR_MOUSE_NO_DEVICE |
+|466 |ERROR_MOU_DETACHED |
+|501 |ERROR_MOUSE_NO_CONSOLE |
+|505 |ERROR_MOU_EXTENDED_SG |
+
+**Remarks** 
+
+For a text window (VIO) application, the text window is a view on the larger logical video buffer (LVB). The mouse pointer can be outside that view and still be within the extent of the LVB. [[en:ibm:prcp:mou:getptrpos|MouGetPtrPos]] then returns the coordinates of the cell under the mouse pointer. If the pointer is outside the LVB image extent, the coordinates of the nearest LVB cell are returned. In either case, the LVB is scrolled until the reported LVB cell appears within the view window. 
+
+=== C bindings ===
+
+<code c>
+typedef struct _PTRLOC {    /* moupl */
+  USHORT row;               /* pointer row coordinate screen
+                                 position */
+  USHORT col;               /* pointer column coordinate screen
+                                 position */
+} PTRLOC;
+
+#define INCL_MOU
+
+USHORT  rc = MouGetPtrPos(PtrPos, DeviceHandle);
+
+PPTRLOC          PtrPos;        /* Double word structure */
+HMOU             DeviceHandle;  /* Mouse device handle */
+
+USHORT           rc;            /* return code */
+</code>
+
+=== MASM bindings ===
+
+<code asm>
+PTRLOC  struc
+  moupl_row  dw  ? ;pointer row coordinate screen position
+  moupl_col  dw  ? ;pointer column coordinate screen position
+PTRLOC  ends
+
+EXTRN  MouGetPtrPos:FAR
+INCL_MOU            EQU 1
+
+PUSH@  OTHER   PtrPos        ;Double word structure
+PUSH   WORD    DeviceHandle  ;Mouse device handle
+CALL   MouGetPtrPos
+
+Returns WORD
+</code>

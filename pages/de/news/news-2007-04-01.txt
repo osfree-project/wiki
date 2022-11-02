@@ -1,0 +1,5 @@
+==== 1 April 2007 ====
+
+Die Login-Systeme von PhpBB (Forum) und Dokuwiki wurden kombiniert.
+
+~~DISCUSSION~~

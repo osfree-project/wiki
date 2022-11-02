@@ -1,0 +1,11 @@
+==== 2 July, 2009 ====
+
+New logo and site fixes
+
+We replaced our old logo by new modern one. Thanks to Alexander Kramer for this 
+work. Also we fixed small annoying bugs in our CMS. Thanks to Kim Haverblad for 
+the help.
+
+{{tag>promotion logo artwork}}
+
+~~DISCUSSION~~

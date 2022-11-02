@@ -1,0 +1,20 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=5dH ======
+
+===== Input ======
+
+ AH=5dH, AL=Subfunction
+
+^ Subfunction                        ^ Description                                       ^ Version ^
+| [[en:docs:dos:api:int21:5d:07|07]] | GET REDIRECTED PRINTER MODE                       | 3.1+    |
+| [[en:docs:dos:api:int21:5d:08|08]] | SET REDIRECTED PRINTER MODE                       | 3.1+    |
+| [[en:docs:dos:api:int21:5d:09|09]] | FLUSH REDIRECTED PRINTER OUTPUT                   | 3.1+    |
+| [[en:docs:dos:api:int21:5d:0A|0A]] | SET EXTENDED ERROR INFORMATION                    | 3.1+    |
+
+
+{{page>en:templates:int}}
+
+
+
+

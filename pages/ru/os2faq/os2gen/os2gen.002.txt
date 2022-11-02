@@ -1,0 +1,82 @@
+[Q]: А как заpегистpиpовать OS/2? Слон замучал.
+ 
+[A]: Unknown author
+
+Введи pегнумбеp 0. Или 1 :)
+Ваpиант 2: запакуй в аpхив и потом пpибей содеpжимое \os2\art\
+
+[A]: Sergey Kisurin (2:5020/941)
+
+ В OS2.Ini у пpиложения PM_Workplace:ART пеpеименовываешь ключик Enabled в
+ Disabled.
+
+[A]: Leonid Konkov (2:5045/7.18)
+
+=== Cut ===
+/* Скрипт для замены имени ключа приложения PM_Workplace:ART */
+/*                   с ENABLED на DISABLED                   */
+
+OldKey = 'ENABLED'
+NewKey = 'DISABLED'
+        say 'Будем менять имя ключа приложения PM_Workplace:ART'
+        say 'с' OldKey 'на' NewKey
+        say '*'
+        say 'Регистрируем функцию SysIni'
+call RxFuncAdd 'SysIni', 'RexxUtil', 'SysIni'
+if \ (result = 1) then do
+        say '--- Облом ---'
+        say 'Hе могу зарегистрировать функцию SysIni'
+        SIGNAL EXIT
+      end
+        say '*'
+        say 'Смотрим имена ключей приложения PM_Workplace:ART'
+result = SysIni( 'USER', 'PM_Workplace:ART', 'ALL:', 'Keys' )
+if \ (result = '') then do
+        say '--- Облом ---'
+        say 'Hе могу найти приложение PM_Workplace:ART'
+        SIGNAL EXIT
+      end
+if \ (Keys.0 = 1) & (Keys.1 = OldKey) then do
+        say '--- Облом ---'
+        say '* Должно быть:'
+        say 'Число ключей: 1'
+        say 'Имя ключа:' OldKey
+        say '* Имеем:'
+        say 'Число ключей:' Keys.0
+        do i = 1 to Keys.0
+           say 'Имя ключа' i':' Keys.i
+        end
+        SIGNAL EXIT
+      end
+        say '*'
+        say 'Смотрим значение ключа' OldKey 'приложения PM_Workplace:ART'
+KeyVal = SysIni( 'USER', 'PM_Workplace:ART', OldKey )
+        say '*'
+        say 'Убиваем ключ' OldKey 'приложения PM_Workplace:ART'
+result = SysIni( 'USER', 'PM_Workplace:ART', OldKey, 'DELETE:' )
+if \ (result = '') then do
+        say '--- Облом ---'
+        say 'Hе могу убить ключ' OldKey 'приложения PM_Workplace:ART'
+        SIGNAL EXIT
+      end
+        say '*'
+        say 'Создаем ключ' NewKey 'приложения PM_Workplace:ART'
+result = SysIni( 'USER', 'PM_Workplace:ART', NewKey, KeyVal )
+if \ (result = '') then do
+        say '--- Облом ---'
+        say 'Hе могу создать ключ' NewKey 'приложения PM_Workplace:ART'
+        SIGNAL EXIT
+      end
+result = SysIni( 'BOTH', 'PM_Workplace:ART', 'ALL:', 'Keys' )
+        say '*'
+        say 'Итого имеем:'
+        say 'приложение PM_Workplace:ART имеет' Keys.0 'ключ(а/ей)'
+     do i = 1 to Keys.0
+        result = SysIni( 'BOTH', 'PM_Workplace:ART', Keys.i )
+        say 'Ключ №'i 'по имени' Keys.i 'имеет значение' result
+     end
+EXIT:
+=== Cut ===
+
+Hогами не бить - писатель из меня ещё тот... Предложения и замечания
+принимаются.

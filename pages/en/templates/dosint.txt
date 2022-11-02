@@ -1,0 +1,3 @@
+{{logos:dos.gif?35x35}}
+
+**Note: This API call is for DOS personality only. Use [[en:docs:fapi|Family API]] for portability.**

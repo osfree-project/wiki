@@ -1,0 +1,49 @@
+===== Migration to the new CMS =====
+
+This document was composed during migration to generation 3 of osFree site. 
+
+==== Some history ====
+
+=== Generation 1 ===
+
+[[http://web.archive.org/web/20020528173506/http://www.osfree.org/]] - This was first web-site design by John Martin Alfredsson (aka JMA). Later was more accurate  changed to [[http://web.archive.org/web/20020802055610/http://www.osfree.org/]]. This design was created in 2002 and works without any significant changes until end of 2003. Used technologies: Framed HTML 4. Year 2003 is a second 'death' of osFree.
+
+=== Generation 2 ===
+
+In 2003 Yuri Prokushev tried to reactivate osFree development effort and redesigned site. [[http://web.archive.org/web/20031214050637/www.osfree.org/index.php]] - This is a generation 2 website. There was no significant changes in the site organization until year 2006. Only easy forum was replaced by more powerful phpBB forum in may 2005. Used technologies: PHP, templates, phpBB engine, MySQL.
+
+=== Generation 3 ===
+
+In 2006, we started to think about more powerful CMS. We formulated our needs. We need:
+
+  * Possibility to easy control access without touching host (Hey, Kim! Now we will not touch you at all ;))
+  * Possibility to update content without touching web team (Heh, we too lazy guys :))
+  * Possibility to change design without significant engine rework
+  * The forum system, integrated with main CMS (usage of common template and ACL
+  * Integrated project management system with main CMS (usage of common template and ACL). Yes. We need to have possibility to automatically control road map and Status pages. Also to organize our work better.
+  * Ability to use of multiple languages in documentation.
+
+After some small discussion and some experiments we selected: 
+
+  * DokuWiki as a core of engine,
+    * Because wikis allow for collaboration on documentation
+    * Because DokuWiki easy to understand and modify
+    * Because it supports templates and easy to write plugins and syntax plugins
+  * We will still use phpBB as our forum system
+    * Because we will neither have to archive our forum nor deal with an unfamiliar system
+  * We looking onto dotProject as our Project Management System (PMS)
+    * Because it will allow us to easily update our project
+
+Used technologies: Slightly modified DokuWiki engine with plugins, phpBB engine, and MySQL.
+
+==== Main rules during any migration ====
+
+Starting from first page and to recent pages we follow main rule:
+
+  * Pages not deleted at all. This means if someone stored link or referenced as from his site then he never need to update bookmarks or edit links. This means you always will have less or more expected result and not 404 error. We hate 'broken' links.
+
+As a result, we still have old index.html and other old html pages which just will forward you to new location of page or to closest topic. We still have scripts like [[http://www.osfree.org/docs/bldlevel/bldlevel.2.0002.php]] and you will moved to new location at [[en:docs:bld:index#extended_build_level_information_type_i]]. Yes. This is hard to maintain such thing. And this is one of the main arguments why we selected wiki and not any other CMS system.
+
+  * User must not log in many times. This means once user loged in it can navigate forum, CMS, PMS, E-Mail, CVS and modify them according his access rights. No different login systems for different parts of osfree.org
+
+~~DISCUSSION~~

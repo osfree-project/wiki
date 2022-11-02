@@ -1,0 +1,32 @@
+==== FSH_FINDDUPHVPB ====
+
+**Purpose**
+
+This function provides the mechanism to identify a previous instance of a volume during the //FS_MOUNT// process.   
+
+**Calling Sequence**
+
+<code c>
+int far pascal FSH_FINDDUPHVPB(hVPB, phVPB)
+
+unsigned short hVPB;
+unsigned short far * phVPB;
+</code>
+
+**Where**
+
+//hVPB// is the handle to the volume to be found.   
+
+//phVPB// is the pointer to where the handle of matching volume will be stored. 
+
+**Returns**
+
+If no error is detected, a zero error code is returned. If an error is detected, one of the following error codes is returned:   
+
+  * ERROR_NO_ITEMS -- indicates there is no matching hVPB. 
+
+**Remarks**
+
+When OS/2 is recognizing a volume, it calls the FSD to mount the volume. At this point, the FSD may elect to allocate storage and buffer data for that volume. The mount process will allocate a new VPB whenever the media becomes uncertain, that is, when the device driver recognizes it can no longer be certain the media is unchanged. This VPB cannot be collapsed with a previously allocated VPB, because of a reinsertion of media, until the //FS_MOUNT// call returns. The previous VPB, however, may have some cached data that must be updated from the media (the media may have been written while it was removed) //FSH_FINDDUPHVPB// allows the FSD to find this previous occurrence of the volume in order to update the cached information for the old VPB. Remember the newly created VPB will be unmounted if there is another, older VPB for that volume.   
+
+**Note**:   OS/2 does not validate input parameters. An FSD, therefore, should call //FSH_PROBEBUF// where appropriate.   

@@ -1,0 +1,36 @@
+[Q]: Пpимеp pаботы с REXX - делаем у всех файлов (HPFS) пеpвую букву большую
+
+[A]: Sergey Posokhov (abc@posokhov.msk.ru)
+ 
+/* Запрет вывода команд */
+'@Echo off'
+
+/* Запрет курсора */
+Call SysCurState Off
+
+/* Задание цвета */
+Esc = D2C( 27 ); Command = "[1;"; End = "m"
+Cyan_color  = Esc || Command || "36" || End
+
+/* Установка цвета */
+Say Cyan_color
+
+/* Очистка окна */
+Cls
+
+/* Приглашение */
+Say
+Say "                     Обрабатываются файлы на жестком диске."
+Say "                Первая буква каждого имени становится заглавной."
+Say
+
+/* Преобразование имен. Первая буква становится заглавной */
+'ChCase.exe /CML /R /Y+ C:\OS2\*'
+'ChCase.exe /CML /R /Y+ C:\MMOS2\*'
+'ChCase.exe /CML /R /Y+ C:\PSFonts\*'
+'ChCase.exe /CML /R /Y+ C:\JavaOS2\*'
+'ChCase.exe /CML /R /Y+ C:\Language\*'
+
+'ChCase.exe /CML /R /Y+ C:\Игры\*'
+'ChCase.exe /CML /R /Y+ C:\Разное\*'
+'ChCase.exe /CML /R /Y+ C:\Личные\*'

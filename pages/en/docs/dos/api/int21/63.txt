@@ -1,0 +1,20 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=63H ======
+
+===== Input ======
+
+ AH=63H, AL=Subfunction
+
+^ Subfunction                        ^ Description                                       ^ Version    ^
+| [[en:docs:dos:api:int21:63:00|00]] | GET LEAD BYTE TABLE ADDRESS                       | 2.25, 3.2+ |
+| [[en:docs:dos:api:int21:63:01|01]] | SET KOREAN (HANGEUL) INPUT MODE                   | 2.25, 3.2+ |
+| [[en:docs:dos:api:int21:63:02|02]] | GET KOREAN (HANGEUL) INPUT MODE                   | 2.25, 3.2+ |
+
+
+{{page>en:templates:int}}
+
+
+
+
+

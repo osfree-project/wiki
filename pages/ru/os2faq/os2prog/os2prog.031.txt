@@ -1,0 +1,47 @@
+[Q]: Общение DOS/OS2 сессий
+
+[A]: Vadim Petrjaev (2:5020/158)
+
+ Q> А можно из DOS сессии пеpедать осевой сессии инфоpмацию минуя диск,
+ Q> напpимеp сообщением или семафоpом или еще как нибудь?
+
+Через Named Pipe. Если в OS/2 программе ты создаешь Named Pipe с именем 
+\PIPE\FILENAME.PIP, то в досовком окне можешь открыть файл \PIPE\FILENAME.PIP
+и спокойно туда писать и/или оттуда читать. 
+
+А вот REXX, но с использованием REXXIPC.DLL. (Проходила по файлэхам и валяется
+до сих пор много где.)
+
+/* */
+
+  PipeName='\PIPE\SAMPLE\PIPE.EXT'
+
+  CALL RxFuncAdd 'PipeLoadFuncs', 'REXXIPC', 'PipeLoadFuncs'
+  CALL PipeLoadFuncs
+
+  dosrc=PipeCreate('PipeHnd',PipeName,'I','M')
+  IF \(dosrc=0) THEN DO
+    Say "Error opening pipe. Exiting"
+    EXIT 12
+  END
+  DO FOREVER
+    dosrc=PipeConnect(PipeHnd)
+    IF \(dosrc=0) THEN DO
+      Say "Error connecting pipe. Exiting"
+      EXIT 12
+    END
+    dosrc=PipeRead(PipeHnd,'Msg')
+    Say "Receiving message: "Msg
+    IF SUBSTR(Msg,1,6)='ENDJOB' THEN LEAVE
+    CALL PipeDisconnect(PipeHnd)
+  END
+EXIT
+
+Запускаем эту приблуду в OS/2 сессии. Потом из любой (в том числе DOS сессии) 
+можно развлекаться.
+
+   echo Hello, world! > \PIPE\sample\pipe.Ext
+
+   echo Test message. > \pipe\sample\pipe.ext
+
+   echo ENDJOB > \pipe\sapmle\pipe.ext

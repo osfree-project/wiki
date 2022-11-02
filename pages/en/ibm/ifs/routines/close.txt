@@ -1,0 +1,41 @@
+==== FS_CLOSE ====
+
+**Purpose**
+
+Closes the specified file handle.   
+
+**Calling Sequence**
+
+<code c>
+int far pascal FS_CLOSE(type, IOflag, psffsi, psffsd)
+
+unsigned short type;
+unsigned short IOflag;
+struct sffsi far * psffsi;
+struct sffsd far * psffsd;
+</code>
+
+**Where**
+
+^//type// ^indicates what type of a close operation this is.   ^
+|//type// == 0 |indicates that this is not the final close of the file or device. |
+|//type// == 1 |indicates that this is the final close of this file or device for this process. |
+|//type// == 2 |indicates that this is the final close for this file or device for the system.  | 
+
+^//IOflag// ^indicates information about the operation on the handle.   ^
+|//IOflag// == 0x0010 |indicates write-through. |
+|//IOflag// == 0x0020 |indicates no-cache.   |
+
+//psffsi// is a pointer to the file-system-independent portion of an open file instance.   
+
+//psffsd// is a pointer to the file-system-dependent portion of an open file instance. 
+
+**Remarks**
+
+This entry point is called on the every close of a file or device.   
+
+Any reserved resources for this instance of the open file may be released It may be assumed that all open files will be closed at process termination. That is, this entry point will always be called at process termination for any files or devices open for the process.   
+
+A close operation should be interpreted by the FSD as meaning that the file should be committed to disk as appropriate.   
+
+Of the information passed in //IOflag//, the write-through bit is a mandatory bit in that any data written to the block device must be put out on the medium before the device driver returns. The no-cache bit, on the other hand, is an advisory bit that says whether the data being transferred is worth caching or not.   

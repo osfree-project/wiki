@@ -1,0 +1,7 @@
+{{logos:dos.gif?35x35}}
+
+====== API Library ======
+
+API library is a library to BIND to dual platform applications. API provides Family API set of functions which can be linked dynamically. In counterpart FAPI library is a library which used to produce DOS applications. Function set and functionality is a same.
+
+{{page>en:templates:fapi}}

@@ -1,0 +1,19 @@
+==== MFS_CLOSE - Close a file ====
+
+**Purpose**
+
+Close a file.   
+
+**Calling Sequence**
+
+<code c>
+int far pascal MFS_CLOSE(void)
+</code>
+
+**Returns**
+
+If no error is detected, a zero error code is returned. If an error is detected, a non-zero error code is returned.   
+
+**Remarks**
+
+None

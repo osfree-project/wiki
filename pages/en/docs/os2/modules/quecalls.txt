@@ -1,0 +1,25 @@
+{{logos:os2.gif?35x35}} 
+
+===== QUECALLS =====
+
+This is forwarder DLL to [[DOSCALLS]].DLL
+
+^Ordinal ^Name ^Desc ^Status ^
+| 1 |DosReadQueue | Forwarder to DOSCALLS.674 | Done |
+| 2 |DosPurgeQueue | Forwarder to DOSCALLS.675 | Done |
+| 3 |DosCloseQueue | Forwarder to DOSCALLS.676 | Done |
+| 4 |DosQueryQueue | Forwarder to DOSCALLS.677 | Done |
+| 5 |DosPeekQueue | Forwarder to DOSCALLS.678 | Done |
+| 6 |DosWriteQueue | Forwarder to DOSCALLS.679 | Done |
+| 7 |DosOpenQueue | Forwarder to DOSCALLS.680 | Done |
+| 8 |DosCreateQueue | Forwarder to DOSCALLS.681 | Done |
+| 9 |Dos32ReadQueue | Forwarder to DOSCALLS.661 | Done |
+| 10 |Dos32PurgeQueue | Forwarder to DOSCALLS.662 | Done |
+| 11 |Dos32CloseQueue | Forwarder to DOSCALLS.663 | Done |
+| 12 |Dos32QueryQueue | Forwarder to DOSCALLS.664 | Done |
+| 13 |Dos32PeekQueue | Forwarder to DOSCALLS.665 | Done |
+| 14 |Dos32WriteQueue | Forwarder to DOSCALLS.666 | Done |
+| 15 |Dos32OpenQueue | Forwarder to DOSCALLS.667 | Done |
+| 16 |Dos32CreateQueue | Forwarder to DOSCALLS.668 | Done |
+
+{{page>en:templates:dlls}}

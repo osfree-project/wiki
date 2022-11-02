@@ -1,0 +1,11 @@
+==== 09 June, 2020 ====
+
+SMTP server now working, anti-spam measures taken.
+
+Recently, we added some anti-spam measures for our forum and mail server. Anti-spam plugin installed on our forum. Now we check all users against the black list when they are registering or posting messages. This reduces the number of spambot accounts registered significantly.
+
+Also, now our SMTP server is able not only receive mail, but send too. Now the mail from our server to other email servers, like e.g. gmail.com, is accepted. So, from now, we enabled verification emails when registering user accounts, and disabled account approving by the administrator. So, registration at the forum is now open.
+
+{{tag>mail smtp antispam forum}}
+
+~~DISCUSSION~~

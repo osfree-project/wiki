@@ -1,0 +1,54 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=44H, AL=0CH ======
+
+===== Version =====
+
+3.2 and higher
+
+===== Brief =====
+
+GENERIC CHARACTER DEVICE REQUEST
+
+===== Family API =====
+
+
+===== Input =====
+
+	AX = 440Ch
+	BX = device handle
+	CH = category code (see #01545)
+	CL = function number (see #01546)
+	DS:DX -> parameter block (see #01547,#01548,#01549,#01550,#01551,#01552)
+	SI = parameter to pass to driver (European MS-DOS 4.0, OS/2 comp box)
+	DI = parameter to pass to driver (European MS-DOS 4.0, OS/2 comp box)
+
+===== Return =====
+
+  CF set on error
+	    AX = error code (see #01680 at AH=59h/BX=0000h)
+	CF clear if successful
+	    DS:DX -> iteration count if CL=65h
+	    SI = returned value (European MS-DOS 4.0, OS/2 comp box)
+	    DI = returned value (European MS-DOS 4.0, OS/2 comp box)
+
+===== Macro =====
+
+
+===== Notes =====
+
+       DR DOS 3.41 and 5.0 return error code 16h on CL=45h,65h if the device
+	  does not support a retry counter
+
+===== See also =====
+
+    AX=440Dh"DOS 3.2+",INT 2F/AX=0802h,INT 2F/AX=122Bh,INT 2F/AX=14FFh, INT 2F/AX=1A01h
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:int}}
+
+{{page>en:templates:fapi}}
+

@@ -1,0 +1,7 @@
+==== Erste Alpha-Downloads ====
+
+Bei diesen Downloads handelt es sich um ein nicht funktionsfähiges osFree - genaugenommen ist in dieser Version nur der Bootsektor teilweise fertiggestellt. Daher ist es nicht empfehlenswert, die Binär-Pakete herunterzuladen. Achten Sie bitte auch auf Updates, die im netlabs-CVS veröffentlicht werden. Wir sind weiter als in der hier veröffentlichten Version und alle momentan hier zur Verfügung stehenden Pakete sind veraltet. Sie stehen hier in erster Linie als Archiv. Nichtdestotrotz sind diese Entwicklungswerkzeuge immer noch sinnvoll, wenn Sie zu diesem Zeitpunkt einsteigen wollen. Bitte setzen Sie sich im Forum mit dem osFree-Team in Verbindung um Teil des Entwickler-Teams zu werden. ** Sie erhalten dann einen Account, mit dem Sie diese wikis bearbeiten können sowie einige andere Dinge, die Sie brauchen. **
+
+  * [[downloads:osfree-binaries.zip|osFree Binärpaket]]
+  * [[downloads:osfree-sources.zip|osFree Quellenpaket]]
+  * [[downloads:osfree-tools.zip|osFree Entwicklungswerkzeuge]]

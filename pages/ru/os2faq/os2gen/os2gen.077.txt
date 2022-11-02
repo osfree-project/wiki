@@ -1,0 +1,102 @@
+[Q]: Launchpad HOW-TO
+
+[A]: Marat Khalili (marat@trans.msu.su)
+
+/**/
+rexxtry call RxFuncAdd 'SysCreateObject', 'RexxUtil', 'SysCreateObject'; call
+SysCreateObject "WPLaunchPad", "New LaunchPad", "<WP_DESKTOP>"
+
+(Все в одну строчку, только что сам запускал).
+
+[A]: Will Morgan (1:3819/128.103)
+
+                Как сделать несколько pазных LaunchPad-ов
+
+Try this!
+
+(First off, you might want to enable the "Create archive with each
+system reset" option via the Desktop's settings/archive menu. Disclaimer:
+if you mess up your system, don't blame me...Everything I'm listing is
+working great on my system right now...But if you enable the afore mentioned
+archive function, and reboot in able to get you ONE GOOD SYSTEM CONFIG
+in your queue of archives before you try anything...Trust me, this extra
+little bit of trouble is WORTH IT for the security!!!)
+
+You'll have to undo whatever work you have already put into your Launchpad,
+but in the long run, it's worth it! And if you take my suggestion of enabling
+the Archive function, if you don't like what the results, all you'll have
+to do in order to get your previous configuration back is as simple as doing
+a reboot and hitting ALT/F1 while the white square is on your screen during
+the bootup process (or turn it on with a default timeout) and then choose the
+time/date stamped config from the recovery menu that you enabled previously.
+
+Like I said, you'll have to delete *EVERYTHING* via the shredder on your
+Launchpad. When you are left with nothing but the shredder, pop up the
+Launchpad's menu and choose COPY. If you copy the LP back to where ever
+it currently resides, you'll be prompted for a filename because it's
+trying to copy the same file to the same directory. Give your "new" LP
+a name like TEMPLATE or something easy to remember. (I even made a FOLDER
+and named it LAUNCH PADS and dropped both the "original" LP and the newly
+created "TEMPLATE" into it...You'll see why, later!)
+
+Now, that you have a "TEMPLATE" to work with, you can go back and put the
+programs you previously configured back on your "original" LP. The reason
+I specified for you to get rid of everything was the first time I tried this
+with an exact copy of my fully configured LP, whenever I deleted a program
+from the "mirror" of my LP, the same file would delete itself from the
+original! But if you make the EMPTY template LP, this quirk won't happen.
+Once you've gotten your LP back up to speed, then comes the fun....
+
+Let your mind wander and think of any group of files you'd want to put on
+a special "new" LP...For example...An LP with just GAMES (I put DOOM,
+DOOM II, and various incarnations of DOOM with 3d party WAD files
+preconfigured: just put -file doom.wad in the "parameters" window of the
+Doom game's setting & specify c:\doomdata in the working directory and
+it works just fine)...I set it to run vertically up and down the right side
+of the desktop while the original LP runs horizontally left & right at the
+bottom of the desktop! I imagine you could even put one of your new LPs
+into the STARTUP folder and it would launch along with your original LP!
+
+Another idea would be to configure yourself a "LAUNCHPAD CONTROL PANEL"!
+Copy your "TEMPLATE" to a name like "LP CTRL PANEL" or something similar
+and *ONLY* drag & drop all your *OTHER* LPs onto it...If you configure
+your "original" LP like this, your new LPs are only a click away. Or you
+could put CONTROL PANEL LP into your startup folder and start it along
+side your original...The possibilities are endless!
+
+This little suggestion really unleashes the power of the Launch Pad...Just
+think of any group of files that you might want to combine...Say, a Word
+Processing LP that has various document templates on it; the GAMES LP; a
+COMMUNICATIONS LP; get creative! If the overhead on LPs is only minimal
+like mentioned, you can do some wild configs to meet your desktop needs!
+
+[A]: Alexander Belyaev (2:5035/13.15)
+
+Перевод:
+
+   Как сделать несколько pазных LaunchPad-ов ( пусковых панелей )
+
+Попробуйте это!
+
+(Вначале неплохо было бы разрешить опцию "Create archive with each
+system reset" ["Создавать архив при каждом запуске системы"].
+Предупреждаю: если вы, не дай бог, прибьете вашу систему, не пинайте
+потом меня ногами.)
+
+Разрешив данную опцию, вы получаете возможность восстановить прежний
+десктоп, нажав при загрузке Alt-F1.
+Итак, во-первых, удалите со своей пусковой панели *все* объекты, отправив
+их в шреддер. Когда у вас ничего не останется ( кроме шреддера ), вызовите
+на пусковой панели всплывающее меню и выберите пункт COPY. Дайте копии
+панели другое имя ( например, TEMPLATE или еще что-нибудь простое )
+Я у себя даже сделал специальную папку, назвал ее LAUNCH PADS,
+и переместил туда обе панели - исходную и копию. Зачем - узнаете дальше...
+
+Теперь у вас есть готовый "шаблон", можно поместить на старый
+LaunchPad все ваши программные объекты.
+
+После всего этого можно понаоткрывать сколько угодно LaunchPad-ов и каждый
+со своими установками. Hапример, автор создал себе отдельный LP специально
+для игры в DOOM и поместил на него кнопки с дополнительными уровнями, а сам
+LP расположил сбоку и вертикально, в то время как исходный LP находится у
+него внизу и расположен горизонтально.

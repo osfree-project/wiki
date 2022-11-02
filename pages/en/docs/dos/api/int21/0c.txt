@@ -1,0 +1,42 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=0CH ======
+
+===== Version =====
+
+1 and higher
+
+===== Brief =====
+
+FLUSH BUFFER AND READ STANDARD INPUT
+
+===== Family API =====
+
+[[en:docs:fapi:DosRead]]
+
+===== Input =====
+
+  AH = 0Ch
+  AL = STDIN input function to execute after flushing buffer other registers as appropriate for the input function
+
+===== Return =====
+
+as appropriate for the specified input function
+
+===== Notes =====
+
+ if AL is not one of 01h,06h,07h,08h, or 0Ah, the buffer is flushed but no input is attempted
+
+===== See also =====
+
+AH=01h,AH=06h"INPUT",AH=07h,AH=08h,AH=0Ah
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:int}}
+
+{{page>en:templates:fapi}}
+
+

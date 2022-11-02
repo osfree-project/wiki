@@ -1,0 +1,115 @@
+{{page>en:templates:fapiint}}
+
+====== DosDevConfig ======
+
+This call gets information about attached devices.
+
+===== Syntax =====
+
+<code c>
+DosDevConfig (DeviceInfo, Item, Parm)
+</code>
+
+===== Parameters =====
+
+  * DeviceInfo ([[PVOID]]) - output: Address of the byte-wide field containing the requested information.
+  * Item ([[USHORT]]) - input: Device information requested.
+    * 0 - Number of printers attached
+    * 1 - Number of RS232 ports
+    * 2 - Number of diskette drives
+    * 3 - Presence of math coprocessor (where 0 = not present, 1 = present)
+    * 4 - PC Submodel Type (where the return is the system submodel byte)
+    * 5 - PC Model Type (where the return is the system model byte)
+    * 6 - Display adapter type (where 0 = monochrome mode compatible, 1 = other).
+  * Parm ([[USHORT]]) - input: Reserved for future use and should be set to zero.
+
+===== Return Code =====
+
+rc ([[USHORT]]) - return:Return code descriptions are:
+
+  * 0 NO_ERROR
+  *87 ERROR_INVALID_PARAMETER
+
+===== Remarks =====
+
+The system model (function 5) and submodel (function 4) information is obtained from BIOS.
+
+In addition, the number of devices attached in a PS/2 environment reflect only devices that are "awake". Devices that are "asleep" are not counted.
+
+===== Bindings =====
+
+==== C ====
+
+<code c>
+  #define INCL_DOSDEVICES
+  
+  USHORT  rc = DosDevConfig(DeviceInfo, Item, Parm);
+  
+  PVOID   DeviceInfo;    /* Returned information */
+  USHORT  Item;          /* Item number */
+  USHORT  Parm;          /* Reserved */
+  
+  USHORT  rc;            /* return */
+</code>
+
+==== MASM ====
+
+<code asm>
+  EXTRN  DosDevConfig:FAR
+  INCL_DOSDEVICES     EQU 1
+  
+  PUSH@  OTHER   DeviceInfo  ;Requested information (returned)
+  PUSH   WORD    Item        ;Item number
+  PUSH   WORD    Parm        ;Reserved (must be zero)
+  CALL   DosDevConfig
+</code>
+
+Returns WORD
+
+==== Example Code ====
+
+This example gets information about model type, monitor and coprocessor and display it. 
+
+<code c>
+
+  #define INCL_DOSDEVICES
+  
+  #define MACHINE_MODEL 5
+  #define DISPLAY_TYPE 6
+  #define FIND_COPROCESSOR 3
+  #define RESERVED 0L
+  
+  BYTE   DeviceInfo;
+  USHORT rc;
+  
+     if(!DosDevConfig(&DeviceInfo,          /* Returned information */
+                      MACHINE_MODEL,        /* Item number */
+                      RESERVED))            /* Reserved */
+        printf("Model Type %d ",DeviceInfo);
+  
+     if(!DosDevConfig(&DeviceInfo,          /* Returned information */
+                      DISPLAY_TYPE,         /* Item number */
+                      RESERVED))            /* Reserved */
+        if (DeviceInfo)
+           printf("Colour display ");
+        else
+           printf("Mono display ");
+  
+     if(!DosDevConfig(&DeviceInfo,          /* Returned information */
+                      FIND_COPROCESSOR,     /* Item number */
+                      RESERVED))            /* Reserved */
+        if (DeviceInfo)
+           printf("Coprocessor");
+        else
+           printf("No Coprocessor");
+
+
+</code>
+
+===== Note =====
+
+
+Text based on [[http://www.edm2.com/index.php/DosDevConfig_(Legacy)]]
+
+{{page>en:templates:fapi}}
+

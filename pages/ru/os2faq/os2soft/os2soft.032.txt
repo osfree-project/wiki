@@ -1,0 +1,19 @@
+[Q]: WatchCat научился вызывать File Commander при нажатии на пробел
+
+[A]: Sergey Posokhov (abc@posokhov.msk.ru)
+
+Только что WatchCat научился вызывать File Commander при нажатии на пробел.
+
+Сделать это оказалось достаточно просто. Внутри WatchCat.exe есть слово
+"COMSPEC", это имя переменной среды, которая указывает на Cmd.exe. С помощью
+редактора Hiew слово было заменено на "WCATCMD", и строки в Config.sys были 
+установлены так:
+
+REM Управление задачами - вызов по F12.
+DEVICE=C:\РАЗHОЕ\ОБОЛОЧКА\WATCHCAT\WATCHCAT.SYS /NODLL KEYB:F12
+RUN=C:\РАЗHОЕ\ОБОЛОЧКА\WATCHCAT\WATCHCAT.EXE
+SET WCATCMD=C:\РАЗHОЕ\ОБОЛОЧКА\FC\FC.EXE
+
+Все замечательно работает.
+
+А чтобы пробел вообще перестал действовать, надо перед "SET ..." поставить REM.

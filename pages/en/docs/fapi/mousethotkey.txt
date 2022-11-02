@@ -1,0 +1,30 @@
+{{page>en:templates:fapiint}}
+
+====== MouSetHotKey ======
+
+
+Defines mouse button or buttons as system hot key.
+
+===== Syntax =====
+<code c>
+ MouSetHotKey (HotKey, DeviceHandle)
+</code>
+===== Parameters =====
+
+
+  * HotKey
+  * DeviceHandle
+
+===== Return =====
+
+  *ERROR_GEN_FAILURE
+  *ERROR_MOUSE_CANT_RESET
+  *ERROR_MOUSE_INVALID_PARMS
+  *ERROR_NO_DEVICE
+
+===== Related Functions =====
+
+[[MouGetHotKey]]
+
+
+{{page>en:templates:fapi}}

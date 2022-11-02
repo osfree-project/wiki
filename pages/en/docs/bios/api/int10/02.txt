@@ -1,0 +1,48 @@
+{{page>en:templates:biosint}}
+
+====== Int 10H, AH=02H ======
+
+===== Version =====
+
+IBM 5150 and higher
+
+===== Brief =====
+
+Set Cursor Position
+
+===== Family API =====
+
+[[en:docs:fapi:VioSetCurPos]]
+
+===== Input =====
+
+  AH = 02h
+  BH = page
+  DH = row (0 is top)
+  DL = column (0 is left)
+
+===== Return =====
+
+
+===== Macro =====
+
+<code asm>
+INCLUDE BIOS.INC
+
+@SetCurPos 7,10
+</code>
+
+===== Notes =====
+
+
+
+
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:biosapi}}
+
+{{page>en:templates:fapi}}
+

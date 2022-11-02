@@ -1,0 +1,34 @@
+===== Escape Character =====
+
+**CMD.EXE** recognizes a user-definable escape character. This character gives the following character a special meaning; it is **not** the same as the ASCII ESC that is often used in ANSI and printer control sequences. 
+
+The default escape character is a caret [^]. 
+
+If you don't like using the default escape character, you can pick another character using the [[SETDOS]] /E command, the Options 1 page of the [[OPTION]] dialogs, or the [[EscapeChar]] directive in your .INI file. If you plan to share aliases or batch files between CMD.EXE and 4DOS, 4NT, or Take Command, see [[Special Character Compatibility]] for details about choosing compatible escape characters for two or more products. 
+
+Ten special characters are recognized when they are preceded by the escape character. The combination of the escape character and one of these characters is translated to a single character, as shown below. These are primarily useful for redirecting codes to the printer; ^e is also useful to generate ANSI "escape sequences" in your PROMPT, ECHO, or other output commands. The special characters which can follow the escape character are: 
+
+|b |backspace |
+|c |comma |
+|e |the ASCII ESC character (ASCII 27) |
+|f  |form feed |
+|k |back quote |
+|n |line feed |
+|q |double quote |
+|r |carriage return |
+|s |space |
+|t |tab character |
+
+If you follow the escape character with any other character, the escape character is removed and the second character is copied directly to the command line. This allows you to suppress the normal meaning of special characters (such as ? * / \ | " ` > < and &). For example, to display a message containing a > symbol, which normally indicates redirection: 
+
+<code winbatch>
+        [c:\] echo 2 is ^> 4
+</code>
+
+To send a form feed followed by the sequence ESC Y to the printer, you can use this command: 
+
+<code winbatch>
+        [c:\] echos ^f^eY > prn
+</code>
+
+The escape character has an additional use when it is the last character on any line of a **.BAT** or **.BTM** batch file. **CMD.EXE** recognizes this use of the escape character to signal line continuation: the command processor removes the escape character and appends the next line to the current line before executing it. 

@@ -1,0 +1,29 @@
+==== FS_PROCESSNAME ====
+
+**Purpose**
+
+Allow an FSD to modify filename to its own specification after the OS/2 canonicalization process has completed.   
+
+**Calling Sequence**
+
+<code c>
+int far pascal FS_PROCESSNAME(pNameBuf)
+
+char far * pNameBuf;
+</code>
+
+**Where**
+
+//pNameBuf// is a pointer to the ASCIIZ pathname.   
+
+The FSD should modify the pathname in place. The buffer is guaranteed to be the length of the maximum path. The FSD does not need to verify this pointer. 
+
+**Remarks**
+
+The resulting name must be within the maximum path length returned by //DosQSysInfo//.   
+
+This routine allows the FSD to enforce a different naming convention than OS/2. For example, an FSD could remove blanks embedded in component names or return an error if it found such blanks. It is called after the OS/2 canonicalization process has succeeded. It is not called for //FSH_CANONICALIZE//.   
+
+This routine is called for all APIs that use pathnames.   
+
+This routine must return no error if the function is not supported.   

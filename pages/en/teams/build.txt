@@ -1,0 +1,22 @@
+Build team controls weekly build process and accepts new tools to be added to build environment. At present time build environment includes:
+
+  * [[build:common_build_tools|Common build tools]]
+    * [[build:wmake|wmake]] as core of build system
+  * [[build:open_watcom_compiler_1.6|Open Watcom Compiler 1.6]]
+    * [[build:wcc386|wcc386]] as C compiler
+    * [[build:wpp386|wpp386]] as C++ compiler
+    * ??? as Fortran Compiler
+  * [[build:gnu_toolset|GNU toolset]] as fast-porting tool, not main build environment
+
+Supported platforms:
+
+  * OS/2
+  * Linux
+  * Windows
+
+Build environment installer composed using following toolset:
+
+  * REXX as cross-platform scripting language
+  * REXX/DW as cross-platform GUI
+  
+~~DISCUSSION~~

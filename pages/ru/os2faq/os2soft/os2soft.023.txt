@@ -1,0 +1,5 @@
+[Q]: Плагин Netscape у меня выдает stack overflow пpи попытке откpыть VCD
+
+[A]: Sergey Rogulev (2:5031/7)
+
+Минимум меpлин с 1-м фиксом.

@@ -1,0 +1,28 @@
+{{logos:os2.gif?35x35}} 
+
+**Please help to find info about enries marked as //No info//**
+
+====== BDCALL32 ======
+
+^Ordinal ^Name ^Desc ^ Status ^
+| 1 | NLS_16CONVERTBIDINUMERICS | | |
+| 2 | NLS_16CONVERTBIDISTRING | | |
+| 7 | NLS_16INVERSESTRING | | |
+| 9 | NLS_16EDITSHAPE | | |
+| 10 | NLS_16SHAPEBIDISTRING | | |
+| 14 | NlsConvertBidiNumerics | | |
+| 15 | NlsConvertBidiString | | |
+| 20 | NlsInverseString | | |
+| 22 | NlsEditShape | | |
+| 23 | NlsShapeBidiString | | |
+| 50 | RC_16BIDIATTR | | |
+| 100 | Set_Round_Trip | | |
+| 206 | layout_32_object_create | | |
+| 207 | layout_32_object_destroy | | |
+| 209 | layout_32_object_editshape | | |
+| 208 | layout_32_object_transform | | |
+| 210 | layout_32_object_setvalues | | |
+| 211 | layout_32_object_getvalues | | |
+  
+
+{{page>en:templates:dlls}}

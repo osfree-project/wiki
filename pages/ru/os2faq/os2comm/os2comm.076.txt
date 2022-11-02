@@ -1,0 +1,47 @@
+[Q]: Минимальная установка MPTS и TCP/IP
+
+[A]: Alexander Anisimoff (2:478/32.2)
+
+--------------------
+    Для брожения локальной одинокой машиной по инету (www/ftp/icq/irc) нужно
+совсем немного в том числе, можно выбросить все ненужное =) и оставить:
+
+    1. Конфиг.сис:
+
+    SET ETC=c:\OS2\ETC
+    DEVICE=c:\OS2\SOCKETSK.SYS
+    DEVICE=c:\OS2\AFINETK.SYS
+    RUN=c:\OS2\CNTRL.EXE
+    CALL=c:\OS2\CMD.EXE /Q /C c:\os2\setup.CMD >NUL
+    SET USE_HOSTS_FIRST=1
+
+    2. Филез:
+
+    \:
+    afinetk.sys
+    socketsk.sys
+    cntrl.exe
+    ifconfig.exe
+    ping.exe
+
+    \dll:
+    tcp32dll.dll
+    tcpip32.dll
+    tcpipdll.dll
+    so32dll.dll
+
+    \etc:
+    hosts
+    protocol
+    services
+
+    setup.cmd:
+    ifconfig lo 127.0.0.1
+
+    hosts:
+    127.0.0.1             localhost
+
+    4. In-Joy - в качестве звонилки.
+-------------------------------------
+
+    Имхо, тут еще есть, что выкинуть =)

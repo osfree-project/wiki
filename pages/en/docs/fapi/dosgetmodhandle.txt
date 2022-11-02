@@ -1,0 +1,59 @@
+{{page>en:templates:fapiint}}
+
+====== DosGetModHandle ======
+
+This call returns a handle to a previously loaded dynamic link module.
+
+===== Syntax =====
+<code c>
+ DosGetModHandle (ModuleName, ModuleHandle)
+</code>
+
+===== Parameters =====
+
+  * ModuleName (PSZ) - input : Address of the ASCIIZ name string containing the dynamic link module name or the pathname string. The filename extension used for dynamic link libraries when a module name is provided is .DLL. When a pathname is provided, the module name may have any extension.
+  * ModuleHandle (PHMODULE) - output : Address of the handle for the dynamic link module.
+
+===== Return Code =====
+
+rc (USHORT) - return:Return code descriptions are:
+
+  *0 NO_ERROR
+  *95 ERROR_INTERRUPT
+  *123 ERROR_INVALID_NAME
+  *126 ERROR_MOD_NOT_FOUND
+
+===== Remarks =====
+
+If a module name is provided, it must match the name of a module residing in the LIBPATH that is currently loaded. Otherwise an error code is returned. If a pathname is provided, the expanded pathname must match the full pathname of a module that is currently loaded.
+
+The handle returned by this call can be used with DosGetModName. It should not be used with DosGetProcAddr for access to the already loaded dynamic link module. Instead, DosLoadModule should be issued to ensure that the calling process is attached to the module.
+
+===== Bindings =====
+
+====C====
+<code c>
+#define INCL_DOSMODULEMGR
+
+USHORT  rc = DosGetModHandle(ModuleName, ModuleHandle);
+
+PSZ              ModuleName;    /* Module name string */
+PHMODULE         ModuleHandle;  /* Module handle (returned) */
+
+USHORT           rc;            /* return code */
+</code>
+
+====MASM====
+<code asm>
+EXTRN  DosGetModHandle:FAR
+INCL_DOSMODULEMGR   EQU 1
+
+PUSH@  ASCIIZ  ModuleName    ;Module name string
+PUSH@  WORD    ModuleHandle  ;Module handle (returned)
+CALL   DosGetModHandle
+
+Returns WORD
+</code>
+
+{{page>en:templates:fapi}}
+

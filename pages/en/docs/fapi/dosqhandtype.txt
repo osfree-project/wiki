@@ -1,0 +1,69 @@
+{{page>en:templates:fapiint}}
+====== DosQHandType ======
+ 
+This call determines whether a handle references a file or a device.
+
+===== Syntax =====
+<code c>
+DosQHandType (FileHandle, HandType, FlagWord)
+</code>
+
+===== Parameters =====
+
+  * FileHandle ([[HFILE]]) - input : File handle.
+  * HandType ([[PUSHORT]]) - output : Address of the value indicating the handle type. HandType is composed of two bytes:
+    *15 - Network bit:
+      *0 = The handle refers to a local file, device, or pipe.
+      *1 = Means that the handle refers to a remote file, device, or pipe.
+    *14-8 - Reserved.
+    *7-0 - HandleClass describes the handle class. It may take on the following values in the low byte of HandleType:
+      *0 - Handle is for a disk file
+      *1 - Handle is for a character device
+      *2 - Handle is for a pipe.
+
+Values greater than 2 are reserved.   
+
+  * FlagWord ([[PUSHORT]]) - output : Address of the device driver's attribute word if HandleType indicates a local character device.
+
+===== Return Code =====
+
+rc ([[USHORT]]) - return
+
+Return code descriptions are:
+
+  * 0 NO_ERROR
+  * 6 ERROR_INVALID_HANDLE
+
+===== Remarks =====
+
+This function allows programs that are interactive or file-oriented to determine the source of their input. For example, CMD.EXE suppresses writing prompts if the input is from a disk file.
+
+===== Bindings =====
+
+====C====
+<code c>
+#define INCL_DOSFILEMGR
+
+USHORT  rc = DosQHandType(FileHandle, HandType, FlagWord);
+
+HFILE   FileHandle;    /* File handle */
+PUSHORT HandType;      /* Handle type (returned) */
+PUSHORT FlagWord;      /* Device driver attribute (returned) */
+
+USHORT  rc;            /* return code */
+</code>
+
+====MASM====
+<code asm>
+EXTRN  DosQHandType:FAR
+INCL_DOSFILEMGR     EQU 1
+
+PUSH   WORD    FileHandle    ;File handle
+PUSH@  WORD    HandType      ;Handle type (returned)
+PUSH@  WORD    FlagWord      ;Device driver attribute (returned)
+CALL   DosQHandType
+
+Returns WORD
+</code>
+
+{{page>en:templates:fapi}}

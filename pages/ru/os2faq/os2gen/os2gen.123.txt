@@ -1,0 +1,23 @@
+[Q]: USB setup HOW-TO
+
+[A]: Peter Knapper (3:772/1.10)
+
+Here are my Config.Sys entries for USB -
+
+BASEDEV=USBUHCD.SYS
+BASEDEV=USBD.SYS /REQ:USBUHCD$
+DEVICE=E:\OS2\BOOT\USBPRT.SYS
+BASEDEV=USBHID.SYS
+
+Line 1 is the driver for the USB chipset on my (ASUS) motherboard,
+Line 2 is for generic USB support under OS/2,
+Line 3 is for generic USB Printer support,
+Line 4 is for the USB management S/W.
+
+NOTE: I used the same PRINTER driver for my EPSON STYLUS 700 for either port
+type.
+
+The real catch is setting up the correct PRINTER port to be used, and also
+indicating what actual printer equates to LPT1, LPT2, LPT3 and PRN, etc... Once
+I figured it all out its easy to swap things around, but as I said above it
+looks like I am stuck with parallell printing at the moment.

@@ -1,0 +1,39 @@
+==== FSD Initialization ====
+
+FSD initialization occurs at system initialization time. FSDs are loaded through the IFS= configuration command in CONFIG.SYS. Once the FSD has been loaded, the FSD's initialization entry point is called to initialize it.   
+
+FSDs are structured the same as dynamic link library modules. Once an FSD is loaded, the initialization routine FS_INIT is called. This gives the FSD the ability to process any parameters that may appear on the CONFIG.SYS command line, which are passed as a parameter to the FS_INIT routine. A LIBINIT routine in an FSD will be ignored.   
+
+OS/2 FSDs initialize in protect mode. Because of the special state of the system, an FSD may make dynamic link system calls at init-time.   
+
+The list of systems calls that an FSD may make are as follows:   
+
+  * DosBeep 
+  * DosChgFilePtr
+  * DosClose 
+  * DosDelete 
+  * DosDevConfig 
+  * DosDevIoCtl 
+  * DosFindClose 
+  * DosFindFirst 
+  * DosFindNext 
+  * DosGetEnv 
+  * DosGetInfoSeg 
+  * DosGetMessage 
+  * DosOpen 
+  * DosPutMessage 
+  * DosQCurDir 
+  * DosQCurDisk 
+  * DosQFileInfo 
+  * DosQFileMode 
+  * DosQSysInfo 
+  * DosRead 
+  * DosWrite 
+
+The FSD may not call ANY FS helper routines at initialization time.   
+
+Note that multiple code and data segments are not discarded by the loader as in the case of device drivers.   
+
+The FSD may call DosGetInfoSeg to obtain access to the global and process local information segments. The local segment may be used in the context of all processes without further effort to make it accessible and has the same selector. The local infoseg is not valid in real mode or at interrupt time.   
+
+  * [[en:ibm:ifs:mechanism:init:extboot|OS/2 and DOS Extended Boot Structure and BIOS Parameter Block]]

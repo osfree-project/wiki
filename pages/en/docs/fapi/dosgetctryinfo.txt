@@ -1,0 +1,187 @@
+{{page>en:templates:fapiint}}
+
+====== DosGetCtryInfo ======
+
+This call obtains country-dependent formatting information that resides in the country information file. 
+
+===== Syntax =====
+<code c>
+DosGetCtryInfo (Length, Country, MemoryBuffer, DataLength)
+</code>
+
+===== Parameters =====
+
+  * Length (USHORT) - input : Length, in bytes, of the data area (MemoryBuffer). This length should be at least 38 bytes.
+  * Country (PCOUNTRYCODE) - input : Address of the country information structure:
+    * country (USHORT) - Country code identifier; 0 is the default country code. 
+    * codepage (USHORT) - Code page identifier; 0 is the code page of the current process. 
+  * MemoryBuffer (PCOUNTRYINFO) - output : Address of the buffer where the country-dependent data is returned. The application must request enough space in memory, a minimum of 38 bytes, to hold the returned data. If the requested space is not large enough, the system fills the allocated space with as much data as it can hold. If the requested space is too large, the extra memory requested is set to 0.
+
+The data is returned in the buffer in the following format:
+  * country (USHORT) - Country code identifier. 
+  * codepage (USHORT) -  Code page identifier. 
+  * dateformat (USHORT) - Date format.
+
+^ Value ^ Definition ^
+| 0 | mm/dd/yy |
+| 1 | dd/mm/yy |
+| 2 | yy/mm/dd |
+
+  * currency (CHAR)
+  * Currency identifier, terminated with a null. thousandsep (CHAR)
+  * Thousands separator, terminated with a null. decimalsep (CHAR)
+  * Decimal separator, terminated with a null. datesep (CHAR)
+  * Date separator, terminated with a null. timesep (CHAR)
+  * Time separator, terminated with a null. currencyformat (UCHAR)
+
+  The currency bit fields in the following format:
+
+^ Bit ^ Description ^
+| 7-3 | Reserved |
+|  2  | 0 = Bits 0 and 1 are used. 1 = Bits 0 and 1 are ignored; the currency indicator replaces the decimal indicator. |
+| 1   | 0 = No space between the currency indicator and money value. 1 = One space between the currency indicator and money value. |
+| 0   | 0 = Currency indicator precedes the money value. 1 = Currency indicator follows the money value. |
+
+  * decimalspace (UCHAR)  Number (in binary) of decimal spaces used to indicate currency value.
+  * timeformat (UCHAR)
+
+  Time format for presentation in file directory:
+
+^ Bit ^ Description ^
+| 7-1 | Reserved |
+|  0  |  0 = 12-hour format 1 = 24-hour format |
+
+  * reserved (USHORT) Reserved, set to zero. 
+  * datalistsep (CHAR) Data list separator, terminated with a null.
+  * reserved (USHORT) Reserved, set to zero.
+
+  * DataLength (PUSHORT) - output : Address of the length, in bytes, of the country dependent information. rc (USHORT) - return
+                           
+===== Returns =====
+
+Return code descriptions are:
+
+  * NO_ERROR 
+  * 396 ERROR_NLS_NO_COUNTRY_FILE 
+  * 397 ERROR_NLS_OPEN_FAILED 
+  * 398 ERROR_NO_COUNTRY_OR_CODEPAGE 
+  * 399 ERROR_NLS_TABLE_TRUNCATED 
+
+===== Remarks =====
+
+The returned country dependent information may be for the default country and current process code page, or for a specific country and code page. For more information on code page, see DosSetCp.
+
+==== Family API Considerations ====
+
+Some options operate differently in DOS mode than in OS/2 mode. Note that not all country information is available in DOS 3.3. 
+
+===== Bindings =====
+
+==== C Binding ====
+
+<code c>
+typedef struct _COUNTRYCODE {   /* ctryc */
+ 
+  USHORT country;               /* country code */
+  USHORT codepage;              /* code page */
+ 
+} COUNTRYCODE;
+
+typedef struct _COUNTRYINFO {   /* ctryi */
+ 
+  USHORT country;                   /* country code */
+  USHORT codepage;                  /* code page */
+  USHORT fsDateFmt;                 /* date format */
+  CHAR   szCurrency[5];             /* currency indicator */
+  CHAR   szThousandsSeparator[2];   /* thousands separator */
+  CHAR   szDecimal[2];              /* decimal separator *  /
+  CHAR   szDateSeparator[2];        /* date separator */
+  CHAR   szTimeSeparator[2];        /* time separator */
+  UCHAR  fsCurrencyFmt;             /* bit fields for currency format */
+  UCHAR  cDecimalPlace;             /* currency decimal places */
+  UCHAR  fsTimeFmt;                 /* Time format (AM/PM or 24 hr) */
+  USHORT abReserved1[2];            /* reserved (0) */
+  CHAR   szDataSeparator[2];        /* Data list separator */
+  USHORT abReserved2[5];            /* reserved (0) */
+ 
+} COUNTRYINFO;
+
+#define INCL_DOSNLS
+
+USHORT  rc = DosGetCtryInfo(Length, Structure, MemoryBuffer, DataLength);
+
+USHORT           Length;        /* Length of data area provided */
+PCOUNTRYCODE     Structure;     /* Input data structure */
+PCOUNTRYINFO     MemoryBuffer;  /* Country information (returned) */
+PUSHORT          DataLength;    /* Length of data (returned) */
+
+USHORT           rc;            /* return code */
+</code>
+
+==== Example ====
+
+<code c>
+This example gets country-dependent information.
+
+#define INCL_DOSNLS
+
+#define CURRENT_COUNTRY 0
+#define NLS_CODEPAGE 850
+
+COUNTRYCODE Country;
+COUNTRYINFO CtryBuffer;
+USHORT      Length;
+USHORT      rc;
+
+   Country.country = CURRENT_COUNTRY;
+   Country.codepage = NLS_CODEPAGE;
+
+   rc = DosGetCtryInfo(sizeof(CtryBuffer), /* Length of data area provided */
+                       &Country,           /* Input data structure */
+                       &CtryBuffer,        /* Data area to be filled by function */
+                       &Length);           /* Length of data returned */
+</code>
+
+==== MASM Binding ====
+
+<code asm>
+COUNTRYCODE struc
+  ctryc_country   dw  ? ;country code
+  ctryc_codepage  dw  ? ;code page
+COUNTRYCODE ends
+
+COUNTRYINFO struc
+  ctryi_country              dw  ? ;country code
+  ctryi_codepage             dw  ? ;code page
+  ctryi_fsDateFmt            dw  ? ;date format
+  ctryi_szCurrency           db  5 dup (?) ;currency indicator
+  ctryi_szThousandsSeparator db  2 dup (?) ;thousands separator
+  ctryi_szDecimal            db  2 dup (?) ;decimal separator
+  ctryi_szDateSeparator      db  2 dup (?) ;date separator
+  ctryi_szTimeSeparator      db  2 dup (?) ;time separator
+  ctryi_fsCurrencyFmt        db  ? ;bit fields for currency format
+  ctryi_cDecimalPlace        db  ? ;currency decimal places
+  ctryi_fsTimeFmt            db  ? ;Time format (AM/PM or 24 hr)
+  ctryi_abReserved1          dw  2 dup (?) ;reserved (0)
+  ctryi_szDataSeparator      db  2 dup (?) ;Data list separator
+  ctryi_abReserved2          dw  5 dup (?) ;reserved (0)
+COUNTRYINFO ends
+
+EXTRN  DosGetCtryInfo:FAR
+INCL_DOSNLS         EQU 1
+
+PUSH   WORD    Length        ;Length of data area provided
+PUSH@  OTHER   Structure     ;Input data structure
+PUSH@  OTHER   MemoryBuffer  ;Country information (returned)
+PUSH@  WORD    DataLength    ;Length of data (returned)
+CALL   DosGetCtryInfo
+
+Returns WORD
+</code>
+
+===== Note =====
+
+Text on based [[http://www.edm2.com/index.php/DosGetCtryInfo]]
+
+{{page>en:templates:fapi}}
+

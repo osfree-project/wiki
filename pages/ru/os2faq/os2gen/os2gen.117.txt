@@ -1,0 +1,149 @@
+[Q]: Кодовые названия разных версий OS/2
+
+[A]: Andrew Belov (2:5020/181.2)
+
+DOS 3, DOS 4 - обозначения "следующей" версии MS-DOS, которая постепенно
+выросла в OS/2 (1984-1986 гг.)
+
+CP/DOS - OS/2 v 1.0 на ранней стадии проектирования (1985-1986 гг.)
+
+London - OS/2 v 1.0 (1987 г.)
+
+Winthorn - OS/2 v 1.1 Presentation Manager (ноябрь 1988 г.)
+
+Sloop - OS/2 v 1.2 (октябрь 1989 г.)
+
+Cutter - проект доработки 16-bit OS/2 с пониженными требованиями к RAM и
+выгружаемым в своп 3xBox'ом. (1989-1990 гг.)
+
+Cruiser - OS/2 v 2.0 в проекте (1988-1991 гг.)
+
+Yawl - Cruiser + WPS, по сути ставший окончательным вариантом 2.0
+(март/апрель 1992 г.). Build level 6.307.
+
+Riker I - OS/2 v 2.01 (осень 1992 г.). Build level 6.427.
+
+R202, R205, R206, R207, R208 - внутренние обозначения нескольких веток
+исходного кода. R206 - версия 2.1 и фиксы к ней, R207 - Warp 3. R207s -
+исправления 8.162 -> 8.200. R208 - архив APAR'ов для Merlin и Aurora.
+
+Borg - OS/2 v 2.1 (май/июль 1993 г.). Build level 6.514. "L series" и
+"M series" означают, сооответственно, старый и новый варианты поставки
+OS/2 v 2.1, первый был сжат PACK.EXE, второй - PACK2.EXE.
+
+FourMeg (4meg) - рабочее название Warp 3 и относящихся к нему изменений в
+коде (1994 г.). Изначально предполагалось, что Warp - "Personal OS/2" -
+будет оптимизирован для машин с 4M RAM.
+
+OS/2 Personal beta, Warp I, Warp II - бета-версии 2.99 (лето 1994 г.)
+
+Warp 3 Red spine/Blue spine - это XR_3000 и XR_3001, т.е. Warp for Windows и
+Warp with Win-OS/2. Коробки с дистрибутивами этих версий внешне отличались в
+первую очередь цветом, а надпись "for existing DOS and Windows installations"
+шла мелким шрифтом. Build level - 8.162, 8.192 и 8.200.
+
+Warp Connect - Warp 3 + сетевые сервисы (IBM Peer v 1.0, TCP/IP v 3.0, MPTS).
+Build level 8.209.
+
+Peregrine - по одной версии это Warp 3 pan-European refresh, по другой -
+"Warp International Beta". Представляет собой обновление Warp (for Windows?),
+от первоначальной версии отличается более высоким build level'ом (8.200 или
+8.209?) и NLS-поддержкой, которая совершенствовалась вслед за выходом
+исходного Warp 3. В продажу этот дистрибутив не поступал.
+
+Talon - Warp Server 4 + IBM Workgroup Server + IBM Database server
+
+Merlin - Warp Connect v 4.00 (сентябрь 1996 г.). Build level 9.023.
+
+Aurora - Warp Server for e-business (v 4.50). Build level 14.039F.
+До релиза в апреле 1999 г. IBM трактовал это кодовое название как "the dawn of
+the next generation of Warp Servers" - "рассвет нового поколения Warp
+Server'ов". Это же название (Aurora) применяется и в отношении компонентов,
+вошедших в фикспак XR_M013 для Merlin (март-апрель 2000 г.), а также систем,
+обновлявшихся этим и последующими фикспаками.
+
+Convenience Package - распространяемые по подписке дистрибутивы, основанные на
+ядре 4.50 и содержащие все, что предлалось по линии IBM Software Choice.
+Первый подобный комплект вышел 30/11/2000, build level 14.062. Второй (и
+последний) - вышел 17/12/2001. Разделяются на "серверные" и "клиентские"
+варианты, соответственно: ACP (Aurora Convenience Package) и MCP
+(Merlin Convenience Package).
+
+Falcon - OS/2 Warp Connect for PowerPC. Релиз вышел в начале 1996 г.,
+после чего дальнейшие разработки были незамедлительно свернуты. В широкой
+продаже этой системы не было. План версий (на май 1995 г.):
+        Falcon 1.0 = полный аналог старого Warp 3 (OS/2 Warp + BonusPak)
+        Falcon 1.1 = поддержка Open32 и OpenDoc
+        Falcon 2.0 = "OS/2 Warp intercept client product for both PowerPC
+                     and Intel"
+
+Hawk - OS/2 Warp Server for PowerPC. Планировался к выпуску в конце 1996 г.,
+но был заморожен вместе с Falcon. Планы по состоянию на май 1995 г.:
+        Hawk 1.0 = клон Warp Server 4 с поддержкой Open32, OpenDoc и Eagle
+        Hawk 2.0 = развитие Hawk 1.0 с зачатками Directory Services (выход
+                   был запланирован на 1997 г.)
+
+Все PowerPC'шные версии (Raptor technology) построены на микроядре (Mach),
+сообщали версию 3.00 (OS/2 v 3.0 на i386 сообщает 2.30, а 4.50 - 2.45).
+Существовал тулкит для i386 OS/2, позволявший кросс-компилировать файлы для
+PowerPC посредством MetaWare High C/C++.
+
+Project Eagle - интеграция Warp Server с различными службами: "Eagle provides
+a common installation function to extend Warp to optionally include: the IBM
+Workgroup Server for mail, calendar, far server support; IBM Communications
+Server for host access; the IBM Database Server for database; the IBM Internet
+Server to maintain a WWW home page; the IBM Network Management Server to allow
+centalized management of network resources; and the IBM Transaction Server to
+allow transaction processing".
+
+
+Thin client:
+
+Blue Bird - Workspace on-Demand v 1.00 (1997 г.)
+Orion - Workspace on-Demand v 2.00 (1998 г.)
+Atlas - Network Client Manager/Workspace on-Demand v 3.00 (2000 г.)
+
+
+Third-party:
+
+NDS OS/2 - Nokia Data Systems OS/2 v 1.1C (1989 г.) - OEM-вариант Microsoft
+OS/2 v 1.1 с инсталлятором и драйверами под оборудование Nokia.
+
+COMPAQ OS/2, Zenith OS/2 - v 1.x на базе Microsoft OS/2.
+
+Citrix WinView v 2.2 - использует ядро OS/2 v 2.0, причем некое 2.182 на базе
+IBM'овского 6.466.
+
+eComStation - "an Internet enabled platform for business desktop computing"
+от фирмы Serenity Systems. Базируется на стандартных IBM'овских ядрах:
+
+        v 0.9                       - 14.039  (< 08/2000)
+        v 1.0 Preview Edition       - 14.052_W4 (10/2000)
+        v 1.0                       - 14.062    (07/2001) = MCP#1
+        v 1.05/1.1                  - 14.086    (03/2003) = MCP#2
+        v 1.2                       - 14.097    (08/2004)
+        v 1.2R (Media Refresh)      - 14.103a   (11/2005)
+        v 2.0                       - 14.105    (xx/2008?)
+
+osFree - несколько независимых явлений:
+   I. Подпольный freeware-дистрибутив (образы загрузочных дискет, на которых
+      только ядро, *CALL*.DLL и основные утилиты). Technology Preview Edition
+      (февраль 2002 г.) совместима с ядром 9.023; реализует несколько APAR'ов
+      и функций из более поздних ядер. Последний известный билд (26/06/2004)
+      имеет рудиментарную поддержку KEE32.
+  II. Open-Source комплект из нескольких мелких утилит и 4OS/2 v 3.04.
+ III. Изыскания в области нового ядра для OS/2 (www.osfree.org с соавторами).
+
+
+Прочая продукция IBM:
+
+Striker = DAPIE = DAX = Open32
+Sword   = VisualAge C++ v 3.0
+Tuscany = VisualAge C++ v 4.0
+Quint   = IBM Web Browser (на базе Gecko) в OS/2 v 4.52
+
+
+[A]: Michal Necasek (michaln@prodigy.net)
+
+Trimaran - OS/2 v 1.1
+Ferengi - OS/2 v 2.1 for Windows

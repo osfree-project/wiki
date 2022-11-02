@@ -1,0 +1,9 @@
+==== 3 September 2008 ====
+
+sf.net news now duplicated at osfree.org
+
+Starting from now project news from sf.net shown on main page of osfree.org
+
+{{tag>site news}}
+
+~~DISCUSSION~~

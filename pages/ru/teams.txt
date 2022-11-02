@@ -1,0 +1,41 @@
+===== Разработка и продвижение проекта osFree ведется группами участников проекта: =====
+
+  * [[ru:teams:web|Web team]] управляет "лицом" проекта osFree - web-сервисами
+  * [[ru:teams:build|Build team]] занимается настройкой системы сборки исходников, и написанием скриптов и мейкфайлов. Build team также должна генерировать еженедельные сборки osFree.
+  * [[ru:teams:boot|The Boot Team]] занимается процессом загрузки osFree.
+  * [[en:teams:cmd|The CLI Team]] занимается проектированием и разработкой интерфейса командной строки и утилитами командной строки
+  * [[en:teams:docs|The Documentation Team]] поддерживает документацию. Она также контролирует часть контента веб-страниц, относительно документации системы. Документация исходного кода контролируется в кооперации с разработчиками описываемых компонентов.
+
+Документация исходного кода сопровождается той командой, которая пишет этот код.
+
+=== Разработчики osFree (бывшие и/или активные) и сотрудничающие с проектом ===
+
+|Adrian Gschwend	|ktk [a t] netlabs.org	|администратор CVS |
+|Anders Christensen	|anders [a t] pvv.unit.no	|Разработчик интерпретатора Regina REXX |
+|Andrew Belov	|andrew_belov [a t] newmail.ru	|Разработчик |
+|Bartosz Tomasik	|bart2 [a t] asua.org.pl	|Разработчик |
+|Cristiano Guadagnino	|criguada [a t] tin.it	|Разработчик |
+|David C. Zimmerli	|davez [a t] nni.com	|Разработчик оригинального FreeLDR |
+|Eric Auer	|eric [a t] coli.uni-sb.de	|Разработчик DISKCOMP/SORT (FreeDOS) |
+|Henk Kelder	|Неизв.	|Developer |
+|Jim Hall	|jhall [a t] freedos.org	|Разработчик утилиты FIND (FreeDOS) |
+|Jim Lynch	|Неизв.	|Разработчик SORT (FreeDOS) |
+|John Martin Alfredsson	|jma [a t] jma.se	|Разработчик/в прошлом координатор проекта |
+|JP Software	|http://www.jpsoft.com	|Разработчики командного процессора 4OS2 |
+|Ken Wright	|DaddyWarlock [a t] netscape.net	|Редактор контента |
+|Kim Haverblad	|kim [a t] os2world.com	|Вебмастер и админ (www.osfree.org) |
+|Knut St. Osmundsen	|knut.stange.osmundsen [a t] mynd.no	|Разработчик COMP |
+|Mark Hessling	|M.Hessling [a t] qut.edu.au	|Разработчик интерпретатора Regina REXX |
+|Michal Meller	|mellerm [a t] witual.pl	|Разработчик DISKCOMP |
+|Michal Necasek	|Michal [a t] prodigy.net	|Система сборки/компилятор OpenWatcom |
+|Mike Greene	|Неизв.	|Разработчик RexxUtil и mkmsgf |
+|Mike Muuss	|Неизв.	|Разработчик PING |
+|NewView project	|Unknown	|Разработчики HELPMSG.DLL/VIEW.EXE |
+|Patrick Haller	|patrick.haller [a t] haller-gmbh.de	|Разработчик PING/TRACERTE |
+|Sascha Schmidt	|sascha.schmidt [a t] asamnet.de	|Разработчик |
+|Stephen Lacy	|sl31 [a t] andrew.cmu.edu	|Разработчик MORE  |
+|Sven Eric Rosen	|sven_rosen [a t] hotmail.com	|Разработчик |
+|Ulrich Moeller	|http://www.xworkplace.org	|Разработчик xMakeIni/автор документа по CVS |
+|Valery Sedletski	|_valerius [a t] mail.ru	|Разработчик/Web/Документация/Система сборки |
+|Vitus Jensen	|Неизв.	|Разработчик RCopy |
+|Yuri Prokushev	|prokushev [a t] freemail.ru	|Разработчик/Web/Документация |

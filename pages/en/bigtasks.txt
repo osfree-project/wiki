@@ -1,0 +1,9 @@
+==== Complex tasks ====
+
+  * Designing and programming Personality Neutral server
+  * Designing and programming OS/2 Personality server
+  * Implementing DOSCALLS library using DROPS servers and libraries
+  * Writing LVM2 front-end (Backport from Linux)
+  * Writing BACKUP/RESTORE tools
+  * Write more complex dynamic linker/loader. Move parts of ld package to loader. Integrate LX loader by Viking into dynamic loader and improve it. Required to allow load OS/2 executables.
+

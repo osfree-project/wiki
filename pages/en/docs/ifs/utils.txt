@@ -1,0 +1,29 @@
+====== Disk & filesystem maintance utilities and interfaces ======
+
+-**proposal**-
+
+===== Command line tools =====
+
+Disk and filesystem maintance utilities consist of four command line tools. FORMAT, CHKDSK, SYSINST and RECOVER.
+
+===== Utility library =====
+
+As mentioned above, all disk and file maintance utilities just interface to actual functions. For each filesystem exists dynamic library with name U<FS>.DLL where <FS> is file system name. It contains four interfaces (as actual number of file system tools). Here interface of such functions:
+
+  interface Disk
+  {
+    MakeBootable
+    Check
+    Recover
+    Format
+  }
+
+==== OS/2 compatibility layer ====
+
+For compatability with OS/2 supported following DLL entry points.
+
+
+  SYS
+  RECOVER
+  FORMAT
+  CHECKDSK

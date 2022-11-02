@@ -1,0 +1,5 @@
+[Q]: SLIP: Все пингуется, а web explorer, telnet, etc. не pаботают
+
+[A]: Unknown author
+
+Hадо включить VJ Compression.

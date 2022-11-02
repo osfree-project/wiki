@@ -1,0 +1,177 @@
+{{page>en:templates:fapiint}}
+
+OS/2 1.0 introduced around 80-90 function calls (various information sources differ) that could be used in FAPI programs.
+
+^ Name                               ^ Description                                              ^ Module (OS/2) ^ Library (DOS)  ^ Status (OS/2) ^ Status (DOS) ^ FAPI Version ^
+| [[en:docs:fapi:BadDynLink]]        | Terminates execution with error message                  |                  --              | API/FAPI | -- | Done | 1.00 |
+| [[en:docs:fapi:DosBeep]]           | Generates sound from the speaker                         | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | | Done | 1.00 |
+| [[en:docs:fapi:DosBufReset]]       | Flushes a file cache buffers                             | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | Done | Done | 1.10 |
+| [[en:docs:fapi:DosChDir]]          | Defines the current directory for the requesting process | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | Done | Done | 1.00 |
+| [[en:docs:fapi:DosChgFilePtr]]     | Moves the read/write pointer                             | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | Done | Done | 1.00 |
+| [[en:docs:fapi:DosClose]]          | Closes a handle to a file, pipe, or device               | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | Done | Done | 1.00 |
+| [[en:docs:fapi:DosCreateCSAlias]]  | Create CS alias from data segment                        | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | | Done | 1.00 |
+| [[en:docs:fapi:DosCLIAccess]]      | Request I/O privilege for disabling and enabling interrupts | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | | Done | 1.00 |
+| [[en:docs:fapi:DosPortAccess]]     | Request or release access to ports for I/O privilege                                                         | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | | Done | 1.00 |
+| [[en:docs:fapi:DosDelete]]         | Removes a directory entry associated with a file name    | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | Done | Done | 1.00 |
+| [[en:docs:fapi:DosDevConfig]]      | Return device configuration                              | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | | Done | 1.00 |
+| [[en:docs:fapi:DosDupHandle]]      | Returns a new file handle for an open file               | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | Done | Done | 1.00 |
+| [[en:docs:fapi:DosFreeSeg]]        | Deallocates a memory segment                             | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | | Done | 1.00 |
+| [[en:docs:fapi:DosGetDateTime]]    | Get the current date and time                            | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | | Done | 1.00 |
+| [[en:docs:fapi:DosGetEnv]]         | Return process environment for the current process       | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | | Done | 1.00 |
+| [[en:docs:fapi:DosGetHugeShift]]   | Return a shift count used to derive the selectors that address memory allocated with DosAllocHuge | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | | Done | 1.00 |
+| [[en:docs:fapi:DosGetMachineMode]] | Returns the current mode of the processor                | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | Done | Done | 1.00 |
+| [[en:docs:fapi:DosGetMessage]]     | Retrieve a message from the specified system message file | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | | | 1.00 |
+| [[en:docs:fapi:DosGetVersion]]     | Return the OS version number                             | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | Done | Done | 1.00 |
+| [[en:docs:fapi:DosInsMessage]]     | Insert variable text string information into the body of a message | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | | | 1.00 |
+| [[en:docs:fapi:DosMkDir]]          | Create a subdirectory                                    | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | Done | Done | 1.00 |
+| [[en:docs:fapi:DosMkDir2]]         | Create a subdirectory with EA                            | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | Done | Done | ???? |
+| [[en:docs:fapi:DosMove]]           | Move a file object to another location, change its name  | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | | Done | 1.00 |
+| [[en:docs:fapi:DosNewSize]]        | Changes the size of a file                               | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | | Done | 1.00 |
+| [[en:docs:fapi:DosPutMessage]]     | Output the message                                       | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | | | 1.00 |
+| [[en:docs:fapi:DosQCurDir]]        | Returns the full path name of the current directory      | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | | Done | 1.00 |
+| [[en:docs:fapi:DosQCurDisk]]       | Determines the current default drive for the requesting process | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | | Done | 1.00 |
+| [[en:docs:fapi:DosQFileMode]]      | Queries the mode (attribute) of the specified file       | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | | Done | 1.00 |
+| [[en:docs:fapi:DosQFSInfo]]        | Query file system info                                   | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | | Done | 1.00 |
+| [[en:docs:fapi:DosQVerify]]        | Returns the value of the verify flag                     | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | Done | Done | 1.00 |
+| [[en:docs:fapi:DosRmDir]]          | Removes a subdirectory from the specified disk           | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | Done | Done | 1.00 |
+| [[en:docs:fapi:DosSelectDisk]]     | Selects the drive specified as the default drive         | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | Done | Done | 1.00 |
+| [[en:docs:fapi:DosSetDateTime]]    | Set the date and time                                    | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | | Done | 1.00 |
+| [[en:docs:fapi:DosSetFileInfo]]    | Set attribute and extended attribute information for a file | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | | Done | 1.00 |
+| [[en:docs:fapi:DosSetFileMode]]    | Changes the mode (attribute) of the specified file       | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | | Done | 1.00 |
+| [[en:docs:fapi:DosSetVerify]]      | Sets write verification                                  | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | Done | Done | 1.00 |
+| [[en:docs:fapi:DosSleep]]          | Suspend the current thread for a specified time          | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | | Done | 1.00 |
+| [[en:docs:fapi:DosSubAlloc]]       | Suballocate portions of a segment                        | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | | | 1.00 |
+| [[en:docs:fapi:DosSubFree]]        | Free memory previously allocated by DosSubAlloc          | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | | | 1.00 |
+| [[en:docs:fapi:DosSubSet]]         | Initialize a segment for suballocation                   | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | | | 1.00 |
+| [[en:docs:fapi:DosWrite]]          | Write buffer to file                                     | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | | Done | 1.00 |
+| [[en:docs:fapi:DosAllocHuge]]      | Allocate multiple segments as a huge block of memory     | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | | Done | 1.00 |
+| [[en:docs:fapi:DosAllocSeg]]       | Allocate a data segment up to 64KB in size               | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | | Done | 1.00 |
+| [[en:docs:fapi:DosCaseMap]]        | Case mapping on a string                                 | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | | | 1.10 |
+| [[en:docs:fapi:DosDevIOCtl]]       | Control functions on a device                            | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | | Done | 1.00 |
+| [[en:docs:fapi:DosDevIOCtl2]]      | Control functions on a device                            | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | | Done | ???? |
+| [[en:docs:fapi:DosError]]          | Receive hard error notification                          | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | | Done | 1.00 |
+| [[en:docs:fapi:DosErrClass]]       | Receive hard error code information                      | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | | | 1.10 |
+| [[en:docs:fapi:DosExecPgm]]        | Execute another program as a child process               | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | | Done | 1.00 |
+| [[en:docs:fapi:DosExit]]           | End The current thread or process                        | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | | Done | 1.00 |
+| [[en:docs:fapi:DosFileLocks]]      | Locks and unlock a range in an opened file               | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | | Done | 1.00 |
+| [[en:docs:fapi:DosFindClose]]      | Finish DosFindFirst or DosFindNext directory search function sequence | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | | Done | 1.00 |
+| [[en:docs:fapi:DosFindFirst]]      | Finds the first file object or group of file objects whose name(s) match the specification | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | | Done | 1.00 |
+| [[en:docs:fapi:DosFindFirst2]]     | Finds the first file object or group of file objects whose name(s) match the specification | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | |  | ??? |
+| [[en:docs:fapi:DosFindNext]]       | Locate the next set of directory entries                 | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | | Done | 1.00 |
+| [[en:docs:fapi:DosGetCtryInfo]]    | Obtain country-dependent formatting information that resides in the country information file | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | | | 1.10 |
+| [[en:docs:fapi:DosGetDBCSEv]]      | Obtain a DBCS (double byte character set) environmental vector that resides in the country information file | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | | Done | 1.10 |
+| [[en:docs:fapi:DosGetCP]]          | Query the current process code page and the prepared system code pages | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | | Done | 1.10 |
+| [[en:docs:fapi:DosSetCP]]          | Set process code page and the session's display code page and keyboard code page | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | | Done | 1.10 |
+| [[en:docs:fapi:DosGetCollate]]     | Obtain a collating sequence table                        | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | | | 1.10 |
+| [[en:docs:fapi:DosHoldSignal]]     | Temporarily disable or enable signal processing for the current process | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | | | 1.00 |
+| [[en:docs:fapi:DosOpen]]           | Open a file, a named pipe, or a device                   | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | | Done | 1.00 |
+| [[en:docs:fapi:DosOpen2]]          | Open a file with extended attributes                     | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | | | ???? |
+| [[en:docs:fapi:DosQFileInfo]]      | Return information for a specific file                   | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | | Done | 1.00 |
+| [[en:docs:fapi:DosRead]]           | Read the specified number of bytes from a file, pipe, or device to a buffer location | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | | Done | 1.00 |
+| [[en:docs:fapi:DosReallocHuge]]    | Change the size of memory originally allocated by DosAllocHuge | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | | | 1.00 |
+| [[en:docs:fapi:DosReallocSeg]]     | Reallocate a segment after discard or changes the size of a segment already allocated | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | | Done | 1.00 |
+| [[en:docs:fapi:DosSetCtryCode]]    |                                                          | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | | | 1.00 |
+| [[en:docs:fapi:DosSetFHandState]]  | Set the state of the specified file                      | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | | | 1.00 |
+| [[en:docs:fapi:DosSetSigHandler]]  | Set signal handler                                       | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | | Done | 1.00 |
+| [[en:docs:fapi:DosAllocShrSeg]]    | Allocate a named shared memory segment to a process      | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | | Done | 1.20 |
+| [[en:docs:fapi:DosGetShrSeg]]      | Accesses a shared memory segment previously allocated by another process | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | | Done | 1.20 |
+| [[en:docs:fapi:DosLoadModule]]     | Load a dynamic link module and returns a handle for the module | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | | Done | 1.20 |
+| [[en:docs:fapi:DosFreeModule]]     | Free the reference to a dynamic link module for a process | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | | Done | 1.20 |
+| [[en:docs:fapi:DosQHandType]]      | Get handle type                                          | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | | Done | 1.00 |
+| [[en:docs:fapi:DosGetProcAddr]]    | Get module procedure address                             | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | | Done | 1.20 |
+| [[en:docs:fapi:DosGetPID]]         | Get process id                                           | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | | Done | 1.00 |
+| [[en:docs:fapi:DosSetMaxFH]]       | Set maximum file handlers                                | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | | Done | 1.20 |
+| [[en:docs:fapi:DosGetModHandle]]   | Get module handle                                        | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | | Done | 1.20 |
+| [[en:docs:fapi:DosQPathInfo]]      | Get path information                                     | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | | | 1.?? |
+| [[en:docs:fapi:DosQFSAttach]]      | Query information about an attached file system          | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | | | 1.?? |
+| [[en:docs:fapi:DosQSysInfo]]       | Query system variablies values                           | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | | Done | 1.20 |
+| [[en:docs:fapi:DosMemAvail]]       | Query maximum availabe huge memory block                 | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | | Done | 1.20 |
+| [[en:docs:fapi:DosGetInfoSeg]]     | Query global and local information segments              | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | | Done | 1.20 |
+| [[en:docs:fapi:KbdCharIn]]         | Return a character data record from the keyboard         | [[en:docs:os2:modules:KBDCALLS]] | API/FAPI | | Done | 1.00 |
+| [[en:docs:fapi:KbdFlushBuffer]]    | Clear the keystroke buffer                               | [[en:docs:os2:modules:KBDCALLS]] | API/FAPI | | Done | 1.00 |
+| [[en:docs:fapi:KbdGetStatus]]      | Get the current state of the keyboard                    | [[en:docs:os2:modules:KBDCALLS]] | API/FAPI | | Done | 1.00 |
+| [[en:docs:fapi:KbdSetStatus]]      | Set the characteristics of the keyboard                  | [[en:docs:os2:modules:KBDCALLS]] | API/FAPI | | | 1.00 |
+| [[en:docs:fapi:KbdStringIn]]       | Read a character string (character codes only) from the keyboard | [[en:docs:os2:modules:KBDCALLS]] | API/FAPI | | | 1.00 |
+| [[en:docs:fapi:KbdPeek]]           | Return any available character data record from the keyboard without removing it from the buffer | [[en:docs:os2:modules:KBDCALLS]] | API/FAPI | | Done | 1.00 |
+| [[en:docs:fapi:KbdOpen]]           | Create a new logical keyboard                            | [[en:docs:os2:modules:KBDCALLS]] | API/FAPI | | Done | 1.20 |
+| [[en:docs:fapi:KbdClose]]          | Close the existing logical keyboard                      | [[en:docs:os2:modules:KBDCALLS]] | API/FAPI | | Done | 1.20 |
+| [[en:docs:fapi:KbdGetFocus]]       | Bind the logical keyboard to the physical keyboard       | [[en:docs:os2:modules:KBDCALLS]] | API/FAPI | | Done | 1.20 |
+| [[en:docs:fapi:KbdFreeFocus]]      | Free the logical-to-physical keyboard bond               | [[en:docs:os2:modules:KBDCALLS]] | API/FAPI | | Done | 1.20 |
+| [[en:docs:fapi:KbdGetCp]]          | Query the code page being used to translate scan codes to ASCII characters | [[en:docs:os2:modules:KBDCALLS]] | API/FAPI | | | 1.20 |
+| [[en:docs:fapi:KbdSetCp]]          | Set the code page used to translate key strokes received from the keyboard | [[en:docs:os2:modules:KBDCALLS]] | API/FAPI | | | 1.20 |
+| [[en:docs:fapi:KbdXlate]]          | Translate scan codes with shift states into ASCII codes                    | [[en:docs:os2:modules:KBDCALLS]] | API/FAPI | | | 1.20 |
+| [[en:docs:fapi:KbdSetCustXt]]      | Install, on the specified handle, the translate table                      | [[en:docs:os2:modules:KBDCALLS]] | API/FAPI | | | 1.20 |
+| [[en:docs:fapi:KbdGetHWId]]        | Return the type of keyboard in use                                         | [[en:docs:os2:modules:KBDCALLS]] | API/FAPI | | | 1.20 |
+| [[en:docs:fapi:KbdRegister]]       | Registers a keyboard subsystem within a session                            | [[en:docs:os2:modules:KBDCALLS]] | API/FAPI | | | 1.20 |
+| [[en:docs:fapi:KbdDeRegister]]     | Deregister a keyboard subsystem within a session                           | [[en:docs:os2:modules:KBDCALLS]] | API/FAPI | | | 1.20 |
+| [[en:docs:fapi:MouRegister]]       | Register a mouse subsystem within a session                                | [[en:docs:os2:modules:KBDCALLS]] | API/FAPI | | | 1.20 |
+| [[en:docs:fapi:MouDeRegister]]     | Deregister a mouse subsystem within a session                              | [[en:docs:os2:modules:KBDCALLS]] | API/FAPI | | | 1.20 |
+| [[en:docs:fapi:MouGetNumButtons]]  | Return the number of buttons supported on the installed mouse driver       | [[en:docs:os2:modules:MOUCALLS]] | API/FAPI | | | 1.20 |
+| [[en:docs:fapi:MouGetNumMickeys]]  | Return the number of mickeys in each centimeter for the installed mouse driver | [[en:docs:os2:modules:MOUCALLS]] | API/FAPI | | | 1.20 |
+| [[en:docs:fapi:MouGetDevStatus]]   | Return status flags for the installed mouse device driver                 | [[en:docs:os2:modules:MOUCALLS]] | API/FAPI | | | 1.20 |
+| [[en:docs:fapi:MouGetNumQueEl]]    | Return the current status for the mouse device driver event queue         | [[en:docs:os2:modules:MOUCALLS]] | API/FAPI | | | 1.20 |
+| [[en:docs:fapi:MouReadEventQue]]   | Read an event from the mouse device FIFO event queue                      | [[en:docs:os2:modules:MOUCALLS]] | API/FAPI | | | 1.20 |
+| [[en:docs:fapi:MouGetScaleFact]]   | Return a pair of 1-word scaling factors for the current mouse device      | [[en:docs:os2:modules:MOUCALLS]] | API/FAPI | | | 1.20 |
+| [[en:docs:fapi:MouGetEventMask]]   | Return the current value of the mouse event queue mask                    | [[en:docs:os2:modules:MOUCALLS]] | API/FAPI | | | 1.20 |
+| [[en:docs:fapi:MouSetScaleFact]]   | Assign to the current mouse device driver a new pair of 1-word scaling factors | [[en:docs:os2:modules:MOUCALLS]] | API/FAPI | | | 1.20 |
+| [[en:docs:fapi:MouSetEventMask]]   | Assign a new event mask to the current mouse device driver | [[en:docs:os2:modules:MOUCALLS]] | API/FAPI | | | 1.20 |
+| [[en:docs:fapi:MouGetHotKey]]      | Return mouse button or buttons defined as system hot key   | [[en:docs:os2:modules:MOUCALLS]] | API/FAPI | | | 1.20 |
+| [[en:docs:fapi:MouSetHotKey]]      | Define mouse button or buttons as system hot key           | [[en:docs:os2:modules:MOUCALLS]] | API/FAPI | | | 1.20 |
+| [[en:docs:fapi:MouOpen]]           | Open the mouse device for the current session              | [[en:docs:os2:modules:MOUCALLS]] | API/FAPI | | | 1.20 |
+| [[en:docs:fapi:MouClose]]          | Close the mouse device for the current session             | [[en:docs:os2:modules:MOUCALLS]] | API/FAPI | | | 1.20 |
+| [[en:docs:fapi:MouGetPtrShape]]    | Get (copy) the pointer shape for the session               | [[en:docs:os2:modules:MOUCALLS]] | API/FAPI | | | 1.20 |
+| [[en:docs:fapi:MouSetPtrShape]]    | Set the pointer shape and size for the session             | [[en:docs:os2:modules:MOUCALLS]] | API/FAPI | | | 1.20 |
+| [[en:docs:fapi:MouDrawPtr]]        | Notify the mouse device driver that an area is now available | [[en:docs:os2:modules:MOUCALLS]] | API/FAPI | | | 1.20 |
+| [[en:docs:fapi:MouRemovePtr]]      | Notify the mouse device driver that the area is not available | [[en:docs:os2:modules:MOUCALLS]] | API/FAPI | | | 1.20 |
+| [[en:docs:fapi:MouGetPtrPos]]      | Querie the current row and column coordinate             | [[en:docs:os2:modules:MOUCALLS]] | API/FAPI | | | 1.20 |
+| [[en:docs:fapi:MouSetPtrPos]]      | Set a new row and column coordinate position             | [[en:docs:os2:modules:MOUCALLS]] | API/FAPI | | | 1.20 |
+| [[en:docs:fapi:MouInitReal]]       | Initialize mouse pointer draw support for DOS mode       | [[en:docs:os2:modules:MOUCALLS]] | API/FAPI | | | 1.20 |
+| [[en:docs:fapi:MouFlushQue]]       | Flush (empty) the mouse event queue                      | [[en:docs:os2:modules:MOUCALLS]] | API/FAPI | | | 1.20 |
+| [[en:docs:fapi:MouSetDevStatus]]   | Set the mouse device driver status flags                 | [[en:docs:os2:modules:MOUCALLS]] | API/FAPI | | | 1.20 |
+| [[en:docs:fapi:VioGetBuf]]         | Return the address of the logical video buffer (LVB)     | [[en:docs:os2:modules:VIOCALLS]] | API/FAPI | | | 1.20 |
+| [[en:docs:fapi:VioGetCurPos]]      | Return the coordinates of the cursor                     | [[en:docs:os2:modules:VIOCALLS]] | API/FAPI | | Done | 1.00 |
+| [[en:docs:fapi:VioGetCurType]]     | Get cursor type                                          | [[en:docs:os2:modules:VIOCALLS]] | API/FAPI | | Done | 1.00 |
+| [[en:docs:fapi:VioGetPhysBuf]]     | Get addressability to the physical display buffer        | [[en:docs:os2:modules:VIOCALLS]] | API/FAPI | | | 1.00 |
+| [[en:docs:fapi:VioReadCellStr]]    | Read a string of character-attribute pairs from the screen | [[en:docs:os2:modules:VIOCALLS]] | API/FAPI | | Done | 1.00 |
+| [[en:docs:fapi:VioReadCharStr]]    | Read a string of characters from the display             | [[en:docs:os2:modules:VIOCALLS]] | API/FAPI | | Done | 1.00 |
+| [[en:docs:fapi:VioScrollDn]]       | Scroll the entire display buffer (or area specified within the display buffer) down | [[en:docs:os2:modules:VIOCALLS]] | API/FAPI | | Done | 1.00 |
+| [[en:docs:fapi:VioScrollLf]]       | Scroll the entire display buffer (or area specified within the display buffer) to the left | [[en:docs:os2:modules:VIOCALLS]] | API/FAPI | | | 1.00 |
+| [[en:docs:fapi:VioScrollRt]]       | Scroll the entire display buffer (or area specified within the display buffer) to the right | [[en:docs:os2:modules:VIOCALLS]] | API/FAPI | | | 1.00 |
+| [[en:docs:fapi:VioScrUnLock]]      | Release ownership of (unlocks) the physical display buffer | [[en:docs:os2:modules:VIOCALLS]] | API/FAPI | | Done | 1.00 |
+| [[en:docs:fapi:VioSetCurPos]]      | Set the cursor's coordinates on the screen               | [[en:docs:os2:modules:VIOCALLS]] | API/FAPI | | Done | 1.00 |
+| [[en:docs:fapi:VioSetCurType]]     | Set the cursor type                                      | [[en:docs:os2:modules:VIOCALLS]] | API/FAPI | | Done | 1.00 |
+| [[en:docs:fapi:VioSetMode]]        | Set the mode of the display                              | [[en:docs:os2:modules:VIOCALLS]] | API/FAPI | | Done | 1.00 |
+| [[en:docs:fapi:VioShowBuf]]        | Update the physical display buffer with the logical video buffer (LVB) | [[en:docs:os2:modules:VIOCALLS]] | API/FAPI | | | 1.20 |
+| [[en:docs:fapi:VioWrtCellStr]]     | Write a string of character-attribute pairs (cells) to the display | [[en:docs:os2:modules:VIOCALLS]] | API/FAPI | | Done | 1.00 |
+| [[en:docs:fapi:VioWrtCharStr]]     | Write a character string to the display                  | [[en:docs:os2:modules:VIOCALLS]] | API/FAPI | | Done | 1.00 |
+| [[en:docs:fapi:VioWrtCharStrAtt]]  | Write a character string with repeated attribute to the display | [[en:docs:os2:modules:VIOCALLS]] | API/FAPI | | Done | 1.00 |
+| [[en:docs:fapi:VioWrtNAttr]]       | Write an attribute to the display a specified number of times | [[en:docs:os2:modules:VIOCALLS]] | API/FAPI | | Done | 1.00 |
+| [[en:docs:fapi:VioWrtNCell]]       | Write a cell (character-attribute pair) to the display a specified number of times | [[en:docs:os2:modules:VIOCALLS]] | API/FAPI | | Done | 1.00 |
+| [[en:docs:fapi:VioWrtNChar]]       | Write a character to the display a specified number of times | [[en:docs:os2:modules:VIOCALLS]] | API/FAPI | | Done | 1.00 |
+| [[en:docs:fapi:VioWrtTTY]]         | Write a character string to the display starting at the current cursor position | [[en:docs:os2:modules:VIOCALLS]] | API/FAPI | | Done | 1.00 |
+| [[en:docs:fapi:VioScrLock]]        | Request ownership of (locks) the physical display buffer | [[en:docs:os2:modules:VIOCALLS]] | API/FAPI | | Done | 1.00 |
+| [[en:docs:fapi:VioGetMode]]        | Return the mode of the display                           | [[en:docs:os2:modules:VIOCALLS]] | API/FAPI | | Done | 1.20 |
+| [[en:docs:fapi:VioGetConfig]]      | Return the video display configuration                   | [[en:docs:os2:modules:VIOCALLS]] | API/FAPI | | Done | 1.?? |
+| [[en:docs:fapi:VioGetAnsi]]        | Return the current ANSI status On/Off state              | [[en:docs:os2:modules:VIOCALLS]] | API/FAPI | | Done | 1.20 |
+| [[en:docs:fapi:VioSetAnsi]]        | Activate or deactivate ANSI support                      | [[en:docs:os2:modules:VIOCALLS]] | API/FAPI | | Done | 1.20 |
+| [[en:docs:fapi:VioScrollUp]]       | Sroll the entire display buffer (or area specified within the display buffer) up | [[en:docs:os2:modules:VIOCALLS]] | API/FAPI | | Done | 1.20 |
+| [[en:docs:fapi:VioDeRegister]]     | Deregister alternate video system                        | [[en:docs:os2:modules:VIOCALLS]] | API/FAPI | | Done | 1.20 |
+| [[en:docs:fapi:VioRegister]]       | Register alternate video system                          | [[en:docs:os2:modules:VIOCALLS]] | API/FAPI | | Done | 1.20 |
+| [[en:docs:fapi:VioGetState]]       | Return the current settings of adapter                   | [[en:docs:os2:modules:VIOCALLS]] | API/FAPI | | | 1.?? |
+| [[en:docs:fapi:VioSetState]]       | Set the current settings of adapter                      | [[en:docs:os2:modules:VIOCALLS]] | API/FAPI | | | 1.?? |
+| [[en:docs:fapi:VioGetCP]]          | Query the code page for display                          | [[en:docs:os2:modules:VIOCALLS]] | API/FAPI | | | 1.20 |
+| [[en:docs:fapi:VioSetCP]]          | Set the code page for display                            | [[en:docs:os2:modules:VIOCALLS]] | API/FAPI | | | 1.20 |
+| [[en:docs:fapi:VioGetFont]]        | Get current font                                         | [[en:docs:os2:modules:VIOCALLS]] | API/FAPI | | | 1.?? |
+| [[en:docs:fapi:VioSetFont]]        | Set current font                                         | [[en:docs:os2:modules:VIOCALLS]] | API/FAPI | | | 1.?? |
+| [[en:docs:fapi:VioModeWait]]       | Notify process about it must restore its video mode      | [[en:docs:os2:modules:VIOCALLS]] | API/FAPI | | | 1.20 |
+| [[en:docs:fapi:VioModeUndo]]       | Allow one thread within a process to cancel a VioModeWait | [[en:docs:os2:modules:VIOCALLS]] | API/FAPI | | | 1.20 |
+| [[en:docs:fapi:VioPopUp]]          | Show temporary screen to display message                 | [[en:docs:os2:modules:VIOCALLS]] | API/FAPI | | | 1.20 |
+| [[en:docs:fapi:VioEndPopUp]]       | Return from temporary screen                             | [[en:docs:os2:modules:VIOCALLS]] | API/FAPI | | | 1.20 |
+| [[en:docs:fapi:VioSavRedrawWait]]  | Notifies application when it must save/redraw its screen | [[en:docs:os2:modules:VIOCALLS]] | API/FAPI | | | 1.20 |
+| [[en:docs:fapi:VioSavRedrawUndo]]  | Allow one thread within a process to cancel a VioSavRedrawWait | [[en:docs:os2:modules:VIOCALLS]] | API/FAPI | | | 1.20 |
+| [[en:docs:fapi:VioPrtSc]]          | Dump screen to printer                                   | [[en:docs:os2:modules:VIOCALLS]] | API/FAPI | | | 1.20 |
+| [[en:docs:fapi:VioPrtScToggle]]    | Toggle VioWrtTty also write to printer                   | [[en:docs:os2:modules:VIOCALLS]] | API/FAPI | | | 1.20 |
+| [[en:docs:fapi:DosSysTrace]]       | Write trace entry                                        | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | | | 1.20 |
+| [[en:docs:fapi:DosGetSTDA]]        | Return Trace buffer                                      | [[en:docs:os2:modules:DOSCALLS]] | API/FAPI | | | 1.20 |
+
+                

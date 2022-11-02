@@ -1,0 +1,9 @@
+[Q]: Проблема с _System в BC++/2
+
+[A]: Vadim Tkachenko (2:463/121)
+
+Все очень просто.
+
+#define _System _syscall
+
+и включить эту строку во все сорсы ПЕРЕД #include.

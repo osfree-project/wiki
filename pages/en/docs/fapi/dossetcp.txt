@@ -1,0 +1,66 @@
+{{page>en:templates:fapiint}}
+
+====== DosSetCp ======
+
+This call allows a process to set its code page and the session's display code page and keyboard code page.
+
+===== Syntax =====
+<code c>
+ DosSetCp (CodePage, Reserved)
+</code>
+
+===== Parameters =====
+
+  * CodePage (USHORT) - input: Code page identifier word that has one of the following values:
+    * 437  IBM PC US 437 code page
+    * 850  Multilingual code page
+    * 860  Portuguese code page
+    * 863  Canadian-French code page
+    * 865  Nordic code page.
+  * Reserved (USHORT) - input: Reserved must be set to zero.
+
+===== Return Code =====
+
+rc (USHORT) - return:Return code descriptions are:
+
+  * 0 NO_ERROR
+  * 5 ERROR_ACCESS_DENIED
+  * 13 ERROR_INVALID_DATA
+  *472 ERROR_INVALID_CODE_PAGE
+  *482 ERROR_CP_SWITCH_INCOMPLETE
+
+===== Remarks =====
+
+DosSetCp allows a program to set its code page. See CONFIG.SYS and the CODEPAGE command for preparing code pages for the system. The first code page specified in the CODEPAGE command is the default system code page. The session code page of a new session is set to the default system code page. A session's code page can be changed by the user with the CHCP command at the command prompt. The process code page of a new program started from a session command prompt is set to that session's code page.
+
+DosSetCp sets the process code page of the calling process. The code page of a process is used in a series of ways. First, the printer code page is set to the process code page through the file system and printer spooler when the process makes an open printer request. Calling DosSetCp does not affect the code page of a printer opened prior to the call and does not affect the code page of a printer opened by another process. Second, country dependent information, by default, is retrieved encoded in the code page of the calling process. And third, a newly created process inherits its process code page from its parent process.
+
+DosSetCp also sets, in the session to which the calling process belongs, the code page for the session's default logical keyboard and automatically flushes the keyboard buffer. It also sets the display code page for the session's logical display. This setting of the code page for the session's default logical keyboard and display overrides any previous setting by DosSetCp, [[DosSetProcCp]], [[KbdSetCp]], and [[VioSetCp]] by any process in the same session.
+
+===== Bindings =====
+
+====C====
+<code c>
+#define INCL_DOSNLS
+
+USHORT  rc = DosSetCp(CodePage, Reserved);
+
+USHORT  CodePage;      /* Code page identifier */
+USHORT  0;             /* Reserved, set to zero */
+
+USHORT  rc;            /* return code */
+</code>
+
+====MASM====
+<code asm>
+EXTRN  DosSetCp:FAR
+INCL_DOSNLS         EQU 1
+
+PUSH   WORD    CodePage      ;Code page identifier
+PUSH   WORD    0             ;Reserved (must be zero)
+CALL   DosSetCp
+
+Returns WORD
+</code>
+
+{{page>en:templates:fapi}}

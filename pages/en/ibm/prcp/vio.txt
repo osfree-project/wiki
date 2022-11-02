@@ -1,0 +1,36 @@
+===== Video Functions =====
+
+This section reflects the Video API interface of OS/2 only. 
+
+If ERROR_VIO_SEE_ERROR_LOG is returned, further information about the error that occurred can be obtained by calling WinGetLast Error. 
+
+**Notes**: 
+
+  * Calls marked xPM are not supported by Presentation Manager, and must not be used by Presentation Manager applications. An error code is returned if any of these calls are issued. 
+  * Calls marked xWPM are not windowable and are not supported by Presentation Manager. They can be used in OS/2 mode. 
+  * Calls marked FAPI are present in the Family API. 
+
+^# ^FUNCTION CALL ^ICON ^# ^FUNCTION CALL ^ICON ^
+|1 |[[en:ibm:prcp:vio:dereg|VioDeRegister]] |xWPM |24 |[[en:ibm:prcp:vio:scrlock|VioScrLock]] |FAPI |
+|2 |[[en:ibm:prcp:vio:endpopup|VioEndPopUp]] | |25 |[[en:ibm:prcp:vio:scrolldn|VioScrollDn]] |FAPI |
+|3 |[[en:ibm:prcp:vio:getansi|VioGetAnsi]] | |26 |[[en:ibm:prcp:vio:scrolllf|VioScrollLf]] |FAPI |
+|4 |[[en:ibm:prcp:vio:getbuf|VioGetBuf]] | |27 |[[en:ibm:prcp:vio:scrollrt|VioScrollRt]] |FAPI |
+|5 |[[en:ibm:prcp:vio:getconfig|VioGetConfig]] |FAPI |28 |[[en:ibm:prcp:vio:scrollup|VioScrollUp]] |FAPI |
+|6 |[[en:ibm:prcp:vio:getcp|VioGetCp]] | |29 |[[en:ibm:prcp:vio:scrunlock|VioScrUnLock]] |FAPI |
+|7 |[[en:ibm:prcp:vio:getcurpos|VioGetCurPos]] |FAPI |30 |[[en:ibm:prcp:vio:setansi|VioSetAnsi]] | |
+|8 |[[en:ibm:prcp:vio:getcurtype|VioGetCurType]] |FAPI |31 |[[en:ibm:prcp:vio:setcp|VioSetCp]] | |
+|9 |[[en:ibm:prcp:vio:getfont|VioGetFont]] |FAPI |32 |[[en:ibm:prcp:vio:setcurpos|VioSetCurPos]] |FAPI |
+|10 |[[en:ibm:prcp:vio:getmode|VioGetMode]] |FAPI |33 |[[en:ibm:prcp:vio:setcurtype|VioSetCurType]] |FAPI |
+|11 |[[en:ibm:prcp:vio:getphysbuf|VioGetPhysBuf]] |FAPI |34 |[[en:ibm:prcp:vio:setfont|VioSetFont]] |FAPI |
+|12 |[[en:ibm:prcp:vio:getstate|VioGetState]] |FAPI |35 |[[en:ibm:prcp:vio:setmode|VioSetMode]] |FAPI |
+|13 |[[en:ibm:prcp:vio:globalreg|VioGlobalReg]] | |36 |[[en:ibm:prcp:vio:setstate|VioSetState]] |FAPI |
+|14 |[[modeundo|VioModeUndo]] |xWPM |37 |[[en:ibm:prcp:vio:showbuf|VioShowBuf]] | |
+|15 |[[en:ibm:prcp:vio:modewait|VioModeWait]] |xWPM |38 |[[en:ibm:prcp:vio:wrtcellstr|VioWrtCellStr]] |FAPI |
+|16 |[[en:ibm:prcp:vio:popup|VioPopUp]] | |39 |[[en:ibm:prcp:vio:wrtcharstr|VioWrtCharStr]] |FAPI |
+|17 |[[en:ibm:prcp:vio:prtsc|VioPrtSc]] |xWPM |40 |[[en:ibm:prcp:vio:wrtcharstratt|VioWrtCharStrAtt]] |FAPI |
+|18 |[[en:ibm:prcp:vio:prtsctoggle|VioPrtScToggle]] |xWPM |41 |[[en:ibm:prcp:vio:wrtnattr|VioWrtNAttr]] |FAPI |
+|19 |[[en:ibm:prcp:vio:readcellstr|VioReadCellStr]] |FAPI |42 |[[en:ibm:prcp:vio:wrtncell|VioWrtNCell]] |FAPI |
+|20 |[[en:ibm:prcp:vio:readcharstr|VioReadCharStr]] |FAPI |43 |[[en:ibm:prcp:vio:wrtnchar|VioWrtNChar]] |FAPI |
+|21 |[[en:ibm:prcp:vio:register|VioRegister]] |xWPM |44 |[[en:ibm:prcp:vio:wrttty|VioWrtTTY]] |FAPI |
+|22 |[[en:ibm:prcp:vio:savredrawundo|VioSavRedrawUndo]] |xWPM  |
+|23 |[[en:ibm:prcp:vio:savredrawwait|VioSavRedrawWait]] |xWPM  |

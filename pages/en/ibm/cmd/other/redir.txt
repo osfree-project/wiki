@@ -1,0 +1,11 @@
+===== Redirection and Piping ====
+
+This section covers **redirection** and **piping**. You can use these features to change how CMD.EXE and some application programs handle input and output. 
+
+Internal commands and many external programs get their input from the computer's **standard input** device and send their output to the **standard output** device. Some programs also send special messages to the **standard error** device. Normally, the keyboard is used for **standard input** and the video screen for both **standard output** and **standard error**. 
+
+Redirection and piping allow you to change these assignments temporarily. 
+
+[[en:docs:os2:cmd:other:redir:redirection|Redirection]] changes the standard input, standard output, or standard error device for a program or command from the default device (the keyboard or screen), to another device or to a file. 
+
+[[en:docs:os2:cmd:other:redir:piping|Piping]] changes the standard output and / or standard error device so that the output of one command becomes the standard input for another program or command. 

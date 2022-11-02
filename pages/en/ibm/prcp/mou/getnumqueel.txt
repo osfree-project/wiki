@@ -1,0 +1,68 @@
+==== MouGetNumQueEl ====
+
+**Bindings**: [[getnumqueel#C bindings|C]], [[getnumqueel#MASM bindings|MASM]]
+
+This call returns the current status for the mouse device driver event queue. 
+
+//MouGetNumQueEl// (QueDataRecord, DeviceHandle) 
+
+//QueDataRecord// (**PMOUQUEINFO**) - output 
+Address of the mouse queue status structure: 
+
+//numqelements// (**USHORT**) 
+Current number of event queue elements, in the range 0 <> //value// <> //maxnumqelements//. 
+
+//maxnumqelements// (**USHORT**) 
+Maximum number of queue elements as specified in the QSIZE = NN parameter in DEVICE=MOUSExxx.SYS statement in CONFIG.SYS. 
+
+//DeviceHandle// (**HMOU**) - input 
+Contains the handle of the mouse device obtained from a previous MouOpen. 
+
+//rc// (**USHORT**) - return 
+Return code descriptions are: 
+
+|0 |NO_ERROR |
+|385 |ERROR_MOUSE_NO_DEVICE |
+|466 |ERROR_MOU_DETACHED |
+|501 |ERROR_MOUSE_NO_CONSOLE |
+|505 |ERROR_MOU_EXTENDED_SG |
+
+**Remarks** 
+
+The //maxnumqelements// returned by this function is established during mouse device driver configuration. See the mouse DEVICE=MOUSExxx.SYS statement in the IBM Operating System/2 Version 1.2 Command Reference for further details. 
+
+=== C bindings ===
+
+<code c>
+typedef struct _MOUQUEINFO {   /* mouqi */
+  USHORT cEvents;              /* current number of event queue elements */
+  USHORT cmaxEvents;           /* MaxNumQueElements value */
+} MOUQUEINFO;
+
+#define INCL_MOU
+
+USHORT  rc = MouGetNumQueEl(QueDataRecord, DeviceHandle);
+
+PMOUQUEINFO      QueDataRecord; /* Ptr to 2-word structure */
+HMOU             DeviceHandle;  /* Mouse device handle */
+
+USHORT           rc;            /* return code */
+</code>
+
+=== MASM bindings ===
+
+<code asm>
+MOUQUEINFO struc
+  mouqi_cEvents    dw  ? ;current number of event queue elements
+  mouqi_cmaxEvents dw  ? ;MaxNumQueElements value
+MOUQUEINFO ends
+
+EXTRN  MouGetNumQueEl:FAR
+INCL_MOU            EQU 1
+
+PUSH@  OTHER   QueDataRecord  ;Ptr to 2-word structure
+PUSH   WORD    DeviceHandle   ;Mouse device handle
+CALL   MouGetNumQueEl
+
+Returns WORD
+</code>

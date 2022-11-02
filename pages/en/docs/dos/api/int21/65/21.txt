@@ -1,0 +1,48 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=65H, AL=21H ======
+
+===== Version =====
+
+4.0 and higher
+
+===== Brief =====
+
+capitalize string
+
+===== Family API =====
+
+
+===== Input =====
+
+  AX = 6521h
+  DS:DX -> string to capitalize
+  CX = length of string
+  
+===== Return =====
+
+   CF set on error
+   AX = error code (see #01680 at AH=59h/BX=0000h)
+  CF clear if successful
+
+  
+===== Macro =====
+
+
+===== Notes =====
+
+  
+
+===== See also =====
+
+   AH=38h - AH=70h"MS-DOS 7" - INT 2F/AX=1401h - INT 2F/AX=14FEh
+   
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:int}}
+
+{{page>en:templates:fapi}}
+
+

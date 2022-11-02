@@ -1,0 +1,5 @@
+===== Virtual File System servers =====
+
+To build virtual file system Neutral personality reuses L4VFS set of servers. L4VFS is a set of servers which provide virtual tree of different files and directories.
+
+~~DISCUSSION~~

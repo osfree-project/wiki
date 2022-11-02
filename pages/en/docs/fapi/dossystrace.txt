@@ -1,0 +1,77 @@
+{{page>en:templates:fapiint}}
+
+====== DosSysTrace ======
+
+===== Brief =====
+
+
+Writes a trace record to the system trace buffer. It provides a high speed event recording mechanism which may be used by PM and non-PM threads in ring 3 and ring 2 and by detached processes.
+
+===== Syntax =====
+<code c>
+ APIRET APIENTRY16 DosSysTrace
+        (USHORT major, USHORT cBuffer, USHORT minor, PCHAR pBuffer) 
+</code>
+
+===== Parameters =====
+
+  * major (USHORT) input : Major code which identifies the trace record. Range reserved for user is 245-255. Valid range 0-255 
+  * cBuffer (USHORT) input : Length of optional buffer. Valid range
+    *0 - 512 (before 4.0 FP 10 and 3.0 FP 35)
+    *0 - 4099 (from 3.0 FP35 and 4.0 FP10 onwards).
+  * minor (USHORT) input : Minor code which identifies the trace record. Major-minor code pair should uniquely identify the trace record. Valid range 1 - 255
+  * pBuffer (PCHAR) input : Pointer to optional buffer. If cBuffer is 0, then pBuffer is ignored.
+
+===== Return Code =====
+
+ulrc (APIRET) returns
+
+DosSysTrace returns one of the following values
+
+  * 0  NO_ERROR
+  * 150 ERROR_SYSTEM_TRACE
+
+===== Remarks =====
+
+DosSysTrace creates a trace record that includes the following items:
+
+  * Header Major code, minor code, time stamp, PID of logging process
+  * Optional System Data Controlled by the TRACE command
+  * Optional User Data Specified by the pBuffer parameter 
+
+To check is tracing enabled use [[DosGetInfoSeg]]. GlobalInfoSeg contains 256bit flags area. See [[DosGetInfoSeg]] for more info.
+
+===== Example Code =====
+
+<code c>
+int main(int argc, char *argv[], char *envp[]){
+   APIRET rc=0;          /* default return code */
+   USHORT major=255;       /* default major code */
+   USHORT minor=1;         /* default minor code */
+   USHORT cBuffer=0;       /* default buffer length */
+   PCHAR  pBuffer=NULL;    /* default buffer address */
+
+   if (argc>1)
+   {
+      pBuffer = argv[1];
+      cBuffer = strlen(argv[1]);
+   }
+
+   if (argc>2) major = atol(argv[2]);
+   if (argc>3) minor = atol(argv[3]);
+
+   rc = Dos16SysTrace(major, cBuffer, minor, pBuffer);
+
+   if (rc) printf("DosSysTrace retuned rc=%u\n", rc);
+
+   return rc;
+}
+</code>
+
+===== Related Functions =====
+
+
+  * [[DosDumpProcess]]
+  * [[DosForceSystemDump]]
+
+{{page>en:templates:fapi}}

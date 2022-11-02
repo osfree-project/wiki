@@ -1,0 +1,47 @@
+{{page>en:templates:dosint}}
+
+
+====== Int 21H, AH=04H ======
+
+===== Version =====
+
+1 and higher
+
+===== Brief =====
+
+WRITE CHARACTER TO STDAUX
+
+===== Family API =====
+
+[[en:docs:fapi:DosWrite]]
+
+===== Input =====
+
+  AH = 04h
+  DL = character to write
+
+===== Return =====
+
+nothing
+
+===== Notes =====
+
+ keyboard checked for ^C/^Break, and INT 23 executed if detected
+
+ STDAUX is usually the first serial port
+
+ if STDAUX is busy, this function will wait until it becomes free
+
+===== See also =====
+
+AH=03h,INT 14/AH=01h,INT E0/CL=04h
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:int}}
+
+{{page>en:templates:fapi}}
+
+

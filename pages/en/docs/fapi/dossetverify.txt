@@ -1,0 +1,63 @@
+{{page>en:templates:fapiint}}
+
+====== DosSetVerify ======
+
+This call sets the verify switch.
+
+===== Syntax =====
+
+<code c>
+DosSetVerify (VerifySetting)
+</code>
+
+===== Parameters =====
+
+  * VerifySetting ([[USHORT]]) - input : New state of Verify Mode for the requesting process as shown below:
+
+^ Value     ^ Definition ^
+| 0 | Verify mode is not active. |
+| 1 | Verify mode is active. |
+
+===== Return Code =====
+
+
+rc ([[USHORT]]) - return
+  
+Return code descriptions are:
+  * 0         NO_ERROR
+  * 11        ERROR_INVALID_VERIFY_SWITCH 
+
+===== Remarks =====
+
+
+When verify is active, OS/2 performs a verify operation each time it does a file write to assure proper data recording on the disk. Although disk recording errors are rare, this function has been provided for applications to verify the proper recording of critical data. 
+
+===== Example Code =====
+==== C Binding ====
+<code c>
+
+  #define INCL_DOSFILEMGR
+  
+  USHORT  rc = DosSetVerify(VerifySetting);
+  
+  USHORT           VerifySetting; /* New value of verify switch */
+  
+  USHORT           rc;            /* return code */
+</code>
+
+==== MASM Binding ====
+
+<code asm>
+  EXTRN  DosSetVerify:FAR
+  INCL_DOSFILEMGR     EQU 1
+  
+  PUSH   WORD    VerifySetting ;New value of verify switch
+  CALL   DosSetVerify
+</code>
+Returns WORD
+
+===== Note =====
+
+Text based on [[http://www.edm2.com/index.php/DosSetVerify_(FAPI)]]
+
+{{page>en:templates:fapi}}

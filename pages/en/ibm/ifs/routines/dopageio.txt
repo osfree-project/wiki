@@ -1,0 +1,61 @@
+==== FS_DOPAGEIO ====
+
+**Purpose**
+
+Performs all the I/O operations in a PageCmdList.   
+
+**Calling Sequence**
+
+<code c>
+int far pascal FS_DOPAGEIO(psffsi, psffsd, pList)
+
+struct sffsi far * psffsi;
+struct sffsd far * psffsd;
+struct PageCmdHeader far * pList;
+</code>
+
+**Where**
+
+//psffsi// is a pointer to the file-system-independent portion of an open file instance.   
+
+//psffsd// is a pointer to the file-system-dependent portion of an open file instance.   
+
+//pList// is a pointer to a PageCmdHeader structure.   
+
+The //PageCmdHeader// structure has the following format:   
+
+<code c>
+struct PageCmdHeader {
+    unsigned char  InFlags;      /* Input Flags                        */
+    unsigned char  OutFlags;     /* Output Flags - must be 0 on entry  */
+    unsigned char  OpCount;      /* Number of operations               */
+    unsigned char  Pad;          /* Pad for DWORD alignment            */
+    unsigned long  Reserved1;    /* Currently Unused                   */
+    unsigned long  Reserved2;    /* Currently Unused                   */
+    unsigned long  Reserved3;    /* Currently Unused                   */
+    struct PageCmd PageCmdList;  /* Currently Unused                   */
+}
+</code>
+
+The //PageCmd// structure has the following format:   
+
+<code c>
+struct PageCmd {
+    unsigned char Cmd;           /* Cmd Code (Read,Write,Verify)       */
+    unsigned char Priority;      /* Same values as for req packets     */
+    unsigned char Status;        /* Status byte                        */
+    unsigned char Error;         /* I24 error code                     */
+    unsigned long Addr;          /* Physical(0:32) or Virtual(16:16)   */
+    unsigned long FileOffset;    /* Byte Offset in page file  */
+}
+</code>
+
+**Remarks**
+
+//FS_DOPAGEIO// performs all the I/O operations specified in the //PageCmdList//.   
+
+If the disk driver Extended Strategy requests, a request list will be built from the //PageCmdList// and issued to the driver.   
+
+If the disk driver does not support Extended Strategy requests, the FSD can either let the kernel do the emulation (See //FS_OPENPAGEFILE// to set this state) or has the option to do the emulation itself.   
+
+For a detailed description of the Extended Strategy request interface please see the OS/2 Version 2.0 Physical Device Driver Reference.   

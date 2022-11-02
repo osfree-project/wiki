@@ -1,0 +1,69 @@
+{{page>en:templates:fapiint}}
+
+====== DosQSysInfo ======
+
+This call returns values of static system variables.
+
+===== Syntax =====
+
+<code c>
+DosQSysInfo (Index, DataBuf, DataBufLen)
+</code>
+
+===== Parameters =====
+
+  * Index (USHORT) - input : Ordinal of the system variable to return.
+  * Index = 0 indicates maximum path length. The maximum path length is returned in the first word of the DataBuf.
+  * DataBuf (PBYTE) - output : Address where the system returns the variable value.
+  * DataBufLen (USHORT) - input : Length of the data buffer.
+
+===== Return Code =====
+
+
+ rc (USHORT) - return:Return code descriptions include:
+
+  * 0 NO_ERROR
+  * 87 ERROR_INVALID_PARAMETER
+  *111 ERROR_BUFFER_OVERFLOW
+
+===== Remarks =====
+
+An OS/2 application may want to reference file objects managed by an installable file system that supports long file names. Because some installable file systems may support longer names than others, an application should issue DosQSysInfo upon initialization.
+
+DosQSysInfo returns the maximum path length supported by the file system currently installed. The path length includes the drive specifier (d:), the leading "\" and the trailing null character.
+
+The value returned by DosQSysInfo can be used to allocate buffers for storing path names returned by requests, for example, to [[DosFindFirst]] and [[DosFindNext]].
+
+===== Bindings =====
+
+==== C ====
+
+<code c>
+#define INCL_DOSFILEMGR
+
+USHORT  rc = DosQSysInfo(Index, DataBuf, DataBufLen);
+
+USHORT   Index;        /* Which variable */
+PBYTE    DataBuf;      /* System information (returned) */
+USHORT   DataBufLen;   /* Data buffer size */
+
+USHORT   rc;           /* return code */
+</code>
+
+==== MASM ====
+
+<code asm>
+EXTRN DosQSysInfo:FAR
+INCL_DOSFILEMGR     EQU 1
+
+PUSH   WORD  Index           ;Which variable
+PUSH@  OTHER DataBuf         ;System information (returned)
+PUSH   WORD  DataBufLen      ;Data buffer size
+CALL   DosQSysInfo
+
+Returns WORD
+</code>
+
+Text based on [[http://www.edm2.com/index.php/DosQSysInfo]]
+
+{{page>en:templates:fapi}}

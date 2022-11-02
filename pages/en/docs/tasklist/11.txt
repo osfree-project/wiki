@@ -1,0 +1,27 @@
+{{page>en:templates:dosshell}}
+
+====== Int 2FH, AX=4A05H, SI=0BH ======
+
+===== Version =====
+
+?
+
+===== Brief =====
+
+Get last error
+
+===== Input =====
+
+    None
+  
+===== Return =====
+
+    AX - last error
+
+===== Notes =====
+
+  Function returns error code of last task
+  
+===== See also =====
+
+   

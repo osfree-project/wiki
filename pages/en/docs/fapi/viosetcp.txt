@@ -1,0 +1,75 @@
+{{page>en:templates:fapiint}}
+
+====== VioSetCp ======
+
+This call allows a process to set the code page used to display text data on the screen for the specified handle.
+
+===== Syntax =====
+<code c>
+ VioSetCp (Reserved, CodePageID, VioHandle)
+</code>
+
+===== Parameters =====
+
+  * Reserved (USHORT) - input: Reserved word of 0s.
+  * CodePageID (USHORT) - input: The CodePageID must be either 0, -1, -2, or have been specified on the CONFIG.SYS CODEPAGE = statement. A value of 0000 indicates that the code page is to be set to the default ROM code page provided by the hardware. A value of -1 enables the user font codepage if user fonts have previously been set with [[VioSetFont]]. A value of -2 disables the user font and re-enables the prepared system codepage or ROM codepage that was active before the user font was enabled.
+
+If the code page ID is not 0, -1, -2, or does not match one of the ID's on the CODEPAGE = statement, an error results. Refer to ''IBM Operating System/2 Command Reference'' for a complete description of CODEPAGE.
+
+  * VioHandle (HVIO) - input : This must be zero unless the caller is a Presentation Manager application, in which case it must be the value returned by VioGetPs.
+
+===== Return Code =====
+
+rc (USHORT) - return:Return code descriptions are:
+
+  *0 NO_ERROR
+  *355 ERROR_VIO_MODE
+  *436 ERROR_VIO_INVALID_HANDLE
+  *465 ERROR_VIO_DETACHED
+  *469 ERROR_VIO_BAD_CP
+  *470 ERROR_VIO_NO_CP
+  *471 ERROR_VIO_NA_CP
+
+===== Remarks =====
+
+VioSetCp can be used to enable and disable the user font code page as well as the prepared system code pages. If a prepared system code page or the ROM code page is specified, any previously set code page is disabled and the specified code page is enabled.
+
+Specifying the special code page of -1 enables the user font code page if user fonts have previously been set. Specifying the special code page of -2 disables the user font code page and re-enables the prepared system code page or ROM code page that was active before the user font code page was enabled.
+
+==== PM Considerations ====
+
+Valid CodePageID values are 0 or one that was specified on the CONFIG.SYS
+
+CODEPAGE = statement; -1 and -2 are not valid for PM.
+
+This call can be used to set an [[EBCDIC]] code page for Advanced VIO. For a full-screen or Vio-windowed application, this function causes the displayed characters to be reinterpreted immediately in the new code page. For a Presentation Manager application, the characters in the base font are reinterpreted in the new code page only when other events cause the characters to be repainted. This function has no effect on displayed characters that use a font other than the base font.
+
+===== Bindings =====
+
+==== C ====
+<code c>
+#define INCL_VIO
+
+USHORT  rc = VioSetCp(Reserved, CodePageID, VioHandle);
+
+USHORT  Reserved;      /* Reserved (must be zero) */
+USHORT  CodePageID;    /* CodePage Id */
+HVIO    VioHandle;     /* Video handle */
+
+USHORT  rc;            /* return code */
+</code>
+
+====MASM====
+<code asm>
+EXTRN   VioSetCp:FAR
+INCL_VIO            EQU 1
+
+PUSH   WORD    Reserved      ;Reserved (must be zero)
+PUSH   WORD    CodePageID    ;CodePage Id
+PUSH   WORD    VioHandle     ;Video handle
+CALL   VioSetCp
+
+Returns WORD
+</code>
+
+{{page>en:templates:fapi}}

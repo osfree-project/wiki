@@ -1,0 +1,44 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=2CH ======
+
+===== Version =====
+
+1 and higher
+
+===== Brief =====
+
+GET SYSTEM TIME
+
+===== Family API =====
+
+
+===== Input =====
+
+        AH = 2Ch
+
+===== Return =====
+
+ CH = hour
+        CL = minute
+        DH = second
+        DL = 1/100 seconds
+
+===== Notes =====
+
+   on most systems, the resolution of the system clock is about 5/100sec,
+          so returned times generally do not increment by 1
+        on some systems, DL may always return 00h
+
+
+===== See also =====
+
+ AH=2Ah,AH=2Dh,AH=E7h"Novell",INT 1A/AH=00h,INT 1A/AH=02h,INT 1A/AH=FEh INT 2F/AX=120Dh
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:int}}
+
+{{page>en:templates:fapi}}

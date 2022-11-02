@@ -1,0 +1,65 @@
+{{logos:os2.gif?35x35}} 
+
+**Please help to find info about enries marked as //No info//**
+
+===== PMBIDI =====
+
+
+^Ordinal ^Name ^Desc ^ Status ^
+| 1 | PMBidi_Initialize | | |
+| 10 | WIN16SETLANGINFO | | |
+| 11 | WIN16QUERYLANGINFO | | |
+| 12 | WIN16SETKBDLAYER | | |
+| 13 | WIN16QUERYKBDLAYER | | |
+| 14 | WIN16SETLANGVIEWER | | |
+| 15 | WIN16QUERYLANGVIEWER | | |
+| 18 | WIN16SETPROCESSLANGINFO | | |
+| 19 | WIN16QUERYPROCESSLANGINFO | | |
+| 20 | Win32SetLangInfo | | |
+| 21 | Win32QueryLangInfo | | |
+| 22 | Win32SetKbdLayer | | |
+| 23 | Win32QueryKbdLayer | | |
+| 24 | Win32SetLangViewer | | |
+| 25 | Win32QueryLangViewer | | |
+| 30 | Win32SetProcessLangInfo | | |
+| 31 | Win32QueryProcessLangInfo | | |
+| 40 | GPI16SETBIDIATTR | | |
+| 41 | GPI16QUERYBIDIATTR | | |
+| 50 | Gpi32SetBidiAttr | | |
+| 51 | Gpi32QueryBidiAttr | | |
+| 60 | Bidi_QueryCp | | |
+| 61 | BIDI_16QUERYCP  | | |
+| 101 | PMBIDI_Get_StdDlgLang_Setting | | |
+| 102 | PMBIDI_16GET_STDDLGLANG_SETTING | | |
+| 110 | PMBIDI_String_To_BinVal | | |
+| 111 | PMBIDI_BinVal_To_String | | |
+| 112 | PMBIDI_Keyword_To_BinVal | | |
+| 113 | PMBIDI_Get_HelpBidi_Setting | | |
+| 200 | NLS16CONVERTBIDISTRING | | |
+| 201 | NLS16EDITSHAPE | | |
+| 202 | NLS16INVERSESTRING | | |
+| 203 | NLS16SHAPEBIDISTRING | | |
+| 204 | NLS16CONVERTBIDINUMERICS | | |
+| 205 | Nls32ConvertBidiString | | |
+| 206 | Nls32EditShape | | |
+| 207 | Nls32InverseString | | |
+| 208 | Nls32ShapeBidiString | | |
+| 209 | Nls32ConvertBidiNumerics | | |
+| 306 | layout_object_create | | |
+| 307 | layout_object_destroy | | |
+| 308 | layout_object_transform | | |
+| 309 | layout_object_editshape | | |
+| 310 | layout_object_setvalues | | |
+| 311 | layout_object_getvalues | | |
+| 400 | PMBIDI_16CP_TRANSLATE_STRING | | |
+| 401 | PMBIDI_CpTranslateString | | |
+| 450 | Bidi_MapSrcToTrg | | |
+| 451 | Bidi_ClassifyCodepage | | |
+| 452 | Bidi_IsStringBidi | | |
+| 453 | Bidi_IsStringAllBidi | | |
+| 454 | Bidi_ReverseString | | |
+| 460 | Bidi_LayoutConvert | | |
+| 461 | Bidi_LayoutEdit | | |
+| 999 | ulProcess_BidiAttr | | |
+
+{{page>en:templates:dlls}}

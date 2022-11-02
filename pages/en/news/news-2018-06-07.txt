@@ -1,0 +1,10 @@
+==== 7 June, 2018 ====
+
+Migration to the new hosting.
+
+Today we started migration of osfree.org to another hosting. Here we'll
+have more powerful server with more disk space, RAM and network bandwidth.
+
+{{tag>site migration server hosting}}
+
+~~DISCUSSION~~

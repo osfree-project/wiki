@@ -1,0 +1,31 @@
+===== Связь osFree с другими проектами =====
+
+==== Сравнение проектов по созданию клонов OS/2 ====
+
+^Название ^Ресурс ^Цели и задачи проекта ^
+|osFree   |[[http://www.osfree.org/]] | ОС на микроядре с наличием OS/2 Personality и использованием основных технологий OS/2 |
+|Voyager  |[[http://voyager.netlabs.org/]] | Совместимость с OS/2 на уровне WPS |
+|OS2Linux |[[http://sourceforge.net/projects/os2linux/]] |Библиотека для перекомпиляции программ OS/2 на Linux(Фактически - LibC) |
+|OS/2 API emulation for NT |[[http://i1.dk/ntos2/]] |Библиотека для перекомпиляции программ OS/2 под WinNT (реализовано около 110 OS/2 API) |
+|NuDawn   |[[http://sourceforge.net/projects/nudawn/]] | Аналог Wine, но целью стоит эмуляция OS/2 |
+|FreeOS   |http://www.freeos.cjb.net/ (сейчас не рабочий) | Проект по созданию клона OS/2. Не вышел за пределы обсуждения. |
+|ReactOS  |[[http://www.reactos.org/]] | Проект по созданию клона Windows NT. Одна из подсистем - ROS/2 - поддержка OS/2 Personality |
+|OS64     |https://groups.yahoo.com/neo/groups/os64/info | Цели и задачи неизвестны, заявлено о какой-то связи с OS/2 |
+|OS8/FreePM |[[http://wiki.laser.ru/os8]] | Проект FreePM и подборка информации по прочим технологиям OS/2 |
+|somFree    |[[http://sourceforge.net/projects/somfree/]] | проект somFree -- Open source реализация SOM |
+|docShell   |[[http://sourceforge.net/projects/docshell/]]| docShell -- Open Source реализация OpenDoc, на основе somFree |
+|2ine     |[[https://hg.icculus.org/icculus/2ine/]]| Проект 2ine -- эмуляция OS/2 API поверх Linux |
+
+==== Адаптация кода других проектов ====
+
+Проект osFree обладает ограниченными ресурсами, поэтому при разработке часто используется принцип "Возьми и адаптируй". 
+
+^Часть ОС   ^Исходный репозиторий ^Причина доработки ^
+|Загрузчик  |GRUB Legacy |Обеспечение поддержки технологии IFS |
+|Ядро       |DROPS/Fiasco |Основа для построения Personality neutral servers |
+|REXX       |ReginaREXX/OOREXX |Поддержки скриптовых языков |
+|PM         |FreePM |Доведение до минимально работоспособной версии |
+|SOM/WPS    |somFree |"Обратная" адаптация к PM с сохранением совместимости |
+|GNU/Linux Personality |L4Linux/Afterburner/GNU/Debian |Прямое использование кода |
+
+~~DISCUSSION~~

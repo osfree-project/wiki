@@ -1,0 +1,42 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=10H ======
+
+===== Version =====
+
+1 and higher
+
+===== Brief =====
+
+CLOSE FILE USING FCB
+
+===== Family API =====
+
+[[en:docs:fapi:DosClose]]
+
+===== Input =====
+
+        AH = 10h
+        DS:DX -> File Control Block (see #01345)
+
+===== Return =====
+
+AL = status       00h successful       FFh failed
+
+===== Notes =====
+
+ a successful close forces all disk buffers used by the file to be written and the directory entry to be updated
+
+ not supported by MS Windows 3.0 DOSX.EXE DOS extender
+        
+===== See also =====
+
+AH=0Fh,AH=16h,AH=3Eh
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:int}}
+
+{{page>en:templates:fapi}}

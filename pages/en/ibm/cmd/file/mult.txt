@@ -1,0 +1,21 @@
+===== Multiple Filenames =====
+
+Most file processing commands can work with multiple files at one time. To use multiple file names, you simply list the files one after another on the command line, separated by spaces. You can use wildcards in any or all of the filenames. For example, to copy all //.TXT// and //.DOC// files from the current directory to drive A, you could use this command: 
+
+<code>
+        [c:\] copy *.txt *.doc a:
+</code>
+
+If the files you want to work with are not in the default directory, you must include the full path with each filename: 
+
+<code>
+        [c:\] copy a:\details\file1.txt a:\details\file1.doc c:
+</code>
+
+Multiple filenames are handy when you want to work with a group of files which cannot be defined with a single filename and wildcards. They let you be very specific about which files you want to work with in a command. 
+
+When you use multiple filenames with a command that expects both a source and a destination, like [[en:docs:os2:cmd:internal:copy|COPY]] or [[en:docs:os2:cmd:internal:move|MOVE]], __be sure that you always include a specific destination on the command line__. If you don't, the command will assume that the last filename is the destination and may overwrite important files. 
+
+Like [[en:docs:os2:cmd:file:wild|extended wildcards]] and [[en:docs:os2:cmd:file:incl|include lists]], multiple filenames will work with internal commands but not with external programs, unless those programs have been written to handle multiple file names on the command line. 
+
+If you have a list of files to process that's too long to put on the command line or too time-consuming to type, see [[en:docs:os2:cmd:internal:for|FOR]] or [[en:docs:os2:cmd:internal:select|SELECT]] for another way of passing multiple file names to a command. 

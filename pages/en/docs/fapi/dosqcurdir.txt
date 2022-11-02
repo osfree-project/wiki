@@ -1,0 +1,85 @@
+{{page>en:templates:fapiint}}
+
+====== DosQCurDir ======
+
+This call returns the full path name of the current directory for the requesting process for the specified drive.
+
+===== Syntax =====
+
+<code c>
+DosQCurDir (DriveNumber, DirPath, DirPathLen)
+</code>
+
+===== Parameters =====
+
+  * DriveNumber ([[USHORT]]) - input : Drive number, for example:
+
+  Value Definition
+  0     default
+  1     A 
+  2     B
+  ...
+
+  * DirPath ([[PBYTE]]) - output : Address of the fully qualified path name of current directory.
+  * DirPathLen ([[PUSHORT]]) - input/output : Address of the length of the DirPath buffer. On input, this field contains the length of the directory path buffer in bytes. On output, if an error is returned because the buffer is too small, this field contains the required length.
+
+===== Return Code =====
+
+rc ([[USHORT]]) - return
+
+Return code descriptions are:
+
+  * 0   NO_ERROR
+  * 15  ERROR_INVALID_DRIVE
+  * 26  ERROR_NOT_DOS_DISK
+  * 108 ERROR_DRIVE_LOCKED
+  * 111 ERROR_BUFFER_OVERFLOW
+
+===== Remarks =====
+
+The drive letter is not part of the returned string. The string does not begin with a backslash and is terminated by a byte containing 00H.
+
+The system returns the length of the returned DirPath string in DirPathLen, which does not include the terminating null byte. In the case where the DirPath buffer is of insufficient length to hold the current directory path string, the system returns the required length (in bytes) for DirPath in DirPathLen.
+
+For FSDs, the case of the current directory is set according to the DirName passed in, not according to the case of the directories on disk. For example, if the directory "c:\bin" is created and [[DosChDir]] is called with DirName "c:\bin", the current directory returned by DosQCurDir will be "c:\bin".
+
+Programs running without the NEWFILES bit set are allowed to [[DosChDir]] to a non-8.3 filename format directory.
+
+[[DosQSysInfo]] must be used by an application to determine the maximum path length supported by OS/2. The returned value should be used to dynamically allocate buffers that are to be used to store paths. 
+
+===== Bindings =====
+
+==== C Binding ====
+
+<code c>
+#define INCL_DOSFILEMGR
+
+USHORT  rc = DosQCurDir(DriveNumber, DirPath, DirPathLen);
+
+USHORT  DriveNumber;   /* Drive number */
+PBYTE   DirPath;       /* Directory path buffer (returned) */
+PUSHORT DirPathLen;    /* Directory path buffer length (returned) */
+
+USHORT  rc;            /* return code */
+</code>
+
+==== MASM Binding ====
+
+<code asm>
+EXTRN  DosQCurDir:FAR
+INCL_DOSFILEMGR     EQU 1
+
+PUSH   WORD    DriveNumber   ;Drive number
+PUSH@  OTHER   DirPath       ;Directory path buffer (returned)
+PUSH@  WORD    DirPathLen    ;Directory path buffer length (returned)
+CALL   DosQCurDir
+
+</code>
+Returns WORD
+
+===== Note =====
+
+Text based on http://www.edm2.com/index.php/DosQCurDir
+
+{{page>en:templates:fapi}}
+

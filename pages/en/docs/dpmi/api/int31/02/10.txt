@@ -1,0 +1,44 @@
+{{page>en:templates:dpmi}}
+
+====== Int 31H, AH=02H, AL=10H ======
+
+===== Version =====
+
+1.0
+
+===== Brief =====
+
+Get Extended Processor Exception Handler Vector (Protected Mode)
+
+===== Input =====
+
+  AX = 0210H
+  BL = exception number (00H-1FH)
+        
+===== Return =====
+
+  if function successful
+  Carry flag = clear
+  CX:(E)DX = selector:offset of exception handler
+  
+  if function unsuccessful
+  Carry flag = set
+  AX = error code
+  8021H	invalid value (BL not in range 00H-1FH)
+
+===== Notes =====
+
+DPMI 1.0 clients should use this function in preference to Int 31H Function 0202H.
+
+The protected mode exceptions are sent to the protected mode handler of the current client. (See Appendix A: Glossary for definition of primary client.)
+    
+===== See also =====
+
+   
+
+===== Note =====
+
+Text based on [[http://www.delorie.com/djgpp/doc/dpmi/]]
+
+{{page>en:templates:dpmi:int}}
+

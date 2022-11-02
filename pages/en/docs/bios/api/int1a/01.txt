@@ -1,0 +1,46 @@
+{{page>en:templates:biosint}}
+
+====== Int 1AH, AH=01H ======
+
+===== Version =====
+
+IBM 5150 and higher
+
+===== Brief =====
+
+SetTime
+
+===== Family API =====
+
+[[en:docs:fapi:DosSetDateTime]]
+
+===== Input =====
+
+  * AH = 01h
+  * CX:DX = number of clock ticks since midnight
+
+===== Return =====
+
+nothing
+
+===== Macro =====
+
+<code asm>
+INCLUDE BIOS.INC
+
+@SetTime 54432
+</code>
+
+===== Notes =====
+
+  * there are approximately 18.2 clock ticks per second, 1800B0h per 24 hrs (except on Tandy 2000, where the clock runs at 20 ticks per second)
+  * this call resets the midnight-passed flag
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:biosapi}}
+
+{{page>en:templates:fapi}}
+

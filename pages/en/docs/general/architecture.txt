@@ -1,0 +1,31 @@
+===== osFree general architecture =====
+
+Here should be an index of architectural ideas for different osFree components.
+
+==== A microkernel (currently, L4/Fiasco.OC) ====
+
+<general concepts>
+
+==== Personality-Neutral Services ====
+
+The ideas around Personality Neutral Services, servers, libs, and how they could be reused in OS/2 personality.
+
+OS frameworks: l4env, l4re and Genode
+
+==== Device Driver Environment ====
+
+Wrappers for Linux/FreeBSD/etc drivers to work on l4env/l4re/Genode
+
+==== Multiple Virtual Machines (MVM) personality ====
+
+=== A historical note ===
+
+The term "MVM" goes from OS/2 (PowerPC). It replaces the term "MVDM" (Multiple Virtual **DOS** Machines). The PowerPC platform could not so easily emulate the Intel processor real mode, so it required more emulation. Though, we must say that it worked just fine, fast, and theoretically may be used not for DOS only. (IBM had plans to provide a binary compatibility with OS/2 (Intel), on the base of the same component which was used to run DOS Apps). 
+
+Read more on [[en:docs:general:mvm|MVM personality]]
+
+==== OS/2 Personality ====
+
+[[en:docs:os2:architecture|Architectural ideas behind osFree OS/2 personality]]
+
+~~DISCUSSION~~

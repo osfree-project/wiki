@@ -1,0 +1,963 @@
+{{logos:os2.gif?35x35}} {{logos:dos.gif?35x35}}
+
+===== DOSCALLS =====
+
+The [[en:docs:os2:api:cpi|CP (Control Program) API]]. Names is not used for exports. DOSCALLS exports ONLY BY ORDINAL. Names here for reference only. [[en:docs:fapi|FAPI]] column is a flag of DOS mode support. Version column is OS/2 version in which function was introduced.
+
+==== Entry points ====
+
+^ Ordinal ^ Name                                               ^ Description                    ^ Status ^ FAPI ^ Version ^
+|    1 | [[en:docs:os2:api:cpi:DOS16ICREATETHREAD]]            | Internal undocumented function | | No | 1.0 |
+|    2 | [[en:docs:os2:api:cpi:DOS16CWAIT]]                    | Wrapper around [[en:docs:os2:api:cpi:DosWaitChild]]    | | No | 1.0 |
+|    3 | [[en:docs:os2:api:cpi:DOS16ENTERCRITSEC]]             | Wrapper around [[en:docs:os2:api:cpi:DosEnterCritSec]] | | No | 1.0 |
+|    4 | [[en:docs:os2:api:cpi:DOS16IEXECPGM]]                 | Internal undocumented function | | No | 1.0 |
+|    5 | [[en:docs:os2:api:cpi:DOS16EXIT]]                     | Wrapper around [[en:docs:os2:api:cpi:DosExit]]/[[en:docs:dos:api:int21:4c|Int 21H, AH=4CH]] | Done | Yes | 1.0 |
+|    6 | [[en:docs:os2:api:cpi:DOS16EXITCRITSEC]]              | Wrapper around [[en:docs:os2:api:cpi:DosExitCritSec]] | | No | 1.0 |
+|    7 | [[en:docs:os2:api:cpi:DOS16EXITLIST]]                 | Wrapper around [[en:docs:os2:api:cpi:DosExitList]] | | No | 1.0 |
+|    8 | [[en:docs:os2:api:cpi:DOS16GETINFOSEG]]               | Wrapper around [[en:docs:os2:api:cpi:DosGetInfoBlocks]] | | No | 1.0 |
+|    9 | [[en:docs:os2:api:cpi:DOS16GETPRTY]]                  | Wrapper around [[en:docs:os2:api:cpi:DosGetInfoBlock]] | | No | 1.0 |
+|   10 | [[en:docs:os2:api:cpi:DOS16KILLPROCESS]]              | Wrapper around [[en:docs:os2:api:cpi:DosKillProcess]] | | No | 1.0 |
+|   11 | [[en:docs:os2:api:cpi:DOS16SETPRTY]]                  | Wrapper around [[en:docs:os2:api:cpi:DosSetPriority]] | | No | 1.0 |
+|   12 | [[en:docs:os2:api:cpi:DOS16PTRACE]]                   | Wrapper around [[en:docs:os2:api:cpi:DosDebug]] | | No | 1.0 |
+|   13 | [[en:docs:os2:api:cpi:DOS16HOLDSIGNAL]]               | Wrapper around [[en:docs:os2:api:cpi:DosSetSignalExceptionFocus]] | | Yes | 1.0 |
+|   14 | [[en:docs:os2:api:cpi:DOS16SETSIGHANDLER]]            | Wrapper around [[en:docs:os2:api:cpi:DosSetExceptionHandler]] | | Yes | 1.0 |
+|   15 | [[en:docs:os2:api:cpi:DOS16FLAGPROCESS]]              | | | No | 1.0 |
+|   16 | [[en:docs:os2:api:cpi:DOS16MAKEPIPE]]                 | Wrapper around [[en:docs:os2:api:cpi:DosCreatePipe]] | | No | 1.0 |
+|   17 | [[en:docs:os2:api:cpi:DOS16ISYSSEMCLEAR]]             | Internal undocumented function | | No | 1.0 |
+|   18 | [[en:docs:os2:api:cpi:DOS16ISEMREQUEST]]              | Internal undocumented function | | No | 1.0 |
+|   19 | [[en:docs:os2:api:cpi:DOS16ISYSSEMSET]]               | Internal undocumented function | | No | 1.0 |
+|   20 | [[en:docs:os2:api:cpi:DOS16SEMSETWAIT]]               | | | No | 1.0 |
+|   21 | [[en:docs:os2:api:cpi:DOS16ISEMWAIT]]                 | Internal undocumented function | | No | 1.0 |
+|   22 | [[en:docs:os2:api:cpi:DOS16MUXSEMWAIT]]               | | | No | 1.0 |
+|   23 | [[en:docs:os2:api:cpi:DOS16CLOSESEM]]                 | | | No | 1.0 |
+|   24 | [[en:docs:os2:api:cpi:DOS16CREATESEM]]                | | | No | 1.0 |
+|   25 | [[en:docs:os2:api:cpi:DOS16OPENSEM]]                  | | | No | 1.0 |
+|   26 | [[en:docs:os2:api:cpi:DOS16RESUMETHREAD]]             | Wrapper around [[en:docs:os2:api:cpi:DosResumeThread]] | | No | 1.0 |
+|   27 | [[en:docs:os2:api:cpi:DOS16SUSPENDTHREAD]]            | Wrapper around [[en:docs:os2:api:cpi:DosSuspendThread]] | | No | 1.0 |
+|   28 | [[en:docs:os2:api:cpi:DOS16SETDATETIME]]              | Wrapper around [[en:docs:os2:api:cpi:DosSetDateTime]] | | Yes | 1.0 |
+|   29 | [[en:docs:os2:api:cpi:DOS16TIMERASYNC]]               | Wrapper around [[en:docs:os2:api:cpi:DosAsyncTimer]] | | No | 1.0 |
+|   30 | [[en:docs:os2:api:cpi:DOS16TIMERSTART]]               | Wrapper around [[en:docs:os2:api:cpi:DosStartTimer]] | | No | 1.0 |
+|   31 | [[en:docs:os2:api:cpi:DOS16TIMERSTOP]]                | Wrapper around [[en:docs:os2:api:cpi:DosStopTimer]] | | No | 1.0 |
+|   32 | [[en:docs:os2:api:cpi:DOS16SLEEP]]                    | Wrapper around [[en:docs:os2:api:cpi:DosSleep]] | | Yes | 1.0 |
+|   33 | [[en:docs:os2:api:cpi:DOS16GETDATETIME]]              | Wrapper around [[en:docs:os2:api:cpi:DosGetDateTime]] | | Yes | 1.0 |
+|   34 | [[en:docs:os2:api:cpi:DOS16ALLOCSEG]]                 | | | Yes | 1.0 |
+|   35 | [[en:docs:os2:api:cpi:DOS16ALLOCSHRSEG]]              | | | No  | 1.0 |
+|   36 | [[en:docs:os2:api:cpi:DOS16GETSHRSEG]]                | | | No  | 1.0 |
+|   37 | [[en:docs:os2:api:cpi:DOS16GIVESEG]]                  | | | No  | 1.0 |
+|   38 | [[en:docs:os2:api:cpi:DOS16REALLOCSEG]]               | | | Yes | 1.0 |
+|   39 | [[en:docs:os2:api:cpi:DOS16FREESEG]]                  | Deallocates a memory segment | | Yes | 1.0 |
+|   40 | [[en:docs:os2:api:cpi:DOS16ALLOCHUGE]]                | | | Yes | 1.0 |
+|   41 | [[en:docs:os2:api:cpi:DOS16GETHUGESHIFT]]             | | | Yes | 1.0 |
+|   42 | [[en:docs:os2:api:cpi:DOS16REALLOCHUGE]]              | | | Yes | 1.0 |
+|   43 | [[en:docs:os2:api:cpi:DOS16CREATECSALIAS]]            | | | Yes | 1.0 |
+|   44 | [[en:docs:os2:api:cpi:DOS16LOADMODULE]]               | Wrapper around [[en:docs:os2:api:cpi:DosLoadModule]] | | No | 1.0 |
+|   45 | [[en:docs:os2:api:cpi:DOS16GETPROCADDR]]              | Wrapper around [[en:docs:os2:api:cpi:DosQueryProcAddr]] | | No | 1.0 |
+|   46 | [[en:docs:os2:api:cpi:DOS16FREEMODULE]]               | Wrapper around [[en:docs:os2:api:cpi:DosFreeModule]] | | No | 1.0 |
+|   47 | [[en:docs:os2:api:cpi:DOS16GETMODHANDLE]]             | Wrapper around [[en:docs:os2:api:cpi:DosQueryModuleHandle]] | | No | 1.0 |
+|   48 | [[en:docs:os2:api:cpi:DOS16GETMODNAME]]               | Wrapper around [[en:docs:os2:api:cpi:DosQueryModuleName]] | | No | 1.0 |
+|   49 | [[en:docs:os2:api:cpi:DOS16GETMACHINEMODE]]           | Get processor mode | Done | Yes | 1.0 |
+|   50 | [[en:docs:os2:api:cpi:DOS16BEEP]]                     | Wrapper around [[en:docs:os2:api:cpi:DosBeep]] | | Yes | 1.0 |
+|   51 | [[en:docs:os2:api:cpi:DOS16CLIACCESS]]                | | | Yes | 1.0 |
+|   52 | [[en:docs:os2:api:cpi:DOS16DEVCONFIG]]                | Wrapper around [[en:docs:os2:api:cpi:DosDevConfig]] | | Yes | 1.0 |
+|   53 | [[en:docs:os2:api:cpi:DOS16DEVIOCTL]]                 | Wrapper around [[en:docs:os2:api:cpi:DosDevIOCtl]] | | Yes | 1.0 |
+|   54 | [[en:docs:os2:api:cpi:DOS16SGSWITCH]]                 | | | No | 1.0 |
+|   55 | [[en:docs:os2:api:cpi:DOS16SGSWITCHME]]               | | | No | 1.0 |
+|   56 | [[en:docs:os2:api:cpi:DOS16BUFRESET]]                 | Wrapper around [[en:docs:os2:api:cpi:DosResetBuffer]] | | Yes | 1.0 |
+|   57 | [[en:docs:os2:api:cpi:DOS16CHDIR]]                    | Wrapper around [[en:docs:os2:api:cpi:DosSetCurrentDir]] | Done | Yes | 1.0 |
+|   58 | [[en:docs:os2:api:cpi:DOS16CHGFILEPTR]]               | Wrapper around [[en:docs:os2:api:cpi:DosSetFilePtr]] | Done | Yes | 1.0 |
+|   59 | [[en:docs:os2:api:cpi:DOS16CLOSE]]                    | Wrapper around [[en:docs:os2:api:cpi:DosClose]] | Done | Yes | 1.0 |
+|   60 | [[en:docs:os2:api:cpi:DOS16DELETE]]                   | Wrapper around [[en:docs:os2:api:cpi:DosDelete]] | Done | Yes | 1.0 |
+|   61 | [[en:docs:os2:api:cpi:DOS16DUPHANDLE]]                | Wrapper around [[en:docs:os2:api:cpi:DosDupHandle]] | Done | Yes | 1.0 |
+|   62 | [[en:docs:os2:api:cpi:DOS16FILELOCKS]]                | | | Yes | 1.0 |
+|   63 | [[en:docs:os2:api:cpi:DOS16FINDCLOSE]]                | Wrapper around [[en:docs:os2:api:cpi:DosFindClose]] | | Yes | 1.0 |
+|   64 | [[en:docs:os2:api:cpi:DOS16FINDFIRST]]                | Wrapper around [[en:docs:os2:api:cpi:DosFindFirst]] | | Yes | 1.0 |
+|   65 | [[en:docs:os2:api:cpi:DOS16FINDNEXT]]                 | Wrapper around [[en:docs:os2:api:cpi:DosFindNext]] | | Yes | 1.0 |
+|   66 | [[en:docs:os2:api:cpi:DOS16MKDIR]]                    | Wrapper around [[en:docs:os2:api:cpi:DosCreateDir]] | | Yes | 1.0 |
+|   67 | [[en:docs:os2:api:cpi:DOS16MOVE]]                     | Wrapper around [[en:docs:os2:api:cpi:DosMove]] | | Yes | 1.0 |
+|   68 | [[en:docs:os2:api:cpi:DOS16NEWSIZE]]                  | Wrapper around [[en:docs:os2:api:cpi:DosSetFileSize]] | | Yes | 1.0 |
+|   69 | [[en:docs:os2:api:cpi:DOS16PORTACCESS]]               | | | Yes | 1.0 |
+|   70 | [[en:docs:os2:api:cpi:DOS16OPEN]]                     | Wrapper around [[en:docs:os2:api:cpi:DosOpen]] | | Yes | 1.0 |
+|   71 | [[en:docs:os2:api:cpi:DOS16QCURDIR]]                  | Wrapper around [[en:docs:os2:api:cpi:DosQueryCurrentDir]] | | Yes | 1.0 |
+|   72 | [[en:docs:os2:api:cpi:DOS16QCURDISK]]                 | Wrapper around [[en:docs:os2:api:cpi:DosQueryCurrentDisk]] | | Yes | 1.0 |
+|   73 | [[en:docs:os2:api:cpi:DOS16QFHANDSTATE]]              | Wrapper around [[en:docs:os2:api:cpi:DosQueryFHState]] | | Yes | 1.0 |
+|   74 | [[en:docs:os2:api:cpi:DOS16QFILEINFO]]                | Wrapper around [[en:docs:os2:api:cpi:DosQueryFileInfo]] | | Yes | 1.0 |
+|   75 | [[en:docs:os2:api:cpi:DOS16QFILEMODE]]                | Wrapper around [[en:docs:os2:api:cpi:DosQueryFileMode]] | | Yes | 1.0 |
+|   76 | [[en:docs:os2:api:cpi:DOS16QFSINFO]]                  | Wrapper around [[en:docs:os2:api:cpi:DosQueryFSInfo]] | | Yes | 1.0 |
+|   77 | [[en:docs:os2:api:cpi:DOS16QHANDTYPE]]                | Wrapper around [[en:docs:os2:api:cpi:DosQueryHType]] | | No | 1.0 |
+|   78 | [[en:docs:os2:api:cpi:DOS16QVERIFY]]                  | Wrapper around [[en:docs:os2:api:cpi:DosQueryVerify]] | Done | Yes | 1.0 |
+|   79 | [[en:docs:os2:api:cpi:DOS16IREAD]]                    | Internal undocumented function | | No | 1.0 |
+|   80 | [[en:docs:os2:api:cpi:DOS16RMDIR]]                    | Wrapper around [[en:docs:os2:api:cpi:DosDeleteDir]] | Done | Yes | 1.0 |
+|   81 | [[en:docs:os2:api:cpi:DOS16SELECTDISK]]               | Wrapper around [[en:docs:os2:api:cpi:DosSetDefaultDisk]] | Done | Yes | 1.0 |
+|   82 | [[en:docs:os2:api:cpi:DOS16SETFHANDSTATE]]            | Wrapper around [[en:docs:os2:api:cpi:DosSetFHState]] | | Yes | 1.0 |
+|   83 | [[en:docs:os2:api:cpi:DOS16SETFILEINFO]]              | Wrapper around [[en:docs:os2:api:cpi:DosSetFileInfo]] | | Yes | 1.0 |
+|   84 | [[en:docs:os2:api:cpi:DOS16SETFILEMODE]]              | Wrapper around [[en:docs:os2:api:cpi:DosSetFileMode]] | | Yes | 1.0 |
+|   85 | [[en:docs:os2:api:cpi:DOS16SETMAXFH]]                 | Wrapper around [[en:docs:os2:api:cpi:DosSetMaxFH]] | | No | 1.0 |
+|   86 | [[en:docs:os2:api:cpi:DOS16SETVERIFY]]                | Wrapper around [[en:docs:os2:api:cpi:DosSetVerify]] | Done | Yes | 1.0 |
+|   87 | [[en:docs:os2:api:cpi:DOS16IWRITE]]                   | Internal undocumented function | | No | 1.0 |
+|   88 | [[en:docs:os2:api:cpi:DOS16SYSTEMSERVICE]]            | | | No | 1.0 |
+|   89 | [[en:docs:os2:api:cpi:DOS16SETVEC]]                   | | | Yes | 1.0 |
+|   90 | [[en:docs:os2:api:cpi:DOS16SYSTRACE]]                 | | | No | 1.0 |
+|   91 | [[en:docs:os2:api:cpi:DOS16GETENV]]                   | Wrapper around [[en:docs:os2:api:cpi:DosGetInfoBlocks]] | | Yes | 1.0 |
+|   92 | [[en:docs:os2:api:cpi:DOS16GETVERSION]]               | Wrapper around [[en:docs:os2:api:cpi:DosQuerySysInfo]] | | Yes | 1.0 |
+|   93 | [[en:docs:os2:api:cpi:DOS16QTRACEINFO]]               | | | No | 1.0 |
+|   94 | [[en:docs:os2:api:cpi:DOS16GETPID]]                   | | | No | 1.0 |
+|   95 | [[en:docs:os2:api:cpi:DOS16OPEN2]]                    | | |
+|   96 | [[en:docs:os2:api:cpi:DOS16LIBINIT]]                  | | | No | 1.0 |
+|   97 | [[en:docs:os2:api:cpi:DOS16SETFSINFO]]                | Wrapper around [[en:docs:os2:api:cpi:DosSetFSInfo]] | | Yes | 1.0 |
+|   98 | [[en:docs:os2:api:cpi:DOS16QPATHINFO]]                | | |
+|   99 | [[en:docs:os2:api:cpi:DOS16DEVIOCTL2]]                | | |
+|  100 | [[en:docs:os2:api:cpi:DOS16ICANONICALIZE]]            | Internal undocumented function |  | No | 1.0 |
+|  101 | [[en:docs:os2:api:cpi:DOS16SETFGND]]                  | | | No | 1.0 |
+|  102 | [[en:docs:os2:api:cpi:DOS16SWAPTASKINIT]]             | | | No | 1.0 |
+|  103 | [[en:docs:os2:api:cpi:DOS16READPHYS]]                 | | | No | 1.0 |
+|  104 | [[en:docs:os2:api:cpi:DOS16SETPATHINFO]]              | | |
+|  105 | [[en:docs:os2:api:cpi:DOS16SGSWITCHPROC2]]            | | |
+|  106 | [[en:docs:os2:api:cpi:STRUCHECK]]                     | | | No | 1.0 |
+|  107 | [[en:docs:os2:api:cpi:STRURESUPDATE]]                 | | | No | 1.0 |
+|  108 | [[en:docs:os2:api:cpi:DosISetRelMaxFH]]               | Internal undocumented function | | No | |
+|  109 | [[en:docs:os2:api:cpi:DosIDevIOCtl]]                  | Internal undocumented function | | No | |
+|  110 | [[en:docs:os2:api:cpi:DosForceDelete]]                | Gate to KAL | Done | No | |
+|  111 | [[en:docs:os2:api:cpi:DosKillThread]]                 | Gate to KAL | Done | No | |
+|  112 | [[en:docs:os2:api:cpi:DosQueryRASInfo]]               | | |
+|  113 | [[en:docs:os2:api:cpi:DosDumpProcess]]                | | |
+|  114 | [[en:docs:os2:api:cpi:DosSuppressPopUps]]             | | |
+|  115 | [[en:docs:os2:api:cpi:THK32ALLOCMEM]]                 | | |
+|  116 | [[en:docs:os2:api:cpi:THK32FREEMEM]]                  | | |
+|  117 | [[en:docs:os2:api:cpi:THK32ALLOCSTACK]]               | | |
+|  118 | [[en:docs:os2:api:cpi:DosOpen2Compt]]                 | | |
+|  119 | [[en:docs:os2:api:cpi:DOS16GETSTDA]]                  | | | No | 1.0 |
+|  120 | [[en:docs:os2:api:cpi:DOS16ERROR]]                    | Wrapper around [[en:docs:os2:api:cpi:DosError]] | | Yes | 1.0 |
+|  121 | [[en:docs:os2:api:cpi:DOS16GETSEG]]                   | | | No | 1.0 |
+|  122 | [[en:docs:os2:api:cpi:DOS16LOCKSEG]]                  | | | No | 1.0 |
+|  123 | [[en:docs:os2:api:cpi:DOS16UNLOCKSEG]]                | | | No | 1.0 |
+|  124 | [[en:docs:os2:api:cpi:DOS16SGSWITCHPROC]]             | | | No | 1.0 |
+|  125 | [[en:docs:os2:api:cpi:DOS16IRAMSEMWAKE]]              | Internal undocumented function | | No | 1.0 |
+|  126 | [[en:docs:os2:api:cpi:DOS16SIZESEG]]                  | | | 
+|  127 | [[en:docs:os2:api:cpi:DOS16MEMAVAIL]]                 | | | No | 1.0 |
+|  128 | [[en:docs:os2:api:cpi:DosIRamSemRequest]]             | Internal undocumented function  | | No | |
+|  129 | [[en:docs:os2:api:cpi:DOS16PHYSICALDISK]]             | | | No | 1.0 |
+|  130 | [[en:docs:os2:api:cpi:DOS16GETCP]]                    | Wrapper around [[en:docs:os2:api:cpi:DosQueryCp]] | | No | 1.0 |
+|  131 | [[en:docs:os2:api:cpi:DOS16ISETCP]]                   | Internal undocumented function | | No | 1.0 |
+|  132 | [[en:docs:os2:api:cpi:DOS16GLOBALSEG]]                | | | No | 1.0 |
+|  133 | [[en:docs:os2:api:cpi:DOS16PROFILE]]                  | | | No | 1.0 |
+|  134 | [[en:docs:os2:api:cpi:DOS16SENDSIGNAL]]               | | | No | 1.0 |
+|  135 | [[en:docs:os2:api:cpi:DOS16HUGESHIFT]]                | | | No | 1.0 |
+|  136 | [[en:docs:os2:api:cpi:DOS16HUGEINCR]]                 | | | No | 1.0 |
+|  137 | [[en:docs:os2:api:cpi:DOS16READ]]                     | Wrapper around [[en:docs:os2:api:cpi:DosRead]] | | Yes | 1.0 |
+|  138 | [[en:docs:os2:api:cpi:DOS16WRITE]]                    | Wrapper around [[en:docs:os2:api:cpi:DosWrite]] | | Yes | 1.0 |
+|  139 | [[en:docs:os2:api:cpi:DOS16ERRCLASS]]                 | Wrapper around [[en:docs:os2:api:cpi:DosErrClass]] | | Yes | 1.0 |
+|  140 | [[en:docs:os2:api:cpi:DOS16SEMREQUEST]]               | | | No | 1.0 |
+|  141 | [[en:docs:os2:api:cpi:DOS16SEMCLEAR]]                 | | | No | 1.0 |
+|  142 | [[en:docs:os2:api:cpi:DOS16SEMWAIT]]                  | | | No | 1.0 |
+|  143 | [[en:docs:os2:api:cpi:DOS16SEMSET]]                   | | | No | 1.0 |
+|  144 | [[en:docs:os2:api:cpi:DOS16EXECPGM]]                  | Wrapper around [[en:docs:os2:api:cpi:DosExecPgm]] | | Yes | 1.0 |
+|  145 | [[en:docs:os2:api:cpi:DOS16CREATETHREAD]]             | Wrapper around [[en:docs:os2:api:cpi:DosCreateThread]] | | No | 1.0 |
+|  146 | [[en:docs:os2:api:cpi:DOS16SUBSET]]                   | | | Yes | 1.0 |
+|  147 | [[en:docs:os2:api:cpi:DOS16SUBALLOC]]                 | | | Yes | 1.0 |
+|  148 | [[en:docs:os2:api:cpi:DOS16SUBFREE]]                  | | | Yes | 1.0 |
+|  149 | [[en:docs:os2:api:cpi:DOS16READASYNC]]                | | | No | 1.0 |
+|  150 | [[en:docs:os2:api:cpi:DOS16WRITEASYNC]]               | | | No | 1.0 |
+|  151 | [[en:docs:os2:api:cpi:DOS16SEARCHPATH]]               | Wrapper around [[en:docs:os2:api:cpi:DosSearchPath]] | | No | 1.0 |
+|  152 | [[en:docs:os2:api:cpi:DOS16SCANENV]]                  | Wrapper around [[en:docs:os2:api:cpi:DosScanEnv]] | | No | 1.0 |
+|  153 | [[en:docs:os2:api:cpi:DOS16SETCP]]                    | | | No | 1.0 |
+|  154 | [[en:docs:os2:api:cpi:DOS16QPROCSTATUS]]              | | | No | 1.0 |
+|  155 | [[en:docs:os2:api:cpi:DOS16GETRESOURCE]]              | | | No | |
+|  156 | [[en:docs:os2:api:cpi:DOS16GETPPID]]                  | | | No | |
+|  157 | [[en:docs:os2:api:cpi:DOS16CALLBACK]]                 | | | No | |
+|  158 | [[en:docs:os2:api:cpi:DosICallBack]]                  | Internal undocumented function | | No | |
+|  159 | [[en:docs:os2:api:cpi:DOS16RETFORWARD]]               | | | No | |
+|  160 | [[en:docs:os2:api:cpi:DOS16R2STACKREALLOC]]           | | | No | |
+|  161 | [[en:docs:os2:api:cpi:DOS16FSRAMSEMREQUEST]]          | | | No | |
+|  162 | [[en:docs:os2:api:cpi:DOS16FSRAMSEMCLEAR]]            | | | No | |
+|  163 | [[en:docs:os2:api:cpi:DOS16QAPPTYPE]]                 | | | No | |
+|  164 | [[en:docs:os2:api:cpi:DOS16SETPROCCP]]                | | | No | 1.0 |
+|  165 | [[en:docs:os2:api:cpi:DOS16DYNAMICTRACE]]             | | | No | |
+|  166 | [[en:docs:os2:api:cpi:DOS16QSYSINFO]]                 | | | No | |
+|  167 | [[en:docs:os2:api:cpi:DosIMakeNmPipe]]                | Internal undocumented function | | No | |
+|  168 | [[en:docs:os2:api:cpi:DosICallNmPipe]]                | Internal undocumented function | | No | |
+|  169 | [[en:docs:os2:api:cpi:DosIConnectNmPipe]]             | Internal undocumented function | | No | |
+|  170 | [[en:docs:os2:api:cpi:DosIDisconnectNmPipe]]          | Internal undocumented function | | No | |
+|  171 | [[en:docs:os2:api:cpi:DosIPeekNmPipe]]                | Internal undocumented function | | No | |
+|  172 | [[en:docs:os2:api:cpi:DosIQNmPipeInfo]]               | Internal undocumented function | | No | |
+|  173 | [[en:docs:os2:api:cpi:DosIQNmPHandState]]             | Internal undocumented function | | No | |
+|  174 | [[en:docs:os2:api:cpi:DosISetNmPHandState]]           | Internal undocumented function | | No | |
+|  175 | [[en:docs:os2:api:cpi:DosITransactNmPipe]]            | Internal undocumented function | | No | |
+|  176 | [[en:docs:os2:api:cpi:DosIWaitNmPipe]]                | Internal undocumented function | | No | |
+|  177 | [[en:docs:os2:api:cpi:DosISetNmPipeSem]]              | Internal undocumented function | | No | |
+|  178 | [[en:docs:os2:api:cpi:DosIQNmPipeSemState]]           | Internal undocumented function | | No | |
+|  179 | [[en:docs:os2:api:cpi:DosIRawReadNmPipe]]             | Internal undocumented function | | No | |
+|  180 | [[en:docs:os2:api:cpi:DosIRawWriteNmPipe]]            | Internal undocumented function | | No | |
+|  181 | [[en:docs:os2:api:cpi:DOS16FSATTACH]]                 | | | No | |
+|  182 | [[en:docs:os2:api:cpi:DOS16QFSATTACH]]                | | | No | |
+|  183 | [[en:docs:os2:api:cpi:DOS16FSCTL]]                    | | | No | |
+|  184 | [[en:docs:os2:api:cpi:DOS16FINDFIRST2]]               | | | No | |
+|  185 | [[en:docs:os2:api:cpi:DOS16MKDIR2]]                   | | | No | |
+|  186 | [[en:docs:os2:api:cpi:DOS16FILEIO]]                   | | | No | |
+|  187 | [[en:docs:os2:api:cpi:DOS16FINDNOTIFYCLOSE]]          | | | No | |
+|  188 | [[en:docs:os2:api:cpi:DOS16FINDNOTIFYFIRST]]          | | | No | |
+|  189 | [[en:docs:os2:api:cpi:DOS16FINDNOTIFYNEXT]]           | | | No | |
+|  190 | [[en:docs:os2:api:cpi:DOS16SETTRACEINFO]]             | | | No | |
+|  191 | [[en:docs:os2:api:cpi:DOS16EDITNAME]]                 | Wrapper around [[en:docs:os2:api:cpi:DosEditName]] | | No | |
+|  192 | [[en:docs:os2:api:cpi:DOS16LOGMODE]]                  | | | No | |
+|  193 | [[en:docs:os2:api:cpi:DOS16LOGENTRY]]                 | | | No | |
+|  194 | [[en:docs:os2:api:cpi:DOS16GETLOGBUFFER]]             | | | No | |
+|  195 | [[en:docs:os2:api:cpi:DOS16LOGREGISTER]]              | | | No | |
+|  196 | [[en:docs:os2:api:cpi:DOS16LOGREAD]]                  | | | No | |
+|  197 | [[en:docs:os2:api:cpi:DOS16FINDFROMNAME]]             | | | No | |
+|  198 | [[en:docs:os2:api:cpi:DOS16OPLOCKRELEASE]]            | | |
+|  199 | [[en:docs:os2:api:cpi:DOS16OPLOCKWAIT]]               | | |
+|  200 | [[en:docs:os2:api:cpi:DosICopy]]                      | Internal undocumented function | | No | |
+|  201 | [[en:docs:os2:api:cpi:DOS16COPY]]                     | Wrapper around [[en:docs:os2:api:cpi:DosCopy]] | |
+|  202 | [[en:docs:os2:api:cpi:DosIQAppType]]                  | Internal undocumented function | | No | |
+|  203 | [[en:docs:os2:api:cpi:DOS16FORCEDELETE]]              | Wrapper around [[en:docs:os2:api:cpi:DosForceDelete]] | |
+|  204 | [[en:docs:os2:api:cpi:DOS16ENUMATTRIBUTE]]            | | |
+|  205 | [[en:docs:os2:api:cpi:DOS16OPLOCKSHUTDOWN]]           | | |
+|  206 | [[en:docs:os2:api:cpi:DOS16SHUTDOWN]]                 | | |
+|  207 | [[en:docs:os2:api:cpi:DOS16GETRESOURCE2]]             | | |
+|  208 | [[en:docs:os2:api:cpi:DOS16FREERESOURCE]]             | | |
+|  209 | [[en:docs:os2:api:cpi:DosSetMaxFH]]                   | Gate to KAL | Done |
+|  210 | [[en:docs:os2:api:cpi:DosSetVerify]]                  | | |
+|  211 | [[en:docs:os2:api:cpi:DosErrClass]]                   | | |
+|  212 | [[en:docs:os2:api:cpi:DosError]]                      | Gate to KAL | Done |
+|  213 | [[en:docs:os2:api:cpi:DosCreateVDM]]                  | | |
+|  214 | [[en:docs:os2:api:cpi:DOS16MAXPATHLEN]]               | | |
+|  215 | [[en:docs:os2:api:cpi:DOS16PAGESIZE]]                 | | |
+|  216 | [[en:docs:os2:api:cpi:DOS16LOCALINFO]]                | | |
+|  217 | [[en:docs:os2:api:cpi:DOS16GLOBALINFO]]               | | |
+|  218 | [[en:docs:os2:api:cpi:DosSetFileInfo]]                | | |
+|  219 | [[en:docs:os2:api:cpi:DosSetPathInfo]]                | | |
+|  220 | [[en:docs:os2:api:cpi:DosSetDefaultDisk]]             | Gate to KAL | Done |
+|  221 | [[en:docs:os2:api:cpi:DosSetFHState]]                 | Gate to KAL | Done |
+|  222 | [[en:docs:os2:api:cpi:DosSetFSInfo]]                  | | |
+|  223 | [[en:docs:os2:api:cpi:DosQueryPathInfo]]              | Gate to KAL | Done |
+|  224 | [[en:docs:os2:api:cpi:DosQueryHType]]                 | Gate to KAL | Done |
+|  225 | [[en:docs:os2:api:cpi:DosQueryVerify]]                | | |
+|  226 | [[en:docs:os2:api:cpi:DosDeleteDir]]                  | Gate to KAL | Done |
+|  227 | [[en:docs:os2:api:cpi:DosScanEnv]]                    | | Done |
+|  228 | [[en:docs:os2:api:cpi:DosSearchPath]]                 | | Done |
+|  229 | [[en:docs:os2:api:cpi:DosSleep]]                      | Gate to KAL | Done |
+|  230 | [[en:docs:os2:api:cpi:DosGetDateTime]]                | | |
+|  231 | [[en:docs:os2:api:cpi:DosDevConfig]]                  | | |
+|  232 | [[en:docs:os2:api:cpi:DosEnterCritSec]]               | | |
+|  233 | [[en:docs:os2:api:cpi:DosExitCritSec]]                | | |
+|  234 | [[en:docs:os2:api:cpi:DosExit]]                       | Gate to KAL | Done |
+|  235 | [[en:docs:os2:api:cpi:DosKillProcess]]                | | |
+|  236 | [[en:docs:os2:api:cpi:DosSetPriority]]                | | |
+|  237 | [[en:docs:os2:api:cpi:DosResumeThread]]               | Gate to KAL | Done |
+|  238 | [[en:docs:os2:api:cpi:DosSuspendThread]]              | Gate to KAL | Done |
+|  239 | [[en:docs:os2:api:cpi:DosCreatePipe]]                 | | |
+|  240 | [[en:docs:os2:api:cpi:DosCallNPipe]]                  | | |
+|  241 | [[en:docs:os2:api:cpi:DosConnectNPipe]]               | | |
+|  242 | [[en:docs:os2:api:cpi:DosDisConnectNPipe]]            | | |
+|  243 | [[en:docs:os2:api:cpi:DosCreateNPipe]]                | | |
+|  244 | [[en:docs:os2:api:cpi:DosPeekNPipe]]                  | | |
+|  245 | [[en:docs:os2:api:cpi:DosQueryNPHState]]              | | |
+|  246 | [[en:docs:os2:api:cpi:DosRawReadNPipe]]               | | |
+|  247 | [[en:docs:os2:api:cpi:DosRawWriteNPipe]]              | | |
+|  248 | [[en:docs:os2:api:cpi:DosQueryNPipeInfo]]             | | |
+|  249 | [[en:docs:os2:api:cpi:DosQueryNPipeSemState]]         | | |
+|  250 | [[en:docs:os2:api:cpi:DosSetNPHState]]                | | |
+|  251 | [[en:docs:os2:api:cpi:DosSetNPipeSem]]                | | |
+|  252 | [[en:docs:os2:api:cpi:DosTransactNPipe]]              | | |
+|  253 | [[en:docs:os2:api:cpi:DosWaitNPipe]]                  | | |
+|  254 | [[en:docs:os2:api:cpi:DosResetBuffer]]                | Gate to KAL | Done |
+|  255 | [[en:docs:os2:api:cpi:DosSetCurrentDir]]              | Gate to KAL | Done |
+|  256 | [[en:docs:os2:api:cpi:DosSetFilePtr]]                 | Wrapper around [[en:docs:os2:api:cpi:DosSetFilePtrL]] | Done |
+|  257 | [[en:docs:os2:api:cpi:DosClose]]                      | Gate to KAL | Done |
+|  258 | [[en:docs:os2:api:cpi:DosCopy]]                       | | Done |
+|  259 | [[en:docs:os2:api:cpi:DosDelete]]                     | Gate to KAL | Done |
+|  260 | [[en:docs:os2:api:cpi:DosDupHandle]]                  | Gate to KAL | Done |
+|  261 | [[en:docs:os2:api:cpi:DosEditName]]                   | | Done |
+|  262 | [[en:docs:os2:api:cpi:THK32FREESTACK]]                | | |
+|  263 | [[en:docs:os2:api:cpi:DosFindClose]]                  | Gate to KAL | Done |
+|  264 | [[en:docs:os2:api:cpi:DosFindFirst]]                  | Gate to KAL | Done |
+|  265 | [[en:docs:os2:api:cpi:DosFindNext]]                   | Gate to KAL | Done |
+|  266 | [[en:docs:os2:api:cpi:DOS16OPENVDD]]                  | | |
+|  267 | [[en:docs:os2:api:cpi:DOS16REQUESTVDD]]               | | |
+|  268 | [[en:docs:os2:api:cpi:DOS16CLOSEVDD]]                 | | |
+|  269 | [[en:docs:os2:api:cpi:DosFSAttach]]                   | | |
+|  270 | [[en:docs:os2:api:cpi:DosCreateDir]]                  | Gate to KAL | Done |
+|  271 | [[en:docs:os2:api:cpi:DosMove]]                       | | Done |
+|  272 | [[en:docs:os2:api:cpi:DosSetFileSize]]                | Wrapper around [[en:docs:os2:api:cpi:DosSetFileSizeL]] | Done |
+|  273 | [[en:docs:os2:api:cpi:DosOpen]]                       | Wrapper around [[en:docs:os2:api:cpi:DosOpenL]] | Done |
+|  274 | [[en:docs:os2:api:cpi:DosQueryCurrentDir]]            | Gate to KAL | Done |
+|  275 | [[en:docs:os2:api:cpi:DosQueryCurrentDisk]]           | Gate to KAL | Done |
+|  276 | [[en:docs:os2:api:cpi:DosQueryFHState]]               | Gate to KAL | Done |
+|  277 | [[en:docs:os2:api:cpi:DosQueryFSAttach]]              | | |
+|  278 | [[en:docs:os2:api:cpi:DosQueryFSInfo]]                | | |
+|  279 | [[en:docs:os2:api:cpi:DosQueryFileInfo]]              | Gate to KAL | Done |
+|  280 | [[en:docs:os2:api:cpi:DosWaitChild]]                  | | |
+|  281 | [[en:docs:os2:api:cpi:DosRead]]                       | Gate to KAL | Done |
+|  282 | [[en:docs:os2:api:cpi:DosWrite]]                      | Gate to KAL | Done |
+|  283 | [[en:docs:os2:api:cpi:DosExecPgm]]                    | Gate to KAL | Done |
+|  284 | [[en:docs:os2:api:cpi:DosDevIOCtl]]                   | | |
+|  285 | [[en:docs:os2:api:cpi:DosFSCtl]]                      | Gate to KAL | Done |
+|  286 | [[en:docs:os2:api:cpi:DosBeep]]                       | | |
+|  287 | [[en:docs:os2:api:cpi:DosPhysicalDisk]]               | | |
+|  288 | [[en:docs:os2:api:cpi:DosSetCp]]                      | | |
+|  289 | [[en:docs:os2:api:cpi:DosSetProcessCp]]               | | |
+|  290 | [[en:docs:os2:api:cpi:DosStopTimer]]                  | | |
+|  291 | [[en:docs:os2:api:cpi:DosQueryCp]]                    | Gate to KAL | |
+|  292 | [[en:docs:os2:api:cpi:DosSetDateTime]]                | | |
+|  293 | [[en:docs:os2:api:cpi:THK32ALLOCBLOCK]]               | | |
+|  294 | [[en:docs:os2:api:cpi:THK32FREEBLOCK]]                | | |
+|  295 | [[en:docs:os2:api:cpi:THK32R3DS]]                     | | |
+|  296 | [[en:docs:os2:api:cpi:DosExitList]]                   | | |
+|  297 | [[en:docs:os2:api:cpi:DosAllocProtectedMem]]          | | |
+|  298 | [[en:docs:os2:api:cpi:DosAliasMem]]                   | | |
+|  299 | [[en:docs:os2:api:cpi:DosAllocMem]]                   | Gate to KAL | Done |
+|  300 | [[en:docs:os2:api:cpi:DosAllocSharedMem]]             | Gate to KAL | Done |
+|  301 | [[en:docs:os2:api:cpi:DosGetNamedSharedMem]]          | Gate to KAL | Done |
+|  302 | [[en:docs:os2:api:cpi:DosGetSharedMem]]               | Gate to KAL | Done |
+|  303 | [[en:docs:os2:api:cpi:DosGiveSharedMem]]              | Gate to KAL | Done |
+|  304 | [[en:docs:os2:api:cpi:DosFreeMem]]                    | Gate to KAL | Done |
+|  305 | [[en:docs:os2:api:cpi:DosSetMem]]                     | Gate to KAL | Done |
+|  306 | [[en:docs:os2:api:cpi:DosQueryMem]]                   | Gate to KAL | Done |
+|  307 | [[en:docs:os2:api:cpi:DosQueryMemState]]              | | |
+|  308 | [[en:docs:os2:api:cpi:DosOpenVDD]]                    | | |
+|  309 | [[en:docs:os2:api:cpi:DosRequestVDD]]                 | | |
+|  310 | [[en:docs:os2:api:cpi:DosCloseVDD]]                   | | |
+|  311 | [[en:docs:os2:api:cpi:DosCreateThread]]               | Gate to KAL | Done |
+|  312 | [[en:docs:os2:api:cpi:DosGetInfoBlocks]]              | Gate to KAL | Done |
+|  313 | [[en:docs:os2:api:cpi:DOS16ALLOCPROTSEG]]             | | |
+|  314 | [[en:docs:os2:api:cpi:DOS16ALLOCSHRPROTSEG]]          | | |
+|  315 | [[en:docs:os2:api:cpi:DOS16ALLOCPROTHUGE]]            | | |
+|  316 | [[en:docs:os2:api:cpi:DosDynamicTrace]]               | | |
+|  317 | [[en:docs:os2:api:cpi:DosDebug]]                      | | |
+|  318 | [[en:docs:os2:api:cpi:DosLoadModule]]                 | Gate to KAL | Done |
+|  319 | [[en:docs:os2:api:cpi:DosQueryModuleHandle]]          | Gate to KAL | Done |
+|  320 | [[en:docs:os2:api:cpi:DosQueryModuleName]]            | Gate to KAL | Done |
+|  321 | [[en:docs:os2:api:cpi:DosQueryProcAddr]]              | Gate to KAL | Done |
+|  322 | [[en:docs:os2:api:cpi:DosFreeModule]]                 | Gate to KAL | Done |
+|  323 | [[en:docs:os2:api:cpi:DosQueryAppType]]               | Gate to KAL | Done |
+|  324 | [[en:docs:os2:api:cpi:DosCreateEventSem]]             | Gate to KAL | Done |
+|  325 | [[en:docs:os2:api:cpi:DosOpenEventSem]]               | Gate to KAL | Done |
+|  326 | [[en:docs:os2:api:cpi:DosCloseEventSem]]              | Gate to KAL | Done |
+|  327 | [[en:docs:os2:api:cpi:DosResetEventSem]]              | | |
+|  328 | [[en:docs:os2:api:cpi:DosPostEventSem]]               | | |
+|  329 | [[en:docs:os2:api:cpi:DosWaitEventSem]]               | | |
+|  330 | [[en:docs:os2:api:cpi:DosQueryEventSem]]              | | |
+|  331 | [[en:docs:os2:api:cpi:DosCreateMutexSem]]             | | |
+|  332 | [[en:docs:os2:api:cpi:DosOpenMutexSem]]               | | |
+|  333 | [[en:docs:os2:api:cpi:DosCloseMutexSem]]              | | |
+|  334 | [[en:docs:os2:api:cpi:DosRequestMutexSem]]            | | |
+|  335 | [[en:docs:os2:api:cpi:DosReleaseMutexSem]]            | | |
+|  336 | [[en:docs:os2:api:cpi:DosQueryMutexSem]]              | | |
+|  337 | [[en:docs:os2:api:cpi:DosCreateMuxWaitSem]]           | | |
+|  338 | [[en:docs:os2:api:cpi:DosOpenMuxWaitSem]]             | | |
+|  339 | [[en:docs:os2:api:cpi:DosCloseMuxWaitSem]]            | | |
+|  340 | [[en:docs:os2:api:cpi:DosWaitMuxWaitSem]]             | | |
+|  341 | [[en:docs:os2:api:cpi:DosAddMuxWaitSem]]              | | |
+|  342 | [[en:docs:os2:api:cpi:DosDeleteMuxWaitSem]]           | | |
+|  343 | [[en:docs:os2:api:cpi:DosQueryMuxWaitSem]]            | | |
+|  344 | [[en:docs:os2:api:cpi:DosSubSetMem]]                  | | |
+|  345 | [[en:docs:os2:api:cpi:DosSubAllocMem]]                | | |
+|  346 | [[en:docs:os2:api:cpi:DosSubFreeMem]]                 | | |
+|  347 | [[en:docs:os2:api:cpi:DosSubUnsetMem]]                | | |
+|  348 | [[en:docs:os2:api:cpi:DosQuerySysInfo]]               | | |
+|  349 | [[en:docs:os2:api:cpi:DosWaitThread]]                 | Gate to KAL | Done |
+|  350 | [[en:docs:os2:api:cpi:DosAsyncTimer]]                 | | |
+|  351 | [[en:docs:os2:api:cpi:DosStartTimer]]                 | | |
+|  352 | [[en:docs:os2:api:cpi:DosGetResource]]                | | |
+|  353 | [[en:docs:os2:api:cpi:DosFreeResource]]               | | |
+|  354 | [[en:docs:os2:api:cpi:DosSetExceptionHandler]]        | | |
+|  355 | [[en:docs:os2:api:cpi:DosUnsetExceptionHandler]]      | | |
+|  356 | [[en:docs:os2:api:cpi:DosRaiseException]]             | | |
+|  357 | [[en:docs:os2:api:cpi:DosUnwindException]]            | | |
+|  358 | [[en:docs:os2:api:cpi:DosQueryPageUsage]]             | | |
+|  359 | [[en:docs:os2:api:cpi:DosQueryModFromCS]]             | | |
+|  360 | [[en:docs:os2:api:cpi:DosQueryModFromEIP]]            | | |
+|  361 | [[en:docs:os2:api:cpi:DosFPDataArea]]                 | | |
+|  362 | [[en:docs:os2:api:cpi:DosTmrQueryFreq]]               | | |
+|  363 | [[en:docs:os2:api:cpi:DosTmrQueryTime]]               | | |
+|  364 | [[en:docs:os2:api:cpi:DosAliasPerfCtrs]]              | | |
+|  365 | [[en:docs:os2:api:cpi:DosConfigPerf]]                 | | |
+|  366 | [[en:docs:os2:api:cpi:DosDeconPerf]]                  | | |
+|  367 | [[en:docs:os2:api:cpi:DosRegisterPerfCtrs]]           | | |
+|  368 | [[en:docs:os2:api:cpi:DosQuerySysState]]              | | |
+|  369 | [[en:docs:os2:api:cpi:DosFlatCS]]                     | | |
+|  370 | [[en:docs:os2:api:cpi:DosFlatDS]]                     | | |
+|  371 | [[en:docs:os2:api:cpi:DosQueryABIOSSupport]]          | | |
+|  372 | [[en:docs:os2:api:cpi:DosEnumAttribute]]              | | |
+|  373 | [[en:docs:os2:api:cpi:DosQueryDOSProperty]]           | | |
+|  374 | [[en:docs:os2:api:cpi:DosSetDOSProperty]]             | | |
+|  375 | [[en:docs:os2:api:cpi:DOS16QUERYDOSPROPERTY]]         | Wrapper around [[en:docs:os2:api:cpi:DosQueryDOSProperty]] | |
+|  376 | [[en:docs:os2:api:cpi:DOS16SETDOSPROPERTY]]           | Wrapper around [[en:docs:os2:api:cpi:DosSetDOSProperty]] | |
+|  377 | [[en:docs:os2:api:cpi:Dos32Profile]]                  | | |
+|  378 | [[en:docs:os2:api:cpi:DosSetSignalExceptionFocus]]    | | |
+|  379 | [[en:docs:os2:api:cpi:DosSendSignalException]]        | | |
+|  380 | [[en:docs:os2:api:cpi:DosEnterMustComplete]]          | | |
+|  381 | [[en:docs:os2:api:cpi:DosExitMustComplete]]           | | |
+|  382 | [[en:docs:os2:api:cpi:DosSetRelMaxFH]]                | Gate to KAL | Done |
+|  383 | [[en:docs:os2:api:cpi:DOS16PUTMESSAGE]]               | Wrapper around [[en:docs:os2:api:cpi:DosPutMessage]] | | | |
+|  384 | [[en:docs:os2:api:cpi:DOS16TRUEGETMESSAGE]]           | Wrapper around [[en:docs:os2:api:cpi:DosTrueGetMessage]] | | | |
+|  385 | [[en:docs:os2:api:cpi:DOS16INSMESSAGE]]               | Wrapper around [[en:docs:os2:api:cpi:DosInsertMessage]] | | | |
+|  386 | [[en:docs:os2:api:cpi:DosInsertMessage]]              | | Done |
+|  387 | [[en:docs:os2:api:cpi:DosPutMessage]]                 | | Done |
+|  388 | [[en:docs:os2:api:cpi:DosTrueGetMessage]]             | | Done |
+|  389 | [[en:docs:os2:api:cpi:DOS16IQUERYMESSAGECP]]          | | |
+|  390 | [[en:docs:os2:api:cpi:DosIQueryMessageCP]]            | | Done |
+|  391 | [[en:docs:os2:api:cpi:DOS16CASEMAP]]                  | Wrapper around [[en:docs:os2:api:cpi:DosMapCase]] | | | |
+|  392 | [[en:docs:os2:api:cpi:DOS16GETCOLLATE]]               | Wrapper around [[en:docs:os2:api:cpi:DosQueryCollate]] | | | |
+|  393 | [[en:docs:os2:api:cpi:DOS16GETCTRYINFO]]              | Wrapper around [[en:docs:os2:api:cpi:DosQueryCtryInfo]] | | | |
+|  394 | [[en:docs:os2:api:cpi:DOS16GETDBCSEV]]                | Wrapper around [[en:docs:os2:api:cpi:DosQueryDBCSEnv]] | | | |
+|  395 | [[en:docs:os2:api:cpi:DosQueryCtryInfo]]              | | |
+|  396 | [[en:docs:os2:api:cpi:DosQueryDBCSEnv]]               | Gate to KAL | Done |
+|  397 | [[en:docs:os2:api:cpi:DosMapCase]]                    | | |
+|  398 | [[en:docs:os2:api:cpi:DosQueryCollate]]               | | |
+|  399 | [[en:docs:os2:api:cpi:DOS16MAKENMPIPE]]               | | |
+|  400 | [[en:docs:os2:api:cpi:DOS16QNMPIPEINFO]]              | | |
+|  401 | [[en:docs:os2:api:cpi:DOS16CONNECTNMPIPE]]            | | |
+|  402 | [[en:docs:os2:api:cpi:DOS16DISCONNECTNMPIPE]]         | | |
+|  403 | [[en:docs:os2:api:cpi:DOS16QNMPHANDSTATE]]            | | |
+|  404 | [[en:docs:os2:api:cpi:DOS16SETNMPHANDSTATE]]          | | |
+|  405 | [[en:docs:os2:api:cpi:DOS16PEEKNMPIPE]]               | | |
+|  406 | [[en:docs:os2:api:cpi:DOS16WAITNMPIPE]]               | | |
+|  407 | [[en:docs:os2:api:cpi:DOS16TRANSACTNMPIPE]]           | | |
+|  408 | [[en:docs:os2:api:cpi:DOS16CALLNMPIPE]]               | | |
+|  409 | [[en:docs:os2:api:cpi:DOS16RAWREADNMPIPE]]            | | |
+|  410 | [[en:docs:os2:api:cpi:DOS16RAWWRITENMPIPE]]           | | |
+|  411 | [[en:docs:os2:api:cpi:DOS16SETNMPIPESEM]]             | | |
+|  412 | [[en:docs:os2:api:cpi:DOS16QNMPIPESEMSTATE]]          | | |
+|  413 | [[en:docs:os2:api:cpi:StartLazyWriter]]               | | |
+|  414 | [[en:docs:os2:api:cpi:_QueInst_Data]]                 | | |
+|  415 | [[en:docs:os2:api:cpi:DosShutdown]]                   | | |
+|  416 | [[en:docs:os2:api:cpi:DosICacheModule]]               | Internal undocumented function | | No | |
+|  417 | [[en:docs:os2:api:cpi:DosReplaceModule]]              | | |
+|  418 | [[en:docs:os2:api:cpi:DosAcknowledgeSignalException]] | | |
+|  419 | [[en:docs:os2:api:cpi:DosTIB]]                        | | |
+|  420 | [[en:docs:os2:api:cpi:DOS16TMRQUERYFREQ]]             | | |
+|  421 | [[en:docs:os2:api:cpi:DOS16TMRQUERYTIME]]             | | |
+|  422 | [[en:docs:os2:api:cpi:DOS16REGISTERPERFCTRS]]         | | |
+|  423 | [[en:docs:os2:api:cpi:DOS16FLATTOSEL]]                | Wrapper around [[en:docs:os2:api:cpi:DosFlatToSel]] | |
+|  424 | [[en:docs:os2:api:cpi:DOS16SELTOFLAT]]                | Wrapper around [[en:docs:os2:api:cpi:DosSelToFlat]] | |
+|  425 | [[en:docs:os2:api:cpi:DosFlatToSel]]                  | | |
+|  426 | [[en:docs:os2:api:cpi:DosSelToFlat]]                  | | |
+|  427 | [[en:docs:os2:api:cpi:DosIODelayCnt]]                 | | |
+|  428 | [[en:docs:os2:api:cpi:DosSetFileLocks]]               | Wrapper around [[en:docs:os2:api:cpi:DosSetFileLocksL]] | Done |
+|  429 | [[en:docs:os2:api:cpi:DosCancelLockRequest]]          | Wrapper around [[en:docs:os2:api:cpi:DosCancelLockRequestL]] | Done |
+|  430 | [[en:docs:os2:api:cpi:LogOpen]]                       | | |
+|  431 | [[en:docs:os2:api:cpi:LogClose]]                      | | |
+|  432 | [[en:docs:os2:api:cpi:LogAddEntries]]                 | | |
+|  433 | [[en:docs:os2:api:cpi:LogGetEntries]]                 | | |
+|  434 | [[en:docs:os2:api:cpi:LogSetState]]                   | | |
+|  435 | [[en:docs:os2:api:cpi:LogSetName]]                    | | |
+|  436 | [[en:docs:os2:api:cpi:LogQueryState]]                 | | |
+|  437 | [[en:docs:os2:api:cpi:DOS16OPENCHANGENOTIFY]]         | Wrapper around [[en:docs:os2:api:cpi:DosOpenChangeNotify]] | |
+|  438 | [[en:docs:os2:api:cpi:DOS16RESETCHANGENOTIFY]]        | Wrapper around [[en:docs:os2:api:cpi:DosResetChangeNotify]] | |
+|  439 | [[en:docs:os2:api:cpi:DOS16CLOSECHANGENOTIFY]]        | Wrapper around [[en:docs:os2:api:cpi:DosCloseChangeNotify]] | |
+|  440 | [[en:docs:os2:api:cpi:DosOpenChangeNotify]]           | | |
+|  441 | [[en:docs:os2:api:cpi:DosResetChangeNotify]]          | | |
+|  442 | [[en:docs:os2:api:cpi:DosCloseChangeNotify]]          | | |
+|  443 | [[en:docs:os2:api:cpi:DOS16QUERYABIOSSUPPORT]]        | | |
+|  444 | [[en:docs:os2:api:cpi:DosForceSystemDump]]            | | |
+|  447 | [[en:docs:os2:api:cpi:Dos32GetProcessorStatus]]       | | |
+|  448 | [[en:docs:os2:api:cpi:Dos32SetProcessorStatus]]       | | |
+|  449 | [[en:docs:os2:api:cpi:DOS16CREATESPINLOCK]]           | | |
+|  450 | [[en:docs:os2:api:cpi:DOS16ACQUIRESPINLOCK]]          | | |
+|  451 | [[en:docs:os2:api:cpi:DOS16RELEASESPINLOCK]]          | | |
+|  452 | [[en:docs:os2:api:cpi:DOS16FREESPINLOCK]]             | | |
+|  453 | [[en:docs:os2:api:cpi:Dos32TestPSD]]                  | | |
+|  454 | [[en:docs:os2:api:cpi:DosAllocThreadLocalMemory]]     | | |
+|  455 | [[en:docs:os2:api:cpi:DosFreeThreadLocalMemory]]      | | |
+|  460 | [[en:docs:os2:api:cpi:DosVerifyPidTid]]               | | |
+|  464 | [[en:docs:os2:api:cpi:PTDA_LANMAN_SEC]]               | Variable | Done |
+|  465 | [[en:docs:os2:api:cpi:PTDA_PID]]                      | Variable | Done |
+|  466 | [[en:docs:os2:api:cpi:SAS_SEL]]                       | Variable | Done |
+|  467 | [[en:docs:os2:api:cpi:TCB_OPCOOKIE]]                  | Variable | Done |
+|  468 | [[en:docs:os2:api:cpi:TCB_OPFLAGS]]                   | Variable | Done |
+|  469 | [[en:docs:os2:api:cpi:TCB_NEWFLAGS]]                  | Variable | Done |
+|  470 | [[en:docs:os2:api:cpi:TCB_USER_ID]]                   | Variable | Done |
+|  471 | [[en:docs:os2:api:cpi:TCB_PROC_ID]]                   | Variable | Done |
+|  472 | [[en:docs:os2:api:cpi:TCB_FSHARING]]                  | Variable | Done |
+|  473 | [[en:docs:os2:api:cpi:TCB_SRVATTRIB]]                 | Variable | Done |
+|  474 | [[en:docs:os2:api:cpi:TCB_ALLOWED]]                   | Variable | Done |
+|  475 | [[en:docs:os2:api:cpi:TCB_PRTCB]]                     | Variable | Done |
+|  476 | [[en:docs:os2:api:cpi:TCB_NUMBER]]                    | Variable | Done |
+|  477 | [[en:docs:os2:api:cpi:TCB_THISSFT]]                   | Variable | Done |
+|  478 | [[en:docs:os2:api:cpi:TCB_THISCDS]]                   | Variable | Done |
+|  479 | [[en:docs:os2:api:cpi:TKOPTDA]]                       | Variable | Done |
+|  480 | [[en:docs:os2:api:cpi:PTDA_CRITSEC]]                  | Variable | Done |
+|  481 | [[en:docs:os2:api:cpi:PTDA_HOLDSIGCNT]]               | Variable | Done |
+|  482 | [[en:docs:os2:api:cpi:PTDA_PPTDAPARENT]]              | Variable | Done |
+|  483 | [[en:docs:os2:api:cpi:PTDA_PGDATA]]                   | Variable | Done |
+|  484 | [[en:docs:os2:api:cpi:PTDA_HANDLE]]                   | Variable | Done |
+|  485 | [[en:docs:os2:api:cpi:PTDA_MODULE]]                   | Variable | Done |
+|  486 | [[en:docs:os2:api:cpi:PTDA_LDTHANDLE]]                | Variable | Done |
+|  487 | [[en:docs:os2:api:cpi:PTDA_CODEPAGE_TAG]]             | Variable | Done |
+|  488 | [[en:docs:os2:api:cpi:PTDA_JFN_LENGTH]]               | Variable | Done |
+|  489 | [[en:docs:os2:api:cpi:PTDA_JFN_PTABLE]]               | Variable | Done |
+|  490 | [[en:docs:os2:api:cpi:PTDA_JFN_FLG_PTR]]              | Variable | Done |
+|  491 | [[en:docs:os2:api:cpi:PTDA_EXTERR_LOCUS]]             | Variable | Done |
+|  492 | [[en:docs:os2:api:cpi:PTDA_EXTERR]]                   | Variable | Done |
+|  493 | [[en:docs:os2:api:cpi:PTDA_EXTERR_ACTION]]            | Variable | Done |
+|  494 | [[en:docs:os2:api:cpi:PTDA_EXTERR_CLASS]]             | Variable | Done |
+|  495 | [[en:docs:os2:api:cpi:PTDA_PPID]]                     | Variable | Done |
+|  496 | [[en:docs:os2:api:cpi:PTDA_PROCTYPE]]                 | Variable | Done |
+|  497 | [[en:docs:os2:api:cpi:PTDA_CURRTCB]]                  | Variable | Done |
+|  498 | [[en:docs:os2:api:cpi:PTDA_CURRTSD]]                  | Variable | Done |
+|  499 | [[en:docs:os2:api:cpi:PTDA_SIGNATURE]]                | Variable | Done |
+|  541 | [[en:docs:os2:api:cpi:DosIOpenL]]                     | Internal undocumented function | | No | |
+|  542 | [[en:docs:os2:api:cpi:DosIProtectOpenL]]              | Internal undocumented function | | No | |
+|  543 | [[en:docs:os2:api:cpi:DosISetFileSizeL]]              | Internal undocumented function | | No | |
+|  544 | [[en:docs:os2:api:cpi:DosIProtectSetFileSizeL]]       | Internal undocumented function | | No | |
+|  545 | [[en:docs:os2:api:cpi:DosExceptionCallBack]]          | | |
+|  546 | [[en:docs:os2:api:cpi:THK32STRLEN]]                   | | |
+|  547 | [[en:docs:os2:api:cpi:THK32_UNITHUNK]]                | | |
+|  548 | [[en:docs:os2:api:cpi:DosR3ExceptionDispatcher]]      | | |
+|  549 | [[en:docs:os2:api:cpi:DosLibiDisp]]                   | | |
+|  550 | [[en:docs:os2:api:cpi:DosLibiDisp16]]                 | | |
+|  551 | [[en:docs:os2:api:cpi:DosLibiDisp32]]                 | | |
+|  552 | [[en:docs:os2:api:cpi:DOS16R3EXITADDR]]               | | |
+|  553 | [[en:docs:os2:api:cpi:Dos32R3ExitAddr]]               | | |
+|  554 | [[en:docs:os2:api:cpi:Dos32IRead]]                    | Internal undocumented function | | No | |
+|  556 | [[en:docs:os2:api:cpi:Dos32IWrite]]                   | Internal undocumented function | | No | |
+|  557 | [[en:docs:os2:api:cpi:Dos32CreateSpinLock]]           | | |
+|  558 | [[en:docs:os2:api:cpi:Dos32AcquireSpinLock]]          | | |
+|  559 | [[en:docs:os2:api:cpi:Dos32ReleaseSpinLock]]          | | |
+|  560 | [[en:docs:os2:api:cpi:Dos32FreeSpinLock]]             | | |
+|  561 | [[en:docs:os2:api:cpi:Dos32PMR3WaitEventSem]]         | | |
+|  562 | [[en:docs:os2:api:cpi:Dos32PMR3PostEventSem]]         | | |
+|  563 | [[en:docs:os2:api:cpi:Dos32QueryThreadAffinity]]      | | |
+|  564 | [[en:docs:os2:api:cpi:Dos32SetThreadAffinity]]        | | |
+|  565 | [[en:docs:os2:api:cpi:DosISetFileInfo]]               | Internal undocumented function | | No | |
+|  566 | [[en:docs:os2:api:cpi:DosISetPathInfo]]               | Internal undocumented function | | No | |
+|  569 | [[en:docs:os2:api:cpi:DosIFindNext]]                  | Internal undocumented function | | No | |
+|  570 ??? | [[en:docs:os2:api:cpi:Dos16SetFileSizeL]]         | | |
+|  572 | [[en:docs:os2:api:cpi:Dos32QueryResourceSize]]        | | |
+|  573 | [[en:docs:os2:api:cpi:DOS16QUERYRESOURCESIZE]]        | Wrapper around [[en:docs:os2:api:cpi:Dos32QueryResourceSize]] | |
+|  574 | [[en:docs:os2:api:cpi:DosPMSemWait]]                  | | |
+|  575 | [[en:docs:os2:api:cpi:DosPMMuxSemWait]]               | | |
+|  576 | [[en:docs:os2:api:cpi:THK16_UNITHUNK]]                | | |
+|  577 | [[en:docs:os2:api:cpi:HT16_STARTUP]]                  | | | 
+|  578 | [[en:docs:os2:api:cpi:HT16_CLEANUP]]                  | | |
+|  579 | [[en:docs:os2:api:cpi:HT32_STARTUP]]                  | | |
+|  580 | [[en:docs:os2:api:cpi:DosInitializePorthole]]         | | |
+|  581 | [[en:docs:os2:api:cpi:HT32_CLEANUP]]                  | | |
+|  582 | [[en:docs:os2:api:cpi:DosQueryHeaderInfo]]            | | |
+|  583 | [[en:docs:os2:api:cpi:DOS16INITIALIZEPORTHOLE]]       | | |
+|  584 | [[en:docs:os2:api:cpi:DOS16QUERYHEADERINFO]]          | | |
+|  585 | [[en:docs:os2:api:cpi:Mon32MonRead]]                  | | |
+|  586 | [[en:docs:os2:api:cpi:Dos32QueryProcType]]            | Gate to KAL | Done |
+|  587 | [[en:docs:os2:api:cpi:DOS16QUERYPROCTYPE]]            | | |
+|  588 | [[en:docs:os2:api:cpi:Mon32MonWrite]]                 | | |
+|  589 | [[en:docs:os2:api:cpi:DosISigDispatch]]               | Internal undocumented function | | No | |
+|  590 | [[en:docs:os2:api:cpi:Dos32PMPostEventSem]]           | | |
+|  591 | [[en:docs:os2:api:cpi:Dos32PMWaitEventSem]]           | | |
+|  592 | [[en:docs:os2:api:cpi:DosDllTermDisp]]                | | |
+|  593 | [[en:docs:os2:api:cpi:Dos32PMRequestMutexSem]]        | | |
+|  594 | [[en:docs:os2:api:cpi:DosIRaiseException]]            | Internal undocumented function | | No | |
+|  595 | [[en:docs:os2:api:cpi:Dos32PMWaitMuxWaitSem]]         | | |
+|  596 | [[en:docs:os2:api:cpi:DOSPM16SEMCHK]]                 | | |
+|  597 | [[en:docs:os2:api:cpi:DosIQueryFHState]]              | Internal undocumented function | | No | |
+|  598 | [[en:docs:os2:api:cpi:DosISetFHState]]                | Internal undocumented function | | No | |
+|  599 | [[en:docs:os2:api:cpi:DosLDTSel]]                     | | |
+|  600 | [[en:docs:os2:api:cpi:DosR3Frestor]]                  | | |
+|  601 | [[en:docs:os2:api:cpi:DosIFindFirst]]                 | Internal undocumented function | | No | |
+|  606 | [[en:docs:os2:api:cpi:DosMonOpen]]                    | | |
+|  607 | [[en:docs:os2:api:cpi:DosMonClose]]                   | | |
+|  608 | [[en:docs:os2:api:cpi:DosMonRead]]                    | | |
+|  609 | [[en:docs:os2:api:cpi:DosMonWrite]]                   | | |
+|  610 | [[en:docs:os2:api:cpi:DosMonReg]]                     | | |
+|  615 | [[en:docs:os2:api:cpi:Dos32IProtectWrite]]            | Internal undocumented function | | No | |
+|  617 | [[en:docs:os2:api:cpi:DosIProtectSetFileInfo]]        | Internal undocumented function | | No | |
+|  618 | [[en:docs:os2:api:cpi:Dos32IProtectSetFileInfo]]      | Internal undocumented function | | No | |
+|  619 | [[en:docs:os2:api:cpi:Dos32IProtectSetFHState]]       | Internal undocumented function | | No | |
+|  620 | [[en:docs:os2:api:cpi:Dos32IProtectQueryFHState]]     | Internal undocumented function | | No | |
+|  621 | [[en:docs:os2:api:cpi:DosProtectSetFilePtr]]          | Wrapper around [[en:docs:os2:api:cpi:DosProtectSetFilePtrL]] | Done |
+|  622 | [[en:docs:os2:api:cpi:DOS16PROTECTCLOSE]]             | Wrapper around [[en:docs:os2:api:cpi:DosProtectClose]] | |
+|  623 | [[en:docs:os2:api:cpi:DOS16PROTECTFILEIO]]            | | |
+|  624 | [[en:docs:os2:api:cpi:DOS16PROTECTFILELOCKS]]         | | |
+|  625 | [[en:docs:os2:api:cpi:DosIProtectRead]]               | Internal undocumented function | | No | |
+|  626 | [[en:docs:os2:api:cpi:DosIProtectWrite]]              | Internal undocumented function | | No | |
+|  627 | [[en:docs:os2:api:cpi:DOS16PROTECTNEWSIZE]]           | | |
+|  628 | [[en:docs:os2:api:cpi:DOS16PROTECTOPEN]]              | Wrapper around [[en:docs:os2:api:cpi:DosProtectOpen]] | |
+|  629 | [[en:docs:os2:api:cpi:DOS16PROTECTQFHANDSTATE]]       | | |
+|  630 | [[en:docs:os2:api:cpi:DOS16PROTECTSETFHANDSTATE]]     | | |
+|  631 | [[en:docs:os2:api:cpi:DOS16PROTECTQFILEINFO]]         | | |
+|  632 | [[en:docs:os2:api:cpi:DOS16PROTECTSETFILEINFO]]       | | |
+|  634 | [[en:docs:os2:api:cpi:DOS16PROTECTCHGFILEPTR]]        | | |
+|  635 | [[en:docs:os2:api:cpi:DOS16PROTECTENUMATTRIBUTE]]     | | |
+|  636 | [[en:docs:os2:api:cpi:DosProtectEnumAttribute]]       | | |
+|  637 | [[en:docs:os2:api:cpi:DosProtectOpen]]                | Wrapper around [[en:docs:os2:api:cpi:DosProtectOpenL]] | Done |
+|  638 | [[en:docs:os2:api:cpi:DosProtectClose]]               | | |
+|  639 | [[en:docs:os2:api:cpi:DosProtectSetFileLocks]]        | Wrapper around [[en:docs:os2:api:cpi:DosProtectSetFileLocksL]] | Done |
+|  640 | [[en:docs:os2:api:cpi:DosProtectSetFileSize]]         | Wrapper around [[en:docs:os2:api:cpi:DosProtectSetFileSizeL]] | Done |
+|  641 | [[en:docs:os2:api:cpi:DosProtectRead]]                | | |
+|  642 | [[en:docs:os2:api:cpi:DosProtectWrite]]               | | |
+|  643 | [[en:docs:os2:api:cpi:DosProtectSetFileInfo]]         | | |
+|  644 | [[en:docs:os2:api:cpi:DosProtectSetFHState]]          | | |
+|  645 | [[en:docs:os2:api:cpi:DosProtectQueryFHState]]        | | |
+|  646 | [[en:docs:os2:api:cpi:DosProtectQueryFileInfo]]       | | |
+|  647 | [[en:docs:os2:api:cpi:Dos32IProtectRead]]             | Internal undocumented function | | No | |
+|  649 | [[en:docs:os2:api:cpi:DosCloseMessageFile]]           | | |
+|  650 | [[en:docs:os2:api:cpi:DosLDRDirtyWorker]]             | | |
+|  651 | [[en:docs:os2:api:cpi:DOS16LDRDIRTYWORKER]]           | | |
+|  652 | [[en:docs:os2:api:cpi:Dos32IGetInfoBlocks]]           | Internal undocumented function | | No | |
+|  653 | [[en:docs:os2:api:cpi:T32IGETINFOBLOCKS]]             | Internal undocumented function | | No | |
+|  656 | [[en:docs:os2:api:cpi:T32GETPROCESSORSTATUS]]         | | |
+|  657 | [[en:docs:os2:api:cpi:T32SETPROCESSORSTATUS]]         | | |
+|  658 | [[en:docs:os2:api:cpi:T32TESTPSD]]                    | | |
+|  659 | [[en:docs:os2:api:cpi:T32QUERYTHREADAFFINITY]]        | | |
+|  660 | [[en:docs:os2:api:cpi:T32SETTHREADAFFINITY]]          | | |
+|  661 | [[en:docs:os2:api:cpi:Dos32ReadQueue]]                | | |
+|  662 | [[en:docs:os2:api:cpi:Dos32PurgeQueue]]               | | |
+|  663 | [[en:docs:os2:api:cpi:Dos32CloseQueue]]               | | |
+|  664 | [[en:docs:os2:api:cpi:Dos32QueryQueue]]               | | |
+|  665 | [[en:docs:os2:api:cpi:Dos32PeekQueue]]                | | |
+|  666 | [[en:docs:os2:api:cpi:Dos32WriteQueue]]               | | |
+|  667 | [[en:docs:os2:api:cpi:Dos32OpenQueue]]                | | |
+|  668 | [[en:docs:os2:api:cpi:Dos32CreateQueue]]              | | |
+|  669 | [[en:docs:os2:api:cpi:Dos32StartSession]]             | | |
+|  670 | [[en:docs:os2:api:cpi:Dos32SelectSession]]            | | |
+|  671 | [[en:docs:os2:api:cpi:Dos32SetSession]]               | | |
+|  672 | [[en:docs:os2:api:cpi:Dos32StopSession]]              | | |
+|  673 | [[en:docs:os2:api:cpi:DosRegisterNotification]]       | | |
+|  674 | [[en:docs:os2:api:cpi:DOS16READQUEUE]]                | Wrapper around [[en:docs:os2:api:cpi:DosReadQueue]] | | | 1.0 |
+|  675 | [[en:docs:os2:api:cpi:DOS16PURGEQUEUE]]               | Wrapper around [[en:docs:os2:api:cpi:DosPurgeQueue]] | | | 1.0 |
+|  676 | [[en:docs:os2:api:cpi:DOS16CLOSEQUEUE]]               | Wrapper around [[en:docs:os2:api:cpi:DosCloseQueue]] | | | |
+|  677 | [[en:docs:os2:api:cpi:DOS16QUERYQUEUE]]               | Wrapper around [[en:docs:os2:api:cpi:DosQueryQueue]] | | | 1.0 |
+|  678 | [[en:docs:os2:api:cpi:DOS16PEEKQUEUE]]                | Wrapper around [[en:docs:os2:api:cpi:DosPeekQueue]] | | | 1.0 |
+|  679 | [[en:docs:os2:api:cpi:DOS16WRITEQUEUE]]               | Wrapper around [[en:docs:os2:api:cpi:DosWriteQueue]] | | | 1.0 |
+|  680 | [[en:docs:os2:api:cpi:DOS16OPENQUEUE]]                | Wrapper around [[en:docs:os2:api:cpi:DosOpenQueue]] | | | 1.0 |
+|  681 | [[en:docs:os2:api:cpi:DOS16CREATEQUEUE]]              | Wrapper around [[en:docs:os2:api:cpi:DosCreateQueue]] | | | |
+|  682 | [[en:docs:os2:api:cpi:DOS16SMGETMEM]]                 | | |
+|  683 | [[en:docs:os2:api:cpi:DOS16SMFREEMEM]]                | | |
+|  684 | [[en:docs:os2:api:cpi:DOS16SMGETSGCB]]                | | |
+|  685 | [[en:docs:os2:api:cpi:DOS16SMINITSGCB]]               | | |
+|  686 | [[en:docs:os2:api:cpi:DOS16SMSGDOPOPUP]]              | | |
+|  687 | [[en:docs:os2:api:cpi:DOS16SMSWITCH]]                 | | |
+|  688 | [[en:docs:os2:api:cpi:DOS16SMSERVEAPPREQ]]            | | |
+|  689 | [[en:docs:os2:api:cpi:DOS16GETTIMES]]                 | | |
+|  690 | [[en:docs:os2:api:cpi:DOS16SMSETTITLE]]               | | |
+|  691 | [[en:docs:os2:api:cpi:DOS16SCRUNLOCK]]                | | |
+|  692 | [[en:docs:os2:api:cpi:DOS16SMDOAPPREQ]]               | | |
+|  693 | [[en:docs:os2:api:cpi:DOS16STOPSESSION]]              | Wrapper around [[en:docs:os2:api:cpi:DosStopSession]] | | | 1.0 |
+|  694 | [[en:docs:os2:api:cpi:DOS16SELECTSESSION]]            | Wrapper around [[en:docs:os2:api:cpi:DosSelectSession]] | | | 1.0 |
+|  695 | [[en:docs:os2:api:cpi:DOS16SCRLOCK]]                  | | |
+|  696 | [[en:docs:os2:api:cpi:DOS16SAVREDRAWWAIT]]            | | |
+|  697 | [[en:docs:os2:api:cpi:DOS16SAVREDRAWUNDO]]            | | |
+|  698 | [[en:docs:os2:api:cpi:DOS16SMSGENDPOPUP]]             | | |
+|  699 | [[en:docs:os2:api:cpi:DOS16SETSESSION]]               | Wrapper around [[en:docs:os2:api:cpi:DosSetSession]]  | | | 1.0 |
+|  700 | [[en:docs:os2:api:cpi:DOS16SETMNLOCKTIME]]            | | |
+|  701 | [[en:docs:os2:api:cpi:DOS16MODEUNDO]]                 | | |
+|  702 | [[en:docs:os2:api:cpi:DOS16STARTSESSION]]             | Wrapper around [[en:docs:os2:api:cpi:DosStartSession]] | | | 1.0 |
+|  703 | [[en:docs:os2:api:cpi:DOS16SMGETSTATUS]]              | | |
+|  704 | [[en:docs:os2:api:cpi:DOS16MODEWAIT]]                 | | |
+|  705 | [[en:docs:os2:api:cpi:DOS16SMTERMINATE]]              | | |
+|  706 | [[en:docs:os2:api:cpi:DOS16SMGETAPPREQ]]              | | |
+|  707 | [[en:docs:os2:api:cpi:DOS16SMINITIALIZE]]             | | |
+|  708 | [[en:docs:os2:api:cpi:DOS16SMSTART]]                  | | |
+|  709 | [[en:docs:os2:api:cpi:DOS16SMPARENTSWITCH]]           | | |
+|  710 | [[en:docs:os2:api:cpi:DOS16SMPAUSE]]                  | | |
+|  711 | [[en:docs:os2:api:cpi:DOS16SMHDEINIT]]                | | |
+|  712 | [[en:docs:os2:api:cpi:DOS16SMPMPRESENT]]              | | |
+|  713 | [[en:docs:os2:api:cpi:DOS16SMREGISTERDD]]             | | |
+|  714 | [[en:docs:os2:api:cpi:DOS16SMNOTIFYDD]]               | | |
+|  715 | [[en:docs:os2:api:cpi:DOS16SMNOTIFYDD2]]              | | |
+|  716 | [[en:docs:os2:api:cpi:DOS16SMOPENDD]]                 | | |
+|  717 | [[en:docs:os2:api:cpi:DOS16SMSETSESSIONTYPE]]         | | |
+|  718 | [[en:docs:os2:api:cpi:OS2BaseInit]]                   | | |
+|  719 | [[en:docs:os2:api:cpi:MOU16GETPTRSHAPE]]              | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.301]] | | | |
+|  720 | [[en:docs:os2:api:cpi:MOU16SETPTRSHAPE]]              | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.302]] | | | |
+|  721 | [[en:docs:os2:api:cpi:MOU16GETNUMMICKEYS]]            | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.303]] | | | |
+|  722 | [[en:docs:os2:api:cpi:MOU16GETTHRESHOLD]]             | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.330]] | |
+|  723 | [[en:docs:os2:api:cpi:MOU16SHELLINIT]]                | | |
+|  724 | [[en:docs:os2:api:cpi:MOU16GETSCALEFACT]]             | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.306]] | | | |
+|  725 | [[en:docs:os2:api:cpi:MOU16FLUSHQUE]]                 | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.307]] | | | |
+|  726 | [[en:docs:os2:api:cpi:MOU16GETNUMBUTTONS]]            | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.308]] | | | |
+|  727 | [[en:docs:os2:api:cpi:MOU16CLOSE]]                    | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.309]] | | | |
+|  728 | [[en:docs:os2:api:cpi:MOU16SETTHRESHOLD]]             | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.329]] | |
+|  729 | [[en:docs:os2:api:cpi:MOU16SETSCALEFACT]]             | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.311]] | | | |
+|  730 | [[en:docs:os2:api:cpi:MOU16GETNUMQUEEL]]              | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.312]] | | | |
+|  731 | [[en:docs:os2:api:cpi:MOU16DEREGISTER]]               | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.314]] | | | |
+|  732 | [[en:docs:os2:api:cpi:MOU16GETEVENTMASK]]             | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.315]] | | | |
+|  733 | [[en:docs:os2:api:cpi:MOU16SETEVENTMASK]]             | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.316]] | | | |
+|  734 | [[en:docs:os2:api:cpi:MOU16OPEN]]                     | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.317]] | | | |
+|  735 | [[en:docs:os2:api:cpi:MOU16REMOVEPTR]]                | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.318]] | | | |
+|  736 | [[en:docs:os2:api:cpi:MOU16GETPTRPOS]]                | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.319]] | | | |
+|  737 | [[en:docs:os2:api:cpi:MOU16READEVENTQUE]]             | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.320]] | | | |
+|  738 | [[en:docs:os2:api:cpi:MOU16SETPTRPOS]]                | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.321]] | | | |
+|  739 | [[en:docs:os2:api:cpi:MOU16GETDEVSTATUS]]             | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.322]] | | | |
+|  740 | [[en:docs:os2:api:cpi:MOU16SYNCH]]                    | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.323]] | | | |
+|  741 | [[en:docs:os2:api:cpi:MOU16REGISTER]]                 | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.324]] | | | |
+|  742 | [[en:docs:os2:api:cpi:MOU16SETDEVSTATUS]]             | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.325]] | | | |
+|  743 | [[en:docs:os2:api:cpi:MOU16DRAWPTR]]                  | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.326]] | | | |
+|  744 | [[en:docs:os2:api:cpi:MOU16INITREAL]]                 | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.327]] | | | |
+|  745 | [[en:docs:os2:api:cpi:KBDSETCUSTXT]]                  | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.201]] | | | |
+|  746 | [[en:docs:os2:api:cpi:KBDINIT]]                       | | |
+|  747 | [[en:docs:os2:api:cpi:KBDGETCP]]                      | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.203]] | | | |
+|  748 | [[en:docs:os2:api:cpi:KBDCHARIN]]                     | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.204]] | | | |
+|  749 | [[en:docs:os2:api:cpi:KBDSETCP]]                      | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.205]] | | | |
+|  750 | [[en:docs:os2:api:cpi:KBDLOADINSTANCE]]               | | |
+|  751 | [[en:docs:os2:api:cpi:KBDSYNCH]]                      | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.206]] | | | |
+|  752 | [[en:docs:os2:api:cpi:KBDREGISTER]]                   | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.208]] | | | |
+|  753 | [[en:docs:os2:api:cpi:KBDSTRINGIN]]                   | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.209]] | | | |
+|  754 | [[en:docs:os2:api:cpi:KBDGETSTATUS]]                  | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.210]] | | | |
+|  755 | [[en:docs:os2:api:cpi:KBDSETSTATUS]]                  | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.211]] | | | |
+|  756 | [[en:docs:os2:api:cpi:KBDGETFOCUS]]                   | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.212]] | | | |
+|  757 | [[en:docs:os2:api:cpi:KBDFLUSHBUFFER]]                | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.213]] | | | |
+|  758 | [[en:docs:os2:api:cpi:KBDXLATE]]                      | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.214]] | | | |
+|  759 | [[en:docs:os2:api:cpi:KBDSWITCHFGND]]                 | | |
+|  760 | [[en:docs:os2:api:cpi:KBDSHELLINIT]]                  | | |
+|  761 | [[en:docs:os2:api:cpi:KBDCLOSE]]                      | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.217]] | | | |
+|  762 | [[en:docs:os2:api:cpi:KBDFREEFOCUS]]                  | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.218]] | | | |
+|  763 | [[en:docs:os2:api:cpi:KBDFREE]]                       | | |
+|  764 | [[en:docs:os2:api:cpi:KBDDEREGISTER]]                 | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.220]] | | | |
+|  765 | [[en:docs:os2:api:cpi:KBDSETFGND]]                    | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.221]] | |
+|  766 | [[en:docs:os2:api:cpi:KBDPEEK]]                       | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.222]] | | | |
+|  767 | [[en:docs:os2:api:cpi:KBDOPEN]]                       | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.223]] | | | |
+|  768 | [[en:docs:os2:api:cpi:KBDGETHWID]]                    | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.224]] | |
+|  769 | [[en:docs:os2:api:cpi:KBDSETHWID]]                    | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.225]] | |
+|  770 | [[en:docs:os2:api:cpi:VIOENDPOPUP]]                   | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.101]] | | | |
+|  771 | [[en:docs:os2:api:cpi:VIOGETPHYSBUF]]                 | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.102]] | | | |
+|  772 | [[en:docs:os2:api:cpi:VIOGETANSI]]                    | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.103]] | | | |
+|  773 | [[en:docs:os2:api:cpi:VIOFREE]]                       |  | | | |
+|  774 | [[en:docs:os2:api:cpi:VIOSETANSI]]                    | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.105]] | | | |
+|  775 | [[en:docs:os2:api:cpi:VIODEREGISTER]]                 | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.106]] | | | |
+|  776 | [[en:docs:os2:api:cpi:VIOSCROLLUP]]                   | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.107]] | | | |
+|  777 | [[en:docs:os2:api:cpi:VIOPRTSC]]                      | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.108]] | | | |
+|  778 | [[en:docs:os2:api:cpi:VIOGETCURPOS]]                  | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.109]] | | | |
+|  779 | [[en:docs:os2:api:cpi:VIOWRTCELLSTR]]                 | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.110]] | | | |
+|  780 | [[en:docs:os2:api:cpi:VIOPOPUP]]                      | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.111]] | | | |
+|  781 | [[en:docs:os2:api:cpi:VIOSCROLLRT]]                   | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.112]] | | | |
+|  782 | [[en:docs:os2:api:cpi:VIOWRTCHARSTR]]                 | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.113]] | | | |
+|  783 | [[en:docs:os2:api:cpi:AVS_PRTSC]]                     |  | |
+|  784 | [[en:docs:os2:api:cpi:VIOSETCURPOS]]                  | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.115]] | | | |
+|  785 | [[en:docs:os2:api:cpi:VIOSRFUNBLOCK]]                 |  | |
+|  786 | [[en:docs:os2:api:cpi:VIOSRFBLOCK]]                   |  | |
+|  787 | [[en:docs:os2:api:cpi:VIOSCRUNLOCK]]                  | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.118]] | | | |
+|  788 | [[en:docs:os2:api:cpi:VIOWRTTTY]]                     | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.119]] | | | |
+|  789 | [[en:docs:os2:api:cpi:VIOSAVE]]                       |  | |
+|  790 | [[en:docs:os2:api:cpi:VIOGETMODE]]                    | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.121]] | | | |
+|  791 | [[en:docs:os2:api:cpi:VIOSETMODE]]                    | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.122]] | | | |
+|  792 | [[en:docs:os2:api:cpi:VIOSCRLOCK]]                    | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.123]] | | | |
+|  793 | [[en:docs:os2:api:cpi:VIOREADCELLSTR]]                | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.124]] | | | |
+|  794 | [[en:docs:os2:api:cpi:VIOSAVREDRAWWAIT]]              | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.125]] | | | |
+|  795 | [[en:docs:os2:api:cpi:VIOWRTNATTR]]                   | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.126]] | | | |
+|  796 | [[en:docs:os2:api:cpi:VIOGETCURTYPE]]                 | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.127]] | | | |
+|  797 | [[en:docs:os2:api:cpi:VIOSAVREDRAWUNDO]]              | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.128]] | | | |
+|  798 | [[en:docs:os2:api:cpi:VIOGETFONT]]                    | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.129]] | | | |
+|  799 | [[en:docs:os2:api:cpi:VIOREADCHARSTR]]                | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.130]] | | | |
+|  800 | [[en:docs:os2:api:cpi:VIOGETBUF]]                     | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.131]] | | | |
+|  801 | [[en:docs:os2:api:cpi:VIOSETCURTYPE]]                 | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.132]] | | | |
+|  802 | [[en:docs:os2:api:cpi:VIOSETFONT]]                    | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.133]] | | | |
+|  803 | [[en:docs:os2:api:cpi:VIOHETINIT]]                    |  | |
+|  804 | [[en:docs:os2:api:cpi:VIOMODEUNDO]]                   | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.135]] | | | |
+|  805 | [[en:docs:os2:api:cpi:VIOSSWSWITCH]]                  |  | |
+|  806 | [[en:docs:os2:api:cpi:VIOMODEWAIT]]                   | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.137]] | | | |
+|  807 | [[en:docs:os2:api:cpi:AVS_PRTSCTOGGLE]]               |  | |
+|  808 | [[en:docs:os2:api:cpi:VIOGETCP]]                      | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.140]] | | | |
+|  809 | [[en:docs:os2:api:cpi:VIORESTORE]]                    |  | |
+|  810 | [[en:docs:os2:api:cpi:VIOSETCP]]                      | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.142]] | | | |
+|  811 | [[en:docs:os2:api:cpi:VIOSHOWBUF]]                    | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.143]] | | | |
+|  812 | [[en:docs:os2:api:cpi:VIOSCROLLLF]]                   | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.144]] | | | |
+|  813 | [[en:docs:os2:api:cpi:VIOREGISTER]]                   | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.145]] | | | |
+|  814 | [[en:docs:os2:api:cpi:VIOGETCONFIG]]                  | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.146]] | | | |
+|  815 | [[en:docs:os2:api:cpi:VIOSCROLLDN]]                   | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.147]] | | | |
+|  816 | [[en:docs:os2:api:cpi:VIOWRTCHARSTRATT]]              | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.148]] | | | |
+|  817 | [[en:docs:os2:api:cpi:VIOGETSTATE]]                   | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.149]] | | | |
+|  818 | [[en:docs:os2:api:cpi:VIOPRTSCTOGGLE]]                | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.150]] | | | |
+|  819 | [[en:docs:os2:api:cpi:VIOSETSTATE]]                   | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.151]] | | | |
+|  820 | [[en:docs:os2:api:cpi:VIOWRTNCELL]]                   | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.152]] | | | |
+|  821 | [[en:docs:os2:api:cpi:VIOWRTNCHAR]]                   | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.153]] | | | |
+|  822 | [[en:docs:os2:api:cpi:VIOSHELLINIT]]                  |  | |
+|  823 | [[en:docs:os2:api:cpi:VIOASSOCIATE]]                  | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.155]] | |
+|  824 | [[en:docs:os2:api:cpi:VIOCREATEPS]]                   | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.156]] | |
+|  825 | [[en:docs:os2:api:cpi:VIODELETESETID]]                | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.157]] | |
+|  826 | [[en:docs:os2:api:cpi:VIOGETDEVICECELLSIZE]]          | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.158]] | |
+|  827 | [[en:docs:os2:api:cpi:VIOGETORG]]                     | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.159]] | |
+|  828 | [[en:docs:os2:api:cpi:VIOCREATELOGFONT]]              | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.160]] | |
+|  829 | [[en:docs:os2:api:cpi:VIODESTROYPS]]                  | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.161]] | |
+|  830 | [[en:docs:os2:api:cpi:VIOQUERYSETIDS]]                | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.162]] | |
+|  831 | [[en:docs:os2:api:cpi:VIOSETORG]]                     | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.163]] | |
+|  832 | [[en:docs:os2:api:cpi:VIOQUERYFONTS]]                 | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.164]] | |
+|  833 | [[en:docs:os2:api:cpi:VIOSETDEVICECELLSIZE]]          | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.165]] | |
+|  834 | [[en:docs:os2:api:cpi:VIOSHOWPS]]                     | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.166]] | |
+|  835 | [[en:docs:os2:api:cpi:VIOGETPSADDRESS]]               | | |
+|  836 | [[en:docs:os2:api:cpi:VIOQUERYCONSOLE]]               |  | |
+|  837 | [[en:docs:os2:api:cpi:VIOREDRAWSIZE]]                 |  | |
+|  838 | [[en:docs:os2:api:cpi:VIOGLOBALREG]]                  | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.170]] | |
+|  839 | [[en:docs:os2:api:cpi:XVIOSETCASTATE]]                |  | |
+|  840 | [[en:docs:os2:api:cpi:XVIOCHECKCHARTYPE]]             |  | |
+|  841 | [[en:docs:os2:api:cpi:XVIODESTROYCA]]                 |  | |
+|  842 | [[en:docs:os2:api:cpi:XVIOCREATECA]]                  |  | |
+|  843 | [[en:docs:os2:api:cpi:VIOCHECKCHARTYPE]]              | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.175]] | |
+|  844 | [[en:docs:os2:api:cpi:XVIOGETCASTATE]]                |  | |
+|  845 | [[en:docs:os2:api:cpi:BVSMAIN]]                       | | |
+|  846 | [[en:docs:os2:api:cpi:BVSREDRAWSIZE]]                 | | |
+|  847 | [[en:docs:os2:api:cpi:BVSGETPTRDRAWNAME]]             | | |
+|  848 | [[en:docs:os2:api:cpi:AnsiInject]]                    | Inject ANSI DSR output to KbdHandler buffer | |
+|  849 | [[en:docs:os2:api:cpi:AnsiKeydef]]                    | ANSI keyboard key reassignment | |
+|  850 | [[en:docs:os2:api:cpi:AnsiInterp]]                    | ANSI Control Code Sequence interpreter | |
+|  851 | [[en:docs:os2:api:cpi:BKSMAIN]]                       | | |
+|  852 | [[en:docs:os2:api:cpi:BMSMAIN]]                       | | |
+|  853 | [[en:docs:os2:api:cpi:MOU16GETHOTKEY]]                | | | | |
+|  854 | [[en:docs:os2:api:cpi:MOU16SETHOTKEY]]                | | | | |
+|  855 | [[en:docs:os2:api:cpi:DOS16SMSYSINIT]]                | | |
+|  856 | [[en:docs:os2:api:cpi:QhKeybdHandle]]                 | | |
+|  857 | [[en:docs:os2:api:cpi:QhMouseHandle]]                 | | |
+|  858 | [[en:docs:os2:api:cpi:SMQueueRamSem]]                 | | |
+|  859 | [[en:docs:os2:api:cpi:SMArray]]                       | | |
+|  860 | [[en:docs:os2:api:cpi:SMPIDArray]]                    | | |
+|  861 | [[en:docs:os2:api:cpi:SMInitialized]]                 | | |
+|  862 | [[en:docs:os2:api:cpi:SMArraySize]]                   | | |
+|  863 | [[en:docs:os2:api:cpi:BVSGLOBAL]]                     | | |
+|  864 | [[en:docs:os2:api:cpi:SMGINSTANCE]]                   | | |
+|  865 | [[en:docs:os2:api:cpi:BVHINSTANCE]]                   | BVH Instance variable | Done |
+|  866 | [[en:docs:os2:api:cpi:THK32ALIASMEM]]                 | | |
+|  867 | [[en:docs:os2:api:cpi:THK32FREEALIAS]]                | | |
+|  868 | [[en:docs:os2:api:cpi:THK32ALLOCVARLEN]]              | | |
+|  869 | [[en:docs:os2:api:cpi:THK32HANDLEBOUNDARY]]           | | |
+|  870 | [[en:docs:os2:api:cpi:THK32HANDLESTRING]]             | | |
+|  871 | [[en:docs:os2:api:cpi:THK32DEALLOC]]                  | | |
+|  872 | [[en:docs:os2:api:cpi:THK32XHNDLR]]                   | | |
+|  873 | [[en:docs:os2:api:cpi:Dos32SetExtLIBPATH]]            | | |
+|  874 | [[en:docs:os2:api:cpi:Dos32QueryExtLIBPATH]]          | | |
+|  875 | [[en:docs:os2:api:cpi:DOSPM16SEMRST]]                 | | |
+|  876 | [[en:docs:os2:api:cpi:DosSysCtl]]                     | | |
+|  877 | [[en:docs:os2:api:cpi:Dos32QueryThreadContext]]       | | |
+|  878 | [[en:docs:os2:api:cpi:DosSGQueryTopmost]]             | | |
+|  976 | [[en:docs:os2:api:cpi:DosPerfSysCall]]                | | |
+|  981 | [[en:docs:os2:api:cpi:DosOpenL]]                      | Gate to KAL | Done |
+|  982 | [[en:docs:os2:api:cpi:DosProtectOpenL]]               | | |
+|  983 | [[en:docs:os2:api:cpi:DosProtectSetFileLocksL]]       | | |
+|  984 | [[en:docs:os2:api:cpi:DosProtectSetFilePtrL]]         | | |
+|  985 | [[en:docs:os2:api:cpi:DosProtectSetFileSizeL]]        | | |
+|  986 | [[en:docs:os2:api:cpi:DosSetFileLocksL]]              | | |
+|  987 | [[en:docs:os2:api:cpi:DosCancelLockRequestL]]         | | |
+|  988 | [[en:docs:os2:api:cpi:DosSetFilePtrL]]                | | |
+|  989 | [[en:docs:os2:api:cpi:DosSetFileSizeL]]               | Gate to KAL | Done |
+|  990 | [[en:docs:os2:api:cpi:DosListIOL]]                    | | |
+|  991 | [[en:docs:os2:api:cpi:DOS16FSRAMSEMREQUEST2]]         | | |
+|  992 | [[en:docs:os2:api:cpi:DOS16FSRAMSEMCLEAR2]]           | | |
+|  995 | [[en:docs:os2:api:cpi:DosSystemService]]              | Needed for Java | |
+|  996 | [[en:docs:os2:api:cpi:DosListIO]]                     | Wrapper around [[en:docs:os2:api:cpi:DosListIOL]] | Done |
+|  997 | [[en:docs:os2:api:cpi:DosCreateThread2]]              | | |
+|  998 | [[en:docs:os2:api:cpi:DOS16SETEXTLIBPATH]]            | | |
+|  999 | [[en:docs:os2:api:cpi:DOS16QUERYEXTLIBPATH]]          | | |
+| 1000 | [[en:docs:os2:api:cpi:T32EXITLIST]]                   | | |
+| 1001 | [[en:docs:os2:api:cpi:T32ALLOCPROTECTEDMEM]]          | | |
+| 1002 | [[en:docs:os2:api:cpi:T32ALIASMEM]]                   | | |
+| 1003 | [[en:docs:os2:api:cpi:T32ALLOCMEM]]                   | | |
+| 1004 | [[en:docs:os2:api:cpi:T32ALLOCSHAREDMEM]]             | | |
+| 1005 | [[en:docs:os2:api:cpi:T32GETNAMEDSHAREDMEM]]          | | |
+| 1006 | [[en:docs:os2:api:cpi:T32GETSHAREDMEM]]               | | |
+| 1007 | [[en:docs:os2:api:cpi:T32GIVESHAREDMEM]]              | | |
+| 1008 | [[en:docs:os2:api:cpi:T32FREEMEM]]                    | | |
+| 1009 | [[en:docs:os2:api:cpi:T32SETMEM]]                     | | |
+| 1010 | [[en:docs:os2:api:cpi:T32QUERYMEM]]                   | | |
+| 1011 | [[en:docs:os2:api:cpi:T32QUERYMEMSTATE]]              | | |
+| 1012 | [[en:docs:os2:api:cpi:T32OPENVDD]]                    | | |
+| 1013 | [[en:docs:os2:api:cpi:T32REQUESTVDD]]                 | | |
+| 1014 | [[en:docs:os2:api:cpi:T32CLOSEVDD]]                   | | |
+| 1015 | [[en:docs:os2:api:cpi:T32CREATETHREAD]]               | | |
+| 1016 | [[en:docs:os2:api:cpi:T32DYNAMICTRACE]]               | | |
+| 1017 | [[en:docs:os2:api:cpi:T32DEBUG]]                      | | |
+| 1018 | [[en:docs:os2:api:cpi:T32QUERYPROCADDR]]              | | |
+| 1019 | [[en:docs:os2:api:cpi:T32CREATEEVENTSEM]]             | | |
+| 1020 | [[en:docs:os2:api:cpi:T32OPENEVENTSEM]]               | | |
+| 1021 | [[en:docs:os2:api:cpi:T32CLOSEEVENTSEM]]              | | |
+| 1022 | [[en:docs:os2:api:cpi:T32RESETEVENTSEM]]              | | |
+| 1023 | [[en:docs:os2:api:cpi:T32POSTEVENTSEM]]               | | |
+| 1024 | [[en:docs:os2:api:cpi:T32WAITEVENTSEM]]               | | |
+| 1025 | [[en:docs:os2:api:cpi:T32QUERYEVENTSEM]]              | | |
+| 1026 | [[en:docs:os2:api:cpi:T32CREATEMUTEXSEM]]             | | |
+| 1027 | [[en:docs:os2:api:cpi:T32OPENMUTEXSEM]]               | | |
+| 1028 | [[en:docs:os2:api:cpi:T32CLOSEMUTEXSEM]]              | | |
+| 1029 | [[en:docs:os2:api:cpi:T32REQUESTMUTEXSEM]]            | | |
+| 1030 | [[en:docs:os2:api:cpi:T32RELEASEMUTEXSEM]]            | | |
+| 1031 | [[en:docs:os2:api:cpi:T32QUERYMUTEXSEM]]              | | |
+| 1032 | [[en:docs:os2:api:cpi:T32CREATEMUXWAITSEM]]           | | |
+| 1033 | [[en:docs:os2:api:cpi:T32OPENMUXWAITSEM]]             | | |
+| 1034 | [[en:docs:os2:api:cpi:T32CLOSEMUXWAITSEM]]            | | |
+| 1035 | [[en:docs:os2:api:cpi:T32WAITMUXWAITSEM]]             | | |
+| 1036 | [[en:docs:os2:api:cpi:T32ADDMUXWAITSEM]]              | | |
+| 1037 | [[en:docs:os2:api:cpi:T32DELETEMUXWAITSEM]]           | | |
+| 1038 | [[en:docs:os2:api:cpi:T32QUERYMUXWAITSEM]]            | | |
+| 1039 | [[en:docs:os2:api:cpi:T32QUERYSYSINFO]]               | | |
+| 1040 | [[en:docs:os2:api:cpi:T32WAITTHREAD]]                 | | |
+| 1041 | [[en:docs:os2:api:cpi:T32GETRESOURCE]]                | | |
+| 1042 | [[en:docs:os2:api:cpi:T32FREERESOURCE]]               | | |
+| 1043 | [[en:docs:os2:api:cpi:T32EXCEPTIONCALLBACK]]          | | |
+| 1044 | [[en:docs:os2:api:cpi:T32QUERYPAGEUSAGE]]             | | |
+| 1045 | [[en:docs:os2:api:cpi:T32FORCESYSTEMDUMP]]            | | |
+| 1046 | [[en:docs:os2:api:cpi:TI32ASYNCTIMER]]                | | |
+| 1047 | [[en:docs:os2:api:cpi:TI32STARTTIMER]]                | | |
+| 1048 | [[en:docs:os2:api:cpi:T32QUERYABIOSSUPPORT]]          | | |
+| 1049 | [[en:docs:os2:api:cpi:T32QUERYMODFROMEIP]]            | | |
+| 1050 | [[en:docs:os2:api:cpi:T32ALIASPERFCTRS]]              | | |
+| 1051 | [[en:docs:os2:api:cpi:T32CONFIGUREPERF]]              | | |
+| 1052 | [[en:docs:os2:api:cpi:T32DECONPERF]]                  | | |
+| 1053 | [[en:docs:os2:api:cpi:T32REGISTERPERFCTRS]]           | | |
+| 1054 | [[en:docs:os2:api:cpi:T32QUERYSYSSTATE]]              | | |
+| 1055 | [[en:docs:os2:api:cpi:T32IREAD]]                      | | |
+| 1056 | [[en:docs:os2:api:cpi:T32IWRITE]]                     | | |
+| 1057 | [[en:docs:os2:api:cpi:T32TMRQUERYFREQ]]               | | |
+| 1058 | [[en:docs:os2:api:cpi:T32TMRQUERYTIME]]               | | |
+| 1059 | [[en:docs:os2:api:cpi:T32IMONREAD]]                   | | |
+| 1060 | [[en:docs:os2:api:cpi:T32IMONWRITE]]                  | | |
+| 1061 | [[en:docs:os2:api:cpi:T32QUERYRESOURCESIZE]]          | | |
+| 1062 | [[en:docs:os2:api:cpi:T32PROFILE]]                    | | |
+| 1063 | [[en:docs:os2:api:cpi:T32SETSIGNALEXCEPTIONFOCUS]]    | | |
+| 1064 | [[en:docs:os2:api:cpi:T32SENDSIGNALEXCEPTION]]        | | |
+| 1065 | [[en:docs:os2:api:cpi:T32STARTTIMER]]                 | | |
+| 1066 | [[en:docs:os2:api:cpi:T32STOPTIMER]]                  | | |
+| 1067 | [[en:docs:os2:api:cpi:T32ASYNCTIMER]]                 | | |
+| 1068 | [[en:docs:os2:api:cpi:T32INITIALIZEPORTHOLE]]         | | |
+| 1069 | [[en:docs:os2:api:cpi:T32QUERYHEADERINFO]]            | | |
+| 1070 | [[en:docs:os2:api:cpi:T32QUERYPROCTYPE]]              | | |
+| 1071 | [[en:docs:os2:api:cpi:T32IEXITMUSTCOMPLETE]]          | | |
+| 1072 | [[en:docs:os2:api:cpi:T32ICACHEMODULE]]               | | |
+| 1073 | [[en:docs:os2:api:cpi:T32DLLTERM]]                    | | |
+| 1074 | [[en:docs:os2:api:cpi:T32IRAISEEXCEPTION]]            | | |
+| 1075 | [[en:docs:os2:api:cpi:T32ACKNOWLEDGESIGNALEXCEPTION]] | | |
+| 1076 | [[en:docs:os2:api:cpi:T32QUERYDOSPROPERTY]]           | | |
+| 1077 | [[en:docs:os2:api:cpi:T32SETDOSPROPERTY]]             | | |
+| 1078 | [[en:docs:os2:api:cpi:T32SETFILELOCKS]]               | | |
+| 1079 | [[en:docs:os2:api:cpi:T32CANCELLOCKREQUEST]]          | | |
+| 1080 | [[en:docs:os2:api:cpi:T32KILLTHREAD]]                 | | |
+| 1081 | [[en:docs:os2:api:cpi:TQUERYRASINFO]]                 | | |
+| 1082 | [[en:docs:os2:api:cpi:T32DUMPPROCESS]]                | | |
+| 1083 | [[en:docs:os2:api:cpi:T32SUPPRESSPOPUPS]]             | | |
+| 1084 | [[en:docs:os2:api:cpi:T32IPROTECTWRITE]]              | | |
+| 1085 | [[en:docs:os2:api:cpi:T32PROTECTSETFILELOCKS]]        | | |
+| 1086 | [[en:docs:os2:api:cpi:T32IPROTECTREAD]]               | | |
+| 1087 | [[en:docs:os2:api:cpi:T32PMPOSTEVENTSEM]]             | | |
+| 1088 | [[en:docs:os2:api:cpi:T32PMWAITEVENTSEM]]             | | |
+| 1089 | [[en:docs:os2:api:cpi:T32PMREQUESTMUTEXSEM]]          | | |
+| 1090 | [[en:docs:os2:api:cpi:T32PMWAITMUXWAITSEM]]           | | |
+| 1091 | [[en:docs:os2:api:cpi:T32PM16SEMCHK]]                 | | |
+| 1092 | [[en:docs:os2:api:cpi:T32ALLOCTHREADLOCALMEMORY]]     | | |
+| 1093 | [[en:docs:os2:api:cpi:T32FREETHREADLOCALMEMORY]]      | | |
+| 1094 | [[en:docs:os2:api:cpi:T32SETEXTLIBPATH]]              | | |
+| 1095 | [[en:docs:os2:api:cpi:T32QUERYEXTLIBPATH]]            | | |
+| 1096 | [[en:docs:os2:api:cpi:T32PM16SEMRST]]                 | | |
+| 1097 | [[en:docs:os2:api:cpi:T32VERIFYPIDTID]]               | | |
+| 1098 | [[en:docs:os2:api:cpi:T32SYSCTL]]                     | | |
+| 1099 | [[en:docs:os2:api:cpi:T32QUERYTHREADCONTEXT]]         | | |
+| 1101 | [[en:docs:os2:api:cpi:T32PERFSYSCALL]]                | | |
+| 1102 | [[en:docs:os2:api:cpi:T32LISTIO]]                     | | |
+| 1103 | [[en:docs:os2:api:cpi:T32PMR3WAITEVENTSEM]]           | | |
+| 1104 | [[en:docs:os2:api:cpi:T32PMR3POSTEVENTSEM]]           | | |
+| 1105 | [[en:docs:os2:api:cpi:T32CREATETHREAD2]]              | | |
+| 1106 | [[en:docs:os2:api:cpi:T32PROTECTSETFILELOCKSL]]       | | |
+| 1107 | [[en:docs:os2:api:cpi:T32IPROTECTSETFILEPTRL]]        | | |
+| 1108 | [[en:docs:os2:api:cpi:T32SETFILELOCKSL]]              | | |
+| 1109 | [[en:docs:os2:api:cpi:T32CANCELLOCKREQUESTL]]         | | |
+| 1110 | [[en:docs:os2:api:cpi:T32ISETFILEPTRL]]               | | |
+| 1111 | [[en:docs:os2:api:cpi:T32LISTIOL]]                    | | |
+| 1112 | [[en:docs:os2:api:cpi:DosLogWrite]]                   | osFree extension. Gate to KAL | Done |
+| 1116 | [[en:docs:os2:api:cpi:T32ISETFILEPTR]]                | | |
+| 1117 | [[en:docs:os2:api:cpi:T32IPROTECTSETFILEPTR]]         | | |
+| 9004 | [[en:docs:os2:api:cpi:Dos32CreateRamSem]]             | | |
+| 9005 | [[en:docs:os2:api:cpi:Dos32CloseRamSem]]              | | |
+| 9006 | [[en:docs:os2:api:cpi:Dos32OpenRamSem]]               | | |
+| 9007 | [[en:docs:os2:api:cpi:Dos32RequestRamSem]]            | | |
+| 9008 | [[en:docs:os2:api:cpi:Dos32ReleaseRamSem]]            | | |
+| 9010 | [[en:docs:os2:api:cpi:Dos32QueryProcessInfo]]         | | |
+| 9011 | [[en:docs:os2:api:cpi:Dos32QueryThreadInfo]]          | | |
+| 9018 | [[en:docs:os2:api:cpi:Dos32FindFromName]]             | | | 
+
+
+{{page>en:templates:dlls}}

@@ -1,0 +1,50 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=5EH, AL=00H ======
+
+===== Version =====
+
+3.1 and higher
+
+===== Brief =====
+
+GET MACHINE NAME
+
+===== Family API =====
+
+
+===== Input =====
+
+        	AX = 5E00h
+	DS:DX -> 16-byte buffer for ASCII machine name
+
+===== Return =====
+
+  CF clear if successful
+	    CH = validity
+		00h name invalid
+		nonzero valid
+		    CL = NetBIOS number for machine name
+		    DS:DX buffer filled with blank-paded name
+	CF set on error
+	    AX = error code (01h) (see #01680 at AH=59h)
+
+===== Macro =====
+
+
+===== Notes =====
+
+  supported by OS/2 v1.3+ compatibility box, PC-NFS
+
+===== See also =====
+
+  AX=5E01h
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:int}}
+
+{{page>en:templates:fapi}}
+

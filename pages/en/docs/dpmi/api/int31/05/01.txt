@@ -1,0 +1,55 @@
+{{page>en:templates:dpmi}}
+
+====== Int 31H, AH=05H, AL=01H ======
+
+===== Version =====
+
+0.9
+
+===== Brief =====
+
+Allocate Memory Block
+
+===== Input =====
+
+  AX = 0501H
+  BX:CX = size of block (bytes, must be nonzero)
+
+===== Return =====
+
+  if function successful
+  Carry flag = clear
+  BX:CX = linear address of allocated memory block
+  SI:DI = memory block handle (used to resize and free block)
+  
+  if function unsuccessful
+  Carry flag = set
+  AX = error code
+  8012H	linear memory unavailable
+  8013H	physical memory unavailable
+  8014H	backing store unavailable
+  8016H	handle unavailable
+  8021H	invalid value (BX:CX = 0)
+
+===== Notes =====
+
+The allocated block is guaranteed to have at least paragraph alignment.
+
+This function always creates committed pages.
+
+This function does not allocate any descriptors for the memory block. It is the responsibility of the client to allocate and initialize any descriptors needed to access the memory with additional DPMI function calls.
+
+Under DPMI hosts that support virtual memory, the memory block will be allocated unlocked. The client can lock some or all of the memory after it is allocated with the Lock Linear Region function (Int 31H Function 0600H).
+
+Under many DPMI hosts, allocations by this function are page granular. This means, for example, that if the DPMI host uses a page size of 4 KB (1000H), an allocation of 1001H bytes will actually result in an allocation of 2000H bytes. Therefore, it is best to always allocate memory in multiples of the unit of granularity (under DPMI 0.9, use 4K bytes), which can be obtained with Int 31H Function 0604H.
+       
+===== See also =====
+
+   
+
+===== Note =====
+
+Text based on [[http://www.delorie.com/djgpp/doc/dpmi/]]
+
+{{page>en:templates:dpmi:int}}
+

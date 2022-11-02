@@ -1,0 +1,27 @@
+==== Installable File System Mechanism ====
+
+The OS/2 Installable File System (IFS) Mechanism supports the following:   
+
+  * Coexistence of multiple, active file systems in a single PC 
+  * Multiple logical volumes (partitions) 
+  * Multiple and different storage devices 
+  * Redirection or connection to remote file systems 
+  * File system flexibility in managing its data and I/O for optimal performance 
+  * Transparency at both the user and application level 
+  * Standard set of File I/O API 
+  * Existing logical file and directory structure 
+  * Existing naming conventions 
+  * File system doing its own buffer management 
+  * File system doing file I/O without intermediate buffering 
+  * Extensions to the Standard File I/O API (FSCTL) 
+  * Extensions to the existing naming conventions 
+  * IOCTL type of communication between a file system and a device driver 
+
+  * [[en:ibm:ifs:mechanism:overview|Installable File System Overview]]
+  * [[en:ibm:ifs:mechanism:eas|Extended Attributes]]
+  * [[en:ibm:ifs:mechanism:image|FSD File Image]]
+  * [[en:ibm:ifs:mechanism:init|FSD Initialization]]
+  * [[en:ibm:ifs:mechanism:commands|IFS Commands]]
+  * [[en:ibm:ifs:mechanism:calls|File System Function Calls]]
+  * [[en:ibm:ifs:mechanism:interfaces|FSD System Interfaces]]
+  * [[en:ibm:ifs:mechanism:reqs|FSD Calling Conventions and Requirements]]

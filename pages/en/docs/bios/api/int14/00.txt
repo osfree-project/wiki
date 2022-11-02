@@ -1,0 +1,50 @@
+{{page>en:templates:biosint}}
+
+====== Int 14H, AH=00H ======
+
+===== Version =====
+
+IBM 5150 and higher
+
+===== Brief =====
+
+Initialize serial port
+
+===== Family API =====
+
+[[en:docs:fapi:DosDevIOCtl]]
+
+===== Input =====
+
+  * AH = 00h
+  * AL = port parameters (see #00300)
+  * DX = port number (00h-03h) (04h-43h for Digiboard XAPCM232.SYS)
+
+===== Return =====
+
+  * AH = line status (see #00304) FFh if error on Digiboard XAPCM232.SYS
+  * AL = modem status (see #00305)
+
+===== Macro =====
+
+<code asm>
+INCLUDE BIOS.INC
+
+@AuxInit 0, A3H
+</code>
+
+===== Notes =====
+
+  * default handler is at F000h:E739h in IBM PC and 100% compatible BIOSes since the PCjr supports a maximum of 4800 bps, attempting to set 9600 bps will result in 4800 bps
+  * various network and serial-port drivers support the standard BIOS functions with interrupt-driven I/O instead of the BIOS's polled I/O
+  * the 1993/04/08 Compaq system ROM uses only the low two bits of DX
+  * the default setting used by DOS (MS-DOS 6, DR-DOS 7.03, PTS-DOS) when (re-)initializing the serial devices is AL=A3h (2400 bps, no parity, 1 stop bit, 8 data bits).
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:biosapi}}
+
+{{page>en:templates:fapi}}
+

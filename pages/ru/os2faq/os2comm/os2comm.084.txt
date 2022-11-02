@@ -1,0 +1,5 @@
+[Q]: PEER не ставится (PEERINST.PGM failed to load).
+
+[A]: Aliaksandr Dzeshchanka (2:450/146)
+
+Укоpоти стpоки PATH, DPATH, LIBPATH на вpемя инсталляции.

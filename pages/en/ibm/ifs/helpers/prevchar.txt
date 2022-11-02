@@ -1,0 +1,32 @@
+==== FSH_PREVCHAR ====
+
+**Purpose**
+
+This function provides the mechanism for decrementing a character point, taking into account DBCS considerations.   
+
+**Calling Sequence**
+
+<code c>
+void far pascal FSH_PREVCHAR(pBeg, ppStr)
+
+char far * pBeg;
+char far * far * ppStr;
+</code>
+
+**Where**
+
+//pBeg// is a pointer to the beginning of a string.   
+
+//ppStr// is a pointer to the character pointer of a string.   
+
+The value is decremented appropriately upon return. If it is at the beginning of a string, the pointer is not decremented. If it points to the second byte of a DBCS character, it will be decremented to point to the first byte of the character. 
+
+**Returns**
+
+There are no error returns.   
+
+**Remarks**
+
+The FSD is responsible for verifying the string pointer and checking for segment boundaries.   
+
+**Note**:   OS/2 does not validate input parameters. An FSD, therefore, should call //FSH_PROBEBUF// where appropriate.   

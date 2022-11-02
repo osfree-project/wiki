@@ -1,0 +1,51 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=65H, AL=05H ======
+
+===== Version =====
+
+3.3 and higher
+
+===== Brief =====
+
+ get pointer to filename terminator table
+
+===== Family API =====
+
+
+===== Input =====
+
+  AH = 6505h
+  BX = code page (FFFFh=global code page) (see #01757)
+  DX = country ID (FFFFh=current country)
+  ES:DI -> country information buffer (see #01750)
+  CX = size of buffer (>= 5)
+  
+===== Return =====
+
+   CF set on error
+  AX = error code (see #01680 at AH=59h/BX=0000h)
+  CF clear if successful
+  CX = size of country information returned
+  ES:DI -> country information (see #01750)
+  
+===== Macro =====
+
+
+===== Notes =====
+
+  AL=05h appears to return same info for all countries and codepages; it has been documented for DOS 5+, but was undocumented in earlier versions. NLSFUNC must be installed to get info for countries other than the default.
+
+===== See also =====
+
+   AH=38h - AH=70h"MS-DOS 7" - INT 2F/AX=1401h - INT 2F/AX=14FEh
+   
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:int}}
+
+{{page>en:templates:fapi}}
+
+

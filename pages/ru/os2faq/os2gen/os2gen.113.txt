@@ -1,0 +1,7 @@
+[Q]: Печать больших объемов данных идет медленно
+
+[A]: Alex Samorukov (2:463/598)
+
+Если у вас печать в больших режимах идёт с тормозами - скачайте драйвер EPP
+порта с IBM.
+URL - ftp://ftp.boulder.ibm.com/ps/products/os2/os2ddpak/bidi.exe

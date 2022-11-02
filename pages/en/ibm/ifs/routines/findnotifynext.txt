@@ -1,0 +1,53 @@
+==== FS_FINDNOTIFYNEXT ====
+
+**Purpose**
+
+Resume reporting of changes to a file or directory.   
+
+**Calling Sequence**
+
+<code c>
+int far pascal FS_FINDNOTIFYNEXT(handle, pData, cbData, pcMatch, level,
+                                 timeout)
+
+unsigned short handle;
+char far * pData;
+unsigned short cbData;
+unsigned short far * pcMatch;
+unsigned short level;
+unsigned long timeout;
+</code>
+
+**Where**
+
+//handle// is the handle to the find-notify request.   
+
+This handle was returned by the FSD and is associated with a previous //FS_FINDNOTIFYFIRST// or //FS_FINDNOTIFYNEXT// call.   
+
+//pData// is the address of the application data area.   
+
+Addressing of this data area is not validated by the kernel (see //FSH_PROBEBUF//). The FSD fills in this area with a set of packed, variable- length structures that contain the requested data and matching file names.   
+
+//cbData// is the length of the application data area in bytes.   
+
+//pcMatch// is a pointer to the number of matching entries.   
+
+The FSD returns, at most, this number of entries. The FSD returns in this parameter the number of entries actually placed in the data area.   
+
+The FSD does not need to verify this pointer.   
+
+//level// is the information level to be returned.   
+
+//Level// selects among a series of data structures to be returned. See the description of //DosFindNotifyFirst// in the OS/2 Version 2.0 Control Program Programming Reference for more information.   
+
+The //level// passed to the FSD is valid.   
+
+//timeout// is the time-out in milliseconds.   
+
+The FSD waits until either the time-out has expired, the buffer is full, or the specified number of entries has been returned before returning to the caller. 
+
+**Remarks**
+
+//pcMatch// is the number of changes required to directories or files that match the //pName// target and //attr// specified during a related, previous //FS_FINDNOTIFYFIRST//. The file system uses this field to return the number of changes that actually occurred since the issue of the present //FS_FINDNOTIFYNEXT//.   
+
+The //level// passed to //FS_FINDNOTIFYNEXT// is the same level as that passed to //FS_FINDNOTIFYFIRST// to initiate the search.   

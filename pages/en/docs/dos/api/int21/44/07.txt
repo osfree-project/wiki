@@ -1,0 +1,50 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=44H, AL=07H ======
+
+===== Version =====
+
+2 and higher
+
+===== Brief =====
+
+GET OUTPUT STATUS
+
+===== Family API =====
+
+
+===== Input =====
+
+	AX = 4407h
+	BX = file handle
+
+===== Return =====
+
+ CF clear if successful
+	    AL = input status
+		00h not ready
+		FFh ready
+	CF set on error
+	    AX = error code (01h,05h,06h,0Dh) (see #01680 at AH=59h/BX=0000h)
+
+===== Macro =====
+
+
+===== Notes =====
+
+  for DOS 2+, files are always ready for output, even if the disk is
+	  full or no media is in the drive
+	this function was not supported by Digital Research's DOS Plus
+
+===== See also =====
+
+  AX=4406h,INT 2F/AX=122Bh
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:int}}
+
+{{page>en:templates:fapi}}
+

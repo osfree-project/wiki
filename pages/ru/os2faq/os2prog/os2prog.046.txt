@@ -1,0 +1,94 @@
+[Q]: Где взять Aurora DDK по FTP?
+
+[A]: Julius Goryavsky (2:5030/16.32)
+
+testcase.boulder.ibm.com,
+user: ddkdnld, паpоль: its5now.
+
+[A]: Andrew Belov (2:5020/181.2)
+
+С февраля 2004 г. DDK официально свернут.
+Текущий URL - http://www.megaupload.com/?d=R8W1C3NV
+
+May  4  1998  alpbook.zip    424K  Описание ALP (в Toolkit'е новее)
+May  4  1998  ap2book.zip      9K  Описание Audio Test Tool
+Feb  3  2003  cdrom.zip      526K  Исходники OS2CDROM/IBMIDECD/...
+Sep 12  2002  combas32.zip   899K  Среда компиляции для Aurora (KEE+new DH_*)
+Feb  4 13:21  combase.zip   4837K  Общая среда компиляции (для 9.xxx)
+Feb  4 13:22  comdbcs.zip   2636K  Среда компиляции DBCS'ных компонентов
+Feb  4 13:29  commme.zip    1156K  Среда компиляции драйверов под MMPM/2
+Nov 17 14:27  comprint.zip  3972K  Среда компиляции PM'ных драйверов принтера
+Feb  4 13:32  comvideo.zip  5452K  Среда компиляции видеодрайверов/BVH/SCREEN*
+Feb  4 13:35  comwpsh.zip    779K  Среда компиляции для *.QPR
+Feb  3  2003  dasd.zip      1034K  Исходники IBM1S506/IBM1FLPY/OS2DASD...
+Sep 12  2002  dasd32.zip     175K  Исходники 32-bit OS2DASD.DMD (Aurora).
+May  4  1998  dasdbook.zip   285K  Описание интерфейсов DASD (Merlin-only)
+Feb  4 13:22  dbcs.zip      4712K  Исходники DBCS (поддержка ввода иероглифов)
+Feb 12 13:32  ddsc      Directory  Архив материалов техподдержки (1993-2001)
+May  4  1998  ddtt.zip       267K  Device Driver Test Tool
+May  4  1998  dispbook.zip   571K  Описание PM-видеодрайверов (PMI)
+Sep 23  1999  gradbook.zip   268K  Описание PM-видеодрайверов (GRADD)
+Feb  4 13:27  ibmtool.zip     67K  IBM Test Tool для драйверов NIC
+Feb  6 08:44  icatos2.zip   4952K  ICAT Debugger v 4.06 от 24/09/2002
+May  4  1998  inbook.zip     381K  Описание архитектуры I/O-драйверов (без USB)
+Feb  4 13:26  inout.zip     5027K  Исходники USB/Kbd/Mouse/COM/PCMCIA... + VDD
+Jan 23  2001  io.zip          58K  Материалы по I/O-драйверам с DDSC
+May  4  1998  ipfcbook.zip   233K  Описание формата самого себя (IPF)
+Feb  4 13:26  irda.zip       512K  Исходники IrDA
+May  4  1998  masm60.zip    2659K  MASM v 6.00
+May  4  1998  mmpmbook.zip   488K  Описание интерфейсов MMPM/2 (SH, ...)
+Feb  4 13:29  mmpmdd.zip    3144K  Исходники драйверов видео/аудио под MMPM/2
+Feb  4 13:29  mmpmetc.zip    236K  Поддержка MPEG
+Feb  4 13:26  mouse.zip      246K  Исходники драйвера "Single Mouse"
+May  4  1998  msc60.zip     3431K  MS C v 6.00 beta for DDK
+Feb  4 13:27  nddk.zip       182K  Тестовый комплект для сетевых плат
+Feb  4 13:27  ndiss.zip       11K  Спецификация NDIS
+Jan 23  2001  network.zip     25K  Материалы DDSC по сетевым драйверам
+Feb  4 13:27  nicsample.zip  204K  Пример драйвера сетевой платы
+Jan 23  2001  other.zip      297K  Прочие материалы DDSC
+Feb  4 13:31  pccard.zip    1604K  Исходники драйверов для Cardbus (не PCMCIA)
+Sep  9  1998  pddbook.zip    529K  Общее руководство по драйверам
+May  4  1998  pdrbook.zip   1132K  Общее описание драйверов для графустройств
+May  4  1998  penbook.zip    107K  Описание драйверов светового пера/стилуса
+Nov 17 14:27  print.zip     9054K  Исходники PM'ных принтерных драйверов
+Jan 23  2001  printer.zip     32K  Материалы DDSC по принтерным драйверам
+May  4  1998  prntbook.zip   337K  Описание принтерных драйверов
+May  4  1998  tcapm.zip      738K  Тестовый комплект для APM
+May  4  1998  tccomm.zip     530K  Общий тестовый комплект для драйверов
+Feb  4 13:32  tcdisp.zip    1836K  Тестовый комплект для видеодрайверов
+May  4  1998  tcio.zip        87K  Тестовый комплект для I/O-драйверов
+Feb  4 13:29  tcmm.zip       793K  Тестовый комплект для драйверов MMPM/2
+Feb  4 13:29  tcmmdata.zip 46278K  Мультимедийный фарш для TCMM.ZIP
+Feb  4 13:35  tcprt.zip     1514K  Тестовый комплект для принтерных драйверов
+May  4  1998  tcstor.zip     819K  Тестовый комплект для драйверов DASD
+Feb  4 13:19  tools.zip      580K  ALP, NMAKE, скрипты для установки C/MASM...
+Feb 12  1999  useddk.zip      99K  "Using your DDK" - введение
+May  4  1998  vddbook.zip    358K  Описание virtual device-драйверов для MDOS
+Feb  4 13:32  video.zip     7607K  Исходники видеодрайверов
+Jan 23  2001  videoqa.zip    111K  Материалы DDSC по видеодрайверам
+Feb  4 13:27  wedge.zip       67K  Wedge Test Tool для NIC
+Feb  4 13:35  wpsh.zip       362K  Драйвера очередей и конверторов для WPS
+Jun 30  1998  wpshell.zip    344K  Старая версия WPSH.ZIP
+
+Полезные дополнения к комплекту:
+
+1. Netlabs: DDK/2 (для Watcom), USBRESMG/LIBUSB by Markus Montkowski
+                                :pserver:guest@www.netlabs.org:/netlabs.cvs/usb
+2. Интерфейсы USB-стека: http://os2power.dnsalias.com/usb.zip
+3. Самодельные драйверные хелперы и подсистемы - DR/2 (dr2last.zip),
+   MWDD32 (32drv170.zip)
+4. Хидеры для внутриядерных интерфейсов (VMM и т.д.):
+   - Odin -> Win32K
+   - EDDKBE.ZIP или COMOSF.ZIP (in selected theatres)
+   - Redbook #SG24-4640, KGUIDE20.INF (where available) - в качестве описания
+5. OpenGL DDK - in selected theatres:
+   COMOGL.ARJ   2725783 28-Apr-98 OpenGL build environment
+   OGL.ARJ       715858 05-May-98 OpenGL source code
+   OGLBIN.ARJ   4754784 05-May-98 OpenGL run-time library
+   OGLBOOK.ARJ   359365 10-Oct-01 OpenGL documentation
+   TCOGL.ARJ     287317 28-Apr-98 OpenGL test suite
+6. IFS Kit - берется на Hobbes'е (ifsinf.zip), авроровские хидеры в OpenJFS,
+   доступные примеры IFS - FAT32/JFS/Ext2 (локальные), RAMFS (дистанционная).
+7. PMWINP.H (where available) - писателям presentation-драйверов
+8. OS/2 v 2.x OEMI distribution - PerfView, ABIOS, OEMHLP
+9. LXAPI32.SYS by Stefan Milcke для портирования I/O-драйверов из Linux

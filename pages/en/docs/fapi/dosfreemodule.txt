@@ -1,0 +1,84 @@
+{{page>en:templates:fapiint}}
+
+====== DosFreeModule ======
+ 
+This call frees the reference to a dynamic link module for a process. When the dynamic link module is no longer needed by any process, the module is freed from system memory.
+
+===== Syntax =====
+<code c>
+DosFreeModule (ModuleHandle)
+</code>
+
+===== Parameters =====
+
+  * ModuleHandle ([[HMODULE]]) - input : Handle returned by DosLoadModule.
+
+===== Return Code =====
+
+rc ([[USHORT]]) - return:Return code descriptions are:
+
+  *0  NO_ERROR
+  *6  ERROR_INVALID_HANDLE
+  *12 ERROR_INVALID_ACCESS
+  *95 ERROR_INTERRUPT
+
+===== Remarks =====
+
+The module identified by the handle must be loaded through [[DosLoadModule]]. An error is returned if the handle is invalid.
+
+If any exit list routines were registered as a result of this module being loaded, the module may not be freed and ERROR_INVALID_ACCESS may be returned.
+
+When DosFreeModule returns to the caller, the module handle is no longer valid and is not used to reference the dynamic link module. Procedure entry addresses returned for this module are no longer valid and cause a protection fault if they are invoked.
+
+===== Bindings =====
+
+==== C ====
+
+<code c>
+#define INCL_DOSMODULEMGR
+
+USHORT  rc = DosFreeModule(ModuleHandle);
+HMODULE ModuleHandle;  /* Module handle */
+
+USHORT  rc;            /* return code */
+</code>
+
+==== MASM ====
+
+<code c>
+EXTRN  DosFreeModule:FAR
+INCL_DOSMODULEMGR   EQU 1
+
+PUSH   WORD    ModuleHandle  ;Module handle
+CALL   DosFreeModule
+
+Returns WORD
+</code>
+
+==== Example ====
+
+This example tries to load module ABCD. The system searches LIBPATH. If unsuccessful, the system tries to load the module from the program's directory (in case the user forgot to update LIBPATH).
+<code c>
+#define INCL_DOSMODULEMGR
+
+#define MODULE_NAME "abcd"
+#define FULL_MODULE_NAME "\\nifty\\abcd.dll"
+
+CHAR    LoadError[100];
+HMODULE ModuleHandle;
+USHORT  rc;
+
+   if (DosLoadModule(LoadError,              /* Object name buffer */
+                     sizeof(LoadError),      /* Length of object name buffer */
+                     MODULE_NAME,            /* Module name string */
+                     &ModuleHandle) == 2)    /* Module handle */
+      rc = DosLoadModule(LoadError,          /* Object name buffer */
+                         sizeof(LoadError),  /* Length of object name buffer */
+                         FULL_MODULE_NAME,   /* Module name string */
+                         &ModuleHandle);     /* Module handle */
+   rc = DosFreeModule(ModuleHandle);         /* Module handle */
+</code>
+
+
+{{page>en:templates:fapi}}
+

@@ -1,0 +1,47 @@
+==== MouClose ====
+
+**Bindings**: [[close#C bindings|C]], [[close#MASM bindings|MASM]]
+
+This call closes the mouse device for the current session. 
+
+//MouClose// (**DeviceHandle**) 
+
+//DeviceHandle// (**HMOU**) - input 
+Mouse device handle from a previous MouOpen. 
+
+//rc// (**USHORT**) - return 
+Return code descriptions are: 
+
+^0 ^NO_ERROR ^
+|385 |ERROR_MOUSE_NO_DEVICE |
+|466 |ERROR_MOU_DETACHED |
+|501 |ERROR_MOUSE_NO_CONSOLE |
+|505 |ERROR_MOU_EXTENDED_SG |
+
+**Remarks** 
+
+[[en:ibm:prcp:mou:close|MouClose]] closes the mouse device for the current session and removes the mouse device driver handle from the list of valid open mouse device handles. 
+
+=== C bindings ===
+
+<code c>
+#define INCL_MOU
+
+USHORT  rc = MouClose(DeviceHandle);
+
+HMOU             DeviceHandle;  /* Mouse device handle */
+
+USHORT           rc;            /* return code */
+</code>
+
+=== MASM bindings ===
+
+<code asm>
+EXTRN  MouClose:FAR
+INCL_MOU            EQU 1
+
+PUSH   WORD    DeviceHandle  ;Mouse device handle
+CALL   MouClose
+
+Returns WORD
+</code>

@@ -1,0 +1,75 @@
+===== Build level information =====
+
+Any osFree executibles contains build level information string. Usually 
+build level placed into resources, but also can be in code or data 
+sections.   
+
+Usual place of build level information is Description string of DEF-file:   
+
+<code>Description '@#osFree:9.23#@Control utility for ANSI'</code>
+
+==== Minimal build level information ====
+
+Commonly used following build level information syntax:  
+
+<code>@#<Vendor>:<Revision>#@<Description></code>
+
+where <Vendor>, <Revision> and <Description> are ascii strings with 
+corresponding information. In EDM/2 [[http://www.edm2.com/index.php/Adding_BLDLEVEL_information_to_executables]] mentioned some restrictions for <Vendor>, <Revision> and <Description>, but actually length can be any and version format can be any. As example can be pointed some OS2KRNL revisions.
+
+Example:   
+
+<code>Description '@#osFree:9.23#@Control utility for ANSI'</code>
+
+==== Extended build level information Type I ====
+
+MPTN and TCP/IP services of osFree uses extended build level information. 
+In most cases such information not stored as Description, but as asciiz 
+constant string in code. This is why standard OS/2 bldlevel tool does not 
+work for such files. Syntax is following:   
+
+<code>@#<Vendor>:<Revision>#@##built <BuildDate> – on 
+<BuildHost>;0.1@@<Description>[:<SubDescription>[:<SubDescription>…]</code>
+
+where 
+
+  * <BuildDate> is date and time of build
+  * <BuildHost> is machine on which build compiled
+  * <SubDescription> is closer desctiption of software pack
+
+Example:   
+
+<code>Description '@#osFree:9.23#@##build 5 Oct 2003  15:00:00 – on RACERPC;0.1@@Command line tools:Control utility for ANSI'</code>
+
+==== Extended build level information Type II ====
+
+Another most known, and most complex, type of build level information is
+following:
+
+<code>@#<Vendor>:<Revision>#@1## DD.MM.YY hh:mm:ss      <BuildHost>:<ASDFeatureID>:<LanguageCode>:<CountryCode>:<Build>:<Unknown>:<FixPackVer>@@<Description></code>
+
+where
+
+  * DD.MM.YY is the build date in day/month/year, preceded by 1 space
+  * hh:mm:ss is the build time in hour/minute/second, preceded by 1 space
+  * <BuildHost> is machine on which build compiled, preceded by 8 spaces
+  * <ASDFeatureID> is identifier of ASD feature
+  * <LanguageCode> is code of language of component
+  * <CountryCode> is country code of component
+  * <Build> is build number
+  * <Unknown> is not known information (must be empty)
+  * <FixPackVer> is FixPack version (if distibuted as part of).
+
+Note: If you leave build date and/or build time empty you still have to provide the same amount of spaces to replace build date/build time.
+
+Example:
+
+<code>Description '@#osFree:9.23#@##1##RACERPC:0:866:7:436::WRR8706@@Control utility for ANSI'</code>
+
+Nowadays many projects use this BLDLEVEL format string.
+
+==== Related links ====
+
+  * [[http://www.edm2.com/index.php/Adding_BLDLEVEL_information_to_executables|Adding BLDLEVEL information to executables]]
+
+~~DISCUSSION~~

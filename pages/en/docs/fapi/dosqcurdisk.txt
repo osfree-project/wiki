@@ -1,0 +1,70 @@
+{{page>en:templates:fapiint}}
+
+====== DosQCurDisk ======
+
+This call determines the current default drive for the requesting process.
+
+===== Syntax =====
+
+
+<code c>
+DosQCurDisk (DriveNumber, LogicalDriveMap)
+</code>
+
+===== Parameters =====
+
+
+  * DriveNumber ([[PUSHORT]]) - output : Address of the number of the default drive, for example:
+
+  Value  Definition'
+  1      A
+  2      B
+  .      .
+
+  * LogicalDriveMap ([[PULONG]]) - output : Address of the bit map (stored in the low-order portion of the 32-bit, doubleword area) where the system returns the mapping of the logical drives. Logical Drives A to Z have a one-to-one mapping with the bit positions 0 to 25 of the map; for example, bit 0 is drive A, bit 1 is drive B, and so forth. The settings of these bits indicate which drives exist:
+
+  Value  Definition
+  0       The logical drive does not exist.
+  1       The logical drive exists.
+
+===== Return Code =====
+
+rc ([[USHORT]]) - return
+
+Return code description is:
+
+  * 0 NO_ERROR
+
+===== Bindings =====
+
+==== C Binding ====
+
+<code c>
+#define INCL_DOSFILEMGR
+
+USHORT  rc = DosQCurDisk(DriveNumber, LogicalDriveMap);
+PUSHORT DriveNumber;     /* Default drive number (returned) */
+PULONG  LogicalDriveMap; /* Drive map area (returned) */
+
+USHORT  rc;              /* return code */
+</code>
+
+==== MASM Binding ====
+
+<code asm>
+EXTRN  DosQCurDisk:FAR
+INCL_DOSFILEMGR     EQU 1
+
+PUSH@  WORD    DriveNumber     ;Default drive number (returned)
+PUSH@  DWORD   LogicalDriveMap ;Drive map area (returned)
+CALL   DosQCurDisk
+</code>
+
+Returns WORD
+
+===== Note =====
+
+Text based on http://www.edm2.com/index.php/DosQCurDisk
+
+{{page>en:templates:fapi}}
+

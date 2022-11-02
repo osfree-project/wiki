@@ -1,0 +1,68 @@
+{{page>en:templates:fapiint}}
+
+====== DosSubFree ======
+
+This call frees memory previously allocated by DosSubAlloc. 
+
+===== Syntax =====
+<code c>
+DosSubFree (SegSelector, BlockOffset, Size)
+</code>
+
+===== Parameters =====
+
+  * SegSelector ([[SEL]]) - input : Data segment selector.
+  * BlockOffset ([[USHORT]]) - input : Memory block offset. The value specified must equal the BlockOffset returned on a previous DosSubAlloc call.
+  * Size ([[USHORT]]) - input :  Size, in bytes, of the block to be freed.
+
+===== Return Code =====
+
+rc ([[USHORT]]) - return
+
+Return code descriptions are:
+
+  * 0          NO_ERROR 
+  * 312        ERROR_DOSSUB_OVERLAP 
+  * 313        ERROR_DOSSUB_BADSIZE
+
+===== Remarks =====
+
+DosSubFree specifies the offset of a block of memory previously suballocated by a [[DosSubAlloc]] request. If the block specified overlaps memory in the segment that is not suballocated, an error is returned. Like [[DosSubAlloc]], the size parameter must be a multiple of four bytes; otherwise, it is rounded up to a multiple of four bytes.
+
+The allocated segment is freed by calling [[DosFreeSeg]]. 
+
+===== Example Code =====
+
+==== C Binding ====
+
+<code c>
+#define INCL_DOSMEMMGR
+
+USHORT  rc = DosSubFree(SegSelector, BlockOffset, Size);
+
+SEL              SegSelector;   /* Segment selector */
+USHORT           BlockOffset;   /* Offset of memory block to free */
+USHORT           Size;          /* Size of block in bytes */
+
+USHORT           rc;            /* return code */
+</code>
+
+==== MASM Binding ====
+
+<code asm>
+EXTRN  DosSubFree:FAR
+INCL_DOSMEMMGR      EQU 1
+
+PUSH   WORD    SegSelector   ;Segment selector
+PUSH   WORD    BlockOffset   ;Offset of memory block to free
+PUSH   WORD    Size          ;Size of block in bytes
+CALL   DosSubFree
+</code>
+Returns WORD
+
+===== Note =====
+
+Text based on [[http://www.edm2.com/index.php/DosSubFree]]
+
+{{page>en:templates:fapi}}
+

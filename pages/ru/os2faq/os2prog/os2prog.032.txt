@@ -1,0 +1,151 @@
+[Q]: WWW и FTP-сайты с информацией по программированию под OS/2
+
+[A]: Dmitry Zavalishin (2:5020/32)
+
+У меня не было времени все проверить, и если перед строкой стоит -, то я сам
+туда не заходил.
+
+  URL                                       Тема
+-----------------------------------------------------------------------------
+  ftp://sky.chph.ras.ru                      -
+- ftp://ftp.sai.msu.su
+- ftp://ftp.hacker.tagil.ru
+
+  ftp://ftp.cdrom.com/os2                    -
+  ftp://hobbes.nmsu.edu                      -
+  ftp://ftp.europe.ibm.com/psmemea           -
+  ftp://ftp.software.ibm.com/ps/products/os2 -
+  ftp://service.boulder.ibm.com/ps/products  Патчи, фиксы
+  ftp://testcase.boulder.ibm.com/ps/fromibm/ Патчи (часто - не публичные)
+  ftp://ftp.leo.org/pub/comp/os/os2          -
+  ftp://ftp.uni-stuttgart.de/pub/X11/Xfree86 Xfree86, очевидно :)
+
+- http://www.omg.org                         SOM3
+- http://bbs.incoma.ru/bbs                   -
+  http://www.developer.ibm.com               Info for solution dev-ment
+  http://204.146.47.71/clubopendoc/          OpenDOC
+  http://ncc.hursley.ibm.com/javainfo/       Java
+  http://www.execpc.com/~dfranson/ipf.html   IPF
+
+  http://www.software.ibm.com/
+            workgroup/voicetyp/vtdev.html    VoiceType
+
+  http://www.europe.ibm.com/getdoc/
+      psmemea/progserv/device/ddsupport.html Drivers development
+
+  http://www.austin.ibm.com/pspinfo/
+                            developr.html    IBM Developers Support
+
+
+
+  http://www2.hursley.ibm.com/netrexx/       NetRexx
+  http://watson.mbb.sfu.ca/                  MWave (прелюбопытно!)
+
+Из OS2PRFAQ.INF by andreas@traci.almroth.pp.se. (Andreas Almroth)
+
+   OS2 prog ftp's:
+---------------------------------------------
+
+
+    Site                           IP Address      Home OS/2 Directory
+
+    american.megatrends.com        192.239.218.193 pub
+
+    atitech.ca                     198.133.44.2    pub/support/OS2
+    drivers for ATI video cards
+
+    boombox.micro.umn.edu          134.84.132.2    pub/gopher/os2
+    home of gopher software
+
+    cirrus.com                     141.131.7.10    pub/support
+    Cirrus video drivers; further
+    sorted under /desktop,
+    /laptop, etc.
+
+    ctron.com                      134.141.197.25  pub/drivers
+    Cabletron - OS/2 drivers for
+    their cards
+
+    ftp.3com.com                   129.213.128.5   /adaptors/drivers  
+    drivers for 3com cards
+
+    ftp.cdrom.com                  192.216.191.11  /pub/os2
+
+    ftp.creaf.com                  198.95.32.3
+    Creative Labs archive:
+    SoundBlaster drivers etc.
+
+    ftp.germany.eu.net             192.76.144.75   .../os2
+    see under /newsarchive
+    and /comp
+
+    ftp.ibm.net                    165.87.194.246  /pub/WebExplorer  
+    latest beta
+
+    ftp-os2.nmsu.edu               128.123.35.151  pub/os2
+
+    software.watson.ibm.com        129.34.139.5    pub/os2
+
+    mtsg.ubc.ca                    137.82.27.1     os2
+
+    access.usask.ca                128.233.3.1     pub/archives/os2
+
+    luga.latrobe.edu.au            131.172.2.2     pub/os2
+
+    funic.funet.fi                 128.214.6.100   pub/os2
+
+    pdsoft.lancs.ac.uk             148.88.64.2     micros/ibmpc/os2
+
+    ftp.uni-stuttgart.de           129.69.1.13     /pub/systems/os2
+
+    zaphod.cs.uwindsor.ca          137.207.224.3   pub/local/os2
+
+    ftp.luth.se                    130.240.18.2    pub/os2
+
+    src.doc.ic.ac.uk               146.169.2.1     computing/systems/os2  
+    mirrors ftp-os2.nmsu.edu/,
+    ftp.cdrom.com
+
+    ftp.informatik.tu-muenchen.de  131.159.0.198   /pub/comp/os/os2
+
+    ftp.informatik.uni-rostock.de  139.30.5.23     pub/os2
+
+    ftp.lexmark.com                192.146.101.4   pub/driver
+    also other directories for
+    os2*.* files
+
+    ftp.ncr.com                    192.127.252.6   pub
+    PCI SCSI drivers in /ncrchips/
+    scsi/drivers/os2
+
+    ftp.netcom.com                 192.100.81.1    /pub/kfan
+    Fan's WWW server web2-101.zip
+
+    ftp.novell.com                 137.65.1.3      pub/updates
+    former NetWire libraries
+
+    ftp.pcco.ibm.com               198.79.74.29    ? all
+    most dirs contain relevant
+    files
+
+    ftp.uni-bielefeld.de           129.70.4.55     pub/systems/os2
+
+    ftp.uni-erlangen.de            131.188.1.43    pub/os2
+    has German updates
+
+    ftp.uni-kl.de                  131.246.9.95    pub/pc/os2
+    also /incoming/pc/os2
+
+    ftp.uu.net                     192.48.96.2     /usenet  (e.g.)
+    newsgroup archives - see
+    comp.os.os2.*, among
+    others
+
+    ftp.uwp.edu                    131.210.1.4     pub/msdos/proaudio  
+    FAQ, drivers, etc. for PAS16
+
+[A]: Andrew Belov (2:5020/181.2)
+
+    http://www.os2docs.org
+    http://os2progg.by.ru
+    http://emx.nm.ru

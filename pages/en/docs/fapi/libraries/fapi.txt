@@ -1,0 +1,7 @@
+{{logos:dos.gif?35x35}}
+
+====== FAPI Library ======
+
+FAPI library is a library to link with DOS applications. FAPI provides Family API set of functions which can be linked statically to DOS executable. In counterpart API library is a library which used to produce dual platform applications. Function set and functionality is a same.
+
+{{page>en:templates:fapi}}

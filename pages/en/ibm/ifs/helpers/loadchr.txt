@@ -1,0 +1,32 @@
+==== FSH_LOADCHAR ====
+
+**Purpose**
+
+This function provides the mechanism for loading a character from a string, taking into account DBCS considerations.   
+
+**Calling Sequence**
+
+<code c>
+void far pascal FSH_LOADCHAR(ppStr, pChar)
+
+char far * far * ppStr;
+unsigned short far * pChar;
+</code>
+
+**Where**
+
+//ppStr// is a pointer to the character pointer of a string.   
+
+The character at this location will be retrieved and this pointer will be updated.   
+
+//pChar// is a pointer to the character returned.   
+
+If character is non-DBCS, the first byte will be the character and the second byte will be zero. 
+
+**Returns**
+
+There are no error returns.   
+
+**Remarks**
+
+**Note**:   OS/2 does not validate input parameters. An FSD, therefore, should call //FSH_PROBEBUF// where appropriate.   

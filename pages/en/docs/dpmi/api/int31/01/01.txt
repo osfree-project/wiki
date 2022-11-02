@@ -1,0 +1,49 @@
+{{page>en:templates:dpmi}}
+
+====== Int 31H, AH=01H, AL=01H ======
+
+===== Version =====
+
+0.9
+
+===== Brief =====
+
+Free DOS Memory Block
+
+===== Input =====
+
+  AX = 0101H
+  DX = selector of block to be freed
+        
+===== Return =====
+
+  if function successful
+  Carry flag = clear
+  
+  if function unsuccessful
+  Carry flag = set
+  AX = error code
+  0007H	memory control blocks damaged (also returned by DPMI 0.9 hosts).
+  0009H	incorrect memory segment specified (also returned by DPMI 0.9 hosts).
+  8022H	invalid selector
+
+===== Notes =====
+
+Frees a memory block that was previously allocated with the Allocate DOS Memory Block function (Int 31H Function 0100H).
+
+All descriptors allocated for the memory block are automatically freed by this function, and are no longer valid after this function returns.
+
+Under DPMI 1.0 hosts, any segment registers which contain a selector being freed are zeroed by this function.
+
+Refer to the rules for descriptor usage in Appendix D.
+   
+===== See also =====
+
+   
+
+===== Note =====
+
+Text based on [[http://www.delorie.com/djgpp/doc/dpmi/]]
+
+{{page>en:templates:dpmi:int}}
+

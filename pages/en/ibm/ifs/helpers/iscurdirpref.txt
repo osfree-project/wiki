@@ -1,0 +1,35 @@
+==== FSH_ISCURDIRPREFIX ====
+
+**Purpose**
+
+This function allows FSDs to disallow any modification of any directory that is either a current directory of some process or the parent of any current directory of some process. This is necessary because the kernel manages the text of each current directory for each process.   
+
+**Calling Sequence**
+
+<code c>
+int far pascal FSH_ISCURDIRPREFIX(pName)
+
+char far * pMsg;
+</code>
+
+**Where**
+
+//pName// is a pointer to the path name.   
+
+The name must be in canonical form, that is, no '.' or '..' components, uppercase, no meta characters, and full path name specified. 
+
+**Returns**
+
+If no error is detected, a zero error code is returned. If an error is detected, one of the following error codes is returned:   
+
+  * ERROR_CURRENT_DIRECTORY -- the specified path is a prefix of or is equal to the current directory of some process.   
+
+If the current directory is the root and the path name is "d:\", ERROR_CURRENT_DIRECTORY will be returned. 
+
+**Remarks**
+
+//FSH_ISCURDIRPREFIX// takes the supplied path name, enumerates all current directories in use, and tests to see if the specified path name is a prefix or is equal to some current directory.   
+
+//FSH_ISCURDIRPREFIX// may block.   
+
+Note:   OS/2 does not validate input parameters. An FSD, therefore, should call //FSH_PROBEBUF// where appropriate.   

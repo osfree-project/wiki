@@ -1,0 +1,15 @@
+==== 27 June, 2014 ====
+
+RSS feeds repaired, the fight with spambots seems to reach the end
+
+After server crash at the end of 2012, the site is being repaired from 
+Feb.-Mar. 2013 until now. Now the wiki is being filled with info (some 
+of which is restored from web.archive.org), and parts of Forum too. So, 
+welcome to our new site! Also, until now, some code were committed to 
+the repo (namely, fat32.ifs with FORMAT routine enabled (by valerius), 
+and also commits by Viking, fixing some problems with build system under 
+linux etc.)
+
+{{tag>site repairs commits}}
+
+~~DISCUSSION~~

@@ -1,0 +1,58 @@
+{{page>en:templates:dpmi}}
+
+====== Int 31H, AH=00H, AL=08H ======
+
+===== Version =====
+
+0.9
+
+===== Brief =====
+
+Set Segment Limit [0.9]
+
+===== Input =====
+
+  AX = 0008H
+  BX = selector
+  CX:DX = 32-bit segment limit
+
+===== Return =====
+
+  if function successful
+  Carry flag = clear
+  
+  if function unsuccessful
+  Carry flag = set
+  AX = error code
+  8021H	invalid value (CX <> 0 on a 16-bit DPMI host; or the limit is greater than 1 MB, but the low twelve bits are not set)
+  8022H	invalid selector
+  8025H	invalid linear address (changing the limit would cause the descriptor to reference a linear address range outside that allowed for DPMI clients.)
+
+===== Notes =====
+
+Sets the limit field in the LDT descriptor for the specified segment.
+
+The value supplied to the function in CX:DX is the byte length of the segment-1 (i.e., the value returned by the LSL instruction).
+
+Segment limits greater than or equal to 1 MB must be page-aligned. That is, limits greater than 1 MB must have the low 12 bits set.
+
+This function has an implicit effect on the "G" (granularity) bit in an 80386 descriptor's extended access rights/type byte; i.e., it is the host's responsibility to set the "G" bit correctly.
+
+Client programs must use the LSL instruction to query the limit for a descriptor. Note that on 80386 machines, the client must use the 32-bit form of LSL if the segment size is greater than 64 KB.
+
+A DPMI 1.0 host will reload any segment registers which contain the selector specified in register BX. It is suggested that DPMI 0.9 hosts also implement this.
+
+Refer to the rules for descriptor usage in Appendix D.
+
+    
+===== See also =====
+
+   
+
+===== Note =====
+
+Text based on [[http://www.delorie.com/djgpp/doc/dpmi/]]
+
+{{page>en:templates:dpmi:int}}
+
+

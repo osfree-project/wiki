@@ -1,0 +1,165 @@
+[Q]: Что интеpесненького во втоpой бете 2.99?
+
+[A]: Felix Eng, Norbert Heller, Chuck Bogorad (2:5030/83)
+
+     During BOOTUP, pressing ALT-F2 will show the
+     device drivers currently being loaded up. This is
+     very useful for problem determination.
+
+EDITOR
+   - There is a new Editor called TEDIT ( YEP : The TINI Editor )
+     in your c:\os2 directory
+
+MMPM/2
+   - The MMPM/2 Video player will play videos at fullscreen 1024*786
+     AVI as well as FLI and FLC
+
+POINTERS
+   - To change the system pointers, use the Mouse settings in the
+     System Setup folder.
+
+   - To create a set of custom pointers (say "Custom"), create the
+     subdirectory x:\OS2\POINTERS\Custom.  Look in another pointer
+     directory (say, x:\OS2\POINTERS\BLACK) for the proper names for
+     the pointers, then create a pointer using the Icon Editor,
+     placing the new file in x:\OS2\POINTERS\Custom.  You can also
+     copy the contents of another directory into
+     x:\OS2\POINTERS\Custom, then modify the pointers by
+     double-clicking on them.
+
+ICONS
+     The following REXX script (placed in a CMD file) will (assuming a
+     folder named 'Multimedia' exists directly on the desktop) change its
+     open and close icons to the appropriate icons (assuming that the
+     OS/2 desktop and mmos2 are both on drive E).
+
+     /* REXX */
+     call RxFuncAdd 'SysSetObjectData','RexxUtil','SysSetObjectData'
+     call SysSetObjectData "E:\DESKTOP\MULTIMEDIA",,
+          "ICONFILE=E:\MMOS2\INSTALL\MMPMFLDR.ICO";
+
+     call SysSetObjectData "E:\DESKTOP\MULTIMEDIA",,
+          "ICONNFILE=1,E:\MMOS2\INSTALL\MMPMFLD2.ICO";
+
+     Also note that the first SysSetObjectData could contain
+
+     ICONNFILE=0,E:\MMOS2\INSTALL\MMPMFLDR.ICO as its identical in function to
+     ICONFILE=E:\MMOS2\INSTALL\MMPMFLDR.ICO.
+
+
+LAUNCH PAD
+   - Double-clicking on the desktop brings up the LaunchPad.
+
+   - The 'Delete...' option on the LaunchPad popup menu removes this
+     effect.  :-)
+
+   - The name for the Launch Pad is FRONT PANEL in the doku
+
+SYSTEM
+   - Look in OS/2 System --> System Setup --> System --> Window (page
+     2) for settings on closing parent folders.
+
+   - The accelerator key for the settings notebook on a popup menu
+     is 'g.'  The underbar is blocked by the tail of the 'g.'
+
+   - Use the Desktop notebook page of the Desktop notebook to make
+     your desktop permanent.
+
+   - Use REIPL=YES in CONFIG.SYS to automatically reboot after a
+     system trap or internal processing error.
+
+   - Use SUPRESSPOPUPS=C to suppress the popup box for trap
+     information and log the events in a file on C:.
+
+   - Invoke VIEW with the /topic switch (e.g., VIEW /Shutdown) to
+     search all libraries for the specified topic.
+
+   - The display driver option WORKPLACE SHELL PALETTE AWARE
+     only works for resolutions with 256 colors.
+
+   - Your INI files as well as the Config.sys and Autoexec,bat will be
+     saved into the directory c:\os2\archives when specified in the DESKTOP
+     Archives Settings Page
+
+     To recover these Archives Press ALT-F1 at startup and some options 
+     will be displayed
+
+     Here you may also switch to VGA or have a command line at bootup
+
+[A]: Alexander Belyaev (2:5035/13.15)
+
+     Перевод:
+
+     Во время загрузки, нажав Alt-F2 можно проследить за всеми загружаемыми 
+     драйверами. Это очень удобно для разрешения проблем при загрузке  
+
+EDITOR
+     Появился новый редактор - TEDIT ( YEP : The TINI Editor )
+
+MMPM/2
+      
+     MMPM/2 Видео проигрыватель теперь играет AVI при разрешении 1024*786
+     так же хорошо, как FLI и FLC
+
+POINTERS 
+     Чтобы сменить указатель мыши, используйте Mouse->Settings
+     в папке SYstem Setup
+     Чтобы использовать свой набор указателей, создайте директорию типа
+     x:\os2\pointers\My_Pointers. Подглядите в соседнюю директорию, чтобы
+     знать, как называются файлы, содержащие указатели, затем нарисуйте
+     свои указатели, с помощью редактора иконок.  
+
+ICONS
+
+      
+     Следующий REXX скрипт (помещенный в CMD файл) 
+     заменит иконки для папки Multimedia (предполагается, что система )
+     установлена на диске Е
+
+     /* REXX */
+     call RxFuncAdd 'SysSetObjectData','RexxUtil','SysSetObjectData'
+     call SysSetObjectData "E:\DESKTOP\MULTIMEDIA",,
+          "ICONFILE=E:\MMOS2\INSTALL\MMPMFLDR.ICO";
+
+     call SysSetObjectData "E:\DESKTOP\MULTIMEDIA",,
+          "ICONNFILE=1,E:\MMOS2\INSTALL\MMPMFLD2.ICO";
+
+     Also note that the first SysSetObjectData could contain
+
+     ICONNFILE=0,E:\MMOS2\INSTALL\MMPMFLDR.ICO as its identical in function to
+     ICONFILE=E:\MMOS2\INSTALL\MMPMFLDR.ICO.
+
+
+LAUNCH PAD
+     Если сделать на десктопе дабл-клик, появится пусковая панель (LaunchPad)
+     Орция 'Delete...' на его всплывающем меню убирает этот эффект
+
+
+SYSTEM
+
+     Посмотрите в OS/2 System --> System Setup --> System --> Window (стр 2) 
+     установки для закрытия родительского окна. 
+     
+     Клавиша "g" служит акселератором для вызова настроек всплывающего меню
+
+     Используйте закладку Desktop в книжке Desktop, чтобы сделать его
+     неизменным (снять галочку Save Desktop Properties)
+
+     Используйте строчку REIPL=YES в CONFIG.SYS, чтобы автоматически
+     перезагружать систему при трапах
+
+     SUPRESSPOPUPS=C будет скидывать информацию об ошибках и трапах 
+     в файл POPUP.LOG на диске  C:.
+
+     Запустите VIEW с ключом /topic (напр., VIEW /Shutdown), чтобы 
+     найти все библиотеки, тносящиеся к данному ключу
+     
+     Опция WORKPLACE SHELL PALETTE AWARE работает только для 256-цветных
+     режимов видеоадаптера.
+
+     INI файлы сохраняются в директории c:\os2\archives 
+
+     Для их восстановления нажмите Alt-F1  при загрузке и появится
+     список опций 
+
+     Также можно переключиться в VGA или загрузить командную строку

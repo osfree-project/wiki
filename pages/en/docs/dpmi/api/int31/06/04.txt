@@ -1,0 +1,41 @@
+{{page>en:templates:dpmi}}
+
+====== Int 31H, AH=06H, AL=04H ======
+
+===== Version =====
+
+0.9
+
+===== Brief =====
+
+Get Page Size
+
+===== Input =====
+
+  AX = 0604H
+    
+===== Return =====
+
+  if function successful
+  Carry flag = clear
+  BX:CX = page size in bytes
+  
+  if function unsuccessful
+  Carry flag = set
+  AX = error code
+  8001H	unsupported function (16-bit host)
+
+===== Notes =====
+
+Returns the size of a single memory page in bytes.
+
+===== See also =====
+
+   
+
+===== Note =====
+
+Text based on [[http://www.delorie.com/djgpp/doc/dpmi/]]
+
+{{page>en:templates:dpmi:int}}
+

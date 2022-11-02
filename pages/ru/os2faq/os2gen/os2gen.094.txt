@@ -1,0 +1,37 @@
+[Q]: А как заменить стоящий по умолчанию просмотрщик картинок в Merlin?
+
+[A]: Harry Bush (2:51/2)
+
+http://www.pmview.com/
+
+1.DOUBLE-CLICK PROBLEM UNDER OS/2 v4.0 ("Merlin" GA)
+====================================================
+
+"I'm running OS/2 version 4.0. Whenever I double-click a GIF file (or JPG,
+or PCX, or TGA, or TIFF, or PhotoCD, or ...), it launches the OS/2
+Multimedia Viewer. How can I set up OS/2 to launch PMView instead?"
+
+Answer1:  If you have installed any fixpacks then you already have the
+ability to do so. Use .\OS2\SETDEFV.CMD to change the default viewer for
+a specific file type based on the file extension.
+For example: .\OS2\SETDEFV.CMD "PMView" TEMP.BMP will change the default
+viewer for all .BMP files to PMView.
+
+Answer2: Download and install the FIX for the Warp 4 image file association
+problem (ftp://ftp.practice.xo.com/pub/primgfix.zip)
+
+[A]: Alexander Belyaev (2:5035/13.15)
+
+Перевод:
+
+http://www.pmview.com/
+
+1: Если у вас установлен какой-либо фикспак, то есть штатное средство, чтобы
+сделать это. Используйте x:\OS2\SETDEFV.CMD чтобы сменить дефолтный вьюер
+для конкретного расширения. Hапример
+
+ .\OS2\SETDEFV.CMD "PMView" TEMP.BMP
+сменит просмотрщик по умолчанию для всех BMP на PMView
+
+2: Скачайте и установите утилитку для решения данной проблемы
+  (ftp://ftp.practice.xo.com/pub/primgfix.zip)

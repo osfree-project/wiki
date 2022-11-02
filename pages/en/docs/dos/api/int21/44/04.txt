@@ -1,0 +1,48 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=44H, AL=04H ======
+
+===== Version =====
+
+2 and higher
+
+===== Brief =====
+
+READ FROM BLOCK DEVICE CONTROL CHANNEL
+
+===== Family API =====
+
+
+===== Input =====
+
+	AX = 4404h
+	BL = drive number (00h = default, 01h = A:, etc.)
+	CX = number of bytes to read
+	DS:DX -> buffer
+
+===== Return =====
+
+ CF clear if successful
+	    AX = number of bytes actually read
+	CF set on error
+	    AX = error code (01h,05h,06h,0Dh) (see #01680 at AH=59h/BX=0000h)
+
+===== Macro =====
+
+
+===== Notes =====
+
+	format of data is driver-specific
+	this function was not supported by Digital Research's DOS Plus
+
+===== See also =====
+
+ AX=4402h"DOS 2+",AX=4405h"DOS",INT 2F/AX=122Bh
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:int}}
+
+{{page>en:templates:fapi}}

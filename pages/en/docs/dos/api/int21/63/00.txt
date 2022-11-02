@@ -1,0 +1,59 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=63H, AL=00H ======
+
+===== Version =====
+
+2.25, 3.2 and higher
+
+===== Brief =====
+
+GET LEAD BYTE TABLE ADDRESS
+
+===== Family API =====
+
+
+===== Input =====
+
+        AX = 6300h
+
+===== Return =====
+
+  CF clear if successful
+  DS:SI -> lead byte table (see #01746)
+  CF set on error
+  AX = error code (01h) (see #01680 at AH=59h/BX=0000h)
+
+  note: NO CF flag used in some versions
+  AL = error code
+    00h successful all other registers except CS:IP and SS:SP destroyed
+    FFh not supported
+   
+===== Macro =====
+
+
+===== Notes =====
+
+  Does not preserve any registers other than SS:SP.
+  Probably identical to AH=63h/AL=00h for DOS 2.25. The US version of MS-DOS 3.30 treats this as an unused function, setting AL=00h and returning immediately, WITHOUT setting DS:SI; only the Far East versions of MS-DOS 3.2 and 3.3 supported this call. The US version of DOS 4.0+ accepts this function, but returns an empty list. IBM DOS 6.1 SYS.COM assumes that CF is set on error
+
+  Format of double-byte character set lead byte table entry:
+
+  Offset  Size    Description     (Table 01746)
+  00h  2 BYTEs   low/high ends of a range of leading byte of double-byte chars
+  02h  2 BYTEs   low/high ends of a range of leading byte of double-byte chars.
+  ...
+  N   2 BYTEs   00h,00h end flag
+
+===== See also =====
+
+  AX=6301h - AH=07h - AH=08h - AH=0Bh
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:int}}
+
+{{page>en:templates:fapi}}
+

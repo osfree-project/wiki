@@ -1,0 +1,183 @@
+[Q]: NS Communicator 4.04 - проблемы и решения.
+
+[A]: IBM developers
+
+I have promised everyone some undocumented features, and 
+this post lists them.
+
+It also lists some workarounds that are NOT in the README.
+
+ITEM NUMBER 1 IS THE ONLY SUPPORTED THING IN THIS POST
+
+Please read this post!
+
+1. Lines in images
+
+Some machines might still experience white lines in images, 
+even after following the FixPak 6 instructions in the 
+README. If you do, use the following REXX CMD to add 
+another entry to your INI File:
+
+/* */
+call RxFuncAdd 'SysLoadFuncs', 'RexxUtil', 'SysLoadFuncs'
+call SysLoadFuncs
+
+call SysIni 'USER', 'FixPak', 'Shift','2'
+
+If you still have the problem, try changing the '2' to '1'
+
+2. Viewing source in an editor, using AIM, Host On-Demand, 
+or Netcaster
+
+OK, the following CMD file is a catch all for all of the 
+above. First the CMD file:
+
+/* IniName points to the location of your NSCP.INI */
+/* Change NSDir to the directory where NS40 is installed */
+/* Change InstallDrive to the drive where NS40 is installed 
+*/
+/* Change en to be the two character identifier for your 
+browser */
+IniName = 'C:\OS2\NSCP.INI'
+InstallDrive = 'C:'
+NSDir = InstallDrive||'\NS40BETA'
+InstallDir = NSDir'\Program'
+NSVersion = '4.04 (en)'
+call RxFuncAdd 'SysLoadFuncs', 'RexxUtil', 'SysLoadFuncs'
+call SysLoadFuncs
+
+/* Add ini entries for Netcaster */
+call SysIni IniName, 'Netcaster', 'CurrentVersion', NSVersion
+call SysIni IniName, 'Netcaster-'||NSVersion, 'Install Directory',
+NSDir'\Netcast'
+/* Add ini entries for Host On-Demand */
+call SysIni IniName, '3270', 'CurrentVersion', NSVersion
+call SysIni IniName, '3270-'||NSVersion, 'Install Directory',
+NSDir'\3270'
+/* Add ini entries for AOL Instant Messenger */
+call SysIni IniName, 'AIM', 'CurrentVersion', NSVersion
+call SysIni IniName, 'AIM-'||NSVersion, 'Install Directory',
+NSDir'\AIM'
+
+/* Add Registry entries for View Source */
+call SysIni IniName, 'Registry',
+'\HKEY_CLASSES_ROOT\viewsource','URL:View Source'
+call SysIni IniName, 'Registry',
+'\HKEY_CLASSES_ROOT\viewsource\shell',0
+call SysIni IniName, 'Registry',
+'\HKEY_CLASSES_ROOT\viewsource\shell\open',0
+call SysIni IniName, 'Registry',
+'\HKEY_CLASSES_ROOT\viewsource\shell\open\command','C:\OS2\E.EXE'
+
+Now how to use it:
+
+Install Netscape on windows, copy the contents of NETCAST, 
+3270, and AIM directories to the appropriately named 
+directories under where you installed NETSCAPE:
+
+NETSCAPE\PROGRAM
+NETSCAPE\3270
+NETSCAPE\NETCAST
+NETSCAPE\AIM
+
+Note that these three products are NOT supported, but feel 
+free to try. Note that the AOL pulldown will just launch 
+AIM.EXE in the AIM directory, so you can put anything 
+there.
+
+Once you have added the View Source entry, you can modify 
+the settings for it in the Preferences->Applications.
+
+3. Misc undocumented OS/2 features:
+
+All these are entries you can add to your PREFS.JS file to 
+do various things. Have fun experimenting:
+
+If we see a web page with Arial, Helvetica, we pick 
+Helvetica if this preference is true
+user_pref("os2.arial_pref", false|true);
+
+Specify a wave file for new mail sound. REMEMBER double 
+backslashes!
+user_pref("os2.mail.sound",
+"C:\\MMOS2\\SOUNDS\\GOTMAIL.WAV");
+
+Prevents ALL filename mangling when downloading (dots and 
+extension) if set to false
+user_pref("os2.replace_dots", true|false );
+
+Turns off URL bar completion if set to false
+user_pref("os2.url_completion", true|false );
+
+Causes User Defined Encoding to use default codepage of 
+OS/2 if set to true. On Russian systems, this allows you to 
+see 866 web pages. On default OS/2 systems, you can see 850 
+pages.
+user_pref("os2.use_oem_charset", true|false );
+
+4. Other notables:
+
+Viewing any language web page in Communicator
+
+If you use Times Roman MT 30 as your font for ALL 
+encodings, you will be able to see stuff in any language.
+
+Chinese and Korean only work on FP 5 or later (I think)
+
+Causing helpers to be launched by the WPS:
+
+If you check the application radio button when EDITING (not 
+creating) a helper, but leave the application entry field 
+blank, the item simply gets passed to the Workplace Shell. 
+This can be used to launch Windows helpers with proper 
+settings, as well as just letting the WPS handle all
+misc types.
+
+5. Apologies
+
+Sorry all the drag drop still isn't there. It is our number 
+one priority for the next version. As far as the click on 
+load goes, Netscape deliberately broke that because of 
+other bugs. We tried to fix it, but couldn't get it in in
+time. Next time. As far as the Collabra problems go, we 
+couldn't get them to reproduce in the latest drivers. We 
+hope they are fixed.
+
+Hope y'all enjoy the product!
+
+Mike Kaply
+IBM Corporation
+Technical Lead
+Netscape Communicator for OS/2
+
+*****************************************************************************
+
+[A]: Dmitry I Platonoff (2:5004/1.321)
+
+Проблемы с русским в Коммуникаторе
+
+Я получил ответ от Майка Капли (mailto:PSPMikeK@aol.com), ведущего
+разработчика Communicator. Ранее я сообщал ему о проблемах с
+кодировками при отправке писем и просмотре www-страниц. Он сообщил мне,
+что для корректной работы необходимо добавить в файл настроек PREFS.JS
+в Вашем пользовательском каталоге (NETSCAPE\USERS\ваше_имя) следующие
+строчки: 
+
+user_pref("intl.mailcharset.cyrillic", "koi8-r");
+ исходящие письма будут отправляться в кодировке koi8-r
+
+user_pref("intl.accept_charsets", "koi8-r,*,utf-8");
+ www-серверам (тем, которые это поддерживают) будет отправляться
+        запрос о том, что браузер предпочитает получать страницы в koi8-r
+        (по умолчанию он зачем-то хочет iso-8859-5)
+        
+Кроме этого, кодировкой "по умолчанию" обязательно должна быть
+windows-1251. Последнее выглядит несколько обескураживающе, но
+объясняется весьма просто: кодировкой "по умолчанию" должна быть
+текущая кодировка Вашей системы (то есть, не та, в которой документы
+должны отправляться, а та, в которой вы обычно набираете текст). А так
+как Коммуникатор был портирован из-под Windows, то нам досталось в
+наследство и название текущей кодировки в меню... 
+
+Я проверил всe это в своей системе с русским Коммуникатором и у меня
+всe заработало нормально. Желаю того же и Вам.

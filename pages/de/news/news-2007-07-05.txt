@@ -1,0 +1,6 @@
+==== 5. Juli 2007 ====
+
+Für die Linux-Personality können wir eine bestehende GNU/Linux-Distribution auswählen, um so wenig Pflege-Aufwand darauf verwenden zu müssen, wie möglich.Es handelt sich dabei ja nicht um ein Hauptziel, daher wollen wir damit möglichst wenig Zeit verlieren.
+Stimmen Sie unter [[http://www.osfree.org/forum/viewtopic.php?t=240]] (en) über die Distribution ab!
+
+~~DISCUSSION~~

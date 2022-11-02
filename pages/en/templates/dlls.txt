@@ -1,0 +1,82 @@
+
+^ [[en:docs:os2:modules|OS/2 DLLs]] ^^
+| Base API | [[en:docs:os2:modules:doscalls|DOSCALLS]] [[en:docs:os2:modules:emxwrap|emxwrap]] [[en:docs:os2:modules:sub32|sub32]] [[en:docs:os2:modules:ansicall|ANSICALL]] [[en:docs:os2:modules:nls|NLS]] [[en:docs:os2:modules:msg|MSG]] [[en:docs:os2:modules:moncalls|MONCALLS]] [[en:docs:os2:modules:kbdcalls|KBDCALLS]] [[en:docs:os2:modules:moucalls|MOUCALLS]] [[en:docs:os2:modules:viocalls|VIOCALLS]] [[en:docs:os2:modules:sesmgr|sesmgr]] [[en:docs:os2:modules:bkscalls|bkscalls]] [[en:docs:os2:modules:bmscalls|bmscalls]] [[en:docs:os2:modules:bvscalls|bvscalls]] [[en:docs:os2:modules:nampipes|nampipes]] [[en:docs:os2:modules:quecalls|quecalls]] [[en:docs:os2:modules:os2char|os2char]] |
+| Bidirectional NLS | [[en:docs:os2:modules:bdcalls|bdcalls]] [[en:docs:os2:modules:bdcalls32|bdcalls32]] [[en:docs:os2:modules:bdime|bdime]] [[en:docs:os2:modules:bdbvh|bdbvh]] [[en:docs:os2:modules:bdview|bdview]] [[en:docs:os2:modules:bdwpcls|bdwpcls]] [[en:docs:os2:modules:bidipm|bidipm]] [[en:docs:os2:modules:pmbidi|pmbidi]] |
+| Unicode API | [[en:docs:os2:modules:uconv|uconv]] [[en:docs:os2:modules:unikbd|unikbd]] [[en:docs:os2:modules:libuni|libuni]] |
+| BVH (Base Video Handlers) | [[en:docs:os2:modules:bvhinit|bvhinit]] [[en:docs:os2:modules:bvhmpa|bvhmpa]] [[en:docs:os2:modules:bvhvga|bvhvga]] [[en:docs:os2:modules:bvhsvga|bvhsvga]] [[en:docs:os2:modules:bvhwndw|bvhwndw]] |
+| GRADD subsystem | [[en:docs:os2:modules:vman|vman]] [[en:docs:os2:modules:softdraw|softdraw]] [[en:docs:os2:modules:gre2vman|gre2vman]] [[en:docs:os2:modules:gengradd|gengradd]] |
+| IPF (Information Presentation facility) | [[en:docs:os2:modules:helpmgr|helpmgr]] [[en:docs:os2:modules:hpmgrmri|hpmgrmri]] [[en:docs:os2:modules:minxobj]] [[en:docs:os2:modules:ibmhmgr|ibmhmgr]] [[en:docs:os2:modules:newview|newview]] [[en:docs:os2:modules:minxmri]] [[en:docs:os2:modules:errtxt|errtxt]] |
+| REXX | [[en:docs:os2:modules:rexx|rexx]] [[en:docs:os2:modules:rexxapi|rexxapi]] [[en:docs:os2:modules:rexxutil|rexxutil]] [[en:docs:os2:modules:regina]] |
+| The core  PM DLL's |[[en:docs:os2:modules:pmmerge|pmmerge]] [[en:docs:os2:modules:pmmrgres|pmmrgres]] [[en:docs:os2:modules:pmshapi|pmshapi]] [[en:docs:os2:modules:pmshltkt|pmshltkt]] [[en:docs:os2:modules:pmgre|pmgre]] [[en:docs:os2:modules:pmgpi|pmgpi]] [[en:docs:os2:modules:pmdrag|pmdrag]] [[en:docs:os2:modules:pmctls|pmctls]] [[en:docs:os2:modules:pmmle|pmmle]] [[en:docs:os2:modules:pmspl|pmspl]] [[en:docs:os2:modules:pmviop|pmviop]] [[en:docs:os2:modules:pmwin|pmwin]] |
+| Open32 | [[en:docs:os2:modules:pmwinx|pmwinx]] [[en:docs:os2:modules:mirrors|mirrors]] [[en:docs:os2:modules:registry|registry]] |
+| Intelligent Font Interface drivers | [[en:docs:os2:modules:pmatm|pmatm]] [[en:docs:os2:modules:truetype|truetype]] [[en:docs:os2:modules:pmunif|pmunif]] [[en:docs:os2:modules:freetype|freetype]] [[en:docs:os2:modules:pmpre|pmpre]] |
+| Data Exchange | [[en:docs:os2:modules:pmclip|pmclip]] [[en:docs:os2:modules:pmdde|pmdde]] [[en:docs:os2:modules:pmddeml|pmddeml]] |
+| VDM PM interface | [[en:docs:os2:modules:pmvdmh|pmvdmh]] [[en:docs:os2:modules:pmvdmp|pmvdmp]] [[en:docs:os2:modules:seamless|seamless]] [[en:docs:os2:modules:shield|shield]] |
+| WPS | [[en:docs:os2:modules:pmwp|pmwp]] [[en:docs:os2:modules:pmwpmri|pmwpmri]] [[en:docs:os2:modules:pmvddrop|pmvddrop]] |
+| Miscellaneous | [[en:docs:os2:modules:pmpic|pmpic]] [[en:docs:os2:modules:pmtkt|pmtkt]] |
+
+
+
+<diagram>
+|  AAA     | | |    | | |   | |    | | | | | | | | | | | | | | |AAA=[[en:docs:os2:modules:KAL]]
+| |!@1 |   | | |    | | |   | |    | | | | | | | | | | | | | | |
+| |)@22|-  |-|  BBB   |-|-  |-|-   |-|-|-|-|.| | | | | | | | | |BBB=[[en:docs:os2:modules:DOSCALLS]]
+| |!@4 |   | | |!@1 | | |   | |    | | | | |!| | | | | | | | | |
+|  BVH     | | |)@22|-|  BVS  |.@8 | | | | |!| | | | | | | | | |BVH=Base Video Handlers|BVS=[[en:docs:os2:modules:BVSCALLS]]
+| |    |   | | |!   | | |   | |!   | | | | |!| | | | | | | | | |
+| |    |   | | |)@22|-|  BKS  |+@8 | FFF |-@8  |'| | | | | | | | | | | | |BKS=[[en:docs:os2:modules:BKSCALLS]]|FFF=[[en:docs:os2:modules:EMXWRAP]] ([[en:docs:os2:modules:SUB32]])
+| |    |   | | |!   | | |   | |!   | | | | | | | | | | | | | | |
+| |    |   | | |)@22|-| BMS   |(@8 | | | | | | | | | | | | | | |BMS=[[en:docs:os2:modules:BMSCALLS]]
+| |    |   | | |!   | | |   | |!   | | | | | | | | | | | | | | |
+| |    |   | | |)@22|-| MON   |'@8 | | | | | | | | | | | | | | |MON=[[en:docs:os2:modules:MONCALLS]]
+| |    |   | | |!   | | |   | |    | | | | | | | | | | | | | | |
+| |    |   | | |)@22|-| KBD   |    | | | | | | | | | | | | | | |KBD=[[en:docs:os2:modules:KBDCALLS]]
+| |    |   | | |!   | | |   | |    | | | | | | | | | | | | | | |
+| |    |   | | |)@22|-| MOU   |    | | | | | | | | | | | | | | |MOU=[[en:docs:os2:modules:MOUCALLS]]
+| |    |   | | |!   | | |   | |    | | | | | | | | | | | | | | |
+| |    |   | | |)@22|-| VIO   |    | | | | | | | | | | | | | | |VIO=[[en:docs:os2:modules:VIOCALLS]]
+| |    |   | | |!   | | |   | |    | | | | | | | | | | | | | | |
+| |    |   | | |)@22|-| NAM   |    | | | | | | | | | | | | | | |NAM=[[en:docs:os2:modules:NAMPIPES]]
+| |    |   | | |!   | | |   | |    | | | | | | | | | | | | | | |
+| |    |   | | |)@22|-| QUE   |    | | | | | | | | | | | | | | |QUE=[[en:docs:os2:modules:QUECALLS]]
+| |    |   | | |!   | | |   | |    | | | | | | | | | | | | | | |
+| |    |   | | |)@22|-| CHR   |    | | | | | | | | | | | | | | |CHR=[[en:docs:os2:modules:OS2CHAR]]
+| |    |   | | |!   | | |   | |    | | | | | | | | | | | | | | |
+| |    |   | | |)@22|-| CCC   |    | | | | | | | | | | | | | | |CCC=[[en:docs:os2:modules:NLS]]
+| |    |   | | |!   | | |   | |    | | | | | | | | | | | | | | |
+| |    |   | | |)@22|-| DDD   |    | | | | | | | | | | | | | | |DDD=[[en:docs:os2:modules:MSG]]
+| |    |   | | |!   | | |   | |    | | | | | | | | | | | | | | |
+| |    |   | | |)@22|-| ANS   |    | | | | | | | | | | | | | | |ANS=[[en:docs:os2:modules:ANSICALL]]
+| |    |   | | |!   | | |   | |    | | | | | | | | | | | | | | |
+| |    |   | | |)@22|-| EEE   |    | | | | | | | | | | | | | | |EEE=[[en:docs:os2:modules:SESMGR]]
+| |    |   | | |!   | | |   | |    | | | | | | | | | | | | | | |
+| |    |   | | |)@22|-| PMC   |~   |~|~|~|~|~|~|~|~| PMS | | | |PMC=[[en:docs:os2:modules:PMCLIENT]]|PMS=PM Server (local or remote)
+| |    |   | | |!   | | |!  | |    | | | | | | | | | | | | | | |
+| |    |   | | |!   | | |`  |-| PMM    | | | | | | | | | | | | |PMM=[[en:docs:os2:modules:PMMERGE]]
+| |    |   | | |!   | | |   | |    |!| | | | | | | | | | | | | |
+| |    |   | | |!   | | |   | |    |)|-| GRE | | | | | | | | | |GRE=[[en:docs:os2:modules:PMGRE]]
+| |    |   | | |!   | | |   | |    |!| | | | | | | | | | | | | |
+| |    |   | | |!   | | |   | |    |)|-| SHL | | | | | | | | | |SHL=[[en:docs:os2:modules:PMSHAPI]]
+| |    |   | | |!   | | |   | |    |!| | | | | | | | | | | | | |
+| |    |   | | |!   | | |   | |    |)|-| SHT | | | | | | | | | |SHT=[[en:docs:os2:modules:PMSHLTKT]]
+| |    |   | | |!   | | |   | |    |!| | | | | | | | | | | | | |
+| |    |   | | |!   | | |   | |    |)|-| CTL | | | | | | | | | |CTL=[[en:docs:os2:modules:PMCTLS]]
+| |    |   | | |!   | | |   | |    |!| | |!| | | | | | | | | | |
+| |    |   | | |!   | | |   | |    |!| | |)|-| DRG | | | | | | |DRG=[[en:docs:os2:modules:PMDRAG]]
+| |    |   | | |!   | | |   | |    |!| | |!| | | | | | | | | | |
+| |    |   | | |!   | | |   | |    |!| | |`|-| MLE | | | | | | |MLE=[[en:docs:os2:modules:PMMLE]]
+| |    |   | | |!   | | |   | |    |!| | | | | | | | | | | | | |
+| |    |   | | |!   | | |   | |    |)|-| GPI | | | | | | | | | |GPI=[[en:docs:os2:modules:PMGPI]]
+| |    |   | | |!   | | |   | |    |!| | | | | | | | | | | | | |
+| |    |   | | |!   | | |   | |    |`|-| WIN | | | | | | | | | |WIN=[[en:docs:os2:modules:PMWIN]]
+| |    |   | | |!   | | |   | |    | | | | | | | | | | | | | | |
+| |    |   | | |`@22|-| UTL   |    | | | | | | | | | | | | | | |UTL=[[en:docs:os2:modules:UTLAPI]]
+| |    |   | | |    | | | |   |    | | | | | | | | | | | | | | |
+| |    |   | | |    | | | |   |    | | | | | | | | | | | | | | |
+| |    |   | | |    | | RGN   |-@8 |.| | | | | | | | | | | | | |RGN=[[en:docs:os2:modules:REGINA]]
+| |    |   | | |    | | | |   |    |!| | | | | | | | | | | | | |
+| |    |   | | |    | | | |   |    |)|-| RXX | | | | | | | | | |RXX=[[en:docs:os2:modules:REXX]]
+| |    |   | | |    | | | |   |    |!| | | | | | | | | | | | | |
+| |    |   | | |    | | | |   |    |)|-| RXA | | | | | | | | | |RXA=[[en:docs:os2:modules:REXXAPI]]
+| |    |   | | |    | | | |   |    |!| | | | | | | | | | | | | |
+</diagram>

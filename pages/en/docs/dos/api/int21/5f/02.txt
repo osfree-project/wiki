@@ -1,0 +1,61 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=5FH, AL=02H ======
+
+===== Version =====
+
+3.1 and higher
+
+===== Brief =====
+
+GET REDIRECTION LIST ENTRY
+
+===== Family API =====
+
+
+===== Input =====
+
+    AX = 5F02h
+   BX = zero-based redirection list index
+   CX = driver signature
+     0000h LANtastic
+     4E57h ('NW') NetWare
+   DS:SI -> 16-byte buffer for ASCIZ local device name or drive letter followed by colon
+   ES:DI -> 128-byte buffer for ASCIZ network name
+
+===== Return =====
+
+  CF clear if successful
+  BH = device status
+    00h valid
+    01h invalid
+    02h valid (connected from inside Windows for Workgroups v3.11)
+  BL = device type
+    03h printer
+    04h disk drive
+  CX = user data previously set with AX=5F03h
+  DS:SI and ES:DI buffers filled
+  DX,BP destroyed
+  CF set on error
+    AX = error code (01h,12h) (see #01680 at AH=59h/BX=0000h)
+
+===== Macro =====
+
+
+===== Notes =====
+
+ This function is passed through to INT 2F/AX=111Eh by the DOS kernel. Error code 12h is returned if BX is greater than the size of the list. Also supported by Banyan VINES, PC-NFS, LANtastic, and 10NET. Supported by LapLink RemoteAccess but returns the local drive letter; the remote drive letter can be obtained with INT 2F/AX=Cxxxh (see INT 2F/AX=C000h"LapLink"). The returned device name may or may not include a colon, depending on the network software
+
+===== See also =====
+
+  AX=5F03h - AX=5F46h - INT 2F/AX=111Eh 
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:int}}
+
+{{page>en:templates:fapi}}
+
+

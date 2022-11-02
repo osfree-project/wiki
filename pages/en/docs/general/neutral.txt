@@ -1,0 +1,18 @@
+===== Neutral personality servers =====
+
+  * Log server
+  * Name server (L4VFS name server)
+  * L4VFS servers. No file providers.
+  * Nitpicker as a core windowing server
+  * Loader/linker servers/libraries.
+  * DDE
+
+==== Configuring ====
+
+At the present time we reuse DROPS/TUD:OS project for most functionality of personality neutral servers. Some servers used as is and some with enchancements. Here is server names and description of it configuration and interfaces.
+
+=== Log server ===
+
+Log server is a first server loaded after root task. Goal of log server to provide logging service to osFree.
+
+~~DISCUSSION~~

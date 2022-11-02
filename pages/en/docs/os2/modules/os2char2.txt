@@ -1,0 +1,103 @@
+Implementation of the "OS/2 32bit Textmode APIs (Vio/Kbd/Mou)"
+
+A thunk layer to convert the new console APIs (provided with OS/2 for PowerPC) to the existing 16-bit APIs. All restrictions of the existing console support still exist.
+
+==Version==
+^Date ^Version ^ Size ^ Comments ^
+|1995-07-12 04:21| | 18,370 bytes|
+
+
+==DLL Entry Points==
+
+^ Ordinal ^ Name ^ Description ^ Status ^
+| 1 | [[en:docs:os2:api:os2char2:VioAssociate]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 2 | [[en:docs:os2:api:os2char2:VioCheckCharType]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 3 | [[en:docs:os2:api:os2char2:VioCreateLogFont]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 4 | [[en:docs:os2:api:os2char2:VioCreatePS]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 5 | [[en:docs:os2:api:os2char2:VioDeleteSetId]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 6 | [[en:docs:os2:api:os2char2:VioDestroyPS]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 7 | [[en:docs:os2:api:os2char2:VioEndPopUp]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 8 | [[en:docs:os2:api:os2char2:VioGetAnsi]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 9 | [[en:docs:os2:api:os2char2:VioGetBuf]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 10 | [[en:docs:os2:api:os2char2:VioGetConfig]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 11 | [[en:docs:os2:api:os2char2:VioGetCp]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 12 | [[en:docs:os2:api:os2char2:VioGetCurPos]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 13 | [[en:docs:os2:api:os2char2:VioGetCurType]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 14 | [[en:docs:os2:api:os2char2:VioGetDeviceCellSize]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 15 | [[en:docs:os2:api:os2char2:VioGetMode]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 16 | [[en:docs:os2:api:os2char2:VioGetOrigin]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 17 | [[en:docs:os2:api:os2char2:VioGetState]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 18 | [[en:docs:os2:api:os2char2:VioModeUndo]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 19 | [[en:docs:os2:api:os2char2:VioModeWait]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 20 | [[en:docs:os2:api:os2char2:VioPopUp]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 21 | [[en:docs:os2:api:os2char2:VioPrtSc]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 22 | [[en:docs:os2:api:os2char2:VioPrtScToggle]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 23 | [[en:docs:os2:api:os2char2:VioQueryFonts]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 24 | [[en:docs:os2:api:os2char2:VioQuerySetIds]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 25 | [[en:docs:os2:api:os2char2:VioReadCellStr]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 26 | [[en:docs:os2:api:os2char2:VioReadCharStr]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 27 | [[en:docs:os2:api:os2char2:VioRedrawSize]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 28 | [[en:docs:os2:api:os2char2:VioSaveRedrawUndo]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 28 | [[en:docs:os2:api:os2char2:VioSaveRedrawWait]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 30 | [[en:docs:os2:api:os2char2:VioScrLock]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 31 | [[en:docs:os2:api:os2char2:VioScrollDown]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 32 | [[en:docs:os2:api:os2char2:VioScrollLeft]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 33 | [[en:docs:os2:api:os2char2:VioScrollRight]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 34 | [[en:docs:os2:api:os2char2:VioScrollUp]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 35 | [[en:docs:os2:api:os2char2:VioScrUnLock]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 36 | [[en:docs:os2:api:os2char2:VioSetAnsi]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 37 | [[en:docs:os2:api:os2char2:VioSetCp]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 38 | [[en:docs:os2:api:os2char2:VioSetCurPos]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 39 | [[en:docs:os2:api:os2char2:VioSetCurType]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 40 | [[en:docs:os2:api:os2char2:VioSetDeviceCellSize]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 41 | [[en:docs:os2:api:os2char2:VioSetMode]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 42 | [[en:docs:os2:api:os2char2:VioSetOrigin]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 43 | [[en:docs:os2:api:os2char2:VioSetState]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 44 | [[en:docs:os2:api:os2char2:VioShowBuf]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 45 | [[en:docs:os2:api:os2char2:VioShowPS]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 46 | [[en:docs:os2:api:os2char2:VioWrtCellStr]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 47 | [[en:docs:os2:api:os2char2:VioWrtCharStr]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 48 | [[en:docs:os2:api:os2char2:VioWrtCharStrAttr]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 49 | [[en:docs:os2:api:os2char2:VioWrtNAttr]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 50 | [[en:docs:os2:api:os2char2:VioWrtNCell]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 51 | [[en:docs:os2:api:os2char2:VioWrtNChar]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 52 | [[en:docs:os2:api:os2char2:VioWrtTTY]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 53 | [[en:docs:os2:api:os2char2:VioCharWidthUni]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 54 | [[en:docs:os2:api:os2char2:VioWrtTTYUni]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 55 | [[en:docs:os2:api:os2char2:VioQueryFontsUni]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 59 | [[en:docs:os2:api:os2char2:WinDefAVioWindowProc]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 60 | [[en:docs:os2:api:os2char2:KbdCharIn]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 61 | [[en:docs:os2:api:os2char2:KbdFlushBuffer]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 62 | [[en:docs:os2:api:os2char2:KbdGetCp]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 63 | [[en:docs:os2:api:os2char2:KbdGetHWID]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 64 | [[en:docs:os2:api:os2char2:KbdGetStatus]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 65 | [[en:docs:os2:api:os2char2:KbdPeek]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 66 | [[en:docs:os2:api:os2char2:KbdSetCp]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 67 | [[en:docs:os2:api:os2char2:KbdSetStatus]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 68 | [[en:docs:os2:api:os2char2:KbdStringIn]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 69 | [[en:docs:os2:api:os2char2:KbdXlate]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 70 | [[en:docs:os2:api:os2char2:KbdConvertChar]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 71 | [[en:docs:os2:api:os2char2:KbdGetLayout]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 72 | [[en:docs:os2:api:os2char2:KbdSetLayout]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 73 | [[en:docs:os2:api:os2char2:KbdGetLayoutUni]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 74 | [[en:docs:os2:api:os2char2:KbdSetLayoutUni]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 75 | [[en:docs:os2:api:os2char2:KbdStringInUni]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 79 | [[en:docs:os2:api:os2char2:KbdSetRate]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 80 | [[en:docs:os2:api:os2char2:MouDrawPtr]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 81 | [[en:docs:os2:api:os2char2:MouGetDevStatus]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 82 | [[en:docs:os2:api:os2char2:MouGetEventMask]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 83 | [[en:docs:os2:api:os2char2:MouGetNumButtons]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 84 | [[en:docs:os2:api:os2char2:MouGetNumMickeys]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 85 | [[en:docs:os2:api:os2char2:MouGetNumQueEl]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 86 | [[en:docs:os2:api:os2char2:MouGetPtrPos]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 87 | [[en:docs:os2:api:os2char2:MouGetPtrShape]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 88 | [[en:docs:os2:api:os2char2:MouGetScaleFact]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 90 | [[en:docs:os2:api:os2char2:MouReadEventQue]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 91 | [[en:docs:os2:api:os2char2:MouRemovePtr]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 92 | [[en:docs:os2:api:os2char2:MouSetDevStatus]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 93 | [[en:docs:os2:api:os2char2:MouSetEventMask]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 94 | [[en:docs:os2:api:os2char2:MouSetPtrPos]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 95 | [[en:docs:os2:api:os2char2:MouSetPtrShape]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+| 96 | [[en:docs:os2:api:os2char2:MouSetScaleFact]] | Wrapper around [[en:docs:os2:modules:emxwrap|EMXWRAP.???]] | |
+
+Text based on [[http://www.edm2.com/index.php/OS2CHAR2.DLL]]

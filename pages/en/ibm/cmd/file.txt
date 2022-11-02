@@ -1,0 +1,19 @@
+===== File Selection =====
+
+Most internal commands (like **COPY**, **DIR**, etc.) work on a file or a group of 
+files.  Besides typing the exact name of the file you want to work with, 
+you can use several shorthand forms for naming or selecting files and the 
+applications associated with them. 
+Most of the features explained in this section apply to **CMD.EXE** commands 
+only, and can not be used to pass file names to external programs unless 
+those programs were specifically written to support these features. 
+
+The file selection features are: 
+
+  * [[en:docs:os2:cmd:file:parentdir|Extended Parent Directory Names]]
+  * [[en:docs:os2:cmd:file:wild|Wildcards]]
+  * [[en:docs:os2:cmd:file:ranges|Date, Time, and Size Ranges]]
+  * [[en:docs:os2:cmd:file:exclusion|File Exclusion Ranges]]
+  * [[en:docs:os2:cmd:file:mult|Multiple Filenames]]
+  * [[en:docs:os2:cmd:file:incl|Include Lists]]
+  * [[en:docs:os2:cmd:file:ext|Executable Extensions]]

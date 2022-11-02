@@ -1,0 +1,19 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=69H ======
+
+===== Input ======
+
+ AH=69H, AL=Subfunction
+
+^ Subfunction                        ^ Description                                       ^ Version ^
+| [[en:docs:dos:api:int21:69:00|00]] | get serial number                                 | 4.0+    |
+| [[en:docs:dos:api:int21:69:01|01]] | set serial number                                 | 4.0+    |
+
+
+{{page>en:templates:int}}
+
+
+
+
+

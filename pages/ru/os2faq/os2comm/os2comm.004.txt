@@ -1,0 +1,13 @@
+[Q]: Клиенты Windows при входе в сеть LanServer 4.0 не могут авт. восст. соед.
+
+[A]: Unknown author
+
+Попробуй поставить Windows 95 Lan Server Resources Browser.
+Хотя у меня с Peer 1.0 из Мерина соединяются за милую душу.
+
+Windows 95 Lan Server Resources Browser:
+http://service.boulder.ibm.com/asd-bin/doc/ru_ru/win95cl/f-feat.htm
+
+[A]: Stas Mishchenkov (2:460/58)
+
+ Давний глюк винды. Лечится вытаскиванием ярлычка ресурса на десктоп...

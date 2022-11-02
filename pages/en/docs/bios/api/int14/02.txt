@@ -1,0 +1,49 @@
+{{page>en:templates:biosint}}
+
+====== Int 14H, AH=02H ======
+
+===== Version =====
+
+IBM 5150 and higher
+
+===== Brief =====
+
+Recieve character from port
+
+===== Family API =====
+
+[[en:docs:fapi:DosRead]]
+
+===== Input =====
+
+  * AH = 02h
+  * AL = 00h (ArtiCom)
+  * DX = port number (00h-03h) (04h-43h for Digiboard XAPCM232.SYS)
+
+===== Return =====
+
+  * AH = line status (see #00304)
+  * AL = received character if AH bit 7 clear
+
+===== Macro =====
+
+<code asm>
+INCLUDE BIOS.INC
+
+@AuxRecieveChar 0
+</code>
+
+===== Notes =====
+
+  * will timeout if DSR is not asserted, even if function 03h returns data ready
+  * various network and serial-port drivers support the standard BIOS functions with interrupt-driven I/O instead of the BIOS's polled I/O
+  * the 1993/04/08 Compaq system ROM uses only the low two bits of DX
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:biosapi}}
+
+{{page>en:templates:fapi}}
+

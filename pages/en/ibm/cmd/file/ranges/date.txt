@@ -1,0 +1,40 @@
+===== Data Ranges =====
+
+Date ranges select files that were created or last modified at any time between the two dates. For example, **/[d12-1-97,12-5-97]** selects files that were last modified between December 1, 1997, and December 5, 1997. 
+
+The time for the starting date defaults to 00:00:00 and the time for the ending date defaults to 23:59:59. You can alter these defaults, if you wish, by including a start and stop time inside the date range. The time is separated from the date with an at sign [**@**]. For example, the range **/[d7-1-97@8:00a,7-3-97@6:00p]** selects files that were modified at any time between 8:00 am on July 1, 1997 and 6:00 pm on July 3, 1997. If you prefer, you can specify the times in 24-hour format (//e.g.//, @18:00 for the end time in the previous example). 
+
+If you omit the second argument in a date range, **CMD.EXE** substitutes the current date and time. For example, **/[d10-1-97]** selects files dated between October 1, 1997 and today. 
+
+You can use an offset value for either the beginning or ending date, or both. An offset begins with a plus sign [**+**] or a minus sign [**-**] followed by an integer. If you use an offset for the second value, it is calculated relative to the first. If you use an offset for the first (or only) value, the current date is used as the basis for calculation. For example: 
+
+^Specification               ^Selects Files ^
+|**/[d10-27-97,+3]**      |modified between 10-27-97 and 10-30-97 |
+|**/[d10-27-97,-3]**       |modified between 10-24-97 and 10-27-97 |
+|**/[d-0]**                      |modified today (from today minus zero days, to today) |
+|**/[d-1]**                      |modified yesterday or today (from today minus one day, to today) |
+|**/[d-1,+0]**                 |modified yesterday (from today minus one day, to zero days after that) |
+
+As a shorthand way of specifying files modified today, you can also use **/[d]**; this has the same effect as the **/[d-0]** example shown above. 
+
+To select files last modified **n** days ago or earlier, use **/[dn,1/1/80]**. For example, to get a directory of all files last modified 3 days or more before today (i.e., those files **not** modified within the last 3 days), you could use this command: 
+
+<code>
+        [c:\] dir /[d-3,1/1/80]
+</code>
+
+This reversed date range (with the later date given first) will be handled correctly by **CMD.EXE**. It takes advantage of the facts that an offset in the **start** date is relative to today, and that the base or "zero" point for PC file dates is January 1, 1980. 
+
+You cannot use offsets in the time portion of a date range (the part after an at sign), but you can combine a time with a date offset. For example, **/[d12-8-97@12:00,+2@12:00]** selects files that were last modified between noon on December 8 and noon on December 10, 1997. Similarly, **/[d-2@15:00,+1]** selects files last modified between 3:00 pm the day before yesterday and the end of the day one day after that, i.e., yesterday. The second time defaults to the end of the day because no time is given. 
+
+The HPFS file system maintains 3 sets of dates and times for each file: creation, last access, and last write. By default, date ranges work with the last write date/time stamp. You can use the "last access" (a) or "created" (c) date/time stamp in a date range with the syntax: 
+
+<code>
+        /[da...]  or  /[dc...]
+</code>
+
+For example, to select files that were last accessed yesterday or today: 
+
+<code>
+        /[da-1]
+</code>

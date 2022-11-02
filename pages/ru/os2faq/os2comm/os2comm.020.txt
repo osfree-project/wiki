@@ -1,0 +1,47 @@
+[Q]: Подружка NetWare Requester и Lantastic/2
+
+[A]: Gosha Zafievsky (2:5020/72)
+
+    Дано : машина с OS/2 и поставленным NetWare Requester for OS/2 2.10
+    Задача : взгромоздить туда Lantastic/2, не трогая NWREQ
+
+Solution step-by-step :
+
+    1. Install Lantastic for OS/2. Ставьте NE2000 by Eagle. Hо оставьте 
+    конфиги для последующего редактирования (setup спросит об этом). Тачку не
+    перегружайте.
+
+    2. Переименуйте PROTOCOL.NEW в PROTOCOL.INI
+
+    3. Запустите install от NWREQ. Проверьте, что в каталоге реквестера есть
+    ODINSUP.SYS Если его нет, то он на диске WSDRV, запакованный. Распаковщик
+    на диске WSOS2_1 (nwunpack.exe)
+
+    3.1 В меню Utilities единственный пункт - Configure ODINSUP. Выбрали.
+
+    3.2 install спросит о путях. Ошибается он только в пути до PROTOCOL.INI - 
+    его нужно поправить. Click OK to continue.
+
+    3.3 Дальше возникает панелька с вопросом "Что на что меняем?". Меняем,
+    естественно, NE2000E на то, что у нас стоит в реквестере. Click OK to 
+    continue.
+
+    3.4 Подредактируйте NET.CFG В основном это касается секции Link driver. 
+    Порядок фреймов не меняйте.
+
+    4. Самое сложное - редактирование CONFIG.SYS :)
+
+    4.1 Внесите все изменения, указанные в CONFIG.NEW, не касающиеся DEVICE= и
+    SET NWDBPATH=
+
+    4.2 Поставте SET NWDBPATH=, LANMSGDD и PROTMAN _до_ секции NetWare 
+    Requester
+
+    4.3 Поставьте все остальное после секции NetWare Requester
+
+    4.4 VIPX.SYS и VSHELL.SYS должны стоять после второй секции Lantastic.
+    Почему - не знаю.
+
+    4.5 Сохраните то, что натворили... :))
+
+    5. Shutdown, reboot and enjoy!!!

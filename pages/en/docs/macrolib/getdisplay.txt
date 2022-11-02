@@ -1,0 +1,30 @@
+{{page>en:templates:biosint}}
+
+====== @GetDisplay ======
+
+===== Brief =====
+
+Get Display Configuration
+
+===== BIOS Interrupt =====
+
+[[en:docs:bios:api:int10|INT10H]]: [[en:docs:bios:api:int10:|H]]
+
+===== Family API =====
+
+[[en:docs:fapi:]]
+
+===== Syntax =====
+
+<code asm>
+@GetDisplay
+</code>
+
+===== Parameters =====
+
+none
+
+===== Return =====
+
+
+{{page>en:templates:biosapi}}

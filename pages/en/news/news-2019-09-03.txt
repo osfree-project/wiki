@@ -1,0 +1,5 @@
+==== 03 September, 2019 ====
+
+Several people asked about how they could donate to osFree. Recently, we created a [[https://patreon.com/osfree|Patreon page]] for osFree to collect donations on monthly basis. So, if you want to support osFree, become a patron. If you want to make a one-time donation, you can transfer some money to our Bitcoin wallet. See [[en:donate|Donate]] page for more details.
+
+~~DISCUSSION~~

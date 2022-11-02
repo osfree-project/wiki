@@ -1,0 +1,48 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=5EH, AL=03H ======
+
+===== Version =====
+
+3.1 and higher
+
+===== Brief =====
+
+GET NETWORK PRINTER SETUP STRING
+
+===== Family API =====
+
+
+===== Input =====
+
+		AX = 5E03h
+	BX = redirection list index (see AX=5F02h)
+	ES:DI -> 64-byte buffer for setup string
+
+===== Return =====
+
+   CF clear if successful
+	    CX = length of setup string
+	    ES:DI buffer filled
+	CF set on error
+	    AX = error code (01h) (see #01680 at AH=59h/BX=0000h)
+
+===== Macro =====
+
+
+===== Notes =====
+
+  
+
+===== See also =====
+
+  AX=5E02h,INT 2F/AX=111Fh
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:int}}
+
+{{page>en:templates:fapi}}
+

@@ -1,0 +1,66 @@
+==== FSH_CRITERROR ====
+
+**Purpose**
+
+This function signals a hard error to the daemon.   
+
+**Calling Sequence**
+
+<code c>
+int far pascal FSH_CRITERROR(cbMessage, pMessage, nSubs, pSubs, fAllowed)
+
+unsigned short cbMessage;
+char far * pMessage;
+unsigned short nSubs;
+char far * pSubs;
+unsigned short fAllowed;
+</code>
+
+**Where**
+
+//cbMessage// is the length of the message template.   
+
+//pMessage// is the pointer to the message template.   
+
+This may contain replaceable parameters in the format used by the message retriever.   
+
+//nSubs// is the number of replaceable parameters.   
+
+//pSubs// is the pointer to the replacement text.   
+
+The replacement text is a packed set of ASCIIZ strings.   
+
+//fAllowed// is the bit mask of allowed actions:   
+
+|Bit 0x0001 on |indicates FAIL allowed |
+|Bit 0x0002 on |indicates ABORT allowed |
+|Bit 0x0004 on |indicates RETRY allowed |
+|Bit 0x0008 on |indicates IGNORE allowed |
+|Bit 0x0010 on |indicates ACKNOWLEDGE only allowed. |
+
+All other bits are reserved and must be zero. If bit 0x0010 is set, and any or some of bits 0x0001 to 0x0008 are also set, bit 0x0010 will be ignored. 
+
+**Returns**
+
+This function returns the action to be taken: 
+
+|0x0000 |- ignore |
+|0x0001 |- retry |
+|0x0003 |- fail |
+|0x0004 |- continue |
+
+**Remarks**
+
+If the user responds with an action that is not allowed, it is treated as FAIL. If FAIL is not allowed, it is treated as ABORT. ABORT is always allowed.   
+
+When ABORT is the final action, OS/2 does not return this as an indicator; it returns a FAIL. The actual ABORT operation is generated when this thread of execution is about to return to user code.   
+
+The maximum length of the template is 128 bytes, including the NUL. The maximum length of the message with text substitutions is 512 bytes. The maximum number of substitutions is 9.   
+
+If any action other than retry is selected for a given hard error popup, then any subsequent popups (within the same API call) will be automatically failed; a popup will not be done. This means that (except for retries) there can be at most one hard error popup per call to the FSD. And, if the kernel generates a popup, then the FSD cannot create one.   
+
+//FSH_CRITERROR// will fail automatically if the user application has set autofail, or if a previous hard error has occurred.   
+
+//FSH_CRITERROR// may block.   
+
+**Note**:   OS/2 does not validate input parameters. Therefore, an FSD should call //FSH_PROBEBUF// where appropriate.   

@@ -1,0 +1,10 @@
+==== General ====
+
+The general osFree documentation and ideas
+
+  * [[en:docs:general:index|osFree Whitepaper]]
+  * [[en:docs:general:architecture|osFree design and development concept, architecture ideas]]
+  * [[en:develop:guidelines|Developer Reference]]
+  * [[en:docs:distribution|Distribution and packaging for osFree (or any OS/2-like system)]]
+  * [[en:docs:building_hard_disk_image_for_bochs|Building hard disk image for Bochs]]
+  * [[en:docs:web:index|Web-site maintaince guides and references]]

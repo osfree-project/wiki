@@ -1,0 +1,54 @@
+==== FS_FINDNEXT ====
+
+**Purpose**
+
+Find the next occurrence of a file name in a directory.   
+
+**Calling Sequence**
+
+<code c>
+int far pascal FS_FINDNEXT(pfsfsi, pfsfsd, pData, cbData, pcMatch, level,
+                           flags)
+
+struct fsfsi far * pfsfsi;
+struct fsfsd far * pfsfsd;
+char far * pData;
+unsigned short cbData;
+unsigned short far * pcMatch;
+unsigned short level;
+unsigned short flags;
+</code>
+
+**Where**
+
+//pfsfsi// is a pointer to the file-system-independent file-search structure. The FSD should not update this structure.   
+
+//pfsfsd// is a pointer to the file-system-dependent file-search structure. The FSD may use this to store information about continuation of the search.   
+
+//pData// is the address of the application area.   
+
+Addressing of this data area is not validated by the kernel (see //FSH_PROBEBUF//). The FSD fills in this area with a set of packed, variable- length structures that contain the requested data and matching file names.   
+
+//cbData// is the length of the application data area in bytes.   
+
+//pcMatch// is a pointer to the number of matching entries.   
+
+The FSD returns, at most, this number of entries. The FSD returns the the number of entries actually placed in the data area in this parameter.   
+
+The FSD does not need to validate this pointer.   
+
+//level// is the information level to be returned. //Level// selects among a series of structures of data to be returned. The level passed to the FSD is valid.   
+
+//flags// indicates whether to return file-position information. 
+
+**Remarks**
+
+For //flags// == -1, the FSD must store in the position field adequate information to allow the search to be resumed from the file by calling //FS_FINDFROMNAME//. See //FS_FINDFIRST// for a description of the data format.   
+
+The //level// passed to //FS_FINDNEXT// is the same //level// as that passed to //FS_FINDFIRST// to initiate the search.   
+
+Sufficient information to find the next matching directory entry must be saved in the //fsfsd// data structure.   
+
+The FSD should take care of the case where the //pData// area overflow may occur. FSDs should be able to start the search from the same entry for the next //FS_FINDNEXT// as the one for which the overflow occurred.   
+
+In the case of a global search in a directory, the first two entries in that directory as reported by the FSD should be '.' and '..' (current and parent directories).   

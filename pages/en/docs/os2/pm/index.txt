@@ -1,0 +1,12 @@
+===== About osFree PM =====
+
+==== Architecture ====
+
+[[en:docs:os2:pm:architecture|PM architecture]] and its enhancements
+
+
+==== The current osFree PM prototype ====
+
+Prototype description and current [[en:docs:os2:pm:status|status]].
+
+

@@ -1,0 +1,13 @@
+==== 31 January, 2010 ====
+
+Recent activity
+
+We have linked our channels #osfree @ eCSNet and #osfree @ EFNet. All 
+messages in one channel are translated to another channel. Also we 
+reviewing our release and development position to be more effective. 
+As always, we are welcome new developers in many areas (DOS/WIN16 
+and OS/2 subsystems).
+
+{{tag>irc development welcome}}
+
+~~DISCUSSION~~

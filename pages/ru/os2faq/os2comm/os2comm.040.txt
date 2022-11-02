@@ -1,0 +1,11 @@
+[Q]: Как работать без DNS в TCP/IP for OS/2
+
+[A]: Yuri PQ (2:5010/18)
+
+SET USE_HOSTS_FIRST=1
+
+[A]: Dmitry Zavalishin (2:5020/32)
+
+Как вариант:
+del \tcpip\etc\resolv
+del \tcpip\etc\resolv2

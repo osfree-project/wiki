@@ -1,0 +1,85 @@
+==== FSH_DOVOLIO ====
+
+**Purpose**
+
+This function performs I/O to the specified volume.   
+
+**Calling Sequence**
+
+<code c>
+int far pascal FSH_DOVOLIO(operation, fAllowed, hVPB, pData, pcSec, iSec)
+
+unsigned short operation;
+unsigned short fAllowed;
+unsigned short hVPB;
+char far * pData;
+unsigned short far * pcSec;
+unsigned long iSec;
+</code>
+
+**Where**
+
+^//operation// ^is the bit mask indicating read/read-bypass/write/write-bypass,\\ and verify- after-write/write-through and no-cache\\ operation to be performed. ^
+|Bit 0x0001 off |indicates read. |
+|Bit 0x0001 on |indicates write. |
+|Bit 0x0002 off |indicates no cache bypass. |
+|Bit 0x0002 on |indicates cache bypass. |
+|Bit 0x0004 off |indicates no verify-after-write operation. |
+|Bit 0x0004 on |indicates verify-after-write operation. |
+|Bit 0x0008 off |indicates errors signaled to the hard error daemon. |
+|Bit 0x0008 on |indicates hard errors will be returned directly. |
+|Bit 0x0010 off |indicates I/O is not write-through. |
+|Bit 0x0010 on |indicates I/O is write-through. |
+|Bit 0x0020 off |indicates data for this I/O should probably be cached. |
+|Bit 0x0020 on |indicates data for this I/O should probably not be cached. |
+|All other bits are reserved and must be zero.  ||
+
+The difference between the cache bypass and the no cache bits is in the type of request packet that the device driver will see. With cache bypass, it will get a packet with command code 24, 25, or 26. With no cache, it will get the extended packets for command codes 4, 8, or 9. The advantage of the latter is that the write-through bit can also be sent to the device driver in the same packet, improving the functionality at the level of the device driver.   
+
+^//fAllowed// ^is a bit mask indicating allowed actions:  ^
+|Bit 0x0001 on |indicates FAIL allowed |
+|Bit 0x0002 on |indicates ABORT allowed |
+|Bit 0x0004 on |indicates RETRY allowed |
+|Bit 0x0008 on |indicates IGNORE allowed | 
+|Bit 0x0010 on |indicates ACKNOWLEDGE only allowed |
+|If this bit is set, none of the other bits may be set. ||
+
+All other bits are reserved and must be set to zero.   
+
+//hVPB// is the volume handle for the source of I/O.   
+
+//pData// is the long address of the user transfer area.   
+
+//pcSec// is the pointer to the number of sectors to be transferred.   
+
+On return, this is the number of sectors successfully transferred.   
+
+//iSec// is the sector number of the first sector of the transfer. 
+
+**Returns**
+
+If no error is detected, a zero error code is returned. If an error is detected, one of the following error codes is returned:   
+
+  * ERROR_PROTECTION_VIOLATION -- indicates the supplied address/length is invalid.
+  * ERROR_UNCERTAIN_MEDIA -- indicates the device driver can no longer reliably tell if the media has been changed.   
+
+This occurs only within the context of an //FS_MOUNT// call.  
+
+  * ERROR_TRANSFER_TOO_LONG -- indicates the transfer is too long for the device. 
+  * Device-driver/device-manager errors listed /DDERR/ 
+
+**Remarks**
+
+This function formats a device driver request packet for the requested I/O, locks the data transfer region, calls the device driver, and reports any errors to the hard error daemon before returning to the FSD. Any retries indicated by the hard error daemon or actions indicated by DosError are done within the call to //FSH_DOVOLIO//.   
+
+//FSH_DOVOLIO// may be used at all times within the FSD. When called within the scope of a //FS_MOUNT// call, it applies to the volume in the drive without regard to which volume it may be. However, since volume recognition is not complete until the FSD returns to the //FS_MOUNT// call, the FSD must be careful when an ERROR_UNCERTAIN_MEDIA is returned. This indicates the media has gone uncertain while we are trying to identify the media in the drive. This may indicate the volume that the FSD was trying to recognize was removed. In that case, the FSD must release any resources attached to the //hVPB// passed in the //FS_MOUNT// call and return ERROR_UNCERTAIN_MEDIA to the //FS_MOUNT// call. This will direct the volume tracking logic to restart the mount process.   
+
+OS/2 will validate the user transfer area for proper access and size and will lock the segment.   
+
+Verify-after-write specified on a read is ignored.   
+
+On 80386 processors, //FSH_DOVOLIO// will take care of memory contiguity requirements of device drivers. It is advisable, therefore, that FSDs use //FSH_DOVOLIO// instead of calling device drivers directly. This will improve performance of FSDs running on 80386 processors.   
+
+//FSH_DOVOLIO// may block.   
+
+**Note**:   OS/2 does not validate input parameters. An FSD, therefore, should call //FSH_PROBEBUF// where appropriate.   

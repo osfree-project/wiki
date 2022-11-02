@@ -1,0 +1,5 @@
+[Q]: Как запустить Cubic Player из-под OS/2?
+
+[A]: Alex Samorukov (2:463/598)
+
+Замени глюкавый CpLaunch на DOS4GW.

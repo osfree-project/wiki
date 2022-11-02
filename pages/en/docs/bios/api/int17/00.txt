@@ -1,0 +1,48 @@
+{{page>en:templates:biosint}}
+
+====== Int 17H, AH=00H ======
+
+===== Version =====
+
+IBM 5150 and higher
+
+===== Brief =====
+
+Print character
+
+===== Family API =====
+
+[[en:docs:fapi:DosWrite]]
+
+===== Input =====
+
+  * AH = 00h
+  * AL = character to write
+  * DX = printer number (00h-02h)
+
+===== Return =====
+
+  * AH = printer status (see #00631)
+
+===== Macro =====
+
+<code asm>
+INCLUDE BIOS.INC
+
+@PrnPrint 0, 'A'
+</code>
+
+===== Notes =====
+
+  * Under PhysTechSoft's PTS ROM-DOS the parallel port can also be accessed as COM5.
+  * Some print spoolers trash the BX register on return.
+  * Some original IBM BIOSes set more than one printer status bits at a time, while only one of them is correct.
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:biosapi}}
+
+{{page>en:templates:fapi}}
+

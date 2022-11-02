@@ -1,0 +1,45 @@
+{{page>en:templates:biosint}}
+
+====== Int 16H, AH=02H ======
+
+===== Version =====
+
+IBM 5150 and higher
+
+===== Brief =====
+
+Get shift status
+
+===== Family API =====
+
+[[en:docs:fapi:KbdGetStatus]]
+
+===== Input =====
+
+  * AH = 02h
+
+===== Return =====
+
+  * AL = shift flags (see #00582)
+  * AH destroyed by many BIOSes
+
+===== Macro =====
+
+<code asm>
+INCLUDE BIOS.INC
+
+@KbdStatus
+</code>
+
+===== Notes =====
+
+
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:biosapi}}
+
+{{page>en:templates:fapi}}
+

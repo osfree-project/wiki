@@ -1,0 +1,215 @@
+===== Current Status =====
+
+osFree project is deep in the alpha stage. At the present time the osFree project work with low-level parts of operating system like loader and related tools. We also try to develop an experimental prototype of OS/2 personality for L4 microkernel. Also we have set of command line tools like CMD.EXE and file/disk maintance utilities.
+
+For now a lot of tools are already finished (mainly thanks to JP Software for their 4OS2 command processor sources and Bartosz Tomasik for most of other command line tools. Also thanks to whose who contributed directly or indirectly their sources). But there's still a lot to do. 
+
+However, don't limit yourself to command line tools. If you're interested in developing a kernel loader (some source exists), kernel, device drivers, or other parts of the osFree system, you are welcome to work on them! We will be glad to see you as an osFree developer!
+
+We have a [[http://osfree.org/dp/|management system]] installed on this server to maintain the status of osFree. Currently this system is not integrated into DokuWiki, and is open to anyone logged into the guest account. 
+
+==== osFree roadmap ====
+
+For osFree development plan, milestones (passed ones, current ones and the correspondence of them to system versions, see osFree [[roadmap]])
+
+==== Completeness/status of each component ====
+
+Here is each small component status:
+
+^System part	^System subpart	^Status	^License	^Developers	^To Do ^
+|osFree art	|osFree logo	|Done	|osFree	|Cristiano Guadagnino, \\ Alex Kramer |	|
+|Global shared code	|dynamic lists/dynamic stacks code	|Done	|osFree	|Cristiano Guadagnino	| |
+|::: |messaging functions	|Done	|osFree	|Henk Kelder, \\ Bartosz Tomasik | |
+|::: |path manipulation code	|Done	|osFree	|Bartosz Tomasik	| |
+|:::	|disk info functions	|Done	|osFree	|Bartosz Tomasik	| |
+|:::	|file system functions	|Done	|osFree	|Bartosz Tomasik	| |
+|:::	|directory-tree recurse \\ helper functions	|Done	|osFree	|Cristiano Guadagnino, \\ Bartosz Tomasik | |
+|CLI tools shared code	|messaging functions	|Done	|osFree	|Cristiano Guadagnino, \\ Bartosz Tomasik	| |
+|::: |filesystem functions	|Done	|osFree	|Bartosz Tomasik	| |
+|::: |shared code, calling 16-bit \\ dynamically loaded functions	|Done	|osFree	|Michal Necasek	| |
+|Documentation	|Build Level Information	|Done	|osFree	|Yuri Prokushev	| |
+|CMD.EXE	|	Extension	| |4OS2	|JP Software	| |
+|:::	|ACTIVATE	| |4OS2	|JP Software	| |
+|:::	|ALIAS	|	|4OS2	|JP Software	| |
+|:::	|BEEP	|	|4OS2	|JP Software	| |
+|::: |CALL	|Done	|4OS2	|JP Software	 | |
+|::: |CANCEL	|	|4OS2	|JP Software	| |
+|:::	|CASE	|	|4OS2	|JP Software	| |
+|:::	|CD	|Done	|4OS2	|JP Software	| |
+|::: |CDD	|	|4OS2	|JP Software	| |
+|::: |CHCP	|Done	|4OS2	|JP Software | |
+|::: |CHDIR	|Done	|4OS2	|JP Software	| |
+|::: |COLOR |	|4OS2	|JP Software	| |
+|::: |COPY	|Done	|4OS2	|JP Software	| |
+|::: |DATE	|Done	|4OS2	|JP Software	| |
+|::: |DEFAULT	| |4OS2	|JP Software	| |
+|::: |DEL	|Done	|4OS2	|JP Software	| |
+|:::	|DELAY	| |4OS2	|JP Software	| |
+|:::	|DESCRIBE	| |4OS2	|JP Software	| |
+|:::	|DETACH	|Done	|4OS2	|JP Software	| |
+|:::	|DIR	|Done	|4OS2	|JP Software	| |
+|:::	|DIRHISTORY	| |4OS2	|JP Software	| |
+|:::	|DIRS	| |4OS2	|JP Software	| |
+|::: |DO	| |4OS2	|JP Software	| |
+|::: |DPATH	|Done	|4OS2	|JP Software	| |
+|::: |DRAWBOX	|	|4OS2	|JP Software	| |
+|::: |DRAWHLINE	|	|4OS2	|JP Software	| |
+|::: |DRAWVLINE	|	|4OS2	|JP Software	| |
+|::: |ECHO	|Done	|4OS2	|JP Software	| |
+|::: |ECHOERR	|Extension	|4OS2	|JP Software	| |
+|::: |ECHOS	|	|4OS2	|JP Software	| |
+|::: |ECHOSERR	| |4OS2	|JP Software	| |
+|::: |ENDLOCAL	|Done	|4OS2	|JP Software	| |
+|::: |ENDSWITCH	| |4OS2	|JP Software	| |
+|::: |ERASE	|Done	|4OS2	|JP Software	| |
+|::: |ESET	|	|4OS2	|JP Software	| |
+|::: |EXCEPT	|	|4OS2	|JP Software	| |
+|::: |EXIT	|Done	|4OS2	|JP Software	| |
+|::: |FFIND	| |4OS2	|JP Software	| |
+|::: |FOR	|Done	|4OS2	|JP Software	| |
+|::: |FREE	|	|4OS2	|JP Software	| |
+|::: |GLOBAL	|	|4OS2	|JP Software	| |
+|::: |GOSUB	|	|4OS2	|JP Software	| |
+|::: |GOTO	|Done	|4OS2	|JP Software | |
+|::: |HELP	|Done	|4OS2	|JP Software | |
+|::: |HISTORY	|	|4OS2	|JP Software	| |
+|::: |IF	|Done	|4OS2	|JP Software	| |
+|::: |IFF	|	|4OS2	|JP Software | |
+|::: |INKEY	|	|4OS2	|JP Software	| |
+|::: |INPUT	|	|4OS2	|JP Software	| |
+|::: |KEYBD	|	|4OS2	|JP Software | |
+|::: |KEYS	|Done	|4OS2	|JP Software	| |
+|::: |KEYSTACK	|Extension	|4OS2	|JP Software	| |
+|::: |LIST	|	|4OS2	|JP Software	| |
+|::: |LOADBTM	|	|4OS2	|JP Software	| |
+|::: |LOG	|	|4OS2	|JP Software	| |
+|::: |MEMORY	|	|4OS2	|JP Software	|
+|::: |MOVE	|Done	|4OS2	|JP Software	| |
+|::: |ON	|	|4OS2	|JP Software	| |
+|::: |OPTION	|	|4OS2	|JP Software	| |
+|::: |PATH	|Done	|4OS2	|JP Software	| |
+|::: |PAUSE	|Done	|4OS2	|JP Software	| |
+|::: |POPD	|	|4OS2	|JP Software	| |
+|::: |PROMPT	|Done	|4OS2	|JP Software | |
+|::: |PUSHD	|	|4OS2	|JP Software	| |
+|::: |QUIT	|	|4OS2	|JP Software	| |
+|::: |RD	|Done	|4OS2	|JP Software	| |
+|::: |REBOOT	|	|4OS2	|JP Software	| |
+|::: |REM	|Done	|4OS2	|JP Software	| |
+|::: |REN	|Done	|4OS2	|JP Software	| |
+|::: |RENAME	|Done	|4OS2	|JP Software	| |
+|::: |RETURN	|	|4OS2	|JP Software	| |
+|::: |RMDIR	|Done	|4OS2	|JP Software	| | 
+|::: |SCREEN	|	|4OS2	|JP Software	| |
+|::: |SCRPUT	|	|4OS2	|JP Software	| |
+|::: |SELECT	|	|4OS2	|JP Software	| |
+|::: |SET	|Done	|4OS2	|JP Software	| |
+|::: |SETDOS	|	|4OS2	|JP Software	|
+|::: |SETLOCAL	|Done	|4OS2	|JP Software	| |
+|::: |SHIFT	|Done	|4OS2	|JP Software	| |
+|::: |SHRALIAS	|	|4OS2	|JP Software	| |
+|::: |START	|Done	|4OS2	|JP Software	| |
+|::: |SWITCH	|Extension	|4OS2	|JP Software	| |
+|::: |TEE	|	|4OS2	|JP Software	| |
+|::: |TEXT	|	|4OS2	|JP Software	| |
+|::: |TIME	|Done	|4OS2	|JP Software	| |
+|::: |TIMER	|	|4OS2	|JP Software	| |
+|::: |TITLE	|	|4OS2	|JP Software	| |
+|::: |TOUCH	|	|4OS2	|JP Software	| |
+|::: |TYPE	|Done	|4OS2	|JP Software	| |
+|::: |UNALIAS	|	|4OS2	|JP Software	| |
+|::: |UNSET	|	|4OS2	|JP Software | |
+|::: |VERIFY	|Done	|4OS2	|JP Software	| |
+|::: |VSCRPUT	|	|4OS2	|JP Software	| |
+|::: |WINDOW	|	|4OS2	|JP Software	| |
+|::: |Y	|	|4OS2	|JP Software	| |
+|CLI tools	|ANSI	|Done	|osFree	|John Martin Alfredsson	| |
+|::: |ATTRIB	|Done	|osFree	|Bartosz Tomasik	| |
+|::: |BACKUP	|None	| | | | 	 	 
+|::: |BLDLEVEL	|Done	|osFree	|Yuri Prokushev	| |
+|::: |CHKDSK	|Done	|osFree	|Bartosz Tomasik	| |
+|::: |COMP	|None	|GPL	|Knut St. Osmundsen	|Port to OpenWatcom, \\ Finish tool |
+|::: |CLS	|Done	|osFree	|Bartosz Tomasik	| |
+|::: |DISKCOMP	|None	|GPL	|Eric Auer, \\ Michal Meller	|Port to OS/2 |
+|::: |DISKCOPY	|None	| | | |
+|::: |DTRACE	|None	| | | |
+|::: |EAUTIL	|None | | | |
+|::: |EJECT	|Done	|osFree	|Bartosz Tomasik	| |
+|::: |FDISK	|Done	|osFree	|Yuri Prokushev	| |
+|::: |FIND	|None	|GPL	|Jim Hall	|Port to OS/2 |
+|::: |FORMAT	|Done	|osFree	|Bartosz Tomasik	| |
+|::: |FSACCESS	|None	| | | |
+|::: |HELPMSG	|Done	|osFree	|Yuri Prokushev	| |
+|::: |KEYB	|None	| | | |
+|::: |LABEL	|Done	|osFree	|Bartosz Tomasik	| |
+|::: |LVM	|None	| | | |
+|::: |MAKEINI	|None	|GPL	|Ulrich Moeller	|Port to OpenWatcom |
+|::: |MD	|Done	|osFree	|Bartosz Tomasik	| |
+|::: |MKDIR	|Done	|osFree	|Bartosz Tomasik	| |
+|::: |MKMSGF	|None	| | | |
+|::: |MODE	|None	| | | |
+|::: |MORE	|Done	|Public	|Stephen Lacy	| |
+|::: |PATCH	|None	| | | |
+|::: |PDUMPSYS	|None	| | | |
+|::: |PDUMPUSR	|None	| | | |
+|::: |PFILES	|None	| | | |
+|::: |PRINT	|None	| | | |
+|::: |PROCDUMP	|None | | | |
+|::: |PSTAT	|None	| | | |
+|::: |RECOVER	|Done	|osFree	|Bartosz Tomasik	| |
+|::: |REPLACE	|None	| | | |
+|::: |RESTORE	|None	| | | |
+|::: |SORT	|None	|GPL	|Eric Auer, Jim Lynch	|Port to OpenWatcom |
+|::: |SPOOL	|None	| | | |
+|::: |STRACE	|None	| | | |
+|::: |SYSINSTX	|Done	|osFree	|Bartosz Tomasik	| |
+|::: |SYSLEVEL	|None	| | | |
+|::: |TRACE	|None | | | |
+|::: |TRAPDUMP	|None | | | |
+|::: |TREE	|Done	|osFree	|Cristiano Guadagnino, \\ Bartosz Tomasik	| |
+|::: |TRSPOOL	|None	| | | |
+|::: |UNDELETE	|None	| | | |
+|::: |XCOPY	|None	|GPL	|Vitus Jensen	|Port to OpenWatcom, Finish tool |
+|::: |VER	|Done	|osFree	|Bartosz Tomasik	| |
+|::: |VMDISK	|None	| | | |
+|::: |VOL	|Done	|osFree	|Bartosz Tomasik	| |
+|Classic REXX	|REGINA.DLL	|Done	|LGPL	|Anders Christensen, \\ Mark Hessling	| |
+|::: |REXX.DLL	|Done	|LGPL	|Yuri Prokushev	| |
+|::: |REXXAPI.DLL	|Done	|LGPL	|Yuri Prokushev	| |
+|::: |REXXUTIL.DLL	|None	|MPL	|Patrick TJ McPhee |Port to OS/2 |
+|CPI	|DOSCALLS.DLL	|None	| | | |
+|::: |KBDCALLS.DLL	|Done	|osFree	|Yuri Prokushev	| |
+|::: |MOUCALLS.DLL	|Done	|osFree	|Yuri Prokushev	| |
+|::: |MSG.DLL	|Done	|osFree	|Yuri Prokushev	| |
+|::: |NLS.DLL	|Done	|osFree	|Yuri Prokushev	| |
+|::: |QUECALLS.DLL	|Done	|osFree	|Yuri Prokushev	| |
+|::: |SESMGR.DLL	|Done	|osFree	|Yuri Prokushev	| |
+|::: |VIOCALLS.DLL	|Done	|osFree	|Yuri Prokushev	| |
+|SOM	|SOM.DLL	|None | | | |
+|DSOM	|SOMD.DLL	|None	| | | |
+|Object REXX	| |None	| | | |
+|MDOS CLI tools	|APPEND	|None	| | | |
+|::: |ASSIGN	|None	| | | |
+|::: |COMMAND	|None	| | | |
+|::: |JOIN	|None	| | | |
+|::: |MEM	|None	| | | |
+|::: |SUBST	|None	| | | |
+|::: |GRAFTABL	|None	| | | |
+|IPF API	|HELPMGR.DLL	|Done	|GPL	|NewView project	| |
+|PM tools	|VIEW	|Done	|GPL	|NewView project	| |
+|::: |FFSTCONF	|None | | | |
+|::: |FFSTPCT	None | | | | 	 
+|::: |SYSLOG	None | | | |
+|::: |TRACEFMT	None | | | |
+|::: |DDINSTAL	None | | | |
+|MM tools	|PICVIEW	|None | | | |
+|TCP/IP |Stack	|None | | | |
+|TCP/IP CLI tools	|PING	 |None	|BSD	|Patrick Haller, Yuri Prokushev	| |
+|::: |TRACERTE	|None	|BSD	|Patrick Haller	|Port to OpenWatcom |
+|CMD.EXE	|ATTRIB	|Obsolete	|4OS2	|JP Software	| |
+|::: |CLS	|Obsolete	|4OS2	|JP Software	| |
+|::: |MD	|Obsolete	|4OS2	|JP Software	| |
+|::: |MKDIR	|Obsolete	|4OS2	|JP Software	| |
+|::: |VOL	|Obsolete	|4OS2	|JP Software	| |
+|::: |TREE	|Obsolete	|4OS2	|JP Software	| |
+|::: |VER	|Obsolete	|4OS2	|JP Software	| |

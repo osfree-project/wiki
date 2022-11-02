@@ -1,0 +1,21 @@
+===== File Exclusion Ranges =====
+
+Most internal commands which accept wildcards also accept file exclusion ranges to further define the files that you wish to work with. **CMD.EXE** examines each file name and excludes files that match the names you have specified in a file exclusion range. 
+
+A file exclusion range begins with the switch character (usually a slash), followed by a left square bracket and an exclamation mark ("**[!**") The range ends with a right square bracket ("**]**"). 
+
+Inside the brackets, you can list one or more filenames to be excluded from the command. The filenames can include wildcards and extended wildcards, but cannot include path names or drive letters. 
+
+The following example will display all files in the current directory except backup files (files with the extension .BAK or .BKP): 
+
+<code>
+        [c:\] dir /[!*.bak *.bkp] *.*
+</code>
+
+You can combine file exclusion ranges with [[en:docs:os2:cmd:file:ranges|date, time, and size ranges]] This example displays all files that are 10K bytes or larger in size and that were created in the last 7 days, except .C and .H files: 
+
+<code>
+        [c:\] dir /[s10k] /[d-7] /[!*.c *.h] *.*
+</code>
+
+File exclusion ranges will only work for **CMD.EXE** internal commands. The [[en:docs:os2:cmd:file:ranges|EXCEPT]] command can be used to exclude files from processing by many external commands. 

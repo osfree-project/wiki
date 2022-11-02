@@ -1,0 +1,71 @@
+==== FS_FILEINFO ====
+
+**Purpose**
+
+Returns information for a specific file.   
+
+**Calling Sequence**
+
+<code c>
+int far pascal FS_FILEINFO(flag, psffsi, psffsd, level, pData, cbData,
+                           IOflag)
+
+unsigned short flag;
+struct sffsi far * psffsi;
+struct sffsd far * psffsd;
+unsigned short level;
+char far * pData;
+unsigned short cbData;
+unsigned short IOflag;
+</code>
+  
+**Where**
+
+^//flag// ^indicates retrieval or setting of information.   ^
+|//flag// == 0 |indicates retrieving information. |
+|//flag// == 1 |indicates setting information. |
+|All other values are reserved.   ||
+
+The value of //flag// passed to the FSD will be valid.   
+
+//psffsi// is a pointer to the file-system-independent portion of an open file instance.   
+
+//psffsd// is a pointer to the file-system-dependent portion of an open file instance.   
+
+//level// is the information level to be returned.   
+
+//Level// selects among a series of data structures to be returned.   
+
+//pData// is the address of the application data area.   
+
+Addressing of this data area is validated by the kernel (see //FSH_PROBEBUF//).   
+
+When retrieval (//flag// == 0) is specified, the FSD will place the information into the buffer.   
+
+When outputting information to a file (//flag// == 1), the FSD will retrieve that data from the application buffer.   
+
+//cbData// is the length of the application data area.   
+
+For //flag// == 0, this is the length of the data the application wishes to retrieve. If there is not enough room for the entire level of data to be returned, the FSD will return a BUFFER OVERFLOW error.   
+
+For //flag == 1//, this is the length of data to be applied to the file.   
+
+^//IOflag// ^indicates information about the operation on the handle.   ^
+|//IOflag// == 0x0010 |indicates write-through. |
+|//IOflag// == 0x0020 |indicates no-cache. |
+
+**Remarks**
+
+If setting the time/date/DOS attributes on a file:   
+
+  * Copy the new time/date/DOS attributes into the SFT
+  * Set ST_PCREAT, ST_PWRITE, and ST_PREAD
+  * Clear ST_SCREAT, ST_SWRITE, and ST_SREAD 
+
+Note: ALSO NEW FOR 2.0, it is suggested that the FSD copy the DOS file attributes from the directory entry into the SFT. This allows the FSD and the OS2 kernel to handle FCB opens more efficiently.   
+
+If querying the date/time/DOS attributes on a file, simply copy the date/time/DOS attributes from the directory entry into the SFT.   
+
+Of the information passed in //IOflag//, the write-through bit is a mandatory bit in that any data written to the block device must be put out on the medium before the device driver returns. The no-cache bit, on the other hand, is an advisory bit that says whether the data being transferred is worth caching or not.   
+
+Supported information levels are described in the OS/2 Version 2.0 Control Program Programming Reference.   

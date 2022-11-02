@@ -1,0 +1,43 @@
+{{page>en:templates:dpmi}}
+
+====== Int 31H, AH=03H, AL=04H ======
+
+===== Version =====
+
+0.9
+
+===== Brief =====
+
+Free Real Mode Callback Address
+
+===== Input =====
+
+  AX = 0304H
+  CX:DX = real mode callback address to be freed
+
+===== Return =====
+
+  if function successful
+  Carry flag = clear
+  
+  if function unsuccessful
+  Carry flag = set
+  AX = error code
+  8024H	invalid callback address
+
+===== Notes =====
+
+Releases a real mode callback address that was previously allocated with the Allocate Real Mode Callback Address function (Int 31H Function 0303H).
+
+Real mode callbacks are a limited system resource. A client should release any callback that it is no longer using.
+       
+===== See also =====
+
+   
+
+===== Note =====
+
+Text based on [[http://www.delorie.com/djgpp/doc/dpmi/]]
+
+{{page>en:templates:dpmi:int}}
+

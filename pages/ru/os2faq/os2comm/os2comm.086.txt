@@ -1,0 +1,9 @@
+[Q]: При логине с Win2003Srv на OS/2 сообщается о неправильном имени/пароле
+
+[A]: Andrew Roganov (2:5059/20.3), Oleg V.Cat (2:5100/80)
+
+Local Security Policy (Settings)->Local Polices->Security Options->
+Network security:Lan Manager authentication level->
+Send LM & NTLM responses.
+
+По умолчанию стоит: NTLM responses

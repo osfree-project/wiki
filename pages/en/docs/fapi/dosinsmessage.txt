@@ -1,0 +1,85 @@
+{{page>en:templates:fapiint}}
+
+====== DosInsMessage ======
+
+This call inserts variable text string information into the body of a message. This is useful when messages are loaded before insertion text strings are known.
+
+===== Syntax =====
+
+<code c>
+DosInsMessage (IvTable, IvCount, MsgInput, MsgInLength, DataArea, DataLength,MsgLength)
+</code>
+
+===== Parameters =====
+
+  * IvTable ([[PCHAR]] FAR *) - input : List of double-word pointers. Each pointer points to an ASCIIZ or null terminated DBCS string (variable insertion text). 0 to 9 strings can be present.
+  * IvCount ([[USHORT]]) - input : 0-9 is the count of variable insertion text strings. If IvCount is 0, IvTable is ignored.
+  * MsgInput ([[PSZ]]) - input : Address of the input message.
+  * MsgInLength ([[USHORT]]) - input : Length, in bytes, of the input message.
+  * DataArea ([[PCHAR]]) - output : Address of the user storage that returns the updated message. If the message is too long to fit in the caller's buffer, as much of the message text as possible is returned with the appropriate return code.
+  * DataLength ([[USHORT]]) - input : Length, in bytes, of the user's storage area. 
+  * MsgLength ([[PUSHORT]]) - output : Address of the length, in bytes, of the updated message.
+
+===== Return Code =====
+
+rc ([[USHORT]]) - return
+
+Return code descriptions are:
+
+  * 0    NO_ERROR
+  * 316  ERROR_MR_MSG_TOO_LONG
+  * 320  ERROR_MR_INV_IVCOUNT
+
+===== Remarks =====
+
+DosInsMessage returns an error indicating that IvCount is out of range when IvCount is greater than 9. A default message is also placed in the caller's buffer. Refer to [[DosGetMessage]] for details on the default messages. If the numeric value of x in the
+%x sequence for %1through%9 is less than or equal to IvCount, then text insertion, by substitution for %x, is performed for all occurrences of %x in the body of the message. Otherwise text insertion is ignored and the %x sequence is returned unchanged in the message. Text insertion is performed for all text strings defined by IvCount and IvTable.
+
+Variable data insertion does not depend on a blank character delimiter nor are blanks automatically inserted. 
+
+===== Example Code =====
+
+==== C Binding ====
+
+<code c>
+#define INCL_DOSMISC
+
+USHORT  rc = DosInsMessage(IvTable, IvCount, MsgInput, MsgInLength,
+                             DataArea, DataLength, MsgLength);
+
+PCHAR FAR *      IvTable;       /* Table of variables to insert */
+USHORT           IvCount;       /* Number of variables */
+PSZ              MsgInput;      /* Address of input message */
+USHORT           MsgInLength;   /* Length of input message */
+PCHAR            DataArea;      /* Updated message (returned) */
+USHORT           DataLength;    /* Length of updated message buffer */
+PUSHORT          MsgLength;     /* Length of updated message (returned) */
+
+USHORT           rc;            /* return code */
+</code>
+
+==== MASM Binding ====
+
+<code asm>
+EXTRN  DosInsMessage:FAR
+INCL_DOSMISC      EQU 1
+
+PUSH@  OTHER   IvTable       ;Table of variables to insert
+PUSH   WORD    IvCount       ;Number of variables
+PUSH@  ASCIIZ  MsgInput      ;Input message string
+PUSH   WORD    MsgInLength   ;Length of input message
+PUSH@  OTHER   DataArea      ;Updated message (returned)
+PUSH   WORD    DataLength    ;Length of updated message buffer
+PUSH@  WORD    MsgLength     ;Length of updated message (returned)
+CALL   DosInsMessage
+
+</code>
+
+Returns WORD
+
+===== Note =====
+
+Text based on [[http://www.edm2.com/index.php/DosInsMessage]]
+
+{{page>en:templates:fapi}}
+

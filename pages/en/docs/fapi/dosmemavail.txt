@@ -1,0 +1,58 @@
+{{page>en:templates:fapiint}}
+
+====== DosMemAvail ======
+
+This call returns the size of the largest block of free memory.
+
+===== Syntax =====
+
+
+<code c>
+DosMemAvail (MemAvailSize)
+</code>
+
+===== Parameters =====
+
+
+  * MemAvailSize ([[PULONG]]) - output: Address of the size of the largest free block of memory in bytes.
+
+===== Return Code =====
+
+  * rc ([[USHORT]]) - return: Return code:
+
+  *0 NO_ERROR
+
+===== Remarks =====
+
+DosMemAvail allows an application to determine how heavily used system memory is at a particular time. The returned value is a "snapshot" that may be valid only at the moment this function is issued and can be expected to change at any time due to system activity.
+
+This call can be used as an indicator for memory availability before a call to [[DosAllocHuge]] is made.
+
+===== Bindings =====
+
+==== C ====
+
+<code c>
+#define INCL_DOSMEMMGR
+USHORT  rc = DosMemAvail(MemAvailSize);
+PULONG  MemAvailSize;  /* Size available (returned) */
+USHORT  rc;            /* return code */
+</code>
+
+==== MASM ====
+
+<code asm>
+EXTRN  DosMemAvail:FAR
+INCL_DOSMEMMGR      EQU 1
+
+PUSH@  DWORD   MemAvailSize  ;Size available (returned)
+CALL   DosMemAvail
+
+Returns WORD
+</code>
+
+===== Note =====
+Text based on [[http://www.edm2.com/index.php/DosMemAvail]]
+
+{{page>en:templates:fapi}}
+

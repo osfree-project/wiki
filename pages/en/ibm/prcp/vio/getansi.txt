@@ -1,0 +1,46 @@
+==== VioGetAnsi ====
+
+**Bindings**: [[getansi#C bindings|C]], [[getansi#MASM bindings|MASM]]
+
+This call returns the current ANSI status On/Off state. 
+
+//VioGetAnsi// (Indicator, VioHandle) 
+
+//Indicator// (**PUSHORT**) - output 
+Address of the current ANSI status. A value of 1 indicates ANSI is active, and a value of 0 indicates ANSI is not active. 
+
+//VioHandle// (**HVIO**) - input 
+This must be zero unless the caller is a Presentation Manager application, in which case it must be the value returned by [[en:ibm:prcp:vio:getps|VioGetPs]]. 
+
+//rc// (**USHORT**) - return 
+Return code descriptions are: 
+
+|0 |NO_ERROR |
+|436 |ERROR_VIO_INVALID_HANDLE |
+|465 |ERROR_VIO_DETACHED |
+
+=== C bindings ===
+
+<code c>
+#define INCL_VIO
+
+USHORT  rc = VioGetAnsi(Indicator, VioHandle);
+
+PUSHORT          Indicator;     /* On/Off indicator (returned) */
+HVIO             VioHandle;     /* Vio handle */
+
+USHORT           rc;            /* return code */
+</code>
+
+=== MASM bindings ===
+
+<code asm>
+EXTRN  VioGetAnsi:FAR
+INCL_VIO            EQU 1
+
+PUSH@  WORD    Indicator     ;On/Off indicator (returned)
+PUSH   WORD    VioHandle     ;Vio handle
+CALL   VioGetAnsi
+
+Returns WORD
+</code>

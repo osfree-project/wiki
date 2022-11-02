@@ -1,0 +1,43 @@
+{{logos:os2.gif?35x35}} 
+
+**Please help to find info about enries marked as //No info//**
+
+====== CON3216 ======
+
+32-bit implementation fo Vio/Mou/Mon/Kbd functions compatible with JdeBP's CON3216.DLL. For IBM 32-bit interface see [[OS2CHAR2]].DLL.  For EMX 32-bit interface see [[EMXWRAP]].DLL. 
+
+^ Ordinal ^ Name ^ Desc ^ Status ^
+| 0008 | VioGetAnsi | Wrapper around [[EMXWRAP.???]] | |
+| 000A | VioGetConfig | Wrapper around [[EMXWRAP.???]] | |
+| 000B | VioGetCp | Wrapper around [[EMXWRAP.???]] | |
+| 000C | VioGetCurPos | Wrapper around [[EMXWRAP.???]] | |
+| 000D | VioGetCurType | Wrapper around [[EMXWRAP.???]] | |
+| 000F | VioGetMode | Wrapper around [[EMXWRAP.???]] | |
+| 0011 | VioGetState | Wrapper around [[EMXWRAP.???]] | |
+| 0019 | VioReadCellStr | Wrapper around [[EMXWRAP.???]] | |
+| 001A | VioReadCharStr | Wrapper around [[EMXWRAP.???]] | |
+| 001F | VioScrollDown | Wrapper around [[EMXWRAP.???]] | |
+| 0020 | VioScrollLeft | Wrapper around [[EMXWRAP.???]] | |
+| 0021 | VioScrollRight | Wrapper around [[EMXWRAP.???]] | |
+| 0022 | VioScrollUp | Wrapper around [[EMXWRAP.???]] | |
+| 0024 | VioSetAnsi | Wrapper around [[EMXWRAP.???]] | |
+| 0025 | VioSetCp | Wrapper around [[EMXWRAP.???]] | |
+| 0026 | VioSetCurPos | Wrapper around [[EMXWRAP.???]] | |
+| 0027 | VioSetCurType | Wrapper around [[EMXWRAP.???]] | |
+| 0029 | VioSetMode | Wrapper around [[EMXWRAP.???]] | |
+| 002B | VioSetState | Wrapper around [[EMXWRAP.???]] | |
+| 002E | VioWrtCellStr | Wrapper around [[EMXWRAP.???]] | |
+| 002F | VioWrtCharStr | Wrapper around [[EMXWRAP.???]] | |
+| 0030 | VioWrtCharStrAttr | Wrapper around [[EMXWRAP.???]] | |
+| 0031 | VioWrtNAttr | Wrapper around [[EMXWRAP.???]] | |
+| 0032 | VioWrtNCell | Wrapper around [[EMXWRAP.???]] | |
+| 0033 | VioWrtNChar | Wrapper around [[EMXWRAP.???]] | |
+| 0034 | VioWrtTTY | Wrapper around [[EMXWRAP.???]] | |
+| 003C | KbdCharIn | Wrapper around [[EMXWRAP.???]] | |
+| 003D | KbdFlushBuffer | Wrapper around [[EMXWRAP.???]] | |
+| 003E | KbdGetCp | Wrapper around [[EMXWRAP.???]] | |
+| 0040 | KbdGetStatus | Wrapper around [[EMXWRAP.???]] | |
+| 0041 | KbdPeek | Wrapper around [[EMXWRAP.???]] | |
+| 0042 | KbdSetCp | Wrapper around [[EMXWRAP.???]] | |
+| 0043 | KbdSetStatus | Wrapper around [[EMXWRAP.???]] | |
+| 0053 | MouGetNumButtons | Wrapper around [[EMXWRAP.???]] | |

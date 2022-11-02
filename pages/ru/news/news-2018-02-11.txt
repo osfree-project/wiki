@@ -1,0 +1,11 @@
+==== 11 февраля, 2018 ====
+
+Миграция репозитория на GitHub.
+
+Сегодня Oxyd закончил перенос нашего репозитория исходного кода с SourceForge
+на GitHub. Наш новый репозиторий находится теперь здесь: https://github.com/osfree-project/osfree/.
+Мы теперь готовы для помощи со стороны сторонних разработчиков, и pull requests.
+
+{{tag>migration repository github sourceforge git svn}}
+
+~~DISCUSSION~~

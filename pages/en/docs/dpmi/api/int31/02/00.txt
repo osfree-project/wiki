@@ -1,0 +1,40 @@
+{{page>en:templates:dpmi}}
+
+====== Int 31H, AH=02H, AL=00H ======
+
+===== Version =====
+
+0.9
+
+===== Brief =====
+
+Get Real Mode Interrupt Vector
+
+===== Input =====
+
+  AX = 0200H
+  BL = interrupt number
+        
+===== Return =====
+
+  Carry flag = clear (this function always succeeds)
+  CX:DX = segment:offset of real mode interrupt handler
+
+===== Notes =====
+
+Returns the contents of the current virtual machine's real mode interrupt vector for the specified interrupt.
+
+The value returned in CX is a real mode segment address, not a selector. Attempts to place this value into a segment register in protected mode may cause a general protection (GP) fault.
+
+All 100H (256) real mode interrupt vectors must be made available through this function by the DPMI host.
+   
+===== See also =====
+
+   
+
+===== Note =====
+
+Text based on [[http://www.delorie.com/djgpp/doc/dpmi/]]
+
+{{page>en:templates:dpmi:int}}
+

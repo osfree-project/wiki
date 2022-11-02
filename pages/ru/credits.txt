@@ -1,0 +1,34 @@
+===== Благодарности =====
+
+Проект osFree не ставит цели переписать все с нуля. Мы понимаем, что наши ресурсы ограничены. Таким образом, мы должны использовать готовый код повторно в любом случае, когда это возможно. Мы уже взяли за основу код некоторых из [[wp>FOSS]] и Public domain проектов как базу для компонентов нашей [[wp>Operating_System|ОС]]. Здесь приведен их список (возможно, неполный, к сожалению).
+
+Мы хотим сказать большое спасибо следующим проектам: (программы или документация)
+
+  * [[http://regina-rexx.sourceforge.net/Regina REXX]] - замена для Classic REXX
+  * [[http://hessling-editor.sourceforge.net/THE]] - как замена для TEDIT
+  * И множество других программ, написанных Марком Хесслингом. Благодаря его продуктам, нам не пришлось заниматься изобретением велосипедов.
+  * [[http://os2linux.sourceforge.net/|OS2Linux]] как пример реализации CPI на базе другого ядра. К сожалению, не подходит для заимствования кода из-за лицензии проекта (не GPL).
+  * [[http://frepm.sourceforge.net/|FreePM]] в качестве базы для реализации  PM
+  * [[http://os.inf.tu-dresden.de/drops/|DROPS]] как база для большинства Personality Neutral Servers.
+  * [[http://os.inf.tu-dresden.de/L4/LinuxOnL4/|L4Linux]] как основа Linux personality.
+  * [[en:docs:cmd:index|проект osFree/CMD]] как основа для большинства утилит командной строки
+  * [[en:freeldr|FreeLDR]] проект, который развился в полнофункциональный загрузчик.
+  * [[http://www.gnu.org/software/grub/|GRUB]] который стал хорошей основой для проекта [[en:freeldr|FreeLDR]]
+  * [[http://mcpp.sourceforge.net/|MCPP]] используется как основа SOM CPP
+  * [[http://heikon.home.tlink.de/|GBM]] как база для Image Format I/O Procedures
+  * [[http://www.os2world.com/cdwriting/jpgio/jpgio.htm|JPGIO]] как база для Image Format I/O Procedures
+  * [[http://www.zlib.net/|ZLIB]] используется во многих местах
+  * [[http://www.libpng.org/|LIBPNG]] используется во многих местах
+  * [[http://www.ijg.org/|LIBJPEG]] используется во многих местах
+  * [[http://www.libgd.org/|GDLIB]] используется в  FreePM
+  * [[http://www.libtiff.org/|LIBTIFF]] используется во многих местах
+  * [[http://os.inf.tu-dresden.de/fiasco/|Fiasco]] используется в качестве микроядра
+  * PParser из FPK используется как база для утилиты UNI2H
+  * библиотека TWIN как основа для win16
+  * [[http://minstall.netlabs.org/|MINSTALL]] by KIEWITZ
+  * [[http://ru.ecomstation.ru/projects/eschemes-deluxe/?action=down|MMImage Pak]] как Image File Format I/O Procedures
+  * [[http://r6.ca/MMAudioPak/|MMAudio Pak 2]] как Audio File Format I/O Procedures
+  * [[http://www.freedos.org/|FreeDOS]] как база DOS подсистемы
+  * Документация от Ральфа Брауна (Interrupt list). Замечательный источник информации о DOS/BIOS и VDM.
+
+~~DISCUSSION~~

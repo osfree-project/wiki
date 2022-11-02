@@ -1,0 +1,32 @@
+==== MFS_CHGFILEPTR - Move a file's position pointer ====
+
+**Purpose**
+
+Move the file's logical read position pointer.   
+
+**Calling Sequence**
+
+<code c>
+int far pascal MFS_CHGFILEPTR(offset, type)
+
+long offset;
+unsigned short type;
+</code>
+
+**Where**
+
+//offset// is the signed offset which depending on the type parameter is used to determine the new position within the file.   
+
+//type// indicates the basis of a seek operation. 
+
+|type == 0 |indicates seek relative to beginning of file. |
+|type == 1 |indicates seek relative to current position within the file. |
+|type == 2 |indicates seek relative to end of file. |
+
+**Returns**
+
+If no error is detected, a zero error code is returned. If an error is detected, a non-zero error code is returned.   
+
+**Remarks**
+
+The file system may want to take the seek operation as a hint that an I/O operation is about to take place at the new position and initiate a positioning operation on sequential access media or read-ahead operation on other media.   

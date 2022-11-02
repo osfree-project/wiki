@@ -1,0 +1,61 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=5AH ======
+
+===== Version =====
+
+3 and higher
+
+===== Brief =====
+
+CREATE TEMPORARY FILE
+
+===== Family API =====
+
+
+===== Input =====
+
+	AH = 5Ah
+	CX = file attribute (see #01420 at AX=4301h)
+	DS:DX -> ASCIZ path ending with a '\' + 13 zero bytes to receive the
+		generated filename
+
+===== Return =====
+
+  CF clear if successful
+	    AX = file handle opened for read/write in compatibility mode
+	    DS:DX pathname extended with generated name for temporary file
+	CF set on error
+	    AX = error code (03h,04h,05h) (see #01680)
+
+===== Notes =====
+
+Desc:	creates a file with a unique name which must be explicitly deleted
+Notes:	under the FlashTek X-32 DOS extender, the path pointer is in DS:EDX
+	MS-DOS 3.0-4.0 and DR DOS 3.4-5.0 generate the filename as a sequence
+	  of hex digits based on the current date and time; MS-DOS 6+,
+	  DR DOS 6, and Novell DOS 7 use letters A-P in place of hex digits
+	MS-DOS 5.0 and DR DOS 3.41/5.0 will insert a missing trailing backslash
+	  before appending the generated filename, but due to this, an empty
+	  string results in a file in the root directory
+BUGS:	COMPAQ DOS 3.31 hangs if the pathname is at XXXXh:0000h; it apparently
+	  wraps around to the end of the segment
+	MS-DOS 5.00 revisions A and B and PC-DOS 5.00 revision A reportedly
+	  hang the system if the specified path is the root directory and the
+	  root directory is full (no free directory entries)
+	Mark Incley <mincley@krisalis.demon.co.uk> reports that this function
+	  hangs in MS-DOS 6.2x if the name includes two consecutive path
+	  separators (e.g. C:\\ )
+          
+===== See also =====
+
+  AH=3Ch,AH=5Bh
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:int}}
+
+{{page>en:templates:fapi}}
+

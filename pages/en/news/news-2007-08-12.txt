@@ -1,0 +1,12 @@
+==== August 12th, 2007 ====
+
+Today we started uploading the sources to SVN with the aim to configure 
+a common build system. As we do not yet have an own SVN-Server yet, we 
+are using the SourceForge Server. You can find the sources at 
+[[https://sourceforge.net/projects/osfree/]]. At the moment this is 
+NOT fully functional, not even all parts of the sources have been 
+uploaded. Still feel free to improve osFree 
+
+{{tag>development site}}
+
+~~DISCUSSION~~

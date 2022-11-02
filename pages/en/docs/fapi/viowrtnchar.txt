@@ -1,0 +1,78 @@
+{{page>en:templates:fapiint}}
+
+====== VioWrtNChar ======
+
+===== Brief =====
+
+VioWrtNChar writes a character to the display a specified number of times.
+
+===== Syntax =====
+
+<code c>
+ VioWrtNChar (Char, Times, Row, Column, VioHandle) 
+</code>
+
+===== Parameters =====
+
+  * Char (PCH) - input : Address of the character to be written.
+  * Times (USHORT) - input : Number of times to write the character.
+  * Row (USHORT) - input : Starting cursor row.
+  * Column (USHORT) - input : Starting cursor column.
+  * VioHandle (HVIO) - input : This must be zero unless the caller is a Presentation Manager application, in which case it must be the value returned by VioGetPs.
+
+===== Return Code =====
+
+ rc (USHORT) - return Return code descriptions are:
+
+  * 0          NO_ERROR 
+  * 355        ERROR_VIO_MODE 
+  * 358        ERROR_VIO_ROW 
+  * 359        ERROR_VIO_COL 
+  * 436        ERROR_VIO_INVALID_HANDLE 
+  * 465        ERROR_VIO_DETACHED
+
+===== Remarks =====
+If a repeated write gets to the end of the line and is not complete, the write continues at the beginning of the next line. If the write gets to the end of the screen, the write terminates.
+
+==== Presentation Manager Considerations ====
+Write a character to the Advanced VIO presentation space a number of times. The caller must specify the starting location on the presentation space where the string is to be written. 
+
+===== Example Code =====
+==== C Binding ====
+<code c>
+#define INCL_VIO
+
+USHORT  rc = VioWrtNChar(Char, Times, Row, Column, VioHandle);
+
+PCH              Char;          /* Character to be written */
+USHORT           Times;         /* Repeat count */
+USHORT           Row;           /* Starting row position for output */
+USHORT           Column;        /* Starting column position for output */
+HVIO             VioHandle;     /* Video handle */
+
+USHORT           rc;            /* return code */
+</code>
+
+==== MASM Binding ====
+<code asm>
+EXTRN  VioWrtNChar:FAR
+INCL_VIO            EQU 1
+
+PUSH@  OTHER   Char          ;Character to be written
+PUSH   WORD    Times         ;Repeat count
+PUSH   WORD    Row           ;Starting row position for output
+PUSH   WORD    Column        ;Starting column position for output
+PUSH   WORD    VioHandle     ;Video handle
+CALL   VioWrtNChar
+
+Returns WORD
+</code>
+
+
+
+===== Note =====
+
+Text based on [[http://www.edm2.com/index.php/VioWrtNChar_(FAPI)]]
+
+{{page>en:templates:fapi}}
+

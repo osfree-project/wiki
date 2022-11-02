@@ -1,0 +1,41 @@
+{{page>en:templates:dpmi}}
+
+====== Int 2FH, AH=16H, AL=86H ======
+
+===== Version =====
+
+0.9
+
+===== Brief =====
+
+Returns information about the current CPU mode. Programs which only execute in protected mode do not need to call this function.
+
+===== Input =====
+
+	AX = 1686H
+
+===== Return =====
+
+  if executing in protected mode
+  AX = 0
+
+  if executing in real mode or Virtual 86 mode
+  AX = nonzero
+
+===== Notes =====
+
+Some environments support programs or libraries that can execute in either real or protected mode (bimodal code). This function is supplied so that such programs can detect at run time whether they are running in protected mode and make use of system facilities accordingly.
+This function should not be used to determine if a DPMI host is present. A client should make sure that DPMI services are available before calling this function; otherwise, the results returned by the function may not be valid.
+
+          
+===== See also =====
+
+   
+
+===== Note =====
+
+Text based on [[http://www.delorie.com/djgpp/doc/dpmi/]]
+
+
+
+

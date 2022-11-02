@@ -1,0 +1,49 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=15H ======
+
+===== Version =====
+
+1 and higher
+
+===== Brief =====
+
+SEQUENTIAL WRITE TO FCB FILE
+
+===== Family API =====
+
+[[en:docs:fapi:DosRead]]
+
+===== Input =====
+
+        AH = 15h
+        DS:DX -> opened FCB (see #01345)
+        Disk Tranfer Area contains record to be written
+
+===== Return =====
+
+ AL = status
+            00h successful
+            01h disk full
+            02h segment wrap in DTA
+
+===== Notes =====
+
+  writes a record of the size specified in the FCB beginning at the
+          current file position, then updates the current block and current
+          record fields in the FCB
+        if less than a full sector is written, the data is placed in a DOS
+          buffer to be written out at a later time
+        not supported by MS Windows 3.0 DOSX.EXE DOS extender
+        
+===== See also =====
+
+AH=0Fh,AH=14h,AH=1Ah,AH=40h,INT 2F/AX=1109h
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:int}}
+
+{{page>en:templates:fapi}}

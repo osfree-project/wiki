@@ -1,0 +1,29 @@
+===== The Command Line =====
+
+**CMD.EXE** displays a **[c:\]** prompt when it is waiting for you to enter a 
+command.  (The actual text depends on the current drive and directory as 
+well as your **PROMPT** settings.)  This is called the command line and the 
+prompt is asking you to enter a command, an alias or batch file name, or 
+the instructions necessary to begin an application program. 
+This section explains the features that will help you while you are typing 
+in commands, and how keystrokes are interpreted when you enter them at the 
+command line.  The keystrokes discussed here are the ones normally used by 
+**CMD.EXE**.  If you prefer using different keystrokes to perform these 
+functions, you can assign new ones with key mapping directives in **CMD.INI**. 
+
+==== The command line features documented in this section are: ====
+ 
+  * [[en:docs:os2:cmd:cmdline:editing|Command-Line Editing]]
+  * [[en:docs:os2:cmd:cmdline:hist|Command History and Recall]]
+  * [[en:docs:os2:cmd:cmdline:histwin|Command History Window]]
+  * [[en:docs:os2:cmd:cmdline:cmd-names-and-parm|Command Names and Parameters]]
+  * [[en:docs:os2:cmd:cmdline:completion|Filename Completion]]
+  * [[en:docs:os2:cmd:cmdline:auto-dir-chg|Automatic Directory Changes]]
+  * [[en:docs:os2:cmd:cmdline:dirhist|Directory History Window]]
+  * [[en:docs:os2:cmd:cmdline:mult-cmds|Multiple Commands]]
+  * [[en:docs:os2:cmd:cmdline:aliases|Expanding and Disabling Aliases]]
+  * [[en:docs:os2:cmd:cmdline:cmdline-help|Command Line Help]]
+  * [[en:docs:os2:cmd:cmdline:cmdline-len-limits|Command-Line Length Limits]]
+       
+  Additional command-line features are documented under File Selection and 
+ Other Features.   

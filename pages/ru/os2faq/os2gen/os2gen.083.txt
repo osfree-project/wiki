@@ -1,0 +1,18 @@
+[Q]: В DOS сессиях ни с того ни с сего виснет клавиатуpа
+
+[A]: Arkadiy Kapustinskiy (2:5000/70.4)
+
+Вставьте сий файл в ваш AUTOEXEC.BAT - и все как в танке ;)
+
+begin 644 unlockkb.com
+MZSJ<^E"XM``NHQ,!6)WJ`````+0`G/HN_PX3`7484%&P\[D`(.9@XOXSP.9@
+MN+0`+J,3`5E8G>H`````M`FZ=@'-(?JX"37-(2Z)'@\!+HP&$0&Z`@&T)<TA
+MN`@US2$NB1XX`2Z,!CH!NA4!M"7-(?NZ/`'-)PT*56Y,;V-K2T(@=C$N,#`@
+M0V]P>7)I9VAT("AC*2`Q.3DT($-H:7`@)B!$86QE(%-O9G1'<F]U<`T*4G5N
+M;FEN9R!I;B!A($1/4R!S97-S:6]N<R!U;F1E<B!/4R\R('8R+C`K#0I!=71H
+M;W(Z($UI:V4@4V]L;W9I978@*#(Z-3`S,"\V-T!F:61O;F5T+F]R9RD-"@T*
+!)```
+`
+end
+sum -r/size 49279/407 section (from "begin" to "end")
+sum -r/size 31922/271 entire input file

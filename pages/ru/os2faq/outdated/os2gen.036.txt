@@ -1,0 +1,6 @@
+[Q]: У меня клавиша \ вводит символ #, и другие символы перепутаны
+
+[A]: Sergey Troffimovsky (2:5030/16)
+
+CODEPAGE=437,850
+DEVINFO=KBD,US,C:\OS2\KEYBOARD.DCP

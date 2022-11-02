@@ -1,0 +1,13 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=43H ======
+
+===== Input ======
+
+ AH=43H, AL=Subfunction
+
+^ Subfunction                        ^ Description                                       ^ Version ^
+| [[en:docs:dos:api:int21:43:00|00]] | GET FILE ATTRIBUTES                               | 2.0+    |
+| [[en:docs:dos:api:int21:43:01|01]] | "CHMOD" - SET FILE ATTRIBUTES  | 2.0+    |
+
+{{page>en:templates:int}}

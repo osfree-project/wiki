@@ -1,0 +1,3 @@
+Hello, and welcome to my userpage!
+
+I'm Kevin Garricks. I am the web designer for osFree, although I do some other things in the PHP code, too. However, it is mostly Derek's job to mess with the code. I maintain the website with the osFree development team and try to keep it free from any spam that comes in the way. If you have any questions for me contact me in the osFree forums under the osfree.org section or through a private message if you want to talk privately about the matter.

@@ -1,0 +1,5 @@
+{{logos:ibmpc.png?35x35}} {{logos:dos.gif?35x35}} {{logos:win16.gif}}
+
+**Note: This IBM PC BIOS API call is for DOS/Win16 personality only. Use [[en:docs:fapi|Family API]] for portability.**
+
+**Note: [[en:docs:macrolib|osFree Macro Library]] provides macros for most of functions**

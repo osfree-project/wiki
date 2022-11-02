@@ -1,0 +1,24 @@
+{{logos:os2.gif?35x35}} {{logos:dos.gif?35x35}}
+
+===== MSG =====
+
+This is not real code, just forwarders to [[en:docs:os2:modules:DOSCALLS]].DLL
+
+==== Entry points ====
+
+^ Ordinal ^ Name ^ Description ^ Status ^ FAPI ^ Version |
+| 1 | [[en:docs:os2:api:msg:dos16putmessage|DosPutMessage]] | Forwarder to [[en:docs:os2:modules:DOSCALLS]].383 | Done | FAPI | 1.0 |
+| 2 | [[en:docs:os2:api:msg:dos16truegetmessage|DosTrueGetMessage]] | Forwarder to [[en:docs:os2:modules:DOSCALLS]].384| Done | FAPI | 1.0 |
+| 3 | [[en:docs:os2:api:msg:dos16insmessage|DosInsMessage]] | Forwarder to [[en:docs:os2:modules:DOSCALLS]].385 | Done | FAPI | 1.0 |
+| 4 |DosInsertMessage | Forwarder to [[en:docs:os2:modules:DOSCALLS]].386 | Done | | |
+| 5 |DosPutMessage | Forwarder to [[en:docs:os2:modules:DOSCALLS]].387 | Done | | |
+| 6 |DosTrueGetMessage | Forwarder to [[en:docs:os2:modules:DOSCALLS]].388 | Done | | |
+| 7 | [[en:docs:os2:api:msg:dos16iquerymessagecp|DosIQueryMessageCP]] | Forwarder to [[en:docs:os2:modules:DOSCALLS]].390 | Done | | |
+| 8 |DosIQueryMessageCP | Forwarder to [[en:docs:os2:modules:DOSCALLS]].389 | Done | | |
+| 9 | [[en:docs:os2:api:msg:dos16closemessagefile|DosCloseMessageFile]] | Forwarder to [[en:docs:os2:modules:DOSCALLS]].649 | Done | | |
+
+==== Versions ====
+
+{{page>en:templates:dlls}}
+{{page>en:templates:os2api}}
+{{page>en:templates:fapi}}

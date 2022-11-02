@@ -1,0 +1,48 @@
+==== FS_MKDIR ====
+
+**Purpose**
+
+Create the specified directory.   
+
+**Calling Sequence**
+
+<code c>
+int far pascal FS_MKDIR(pcdfsi, pcdfsd, pName, iCurDirEnd, pEABuf, flags)
+
+struct cdfsi far * pcdfsi;
+struct cdfsd far * pcdfsd;
+char far * pName;
+unsigned short iCurDirEnd;
+char far * pEABuf;
+unsigned short flags;
+</code>
+  
+**Where**
+
+//pcdfsi// is a pointer to the file-system-independent working directory structure.   
+
+//pcdfsd// is a pointer to the file-system-dependent working directory structure.   
+
+//pName// is a pointer to the ASCIIZ name of the directory to be created.   
+
+The FSD does not need to verify this pointer.   
+
+//iCurDirEnd// is the index of the end of the current directory in //pName//.   
+
+This is used to optimize FSD path processing. If //iCurDirEnd// == -1, there is no current directory relevant to the name text, that is, a device.   
+
+//pEABuf// is a pointer to the extended attribute buffer.   
+
+This buffer contains attributes that will be set upon creation of the new directory. If NULL, no extended attributes are to be set. Addressing of this data area has not been validated by the kernel (see //FSH_PROBEBUF//).   
+
+//flags// indicates the name type.   
+
+//Flags// == 0x0040 indicates a non-8.3 filename format. All other values are reserved. 
+
+**Remarks**
+
+The FSD needs to do the time stamping itself. There is no aid in the kernel for time stamping sub-directories. FAT only supports creation time stamp and sets the other two fields to zeroes. An FSD should do the same. The FSD can obtain the current time/date from the infoseg.   
+
+A new directory called //pName// should be created if possible. The standard directory entries '.' and '..' should be put into the directory.   
+
+The non-8.3 filename format attribute in the directory entry should be set according to the value in flags.   

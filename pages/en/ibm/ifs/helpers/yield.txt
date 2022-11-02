@@ -1,0 +1,19 @@
+==== FSH_YIELD ====
+
+**Purpose**
+
+This function provides the mechanism for relinquishing the processor to higher priority threads.   
+
+**Calling Sequence**
+
+<code c>
+void far pascal FSH_YIELD(void)
+</code>
+
+**Returns**
+
+There are no error returns.   
+
+**Remarks**
+
+FSDs run under the 2 mS dispatch latency imposed on the OS/2 kernel, meaning that no more than 2 mS can be spent in an FSD without an explicit block or yield. //FSH_YIELD// will test to see if another thread is runable at the current thread's priority or at a higher priority. If one exists, that thread will be given a chance to run.   

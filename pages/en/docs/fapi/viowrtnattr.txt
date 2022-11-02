@@ -1,0 +1,77 @@
+{{page>en:templates:fapiint}}
+====== VioWrtNAttr ======
+ 
+This call writes an attribute to the display a specified number of times. 
+
+===== Syntax =====
+<code c>
+ VioWrtNAttr (Attr, Times, Row, Column, VioHandle)
+</code>
+===== Parameters =====
+
+  * Attr ([[PBYTE]]) - input : Address of the attribute(s) (1 or 3 bytes) to be written.
+  * Times ([[USHORT]]) - input : Number of times to write the attribute.
+  * Row ([[USHORT]]) - input : Starting cursor row.
+  * Column ([[USHORT]]) - input : Starting cursor column.
+  * VioHandle ([[HVIO]]) - input : This must be zero unless the caller is a Presentation Manager application, in which case it must be the value returned by VioGetPs.
+
+===== Return Code =====
+
+rc ([[USHORT]]) - return
+
+Return code descriptions are:
+
+  * 0          NO_ERROR 
+  * 355        ERROR_VIO_MODE 
+  * 358        ERROR_VIO_ROW 
+  * 359        ERROR_VIO_COL 
+  * 436        ERROR_VIO_INVALID_HANDLE 
+  * 465        ERROR_VIO_DETACHED
+
+===== Remarks =====
+
+If a repeated write gets to the end of the line and is not complete, the write continues at the beginning of the next line. If the write gets to the end of the screen, the write terminates.
+
+==== PM Considerations ====
+
+Write an attribute code to the Advanced VIO presentation space a specified number of times. The caller must specify the starting location on the presentation space where the string is to be written. 
+
+===== Bindings =====
+
+==== C Binding====
+<code c>
+#define INCL_VIO
+
+USHORT  rc = VioWrtNAttr(Attr, Times, Row, Column, VioHandle);
+
+PBYTE            Attr;          /* Attribute to be written */
+USHORT           Times;         /* Repeat count */
+USHORT           Row;           /* Starting row position for output */
+USHORT           Column;        /* Starting column position for output */
+HVIO             VioHandle;     /* Video handle */
+
+USHORT           rc;            /* return code */
+</code>
+
+====MASM Binding====
+<code asm>
+EXTRN  VioWrtNAttr:FAR
+INCL_VIO            EQU 1
+
+PUSH@  OTHER   Attr          ;Attribute to be written
+PUSH   WORD    Times         ;Repeat count
+PUSH   WORD    Row           ;Starting row position for output
+PUSH   WORD    Column        ;Starting column position for output
+PUSH   WORD    VioHandle     ;Video handle
+CALL   VioWrtNAttr
+
+Returns WORD
+</code>
+
+
+===== Note =====
+
+Text based on [[http://www.edm2.com/index.php/VioWrtNAttr_(FAPI)]]
+
+{{page>en:templates:fapi}}
+

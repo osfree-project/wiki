@@ -1,0 +1,89 @@
+===== Architectural ideas behind OS/2 personality =====
+
+==== Compatibility with OS/2 (Intel) ====
+
+osFree combines OS/2 (Intel) ideas with those from OS/2 (PowerPC). It must run programs using OS/2 API,
+both console and PM ones. So, on Intel architecture, it must be binary compatible with IBM's OS/2. But
+on other architectures it will have different ABI ((Application Binary Interface)), but the same portable
+API ((Application Program Interface)). 
+
+Also, like it was in OS/2 (PowerPC), the binary compatibility with OS/2 (Intel) is possible (even on non-Intel
+architectures). It includes the translator of PowerPC instructions to Intel ones. The Instruction Set Translator (IST) is a special DLL. It could be made on the base of QEMU binary translation.
+
+LX executable format is unlikely to be used on other architectures, because it is tied to the Intel one. So,
+most possibly, the ELF format will be used. It is cross-platform, extensible and simple. It supports both a 32-bit and a 64-bit variant.  IBM Microkernel used ELF too. And more, IBM used an extended ELF format with special binary sections semantics. It supported inline resources, imports and exports, for example. So, it was possible to use UNIX-style shared objects, as well as OS/2-style DLL's, both in ELF format.
+
+So, the userland must be compatible with OS/2 (Intel). This includes some support of 16-bit applications. Although
+there is a very little of pure 16-bits apps (like cmd.exe and hiew.exe), but some 16-bit API's are widely used today.
+For example, Kbd/Mou/Vio API's (I.e., Console API) are still 16-bits in OS/2 (Intel), though on OS/2 (PowerPC) they are made 32-bits, because binary compatibility makes no sense on other arch's (only source one makes sense).
+
+TODO: Thunking. Getting rid of thunks in 32-bits executables calling the 16-bit API's.
+
+==== Kernel-related parts of OS/2 ====
+
+The most of 'kernel' area was decided to be moved to userland of L4 microkernel. So, some services, commonly meant as kernel parts, like filesystems, drivers, memory management, thread scheduling etc. are moved outside the kernel. So, they are not significantly differ from usual applications, and confined inside their address spaces.
+
+
+==== The OS/2 personality main server (or simply "OS/2 Server") ====
+
+==== Filesystem server ====
+
+=== Installlable file systems (IFS) ===
+
+=== Filesystem router ===
+
+=== IFS helpers ===
+
+==== Exec server ====
+
+=== Virtual Memory Arenas management ===
+
+
+=== Instalable eXecutable Formats (IXF) ===
+
+
+=== Shared memory management ===
+
+
+==== Multiple Virtual Machines (MVM) server ====
+
+=== A historical note ===
+
+The term "MVM" goes from OS/2 (PowerPC). It replaces the term "MVDM" (Multiple Virtual **DOS** Machines). The PowerPC platform could not so easily emulate the Intel processor real mode, so it required more emulation. Though, we must say that it worked just fine, fast, and theoretically may be used not for DOS only. (IBM had plans to provide a binary compatibility with OS/2 (Intel), on the base of the same component which was used to run DOS Apps). 
+
+Read more on [[en:docs:general:mvm|MVM personality]]
+
+==== Other OS's personalities ====
+
+The microkernel is a 'core' of the system implementing the very minimal set of mechanisms and abstractions. It has no policies in it, only pure mechanisms. The OS's are implemented on top. There can be multiple separate OS'es running on top of a common microkernel. In general, the OS's can have only microkernel as a common part. 
+
+But it is not a clever idea to create each OS from scratch. So, some higher level abstractions needed to be created on top of the microkernel, and then the OS'es need to be based on them. These higher level abstractions are the set of servers and libs, called the Personality Neutral Services (or Neutral Personality). If compare with WinNT design, it is simiar to 'Native' NT API, which is a base for Win32 and other subsystems
+
+See [[en:docs:general:index|osFree Whitepaper]] for general system design, and proposed personalities.
+
+=== "The one Ring to Bind Them all" (OS/2 as an integration platform for different types of applications) ===
+
+OS/2 personality is proposed to be a dominant personality. It governs all Personalities and Virtual Machines via the WPS objects. It has API's to communicate other VM's and Personalities. And the Desktop is an OS/2 desktop, using the GRADD Video driver. This Desktop is shared between all 'native' and 'alien' apps.
+
+I heard that IBM registered a trade mark "The Integration Platform (TM)", and it is a general concept and ideology under OS/2 design.
+
+It advertised as "DOS better than DOS" and "Windows better than Windows", and it's true. The continuation of this idea was the Workplace OS, which was never finished, because a voluntary desision of IBM management. It is failed also because no other companies were willing to port their OS'es to IBM's microkernel. But we care much only about OS/2 personality as a base and our OS. The other personalities could be reused as results or other projects, like L4linux or ReactOS, and Opensource will help us with it.
+
+ ==== The current OS/2 personality prototype ====
+
+The osFree Demo setup was demonstrated in 2011, Aug, 22, on the Chaos Constructions'2011 Computer Art festival, in St'Petersbourg. See [[ru:articles:cc-2011|A speech of Oxyd on CC'2011]], a [[http://www.youtube.com/watch?v=yxE6Jy3SQ04|clip]] on youtube (in russian).
+
+The current demo CD can be downloaded from our [[en:download|download area]]
+
+Here is described our demo setup: [[en:docs:os2:status|osFree demo]].
+
+==== osFree PM ====
+
+The osFree PM is an osFree version of FreePM, which was began by Evgeny Kotsuba, and then abandoned. After that, we did some changes to it, and called it "osFree PM", to avoid name collision in case Evgeny will continue his initial version.
+
+  * [[http://web.archive.org/web/20071214042403/http://wiki.laser.ru/os8/index.php/FreePM|Docs about FreePM, by Evgeny]], WebArchive version
+  * [[http://frepm.sourceforge.net|FreePM on SourceForge]] Forum and code repository
+  * [[en:docs:os2:pm:index|Documentation]] on PM implementation based on FreePM
+  * [[en:docs:os2:freepm:index|Some parts]] of FreePM docs written by Evgeny.
+
+~~DISCUSSION~~

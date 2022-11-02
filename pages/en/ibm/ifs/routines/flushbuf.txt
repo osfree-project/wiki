@@ -1,0 +1,28 @@
+==== FS_FLUSHBUF ====
+
+**Purpose**
+
+Flushes cache buffers for a specific volume.   
+
+**Calling Sequence**
+
+<code c>
+int far pascal FS_FLUSHBUF(hVPB, flag)
+
+unsigned short hVPB;
+unsigned short flag;
+</code>
+
+**Where**
+
+//hVPB// is the handle to the volume for flush.   
+
+^//flag// ^is used to indicate discarding of cached data.   ^
+|//flag// == 0 |indicates cached data may be retained. |
+|//flag// == 1 |indicates the FSD will discard any cached data after flushing it to the specified volume.   |
+
+All other values are reserved. 
+
+**Remarks**
+
+None.   

@@ -1,0 +1,27 @@
+==== MFSH_SEGFREE - Freea segment ====
+
+**Purpose**
+
+Free a memory segment.   
+
+**Calling Sequence**
+
+<code c>
+int far pascal MFSH_SEGFREE(usSel)
+
+unsigned short usSel;
+</code>
+
+**Where**
+
+//usSel// contains the selector of the segment to be freed. 
+
+**Returns**
+
+If no error is detected, a zero error error code is returned. If an error is detected, the following error code is returned:   
+
+  * ERROR_PROTECTION_VIOLATION -- the selector is invalid. 
+
+**Remarks**
+
+This function releases a segment previously allocated with //MFSH_SEGALLOC//, or loaded as part of the mini-FSD image.   

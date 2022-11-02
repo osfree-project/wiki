@@ -1,0 +1,11 @@
+^ [[en:docs:macrolib|osFree Macro Library]] ^^
+| Video I/O | [[en:docs:macrolib:@SetMode]] [[en:docs:macrolib:@SetCurSz]] [[en:docs:macrolib:@SetCurPos]] [[en:docs:macrolib:@GetCur]] [[en:docs:macrolib:@SetPage]] [[en:docs:macrolib:@ScrollUp]] [[en:docs:macrolib:@ScrollDn]] [[en:docs:macrolib:@Scroll]] [[en:docs:macrolib:@GetChAtr]] [[en:docs:macrolib:@PutChAtr]] [[en:docs:macrolib:@PutCh]] [[en:docs:macrolib:@SetPalet]] [[en:docs:macrolib:@SetColor]] [[en:docs:macrolib:@SetDot]] [[en:docs:macrolib:@GetDot]] [[en:docs:macrolib:@WrtTTY]] [[en:docs:macrolib:@VideoState]] [[en:docs:macrolib:@GetMode]] [[en:docs:macrolib:@GetDisplay]] [[en:docs:macrolib:@GetVideoState]] [[en:docs:macrolib:@GetEGAInfo]] [[en:docs:macrolib:@Cls]] |
+| Hardware info | [[en:docs:macrolib:@Equipment]] [[en:docs:macrolib:@MemSize]] |
+| Serial I/O | [[en:docs:macrolib:@AuxInit]] [[en:docs:macrolib:@AuxSendChar]] [[en:docs:macrolib:@AuxRecieveChar]] [[en:docs:macrolib:@AuxStatus]] |
+| Tape I/O | [[en:docs:macrolib:@TapeOn]] [[en:docs:macrolib:@TapeOff]] [[en:docs:macrolib:@TapeRead]] [[en:docs:macrolib:@TapeWrite]] |
+| Keyboard I/O | [[en:docs:macrolib:@KbdStatus]] [[en:docs:macrolib:@CharIn]] [[en:docs:macrolib:@CharPeek]] |
+| Printer I/O | [[en:docs:macrolib:@PrnPrint]] [[en:docs:macrolib:@PrnInit]] [[en:docs:macrolib:@PrnStatus]] |
+| Disk I/O | [[en:docs:macrolib:@DskReset]] [[en:docs:macrolib:@DskStatus]] [[en:docs:macrolib:@DskRead]] [[en:docs:macrolib:@DskWrite]] [[en:docs:macrolib:@DskVerify]]	[[en:docs:macrolib:@DskFormat]] |
+| Date and Time | [[en:docs:macrolib:@SetTime]] [[en:docs:macrolib:@GetTime]] |
+| Mouse | [[en:docs:macrolib:@MouInit]] [[en:docs:macrolib:@MouShowPointer]] [[en:docs:macrolib:@MouStatus]] [[en:docs:macrolib:@MouSetPos]] [[en:docs:macrolib:@MouSetMickey]] [[en:docs:macrolib:@MouRegion]] |
+| Memory manager | [[en:docs:macrolib:@ModBlok]] [[en:docs:macrolib:SET_BLOCK]] |

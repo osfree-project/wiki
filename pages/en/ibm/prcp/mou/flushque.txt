@@ -1,0 +1,43 @@
+==== MouFlushQue ====
+
+**Bindings**: [[flushque#C bindings|C]], [[flushque#MASM bindings|MASM]]
+
+This call directs the mouse driver to flush (empty) the mouse event queue and the monitor chain data for the session. 
+
+//MouFlushQue// (**DeviceHandle**) 
+
+//DeviceHandle// (**HMOU**) - input 
+Mouse device handle from a previous [[open|MouOpen]]. 
+
+//rc// (**USHORT**) - return 
+Return code descriptions are: 
+
+^0 ^NO_ERROR ^
+|385 |ERROR_MOUSE_NO_DEVICE |
+|466 |ERROR_MOU_DETACHED |
+|501 |ERROR_MOUSE_NO_CONSOLE |
+|505 |ERROR_MOU_EXTENDED_SG |
+
+=== C bindings ===
+
+<code c>
+#define INCL_MOU
+
+USHORT  rc = MouFlushQue(DeviceHandle);
+
+HMOU             DeviceHandle;  /* Mouse device handle */
+
+USHORT           rc;            /* return code */
+</code>
+
+=== MASM bindings ===
+
+<code asm>
+EXTRN  MouFlushQue:FAR
+INCL_MOU            EQU 1
+
+PUSH   WORD    DeviceHandle  ;Mouse device handle
+CALL   MouFlushQue
+
+Returns WORD
+</code>

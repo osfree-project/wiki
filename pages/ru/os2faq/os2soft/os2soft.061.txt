@@ -1,0 +1,58 @@
+[Q]: Как включить поддержку звука в Virtual PC?
+
+[A]: All
+
+vpcsetup /tweakvpc
+
+
+[A]: Alex Porollo (2:5052/5)
+
+------
+REGEDIT4
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\VPCWIN\REGROOT_HKEY_LocalMachine\SYSTEM\CustomBuild]
+DisableAudio=dword:00000000
+------
+
+Пpовеpил. Работает. У меня AWE64 (isa)
+
+
+[A]: Yaroslav Shchelkunov (yaroslavs@ima-press.com)
+
+======
+Virtual PC for OS/2 by default disables sound for guest systems. This is
+done to prevent problems such as distorted sound, system
+traps, lockups, etc. due to buggy OS/2 sound drivers. For most sound
+drivers, it is recommended to not turn on sound support. The
+worst results can be experienced with the drivers from Crystal (ISA and
+PCI) - usually system traps. In case you have a sound driver
+that can handle small buffers and high interrupt rates well (e.g.
+Soundblaster Live!), you can try to enable sound support.
+
+To enable sound in VPC/2 guests:
+
+Start regedit2.exe, navigate through the keys:
+
+HKEY_LOCAL_MACHINE
+SOFTWARE
+VPCWIN
+REGROOT_HKEY_LOCALMACHINE
+SYSTEM
+
+under System, you have to add a key "CustomBuild"
+(right mouse button, menu point NEW, KEY)
+
+In this new Key (looks like a folder), you add a DWORD named
+"DisableAudio"
+(right mouse button, menu point NEW, DWORD value) and leave the default
+value of 0.
+
+On the next restart of VPC, your guest should have sound (of course, you
+still have to install a SB16 sound driver in your guest... or
+in case of Win9x/2K/XP, let the autodetection find the virtual SB16 card
+and install the driver...)
+voila!
+
+[ 07 April 2002, 13:04: Message edited by: Oliver Stein ]
+
+=========

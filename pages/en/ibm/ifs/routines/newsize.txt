@@ -1,0 +1,36 @@
+==== FS_NEWSIZE ====
+
+**Purpose**
+
+Changes a file's logical (EOD) size.   
+
+**Calling Sequence**
+
+<code c>
+int far pascal FS_NEWSIZE(psffsi, psffsd, len, IOflag)
+
+struct sffsi far * psffsi;
+struct sffsd far * psffsd;
+unsigned long len;
+unsigned short IOflag;
+</code>
+
+**Where**
+
+//psffsi// is a pointer to the file-system-independent portion of an open file instance.   
+
+//psffsd// is a pointer to the file-system-dependent portion of an open file instance.   
+
+//len// is the desired new length of the file.   
+
+^//IOflag// ^indicates information about the operation on the handle.   ^
+|IOflag == 0x0010 |indicates write-through. |
+|IOflag == 0x0020 |indicates no-cache. |
+
+**Remarks**
+
+The FSD should return an error if an attempt is made to write beyond the end with a direct access device handle.   
+
+The file system driver attempts to set the size (EOD) of the file to newsize and update //sfi_size//, if successful. If the new size is larger than the currently allocated size, the file system driver arranges for for efficient access to the newly-allocated storage.   
+
+Of the information passed in //IOflag//, the write-through bit is a mandatory bit in that any data written to the block device must be put out on the medium before the device driver returns. The no-cache bit, on the other hand, is an advisory bit that says whether the data being transferred is worth caching or not.   

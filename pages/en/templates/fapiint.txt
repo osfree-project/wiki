@@ -1,0 +1,3 @@
+{{logos:os2.gif?35x35}} {{logos:dos.gif?35x35}} This is part of **[[en:docs:fapi|Family API]]** which allow to create dual-os version of program runs under OS/2 and DOS
+
+{{page>en:templates:legacy}}

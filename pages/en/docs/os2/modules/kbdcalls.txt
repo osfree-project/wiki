@@ -1,0 +1,48 @@
+{{logos:os2.gif?35x35}} {{logos:dos.gif?35x35}}
+
+====== KBDCALLS ======
+
+This is forwarder DLL to [[DOSCALLS]].DLL on latest OS/2 versions. No any real code here. [[en:docs:fapi|FAPI]] column is a Family API support. Version column is OS/2 version function introduced.
+
+===== Entry points =====
+
+^ Ordinal ^ Name ^ Description ^ Status ^ FAPI ^ Version ^
+| 1 | [[en:docs:os2:api:kbd:KbdSetCustXt]]    | Forwarder to [[en:docs:os2:modules:DOSCALLS]].745 | Done |     | 1.0 |
+| 2 | [[en:docs:os2:api:kbd:KbdInit]]         | Forwarder to [[en:docs:os2:modules:DOSCALLS]].746 | Done |     | |
+| 3 | [[en:docs:os2:api:kbd:KbdGetCp]]        | Forwarder to [[en:docs:os2:modules:DOSCALLS]].747 | Done |     | 1.0 |
+| 4 | [[en:docs:os2:api:kbd:KbdCharIn]]       | Forwarder to [[en:docs:os2:modules:DOSCALLS]].748 | Done | Yes | 1.0 |
+| 5 | [[en:docs:os2:api:kbd:KbdSetCp]]        | Forwarder to [[en:docs:os2:modules:DOSCALLS]].749 | Done |     | 1.0 |
+| 6 | [[en:docs:os2:api:kbd:KbdLoadInstance]] | Forwarder to [[en:docs:os2:modules:DOSCALLS]].750 | Done |     | |
+| 7 | [[en:docs:os2:api:kbd:KbdSynch]]        | Forwarder to [[en:docs:os2:modules:DOSCALLS]].751 | Done |     | 1.0 |
+| 8 | [[en:docs:os2:api:kbd:KbdRegister]]     | Forwarder to [[en:docs:os2:modules:DOSCALLS]].752 | Done |     | 1.0 |
+| 9 | [[en:docs:os2:api:kbd:KbdStringIn]]     | Forwarder to [[en:docs:os2:modules:DOSCALLS]].753 | Done | Yes | 1.0 |
+| 10 | [[en:docs:os2:api:kbd:KbdGetStatus]]   | Forwarder to [[en:docs:os2:modules:DOSCALLS]].754 | Done | Yes | 1.0 |
+| 11 | [[en:docs:os2:api:kbd:KbdSetStatus]]   | Forwarder to [[en:docs:os2:modules:DOSCALLS]].755 | Done | Yes | 1.0 |
+| 12 | [[en:docs:os2:api:kbd:KbdGetFocus]]    | Forwarder to [[en:docs:os2:modules:DOSCALLS]].756 | Done |     | 1.0 |
+| 13 | [[en:docs:os2:api:kbd:KbdFlushBuffer]] | Forwarder to [[en:docs:os2:modules:DOSCALLS]].757 | Done | Yes | 1.0 |
+| 14 | [[en:docs:os2:api:kbd:KbdXlate]]       | Forwarder to [[en:docs:os2:modules:DOSCALLS]].758 | Done |     | 1.0 |
+| 15 | [[en:docs:os2:api:kbd:KbdSwitchFgnd]]  | Forwarder to [[en:docs:os2:modules:DOSCALLS]].759 | Done |     | |
+| 16 | [[en:docs:os2:api:kbd:KbdShellInit]]   | Forwarder to [[en:docs:os2:modules:DOSCALLS]].760 | Done |     | |
+| 17 | [[en:docs:os2:api:kbd:KbdClose]]       | Forwarder to [[en:docs:os2:modules:DOSCALLS]].761 | Done |     | 1.0 |
+| 18 | [[en:docs:os2:api:kbd:KbdFreeFocus]]   | Forwarder to [[en:docs:os2:modules:DOSCALLS]].762 | Done |     | 1.0 |
+| 19 | [[en:docs:os2:api:kbd:KbdFree]]        | Forwarder to [[en:docs:os2:modules:DOSCALLS]].763 | Done |     | |
+| 20 | [[en:docs:os2:api:kbd:KbdDeRegister]]  | Forwarder to [[en:docs:os2:modules:DOSCALLS]].764 | Done |     | 1.0 |
+| 21 | [[en:docs:os2:api:kbd:KbdSetFgnd]]     | Forwarder to [[en:docs:os2:modules:DOSCALLS]].765 | Done |     | |
+| 22 | [[en:docs:os2:api:kbd:KbdPeek]]        | Forwarder to [[en:docs:os2:modules:DOSCALLS]].766 | Done | Yes | 1.0 |
+| 23 | [[en:docs:os2:api:kbd:KbdOpen]]        | Forwarder to [[en:docs:os2:modules:DOSCALLS]].767 | Done |     | 1.0 |
+| 24 | [[en:docs:os2:api:kbd:KbdGetHWId]]     | Forwarder to [[en:docs:os2:modules:DOSCALLS]].768 | Done |     | |
+| 25 | [[en:docs:os2:api:kbd:KbdSetHWId]]     | Forwarder to [[en:docs:os2:modules:DOSCALLS]].769 | Done |     | |
+
+===== Versions =====
+
+^ Date&Time ^ SHA1 ^ BldLevel/Version ^ Size ^ Comments ^
+|2012-01-25 16:57 | | 14.100 | 904 bytes | osFree Keyboard API |
+|2002-03-08 20:16 | | N/A | 1,024 bytes | |
+|1992-02-06 17:03 | c6375e8869c3dc5a5608f00996a13d3e918db1ae | IBM Personal Computer DOS  Version 0.00  Keyboard Router | 7,753 | IBM OS/2 SDK 1.3 CSD1 |
+|1988-08-08 00:00 | 37efcbf234a5d1e90a04ae4f828bce8c190055b7 | IBM Personal Computer DOS  Version 0.00  Keyboard Router | 6,192 bytes | MS OS/2 SDK 1.05 |
+|1987-12-15 00:00 | 292a7ddff2d67995e95d0e1fe155d55c068ea756 | Microsoft OS/2 Version 0.00  Keyboard Router | 7,232 bytes | MS OS/2 SDK 1.02 |
+|1987-10-21 00:00 | | IBM Personal Computer DOS  Version 0.00  Keyboard Router | 7,232 bytes | MS OS/2 1.0 |
+
+{{page>en:templates:dlls}}
+{{page>en:templates:fapi}}
+{{page>en:templates:os2api}}

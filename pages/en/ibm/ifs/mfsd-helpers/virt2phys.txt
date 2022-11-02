@@ -1,0 +1,30 @@
+==== MFSH_VIRT2PHYS - Convert virtual to physical address ====
+
+**Purpose**
+
+Translate the address of a data buffer into a physical address.   
+
+**Calling Sequence**
+
+<code c>
+int far pascal MFSH_VIRT2PHYS(ulVirtAddr, pulPhysAddr)
+
+unsigned long ulVirtAddr;
+unsigned long far * pulPhysAddr;
+</code>
+
+**Where**
+
+//ulVirtAddr// contains the virtual address of the data area.   
+
+//PhysAddr// is a pointer to a double word in which the helper returns the physical address of the data area. 
+
+**Returns**
+
+If no error is detected, a zero error code is returned. If an error is detected, the following error is returned:   
+
+  * ERROR_PROTECTION_VIOLATION -- the supplied address is invalid. 
+
+**Remarks**
+
+This helper is for use by a mini-FSD with an imbedded device driver. It is the same as the standard device driver helper VIRTTOPHYS.   

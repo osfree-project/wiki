@@ -1,0 +1,27 @@
+[Q]: Как почистить таблицу pоyтинга?
+
+[A]: Sergey Serov (2:5020/199.25)
+
+/* Скрипт для чистки routing table
+   Удаляет все записи где рутером прописан defroute (см ниже) */
+
+defroute = '193.233.8.1'
+
+Do QUEUED(); Pull .; End
+
+'@netstat -r | rxqueue'
+
+s = 'a    '
+
+/* пропускаем первые 2 строки */
+parse pull s
+parse pull s
+
+do while QUEUED()>0
+  parse pull s
+  dest = word(s,1)
+  router = word(s,2)
+  if (dest \= 'default') & (router = defroute) then do
+    '@route delete -host 'dest' >nul'
+  end
+end

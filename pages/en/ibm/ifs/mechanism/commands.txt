@@ -1,0 +1,13 @@
+==== IFS Commands ====
+
+An FSD is loaded and initialized at system start-up when an IFS= statement is encountered in CONFIG.SYS. The syntax of this command is as follows:   
+
+<code>
+IFS=drive:path\name.ext parms
+</code>
+
+where 
+drive:path\name.ext specifies the FSD to load and initialize.   
+parms represents an FSD-defined string of initialization parameters. 
+
+See the OS/2 Version 2.0 Online Command Reference for a detailed description of this command.   

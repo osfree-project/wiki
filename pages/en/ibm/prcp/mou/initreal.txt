@@ -1,0 +1,61 @@
+==== MouInitReal ====
+
+
+**Bindings**: [[initreal#C bindings|C]], [[initreal#MASM bindings|MASM]]
+
+This call initializes mouse pointer draw support for DOS mode. 
+
+//MouInitReal// (DriverName) 
+
+//DriverName// (**PSZ**) - input 
+Address of the name of the Pointer Draw Device Driver used as the pointer-image drawing routine for the DOS mode session. 
+
+The name of the device driver must be included in the CONFIG.SYS file at system start-up time. 
+
+If the selector portion of the far address is zero and the offset portion is non-zero, the offset portion identifies the power-up display configuration. 
+
+//rc// (**USHORT**) - return 
+Return code descriptions are: 
+
+|0 |NO_ERROR |
+|385 |ERROR_MOUSE_NO_DEVICE |
+|466 |ERROR_MOU_DETACHED |
+|412 |ERROR_MOUSE_SMG_ONLY |
+|501 |ERROR_MOUSE_NO_CONSOLE |
+|505 |ERROR_MOU_EXTENDED_SG |
+
+**Remarks** 
+
+[[en:ibm:prcp:mou:initreal|MouInitReal]] is issued by the Base Video Subsystem at system initialization time. 
+
+The DOS mode mouse API (INT 33H), in contrast to the OS/2 mode Mouse API, does not contain an OPEN command. In addition, there is only one session for DOS mode. 
+
+The default pointer draw routine for DOS mode is located in the same pointer draw device driver, POINTER$, that is used for OS/2 mode. Establishing addressability to the pointer draw routine must be done during system initialization. This requires passing the entry point of the DOS mode pointer draw routine to the mouse device driver. This is the purpose of the [[en:ibm:prcp:mou:initreal|MouInitReal]] call. It passes the address of the default, power-up pointer draw routine for DOS mode to the mouse device driver. This initialization is transparent to applications. 
+
+This call is for use only by the Base Video Subsystem when invoked during system initialization under the shell/session manager PID. 
+
+The error code ERROR_MOUSE_SMG_ONLY is valid from shell process only. 
+
+=== C bindings ===
+
+<code c>
+#define INCL_MOU
+
+USHORT  rc = MouInitReal(DriverName);
+
+PSZ              DriverName;    /* Pointer draw driver name */
+
+USHORT           rc;            /* return code */
+</code>
+
+=== MASM bindings ===
+
+<code asm>
+EXTRN  MouInitReal:FAR
+INCL_MOU            EQU 1
+
+PUSH@  ASCIIZ  DriverName    ;Pointer draw driver name
+CALL   MouInitReal
+
+Returns WORD
+</code>

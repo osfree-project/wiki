@@ -1,0 +1,38 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=2EH ======
+
+===== Version =====
+
+2 and higher
+
+===== Brief =====
+
+GET DISK TRANSFER AREA ADDRESS
+
+===== Family API =====
+
+
+===== Input =====
+
+        AH = 2Fh
+
+===== Return =====
+
+ ES:BX -> current DTA
+
+===== Notes =====
+
+  under the FlashTek X-32 DOS extender, the pointer is in ES:EBX
+
+===== See also =====
+
+ AH=1Ah
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:int}}
+
+{{page>en:templates:fapi}}

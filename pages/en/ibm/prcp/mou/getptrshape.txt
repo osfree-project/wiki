@@ -1,0 +1,130 @@
+==== MouGetPtrShape ====
+
+**Bindings**: [[getptrshape#C bindings|C]], [[getptrshape#MASM bindings|MASM]]
+
+This call allows a process to get (copy) the pointer shape for the session. 
+
+//MouGetPtrShape// (PtrBuffer, PtrDefRec, DeviceHandle) 
+
+//PtrBuffer// (**PBYTE**) - output 
+Address of an area in application storage where the pointer draw device driver returns the pointer bit image. See MouSetPtrShape for a further description of the resulting content of this buffer. 
+
+//PtrDefRec// (**PPTRSHAPE**) - input/output 
+Address of a structure in application storage where the application stores the data necessary for the pointer device driver to return information about the Row by Col image for each bit plane for the mode the display is currently running. See MouSetPtrShape for a further description of the contents of this structure. 
+
+//TotLength// (**USHORT**) 
+Length of the pointer buffer available for the pointer device driver to build a Row by Col image for each bit plane for the mode the display is currently running. This value is supplied by the application. If the value is too small, pointer draw places the true length of the image in this field, and returns an error. 
+
+For all OS/2 system-supported modes, //TotLength// is specified in bytes and is 
+equal to: 
+
+**Mono & Text Modes** 
+For text mode height and width must be 1, so length is always 4. 
+
+<code>
+//TotLength// = (height in chars) * (width in chars) * 2 * 2
+          = 1 * 1 * 2 * 2
+          = 4
+</code>
+
+
+**Graphics Mode** 
+Width-in-pels must be a multiple of 8. 
+
+<code>
+//TotLength// = (height in pels)*(width in pels)*(bits per pel)*2/8
+</code>
+
+
+**Modes 4 and 5 (320 X 200)** 
+  
+
+//TotLength// = (height) * (width) * 2 * 2 / 8
+
+
+**Mode 6 (640 X 200)** 
+  
+
+//TotLength// = (height) * (width) * 1 * 2 / 8
+
+
+Length calculations produce byte boundary buffer sizes. 
+
+//col// (**USHORT**) 
+Number of columns in the mouse shape. In graphics modes, this field contains the pel width (columns) of the mouse shape for the session and must be greater than or equal to 1. In text modes, col must equal 1. 
+
+//row// (**USHORT**) 
+Number of rows in the mouse shape. In graphics modes, this field contains the pel height (rows) of the mouse shape for the session and must be greater than or equal to 1. In text modes, row must equal 1. 
+
+//coloffset// (**USHORT**) 
+This value is returned by the mouse device driver to indicate the relative column offset within the pointer image. The value defines the center (hotspot) of the pointer image. This value is a signed number that represents either character or pel offset, depending on the display mode. 
+
+//rowoffset// (**USHORT**) 
+This value is returned by the mouse device driver to indicate the relative row offset within the pointer image. The value defines the center (hotspot) of the pointer image. This value is a signed number that represents either character or pel offset, depending on the display mode. 
+
+//DeviceHandle// (**HMOU**) - input 
+Handle of the mouse device from a previous MouOpen. 
+
+//rc// (**USHORT**) - return 
+Return code descriptions are: 
+
+|0 |NO_ERROR |
+|385 |ERROR_MOUSE_NO_DEVICE |
+|387 |ERROR_MOUSE_INV_PARMS |
+|466 |ERROR_MOU_DETACHED |
+|501 |ERROR_MOUSE_NO_CONSOLE |
+|505 |ERROR_MOU_EXTENDED_SG |
+
+**Remarks** 
+
+The application passes a parameter list with the same meaning as defined for [[en:ibm:prcp:mou:getptrshape|MouSetPtrShape]] to the mouse device driver. The mouse device driver copies the parameters that describe the pointer shape and attributes into the pointer definition control block pointed to by the //PtrDefRec// parameter. The word 0 (buffer length = //TotLength//) pointer definition record parameter field must contain the size in bytes of the application buffer where the device driver is to insert the sessions pointer image. All other words in the parameter list are returned to the application by [[en:ibm:prcp:mou:getptrshape|MouGetPtrShape]]. 
+
+If the buffer size is insufficient, the TotLength field contains the actual size in bytes of the returned pointer image. 
+
+The pointer shape may be set by the application with MouSetPtrShape or may be the default image provided by the installed Pointer Device Driver. 
+
+=== C bindings ===
+
+<code c>
+typedef struct _PTRSHAPE {   /* moups */
+  USHORT cb;                 /* total length necessary to build image */
+  USHORT col;                /* # of columns in mouse shape */
+  USHORT row;                /* number of rows in mouse shape */
+  USHORT colHot;             /* column coordinate of pointer image
+                                  hotspot */
+  USHORT rowHot;             /* row coordinate of pointer image
+                                  hotspot */
+} PTRSHAPE;
+
+#define INCL_MOU
+
+USHORT  rc = MouGetPtrShape(PtrBuffer, PtrDefRec, DeviceHandle);
+
+PBYTE            PtrBuffer;     /* Pointer shape buffer */
+PPTRSHAPE        PtrDefRec;     /* Pointer definition struct */
+HMOU             DeviceHandle;  /* Mouse device handle */
+
+USHORT           rc;            /* return code */
+</code>
+
+=== MASM bindings ===
+
+<code asm>
+PTRSHAPE struc
+  moups_cb      dw  ? ;total length necessary to build image
+  moups_col     dw  ? ;# of columns in mouse shape
+  moups_row     dw  ? ;number of rows in mouse shape
+  moups_colHot  dw  ? ;column coordinate of pointer image hotspot
+  moups_rowHot  dw  ? ;row coordinate of pointer image hotspot
+PTRSHAPE ends
+
+EXTRN  MouGetPtrShape:FAR
+INCL_MOU            EQU 1
+
+PUSH@  OTHER   PtrBuffer     ;Pointer shape buffer
+PUSH@  OTHER   PtrDefRec     ;Pointer definition struct
+PUSH   WORD    DeviceHandle  ;Mouse device handle
+CALL   MouGetPtrShape
+
+Returns WORD
+</code>

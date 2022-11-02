@@ -1,0 +1,48 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=51H ======
+
+===== Version =====
+
+2 and higher
+
+===== Brief =====
+
+GET CURRENT PROCESS ID (GET PSP ADDRESS)
+
+===== Family API =====
+
+
+===== Input =====
+
+	AH = 51h
+
+===== Return =====
+
+   BX = segment of PSP for current process
+
+===== Notes =====
+
+	DOS uses the current PSP address to determine which processes own files
+	  and memory; it corresponds to process identifiers used by other OSs
+	under DOS 2.x, this function cannot be invoked inside an INT 28h
+	  handler without setting the Critical Error flag
+	under DOS 3.0+, this function does not use any of the DOS-internal
+	  stacks and may thus be called at any time, even during another
+	  INT 21h call
+	supported by OS/2 compatibility box
+	identical to the documented AH=62h
+	this call was undocumented prior to the release of DOS 5.0
+          
+===== See also =====
+
+ AH=26h,AH=50h,AH=62h
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:int}}
+
+{{page>en:templates:fapi}}
+

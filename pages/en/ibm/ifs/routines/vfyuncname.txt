@@ -1,0 +1,33 @@
+==== FS_VERIFYUNCNAME ====
+
+**Purpose**
+
+Used to poll installed UNC FSDs to determine server ownership.   
+
+**Calling Sequence**
+
+<code c>
+int far pascal FS_VERIFYUNCNAME(flag, pName)
+
+unsigned short flag;
+char far * pName;
+</code>
+
+**Where**
+
+//flag// indicates which "pass" of the poll the FSD is being called.   
+
+|//flag// == 0x0000 |indicates that this is a pass 1 poll. |
+|//flag// == 0x0001 |indicates that this is a pass 2 poll. |  
+
+//pName// is a pointer to the ASCIIZ name of the server in UNC format.   
+
+The FSD does not need to verify this pointer. 
+
+**Remarks**
+
+What the kernel expects from UNC FSDs for this entry point:   
+
+For pass 1, the FSD will be called and passed a pointer to the UNC server name. It is to respond immediately if it recognizes (manages) the server with a NO_ERROR return code. This pass expects the that the FSD will be keeping tables in memory that contain the UNC names of the servers it is currently servicing. If the UNC name cannot be validated immediately, the FSD should respond with an error (non-zero) return code. The FSD SHOULD NOT send messages in an attempt to validate the server name.   
+
+For pass 2, the FSD is permitted to do whatever is reasonable, including sending LAN "are you there" messages, to determine if they are able to service the request for UNC server.   

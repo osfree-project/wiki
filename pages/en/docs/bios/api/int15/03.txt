@@ -1,0 +1,51 @@
+{{page>en:templates:biosint}}
+
+====== Int 15H, AH=03H ======
+
+===== Version =====
+
+IBM 5150 and IBM 4860 only
+
+===== Brief =====
+
+Write block from buffer
+
+===== Family API =====
+
+none
+
+===== Input =====
+
+  * AH = 03h
+  * CX = number of bytes to write
+  * ES:BX -> buffer
+
+===== Return =====
+
+  * CF clear if successful
+    * ES:BX -> byte following last byte written
+  * CF set on error
+    * AH = status (see #00409)
+    * CX = 0000h
+===== Macro =====
+
+<code asm>
+INCLUDE BIOS.INC
+
+buf db 127 dup (?)
+
+@TapeWrite offset buf, 127
+</code>
+
+===== Notes =====
+
+
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:biosapi}}
+
+{{page>en:templates:fapi}}
+

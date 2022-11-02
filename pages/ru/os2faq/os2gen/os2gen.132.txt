@@ -1,0 +1,9 @@
+[Q]: Можно ли из командной строки Alt+F1 -> F2 поднять GUI?
+
+[A]: Stas Mishchenkov (2:460/58)
+
+Можно. Hужно дать команду
+
+(SET PROTSHELL=C:\OS2\PMSHELL.EXE) & C:\OS2\PMSHELL.EXE
+
+где C: - имя диска, на котором стоит OS/2.

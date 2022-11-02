@@ -1,0 +1,29 @@
+==== FSH_SEGFREE ====
+
+**Purpose**
+
+This function releases a GDT or LDT segment previously allocated with //FSH_SEGALLOC// or loaded as part of the FSD image.   
+
+**Calling Sequence**
+
+<code c>
+int far pascal FSH_SEGFREE(sel)
+
+unsigned short sel;
+</code>
+
+**Where**
+
+//sel// is the selector to be freed. 
+
+**Returns**
+
+If no error is detected, a zero error code is returned. If an error is detected, one of the following error codes is returned:   
+
+  * ERROR_INVALID_ACCESS -- the selector is invalid. 
+
+**Remarks**
+
+//FSH_SEGFREE// may block.   
+
+**Note**:   OS/2 does not validate input parameters. An FSD, therefore, should call //FSH_PROBEBUF// where appropriate.   

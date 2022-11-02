@@ -1,0 +1,22 @@
+~~NOTOC~~
+**Nota:** La parte española del Web site del osFree es unmaintained e incompleto. Esta página será la única mantenida hasta sombody con experiencia en la traducción española podrá traducir y mantener la traducción española del Web site. Si usted tiene experiencia en traducciones españolas, éntrenos en contacto con por favor en el acoplamiento en el fondo de la página.
+
+====== ¿Cuál es osFree? ======
+El proyecto del osFree es una tentativa de construir una copia abierta de [[es:OS2|OS/2]] de la fuente.
+
+el osFree es un proyecto (no comercial) libre del desarrollo del software de la fuente abierta. Las metas de los proyectos son substituir todos los (o la mayoría) subsistemas de OS/2 por análogos de la abrir-fuente. El sistema bajo de la compatibilidad es la deformación 4 (MERLIN) de OS/2, pero ése no significa que no apoyaremos las características de más nuevas versiones de OS/2 como OS/2 WarpServer para el e-negocio y el eComStation de Serenity Systems.
+
+===== El contribuir =====
+el osFree se ha atascado por un rato. Tenemos muchos de cosas todavía de hacer, así que cualquier ayuda es agradable. No solamente para el desarrollo del código, pero también la escritura de la documentación, el mantenimiento del Web page, el mantenimiento de la distribución, y mucho más.
+
+También estamos buscando los reveladores. Para los newbies, tenemos un número de tareas pequeñas. ¡Si usted es revelador experimentado, hay un montón de tareas complejas que aguardan sus talentos! Compruebe fuera de la página del desarrollo para más información sobre convertirse para saber si hay nosotros, y mire nuestro licenciar.
+
+Si usted está deseando crear las páginas del wiki, éntrenos en contacto con por favor en el foro y lea el wiki que nombra pautas.
+
+======= Progresos recientes =======
+
+{{blog>es:news?12&noform}}
+
+====== GitHub commit log =======
+
+{{rss>https://github.com/osfree-project/osfree/commits/master.atom}}

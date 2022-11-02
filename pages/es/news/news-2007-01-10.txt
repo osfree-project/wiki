@@ -1,0 +1,5 @@
+==== 10.1.07 ====
+
+El área del dotproject está trabajando oficialmente para las huéspedes. Usted puede ahora comprobar en nuestro tiempo real del progreso en cualquier momento rápidamente y fácilmente. También hay una nueva, mejor integración del tema en osfree3 doblado phpBB para el usuario registrado Info. Esto no significa que hacemos nuestros sistemas de la conexión integrar todavía, sin embargo.
+
+~~DISCUSSION~~

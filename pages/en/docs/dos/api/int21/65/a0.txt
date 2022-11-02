@@ -1,0 +1,49 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=65H, AL=A0H ======
+
+===== Version =====
+
+4.0 and higher
+
+===== Brief =====
+
+capitalize filename character
+
+===== Family API =====
+
+
+===== Input =====
+
+  AX = 65A0h
+  DL = character to capitalize
+
+  
+===== Return =====
+
+   DL = capitalized character
+  CF set on error
+  AX = error code (see #01680 at AH=59h/BX=0000h)
+  CF clear if successful
+  
+===== Macro =====
+
+
+===== Notes =====
+
+  Nonfunctional in MS-DOS 4.00 through 7.10 (Win98) due to a bug (the code sets a pointer depending on the high bit of AL, but doesn't clear the bit before branching by function number). Supported and functional(!) in Novell DOS 7 (Update 15), as well as PC-DOS 7 and OS/2 MVDM
+
+===== See also =====
+
+   
+   
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:int}}
+
+{{page>en:templates:fapi}}
+
+
+

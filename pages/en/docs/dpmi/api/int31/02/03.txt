@@ -1,0 +1,54 @@
+{{page>en:templates:dpmi}}
+
+====== Int 31H, AH=02H, AL=03H ======
+
+===== Version =====
+
+0.9
+
+===== Brief =====
+
+Set Processor Exception Handler Vector
+
+===== Input =====
+
+  AX = 0203H
+  BL = exception/fault number (00H-1FH)
+  CX:(E)DX = selector:offset of exception handler
+        
+===== Return =====
+
+  if function successful
+  Carry flag = clear
+  
+  if function unsuccessful
+  Carry flag = set
+  AX = error code
+  8021H	invalid value (BL not in range 0-1FH)
+  8022H	invalid selector
+
+===== Notes =====
+
+Sets the address of a handler for a CPU exception or fault, allowing a protected mode application to intercept processor exceptions (such as segment not present faults) that are not handled by the DPMI host and would otherwise generate a fatal error. This function should be avoided by DPMI 1.0 clients.
+
+The value passed in CX should be a valid protected mode code (executable) selector, not a real mode segment address.
+
+32-bit clients must supply a 32-bit offset in the EDX register. If the client's handler chains to the next exception handler, it must do so using a 32-bit interrupt stack frame.
+
+Every exception is first examined by the DPMI host. If the host does not handle the exception, it reflects the exception to the first handler in the protected mode exception handler chain. See that page for a complete discussion of the environment and responsibilities of protected mode exception handlers installed with this function.
+
+Clients which run under DPMI 1.0 should use Int 31H Functions 0212H and 0213H to set the addresses of exception handlers. This function is supported by DPMI 1.0 hosts solely for compatibility with DPMI 0.9.
+
+Refer to the rules for descriptor usage in Appendix D. 
+    
+
+===== See also =====
+
+   
+
+===== Note =====
+
+Text based on [[http://www.delorie.com/djgpp/doc/dpmi/]]
+
+{{page>en:templates:dpmi:int}}
+

@@ -1,0 +1,47 @@
+{{page>en:templates:dpmi}}
+
+====== Int 31H, AH=00H, AL=06H ======
+
+===== Version =====
+
+0.9
+
+===== Brief =====
+
+Get Segment Base Address
+
+===== Input =====
+
+  AX = 0006H
+  BX = selector
+
+===== Return =====
+
+  if function successful
+  Carry flag = clear
+  CX:DX = 32-bit linear base address of segment
+  
+  if function unsuccessful
+  Carry flag = set
+  AX = error code
+  8022H	invalid selector
+  
+===== Notes =====
+
+Returns the 32-bit linear base address from the LDT descriptor for the specified segment.
+
+Client programs must use the LSL instruction to query the limit for a descriptor. Note that on 80386 machines, the client must use the 32-bit form of LSL if the segment size is greater than 64 KB.
+
+Refer to the rules for descriptor usage in Appendix D.
+    
+===== See also =====
+
+   
+
+===== Note =====
+
+Text based on [[http://www.delorie.com/djgpp/doc/dpmi/]]
+
+{{page>en:templates:dpmi:int}}
+
+

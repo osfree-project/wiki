@@ -1,0 +1,47 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=2BH ======
+
+===== Version =====
+
+1 and higher
+
+===== Brief =====
+
+SET SYSTEM DATE
+
+===== Family API =====
+
+
+===== Input =====
+
+        AH = 2Bh
+        CX = year (1980-2099)
+        DH = month (1-12)
+        DL = day (1-31)
+
+===== Return =====
+
+ AL = status
+            00h successful
+            FFh invalid date, system date unchanged
+
+===== Notes =====
+
+  DOS 3.3+ also sets CMOS clock; due to the limitations of the CLOCK$
+          driver interface, the CMOS time is also updated to the current
+          DOS time (which is the BIOS time-of-day clock with the default
+          CLOCK$ driver)
+
+
+===== See also =====
+
+ AH=2Ah,AH=2Dh,INT 1A/AH=05h
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:int}}
+
+{{page>en:templates:fapi}}

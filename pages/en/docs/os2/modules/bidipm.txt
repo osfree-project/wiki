@@ -1,0 +1,25 @@
+{{logos:os2.gif?35x35}} 
+
+**Please help to find info about enries marked as //No info//**
+
+===== BIDIPM =====
+
+^Ordinal ^Name ^Desc ^ Status ^
+| 2 | BDSENABLEFUNCTIONKEYS | | |
+| 3 | EntryFieldWindowProc | | |
+| 4 | BDSQUERYLANGUAGELAYER | | |
+| 5 | BDSREMAPKEYS | | |
+| 6 | BDSSETPUBLIC | | |
+| 7 | BDSWINSETBIDIPROCESSING | | |
+| 8 | MenuWindowProc | | |
+| 9 | BDSSETCURSORREVINSERTDEF | | |
+| 10 | BDSWINQUERYBIDIPROCESSING | | |
+| 11 | BDSENVPROCESSING | | |
+| 12 | BDSQUERYVERSION | | |
+| 13 | ButtonWindowProc | | |
+| 14 | ListBoxWindowProc | | |
+| 15 | InitDlg | | |
+| 16 | BDSSETBIDIPROCESSINGONNEXTKEY | | |
+| 17 | BDSSETLANGUAGELAYER | | |
+
+{{page>en:templates:dlls}}

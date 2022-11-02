@@ -1,0 +1,18 @@
+{{page>en:templates:biosint}}
+
+====== Int 15H ======
+
+Cassete Tape BIOS API. All registers saved on entry and restores on return.
+
+===== BIOS Interrupts =====
+
+^ Function ^ Macro ^ Description ^ Version ^
+| [[en:docs:bios:api:int15:00|00H]] | [[en:docs:macrolib:@TapeOn]]((osFree extension)) | Turn Tape motor on | 5150 and 4860 only |
+| [[en:docs:bios:api:int15:01|01H]] | [[en:docs:macrolib:@TapeOff]]((osFree extension)) | Turn Tape motor off | 5150 and 4860 only |
+| [[en:docs:bios:api:int15:02|02H]] | [[en:docs:macrolib:@TapeRead]]((osFree extension)) | Read block to memory | 5150 and 4860 only |
+| [[en:docs:bios:api:int15:03|03H]] | [[en:docs:macrolib:@TapeWrite]]((osFree extension)) | Write block from memory | 5150 and 4860 only |
+
+{{page>en:templates:biosapi}}
+
+{{page>en:templates:fapi}}
+

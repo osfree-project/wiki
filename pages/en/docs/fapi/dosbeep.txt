@@ -1,0 +1,79 @@
+{{page>en:templates:fapiint}}
+
+====== DosBeep ======
+
+This call generates sound from the speaker.
+
+===== Syntax =====
+
+<code c>
+  DosBeep (Frequency, Duration)
+</code>
+
+===== Parameters =====
+
+  * Frequency ([[USHORT]]) - input : Tone in Hertz (cycles per second) in the range 37 through 32767.
+  * Duration ([[USHORT]]) - input : Length of the sound in milliseconds.
+
+===== Return Code =====
+
+ rc ([[USHORT]]) - return
+Return code descriptions are:
+  * 0 NO_ERROR
+  *395 ERROR_INVALID_FREQUENCY
+
+===== Notes =====
+ 
+DosBeep executes synchronously. An application program that invokes DosBeep waits until the specified number of milliseconds expire before it resumes execution. 
+
+===== Example Code =====
+
+==== C Binding ====
+
+<code c>
+
+#define INCL_DOSPROCESS
+
+USHORT  rc = DosBeep(Frequency, Duration);
+
+USHORT  Frequency;     /* Hertz (Hz) */
+USHORT  Duration;      /* Length of sound */
+
+USHORT  rc;            /* return code */
+</code>
+
+==== MASM Binding ====
+
+<code asm>
+EXTRN  DosBeep:FAR
+INCL_DOSPROCESS     EQU 1
+
+PUSH   WORD    Frequency     ;Frequency (in Hertz)
+PUSH   WORD    Duration      ;Length of sound (in milliseconds)
+CALL   DosBeep
+</code>
+
+Returns WORD
+
+==== Example ====
+
+This example generates a beep for 1 second (1,000 milliseconds) at a frequency of 1,380. 
+
+<code c>
+#define INCL_DOSPROCESS
+#define BEEP_FREQUENCY 1380
+#define BEEP_DURATION 1000
+
+USHORT  rc;
+
+rc = DosBeep(BEEP_FREQUENCY,
+             BEEP_DURATION);
+</code>
+
+===== Note =====
+
+
+Text based on http://www.edm2.com/index.php/OS2_API:CPI:LEGACY:DosBeep
+
+
+{{page>en:templates:fapi}}

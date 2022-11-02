@@ -1,0 +1,28 @@
+==== MFS_READ - Read from a file ====
+
+**Purpose**
+
+Read the specified number of bytes from the file to a buffer location.   
+
+**Calling Sequence**
+
+<code c>
+int far pascal MFS_READ(pcData, pusLength)
+
+char far * pcData;
+unsigned long far * pusLength;
+</code>
+
+**Where**
+
+//pcData// is a pointer to the data area to be read into. The data area is guaranteed to be below the 1-Meg boundary.   
+
+//pusLength// is a pointer to a word which on entry specifies the number of bytes to be read. On return, it is filled in by the mini-FSD with the number of bytes successfully read. 
+
+**Returns**
+
+If no error is detected, a zero error code is returned. If an error is detected, a non-zero error code is returned.   
+
+**Remarks**
+
+The current file position is advanced by the number of bytes read.   

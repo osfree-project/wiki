@@ -1,0 +1,42 @@
+{{page>en:templates:dosshell}}
+
+====== InquireGrab ======
+
+===== Brief =====
+
+Inquire grab buffer size
+
+===== Entry =====
+
+  * DS=CS
+  * AX - function number
+    * 1 - Inquire text grab buffer size
+    * 2 - Inquire graphics grab buffer size
+
+For HP Windows 1.03 and higher
+
+    * 0FFF4h - [[EndPaint]]
+    * 0FFF5h - [[BeginPaint]]
+    * 0FFF6h - [[MarkBlock]]
+    * 0FFF7h - [[PutBlock]]
+    * 0FFF8h - [[GetBlock]]
+
+For Windows 2.0x and higher
+
+    * 0FFF9h - [[RealizeColor]]
+    * 0FFFAh - [[GetVersion]]
+    * 0FFFBh - [[DisableSave]]
+    * 0FFFCh - [[EnableSave]]
+    * 0FFFDh - [[SetSwapDrive]]
+    * 0FFFEh - [[GetInfo]]
+    * 0FFFFh - [[GetID]]
+
+===== Return =====
+
+DX:AX = size in bytes for grab buffer
+
+===== Note =====
+
+This entry optional for DOSSHELL
+
+HP Windows 1.03 function codes need to be checked on real software

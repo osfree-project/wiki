@@ -1,0 +1,46 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=16H ======
+
+===== Version =====
+
+1 and higher
+
+===== Brief =====
+
+CREATE OR TRUNCATE FILE USING FCB
+
+===== Family API =====
+
+[[en:docs:fapi:DosRead]]
+
+===== Input =====
+
+        AH = 16h
+        DS:DX -> unopened FCB (see #01345), wildcards not allowed
+
+===== Return =====
+
+ AL = status
+            00h successful
+            FFh directory full or file exists and is read-only or locked
+===== Notes =====
+
+Notes:  if file already exists, it is truncated to zero length
+        if an extended FCB is used, the file is given the attribute in the
+          FCB; this is how to create a volume label in the disk's root dir
+        not supported by MS Windows 3.0 DOSX.EXE DOS extender
+        (FAT32 drive) this function will only succeed for creating a volume
+          label; FAT32 does not support FCBs for file I/O
+        
+===== See also =====
+
+AH=0Fh,AH=10h,AH=3Ch
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:int}}
+
+{{page>en:templates:fapi}}

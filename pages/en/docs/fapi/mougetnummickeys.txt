@@ -1,0 +1,55 @@
+{{page>en:templates:fapiint}}
+
+====== MouGetNumMickeys ======
+
+
+This call returns the number of mickeys in each centimeter for the installed mouse driver.
+
+===== Syntax =====
+<code c>
+ MouGetNumMickeys (NumberOfMickeys, DeviceHandle)
+</code>
+
+===== Parameters =====
+
+  * NumberOfMickeys (PUSHORT) - output : Address of the number of physical mouse motion units. Mouse motion units are reported in mickeys in each centimeter. This value is constant based upon the mouse device attached.
+  * DeviceHandle (HMOU) - input : Handle of the mouse device from a previous MouOpen.
+
+===== Return Code =====
+
+rc (USHORT) - return:Return code descriptions are:
+
+  *0 NO_ERROR
+  *385 ERROR_MOUSE_NO_DEVICE
+  *466 ERROR_MOU_DETACHED
+  *501 ERROR_MOUSE_NO_CONSOLE
+  *505 ERROR_MOU_EXTENDED_SG
+
+===== Bindings =====
+
+====C====
+<code c>
+#define INCL_MOU
+
+USHORT  rc = MouGetNumMickeys(NumberOfMickeys, DeviceHandle);
+
+PUSHORT NumberOfMickeys; /* Number mickeys/centimeter */
+HMOU    DeviceHandle;    /* Mouse device handle */
+
+USHORT  rc;              /* return code */
+</code>
+
+====MASM====
+<code asm>
+EXTRN  MouGetNumMickeys:FAR
+INCL_MOU            EQU 1
+
+PUSH@  WORD    NumberOfMickeys ;Number mickeys/centimeter
+PUSH   WORD    DeviceHandle    ;Mouse device handle
+CALL   MouGetNumMickeys
+
+Returns WORD
+</code>
+
+{{page>en:templates:fapi}}
+

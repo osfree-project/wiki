@@ -1,0 +1,25 @@
+==== FS_FINDNOTIFYCLOSE ====
+
+**Purpose**
+
+Closes the association between a Find-Notify handle and a //DosFindNotifyFirst// or //DosFindNotifyNext// function.   
+
+**Calling Sequence**
+
+<code c>
+int far pascal FS_FINDNOTIFYCLOSE(handle)
+
+unsigned short handle;
+</code>
+
+**Where**
+
+//handle// is the directory handle.   
+
+This handle was returned by the FSD on a previous //FS_FINDNOTIFYFIRST// or //FS_FINDNOTIFYNEXT// call. 
+
+**Remarks**
+
+Provides the mechanism for an FSD to release resources allocated on behalf of //FS_FINDNOTIFYFIRST// and //FS_FINDNOTIFYNEXT//.   
+
+//FS_FINDNOTIFYFIRST// returns a handle to the find-notify request. //FS_FINDNOTIFYCLOSE// closes the handle associated with that find-notify request and releases file system information related to that handle.   

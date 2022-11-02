@@ -1,0 +1,63 @@
+{{page>en:templates:fapiint}}
+
+====== DosQVerify ======
+
+This call returns the value of the verify flag.
+
+===== Syntax =====
+
+<code c>
+DosQVerify (VerifySetting)
+</code>
+
+===== Parameters =====
+
+
+  * VerifySetting ([[PUSHORT]]) - output : Address of the verify mode for the process.
+
+    *00H - Verify mode is not active.
+    *01H - Verify mode is active.
+
+===== Return Code =====
+
+rc ([[USHORT]]) - return
+  
+Return code description is:
+
+  * 0    NO_ERROR
+
+===== Remarks =====
+
+When verify is active, OS performs a verify operation each time it does a file write to assure proper data recording on the disk. Although disk recording errors are rare, this function has been provided for applications to verify the proper recording of critical data.
+
+===== Example Code =====
+
+==== C Binding ====
+
+<code c>
+  #define INCL_DOSFILEMGR
+  
+  USHORT  rc = DosQVerify(VerifySetting);
+  
+  PUSHORT          VerifySetting; /* Verify setting (returned) */
+  
+  USHORT           rc;            /* return code */
+</code>
+
+==== MASM Binding ====
+
+<code asm>
+  EXTRN  DosQVerify:FAR
+  INCL_DOSFILEMGR     EQU 1
+  
+  PUSH@  WORD    VerifySetting ;Verify setting (returned)
+  CALL   DosQVerify
+</code>
+
+Returns WORD
+
+===== Note =====
+
+Text based on http://www.edm2.com/index.php/DosQVerify
+
+{{page>en:templates:fapi}}

@@ -1,0 +1,30 @@
+==== MFS_OPEN - Open a file ====
+
+**Purpose**
+
+Open the specified file.   
+
+**Calling Sequence**
+
+<code c>
+int far pascal MFS_OPEN(pszName, pulSize)
+
+char far * pszName;
+unsigned long far * pulSize;
+</code>
+
+**Where**
+
+//pszName// is a pointer to the ASCIIZ name of the file to be opened. It may include a path but will not include a drive.   
+
+//pulSize// is a pointer to a double word which is filled in by the mini-FSD with the size of the file in bytes. 
+
+**Returns**
+
+If no error is detected, a zero error code is returned. If an error is detected, a non-zero error code is returned.   
+
+**Remarks**
+
+Only one file at a time will be opened by this call. The drive will always be the boot drive.   
+
+The current file position is set to the beginning of the file.   

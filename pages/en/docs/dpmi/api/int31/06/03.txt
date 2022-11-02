@@ -1,0 +1,52 @@
+{{page>en:templates:dpmi}}
+
+====== Int 31H, AH=06H, AL=03H ======
+
+===== Version =====
+
+0.9
+
+===== Brief =====
+
+Relock Real Mode Region
+
+===== Input =====
+
+  AX = 0603H
+  BX:CX = starting linear address of memory to relock
+  SI:DI = size of region to relock (bytes)
+    
+===== Return =====
+
+  if function successful
+  Carry flag = clear
+  
+  if function unsuccessful
+  Carry flag = set
+  AX = error code
+  8002H	invalid state (region not marked as pageable)
+  8013H	physical memory unavailable
+  8025H	invalid linear address (region is above 1 MB boundary)
+
+===== Notes =====
+
+Relocks a memory region that was previously declared as pageable with the Mark Real Mode Region as Pageable function (Int 31H Function 0602H).
+
+If the function returns an error, none of the memory has been relocked.
+
+If the specified region overlaps part of a page at the beginning or end of the region, the page(s) will not be relocked.
+
+This function is ignored by DPMI implementations that do not support virtual memory; the function will return the Carry flag clear to indicate success, but has no other effect. DPMI hosts which support virtual memory may also choose to ignore this function, but such hosts must be able to handle page faults transparently at arbitrary points during a client's execution, including within interrupt and exception handlers.
+
+If Function 0602H is implemented as a "no-operation" on a particular DPMI host, this function will likewise do nothing. In other words, this function should not be used to lock memory, but only to restore the default state of the host's conventional memory locking.
+
+===== See also =====
+
+   
+
+===== Note =====
+
+Text based on [[http://www.delorie.com/djgpp/doc/dpmi/]]
+
+{{page>en:templates:dpmi:int}}
+

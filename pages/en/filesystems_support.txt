@@ -1,0 +1,5 @@
+=== Filesystems support ===
+
+^Filesystem       ^MicroFSD           ^MiniFSD          ^IFS            ^Utility DLL    ^
+|FAT12/FAT16   |Yes                     |Yes                 |No              |No                |
+|FAT32               |Yes                     |Yes                 |No              |No                |

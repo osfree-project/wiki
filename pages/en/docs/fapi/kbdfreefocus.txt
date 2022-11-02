@@ -1,0 +1,53 @@
+{{page>en:templates:fapiint}}
+
+====== KbdFreeFocus ======
+
+This call frees the logical-to-physical keyboard bond created by [[KbdGetFocus]].
+
+===== Syntax =====
+<code c>
+ KbdFreeFocus (KbdHandle)
+</code>
+
+===== Parameters =====
+
+  * KbdHandle (HKBD) - input: Default keyboard or the logical keyboard.
+
+===== Return Code =====
+
+rc (USHORT) - return:Return code descriptions are:
+
+  * 0 NO_ERROR
+  * 439 ERROR_KBD_INVALID_HANDLE
+  * 445 ERROR_KBD_FOCUS_REQUIRED
+  * 464 ERROR_KBD_DETACHED
+  * 504 ERROR_KBD_EXTENDED_SG
+
+===== Remarks =====
+
+KbdFreeFocus may be replaced by issuing [[KbdRegister]]. Unlike other keyboard subsystem functions, the replaced KbdFreeFocus is called only if there is an outstanding focus.
+
+===== Bindings =====
+
+====C====
+<code c>
+#define INCL_KBD
+
+USHORT  rc = KbdFreeFocus(KbdHandle);
+HKBD    KbdHandle;     /* Keyboard handle */
+
+USHORT  rc;            /* return code */
+</code>
+
+====MASM====
+<code asm>
+EXTRN  KbdFreeFocus:FAR
+INCL_KBD            EQU 1
+
+PUSH   WORD    KbdHandle     ;Keyboard handle
+CALL   KbdFreeFocus
+
+Returns WORD
+</code>
+
+{{page>en:templates:fapi}}

@@ -1,0 +1,6 @@
+[Q]: CACHE386.EXE из конфига через RUN не запускается
+
+[A]: Aleksey Gromak (2:5020/159.28)
+
+Поставь в LIBPATH путь x:\ibm386fs _до_ пути y:\netware, (и там и там есть 
+netapi.dll, из-за котоpого cache386 и спотыкается).

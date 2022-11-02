@@ -1,0 +1,36 @@
+==== FS_DELETE ====
+
+**Purpose**
+
+Removes a directory entry associated with a filename.   
+
+**Calling Sequence**
+
+<code c>
+int far pascal FS_DELETE(pcdfsi, pcdfsd, pFile, iCurDirEnd)
+
+struct cdfsi far * pcdfsi;
+struct cdfsd far * pcdfsd;
+char far * pFile;
+unsigned short iCurDirEnd;
+</code>
+
+**Where**
+
+//pcdfsi// is a pointer to the file-system-independent working directory structure.   
+
+//pcdfsd// is a pointer to the file-system-dependent working directory structure.   
+
+//pFile// is a pointer to the ASCIIZ name of the file or directory. The FSD does not need to validate this pointer.   
+
+//iCurDirEnd// is the index of the end of the current directory in pFile.   
+
+This is used to optimize FSD path processing. If //iCurDirEnd// == -1, there is no current directory relevant to the name text, that is, a device. 
+
+**Remarks**
+
+The files specified are deleted.   
+
+The deletion of a file opened in DOS mode by the same process requesting the delete is supported. OS/2 calls //FS_CLOSE// for the file before calling //FS_DELETE//.   
+
+The file name may not contain wildcard characters.   

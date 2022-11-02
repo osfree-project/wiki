@@ -1,0 +1,17 @@
+===== GNU/Linux personality =====
+
+==== Concept ====
+
+  - Reuse
+  - Reuse
+  - Reuse
+
+ We have no goal to have GNU/Linux personality as dominant personality. Our primary personality is OS/2. So, GNU/Linux personality only to prevent constant porting process. We don’t want to loss forces for recompilation, adding support of new platforms, architectures and so on. So, we have following plan for Linux personality: 
+
+  - Reuse existent distribution
+  - Reuse Nitpicker for windowing subsystems integration
+  - Reuse console server for forwarding of GNU/Linux consoles
+
+ Nothing more (in general) from GNU/Linux personality planned to reuse.
+
+~~DISCUSSION~~

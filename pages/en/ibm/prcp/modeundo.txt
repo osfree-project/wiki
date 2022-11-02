@@ -1,0 +1,68 @@
+==== VioModeUndo ====
+
+**Bindings**: [[modeundo#C bindings|C]], [[modeundo#MASM bindings|MASM]]
+
+This call allows one thread within a process to cancel a [[modewait|VioModeWait]] issued by another thread within the same process. 
+
+//VioModeUndo// (OwnerIndic, KillIndic, Reserved) 
+
+//OwnerIndic// (**USHORT**) - input 
+Indicates whether the thread issuing [[modeundo|VioModeUndo]] wants ownership of [[modewait|VioModeWait]] to be reserved for its process. 
+
+^Value ^Definition ^
+|0 |Reserve ownership |
+|1 |Give up ownership. |
+
+//KillIndic// (**USHORT**) - input 
+Indicates whether the thread (with the outstanding VioModeWait) should be returned an error code or be terminated. 
+
+^Value ^Definition ^
+|0 |Return error code |
+|1 |Terminate thread. |
+
+//Reserved// (**USHORT**) - input 
+Reserved word of 0s. 
+
+//rc// (**USHORT**) - return 
+Return code descriptions are: 
+
+|0 |NO_ERROR |
+|421 |ERROR_VIO_INVALID_PARMS |
+|422 |ERROR_VIO_FUNCTION_OWNED |
+|427 |ERROR_VIO_NO_MODE_THREAD |
+|430 |ERROR_VIO_ILLEGAL_DURING_POPUP |
+|465 |ERROR_VIO_DETACHED |
+|486 |ERROR_VIO_BAD_RESERVE |
+|494 |ERROR_VIO_EXTENDED_SG |
+
+**Remarks**
+
+[[modeundo|VioModeUndo]] may be issued only by a thread within the process that owns [[modewait|VioModeWait]]. The thread issuing [[modeundo|VioModeUndo]] can either reserve ownership of the [[modewait|VioModeWait]] function for its process or give up ownership. The thread whose [[modewait|VioModeWait]] is cancelled is optionally terminated. 
+
+=== C bindings ===
+
+<code c>
+#define INCL_VIO
+
+USHORT  rc = VioModeUndo(OwnerIndic, KillIndic, Reserved);
+
+USHORT           OwnerIndic;    /* Ownership indicator */
+USHORT           KillIndic;     /* Terminate indicator */
+USHORT           Reserved;      /* Reserved (must be zero) */
+
+USHORT           rc;            /* return code */
+</code>
+
+=== MASM bindings ===
+
+<code asm>
+EXTRN  VioModeUndo:FAR
+INCL_VIO            EQU 1
+
+PUSH   WORD    OwnerIndic    ;Ownership indicator
+PUSH   WORD    KillIndic     ;Terminate indicator
+PUSH   WORD    Reserved      ;Reserved (must be zero)
+CALL   VioModeUndo
+
+Returns WORD
+</code>

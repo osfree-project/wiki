@@ -1,0 +1,14 @@
+===== Win16 DLL entry points =====
+
+This Win16 DLL's entry point description is inspired by [[https://www.ecma-international.org/publications-and-standards/standards/ecma-234/]]
+
+==== Win16 API  ====
+
+These DLL's contain core Win16 API, exported by kernel (KERNEL.EXE, KRNL286.EXE or KRNL386.EXE), GDI and USER.
+
+^Name ^Description ^Status ^
+|[[en:docs:os2:modules:kernel|kernel]] | Main kernel functions | |
+|[[en:docs:os2:modules:gdi|gdi]] | GDI |  |
+|[[en:docs:os2:modules:nls|nls]] | Windowing system |  |
+
+{{page>en:templates:win16dlls}}

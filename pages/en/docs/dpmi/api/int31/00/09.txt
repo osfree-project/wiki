@@ -1,0 +1,83 @@
+{{page>en:templates:dpmi}}
+
+====== Int 31H, AH=00H, AL=09H ======
+
+===== Version =====
+
+0.9
+
+===== Brief =====
+
+Set Descriptor Access Rights
+
+===== Input =====
+
+  AX = 0009H
+  BX = selector
+  CL = access rights/type byte
+  CH = 80386 extended access rights/type byte
+
+===== Return =====
+
+  if function successful
+  Carry flag = clear
+  
+  if function unsuccessful
+  Carry flag = set
+  AX = error code
+  8021H	invalid value (access rights/type bytes invalid)
+  8022H	invalid selector
+  8025H	invalid linear address (changing the access rights/type bytes would cause the descriptor to reference a linear address range outside that allowed for DPMI clients.)
+
+===== Notes =====
+
+Modifies the access rights and type fields in the LDT descriptor for the specified segment.
+
+The access rights/type byte passed to the function in CL has the following format:
+
+  +---+---+---+---+---+---+---+---+
+  | P |  DPL  | 1 |C/D|E/C|W/R| A |
+  +-+-+---+---+-+-+-+-+-+-+-+-+-+-+
+    |     |     |   |   |   |   |
+    |     |     |   |   |   |   +- 0=not accessed, 1=accessed
+    |     |     |   |   |   +----- data: 0=read, 1=>read/write
+    |     |     |   |   |          code: must be 1 (readable)
+    |     |     |   |   +--------- data: 0=expand-up, 1=expand-down
+    |     |     |   |              code: must be 0 (non-conforming)
+    |     |     |   +------------- 0=data, 1=code
+    |     |     +----------------- must be 1
+    |     +----------------------- must equal caller's CPL
+    +----------------------------- 0=absent, 1=present
+
+If the Present bit is not set in the descriptor, the DPMI host allows any values except in the DPL and "must be 1" bit fields.
+
+On 80386 (and later) machines, the DPMI host interprets the value passed to the function in CH as follows:
+
+  +---+---+---+---+---+---+---+---+
+  | G |B/D| 0 |Avl|    Reserved   |
+  +-+-+-+-+-+-+-+-+---+---+---+---+
+    |   |   |   |         |
+    |   |   |   |         +-- ignored
+    |   |   |   +------------ can be 0 or 1
+    |   |   +---------------- must be 0
+    |   +-------------------- 0=default 16-bit, 1=default 32-bit
+    +------------------------ 0=byte granular, 1=page granular
+
+A DPMI 1.0 host will reload any segment registers which contain the selector specified in register BX. It is suggested that DPMI 0.9 hosts also implement this.
+
+Client programs should use the LAR instruction to examine the access rights of a descriptor.
+
+Refer to the rules for descriptor usage in Appendix D.
+
+    
+===== See also =====
+
+   
+
+===== Note =====
+
+Text based on [[http://www.delorie.com/djgpp/doc/dpmi/]]
+
+{{page>en:templates:dpmi:int}}
+
+

@@ -1,0 +1,88 @@
+[Q]: W4W compatible server                                               
+
+[A]: Sasha Plavinskiy (2:5052/4.22)
+
+NETWORKING THE OS/2 PEER REQUESTER WITH MS-Workgroups for Windows
+-----------------------------------------------------------------
+
+What you'll need:
+
+  a.  Windows for workgroups
+  b.  os/2 2.1x or os/2 2.1x for windows
+  c.  Network transport services/2 (NTS/2)
+  d.  OS/2 Lan Requester
+
+  I'm not sure of all available sources for (c) and (d) above, but I know
+they come with LAN server.  Several Os/2 catalogs (IE: corner store) list
+"OS/lan requester licencse" for $49 or so, but I am note sure if that comes
+with the disks for NTS/2 and the OS/2 lan requester.
+
+(1) Before worrying about the OS/2 machine(s), get your MS-Workgroups for
+windows setup.  When Windows asks for a "workgroup" name, pick a name that
+is also an OS/2 compatible domain name (IE: 8 chars or less, no spaces).
+When windows asks for a "machine name", again pick an os/2 compatible one (8
+chars, etc).
+
+(2) Now for the OS/2 machine(s).  Install Network Transport Services/2
+(NTS/2).  NTS/2 is the package that contains the lower-layer (IE: NDIS)
+drivers for OS/2.  NTS/2 comes with support for a number of network cards.
+When you install NTS/2, one of the options is for what "protocols" to
+support on your card.  Make sure you include support for "NETBIOS".
+
+(3) Reboot and make sure all of the NTS/2 drivers which were added to your
+CONFIG.SYS come up properly.  If they don't, their is no reason to go on to
+the next step.  If anyone has any problems getting the NTS/2 stuff to come
+up, drop my a line and I'll try to help.
+
+(3) Next, install the OS/2 Lan Requester on your OS/2 Machine(s).  Don't
+do the "base" install, do a custom one.  Install at least the
+base-requester and peer-requester options.  When the install program asks
+for a DOMAIN name, use the same name as you used for your MS4WG "workgroup".
+You can use whatever you want for the machine/requester name, but lets
+assume you use "OS2PEER" as the machine/requester name.
+When the OS/2 lan requester install is done, it will tell you that the
+default user ID and password are "USERID" and "PASSWORD".
+
+(4) Reboot and verify that the OS/2 lan requester drivers come up properly.
+If it doesn't, their is no reason to go on to the next step.  Again, if
+anyone has any problems just drop me a note and I'll try to help.
+
+(5) Go to an OS/2 screen or window.  If you didn't specify to automatically
+start the requester via STARTUP.CMD, type "NET START REQ" at the os/2
+prompt.  Next you need to share your drives.  For example, to share your C:
+drive, type "NET SHARE C=C:\ /USERS:1 /PERMISSIONS:XRWCDA".  "NET SHARE"
+is the command that tells the OS/2 peer requester to share something.
+"C=C:\" tells the requester to share, under the network name "C", your
+"C:" drive, "\" (root) directory; with all permissions, (IE: e"X"ecute,
+"R"ead, "W"rite, etc)
+
+(6) On your W4WG machine, login using the name "USERID" and "PASSWORD" for
+the password.  These are the defaults used by the OS/2 peer requester.  Go
+to the file manager. Select "Connect network drive". Eventually, a dialog
+will come up showing you what "shared directories" you can connect to.  The
+OS/2 peer-requester machine will not be listed, but it is available!  Go to
+the "Path" input field, and type "\\OS2PEER" (or whatever name you used for
+the os/2 peer requester/machine) and press <ENTER>. Walla! The OS/2 peer
+requester and it's shared directories ("C" if you followed the example in
+#5) will be on the list.  Click on the "C" shared-directory, press OK, and
+bang, your connected.
+
+(7) to connect to drives on your W4WG machine _from_ os/2, share your drives
+on the W4WG machine via the normal mechanmism (IE: use the File Manager
+"share as" menu option).  Don't specify any passwords, and set the access
+typ to whatever you want (IE: read only, full)  For our examples, lets say
+you share your W4WG machine's C:\ directory under the share name "C", and
+your W4WG machine is named "Bill".  NEXT, Goto an OS/2 window or screen, and
+at the prompt type "NET USE F: \\BILL\C".  This command tells the OS/2
+requester to "USE" "\\BILL\C" on the W4WG machine as the local "F:" drive.
+
+All of this is working great on my machine.  The only caveats I have are (1)
+4OS2 (a replacement shell that can be used instaed of os/2s CMD.EXE)
+seems to have some problems with this setup; and (2) when connecting to a
+w4wg drive from an os/2 peer, some programs running on the os/2 machine
+cause os/2 to report "write errors" when writing to the w4wg drive.  No
+actuall errors seem to occur--os/2 just reports that they are happening.
+
+Also, I'm running on NE2000 cards which are not natively supported by NTS/2.
+I had to get a copy of 2000NDIS.EXE which is a self-extracting zip which
+includes OS/2 NDIS / NTS/2 drivers for the NE2000.

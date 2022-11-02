@@ -1,0 +1,55 @@
+{{page>en:templates:dosint}}
+
+====== Int 21H, AH=5DH, AL=0AH ======
+
+===== Version =====
+
+3.1 and higher
+
+===== Brief =====
+
+SET EXTENDED ERROR INFORMATION
+
+===== Family API =====
+
+
+===== Input =====
+
+			AX = 5D0Ah
+	DS:DX -> 11-word DOS 
+parameter list (see #01686)
+===== Return =====
+
+   nothing.  next call to AH=59h will return values from fields AX,BX,CX,
+	  DX,DI, and ES in corresponding registers
+
+===== Macro =====
+
+
+===== Notes =====
+
+
+  Notes:	documented for DOS 5+, but undocumented in earlier versions
+	the MS-DOS Programmer's Reference incorrectly states that this call was
+	  introduced in DOS 4, and fails to mention that the ERROR structure
+	  passed to this function is a DOS parameter list.
+BUGS:	DR DOS 3.41 and 5.0 read the value for ES from the DS field of the
+	  DPL; fortunately, MS-DOS ignores the DS field, allowing a generic
+	  routine which sets both DS and ES fields to the same value
+	Novell DOS 7 (through at least Update 4) does not save the pointer,
+	  which is always reported as 0000h:0000h by AH=59h; Update 15 fully
+	  supports this function
+
+
+===== See also =====
+
+   AH=59h/BX=0000h
+   
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:int}}
+
+{{page>en:templates:fapi}}
+

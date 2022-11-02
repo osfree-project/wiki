@@ -1,0 +1,11 @@
+{{logos:os2.gif?35x35}} 
+
+**Please help to find info about enries marked as //No info//**
+
+====== BDIME ======
+
+^Ordinal ^Name ^Desc ^ Status ^
+| 1 |  RegBDHookProc | | |
+| 2 |  GetBidiHotKeys | | |
+
+{{page>en:templates:dlls}}

@@ -1,0 +1,87 @@
+{{logos:os2.gif?35x35}} 
+
+**Please help to find info about enries marked as //No info//**
+
+===== LIBUNI =====
+
+^Ordinal ^Name ^Desc ^ Status ^
+| 1 | UniQueryXdigit | | |
+| 2 | UniQuerySpace | | |
+| 3 | UniQueryPrint | | |
+| 4 | UniQueryGraph | | |
+| 5 | UniQueryCntrl | | |
+| 6 | UniQueryAlpha | | |
+| 7 | UniFreeAttrObject | | |
+| 8 | UniQueryCharAttr | | |
+| 9 | UniQueryUpper | | |
+| 10 | UniQueryPunct | | |
+| 11 | UniQueryLower | | |
+| 12 | UniQueryDigit | | |
+| 13 | UniQueryBlank | | |
+| 14 | UniQueryAlnum | | |
+| 15 | UniScanForAttr | | |
+| 16 | UniCreateAttrObject | | |
+| 17 | UniCreateTransformObject | | |
+| 18 | UniFreeTransformObject | | |
+| 19 | UniQueryLocaleObject | | |
+| 20 | UniCreateLocaleObject | | |
+| 21 | UniFreeLocaleObject | | |
+| 22 | UniFreeMem | | |
+| 28 | UniFreeLocaleInfo | | |
+| 29 | UniQueryLocaleInfo | | |
+| 30 | UniQueryLocaleItem | | |
+| 31 | UniStrcat | | |
+| 32 | UniStrchr | | |
+| 33 | UniStrcmp | | |
+| 34 | UniStrcmpi | | |
+| 35 | UniStrcoll | | |
+| 36 | UniStrcpy | | |
+| 37 | UniStrcspn | | |
+| 38 | UniStrfmon | | |
+| 39 | UniStrftime | | |
+| 40 | UniStrlen | | |
+| 41 | UniStrncat | | |
+| 42 | UniStrncmp | | |
+| 43 | UniStrncmpi | | |
+| 44 | UniStrncpy | | |
+| 45 | UniStrpbrk | | |
+| 46 | UniStrptime | | |
+| 47 | UniStrrchr | | |
+| 48 | UniStrspn | | |
+| 49 | UniStrstr | | |
+| 50 | UniStrtod | | |
+| 51 | UniStrtol | | |
+| 52 | UniStrtoul | | |
+| 53 | UniStrxfrm | | |
+| 54 | UniLocaleStrToToken | | |
+| 55 | UniLocaleTokenToStr | | |
+| 56 | UniTransformStr | | |
+| 57 | UniTransLower | | |
+| 58 | UniTransUpper | | |
+| 59 | UniTolower | | |
+| 60 | UniToupper | | |
+| 61 | UniStrupr | | |
+| 62 | UniStrlwr | | |
+| 63 | UniStrtok | | |
+| 67 | UniMapCtryToLocale | | |
+| 70 | UniMakeKey | | |
+| 71 | UniQueryChar | | |
+| 72 | UniGetOverride | | |
+| 73 | UniGetColval | | |
+| 74 | UniQueryAttr | | |
+| 75 | UniQueryStringType | | |
+| 76 | UniQueryCharType | | |
+| 77 | UniQueryNumericValue | | |
+| 78 | UniQueryCharTypeTable | | |
+| 80 | UniProcessUconv | | |
+| 151 | Locale | | |
+| 152 | UniMakeUserLocale | | |
+| 153 | UniSetUserLocaleItem | | |
+| 154 | UniDeleteUserLocale | | |
+| 155 | UniCompleteUserLocale | | |
+| 156 | UniQueryLocaleValue | | |
+| 157 | UniQueryLocaleList | | |
+| 158 | UniQueryLanguageName | | |
+| 159 | UniQueryCountryName  | | |
+
+{{page>en:templates:dlls}}

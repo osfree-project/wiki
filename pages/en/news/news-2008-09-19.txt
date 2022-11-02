@@ -1,0 +1,7 @@
+==== 19 September 2008 ====
+
+#osfree IRC channels work now at EFnet and eCSnet under control of osfreebot and eCoLabs/osfree bots. Thanks to Digi for help.
+
+{{tag>irc}}
+
+~~DISCUSSION~~

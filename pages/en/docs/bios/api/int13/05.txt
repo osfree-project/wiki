@@ -1,0 +1,53 @@
+{{page>en:templates:biosint}}
+
+====== Int 13H, AH=05H ======
+
+===== Version =====
+
+IBM 5150 and higher
+
+===== Brief =====
+
+Format Track
+
+===== Family API =====
+
+none
+
+===== Input =====
+
+  * AH = 05h
+  * AL = number of sectors to format
+  * CH = track number
+  * DH = head number
+  * DL = drive number
+  * ES:BX -> address field buffer (see #00235)
+
+===== Return =====
+
+  * CF set on error
+  * CF clear if successful
+  * AH = status (see #00234)
+
+===== Macro =====
+
+<code asm>
+INCLUDE BIOS.INC
+
+@DskFormat  0, 0, 0, offset buf
+</code>
+
+===== Notes =====
+
+  * on AT or higher, call AH=17h first
+  * the number of sectors per track is read from the diskette parameter table pointed at by INT 1E
+  * some old Compaq BIOSes have a bug when attempting to call this function from Windows Standard Mode with EMM386 loaded.  A possible workaround is to call this function from Real Mode e.g. through DPMI function "Call Real Mode function with FAR return" (see INT 31/AX=0301h).
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:biosapi}}
+
+{{page>en:templates:fapi}}
+

@@ -1,0 +1,75 @@
+=== Application File I/O Notes ===
+
+File handle values of 0xFFFF do not represent actual file handles but are used throughout the file system interface to indicate specific actions to be taken by the file system. Usage of this special file handle where it is not expected by the file system will result in an error.   
+
+Null pointers are defined to be 0x00000000 throughout this document.   
+
+File systems that conform to the Standard Application Program Interface (Standard API) may not necessarily support all the described information kept on a file basis. When this is the case, FSDs are required to return to the application a null (zero) value for the unsupported parameter.   
+
+An FSD may support version levels of files. 
+
+
+Date/Time Stamps 
+
+The format of OS/2 dates are show below in Figure 1-5.   
+
+<code whitespace>
+┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┐
+│   Y │   Y │  Y │  Y  │  Y  │  Y  │  Y │  M │  M  │  M │  M │  D  │  D │  D  │  D  │  D  │
+│   e │   e │  e  │  e  │  e  │  e  │  e  │  o  │ o   │  o  │  o  │  a  │  a  │  a  │  a   │  a  │
+│   a │   a │  a   │  a  │  a  │  a   │  a  │  n  |  n    │  n  │  n  │  y  │  y  │  y  │  y   │  y  │
+│   r  │   r  │  r   │  r   │  r   │  r   │  r   │  t   │  t    │  t   │  t   │      │      │      │      │      │ 
+│      │      │      │      │      │      │      │  h  │  h   │  h  │  h  │      │      │      │      │      │
+└───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┘
+ 15      14    13    12    11    10     9      8      7      6      5      4      3      2      1      0
+</code>
+
+Figure 1-5. OS/2 Date Format   
+
+^Bits ^Description   ^
+|15-9 |YEARS |- Number of years since 1980.   |
+|8-5   |MONTH| - is the month of the year (1-12)  |
+|4-0   |DAY      |- is the day of the month (1-31) |
+
+The format of OS/2 times are show below in Figure 1-6.   
+
+<code whitespace>
+┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┐
+│  H  │  H │  H  │  H  │  H  │  M │  M │  M │  M │  M  │  M │  2  │  2  │  2  │  2  │   2 │
+│  o  │  o  │  o  │  o  │  o  │   i  │   i  │  i    │  i  │   i   │   i   │  │ │  │  │  │  │  │  │   │ │
+│  u  │  u  │  u   │  u  │  u  │   n │   n │  n   │  n  │  n   │  n  │  S │  S  │  S  │  S  │  S │
+│  r   │  r   │  r   │   r  │  r   │      │      │      │      │      │      │  e  │  e  │  e  │  e  │  e  │
+│      │      │      │      │      │      │      │      │      │      │      │ c   │  c  │  c   │  c  │  c  │
+└───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┘
+   15    14    13    12    11    10     9      8      7      6      5      4      3      2      1      0
+</code>
+
+Figure 1-6. OS/2 Time Format   
+
+^Bits ^Description   ^
+|15-9 |HOUR    |- is the hour of the day (0-23)   |
+|8-5   |MINUTE |- is the minute of the hour (0-59)   |
+|4-0   |2-SECOND |- is the second of the minute(in increments of 2) (0-29) |
+  
+I/O Error Codes 
+
+Some file system functions may return device-driver/device-manager generated errors. These include:   
+
+  * ERROR_WRITE_PROTECT - the media in the drive has write-protection enabled. 
+  * ERROR_BAD_UNIT - there is a breakdown of internal consistency between OS/2's mapping between 
+  * logical drive and device driver. Internal Error. 
+  * ERROR_NOT_READY - the device driver detected that the device is not ready.
+  * ERROR_BAD_COMMAND - there is a breakdown of internal consistency between OS/2's idea of the capability of a device driver and that of the device driver. 
+  * ERROR_CRC - the device driver has detected a CRC error. 
+  * ERROR_BAD_LENGTH - there is a breakdown of internal consistency between OS/2's idea of the length of a request packet and the device driver's idea of that length. Internal Error. 
+  * ERROR_SEEK - the device driver detected an error during a seek operation. 
+  * ERROR_NOT_DOS_DISK - the disk is not recognized as being OS/2 manageable. 
+  * ERROR_SECTOR_NOT_FOUND - the device is unable to find the specific sector. 
+  * ERROR_OUT_OF_PAPER - the device driver has detected that the printer is out of paper. 
+  * ERROR_WRITE_FAULT - other write-specific error. 
+  * ERROR_READ_FAULT - other read-specific error. 
+  * ERROR_GEN_FAILURE - other error. 
+
+There are also errors defined by and specific to the device drivers. These are indicated by either 0xFF or 0xFE in the high byte of the error code.   
+
+Note: Error codes listed in the function call descriptions in the OS/2 Version 2.0 Control Program Programming Reference are not complete. They are errors most likely to be returned by the FS router and the FAT file system. Each FSD may generate errors based upon its own circumstances.   

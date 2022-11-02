@@ -1,0 +1,43 @@
+{{page>en:templates:dpmi}}
+
+====== Int 31H, AH=05H, AL=02H ======
+
+===== Version =====
+
+0.9
+
+===== Brief =====
+
+Free Memory Block
+
+===== Input =====
+
+  AX = 0502H
+  SI:DI = memory block handle
+
+===== Return =====
+
+  if function successful
+  Carry flag = clear
+  
+  if function unsuccessful
+  Carry flag = set
+  AX = error code
+  8023H	invalid handle
+
+===== Notes =====
+
+This call will correctly free all of the possible page types that can occur in a memory block: committed pages, uncommitted pages, and mapped pages (see Appendix A: Glossary).
+
+No descriptors are freed by this call. It is the client's responsibility to free any descriptors that it previously allocated to map the memory block. Descriptors should be freed before linear memory blocks.
+       
+===== See also =====
+
+   
+
+===== Note =====
+
+Text based on [[http://www.delorie.com/djgpp/doc/dpmi/]]
+
+{{page>en:templates:dpmi:int}}
+

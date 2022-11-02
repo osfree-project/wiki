@@ -1,0 +1,17 @@
+===== Roadmap of OS/2 personality development =====
+
+**Architecture**:
+
+osFree [[en:docs:os2:architecture|OS/2 personality]] proposed architecture.
+
+**Stages**:
+
+  - source level compatability (recompilation of programs with source code without modifications)
+  - 32-bit compatability (execution of 32-bit only executables). Note: is much of such applications?
+  - Loading of mixed 16/32 bit applications with attempt to replace 16 bit functions calls to 32-bit versions of API function
+
+Final level of compatability:
+
+We have a plan to provide only application level compatability. Reuse of kernel-mode driver not planned at all.
+
+~~DISCUSSION~~

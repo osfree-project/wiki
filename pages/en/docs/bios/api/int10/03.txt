@@ -1,0 +1,51 @@
+{{page>en:templates:biosint}}
+
+====== Int 10H, AH=03H ======
+
+===== Version =====
+
+IBM 5150 and higher
+
+===== Brief =====
+
+Get Cursor Position and Size
+
+===== Family API =====
+
+[[en:docs:fapi:VioGetCurPos]] [[en:docs:fapi:VioGetCurType]]
+
+===== Input =====
+
+  AH = 03h
+  BH = page
+
+
+===== Return =====
+
+  CH = start scan line
+  CL = end scan line
+  DH = row (00h is top)
+  DL = column (00h is left)
+
+===== Macro =====
+
+<code asm>
+INCLUDE BIOS.INC
+
+@GetCur 0
+</code>
+
+===== Notes =====
+
+  * a separate cursor is maintained for each of up to 8 display pages
+  * many ROM BIOSes incorrectly return the default size for a color display (start 06h, end 07h) when a monochrome display is attached
+  * With PhysTechSoft's PTS ROM-DOS the BH value is ignored on entry.
+
+===== Note =====
+
+Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+
+{{page>en:templates:biosapi}}
+
+{{page>en:templates:fapi}}
+
