@@ -1,9 +1,12 @@
 ====== FatalExit ======
 
+===== Brief =====
+
 ===== Syntax =====
 
 void FatalExit(int nErrCode);
 
+===== Arguments =====
 
 ===== Returns =====
 
