@@ -40,7 +40,7 @@ Note minimal checked windows version is 1.03
 | 032| [[en:docs:win16:api:kernel|GETPROCADDRESS]] | Retrieve the memory address of the function whose name | | | | 1.03 | Yes |
 | 033| [[en:docs:win16:api:kernel|MAKEPROCINSTANCE]] | Bind the data segment of the module instance specified to the function pointed | | | | 1.03 | Yes |
 | 034| [[en:docs:win16:api:kernel|FREEPROCINSTANCE]] | Frees the function specified from the data segment | | | | 1.03 | Yes |
-| 036| [[en:docs:win16:api:kernel|GETINSTANCEDATA]] | Copy data from a previous instance of an application into the data area of the current instance | | | | 1.03 |
+| 036| [[en:docs:win16:api:kernel|GETINSTANCEDATA]] | Copy data from a previous instance of an application into the data area of the current instance | | | | 1.03 | Yes |
 | 037| [[en:docs:win16:api:kernel|CATCH]] | Catch the current execution environment and copy it the the buffer | | | | 1.03 |
 | 038| [[en:docs:win16:api:kernel|THROW]] | Restore the execution environment to the values saved in the buffer | | | | 1.03 |
 | 039| [[en:docs:win16:api:kernel|GETPROFILEINT]] | Retrieve the value of an integer key from the the Windows initialization file | | | | 1.03 |
@@ -112,7 +112,7 @@ Note minimal checked windows version is 1.03
 | 0a3| [[en:docs:win16:api:kernel|GLOBALLRUOLDEST]] | | | |
 | 0a4| [[en:docs:win16:api:kernel|GLOBALLRUNEWEST]] | | | |
 | 0a6| [[en:docs:win16:api:kernel|WINEXEC]] | | | |
-| 0a9| [[en:docs:win16:api:kernel|GETFREESPACE]] | | | |
+| 0a9| [[en:docs:win16:api:kernel|GETFREESPACE]] | | | | | | Yes |
 | 0aa| [[en:docs:win16:api:kernel|ALLOCCSTODSALIAS]] | | | |
 | 0ab| [[en:docs:win16:api:kernel|ALLOCDSTOCSALIAS]] | | | |
 | 0af| [[en:docs:win16:api:kernel|ALLOCSELECTOR]] | | | |
@@ -127,8 +127,8 @@ Note minimal checked windows version is 1.03
 | 0bf| [[en:docs:win16:api:kernel|GLOBALPAGELOCK]] | | | |
 | 0c0| [[en:docs:win16:api:kernel|GLOBALPAGEUNLOCK]] | | | |
 | 0c4| [[en:docs:win16:api:kernel|SELECTORACCESSRIGHTS]] | | | |
-| 0c5| [[en:docs:win16:api:kernel|GLOBALFIX]] | | | |
-| 0c6| [[en:docs:win16:api:kernel|GLOBALUNFIX]] | | | |
+| 0c5| [[en:docs:win16:api:kernel|GLOBALFIX]] | | | | | | Yes |
+| 0c6| [[en:docs:win16:api:kernel|GLOBALUNFIX]] | | | | | | Yes |
 | 0c7| [[en:docs:win16:api:kernel|SETHANDLECOUNT]] | | | |
 | 0c8| [[en:docs:win16:api:kernel|VALIDATEFREESPACES]] | | | |
 | 0cb| [[en:docs:win16:api:kernel|DEBUGBREAK]] | | | |
