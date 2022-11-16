@@ -4,10 +4,9 @@ Note minimal checked windows version is 1.03
 
 ^ Ordinal ^ Name ^ Description ^ Status ^^^ Version ^ ECMA-234 ^
 ^   :::   ^  ::: ^  :::        ^ Real ^ Std ^ Enh ^ ::: ^ ::: ^
-| 000| KERNEL | | | | |
 | 001| [[en:docs:win16:api:kernel:fatalexit|FATALEXIT]] | Display the current state of Windows and prompts for instructions on how to proceed | | | | 1.03 | Yes |
 | 003| [[en:docs:win16:api:kernel|GETVERSION]] | Return the current version of Windows | | | | 1.03 | Yes |
-| 004| [[en:docs:win16:api:kernel|LOCALINIT]] | | | | | | Yes |
+| 004| [[en:docs:win16:api:kernel|LOCALINIT]] | Initialize local heap | | | | | Yes |
 | 005| [[en:docs:win16:api:kernel|LOCALALLOC]] | Allocate wBytes bytes of memory from the local heap | | | | 1.03 | Yes |
 | 006| [[en:docs:win16:api:kernel|LOCALREALLOC]] | Reallocate the local memory block | | | | 1.03 | Yes |
 | 007| [[en:docs:win16:api:kernel|LOCALFREE]] | Free the local memory block | | | | 1.03 | Yes |
@@ -32,9 +31,9 @@ Note minimal checked windows version is 1.03
 | 01d| [[en:docs:win16:api:kernel|YIELD]] | halts the current task and starts any waiting task | | | | 1.03 | Yes |
 | 01e| [[en:docs:win16:api:kernel|WAITEVENT]] | | | |
 | 024| [[en:docs:win16:api:kernel|GETCURRENTTASK]] | Return the handle of the currently executing task | | | | 1.03 | Yes |
-| 025| [[en:docs:win16:api:kernel|GETCURRENTPDB]] | | | | 
-| 02d| [[en:docs:win16:api:kernel|LOADMODULE]] | | | | | | Yes |
-| 02e| [[en:docs:win16:api:kernel|FREEMODULE]] | | | | | | Yes |
+| 025| [[en:docs:win16:api:kernel|GETCURRENTPDB]] | Return current PDB | | | 
+| 02d| [[en:docs:win16:api:kernel|LOADMODULE]] | Load module | | | | | Yes |
+| 02e| [[en:docs:win16:api:kernel|FREEMODULE]] | Release module | | | | | Yes |
 | 02f| [[en:docs:win16:api:kernel|GETMODULEHANDLE]] | Retrieve the module handle of the specified module | | | | 1.03 |
 | 030| [[en:docs:win16:api:kernel|GETMODULEUSAGE]] | Return the reference count of a given module | | | | 1.03 |
 | 031| [[en:docs:win16:api:kernel|GETMODULEFILENAME]] | Retrieve the name of the executable file from which the specified module was loaded | | | | 1.03 |

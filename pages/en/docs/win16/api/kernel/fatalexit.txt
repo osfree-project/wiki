@@ -1,3 +1,5 @@
+{{page>en:templates:win16api}}
+
 ====== FatalExit ======
 
 ===== Brief =====
@@ -6,21 +8,23 @@
 
 void FatalExit(int nErrCode);
 
-===== Arguments =====
+===== Parameters =====
 
-===== Returns =====
+===== Return Code =====
 
 None
 
-===== Description =====
+===== Notes =====
 
 The FatalExit() function displays the error code nErrCode in the debugger and halts execution. If the debugger is
 running, the user can terminate the application or continue. If the debugger is not running, the application is
 terminated.
 
-===== Errors =====
+===== Example Code =====
 
-None
+==== C Binding ====
+
+==== MASM Binding ====
 
 ===== See also =====
 
