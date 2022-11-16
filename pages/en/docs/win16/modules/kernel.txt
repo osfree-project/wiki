@@ -34,12 +34,12 @@ Note minimal checked windows version is 1.03
 | 025| [[en:docs:win16:api:kernel|GETCURRENTPDB]] | Return current PDB | | | 
 | 02d| [[en:docs:win16:api:kernel|LOADMODULE]] | Load module | | | | | Yes |
 | 02e| [[en:docs:win16:api:kernel|FREEMODULE]] | Release module | | | | | Yes |
-| 02f| [[en:docs:win16:api:kernel|GETMODULEHANDLE]] | Retrieve the module handle of the specified module | | | | 1.03 |
-| 030| [[en:docs:win16:api:kernel|GETMODULEUSAGE]] | Return the reference count of a given module | | | | 1.03 |
-| 031| [[en:docs:win16:api:kernel|GETMODULEFILENAME]] | Retrieve the name of the executable file from which the specified module was loaded | | | | 1.03 |
-| 032| [[en:docs:win16:api:kernel|GETPROCADDRESS]] | Retrieve the memory address of the function whose name | | | | 1.03 |
-| 033| [[en:docs:win16:api:kernel|MAKEPROCINSTANCE]] | Bind the data segment of the module instance specified to the function pointed | | | | 1.03 |
-| 034| [[en:docs:win16:api:kernel|FREEPROCINSTANCE]] | Frees the function specified from the data segment | | | | 1.03 |
+| 02f| [[en:docs:win16:api:kernel|GETMODULEHANDLE]] | Retrieve the module handle of the specified module | | | | 1.03 | Yes |
+| 030| [[en:docs:win16:api:kernel|GETMODULEUSAGE]] | Return the reference count of a given module | | | | 1.03 | Yes |
+| 031| [[en:docs:win16:api:kernel|GETMODULEFILENAME]] | Retrieve the name of the executable file from which the specified module was loaded | | | | 1.03 | Yes |
+| 032| [[en:docs:win16:api:kernel|GETPROCADDRESS]] | Retrieve the memory address of the function whose name | | | | 1.03 | Yes |
+| 033| [[en:docs:win16:api:kernel|MAKEPROCINSTANCE]] | Bind the data segment of the module instance specified to the function pointed | | | | 1.03 | Yes |
+| 034| [[en:docs:win16:api:kernel|FREEPROCINSTANCE]] | Frees the function specified from the data segment | | | | 1.03 | Yes |
 | 036| [[en:docs:win16:api:kernel|GETINSTANCEDATA]] | Copy data from a previous instance of an application into the data area of the current instance | | | | 1.03 |
 | 037| [[en:docs:win16:api:kernel|CATCH]] | Catch the current execution environment and copy it the the buffer | | | | 1.03 |
 | 038| [[en:docs:win16:api:kernel|THROW]] | Restore the execution environment to the values saved in the buffer | | | | 1.03 |
