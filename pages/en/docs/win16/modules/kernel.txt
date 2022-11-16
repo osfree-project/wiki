@@ -79,8 +79,8 @@ Note minimal checked windows version is 1.03
 | 05c| [[en:docs:win16:api:kernel|GETTEMPDRIVE]] | Return a letter specifying the optimal drive for a temporary file | | | | 1.03 |
 | 05d| [[en:docs:win16:api:kernel|GETCODEHANDLE]] | Return the handle of the code segment containing the function pointed | | | | 1.03 |
 | 05e| [[en:docs:win16:api:kernel|DEFINEHANDLETABLE]] | | | |
-| 05f| [[en:docs:win16:api:kernel|LOADLIBRARY]] | Load the library module contained in the specified file and returns a handle to the loaded module | | | | 1.03 |
-| 060| [[en:docs:win16:api:kernel|FREELIBRARY]] | Free memory occuped by library when module reference count equal to zero | | | | 1.03 |
+| 05f| [[en:docs:win16:api:kernel|LOADLIBRARY]] | Load the library module contained in the specified file and returns a handle to the loaded module | | | | 1.03 | Yes |
+| 060| [[en:docs:win16:api:kernel|FREELIBRARY]] | Free memory occuped by library when module reference count equal to zero | | | | 1.03 | Yes |
 | 061| [[en:docs:win16:api:kernel|GETTEMPFILENAME]] | Create a temporary filename | | | | 1.03 |
 | 064| [[en:docs:win16:api:kernel|VALIDATECODESEGMENTS]] | | | |
 | 066| [[en:docs:win16:api:kernel|DOS3CALL]] | | | |
@@ -99,7 +99,7 @@ Note minimal checked windows version is 1.03
 | 081| [[en:docs:win16:api:kernel|WRITEPRIVATEPROFILESTRING]] | | | |
 | 082| [[en:docs:win16:api:kernel|FILECDR]] | | | |
 | 083| [[en:docs:win16:api:kernel|GETDOSENVIRONMENT]] | | | |
-| 084| [[en:docs:win16:api:kernel|GETWINFLAGS]] | | | |
+| 084| [[en:docs:win16:api:kernel|GETWINFLAGS]] | | | | | | Yes |
 | 086| [[en:docs:win16:api:kernel|GETWINDOWSDIRECTORY]] | | | |
 | 087| [[en:docs:win16:api:kernel|GETSYSTEMDIRECTORY]] | | | |
 | 088| [[en:docs:win16:api:kernel|GETDRIVETYPE]] | | | |
