@@ -134,7 +134,7 @@ Note minimal checked windows version is 1.03
 | 0cb| [[en:docs:win16:api:kernel|DEBUGBREAK]] | | | |
 | 0cc| [[en:docs:win16:api:kernel|SWAPRECORDING]] | | | |
 | 0ce| [[en:docs:win16:api:kernel|ALLOCSELECTORARRAY]] | | | |
-| 0cf| [[en:docs:win16:api:kernel|ISDBCSLEADBYTE]] | | | |
+| 0cf| [[en:docs:win16:api:kernel|ISDBCSLEADBYTE]] | | | | | | Yes |
 | 136| [[en:docs:win16:api:kernel|LOCALHANDLEDELTA]] | Set the number of handle table entries to be allocated when the local heap manager runs out of handle table | | | | 1.03 |
 | 140| [[en:docs:win16:api:kernel|ISTASK]] | | | | | | Yes |
 | 143| [[en:docs:win16:api:kernel|ISROMMODULE]] | | | |
