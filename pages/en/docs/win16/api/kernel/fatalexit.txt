@@ -29,3 +29,5 @@ terminated.
 ===== See also =====
 
 FatalAppExit()
+
+{{page>en:templates:win16}}
