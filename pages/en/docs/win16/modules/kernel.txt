@@ -43,9 +43,9 @@ Note minimal checked windows version is 1.03
 | 036| [[en:docs:win16:api:kernel|GETINSTANCEDATA]] | Copy data from a previous instance of an application into the data area of the current instance | | | | 1.03 | Yes |
 | 037| [[en:docs:win16:api:kernel|CATCH]] | Catch the current execution environment and copy it the the buffer | | | | 1.03 | Yes |
 | 038| [[en:docs:win16:api:kernel|THROW]] | Restore the execution environment to the values saved in the buffer | | | | 1.03 | Yes |
-| 039| [[en:docs:win16:api:kernel|GETPROFILEINT]] | Retrieve the value of an integer key from the the Windows initialization file | | | | 1.03 |
-| 03a| [[en:docs:win16:api:kernel|GETPROFILESTRING]] | Copy a character string from the user profile into the buffer | | | | 1.03 |
-| 03b| [[en:docs:win16:api:kernel|WRITEPROFILESTRING]] | Copy the character string into the Windows initialization file | | | | 1.03 |
+| 039| [[en:docs:win16:api:kernel|GETPROFILEINT]] | Retrieve the value of an integer key from the the Windows initialization file | | | | 1.03 | Yes |
+| 03a| [[en:docs:win16:api:kernel|GETPROFILESTRING]] | Copy a character string from the user profile into the buffer | | | | 1.03 | Yes |
+| 03b| [[en:docs:win16:api:kernel|WRITEPROFILESTRING]] | Copy the character string into the Windows initialization file | | | | 1.03 | Yes |
 | 03c| [[en:docs:win16:api:kernel|FINDRESOURCE]] | Determine the location of a resource in the specified resource file | | | | 1.03 | Yes |
 | 03d| [[en:docs:win16:api:kernel|LOADRESOURCE]] | Load a resource from the executable file associated with the module | | | | 1.03 | Yes |
 | 03e| [[en:docs:win16:api:kernel|LOCKRESOURCE]] | Retrieve the absolute memory address of the loaded resource | | | | 1.03 | Yes |
@@ -94,9 +94,9 @@ Note minimal checked windows version is 1.03
 | 070| [[en:docs:win16:api:kernel|GLOBALUNWIRE]] | | | |
 | 073| [[en:docs:win16:api:kernel|OUTPUTDEBUGSTRING]] | | | |
 | 079| [[en:docs:win16:api:kernel|LOCALSHRINK]] | | | | | | Yes |
-| 07f| [[en:docs:win16:api:kernel|GETPRIVATEPROFILEINT]] | | | |
-| 080| [[en:docs:win16:api:kernel|GETPRIVATEPROFILESTRING]] | | | |
-| 081| [[en:docs:win16:api:kernel|WRITEPRIVATEPROFILESTRING]] | | | |
+| 07f| [[en:docs:win16:api:kernel|GETPRIVATEPROFILEINT]] | | | | | | Yes |
+| 080| [[en:docs:win16:api:kernel|GETPRIVATEPROFILESTRING]] | | | | | | Yes |
+| 081| [[en:docs:win16:api:kernel|WRITEPRIVATEPROFILESTRING]] | | | | | | Yes |
 | 082| [[en:docs:win16:api:kernel|FILECDR]] | | | |
 | 083| [[en:docs:win16:api:kernel|GETDOSENVIRONMENT]] | | | |
 | 084| [[en:docs:win16:api:kernel|GETWINFLAGS]] | | | | | | Yes |
