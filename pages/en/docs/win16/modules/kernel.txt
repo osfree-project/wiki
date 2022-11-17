@@ -136,7 +136,7 @@ Note minimal checked windows version is 1.03
 | 130| [[en:docs:win16:api:kernel|FILECDR]] | | | |
 | 131| [[en:docs:win16:api:kernel|GETDOSENVIRONMENT]] | | | |
 | 132| [[en:docs:win16:api:kernel|GETWINFLAGS]] | | | | | | Yes |
-| 133| [[en:docs:win16:api:kernel:GetExtPtr]] |  | | | | | |
+| 133| [[en:docs:win16:api:kernel:GetExePtr]] |  | | | | | |
 | 134| [[en:docs:win16:api:kernel|GETWINDOWSDIRECTORY]] | | | | | | Yes |
 | 135| [[en:docs:win16:api:kernel|GETSYSTEMDIRECTORY]] | | | | | | Yes |
 | 136| [[en:docs:win16:api:kernel|GETDRIVETYPE]] | | | | | | Yes |
