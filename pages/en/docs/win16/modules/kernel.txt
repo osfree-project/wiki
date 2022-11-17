@@ -41,8 +41,8 @@ Note minimal checked windows version is 1.03
 | 033| [[en:docs:win16:api:kernel|MAKEPROCINSTANCE]] | Bind the data segment of the module instance specified to the function pointed | | | | 1.03 | Yes |
 | 034| [[en:docs:win16:api:kernel|FREEPROCINSTANCE]] | Frees the function specified from the data segment | | | | 1.03 | Yes |
 | 036| [[en:docs:win16:api:kernel|GETINSTANCEDATA]] | Copy data from a previous instance of an application into the data area of the current instance | | | | 1.03 | Yes |
-| 037| [[en:docs:win16:api:kernel|CATCH]] | Catch the current execution environment and copy it the the buffer | | | | 1.03 |
-| 038| [[en:docs:win16:api:kernel|THROW]] | Restore the execution environment to the values saved in the buffer | | | | 1.03 |
+| 037| [[en:docs:win16:api:kernel|CATCH]] | Catch the current execution environment and copy it the the buffer | | | | 1.03 | Yes |
+| 038| [[en:docs:win16:api:kernel|THROW]] | Restore the execution environment to the values saved in the buffer | | | | 1.03 | Yes |
 | 039| [[en:docs:win16:api:kernel|GETPROFILEINT]] | Retrieve the value of an integer key from the the Windows initialization file | | | | 1.03 |
 | 03a| [[en:docs:win16:api:kernel|GETPROFILESTRING]] | Copy a character string from the user profile into the buffer | | | | 1.03 |
 | 03b| [[en:docs:win16:api:kernel|WRITEPROFILESTRING]] | Copy the character string into the Windows initialization file | | | | 1.03 |
@@ -93,7 +93,7 @@ Note minimal checked windows version is 1.03
 | 06f| [[en:docs:win16:api:kernel|GLOBALWIRE]] | | | |
 | 070| [[en:docs:win16:api:kernel|GLOBALUNWIRE]] | | | |
 | 073| [[en:docs:win16:api:kernel|OUTPUTDEBUGSTRING]] | | | |
-| 079| [[en:docs:win16:api:kernel|LOCALSHRINK]] | | | |
+| 079| [[en:docs:win16:api:kernel|LOCALSHRINK]] | | | | | | Yes |
 | 07f| [[en:docs:win16:api:kernel|GETPRIVATEPROFILEINT]] | | | |
 | 080| [[en:docs:win16:api:kernel|GETPRIVATEPROFILESTRING]] | | | |
 | 081| [[en:docs:win16:api:kernel|WRITEPRIVATEPROFILESTRING]] | | | |
@@ -105,13 +105,13 @@ Note minimal checked windows version is 1.03
 | 088| [[en:docs:win16:api:kernel|GETDRIVETYPE]] | | | |
 | 089| [[en:docs:win16:api:kernel|FATALAPPEXIT]] | | | |
 | 08a| [[en:docs:win16:api:kernel|GETHEAPSPACES]] | | | |
-| 096| [[en:docs:win16:api:kernel|DIRECTEDYIELD]] | | | |
-| 098| [[en:docs:win16:api:kernel|GETNUMTASKS]] | | | |
-| 09a| [[en:docs:win16:api:kernel|GLOBALNOTIFY]] | | | |
+| 096| [[en:docs:win16:api:kernel|DIRECTEDYIELD]] | | | | | | Yes |
+| 098| [[en:docs:win16:api:kernel|GETNUMTASKS]] | | | | | | Yes |
+| 09a| [[en:docs:win16:api:kernel|GLOBALNOTIFY]] | | | | | | Yes |
 | 09c| [[en:docs:win16:api:kernel|LIMITEMSPAGES]] | | | |
-| 0a3| [[en:docs:win16:api:kernel|GLOBALLRUOLDEST]] | | | |
-| 0a4| [[en:docs:win16:api:kernel|GLOBALLRUNEWEST]] | | | |
-| 0a6| [[en:docs:win16:api:kernel|WINEXEC]] | | | |
+| 0a3| [[en:docs:win16:api:kernel|GLOBALLRUOLDEST]] | | | | | | Yes |
+| 0a4| [[en:docs:win16:api:kernel|GLOBALLRUNEWEST]] | | | | | | Yes |
+| 0a6| [[en:docs:win16:api:kernel|WINEXEC]] | | | | | | Yes |
 | 0a9| [[en:docs:win16:api:kernel|GETFREESPACE]] | | | | | | Yes |
 | 0aa| [[en:docs:win16:api:kernel|ALLOCCSTODSALIAS]] | | | |
 | 0ab| [[en:docs:win16:api:kernel|ALLOCDSTOCSALIAS]] | | | |
@@ -136,7 +136,7 @@ Note minimal checked windows version is 1.03
 | 0ce| [[en:docs:win16:api:kernel|ALLOCSELECTORARRAY]] | | | |
 | 0cf| [[en:docs:win16:api:kernel|ISDBCSLEADBYTE]] | | | |
 | 136| [[en:docs:win16:api:kernel|LOCALHANDLEDELTA]] | Set the number of handle table entries to be allocated when the local heap manager runs out of handle table | | | | 1.03 |
-| 140| [[en:docs:win16:api:kernel|ISTASK]] | | | |
+| 140| [[en:docs:win16:api:kernel|ISTASK]] | | | | | | Yes |
 | 143| [[en:docs:win16:api:kernel|ISROMMODULE]] | | | |
 | 144| [[en:docs:win16:api:kernel|LOGERROR]] | | | |
 | 145| [[en:docs:win16:api:kernel|LOGPARAMERROR]] | | | |
