@@ -46,21 +46,21 @@ Note minimal checked windows version is 1.03
 | 039| [[en:docs:win16:api:kernel|GETPROFILEINT]] | Retrieve the value of an integer key from the the Windows initialization file | | | | 1.03 |
 | 03a| [[en:docs:win16:api:kernel|GETPROFILESTRING]] | Copy a character string from the user profile into the buffer | | | | 1.03 |
 | 03b| [[en:docs:win16:api:kernel|WRITEPROFILESTRING]] | Copy the character string into the Windows initialization file | | | | 1.03 |
-| 03c| [[en:docs:win16:api:kernel|FINDRESOURCE]] | Determine the location of a resource in the specified resource file | | | | 1.03 |
-| 03d| [[en:docs:win16:api:kernel|LOADRESOURCE]] | Load a resource from the executable file associated with the module | | | | 1.03 |
-| 03e| [[en:docs:win16:api:kernel|LOCKRESOURCE]] | Retrieve the absolute memory address of the loaded resource | | | | 1.03 |
-| 03f| [[en:docs:win16:api:kernel|FREERESOURCE]] | Remove a loaded resource from memory by freeing the allocated memory occupied by that resource | | | | 1.03 |
+| 03c| [[en:docs:win16:api:kernel|FINDRESOURCE]] | Determine the location of a resource in the specified resource file | | | | 1.03 | Yes |
+| 03d| [[en:docs:win16:api:kernel|LOADRESOURCE]] | Load a resource from the executable file associated with the module | | | | 1.03 | Yes |
+| 03e| [[en:docs:win16:api:kernel|LOCKRESOURCE]] | Retrieve the absolute memory address of the loaded resource | | | | 1.03 | Yes |
+| 03f| [[en:docs:win16:api:kernel|FREERESOURCE]] | Remove a loaded resource from memory by freeing the allocated memory occupied by that resource | | | | 1.03 | Yes |
 | 040| [[en:docs:win16:api:kernel|ACCESSRESOURCE]] | Open the specified resource file and moves the file pointer to the beginning of the specified resource | | | | 1.03 |
-| 041| [[en:docs:win16:api:kernel|SIZEOFRESOURCE]] | Supply the size in bytes of the specified resource | | | | 1.03 |
-| 042| [[en:docs:win16:api:kernel|ALLOCRESOURCE]] | Allocate uninitialized memory for the passed resource | | | | 1.03 |
-| 043| [[en:docs:win16:api:kernel|SETRESOURCEHANDLER]] | Set up a function to load resources | | | | 1.03 |
+| 041| [[en:docs:win16:api:kernel|SIZEOFRESOURCE]] | Supply the size in bytes of the specified resource | | | | 1.03 | Yes |
+| 042| [[en:docs:win16:api:kernel|ALLOCRESOURCE]] | Allocate uninitialized memory for the passed resource | | | | 1.03 | Yes |
+| 043| [[en:docs:win16:api:kernel|SETRESOURCEHANDLER]] | Set up a function to load resources | | | | 1.03 | Yes |
 | 044| [[en:docs:win16:api:kernel|INITATOMTABLE]] | Initialize an atom hash table and set its size | | | | 1.03 |
 | 045| [[en:docs:win16:api:kernel|FINDATOM]] | Search the atom table for the character string | | | | 1.03 |
 | 046| [[en:docs:win16:api:kernel|ADDATOM]] | Add the character string to the atom table | | | | 1.03 |
 | 047| [[en:docs:win16:api:kernel|DELETEATOM]] | Delete an atom | | | | 1.03 |
 | 048| [[en:docs:win16:api:kernel|GETATOMNAME]] | Retrieve a copy of the character string associated with atom | | | | 1.03 |
 | 049| [[en:docs:win16:api:kernel|GETATOMHANDLE]] | | | |
-| 04a| [[en:docs:win16:api:kernel|OPENFILE]] | Create, open, reopen, or delete a file | | | | 1.03 |
+| 04a| [[en:docs:win16:api:kernel|OPENFILE]] | Create, open, reopen, or delete a file | | | | 1.03 | Yes |
 | 04d| [[en:docs:win16:api:kernel|AnsiNext]] | Move to the next character in a string | | | | 1.03 |
 | 04e| [[en:docs:win16:api:kernel|AnsiPrev]] | Move to the previous character in a string | | | | 1.03 |
 | 04f| [[en:docs:win16:api:kernel|AnsiUpper]] | Convert a string or a character to upper case | | | | 1.03 |
@@ -76,12 +76,12 @@ Note minimal checked windows version is 1.03
 | 059| [[en:docs:win16:api:kernel|LSTRCAT]] | Concatecate the contents of two strings | | | | | Yes |
 | 05a| [[en:docs:win16:api:kernel|LSTRLEN]] | Determines the length of the string | | | | | Yes |
 | 05b| [[en:docs:win16:api:kernel|INITTASK]] | | | |
-| 05c| [[en:docs:win16:api:kernel|GETTEMPDRIVE]] | Return a letter specifying the optimal drive for a temporary file | | | | 1.03 |
+| 05c| [[en:docs:win16:api:kernel|GETTEMPDRIVE]] | Return a letter specifying the optimal drive for a temporary file | | | | 1.03 | Yes |
 | 05d| [[en:docs:win16:api:kernel|GETCODEHANDLE]] | Return the handle of the code segment containing the function pointed | | | | 1.03 |
 | 05e| [[en:docs:win16:api:kernel|DEFINEHANDLETABLE]] | | | |
 | 05f| [[en:docs:win16:api:kernel|LOADLIBRARY]] | Load the library module contained in the specified file and returns a handle to the loaded module | | | | 1.03 | Yes |
 | 060| [[en:docs:win16:api:kernel|FREELIBRARY]] | Free memory occuped by library when module reference count equal to zero | | | | 1.03 | Yes |
-| 061| [[en:docs:win16:api:kernel|GETTEMPFILENAME]] | Create a temporary filename | | | | 1.03 |
+| 061| [[en:docs:win16:api:kernel|GETTEMPFILENAME]] | Create a temporary filename | | | | 1.03 | Yes |
 | 064| [[en:docs:win16:api:kernel|VALIDATECODESEGMENTS]] | | | |
 | 066| [[en:docs:win16:api:kernel|DOS3CALL]] | | | |
 | 067| [[en:docs:win16:api:kernel|NETBIOSCALL]] | | | |
@@ -100,9 +100,9 @@ Note minimal checked windows version is 1.03
 | 082| [[en:docs:win16:api:kernel|FILECDR]] | | | |
 | 083| [[en:docs:win16:api:kernel|GETDOSENVIRONMENT]] | | | |
 | 084| [[en:docs:win16:api:kernel|GETWINFLAGS]] | | | | | | Yes |
-| 086| [[en:docs:win16:api:kernel|GETWINDOWSDIRECTORY]] | | | |
-| 087| [[en:docs:win16:api:kernel|GETSYSTEMDIRECTORY]] | | | |
-| 088| [[en:docs:win16:api:kernel|GETDRIVETYPE]] | | | |
+| 086| [[en:docs:win16:api:kernel|GETWINDOWSDIRECTORY]] | | | | | | Yes |
+| 087| [[en:docs:win16:api:kernel|GETSYSTEMDIRECTORY]] | | | | | | Yes |
+| 088| [[en:docs:win16:api:kernel|GETDRIVETYPE]] | | | | | | Yes |
 | 089| [[en:docs:win16:api:kernel|FATALAPPEXIT]] | | | |
 | 08a| [[en:docs:win16:api:kernel|GETHEAPSPACES]] | | | |
 | 096| [[en:docs:win16:api:kernel|DIRECTEDYIELD]] | | | | | | Yes |
@@ -129,7 +129,7 @@ Note minimal checked windows version is 1.03
 | 0c4| [[en:docs:win16:api:kernel|SELECTORACCESSRIGHTS]] | | | |
 | 0c5| [[en:docs:win16:api:kernel|GLOBALFIX]] | | | | | | Yes |
 | 0c6| [[en:docs:win16:api:kernel|GLOBALUNFIX]] | | | | | | Yes |
-| 0c7| [[en:docs:win16:api:kernel|SETHANDLECOUNT]] | | | |
+| 0c7| [[en:docs:win16:api:kernel|SETHANDLECOUNT]] | | | | | | Yes |
 | 0c8| [[en:docs:win16:api:kernel|VALIDATEFREESPACES]] | | | |
 | 0cb| [[en:docs:win16:api:kernel|DEBUGBREAK]] | | | |
 | 0cc| [[en:docs:win16:api:kernel|SWAPRECORDING]] | | | |
@@ -141,11 +141,11 @@ Note minimal checked windows version is 1.03
 | 144| [[en:docs:win16:api:kernel|LOGERROR]] | | | |
 | 145| [[en:docs:win16:api:kernel|LOGPARAMERROR]] | | | |
 | 146| [[en:docs:win16:api:kernel|ISROMFILE]] | | | |
-| 14e| [[en:docs:win16:api:kernel|ISBADREADPTR]] | | | |
-| 14f| [[en:docs:win16:api:kernel|ISBADWRITEPTR]] | | | |
-| 150| [[en:docs:win16:api:kernel|ISBADCODEPTR]] | | | |
-| 151| [[en:docs:win16:api:kernel|ISBADSTRINGPTR]] | | | |
-| 15b| [[en:docs:win16:api:kernel|ISBADHUGEWRITEPTR]] | | | |
+| 14e| [[en:docs:win16:api:kernel|ISBADREADPTR]] | | | | | | Yes |
+| 14f| [[en:docs:win16:api:kernel|ISBADWRITEPTR]] | | | | | | Yes |
+| 150| [[en:docs:win16:api:kernel|ISBADCODEPTR]] | | | | | | Yes |
+| 151| [[en:docs:win16:api:kernel|ISBADSTRINGPTR]] | | | | | | Yes |
+| 15b| [[en:docs:win16:api:kernel|ISBADHUGEWRITEPTR]] | | | | | | Yes |
 | 15c| [[en:docs:win16:api:kernel|HMEMCPY]] | | | |
 | 15d| [[en:docs:win16:api:kernel|_HREAD]] | | | |
 | 15e| [[en:docs:win16:api:kernel|_HWRITE]] | | | |
