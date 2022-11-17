@@ -5,7 +5,7 @@ Note minimal checked windows version is 1.03
 ^ Ordinal ^ Name ^ Description ^ Status ^^^ Version ^ ECMA-234 ^
 ^   :::   ^  ::: ^  :::        ^ Real ^ Std ^ Enh ^ ::: ^ ::: ^
 | 001| [[en:docs:win16:api:kernel:FatalExit]] | Display the current state of Windows and prompts for instructions on how to proceed | | | | 1.03 | Yes |
-| 002| [[en:docs:win16:api:kernel|???]] |  | | | | | |
+| 002| [[en:docs:win16:api:kernel:ExitKernel]] | | | | | | |
 | 003| [[en:docs:win16:api:kernel|GetVersion]] | Return the current version of Windows | | | | 1.03 | Yes |
 | 004| [[en:docs:win16:api:kernel|LocalInit]] | Initialize local heap | | | | | Yes |
 | 005| [[en:docs:win16:api:kernel|LocalAlloc]] | Allocate wBytes bytes of memory from the local heap | | | | 1.03 | Yes |
@@ -29,23 +29,23 @@ Note minimal checked windows version is 1.03
 | 023| [[en:docs:win16:api:kernel|LOCKSEGMENT]] | | | |
 | 024| [[en:docs:win16:api:kernel|UNLOCKSEGMENT]] | | | |
 | 025| [[en:docs:win16:api:kernel|GLOBALCOMPACT]] | Generate free bytes of global memory by compacting, if necessary, the system's global heap | | | | 1.03 | Yes |
-| 026| [[en:docs:win16:api:kernel|???]] |  | | | | | |
+| 026| [[en:docs:win16:api:kernel:GlobalFreeAll]] |  | | | | | |
 | 027| [[en:docs:win16:api:kernel|???]] |  | | | | | |
-| 028| [[en:docs:win16:api:kernel|???]] |  | | | | | |
-| 029| [[en:docs:win16:api:kernel|YIELD]] | halts the current task and starts any waiting task | | | | 1.03 | Yes |
+| 028| [[en:docs:win16:api:kernel:GlobalMasterHandle]] |  | | | | | |
+| 029| [[en:docs:win16:api:kernel:Yield]] | halts the current task and starts any waiting task | | | | 1.03 | Yes |
 | 030| [[en:docs:win16:api:kernel|WAITEVENT]] | | | |
-| 031| [[en:docs:win16:api:kernel|???]] |  | | | | | |
-| 032| [[en:docs:win16:api:kernel|???]] |  | | | | | |
-| 033| [[en:docs:win16:api:kernel|???]] |  | | | | | |
-| 034| [[en:docs:win16:api:kernel|???]] |  | | | | | |
-| 035| [[en:docs:win16:api:kernel|???]] |  | | | | | |
+| 031| [[en:docs:win16:api:kernel:PostEvent]] |  | | | | | |
+| 032| [[en:docs:win16:api:kernel:SetPriority]] |  | | | | | |
+| 033| [[en:docs:win16:api:kernel:LockCurrentTask]] |  | | | | | |
+| 034| [[en:docs:win16:api:kernel:SetTaskQueue]] |  | | | | | |
+| 035| [[en:docs:win16:api:kernel:GetTaskQueue]] |  | | | | | |
 | 036| [[en:docs:win16:api:kernel|GETCURRENTTASK]] | Return the handle of the currently executing task | | | | 1.03 | Yes |
 | 037| [[en:docs:win16:api:kernel|GETCURRENTPDB]] | Return current PDB | | | 
-| 038| [[en:docs:win16:api:kernel|???]] |  | | | | | |
+| 038| [[en:docs:win16:api:kernel:SetTaskSignalProc]] |  | | | | | |
 | 039| [[en:docs:win16:api:kernel|???]] |  | | | | | |
 | 040| [[en:docs:win16:api:kernel|???]] |  | | | | | |
-| 041| [[en:docs:win16:api:kernel|???]] |  | | | | | |
-| 042| [[en:docs:win16:api:kernel|???]] |  | | | | | |
+| 041| [[en:docs:win16:api:kernel:EnableDOS]] |  | | | | | |
+| 042| [[en:docs:win16:api:kernel:DisableDOS]] |  | | | | | |
 | 043| [[en:docs:win16:api:kernel|???]] |  | | | | | |
 | 044| [[en:docs:win16:api:kernel|???]] |  | | | | | |
 | 045| [[en:docs:win16:api:kernel|LOADMODULE]] | Load module | | | | | Yes |
@@ -56,7 +56,7 @@ Note minimal checked windows version is 1.03
 | 050| [[en:docs:win16:api:kernel|GETPROCADDRESS]] | Retrieve the memory address of the function whose name | | | | 1.03 | Yes |
 | 051| [[en:docs:win16:api:kernel|MAKEPROCINSTANCE]] | Bind the data segment of the module instance specified to the function pointed | | | | 1.03 | Yes |
 | 052| [[en:docs:win16:api:kernel|FREEPROCINSTANCE]] | Frees the function specified from the data segment | | | | 1.03 | Yes |
-| 053| [[en:docs:win16:api:kernel|???]] |  | | | | | |
+| 053| [[en:docs:win16:api:kernel:CallProcInstance]] |  | | | | | |
 | 054| [[en:docs:win16:api:kernel|GETINSTANCEDATA]] | Copy data from a previous instance of an application into the data area of the current instance | | | | 1.03 | Yes |
 | 055| [[en:docs:win16:api:kernel|CATCH]] | Catch the current execution environment and copy it the the buffer | | | | 1.03 | Yes |
 | 056| [[en:docs:win16:api:kernel|THROW]] | Restore the execution environment to the values saved in the buffer | | | | 1.03 | Yes |
@@ -78,8 +78,8 @@ Note minimal checked windows version is 1.03
 | 072| [[en:docs:win16:api:kernel|GETATOMNAME]] | Retrieve a copy of the character string associated with atom | | | | 1.03 |
 | 073| [[en:docs:win16:api:kernel|GETATOMHANDLE]] | | | |
 | 074| [[en:docs:win16:api:kernel|OPENFILE]] | Create, open, reopen, or delete a file | | | | 1.03 | Yes |
-| 075| [[en:docs:win16:api:kernel|???]] |  | | | | | |
-| 076| [[en:docs:win16:api:kernel|???]] |  | | | | | |
+| 075| [[en:docs:win16:api:kernel:OpenPathname]] |  | | | | | |
+| 076| [[en:docs:win16:api:kernel:DeletePathname]] |  | | | | | |
 | 077| [[en:docs:win16:api:kernel|AnsiNext]] | Move to the next character in a string | | | | 1.03 | Yes |
 | 078| [[en:docs:win16:api:kernel|AnsiPrev]] | Move to the previous character in a string | | | | 1.03 | Yes |
 | 079| [[en:docs:win16:api:kernel|AnsiUpper]] | Convert a string or a character to upper case | | | | 1.03 | Yes |
@@ -101,50 +101,50 @@ Note minimal checked windows version is 1.03
 | 095| [[en:docs:win16:api:kernel|LOADLIBRARY]] | Load the library module contained in the specified file and returns a handle to the loaded module | | | | 1.03 | Yes |
 | 096| [[en:docs:win16:api:kernel|FREELIBRARY]] | Free memory occuped by library when module reference count equal to zero | | | | 1.03 | Yes |
 | 097| [[en:docs:win16:api:kernel|GETTEMPFILENAME]] | Create a temporary filename | | | | 1.03 | Yes |
-| 098| [[en:docs:win16:api:kernel|???]] |  | | | | | |
-| 099| [[en:docs:win16:api:kernel|???]] |  | | | | | |
+| 098| [[en:docs:win16:api:kernel:GetLastDiskChange]] |  | | | | | |
+| 099| [[en:docs:win16:api:kernel:GetLpErrMode]] |  | | | | | |
 | 100| [[en:docs:win16:api:kernel|VALIDATECODESEGMENTS]] | | | |
-| 101| [[en:docs:win16:api:kernel|???]] |  | | | | | |
+| 101| [[en:docs:win16:api:kernel:NoHookDosCall]] |  | | | | | |
 | 102| [[en:docs:win16:api:kernel|DOS3CALL]] | | | |
 | 103| [[en:docs:win16:api:kernel|NETBIOSCALL]] | | | |
 | 104| [[en:docs:win16:api:kernel|GETCODEINFO]] | | | |
-| 105| [[en:docs:win16:api:kernel|???]] |  | | | | | |
+| 105| [[en:docs:win16:api:kernel:GetExeVersion]] |  | | | | | |
 | 106| [[en:docs:win16:api:kernel|SETSWAPAREASIZE]] | | | |
 | 107| [[en:docs:win16:api:kernel|SETERRORMODE]] | | | | | | Yes |
 | 108| [[en:docs:win16:api:kernel|SWITCHSTACKTO]] | | | |
 | 109| [[en:docs:win16:api:kernel|SWITCHSTACKBACK]] | | | |
-| 110| [[en:docs:win16:api:kernel|???]] |  | | | | | |
+| 110| [[en:docs:win16:api:kernel:PatchCodeHandle]] |  | | | | | |
 | 111| [[en:docs:win16:api:kernel|GLOBALWIRE]] | | | |
 | 112| [[en:docs:win16:api:kernel|GLOBALUNWIRE]] | | | |
-| 113| [[en:docs:win16:api:kernel|???]] |  | | | | | |
-| 114| [[en:docs:win16:api:kernel|???]] |  | | | | | |
+| 113| [[en:docs:win16:api:kernel:__AHSHIFT]] |  | | | | | |
+| 114| [[en:docs:win16:api:kernel:__AHINCR]] |  | | | | | |
 | 115| [[en:docs:win16:api:kernel|OUTPUTDEBUGSTRING]] | | | | | | Yes |
-| 116| [[en:docs:win16:api:kernel|???]] |  | | | | | |
-| 117| [[en:docs:win16:api:kernel|???]] |  | | | | | |
-| 118| [[en:docs:win16:api:kernel|???]] |  | | | | | |
-| 119| [[en:docs:win16:api:kernel|???]] |  | | | | | |
-| 120| [[en:docs:win16:api:kernel|???]] |  | | | | | |
+| 116| [[en:docs:win16:api:kernel:InitLib]] |  | | | | | |
+| 117| [[en:docs:win16:api:kernel:OldYield]] |  | | | | | |
+| 118| [[en:docs:win16:api:kernel:GetTaskQueueDS]] |  | | | | | |
+| 119| [[en:docs:win16:api:kernel:GetTaskQueueES]] |  | | | | | |
+| 120| [[en:docs:win16:api:kernel:UndefDynLink]] |  | | | | | |
 | 121| [[en:docs:win16:api:kernel|LOCALSHRINK]] | | | | | | Yes |
-| 122| [[en:docs:win16:api:kernel|???]] |  | | | | | |
-| 123| [[en:docs:win16:api:kernel|???]] |  | | | | | |
-| 124| [[en:docs:win16:api:kernel|???]] |  | | | | | |
-| 125| [[en:docs:win16:api:kernel|???]] |  | | | | | |
-| 126| [[en:docs:win16:api:kernel|???]] |  | | | | | |
+| 122| [[en:docs:win16:api:kernel:IsTaskLocked]] |  | | | | | |
+| 123| [[en:docs:win16:api:kernel:KbdRst]] |  | | | | | |
+| 124| [[en:docs:win16:api:kernel:EnableKernel]] |  | | | | | |
+| 125| [[en:docs:win16:api:kernel:DisableKernel]] |  | | | | | |
+| 126| [[en:docs:win16:api:kernel:MemoryFreed]] |  | | | | | |
 | 127| [[en:docs:win16:api:kernel|GETPRIVATEPROFILEINT]] | | | | | | Yes |
 | 128| [[en:docs:win16:api:kernel|GETPRIVATEPROFILESTRING]] | | | | | | Yes |
 | 129| [[en:docs:win16:api:kernel|WRITEPRIVATEPROFILESTRING]] | | | | | | Yes |
 | 130| [[en:docs:win16:api:kernel|FILECDR]] | | | |
 | 131| [[en:docs:win16:api:kernel|GETDOSENVIRONMENT]] | | | |
 | 132| [[en:docs:win16:api:kernel|GETWINFLAGS]] | | | | | | Yes |
-| 133| [[en:docs:win16:api:kernel|???]] |  | | | | | |
+| 133| [[en:docs:win16:api:kernel:GetExtPtr]] |  | | | | | |
 | 134| [[en:docs:win16:api:kernel|GETWINDOWSDIRECTORY]] | | | | | | Yes |
 | 135| [[en:docs:win16:api:kernel|GETSYSTEMDIRECTORY]] | | | | | | Yes |
 | 136| [[en:docs:win16:api:kernel|GETDRIVETYPE]] | | | | | | Yes |
 | 137| [[en:docs:win16:api:kernel|FATALAPPEXIT]] | | | | | | Yes |
 | 138| [[en:docs:win16:api:kernel|GETHEAPSPACES]] | | | |
-| 139| [[en:docs:win16:api:kernel|???]] |  | | | | | |
-| 140| [[en:docs:win16:api:kernel|???]] |  | | | | | |
-| 141| [[en:docs:win16:api:kernel|???]] |  | | | | | |
+| 139| [[en:docs:win16:api:kernel:DoSignal]] |  | | | | | |
+| 140| [[en:docs:win16:api:kernel:SetSigHandler]] |  | | | | | |
+| 141| [[en:docs:win16:api:kernel:InitTask1]] |  | | | | | |
 | 142| [[en:docs:win16:api:kernel|???]] |  | | | | | |
 | 143| [[en:docs:win16:api:kernel|???]] |  | | | | | |
 | 144| [[en:docs:win16:api:kernel|???]] |  | | | | | |
@@ -154,30 +154,30 @@ Note minimal checked windows version is 1.03
 | 148| [[en:docs:win16:api:kernel|???]] |  | | | | | |
 | 149| [[en:docs:win16:api:kernel|???]] |  | | | | | |
 | 150| [[en:docs:win16:api:kernel|DIRECTEDYIELD]] | | | | | | Yes |
-| 151| [[en:docs:win16:api:kernel|???]] |  | | | | | |
+| 151| [[en:docs:win16:api:kernel:WinOldApCall]] |  | | | | | |
 | 152| [[en:docs:win16:api:kernel|GETNUMTASKS]] | | | | | | Yes |
 | 153| [[en:docs:win16:api:kernel|???]] |  | | | | | |
 | 154| [[en:docs:win16:api:kernel|GLOBALNOTIFY]] | | | | | | Yes |
-| 155| [[en:docs:win16:api:kernel|???]] |  | | | | | |
+| 155| [[en:docs:win16:api:kernel:GetTaskDS]] |  | | | | | |
 | 156| [[en:docs:win16:api:kernel|LIMITEMSPAGES]] | | | |
-| 157| [[en:docs:win16:api:kernel|???]] |  | | | | | |
-| 158| [[en:docs:win16:api:kernel|???]] |  | | | | | |
-| 159| [[en:docs:win16:api:kernel|???]] |  | | | | | |
-| 160| [[en:docs:win16:api:kernel|???]] |  | | | | | |
-| 161| [[en:docs:win16:api:kernel|???]] |  | | | | | |
-| 162| [[en:docs:win16:api:kernel|???]] |  | | | | | |
+| 157| [[en:docs:win16:api:kernel:GetCurPID]] |  | | | | | |
+| 158| [[en:docs:win16:api:kernel:IsWinOldApTask]] |  | | | | | |
+| 159| [[en:docs:win16:api:kernel:GlobalHandleNoRip]] |  | | | | | |
+| 160| [[en:docs:win16:api:kernel:EMSCopy]] |  | | | | | |
+| 161| [[en:docs:win16:api:kernel:LocalCountFree]] |  | | | | | |
+| 162| [[en:docs:win16:api:kernel:LocalHeapSize]] |  | | | | | |
 | 163| [[en:docs:win16:api:kernel|GLOBALLRUOLDEST]] | | | | | | Yes |
 | 164| [[en:docs:win16:api:kernel|GLOBALLRUNEWEST]] | | | | | | Yes |
-| 165| [[en:docs:win16:api:kernel|???]] |  | | | | | |
+| 165| [[en:docs:win16:api:kernel:A20Proc]] |  | | | | | |
 | 166| [[en:docs:win16:api:kernel|WINEXEC]] | | | | | | Yes |
-| 167| [[en:docs:win16:api:kernel|???]] |  | | | | | |
-| 168| [[en:docs:win16:api:kernel|???]] |  | | | | | |
+| 167| [[en:docs:win16:api:kernel:GetExpWinVer]] |  | | | | | |
+| 168| [[en:docs:win16:api:kernel:DirectResAlloc]] |  | | | | | |
 | 169| [[en:docs:win16:api:kernel|GETFREESPACE]] | | | | | | Yes |
 | 170| [[en:docs:win16:api:kernel|ALLOCCSTODSALIAS]] | | | |
 | 171| [[en:docs:win16:api:kernel|ALLOCDSTOCSALIAS]] | | | |
-| 172| [[en:docs:win16:api:kernel|???]] |  | | | | | |
-| 173| [[en:docs:win16:api:kernel|???]] |  | | | | | |
-| 174| [[en:docs:win16:api:kernel|???]] |  | | | | | |
+| 172| [[en:docs:win16:api:kernel:AllocAlias]] |  | | | | | |
+| 173| [[en:docs:win16:api:kernel:__ROMBIOS]] |  | | | | | |
+| 174| [[en:docs:win16:api:kernel:__A000H]] |  | | | | | |
 | 175| [[en:docs:win16:api:kernel|ALLOCSELECTOR]] | | | |
 | 176| [[en:docs:win16:api:kernel|FREESELECTOR]] | | | |
 | 177| [[en:docs:win16:api:kernel|PRESTOCHANGOSELECTOR]] | | | |
