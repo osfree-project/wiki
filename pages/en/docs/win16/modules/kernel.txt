@@ -61,10 +61,10 @@ Note minimal checked windows version is 1.03
 | 048| [[en:docs:win16:api:kernel|GETATOMNAME]] | Retrieve a copy of the character string associated with atom | | | | 1.03 |
 | 049| [[en:docs:win16:api:kernel|GETATOMHANDLE]] | | | |
 | 04a| [[en:docs:win16:api:kernel|OPENFILE]] | Create, open, reopen, or delete a file | | | | 1.03 | Yes |
-| 04d| [[en:docs:win16:api:kernel|AnsiNext]] | Move to the next character in a string | | | | 1.03 |
-| 04e| [[en:docs:win16:api:kernel|AnsiPrev]] | Move to the previous character in a string | | | | 1.03 |
-| 04f| [[en:docs:win16:api:kernel|AnsiUpper]] | Convert a string or a character to upper case | | | | 1.03 |
-| 050| [[en:docs:win16:api:kernel|AnsiLower]] | Convert the given string to lower case | | | | 1.03 |
+| 04d| [[en:docs:win16:api:kernel|AnsiNext]] | Move to the next character in a string | | | | 1.03 | Yes |
+| 04e| [[en:docs:win16:api:kernel|AnsiPrev]] | Move to the previous character in a string | | | | 1.03 | Yes |
+| 04f| [[en:docs:win16:api:kernel|AnsiUpper]] | Convert a string or a character to upper case | | | | 1.03 | Yes |
+| 050| [[en:docs:win16:api:kernel|AnsiLower]] | Convert the given string to lower case | | | | 1.03 | Yes |
 | 051| [[en:docs:win16:api:kernel|_LCLOSE]] | Close the file described by the file handle | | | | | Yes |
 | 052| [[en:docs:win16:api:kernel|_LREAD]] | Read a specified number of bytes from a file into memory | | | | | Yes |
 | 053| [[en:docs:win16:api:kernel|_LCREAT]] | Create and open a file, described by FileName, for reading and/or writing | | | | | Yes |
@@ -87,12 +87,12 @@ Note minimal checked windows version is 1.03
 | 067| [[en:docs:win16:api:kernel|NETBIOSCALL]] | | | |
 | 068| [[en:docs:win16:api:kernel|GETCODEINFO]] | | | |
 | 06a| [[en:docs:win16:api:kernel|SETSWAPAREASIZE]] | | | |
-| 06b| [[en:docs:win16:api:kernel|SETERRORMODE]] | | | |
+| 06b| [[en:docs:win16:api:kernel|SETERRORMODE]] | | | | | | Yes |
 | 06c| [[en:docs:win16:api:kernel|SWITCHSTACKTO]] | | | |
 | 06d| [[en:docs:win16:api:kernel|SWITCHSTACKBACK]] | | | |
 | 06f| [[en:docs:win16:api:kernel|GLOBALWIRE]] | | | |
 | 070| [[en:docs:win16:api:kernel|GLOBALUNWIRE]] | | | |
-| 073| [[en:docs:win16:api:kernel|OUTPUTDEBUGSTRING]] | | | |
+| 073| [[en:docs:win16:api:kernel|OUTPUTDEBUGSTRING]] | | | | | | Yes |
 | 079| [[en:docs:win16:api:kernel|LOCALSHRINK]] | | | | | | Yes |
 | 07f| [[en:docs:win16:api:kernel|GETPRIVATEPROFILEINT]] | | | | | | Yes |
 | 080| [[en:docs:win16:api:kernel|GETPRIVATEPROFILESTRING]] | | | | | | Yes |
@@ -103,7 +103,7 @@ Note minimal checked windows version is 1.03
 | 086| [[en:docs:win16:api:kernel|GETWINDOWSDIRECTORY]] | | | | | | Yes |
 | 087| [[en:docs:win16:api:kernel|GETSYSTEMDIRECTORY]] | | | | | | Yes |
 | 088| [[en:docs:win16:api:kernel|GETDRIVETYPE]] | | | | | | Yes |
-| 089| [[en:docs:win16:api:kernel|FATALAPPEXIT]] | | | |
+| 089| [[en:docs:win16:api:kernel|FATALAPPEXIT]] | | | | | | Yes |
 | 08a| [[en:docs:win16:api:kernel|GETHEAPSPACES]] | | | |
 | 096| [[en:docs:win16:api:kernel|DIRECTEDYIELD]] | | | | | | Yes |
 | 098| [[en:docs:win16:api:kernel|GETNUMTASKS]] | | | | | | Yes |
@@ -149,7 +149,7 @@ Note minimal checked windows version is 1.03
 | 15c| [[en:docs:win16:api:kernel|HMEMCPY]] | | | |
 | 15d| [[en:docs:win16:api:kernel|_HREAD]] | | | |
 | 15e| [[en:docs:win16:api:kernel|_HWRITE]] | | | |
-| 161| [[en:docs:win16:api:kernel|LSTRCPYN]] | | | |
+| 161| [[en:docs:win16:api:kernel|LSTRCPYN]] | | | | | | Yes |
 | 162| [[en:docs:win16:api:kernel|GETAPPCOMPATFLAGS]] | | | |
 | 163| [[en:docs:win16:api:kernel|GETWINDEBUGINFO]] | | | |
 | 164| [[en:docs:win16:api:kernel|SETWINDEBUGINFO]] | | | |
