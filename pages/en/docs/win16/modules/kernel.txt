@@ -6,41 +6,41 @@ Note minimal checked windows version is 1.03
 ^   :::   ^  ::: ^  :::        ^ Real ^ Std ^ Enh ^ ::: ^ ::: ^
 | 001| [[en:docs:win16:api:kernel:FatalExit]] | Display the current state of Windows and prompts for instructions on how to proceed | | | | 1.03 | Yes |
 | 002| [[en:docs:win16:api:kernel:ExitKernel]] | | | | | | |
-| 003| [[en:docs:win16:api:kernel|GetVersion]] | Return the current version of Windows | | | | 1.03 | Yes |
-| 004| [[en:docs:win16:api:kernel|LocalInit]] | Initialize local heap | | | | | Yes |
-| 005| [[en:docs:win16:api:kernel|LocalAlloc]] | Allocate wBytes bytes of memory from the local heap | | | | 1.03 | Yes |
-| 006| [[en:docs:win16:api:kernel|LocalRealloc]] | Reallocate the local memory block | | | | 1.03 | Yes |
-| 007| [[en:docs:win16:api:kernel|LOCALFREE]] | Free the local memory block | | | | 1.03 | Yes |
-| 008| [[en:docs:win16:api:kernel|LOCALLOCK]] | Lock the local memory block | | | | 1.03 | Yes |
-| 009| [[en:docs:win16:api:kernel|LOCALUNLOCK]] | Unlock the local memory block | | | | 1.03 | Yes |
-| 010| [[en:docs:win16:api:kernel|LOCALSIZE]] | Retrieve the current size, in bytes, of the local memory block | | | | 1.03 | Yes |
-| 011| [[en:docs:win16:api:kernel|LOCALHANDLE]] | | | | | | Yes |
-| 012| [[en:docs:win16:api:kernel|LOCALFLAGS]] | Return information about the specified local memory block | | | | 1.03 | Yes |
-| 013| [[en:docs:win16:api:kernel|LOCALCOMPACT]] | Generate free bytes of memory by compacting, if necessary, the module's local heap | | | | 1.03 | Yes |
-| 014| [[en:docs:win16:api:kernel|LOCALNOTIFY]] | | | | 
-| 015| [[en:docs:win16:api:kernel|GLOBALALLOC]] | Allocate memory from the global heap | | | | 1.03 | Yes |
-| 016| [[en:docs:win16:api:kernel|GLOBALREALLOC]] | Reallocate the global memory block | | | | 1.03 | Yes |
-| 017| [[en:docs:win16:api:kernel|GLOBALFREE]] | Free the global memory block | | | | 1.03 | Yes |
-| 018| [[en:docs:win16:api:kernel|GLOBALLOCK]] | Retrieve the absolute memory address of the global memory block | | | | 1.03 | Yes |
-| 019| [[en:docs:win16:api:kernel|GLOBALUNLOCK]] | Unlock the global memory block | | | | 1.03 | Yes |
-| 020| [[en:docs:win16:api:kernel|GLOBALSIZE]] | Retrieve the current size, in bytes, of the global memory block | | | | 1.03 | Yes |
-| 021| [[en:docs:win16:api:kernel|GLOBALHANDLE]] | | | | | | Yes |
-| 022| [[en:docs:win16:api:kernel|GLOBALFLAGS]] | Return information1 about the specified global memory block | | | | 1.03 | Yes |
-| 023| [[en:docs:win16:api:kernel|LOCKSEGMENT]] | | | |
-| 024| [[en:docs:win16:api:kernel|UNLOCKSEGMENT]] | | | |
-| 025| [[en:docs:win16:api:kernel|GLOBALCOMPACT]] | Generate free bytes of global memory by compacting, if necessary, the system's global heap | | | | 1.03 | Yes |
+| 003| [[en:docs:win16:api:kernel:GetVersion]] | Return the current version of Windows | | | | 1.03 | Yes |
+| 004| [[en:docs:win16:api:kernel:LocalInit]] | Initialize local heap | | | | | Yes |
+| 005| [[en:docs:win16:api:kernel:LocalAlloc]] | Allocate wBytes bytes of memory from the local heap | | | | 1.03 | Yes |
+| 006| [[en:docs:win16:api:kernel:LocalRealloc]] | Reallocate the local memory block | | | | 1.03 | Yes |
+| 007| [[en:docs:win16:api:kernel:LocalFree]] | Free the local memory block | | | | 1.03 | Yes |
+| 008| [[en:docs:win16:api:kernel:LocalLock]] | Lock the local memory block | | | | 1.03 | Yes |
+| 009| [[en:docs:win16:api:kernel:LocalUnlock]] | Unlock the local memory block | | | | 1.03 | Yes |
+| 010| [[en:docs:win16:api:kernel:LocalSize]] | Retrieve the current size, in bytes, of the local memory block | | | | 1.03 | Yes |
+| 011| [[en:docs:win16:api:kernel:LocalHandle]] | | | | | | Yes |
+| 012| [[en:docs:win16:api:kernel:LocalFlags]] | Return information about the specified local memory block | | | | 1.03 | Yes |
+| 013| [[en:docs:win16:api:kernel:LocalCompact]] | Generate free bytes of memory by compacting, if necessary, the module's local heap | | | | 1.03 | Yes |
+| 014| [[en:docs:win16:api:kernel:LocalNotify]] | | | | 
+| 015| [[en:docs:win16:api:kernel:GlocalAlloc]] | Allocate memory from the global heap | | | | 1.03 | Yes |
+| 016| [[en:docs:win16:api:kernel:GlobalRealloc]] | Reallocate the global memory block | | | | 1.03 | Yes |
+| 017| [[en:docs:win16:api:kernel:GlobalFree]] | Free the global memory block | | | | 1.03 | Yes |
+| 018| [[en:docs:win16:api:kernel:GlobalLock]] | Retrieve the absolute memory address of the global memory block | | | | 1.03 | Yes |
+| 019| [[en:docs:win16:api:kernel:GlobalUnlock]] | Unlock the global memory block | | | | 1.03 | Yes |
+| 020| [[en:docs:win16:api:kernel:GlobalSize]] | Retrieve the current size, in bytes, of the global memory block | | | | 1.03 | Yes |
+| 021| [[en:docs:win16:api:kernel:GlobalHandle]] | | | | | | Yes |
+| 022| [[en:docs:win16:api:kernel:GlobalFlags]] | Return information1 about the specified global memory block | | | | 1.03 | Yes |
+| 023| [[en:docs:win16:api:kernel:LockSegment]] | | | |
+| 024| [[en:docs:win16:api:kernel:UnlockSegment]] | | | |
+| 025| [[en:docs:win16:api:kernel:GlobalCompact]] | Generate free bytes of global memory by compacting, if necessary, the system's global heap | | | | 1.03 | Yes |
 | 026| [[en:docs:win16:api:kernel:GlobalFreeAll]] |  | | | | | |
 | 027| [[en:docs:win16:api:kernel|???]] |  | | | | | |
 | 028| [[en:docs:win16:api:kernel:GlobalMasterHandle]] |  | | | | | |
 | 029| [[en:docs:win16:api:kernel:Yield]] | halts the current task and starts any waiting task | | | | 1.03 | Yes |
-| 030| [[en:docs:win16:api:kernel|WAITEVENT]] | | | |
+| 030| [[en:docs:win16:api:kernel:WaitEvent]] | | | |
 | 031| [[en:docs:win16:api:kernel:PostEvent]] |  | | | | | |
 | 032| [[en:docs:win16:api:kernel:SetPriority]] |  | | | | | |
 | 033| [[en:docs:win16:api:kernel:LockCurrentTask]] |  | | | | | |
 | 034| [[en:docs:win16:api:kernel:SetTaskQueue]] |  | | | | | |
 | 035| [[en:docs:win16:api:kernel:GetTaskQueue]] |  | | | | | |
-| 036| [[en:docs:win16:api:kernel|GETCURRENTTASK]] | Return the handle of the currently executing task | | | | 1.03 | Yes |
-| 037| [[en:docs:win16:api:kernel|GETCURRENTPDB]] | Return current PDB | | | 
+| 036| [[en:docs:win16:api:kernel:GetCurrentTask]] | Return the handle of the currently executing task | | | | 1.03 | Yes |
+| 037| [[en:docs:win16:api:kernel:GetCurrentPDB]] | Return current PDB | | | 
 | 038| [[en:docs:win16:api:kernel:SetTaskSignalProc]] |  | | | | | |
 | 039| [[en:docs:win16:api:kernel|???]] |  | | | | | |
 | 040| [[en:docs:win16:api:kernel|???]] |  | | | | | |
@@ -48,25 +48,25 @@ Note minimal checked windows version is 1.03
 | 042| [[en:docs:win16:api:kernel:DisableDOS]] |  | | | | | |
 | 043| [[en:docs:win16:api:kernel|???]] |  | | | | | |
 | 044| [[en:docs:win16:api:kernel|???]] |  | | | | | |
-| 045| [[en:docs:win16:api:kernel|LOADMODULE]] | Load module | | | | | Yes |
-| 046| [[en:docs:win16:api:kernel|FREEMODULE]] | Release module | | | | | Yes |
+| 045| [[en:docs:win16:api:kernel:LoadModule]] | Load module | | | | | Yes |
+| 046| [[en:docs:win16:api:kernel:FreeModule]] | Release module | | | | | Yes |
 | 047| [[en:docs:win16:api:kernel:GetModuleHandle]] | Retrieve the module handle of the specified module | | | | 1.03 | Yes |
-| 048| [[en:docs:win16:api:kernel|GETMODULEUSAGE]] | Return the reference count of a given module | | | | 1.03 | Yes |
-| 049| [[en:docs:win16:api:kernel|GETMODULEFILENAME]] | Retrieve the name of the executable file from which the specified module was loaded | | | | 1.03 | Yes |
-| 050| [[en:docs:win16:api:kernel|GETPROCADDRESS]] | Retrieve the memory address of the function whose name | | | | 1.03 | Yes |
-| 051| [[en:docs:win16:api:kernel|MAKEPROCINSTANCE]] | Bind the data segment of the module instance specified to the function pointed | | | | 1.03 | Yes |
-| 052| [[en:docs:win16:api:kernel|FREEPROCINSTANCE]] | Frees the function specified from the data segment | | | | 1.03 | Yes |
+| 048| [[en:docs:win16:api:kernel:GetModuleUsage]] | Return the reference count of a given module | | | | 1.03 | Yes |
+| 049| [[en:docs:win16:api:kernel:GetModuleName]] | Retrieve the name of the executable file from which the specified module was loaded | | | | 1.03 | Yes |
+| 050| [[en:docs:win16:api:kernel:GetProcAddress]] | Retrieve the memory address of the function whose name | | | | 1.03 | Yes |
+| 051| [[en:docs:win16:api:kernel:MakeProcInstance]] | Bind the data segment of the module instance specified to the function pointed | | | | 1.03 | Yes |
+| 052| [[en:docs:win16:api:kernel:FreeProcInstance]] | Frees the function specified from the data segment | | | | 1.03 | Yes |
 | 053| [[en:docs:win16:api:kernel:CallProcInstance]] |  | | | | | |
-| 054| [[en:docs:win16:api:kernel|GETINSTANCEDATA]] | Copy data from a previous instance of an application into the data area of the current instance | | | | 1.03 | Yes |
-| 055| [[en:docs:win16:api:kernel|CATCH]] | Catch the current execution environment and copy it the the buffer | | | | 1.03 | Yes |
-| 056| [[en:docs:win16:api:kernel|THROW]] | Restore the execution environment to the values saved in the buffer | | | | 1.03 | Yes |
-| 057| [[en:docs:win16:api:kernel|GETPROFILEINT]] | Retrieve the value of an integer key from the the Windows initialization file | | | | 1.03 | Yes |
-| 058| [[en:docs:win16:api:kernel|GETPROFILESTRING]] | Copy a character string from the user profile into the buffer | | | | 1.03 | Yes |
-| 059| [[en:docs:win16:api:kernel|WRITEPROFILESTRING]] | Copy the character string into the Windows initialization file | | | | 1.03 | Yes |
-| 060| [[en:docs:win16:api:kernel|FINDRESOURCE]] | Determine the location of a resource in the specified resource file | | | | 1.03 | Yes |
-| 061| [[en:docs:win16:api:kernel|LOADRESOURCE]] | Load a resource from the executable file associated with the module | | | | 1.03 | Yes |
-| 062| [[en:docs:win16:api:kernel|LOCKRESOURCE]] | Retrieve the absolute memory address of the loaded resource | | | | 1.03 | Yes |
-| 063| [[en:docs:win16:api:kernel|FREERESOURCE]] | Remove a loaded resource from memory by freeing the allocated memory occupied by that resource | | | | 1.03 | Yes |
+| 054| [[en:docs:win16:api:kernel:GetInstanceData]] | Copy data from a previous instance of an application into the data area of the current instance | | | | 1.03 | Yes |
+| 055| [[en:docs:win16:api:kernel:Catch]] | Catch the current execution environment and copy it the the buffer | | | | 1.03 | Yes |
+| 056| [[en:docs:win16:api:kernel:Throw]] | Restore the execution environment to the values saved in the buffer | | | | 1.03 | Yes |
+| 057| [[en:docs:win16:api:kernel:GetProfileInt]] | Retrieve the value of an integer key from the the Windows initialization file | | | | 1.03 | Yes |
+| 058| [[en:docs:win16:api:kernel:GetProfileString]] | Copy a character string from the user profile into the buffer | | | | 1.03 | Yes |
+| 059| [[en:docs:win16:api:kernel:WriteProfileString]] | Copy the character string into the Windows initialization file | | | | 1.03 | Yes |
+| 060| [[en:docs:win16:api:kernel:FindeResource]] | Determine the location of a resource in the specified resource file | | | | 1.03 | Yes |
+| 061| [[en:docs:win16:api:kernel:LoadResource]] | Load a resource from the executable file associated with the module | | | | 1.03 | Yes |
+| 062| [[en:docs:win16:api:kernel:LockResource]] | Retrieve the absolute memory address of the loaded resource | | | | 1.03 | Yes |
+| 063| [[en:docs:win16:api:kernel:FreeResource]] | Remove a loaded resource from memory by freeing the allocated memory occupied by that resource | | | | 1.03 | Yes |
 | 064| [[en:docs:win16:api:kernel|ACCESSRESOURCE]] | Open the specified resource file and moves the file pointer to the beginning of the specified resource | | | | 1.03 |
 | 065| [[en:docs:win16:api:kernel|SIZEOFRESOURCE]] | Supply the size in bytes of the specified resource | | | | 1.03 | Yes |
 | 066| [[en:docs:win16:api:kernel|ALLOCRESOURCE]] | Allocate uninitialized memory for the passed resource | | | | 1.03 | Yes |
