@@ -30,7 +30,7 @@ Note minimal checked windows version is 1.03
 | 024| [[en:docs:win16:api:kernel:UnlockSegment]] | | | |
 | 025| [[en:docs:win16:api:kernel:GlobalCompact]] | Generate free bytes of global memory by compacting, if necessary, the system's global heap | | | | 1.03 | Yes |
 | 026| [[en:docs:win16:api:kernel:GlobalFreeAll]] |  | | | | | |
-| 027| [[en:docs:win16:api:kernel|???]] |  | | | | | |
+| 027| [[en:docs:win16:api:kernel:GetModuleName]] |  | | | | | |
 | 028| [[en:docs:win16:api:kernel:GlobalMasterHandle]] |  | | | | | |
 | 029| [[en:docs:win16:api:kernel:Yield]] | halts the current task and starts any waiting task | | | | 1.03 | Yes |
 | 030| [[en:docs:win16:api:kernel:WaitEvent]] | | | |
@@ -42,17 +42,17 @@ Note minimal checked windows version is 1.03
 | 036| [[en:docs:win16:api:kernel:GetCurrentTask]] | Return the handle of the currently executing task | | | | 1.03 | Yes |
 | 037| [[en:docs:win16:api:kernel:GetCurrentPDB]] | Return current PDB | | | 
 | 038| [[en:docs:win16:api:kernel:SetTaskSignalProc]] |  | | | | | |
-| 039| [[en:docs:win16:api:kernel|???]] |  | | | | | |
-| 040| [[en:docs:win16:api:kernel|???]] |  | | | | | |
+| 039| [[en:docs:win16:api:kernel:SetTaskSwitchProc]] |  | | | | | |
+| 040| [[en:docs:win16:api:kernel:SetTaskInterchange]] |  | | | | | |
 | 041| [[en:docs:win16:api:kernel:EnableDOS]] |  | | | | | |
 | 042| [[en:docs:win16:api:kernel:DisableDOS]] |  | | | | | |
-| 043| [[en:docs:win16:api:kernel|???]] |  | | | | | |
-| 044| [[en:docs:win16:api:kernel|???]] |  | | | | | |
+| 043| [[en:docs:win16:api:kernel:IsScreenGrab]] |  | | | | | |
+| 044| [[en:docs:win16:api:kernel:BuildPDB]] |  | | | | | |
 | 045| [[en:docs:win16:api:kernel:LoadModule]] | Load module | | | | | Yes |
 | 046| [[en:docs:win16:api:kernel:FreeModule]] | Release module | | | | | Yes |
 | 047| [[en:docs:win16:api:kernel:GetModuleHandle]] | Retrieve the module handle of the specified module | | | | 1.03 | Yes |
 | 048| [[en:docs:win16:api:kernel:GetModuleUsage]] | Return the reference count of a given module | | | | 1.03 | Yes |
-| 049| [[en:docs:win16:api:kernel:GetModuleName]] | Retrieve the name of the executable file from which the specified module was loaded | | | | 1.03 | Yes |
+| 049| [[en:docs:win16:api:kernel:GetModuleFileName]] | Retrieve the name of the executable file from which the specified module was loaded | | | | 1.03 | Yes |
 | 050| [[en:docs:win16:api:kernel:GetProcAddress]] | Retrieve the memory address of the function whose name | | | | 1.03 | Yes |
 | 051| [[en:docs:win16:api:kernel:MakeProcInstance]] | Bind the data segment of the module instance specified to the function pointed | | | | 1.03 | Yes |
 | 052| [[en:docs:win16:api:kernel:FreeProcInstance]] | Frees the function specified from the data segment | | | | 1.03 | Yes |
@@ -145,14 +145,14 @@ Note minimal checked windows version is 1.03
 | 139| [[en:docs:win16:api:kernel:DoSignal]] |  | | | | | |
 | 140| [[en:docs:win16:api:kernel:SetSigHandler]] |  | | | | | |
 | 141| [[en:docs:win16:api:kernel:InitTask1]] |  | | | | | |
-| 142| [[en:docs:win16:api:kernel|???]] |  | | | | | |
-| 143| [[en:docs:win16:api:kernel|???]] |  | | | | | |
-| 144| [[en:docs:win16:api:kernel|???]] |  | | | | | |
-| 145| [[en:docs:win16:api:kernel|???]] |  | | | | | |
-| 146| [[en:docs:win16:api:kernel|???]] |  | | | | | |
-| 147| [[en:docs:win16:api:kernel|???]] |  | | | | | |
-| 148| [[en:docs:win16:api:kernel|???]] |  | | | | | |
-| 149| [[en:docs:win16:api:kernel|???]] |  | | | | | |
+| 142| [[en:docs:win16:api:kernel:GetProfileSectionNames]] |  | | | | | |
+| 143| [[en:docs:win16:api:kernel:GetPrivateProfileSectionNames]] |  | | | | | |
+| 144| [[en:docs:win16:api:kernel:CreateDirectory]] |  | | | | | |
+| 145| [[en:docs:win16:api:kernel:RemoveDirectory]] |  | | | | | |
+| 146| [[en:docs:win16:api:kernel:DeleteFile]] |  | | | | | |
+| 147| [[en:docs:win16:api:kernel:SetLastError]] |  | | | | | |
+| 148| [[en:docs:win16:api:kernel:GetLastError]] |  | | | | | |
+| 149| [[en:docs:win16:api:kernel:GetVersionEx]] |  | | | | | |
 | 150| [[en:docs:win16:api:kernel:DirectedYield]] | | | | | | Yes |
 | 151| [[en:docs:win16:api:kernel:WinOldApCall]] |  | | | | | |
 | 152| [[en:docs:win16:api:kernel:GetNumTasks]] | | | | | | Yes |
@@ -181,34 +181,34 @@ Note minimal checked windows version is 1.03
 | 175| [[en:docs:win16:api:kernel:AllocSelector]] | | | |
 | 176| [[en:docs:win16:api:kernel:FreeSelector]] | | | |
 | 177| [[en:docs:win16:api:kernel:PrestoChangoSelector]] | | | |
-| 178| [[en:docs:win16:api:kernel|???]] |  | | | | | |
-| 179| [[en:docs:win16:api:kernel|???]] |  | | | | | |
-| 180| [[en:docs:win16:api:kernel|???]] |  | | | | | |
-| 181| [[en:docs:win16:api:kernel|???]] |  | | | | | |
-| 182| [[en:docs:win16:api:kernel|???]] |  | | | | | |
-| 183| [[en:docs:win16:api:kernel|???]] |  | | | | | |
+| 178| [[en:docs:win16:api:kernel:__WINFLAGS]] |  | | | | | |
+| 179| [[en:docs:win16:api:kernel:__D000H]] |  | | | | | |
+| 180| [[en:docs:win16:api:kernel:LongPtrAdd]] |  | | | | | |
+| 181| [[en:docs:win16:api:kernel:__B000H]] |  | | | | | |
+| 182| [[en:docs:win16:api:kernel:__B800H]] |  | | | | | |
+| 183| [[en:docs:win16:api:kernel:__0000H]] |  | | | | | |
 | 184| [[en:docs:win16:api:kernel:GlobalDOSAlloc]] | | | |
 | 185| [[en:docs:win16:api:kernel:GlobalDOSFree]] | | | |
 | 186| [[en:docs:win16:api:kernel:GetSelectorBase]] | | | |
 | 187| [[en:docs:win16:api:kernel:SetSelectorBase]] | | | |
 | 188| [[en:docs:win16:api:kernel:GetSelectorLimit]] | | | |
 | 189| [[en:docs:win16:api:kernel:SetSelectorLimit]] | | | |
-| 190| [[en:docs:win16:api:kernel|???]] |  | | | | | |
+| 190| [[en:docs:win16:api:kernel:__E000H]] |  | | | | | |
 | 191| [[en:docs:win16:api:kernel:GlobalPageLock]] | | | |
 | 192| [[en:docs:win16:api:kernel:GlobalPageUnlock]] | | | |
-| 193| [[en:docs:win16:api:kernel|???]] |  | | | | | |
-| 194| [[en:docs:win16:api:kernel|???]] |  | | | | | |
-| 195| [[en:docs:win16:api:kernel|???]] |  | | | | | |
+| 193| [[en:docs:win16:api:kernel:__0040H]] |  | | | | | |
+| 194| [[en:docs:win16:api:kernel:__F000H]] |  | | | | | |
+| 195| [[en:docs:win16:api:kernel:__C000H]] |  | | | | | |
 | 196| [[en:docs:win16:api:kernel:SelectorAccessRights]] | | | |
 | 197| [[en:docs:win16:api:kernel:GlobalFix]] | | | | | | Yes |
 | 198| [[en:docs:win16:api:kernel:GlobalUnfix]] | | | | | | Yes |
 | 199| [[en:docs:win16:api:kernel:SetHandleCount]] | | | | | | Yes |
 | 200| [[en:docs:win16:api:kernel:ValidateFreeSpaces]] | | | |
-| 201| [[en:docs:win16:api:kernel|???]] |  | | | | | |
-| 202| [[en:docs:win16:api:kernel|???]] |  | | | | | |
+| 201| [[en:docs:win16:api:kernel:ReplaceInst]] |  | | | | | |
+| 202| [[en:docs:win16:api:kernel:RegisterPtrace]] |  | | | | | |
 | 203| [[en:docs:win16:api:kernel:DebugBreak]] | | | |
 | 204| [[en:docs:win16:api:kernel:SwapRecording]] | | | |
-| 205| [[en:docs:win16:api:kernel|???]] |  | | | | | |
+| 205| [[en:docs:win16:api:kernel:CVWBreak]] |  | | | | | |
 | 206| [[en:docs:win16:api:kernel:AllocSelectorArray]] | | | |
 | 207| [[en:docs:win16:api:kernel:IsDBCSLeadByte]] | | | | | | Yes |
 | 310| [[en:docs:win16:api:kernel:LocalHandleDelta]] | Set the number of handle table entries to be allocated when the local heap manager runs out of handle table | | | | 1.03 |
