@@ -1,88 +1,10 @@
-Module manager: 
-GETVERSION
-GETMODULEHANDLE
-GETMODULEUSAGE
-GETMODULEFILENAME
-GETPROCADDRESS
-MAKEPROCINSTANCE
-FREEPROCINSTANCE
-GETINSTANCEDATA
-CATCH
-THROW
-GETCODEHANDLE
-LOADLIBRARY
-FREELIBRARY
-
-Memory Manager:
-GlobalAlloc
-GlobalCompact
-GlobalDiscard
-GlobalFree
-GlobalLock
-GlobalReAlloc
-GlobalSize
-GlobalUnlock
-GlobalFlags
-LocalAlloc
-LocalCompact
-LocalDiscard
-LocalFree
-LocalLock
-LocalFreeze
-LocalMelt
-LocalReAlloc
-LocalSize
-LocalUnlock
-LocalHandleDelta
-LockData
-UnlockData
-LocalFlags
-
-Task Scheduler:
-GetCurrentTask
-Yield
-SetPriority
-
-Resource Manager:
-AddFontResource
-RemoveFontResource
-LoadBitmap
-LoadCursor
-LoadIcon
-LoadMenu
-LoadString
-LoadAccelerators
-FindResource
-LoadResource
-AllocResource
-LockResource
-FreeResource
-AccessResource
-SizeofResource
-SetResourceHandler
-
-String Translation:
-AnsiUpper
-AnsiLower
-AnsiNext
-AnsiPrev
-
-Atom Manager:
-InitAtomTable
-AddAtom
-DeleteAtom
-FindAtom
-GetAtomName
-
-Windows Initialization File:
-GetProfilelnt
-GetProfileString
-WriteProfileString
-
-Debugging:
-FatalExit
-
-File I/O:
-OpenFile
-GetTempFileName
-GetTempDrive
+^ Group ^ Functions ^
+^ Module manager | GETVERSION GETMODULEHANDLE GETMODULEUSAGE GETMODULEFILENAME GETPROCADDRESS MAKEPROCINSTANCE FREEPROCINSTANCE GETINSTANCEDATA CATCH THROW GETCODEHANDLE LOADLIBRARY |FREELIBRARY
+^ Memory Manager | GlobalAlloc GlobalCompact GlobalDiscard GlobalFree GlobalLock GlobalReAlloc GlobalSize GlobalUnlock GlobalFlags LocalAlloc LocalCompact LocalDiscard LocalFree LocalLock LocalFreeze LocalMelt LocalReAlloc LocalSize LocalUnlock LocalHandleDelta LockData  UnlockData LocalFlags |
+^ Task Scheduler | GetCurrentTask Yield SetPriority |
+^ Resource Manager | AddFontResource RemoveFontResource LoadBitmap LoadCursor LoadIcon LoadMenu LoadString LoadAccelerators FindResource LoadResource AllocResource LockResource FreeResource AccessResource SizeofResource SetResourceHandler |
+^ String Translation | AnsiUpper AnsiLower AnsiNext AnsiPrev |
+^ Atom Manager | InitAtomTable AddAtom DeleteAtom FindAtom GetAtomName |
+^ Windows Initialization File | GetProfileInt GetProfileString WriteProfileString |
+^ Debugging | FatalExit |
+^ File I/O | OpenFile GetTempFileName GetTempDrive |
