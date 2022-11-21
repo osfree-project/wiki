@@ -14,13 +14,13 @@
 | ::: | T | 80x25 | 8x14 | 640x350 | 16gray | 8 | B800 | EGA |
 | ::: | T | 80x25 | 8x16 | 640x400 | 16 | 8 | B800 | MCGA |
 | ::: | T | 80x25 | 9x16 | 720x400 | 16 | 8 | B800 | VGA |
- 03h = T  80x25	 8x8   640x200	 16	  4   B800 CGA,PCjr,Tandy
-     = T  80x25	 8x14  640x350	 16/64	  8   B800 EGA
-     = T  80x25	 8x16  640x400	 16	  8   B800 MCGA
-     = T  80x25	 9x16  720x400	 16	  8   B800 VGA
-     = T  80x43	 8x8   640x350	 16	  4   B800 EGA,VGA [17]
-     = T  80x50	 8x8   640x400	 16	  4   B800 VGA [17]
- 04h = G  40x25	 8x8   320x200	  4	  .   B800 CGA,PCjr,EGA,MCGA,VGA
+| 03h | T | 80x25 | 8x8 | 640x200 | 16 | 4 | B800 | CGA,PCjr,Tandy |
+| ::: | T | 80x25 | 8x14 | 640x350 | 16/64 | 8 | B800 | EGA |
+| ::: | T | 80x25 | 8x16 | 640x400 | 16 | 8 | B800 | MCGA |
+| ::: | T | 80x25 | 9x16 | 720x400 | 16 | 8 | B800 | VGA |
+| ::: | T | 80x43 | 8x8 | 640x350 | 16 | 4 | B800 | EGA,VGA [17] |
+| ::: | T | 80x50 | 8x8 | 640x400 | 16 | 4 | B800 | VGA [17] |
+| 04h | G | 40x25 | 8x8 | 320x200 | 4 | . | B800 | CGA,PCjr,EGA,MCGA,VGA |
  05h = G  40x25	 8x8   320x200	 4gray	  .   B800 CGA,PCjr,EGA
      = G  40x25	 8x8   320x200	  4	  .   B800 MCGA,VGA
  06h = G  80x25	 8x8   640x200	  2	  .   B800 CGA,PCjr,EGA,MCGA,VGA
