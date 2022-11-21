@@ -26,6 +26,8 @@ Set Cursor Size
 
 ===== Return =====
 
+none
+
 ===== Notes =====
 
   * buggy on EGA systems--BIOS remaps cursor shape in 43 line modes, but returns unmapped cursor shape
