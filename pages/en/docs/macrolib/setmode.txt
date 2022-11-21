@@ -31,6 +31,14 @@ Set the current video mode
 
 ===== Return =====
 
-None
+  * AL = video mode flag (Phoenix, AMI BIOS)
+    * 20h mode > 7
+    * 30h modes 0-5 and 7
+    * 3Fh mode 6
+  * AL = CRT controller mode byte (Phoenix 386 BIOS v1.10)
+
+===== Notes =====
+
+IBM standard modes do not clear the screen if the high bit of AL is set (EGA or higher only)
 
 {{page>en:templates:biosapi}}
