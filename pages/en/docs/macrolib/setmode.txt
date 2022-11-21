@@ -27,7 +27,7 @@ Set the current video mode
 
 ===== Parameters =====
 
-  * mode (BYTE) - mode
+  * mode (BYTE) - [[en:docs:bios:api:int10:modes|Mode]]
 
 ===== Return =====
 

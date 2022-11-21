@@ -21,7 +21,7 @@ Specify the display mode for the currently active display adapter
 ===== Input =====
 
   * AH = 00h
-  * AL = Mode
+  * AL = [[en:docs:bios:api:int10:modes|Mode]]
 
 ===== Return =====
 
