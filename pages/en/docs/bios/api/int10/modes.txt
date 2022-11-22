@@ -196,27 +196,27 @@
 | ::: | G | . | . | 720x512 | 256 | . | . | Genoa |
 | ::: | G | 80x25 | 8x16 | 640x400 | 256/256K | 1 | A000 | Tseng ET4000 chipset |
 | ::: | G | . | . | 1024x768 | 4 | . | . | Avance Logic AL2101 |
- 30h = G  80x30	 8x16  640x480	256	  .	.  C&T 64310/65530 BIOS
-     = G    .	  .	  .	  .	  .   B800 AT&T 6300
-     = G    .	  .    720x350	  2	  .	.  3270 PC
-     = G    .	  .    800x600	256	  .	.  VEGA VGA
-     = G 100x37	 8x16  800x600 256/256K	  .   A000 Orchid
-     = G    .	  .    800x600 256/256K	  .   A000 STB,Genoa,Sigma
-     = G    .	  .    800x600	256	  .	.  Cardinal
-     = G 100x37	 8x16  800x600 256/256K	  1   A000 Tseng ET3000/4000 chipset
-     = G    .	  .   1024x768	 16	  .	.  Avance Logic AL2101
- 31h = G    .	  .   1024x768	256	  .	.  Avance Logic AL2101
- 32h = T  80x34	 8x10	  .	 16	  4   B800 Ahead B (Wizard/3270)
-     = G    .	  .    640x480	256	  .	.  Compaq QVision 1024/1280
-     = G 100x37	 8x16  800x600	256	  .	.  C&T 64310/65530 BIOS
- 33h = T 132x44	 8x8	  .	 16	  .   B800 ATI EGA Wonder,ATI VIP
-     = T  80x34	 8x8	  .	 16	  4   B800 Ahead B (Wizard/3270)
- 34h = T  80x66	 8x8	  .	 16	  4   B800 Ahead B (Wizard/3270)
-     = G    .	  .    800x600	256	  .	.  Compaq QVision 1024/1280
-     = G 128x48	 8x16 1024x768	256	  .	.  Chips&Technologies 64310
- 36h = G    .	  .    960x720	 16	  .	.  VEGA VGA, STB
-     = G    .	  .    960x720	 16	  .   A000 Tseng ET3000 only
-     = G    .	  .   1280x1024	 16	  .	.  Avance Logic AL2101
+| 30h | G | 80x30 | 8x16 | 640x480 | 256 | . | . | C&T 64310/65530 BIOS |
+| ::: | G | . | . | . | . | . | B800 | AT&T 6300 |
+| ::: | G | . | . | 720x350 | 2 | . | . | 3270 PC |
+| ::: | G | . | . | 800x600 | 256 | . | . | VEGA VGA |
+| ::: | G | 100x37 | 8x16 | 800x600 | 256/256K | . | A000 | Orchid |
+| ::: | G | . | . | 800x600 | 256/256K | . | A000 | STB,Genoa,Sigma |
+| ::: | G | . | . | 800x600 | 256 | . | . | Cardinal |
+| ::: | G | 100x37 | 8x16 | 800x600 | 256/256K | 1 | A000 | Tseng ET3000/4000 chipset |
+| ::: | G | . | . | 1024x768 | 16 | . | . | Avance Logic AL2101 |
+| 31h | G | . | . | 1024x768 | 256 | . | . | Avance Logic AL2101 |
+| 32h | T | 80x34 | 8x10 | . | 16 | 4 | B800 | Ahead B (Wizard/3270) |
+| ::: | G | . | . | 640x480 | 256 | . | . | Compaq QVision 1024/1280 |
+| ::: | G | 100x37 | 8x16 | 800x600 | 256 | . | . | C&T 64310/65530 BIOS |
+| 33h | T | 132x44 | 8x8 | . | 16 | . | B800 | ATI EGA Wonder,ATI VIP |
+| ::: | T | 80x34 | 8x8 | . | 16 | 4 | B800 | Ahead B (Wizard/3270) |
+| 34h | T | 80x66 | 8x8 | . | 16 | 4 | B800 | Ahead B (Wizard/3270) |
+| ::: | G | . | . | 800x600 | 256 | . | . | Compaq QVision 1024/1280 |
+| ::: | G | 128x48 | 8x16 | 1024x768 | 256 | . | . | Chips&Technologies 64310 |
+| 36h | G | . | . | 960x720 | 16 | . | . | VEGA VGA, STB |
+| ::: | G | . | . | 960x720 | 16 | . | A000 | Tseng ET3000 only |
+| ::: | G | . | . | 1280x1024 | 16 | . | . | Avance Logic AL2101 |
  37h = T 132x44	 8x8	  .	mono	  .   B800 ATI EGA Wonder,ATI VIP
      = G    .	  .   1024x768	 16	  .	.  VEGA VGA
      = G 128x48	 8x16 1024x768	 16	  .   A000 Orchid
