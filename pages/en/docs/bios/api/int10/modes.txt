@@ -34,10 +34,10 @@
 | ::: | G | 90x43 | 8x8 | 720x348 | mono | . | B000 | Hercules + MSHERC.COM |
 | ::: | G | 90x45 | 8x8 | 720x360 | mono | . | B000 | Hercules + HERKULES [11] |
 | ::: | G | 90x29 | 8x12 | 720x348 | mono | . | . | Hercules + HERCBIOS [15] |
- 09h = G  40x25	 8x8   320x200	 16	  .	.  PCjr, Tandy 1000
-     = G  80x25	 8x16  640x400	mono	  .	.  Tandy 2000
-     = G  90x43	 8x8   720x348	mono	  .	.  Hercules + HERCBIOS [15]
- 0Ah = G  80x25	 8x8   640x200	  4	  .	.  PCjr, Tandy 1000
+| 09h | G | 40x25 | 8x8 | 320x200 | 16 | . | . | PCjr, Tandy 1000 |
+| ::: | G | 80x25 | 8x16 | 640x400 | mono | . | . | Tandy 2000 |
+| ::: | G | 90x43 | 8x8 | 720x348 | mono | . | . | Hercules + HERCBIOS [15] |
+| 0Ah | G | 80x25 | 8x8 | 640x200 | 4 | . | . | PCjr, Tandy 1000 |
  0Bh =	 reserved				   (EGA BIOS internal use)
      = G  80x25	 8x8   640x200	 16	  .	.  Tandy 1000 SL/TL [13]
  0Ch =	 reserved				   (EGA BIOS internal use)
