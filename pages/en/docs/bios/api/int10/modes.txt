@@ -273,15 +273,15 @@
 | ::: | G | . | . | 640x400 | 64K | . | . | Avance Logic AL2101 |
 | ::: | G | 80x25 | . | 720x348 | mono | . | B800 | Genoa SuperEGA BIOS 3.0+ |
 | ::: | G | 100x37 | 8x16 | 800x600 | 32K | . | . | Chips&Technologies 64310 |
- 43h = T  80x60	  .	  .	  .	  .	.  VEGA VGA
-     = T  80x60	  .	  .	  .	  .	.  Tatung VGA
-     = T  80x60	  .	  .	  .	  .	.  Video7 V-RAM VGA
-     = T  80x45	 9x8	  .	  4	  4   B800 Ahead B (Wizard/3270)
-     = T 100x75	  .	  .	 16	  .	.  MORSE VGA
-     = T  80x29	  .    720x348	mono	  .	.  Genoa SuperEGA BIOS 3.0+
-     = G    .	  . 640x200 of 640x400 viewport	   AT&T 6300 (unsupported)
-     = G    .	  .    640x480	 64K	  .	.  Avance Logic AL2101
-     = G 100x37	 8x16  800x600	 64K	  .	.  Chips&Technologies 64310
+| 43h | T | 80x60 | . | . | . | . | . | VEGA VGA |
+| ::: | T | 80x60 | . | . | . | . | . | Tatung VGA |
+| ::: | T | 80x60 | . | . | . | . | . | Video7 V-RAM VGA |
+| ::: | T | 80x45 | 9x8 | . | 4 | 4 | B800 | Ahead B (Wizard/3270) |
+| ::: | T | 100x75 | . | . | 16 | . | . | MORSE VGA |
+| ::: | T | 80x29 | . | 720x348 | mono | . | . | Genoa SuperEGA BIOS 3.0+ |
+| ::: | G | . | . | 640x200 of 640x400 viewport | | | | AT&T 6300 (unsupported)
+| ::: | G | . | . | 640x480 | 64K | . | . | Avance Logic AL2101 |
+| ::: | G | 100x37 | 8x16 | 800x600 | 64K | . | . | Chips&Technologies 64310 |
  44h =	disable VDC and DEB output		.  AT&T 6300
      = T 100x60	  .	  .	  .	  .	.  VEGA VGA
      = T 100x60	  .	  .	  .	  .	.  Tatung VGA
