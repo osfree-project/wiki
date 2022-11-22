@@ -58,61 +58,61 @@
 | 15h | G | 80x25 | 8x14 | 640x350 | . | . | . | Lava Chrome II EGA |
 | 16h | G | 80x25 | 8x14 | 640x350 | . | . | . | Lava Chrome II EGA |
 | ::: | G | . | . | 800x600 | 16 | . | . | Tecmar VGA/AD |
- 17h = T 132x25	  .	  .	  .	  .	.  Tecmar VGA/AD
-     = T  80x43	 8x8   640x348	 16	  4   B800 Tseng ET4000 BIOS [10]
-     = G  80x34	 8x14  640x480	  .	  .	.  Lava Chrome II EGA
- 18h = T  80x30	 9x16  720x480	 16	  1   A000 Realtek RTVGA [12]
-     = T 132x25	  .	  .	mono	  .   B000 Cirrus 5320 chipset
-     = T 132x44	 8x8  1056x352	mono	  .   B000 Tseng Labs EVA
-     = T 132x44	 9x8  1188x352	 4gray	  2   B000 Tseng ET3000 chipset
-     = T 132x44	 8x8  1056x352	 16/256	  2   B000 Tseng ET4000 chipset
-     = G  80x34	 8x14  640x480	  .	  .	.  Lava Chrome II EGA
-     = G	      1024x768	 16	  .	.  Tecmar VGA/AD
- 19h = T  80x43	 9x11  720x473	 16	  1   A000 Realtek RTVGA [12]
-     = T 132x25	 8x14 1056x350	mono	  .   B000 Tseng Labs EVA
-     = T 132x25	 9x14 1188x350	 4gray	  4   B000 Tseng ET3000 chipset
-     = T 132x25	 8x14 1056x350	 16/256	  4   B000 Tseng ET4000 chipset
-     = T 132x34	  .	  .	mono	  .   B000 Cirrus 5320 chipset
- 1Ah = T  80x60	 9x8   720x480	 16	  1   A000 Realtek RTVGA [12]
-     = T 132x28	 8x13 1056x364	mono	  .   B000 Tseng Labs EVA
-     = T 132x28	 9x13 1188x364	 4gray	  4   B000 Tseng ET3000 chipset
-     = T 132x28	 8x13 1056x364	 16/256	  4   B000 Tseng ET4000 chipset
-     = T 132x44	  .	  .	mono	  .   B000 Cirrus 5320 chipset
-     = G    .	  .    640x350	256	  .	.  Tecmar VGA/AD
- 1Bh = T 132x25	 9x14 1188x350	 16	  1   A000 Realtek RTVGA [12]
-     = G    .	  .    640x400	256	  .	.  Tecmar VGA/AD
- 1Ch = T 132x25	  .	  .	  .	  .	.  Cirrus 5320 chipset
-     = T 132x30	 9x16 1188x480	 16	  1   A000 Realtek RTVGA [12]
-     = G    .	  .    640x480	256	  .	.  Tecmar VGA/AD
- 1Dh = T 132x43	  .	  .	  .	  .	.  Cirrus 5320 chipset
-     = T 132x43	 9x11 1188x473	 16	  1   A000 Realtek RTVGA [12]
-     = G    .	  .    800x600	256	  .	.  Tecmar VGA/AD
- 1Eh = T 132x44	  .	  .	  .	  .	.  Cirrus 5320 chipset
-     = T 132x60	 9x8  1188x480	 16	  1   A000 Realtek RTVGA [12]
- 1Fh = G 100x75	 8x8   800x600	 16	  1   A000 Realtek RTVGA
- 20h = T 132x25	  .	  .	 16	  .	.  Avance Logic AL2101
-     = G  40x16	  .    240x128	mono	  .   B000 HP 95LX/100LX/200LX
-     = G  80x30	 8x16  640x480	 16	  .	.  C&T 64310/65530 BIOS
-     = G 120x45	 8x16  960x720	 16	  1   A000 Realtek RTVGA
- 21h = T  80x25	  .	  .	mono	  .   B000 HP 200LX
-     = T 132x30	  .	  .	 16	  .	.  Avance Logic AL2101
-     = T 132x44	 9x9  1188x396	 16/256K  .   B800 WD90C
-     = T 132x44	 9x9  1188x396	 16	  .   B800 Diamond Speedstar 24X
-     = T 132x60	  .	  .	 16	  2   B800 Tseng ET4000 chipset [10]
-     = G  80x43	 8x8   720x348	mono	  .   B000 DESQview 2.x+Hercules [4]
-     = G 128x48	 8x16 1024x768	 16	  1   A000 Realtek RTVGA [12]
- 22h = T 132x43	  .	  .	  .	  .	.  Allstar Peacock (VGA)
-     = T 132x43	  .	  .	 16	  .	.  Avance Logic AL2101
-     = T 132x44	 8x8  1056x352	  .	  .   B800 Tseng Labs EVA
-     = T 132x44	 9x8  1188x352	 16/256K  2   B800 Tseng ET3000 chipset
-     = T 132x44	 8x8  1056x352	 16/256K  2   B800 Tseng ET4000 chipset
-     = T 132x44	 8x8  1056x352	  .	  .	.  Ahead Systems EGA2001
-     = T 132x44	 8x8  1056x352	 16	  2   B800 Ahead B
-     = T 132x44	 8x9  1056x398	 16	  .	.  STB Lightspeed ET4000/W32P
-     = T 132x44	  .	  .	 16	  .	.  Orchid Prodesigner VGA
-     = G  80x43	 8x8   720x348	mono	  .   B800 DESQview 2.x+Hercules [4]
-     = G  96x64	 8x16  768x1024	 16	  1   A000 Realtek RTVGA
-     = G 100x37	 8x16  800x600	 16	  .	.  C&T 64310/65530 BIOS
+| 17h | T | 132x25 | . | . | . | . | . | Tecmar VGA/AD |
+| ::: | T | 80x43 | 8x8 | 640x348 | 16 | 4 | B800 | Tseng ET4000 BIOS [10] |
+| ::: | G | 80x34 | 8x14 | 640x480 | . | . | . | Lava Chrome II EGA |
+| 18h | T | 80x30 | 9x16 | 720x480 | 16 | 1 | A000 | Realtek RTVGA [12] |
+| ::: | T | 132x25 | . | . | mono | . | B000 | Cirrus 5320 chipset |
+| ::: | T | 132x44 | 8x8 | 1056x352 | mono | . | B000 | Tseng Labs EVA |
+| ::: | T | 132x44 | 9x8 | 1188x352 | 4gray | 2 | B000 | Tseng ET3000 chipset |
+| ::: | T | 132x44 | 8x8 | 1056x352 | 16/256 | 2 | B000 | Tseng ET4000 chipset |
+| ::: | G | 80x34 | 8x14 | 640x480 | . | . | . | Lava Chrome II EGA |
+| ::: | G | 1024x768 | 16 | . | . | Tecmar VGA/AD |
+| 19h | T | 80x43 | 9x11 | 720x473 | 16 | 1 | A000 | Realtek RTVGA [12] |
+| ::: | T | 132x25 | 8x14 | 1056x350 | mono | . | B000 | Tseng Labs EVA |
+| ::: | T | 132x25 | 9x14 | 1188x350 | 4gray | 4 | B000 | Tseng ET3000 chipset |
+| ::: | T | 132x25 | 8x14 | 1056x350 | 16/256 | 4 | B000 | Tseng ET4000 chipset |
+| ::: | T | 132x34 | . | . | mono | . | B000 | Cirrus 5320 chipset |
+| 1Ah | T | 80x60 | 9x8 | 720x480 | 16 | 1 | A000 | Realtek RTVGA [12] |
+| ::: | T | 132x28 | 8x13 | 1056x364 | mono | . | B000 | Tseng Labs EVA |
+| ::: | T | 132x28 | 9x13 | 1188x364 | 4gray | 4 | B000 | Tseng ET3000 chipset |
+| ::: | T | 132x28 | 8x13 | 1056x364 | 16/256 | 4 | B000 | Tseng ET4000 chipset |
+| ::: | T | 132x44 | . | . | mono | . | B000 | Cirrus 5320 chipset |
+| ::: | G | . | . | 640x350 | 256 | . | . | Tecmar VGA/AD |
+| 1Bh | T | 132x25 | 9x14 | 1188x350 | 16 | 1 | A000 Realtek RTVGA [12] |
+| ::: | G | . | . | 640x400 | 256 | . | . | Tecmar VGA/AD |
+| 1Ch | T | 132x25 | . | . | . | . | . | Cirrus 5320 chipset |
+| ::: | T | 132x30 | 9x16 | 1188x480 | 16 | 1 | A000 | Realtek RTVGA [12] |
+| ::: | G | . | . | 640x480 | 256 | . | . | Tecmar VGA/AD |
+| 1Dh | T | 132x43 | . | . | . | . | . | Cirrus 5320 chipset |
+| ::: | T | 132x43 | 9x11 | 1188x473 | 16 | 1 | A000 | Realtek RTVGA [12] |
+| ::: | G | . | . | 800x600 | 256 | . | . | Tecmar VGA/AD |
+| 1Eh | T | 132x44 | . | . | . | . | . | Cirrus 5320 chipset |
+| ::: | T | 132x60 | 9x8 | 1188x480 | 16 | 1 | A000 Realtek RTVGA [12] |
+| 1Fh | G | 100x75 | 8x8 | 800x600 | 16 | 1 | A000 | Realtek RTVGA |
+| 20h | T | 132x25 | . | . | 16 | . | . | Avance Logic AL2101 |
+| ::: | G | 40x16 | . | 240x128 | mono | . | B000 | HP 95LX/100LX/200LX |
+| ::: | G | 80x30 | 8x16 | 640x480 | 16 | . | . | C&T 64310/65530 BIOS |
+| ::: | G | 120x45 | 8x16 | 960x720 | 16 | 1 | A000 | Realtek RTVGA |
+| 21h | T | 80x25 | . | . | mono | . | B000 | HP 200LX |
+| ::: | T | 132x30 | . | . | 16 | . | . | Avance Logic AL2101 |
+| ::: | T | 132x44 | 9x9 | 1188x396 | 16/256K | . | B800 | WD90C |
+| ::: | T | 132x44 | 9x9 | 1188x396 | 16 | . | B800 | Diamond Speedstar 24X |
+| ::: | T | 132x60 | . | . | 16 | 2 | B800 | Tseng ET4000 chipset [10] |
+| ::: | G | 80x43 | 8x8 | 720x348 | mono | . | B000 | DESQview 2.x+Hercules [4] |
+| ::: | G | 128x48 | 8x16 | 1024x768 | 16 | 1 | A000 | Realtek RTVGA [12] |
+| 22h | T | 132x43 | . | . | . | . | . | Allstar Peacock (VGA) |
+| ::: | T | 132x43 | . | . | 16 | . | . | Avance Logic AL2101 |
+| ::: | T | 132x44 | 8x8 | 1056x352 | . | . | B800 | Tseng Labs EVA |
+| ::: | T | 132x44 | 9x8 | 1188x352 | 16/256K | 2 | B800 | Tseng ET3000 chipset |
+| ::: | T | 132x44 | 8x8 | 1056x352 | 16/256K | 2 | B800 | Tseng ET4000 chipset |
+| ::: | T | 132x44 | 8x8 | 1056x352 | . | . | . | Ahead Systems EGA2001 |
+| ::: | T | 132x44 | 8x8 | 1056x352 | 16 | 2 | B800 | Ahead B |
+| ::: | T | 132x44 | 8x9 | 1056x398 | 16 | . | . | STB Lightspeed ET4000/W32P |
+| ::: | T | 132x44 | . | . | 16 | . | . | Orchid Prodesigner VGA |
+| ::: | G | 80x43 | 8x8 | 720x348	mono	  .   B800 DESQview 2.x+Hercules [4]
+| ::: | G | 96x64 | 8x16 | 768x1024 | 16 | 1 | A000 | Realtek RTVGA |
+| ::: | G | 100x37 | 8x16 | 800x600 | 16 | . | . | C&T 64310/65530 BIOS | 
  23h = T 132x25	 6x14  792x350	  .	  .   B800 Tseng Labs EVA
      = T 132x25	 9x14 1188x350	 16/256K  4   B800 Tseng ET3000 chipset
      = T 132x25	 8x14 1056x350	 16/256	  4   B800 Tseng ET4000 chipset
