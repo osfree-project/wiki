@@ -38,26 +38,26 @@
 | ::: | G | 80x25 | 8x16 | 640x400 | mono | . | . | Tandy 2000 |
 | ::: | G | 90x43 | 8x8 | 720x348 | mono | . | . | Hercules + HERCBIOS [15] |
 | 0Ah | G | 80x25 | 8x8 | 640x200 | 4 | . | . | PCjr, Tandy 1000 |
- 0Bh =	 reserved				   (EGA BIOS internal use)
-     = G  80x25	 8x8   640x200	 16	  .	.  Tandy 1000 SL/TL [13]
- 0Ch =	 reserved				   (EGA BIOS internal use)
- 0Dh = G  40x25	 8x8   320x200	 16	  8   A000 EGA,VGA
- 0Eh = G  80x25	 8x8   640x200	 16	  4   A000 EGA,VGA
- 0Fh = G  80x25	 8x14  640x350	mono	  2   A000 EGA,VGA
- 10h = G  80x25	 8x14  640x350	  4	  2   A000 64k EGA
-     = G    .	  .    640x350	 16	  .   A000 256k EGA,VGA
- 11h = G  80x30	 8x16  640x480	mono	  .   A000 VGA,MCGA,ATI EGA,ATI VIP
- 12h = G  80x30	 8x16  640x480	 16/256K  .   A000 VGA,ATI VIP
-     = G  80x30	 8x16  640x480	 16/64	  .   A000 ATI EGA Wonder
-     = G    .	  .    640x480	 16	  .	.  UltraVision+256K EGA
- 13h = G  40x25	 8x8   320x200	256/256K  .   A000 VGA,MCGA,ATI VIP
- 14h = T 132x25	 Nx16	  .	 16	  .   B800 XGA, IBM Enhanced VGA [3]
-     = T 132x25	 8x16 1056x400	 16/256K  .	.  Cirrus CL-GD5420/5422/5426
-     = G  80x25	 8x8   640x200	  .	  .	.  Lava Chrome II EGA
-     = G    .	  .    640x400	 16	  .	.  Tecmar VGA/AD
- 15h = G  80x25	 8x14  640x350	  .	  .	.  Lava Chrome II EGA
- 16h = G  80x25	 8x14  640x350	  .	  .	.  Lava Chrome II EGA
-     = G    .	  .    800x600	 16	  .	.  Tecmar VGA/AD
+| 0Bh | reserved |  |  |  |  |  |  | (EGA BIOS internal use) |
+| ::: | G | 80x25 | 8x8 | 640x200 | 16 | . | . | Tandy 1000 SL/TL [13] |
+| 0Ch | reserved |  |  |  |  |  |  | (EGA BIOS internal use) |
+| 0Dh | G | 40x25 | 8x8 | 320x200 | 16 | 8 | A000 | EGA,VGA |
+| 0Eh | G | 80x25 | 8x8 | 640x200 | 16 | 4 | A000 | EGA,VGA |
+| 0Fh | G | 80x25 | 8x14 | 640x350 | mono | 2 | A000 | EGA,VGA |
+| 10h | G | 80x25 | 8x14 | 640x350 | 4 | 2 | A000 | 64k EGA |
+| ::: | G | . | . | 640x350 | 16 | . | A000 | 256k EGA,VGA |
+| 11h | G | 80x30 | 8x16 | 640x480 | mono | . | A000 | VGA,MCGA,ATI EGA,ATI VIP |
+| 12h | G | 80x30 | 8x16 | 640x480 | 16/256K | . | A000 | VGA,ATI VIP |
+| ::: | G | 80x30 | 8x16 | 640x480 | 16/64 | . | A000 | ATI EGA Wonder |
+| ::: | G | . | . | 640x480 | 16 | . | . | UltraVision+256K EGA |
+| 13h | G | 40x25 | 8x8 | 320x200 | 256/256K | . | A000 | VGA,MCGA,ATI VIP |
+| 14h | T | 132x25 | Nx16 | . | 16 | . | B800 | XGA, IBM Enhanced VGA [3] |
+| ::: | T | 132x25 | 8x16 | 1056x400 | 16/256K | . | . | Cirrus CL-GD5420/5422/5426 |
+| ::: | G | 80x25 | 8x8 | 640x200 | . | . | . | Lava Chrome II EGA |
+| ::: | G | . | . | 640x400 | 16 | . | . | Tecmar VGA/AD |
+| 15h | G | 80x25 | 8x14 | 640x350 | . | . | . | Lava Chrome II EGA |
+| 16h | G | 80x25 | 8x14 | 640x350 | . | . | . | Lava Chrome II EGA |
+| ::: | G | . | . | 800x600 | 16 | . | . | Tecmar VGA/AD |
  17h = T 132x25	  .	  .	  .	  .	.  Tecmar VGA/AD
      = T  80x43	 8x8   640x348	 16	  4   B800 Tseng ET4000 BIOS [10]
      = G  80x34	 8x14  640x480	  .	  .	.  Lava Chrome II EGA
