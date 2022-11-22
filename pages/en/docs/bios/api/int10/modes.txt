@@ -67,7 +67,7 @@
 | ::: | T | 132x44 | 9x8 | 1188x352 | 4gray | 2 | B000 | Tseng ET3000 chipset |
 | ::: | T | 132x44 | 8x8 | 1056x352 | 16/256 | 2 | B000 | Tseng ET4000 chipset |
 | ::: | G | 80x34 | 8x14 | 640x480 | . | . | . | Lava Chrome II EGA |
-| ::: | G | 1024x768 | 16 | . | . | Tecmar VGA/AD |
+| ::: | G | . | . | 1024x768 | 16 | . | . | Tecmar VGA/AD |
 | 19h | T | 80x43 | 9x11 | 720x473 | 16 | 1 | A000 | Realtek RTVGA [12] |
 | ::: | T | 132x25 | 8x14 | 1056x350 | mono | . | B000 | Tseng Labs EVA |
 | ::: | T | 132x25 | 9x14 | 1188x350 | 4gray | 4 | B000 | Tseng ET3000 chipset |
@@ -79,7 +79,7 @@
 | ::: | T | 132x28 | 8x13 | 1056x364 | 16/256 | 4 | B000 | Tseng ET4000 chipset |
 | ::: | T | 132x44 | . | . | mono | . | B000 | Cirrus 5320 chipset |
 | ::: | G | . | . | 640x350 | 256 | . | . | Tecmar VGA/AD |
-| 1Bh | T | 132x25 | 9x14 | 1188x350 | 16 | 1 | A000 Realtek RTVGA [12] |
+| 1Bh | T | 132x25 | 9x14 | 1188x350 | 16 | 1 | A000 | Realtek RTVGA [12] |
 | ::: | G | . | . | 640x400 | 256 | . | . | Tecmar VGA/AD |
 | 1Ch | T | 132x25 | . | . | . | . | . | Cirrus 5320 chipset |
 | ::: | T | 132x30 | 9x16 | 1188x480 | 16 | 1 | A000 | Realtek RTVGA [12] |
@@ -88,7 +88,7 @@
 | ::: | T | 132x43 | 9x11 | 1188x473 | 16 | 1 | A000 | Realtek RTVGA [12] |
 | ::: | G | . | . | 800x600 | 256 | . | . | Tecmar VGA/AD |
 | 1Eh | T | 132x44 | . | . | . | . | . | Cirrus 5320 chipset |
-| ::: | T | 132x60 | 9x8 | 1188x480 | 16 | 1 | A000 Realtek RTVGA [12] |
+| ::: | T | 132x60 | 9x8 | 1188x480 | 16 | 1 | A000 | Realtek RTVGA [12] |
 | 1Fh | G | 100x75 | 8x8 | 800x600 | 16 | 1 | A000 | Realtek RTVGA |
 | 20h | T | 132x25 | . | . | 16 | . | . | Avance Logic AL2101 |
 | ::: | G | 40x16 | . | 240x128 | mono | . | B000 | HP 95LX/100LX/200LX |
@@ -113,54 +113,54 @@
 | ::: | G | 80x43 | 8x8 | 720x348	mono	  .   B800 DESQview 2.x+Hercules [4]
 | ::: | G | 96x64 | 8x16 | 768x1024 | 16 | 1 | A000 | Realtek RTVGA |
 | ::: | G | 100x37 | 8x16 | 800x600 | 16 | . | . | C&T 64310/65530 BIOS | 
- 23h = T 132x25	 6x14  792x350	  .	  .   B800 Tseng Labs EVA
-     = T 132x25	 9x14 1188x350	 16/256K  4   B800 Tseng ET3000 chipset
-     = T 132x25	 8x14 1056x350	 16/256	  4   B800 Tseng ET4000 chipset
-     = T 132x25	 8x14 1056x350	  .	  .	.  Ahead Systems EGA2001
-     = T 132x25	 8x14 1056x350	 16	  4   B800 Ahead B
-     = T 132x25	 8x8  1056x200	 16	  .   B800 ATI EGA Wonder,ATI VIP
-     = T 132x25	  .	  .	  .	  .	.  Cirrus 5320 chipset
-     = T 132x28	  .	  .	  .	  .	.  Allstar Peacock (VGA)
-     = T 132x28	  .	  .	 16	  .	.  Orchid Prodesigner VGA
-     = T 132x60	  .	  .	 16	  .	.  Avance Logic AL2101
-     = G 128x48	 8x16 1024x768	  4	  1   A000 Realtek RTVGA
- 24h = T  80x30	  .	  .	 16	  .	.  Avance Logic AL2101
-     = T 132x25	  .	  .	  .	  .	.  Allstar Peacock (VGA)
-     = T 132x25	  .	  .	 16	  .	.  Orchid Prodesigner VGA
-     = T 132x28	 6x13  792x364	  .	  .   B800 Tseng Labs EVA
-     = T 132x28	 9x13 1188x364	 16/256K  4   B800 Tseng ET3000 chipset
-     = T 132x28	 8x12 1056x336	 16	  1   B800 Ahead B
-     = T 132x28	 8x13 1056x364	 16/256K  4   B800 Tseng ET4000 chipset
-     = T 132x28	 8x14 1056x392	 16	  .	.  STB Lightspeed ET4000/W32P
-     = T 132x28	  .	  .	  .	  .	.  Cirrus 5320 chipset
-     = G  64x32	 8x16  512x512	256	  1   A000 Realtek RTVGA
-     = G 128x48	 8x16 1024x768	 16	  .	.  C&T 64310/65530 BIOS
- 25h = T  80x43	  .	  .	 16	  .	.  Avance Logic AL2101
-     = G  80x60	 8x8   640x480	  .	  .   A000 Tseng Labs EVA
-     = G  80x60	 8x8   640x480	 16/256K  1   A000 Tseng ET3000/4000 chipset
-     = G    .	  .    640x480	 16	  .	.  VEGA VGA
-     = G  80x60	 8x8   640x480	 16	  .   A000 Orchid Prodesigner VGA
-     = G  80x60	 8x8   640x480	 16	  1   A000 Ahead B (same as 26h)
-     = G    .	  .    640x480	 16	  .	.  NEC GB-1
-     = G    .	  .    640x480	 16	  .	.  Cirrus 5320 chipset
-     = G    .	  .    640x400	256	  .	.  Realtek RTVGA
- 26h = T  80x60	 8x8   640x480	  .	  .	.  Tseng Labs EVA
-     = T  80x60	 8x8   640x480	 16/256K  3   B800 Tseng ET3000/4000 chipset
-     = T  80x60	  .	  .	  .	  .	.  Allstar Peacock (VGA)
-     = T  80x60	  .	  .	 16	  .	.  Orchid ProDesigner VGA
-     = T  80x60	  .	  .	 16	  .	.  Avance Logic AL2101
-     = G  80x60	 8x8   640x480	  .	  .	.  Ahead Systems EGA2001
-     = G  80x60	 8x8   640x480	 16	  1   A000 Ahead B (same as 25h)
-     = G    .	  .    640x480	256	  .	.  Realtek RTVGA
- 27h = T 132x25	 8x8  1056x200	mono	  .   B000 ATI EGA Wonder,ATI VIP
-     = G    .	  .    720x512	 16	  .	.  VEGA VGA
-     = G    .	  .    720x512	 16	  .	.  Genoa
-     = G 100x75	 8x8   800x600	256	  1   A000 Realtek RTVGA [12]
-     = G    .	  .    960x720	 16	  .	.  Avance Logic AL2101
- 28h = T ???x???  .	  .	  .	  .	.  VEGA VGA
-     = G    .	  .    512x512	256	  .	.  Avance Logic AL2101
-     = G    .	  .   1024x768	256	  .	.  Realtek RTVGA (1meg)
-     = G 160x64	 8x16 1280x1024	 16	  .	.  Chips&Technologies 64310 [1]
+| 23h | T | 132x25 | 6x14 | 792x350 | . | . | B800 | Tseng Labs EVA |
+| ::: | T | 132x25 | 9x14 | 1188x350 | 16/256K | 4 | B800 | Tseng ET3000 chipset |
+| ::: | T | 132x25 | 8x14 | 1056x350 | 16/256 | 4 | B800 | Tseng ET4000 chipset |
+| ::: | T | 132x25 | 8x14 | 1056x350 | . | . | . | Ahead Systems EGA2001 |
+| ::: | T | 132x25 | 8x14 | 1056x350 | 16 | 4 | B800 | Ahead B |
+| ::: | T | 132x25 | 8x8 | 1056x200 | 16 | . | B800 | ATI EGA Wonder,ATI VIP |
+| ::: | T | 132x25 | . | . | . | . | . | Cirrus 5320 chipset |
+| ::: | T | 132x28 | . | . | . | . | . | Allstar Peacock (VGA) |
+| ::: | T | 132x28 | . | . | 16 | . | . | Orchid Prodesigner VGA |
+| ::: | T | 132x60 | . | . | 16 | . | . | Avance Logic AL2101 |
+| ::: | G | 128x48 | 8x16 | 1024x768 | 4 | 1 | A000 | Realtek RTVGA |
+| 24h | T | 80x30 | . | . | 16 | . | . | Avance Logic AL2101 |
+| ::: | T | 132x25 | . | . | . | . | . | Allstar Peacock (VGA) |
+| ::: | T | 132x25 | . | . | 16 | . | . | Orchid Prodesigner VGA |
+| ::: | T | 132x28 | 6x13 | 792x364 | . | . | B800 | Tseng Labs EVA |
+| ::: | T | 132x28 | 9x13 | 1188x364 | 16/256K | 4 | B800 | Tseng ET3000 chipset |
+| ::: | T | 132x28 | 8x12 | 1056x336 | 16 | 1 | B800 | Ahead B |
+| ::: | T | 132x28 | 8x13 | 1056x364 | 16/256K | 4 | B800 | Tseng ET4000 chipset |
+| ::: | T | 132x28 | 8x14 | 1056x392 | 16 | . | . | STB Lightspeed ET4000/W32P |
+| ::: | T | 132x28 | . | . | . | . | . | Cirrus 5320 chipset |
+| ::: | G | 64x32 | 8x16 | 512x512 | 256 | 1 | A000 | Realtek RTVGA |
+| ::: | G | 128x48 | 8x16 | 1024x768 | 16 | . | . | C&T 64310/65530 BIOS |
+| 25h | T | 80x43 | . | . | 16 | . | . | Avance Logic AL2101 |
+| ::: | G | 80x60 | 8x8 | 640x480 | . | . | A000 | Tseng Labs EVA |
+| ::: | G | 80x60 | 8x8 | 640x480 | 16/256K | 1 | A000 | Tseng ET3000/4000 chipset |
+| ::: | G | . | . | 640x480 | 16 | . | . | VEGA VGA |
+| ::: | G | 80x60 | 8x8 | 640x480 | 16 | . | A000 | Orchid Prodesigner VGA |
+| ::: | G | 80x60 | 8x8 | 640x480 | 16 | 1 | A000 | Ahead B (same as 26h) |
+| ::: | G | . | . | 640x480 | 16 | . | . | NEC GB-1 |
+| ::: | G | . | . | 640x480 | 16 | . | . | Cirrus 5320 chipset |
+| ::: | G | . | . | 640x400 | 256 | . | . | Realtek RTVGA |
+| 26h | T | 80x60 | 8x8 | 640x480 | . | . | . | Tseng Labs EVA |
+| ::: | T | 80x60 | 8x8 | 640x480 | 16/256K | 3 | B800 | Tseng ET3000/4000 chipset |
+| ::: | T | 80x60 | . | . | . | . | . | Allstar Peacock (VGA) |
+| ::: | T | 80x60 | . | . | 16 | . | . | Orchid ProDesigner VGA |
+| ::: | T | 80x60 | . | . | 16 | . | . | Avance Logic AL2101 |
+| ::: | G | 80x60 | 8x8 | 640x480 | . | . | . | Ahead Systems EGA2001 |
+| ::: | G | 80x60 | 8x8 | 640x480 | 16 | 1 | A000 | Ahead B (same as 25h) |
+| ::: | G | . | . | 640x480 | 256 | . | . | Realtek RTVGA |
+| 27h | T | 132x25 | 8x8 | 1056x200 | mono | . | B000 | ATI EGA Wonder,ATI VIP |
+| ::: | G | . | . | 720x512 | 16 | . | . | VEGA VGA |
+| ::: | G | . | . | 720x512 | 16 | . | . | Genoa |
+| ::: | G | 100x75 | 8x8 | 800x600 | 256 | 1 | A000 | Realtek RTVGA [12] |
+| ::: | G | . | . | 960x720 | 16 | . | . | Avance Logic AL2101 |
+| 28h | T | ???x??? | . | . | . | . | . | VEGA VGA |
+| ::: | G | . | . | 512x512 | 256 | . | . | Avance Logic AL2101 |
+| ::: | G | . | . | 1024x768 | 256 | . | . | Realtek RTVGA (1meg) |
+| ::: | G | 160x64 | 8x16 | 1280x1024 | 16 | . | . | Chips&Technologies 64310 [1] |
  29h = G    .	  .    640x400	256	  .	.  Avance Logic AL2101
      = G    .	  .    800x600	 16	  .	.  VEGA VGA
      = G 100x37	 8x16  800x600	 16	  .   A000 Orchid
