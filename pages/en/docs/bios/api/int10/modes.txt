@@ -263,16 +263,16 @@
 | ::: | G | . | . | 640x200 | 16 | 1 | . | AT&T 6300 |
 | ::: | G | 80x30 | 8x16 | 640x480 | 64K | . | . | Chips&Technologies 64310 |
 | ::: | G | 80x25 | . | 720x348 | mono | . | B000 | Genoa SuperEGA BIOS 3.0+ |
- 42h = T 132x43	  .	  .	  .	  .	.  VEGA VGA
-     = T 132x43	  .	  .	  .	  .	.  Tatung VGA
-     = T 132x43	  .	  .	  .	  .	.  Video7 V-RAM VGA
-     = T  80x34	 9x10	  .	  4	  4   B800 Ahead B (Wizard/3270)
-     = T 100x60	  .	  .	 16	  .	.  MORSE VGA
-     = T 100x60	  .	  .	  .	  .	.  Cirrus 510/520 chipset
-     = G  80x25	 8x16  640x400	 16	  .	.  AT&T 6300, AT&T VDC600
-     = G    .	  .    640x400	 64K	  .	.  Avance Logic AL2101
-     = G  80x25	  .    720x348	mono	  .   B800 Genoa SuperEGA BIOS 3.0+
-     = G 100x37	 8x16  800x600	 32K	  .	.  Chips&Technologies 64310
+| 42h | T | 132x43 | . | . | . | . | . | VEGA VGA |
+| ::: | T | 132x43 | . | . | . | . | . | Tatung VGA |
+| ::: | T | 132x43 | . | . | . | . | . | Video7 V-RAM VGA |
+| ::: | T | 80x34 | 9x10 | . | 4 | 4 | B800 | Ahead B (Wizard/3270) |
+| ::: | T | 100x60 | . | . | 16 | . | . | MORSE VGA |
+| ::: | T | 100x60 | . | . | . | . | . | Cirrus 510/520 chipset |
+| ::: | G | 80x25 | 8x16 | 640x400 | 16 | . | . | AT&T 6300, AT&T VDC600 |
+| ::: | G | . | . | 640x400 | 64K | . | . | Avance Logic AL2101 |
+| ::: | G | 80x25 | . | 720x348 | mono | . | B800 | Genoa SuperEGA BIOS 3.0+ |
+| ::: | G | 100x37 | 8x16 | 800x600 | 32K | . | . | Chips&Technologies 64310 |
  43h = T  80x60	  .	  .	  .	  .	.  VEGA VGA
      = T  80x60	  .	  .	  .	  .	.  Tatung VGA
      = T  80x60	  .	  .	  .	  .	.  Video7 V-RAM VGA
