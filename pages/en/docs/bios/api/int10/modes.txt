@@ -21,19 +21,19 @@
 | ::: | T | 80x43 | 8x8 | 640x350 | 16 | 4 | B800 | EGA,VGA [17] |
 | ::: | T | 80x50 | 8x8 | 640x400 | 16 | 4 | B800 | VGA [17] |
 | 04h | G | 40x25 | 8x8 | 320x200 | 4 | . | B800 | CGA,PCjr,EGA,MCGA,VGA |
- 05h = G  40x25	 8x8   320x200	 4gray	  .   B800 CGA,PCjr,EGA
-     = G  40x25	 8x8   320x200	  4	  .   B800 MCGA,VGA
- 06h = G  80x25	 8x8   640x200	  2	  .   B800 CGA,PCjr,EGA,MCGA,VGA
-     = G  80x25	  .	  .	mono	  .   B000 HERCULES.COM on HGC [14]
- 07h = T  80x25	 9x14  720x350	mono	 var  B000 MDA,Hercules,EGA
-     = T  80x25	 9x16  720x400	mono	  .   B000 VGA
- 08h = T 132x25	 8x8  1056x200	 16	  .   B800 ATI EGA/VGA Wonder [2]
-     = T 132x25	 8x8  1056x200	mono	  .   B000 ATI EGA/VGA Wonder [2]
-     = G  20x25	 8x8   160x200	 16	  .	.  PCjr, Tandy 1000
-     = G  80x25	 8x16  640x400	color	  .	.  Tandy 2000
-     = G  90x43	 8x8   720x348	mono	  .   B000 Hercules + MSHERC.COM
-     = G  90x45	 8x8   720x360	mono	  .   B000 Hercules + HERKULES [11]
-     = G  90x29	 8x12  720x348	mono	  .	.  Hercules + HERCBIOS [15]
+| 05h | G | 40x25 | 8x8 | 320x200 | 4gray | . | B800 | CGA,PCjr,EGA |
+| ::: | G | 40x25 | 8x8 | 320x200 | 4 | . | B800 | MCGA,VGA |
+| 06h | G | 80x25 | 8x8 | 640x200 | 2 | . | B800 | CGA,PCjr,EGA,MCGA,VGA |
+| ::: | G | 80x25 | . | . | mono | . | B000 | HERCULES.COM on HGC [14] |
+| 07h | T | 80x25 | 9x14 | 720x350 | mono | var | B000 | MDA,Hercules,EGA |
+| ::: | T | 80x25 | 9x16 | 720x400 | mono | . | B000 | VGA |
+| 08h | T | 132x25 | 8x8 | 1056x200 | 16 | . | B800 | ATI EGA/VGA Wonder [2] |
+| ::: | T | 132x25 | 8x8 | 1056x200 | mono | . | B000 | ATI EGA/VGA Wonder [2] |
+| ::: | G | 20x25 | 8x8 | 160x200 | 16 | . | . | PCjr, Tandy 1000 |
+| ::: | G | 80x25 | 8x16 | 640x400 | color | . | . | Tandy 2000 |
+| ::: | G | 90x43 | 8x8 | 720x348 | mono | . | B000 | Hercules + MSHERC.COM |
+| ::: | G | 90x45 | 8x8 | 720x360 | mono | . | B000 | Hercules + HERKULES [11] |
+| ::: | G | 90x29 | 8x12 | 720x348 | mono | . | . | Hercules + HERCBIOS [15] |
  09h = G  40x25	 8x8   320x200	 16	  .	.  PCjr, Tandy 1000
      = G  80x25	 8x16  640x400	mono	  .	.  Tandy 2000
      = G  90x43	 8x8   720x348	mono	  .	.  Hercules + HERCBIOS [15]
