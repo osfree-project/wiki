@@ -240,29 +240,29 @@
 | ::: | G | . | . | 640x480 | 64K | . | . | Compaq QVision 1024/1280 |
 | 3Fh | G | . | . | 1280x1024 | 256 | . | . | Hercules ??? (ET4000W32) |
 | ::: | G | . | . | 800x600 | 64K | . | . | Compaq QVision 1024/1280 |
- 40h = T  80x43	  .	  .	  .	  .	.  VEGA VGA, Tecmar VGA/AD
-     = T  80x43	  .	  .	  .	  .	.  Video7 V-RAM VGA
-     = T  80x43	  .	  .	  .	  .	.  Tatung VGA
-     = T 100x30	  .	  .	 16	  .	.  MORSE VGA
-     = T 100x30	  .	  .	  .	  .	.  Cirrus 510/520 chipset
-     = T  80x25	  .    720x350	mono	  .	.  Genoa SuperEGA BIOS 3.0+
-     = G    .	  .    320x200	 64K	  .	.  Avance Logic AL2101
-     = G  80x25	 8x16  640x400	  2	  1   B800 AT&T 6300, AT&T VDC600
-     = G  80x25	 8x16  640x400	  2	  1   B800 Olivetti Quaderno
-     = G  80x25	 8x16  640x400	  2	  1   B800 Compaq Portable
-     = G  80x30	 8x16  640x480	32K	  .	.  Chips&Technologies 64310
-     = G    .	  .   1024x768	 64K	  .	.  Compaq QVision 1280
- 41h = T 132x25	  .	  .	  .	  .	.  VEGA VGA
-     = T 132x25	  .	  .	  .	  .	.  Tatung VGA
-     = T 132x25	  .	  .	  .	  .	.  Video7 V-RAM VGA
-     = T 100x50	  .	  .	 16	  .	.  MORSE VGA
-     = T 100x50	  .	  .	  .	  .	.  Cirrus 510/520 chipset
-     = T  80x34	 9x14  720x476	 16/256K  .   B800 WD90C
-     = T  80x34	 9x14	  .	 16	  .   B800 Diamond Speedstar 24X
-     = G    .	  .    512x512	 64K	  .	.  Avance Logic AL2101
-     = G    .	  .    640x200	 16	  1	.  AT&T 6300
-     = G  80x30	 8x16  640x480	 64K	  .	.  Chips&Technologies 64310
-     = G  80x25	  .    720x348	mono	  .   B000 Genoa SuperEGA BIOS 3.0+
+| 40h | T | 80x43 | . | . | . | . | . | VEGA VGA, Tecmar VGA/AD |
+| ::: | T | 80x43 | . | . | . | . | . | Video7 V-RAM VGA |
+| ::: | T | 80x43 | . | . | . | . | . | Tatung VGA |
+| ::: | T | 100x30 | . | . | 16 | . | . | MORSE VGA |
+| ::: | T | 100x30 | . | . | . | . | . | Cirrus 510/520 chipset |
+| ::: | T | 80x25 | . | 720x350 | mono | . | . | Genoa SuperEGA BIOS 3.0+ |
+| ::: | G | . | . | 320x200 | 64K | . | . | Avance Logic AL2101 |
+| ::: | G | 80x25 | 8x16 | 640x400 | 2 | 1 | B800 | AT&T 6300, AT&T VDC600 |
+| ::: | G | 80x25 | 8x16 | 640x400 | 2 | 1 | B800 | Olivetti Quaderno |
+| ::: | G | 80x25 | 8x16 | 640x400 | 2 | 1 | B800 | Compaq Portable |
+| ::: | G | 80x30 | 8x16 | 640x480 | 32K | . | . | Chips&Technologies 64310 |
+| ::: | G | . | . | 1024x768 | 64K | . | . | Compaq QVision 1280 |
+| 41h | T | 132x25 | . | . | . | . | . | VEGA VGA |
+| ::: | T | 132x25 | . | . | . | . | . | Tatung VGA |
+| ::: | T | 132x25 | . | . | . | . | . | Video7 V-RAM VGA |
+| ::: | T | 100x50 | . | . | 16 | . | . | MORSE VGA |
+| ::: | T | 100x50 | . | . | . | . | . | Cirrus 510/520 chipset |
+| ::: | T | 80x34 | 9x14 | 720x476 | 16/256K | . | B800 WD90C |
+| ::: | T | 80x34 | 9x14 | . | 16 | . | B800 | Diamond Speedstar 24X |
+| ::: | G | . | . | 512x512 | 64K | . | . | Avance Logic AL2101 |
+| ::: | G | . | . | 640x200 | 16 | 1 | . | AT&T 6300 |
+| ::: | G | 80x30 | 8x16 | 640x480 | 64K | . | . | Chips&Technologies 64310 |
+| ::: | G | 80x25 | . | 720x348 | mono | . | B000 | Genoa SuperEGA BIOS 3.0+ |
  42h = T 132x43	  .	  .	  .	  .	.  VEGA VGA
      = T 132x43	  .	  .	  .	  .	.  Tatung VGA
      = T 132x43	  .	  .	  .	  .	.  Video7 V-RAM VGA
