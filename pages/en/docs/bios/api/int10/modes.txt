@@ -390,61 +390,61 @@
 | ::: | G | 100x42 | 8x14 | 800x600 | 16 | . | A000 | ATI Ultra 8514A, ATI XL |
 | ::: | G | . | . | 800x600 | 256 | . | A000 | Oak VGA |
 | ::: | G | 100x37 | 8x16 | 800x600 | 256 | . | A000 | Oak OTI-067/077 chips [8] |
- 55h = T  80x66	 8x8	  .	 16/256K  .   A000 ATI VIP
-     = T 132x25	 8x14	  .	  .	  .	.  Paradise EGA-480
-     = T 132x25	 8x14	  .	  .	  .	.  NEL Electronics BIOS
-     = T 132x25	 7x16	  .	 16/256K  .   B800 Paradise VGA
-     = T 132x25	 8x16	  .	 16/256K  .   B800 Paradise VGA on multisync
-     = T 132x25	  .	  .	  .	  .	.  Taxan 565 EGA
-     = T 132x25	  .	  .	  .	  .	.  AST VGA Plus
-     = T 132x25	  .	  .	  .	  .	.  Hewlett-Packard D1180A
-     = T 132x25	 7x16	  .	 16	  .	.  AT&T VDC600
-     = T 132x25	 8x16	  .	 16	  .   A000 NCR 77C22 [9]
-     = T 132x25	 9x16 1188x400	 16/256K  .   B800 WD90C
-     = T 132x25	 9x16 1188x400	 16/256K  .   B800 Diamond Speedstar 24X
-     = T 132x25	 9x16 1188x400	 16/256K  .   B800 Diamond Stealth 24
-     = T 132x25	 8x16	  .	  .	  .   B800 Diamond Stealth64 Video 2xx1
-     = T 132x25	 8x14 1056x350	 16/256K  .	.  Cirrus CL-GD5420/5422/5426
-     = T 132x43	 8x11	  .	 16/256K  .   B800 Trident TVGA 8800/8900
-     = G  94x29	 8x14  752x410	  .	  .	.  Lava Chrome II EGA
-     = G 128x48	 8x16 1024x768	 16/256K  .   A000 ATI VGA Wonder v4+  [5]
-     = G    .	  .   1024x768	 16/256K  .	.  ATI VGA Wonder Plus
-     = G    .	  .   1024x768	 16/256K  .	.  ATI Ultra 8514A,ATI XL
-     = G 128x48	 8x16 1024x768	  4	  .   A000 Oak OTI-067/077 chips [8]
- 56h = T 132x43	 8x8	  .	  3???	  2   B000 NSI Smart EGA+
-     = T 132x43	 7x9	  .	  4	  .   B000 Paradise VGA
-     = T 132x43	 8x9	  .	  4	  .   B000 Paradise VGA on multisync
-     = T 132x43	  .	  .	mono	  .	.  Taxan 565 EGA
-     = T 132x43	 7x9	  .	  2	  .	.  AT&T VDC600
-     = T 132x43	 9x8	  .	  .	  .	.  NEL Electronics BIOS
-     = T 132x50	 8x8	  .	  4	  .   A000 NCR 77C22 [9]
-     = T 132x60	 8x8	  .	 16/256K  .   B800 Trident TVGA 8800/8900
-     = G    .	  .   1024x768	 16	  .   A000 Oak VGA
-     = G 128x48	 8x16 1024x768	 16	  .   A000 Oak OTI-067/077 chips [8]
- 57h = T 132x25	 8x14	  .	  3???	  4   B000 NSI Smart EGA+
-     = T 132x25	 7x16	  .	  4	  .   B000 Paradise VGA
-     = T 132x25	 8x16	  .	  4	  .   B000 Paradise VGA on multisync
-     = T 132x25	 9x14	  .	  .	  .	.  NEL Electronics BIOS
-     = T 132x25	  .	  .	mono	  .	.  Taxan 565 EGA
-     = T 132x25	 7x16	  .	  2	  .	.  AT&T VDC600
-     = T 132x25	 9x14	  .	 16/256K  .   B800 Trident TVGA 8800/8900
-     = T 132x25	 8x16	  .	  4	  .   A000 NCR 77C22 [9]
-     = G  96x48	 8x16  768x1024	 16	  .   A000 Oak OTI-067/077 chips [8]
- 58h = T  80x33	 8x14	  .	 16	  .   B800 ATI EGA Wonder,ATI VIP
-     = T  80x32	 9x16	  .	 16	  .	.  Genoa 6400
-     = T  80x43	 8x8	  .	  .	  .	.  NEL Electronics BIOS
-     = T 132x30	 9x16	  .	 16/256K  .   B800 Trident TVGA 8800/8900
-     = G 100x75	 8x8   800x600	 16/256K  .   A000 Paradise VGA
-     = G 100x75	 8x8   800x600	 16	  .	.  AT&T VDC600
-     = G 100x75	 8x8   800x600	 16	  .   A000 NCR 77C22 [9]
-     = G 100x75	 8x8   800x600	 16	  .   A000 Diamond Speedstar 24X
-     = G 100x75	 8x8   800x600	 16/256K  .   A000 Paradise VGA, WD90C
-     = G    .	  .    800x600	 16	  .	.  AST VGA Plus, Compaq VGA
-     = G    .	  .    800x600	 16	  .	.  Dell VGA
-     = G    .	  .    800x600	 16	  .	.  Hewlett-Packard D1180A
-     = G    .	  .    800x600	???	  .	.  ELT VGA PLUS 16
-     = G 100x37	 8x16  800x600	 16/256K  .   A000 Cirrus CL-GD5420/5422/5426
-     = G 160x64	 8x16 1280x1024	 16	  .   A000 Oak OTI-077 chipset [8]
+| 55h | T | 80x66 | 8x8 | . | 16/256K | . | A000 | ATI VIP |
+| ::: | T | 132x25 | 8x14 | . | . | . | . | Paradise EGA-480 |
+| ::: | T | 132x25 | 8x14 | . | . | . | . | NEL Electronics BIOS |
+| ::: | T | 132x25 | 7x16 | . | 16/256K | . | B800 | Paradise VGA |
+| ::: | T | 132x25 | 8x16 | . | 16/256K | . | B800 | Paradise VGA on multisync |
+| ::: | T | 132x25 | . | . | . | . | . | Taxan 565 EGA |
+| ::: | T | 132x25 | . | . | . | . | . | AST VGA Plus |
+| ::: | T | 132x25 | . | . | . | . | . | Hewlett-Packard D1180A |
+| ::: | T | 132x25 | 7x16 | . | 16 | . | . | AT&T VDC600 |
+| ::: | T | 132x25 | 8x16 | . | 16 | . | A000 | NCR 77C22 [9] |
+| ::: | T | 132x25 | 9x16 | 1188x400 | 16/256K | . | B800 | WD90C |
+| ::: | T | 132x25 | 9x16 | 1188x400 | 16/256K | . | B800 | Diamond Speedstar 24X |
+| ::: | T | 132x25 | 9x16 | 1188x400 | 16/256K | . | B800 | Diamond Stealth 24 |
+| ::: | T | 132x25 | 8x16 | . | . | . | B800 | Diamond Stealth64 Video 2xx1 |
+| ::: | T | 132x25 | 8x14 | 1056x350 | 16/256K | . | . | Cirrus CL-GD5420/5422/5426 |
+| ::: | T | 132x43 | 8x11 | . | 16/256K | . | B800 | Trident TVGA 8800/8900 |
+| ::: | G | 94x29 | 8x14 | 752x410 | . | . | . | Lava Chrome II EGA |
+| ::: | G | 128x48 | 8x16 | 1024x768 | 16/256K | . | A000 | ATI VGA Wonder v4+  [5] |
+| ::: | G | . | . | 1024x768 | 16/256K | . | . | ATI VGA Wonder Plus |
+| ::: | G | . | . | 1024x768 | 16/256K | . | . | ATI Ultra 8514A,ATI XL |
+| ::: | G | 128x48 | 8x16 | 1024x768 | 4 | . | A000 | Oak OTI-067/077 chips [8] |
+| 56h | T | 132x43 | 8x8 | . | 3??? | 2 | B000 | NSI Smart EGA+ |
+| ::: | T | 132x43 | 7x9 | . | 4 | . | B000 | Paradise VGA |
+| ::: | T | 132x43 | 8x9 | . | 4 | . | B000 | Paradise VGA on multisync |
+| ::: | T | 132x43 | . | . | mono | . | . | Taxan 565 EGA |
+| ::: | T | 132x43 | 7x9 | . | 2 | . | . | AT&T VDC600 |
+| ::: | T | 132x43 | 9x8 | . | . | . | . | NEL Electronics BIOS |
+| ::: | T | 132x50 | 8x8 | . | 4 | . | A000 | NCR 77C22 [9] |
+| ::: | T | 132x60 | 8x8 | . | 16/256K | . | B800 | Trident TVGA 8800/8900 |
+| ::: | G | . | . | 1024x768 | 16 | . | A000 | Oak VGA |
+| ::: | G | 128x48 | 8x16 | 1024x768 | 16 | . | A000 | Oak OTI-067/077 chips [8] |
+| 57h | T | 132x25 | 8x14 | . | 3??? | 4 | B000 | NSI Smart EGA+ |
+| ::: | T | 132x25 | 7x16 | . | 4 | . | B000 | Paradise VGA |
+| ::: | T | 132x25 | 8x16 | . | 4 | . | B000 | Paradise VGA on multisync |
+| ::: | T | 132x25 | 9x14 | . | . | . | . | NEL Electronics BIOS |
+| ::: | T | 132x25 | . | . | mono | . | . | Taxan 565 EGA |
+| ::: | T | 132x25 | 7x16 | . | 2 | . | . | AT&T VDC600 |
+| ::: | T | 132x25 | 9x14 | . | 16/256K | . | B800 | Trident TVGA 8800/8900 |
+| ::: | T | 132x25 | 8x16 | . | 4 | . | A000 | NCR 77C22 [9] |
+| ::: | G | 96x48 | 8x16 | 768x1024 | 16 | . | A000 | Oak OTI-067/077 chips [8] |
+| 58h | T | 80x33 | 8x14 | . | 16 | . | B800 | ATI EGA Wonder,ATI VIP |
+| ::: | T | 80x32 | 9x16 | . | 16 | . | . | Genoa 6400 |
+| ::: | T | 80x43 | 8x8 | . | . | . | . | NEL Electronics BIOS |
+| ::: | T | 132x30 | 9x16 | . | 16/256K | . | B800 | Trident TVGA 8800/8900 |
+| ::: | G | 100x75 | 8x8 | 800x600 | 16/256K | . | A000 | Paradise VGA |
+| ::: | G | 100x75 | 8x8 | 800x600 | 16 | . | . | AT&T VDC600 |
+| ::: | G | 100x75 | 8x8 | 800x600 | 16 | . | A000 | NCR 77C22 [9] |
+| ::: | G | 100x75 | 8x8 | 800x600 | 16 | . | A000 | Diamond Speedstar 24X |
+| ::: | G | 100x75 | 8x8 | 800x600 | 16/256K | . | A000 | Paradise VGA, WD90C |
+| ::: | G | . | . | 800x600 | 16 | . | . | AST VGA Plus, Compaq VGA |
+| ::: | G | . | . | 800x600 | 16 | . | . | Dell VGA |
+| ::: | G | . | . | 800x600 | 16 | . | . | Hewlett-Packard D1180A |
+| ::: | G | . | . | 800x600 | ??? | . | . | ELT VGA PLUS 16 |
+| ::: | G | 100x37 | 8x16 | 800x600 | 16/256K | . | A000 | Cirrus CL-GD5420/5422/5426 |
+| ::: | G | 160x64 | 8x16 | 1280x1024 | 16 | . | A000 | Oak OTI-077 chipset [8] |
  59h = T  80x43	 9x8	  .	  .	  .	.  NEL Electronics BIOS
      = T  80x66	 8x8	  .	 16/256K  .   A000 ATI VIP
      = T 132x43	 9x11	  .	 16/256K  .   B800 Trident TVGA 8800/8900
