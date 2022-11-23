@@ -697,39 +697,41 @@
 | ::: | G | . | . | 640x400 | 256 | . | . | Cirrus 5320 chipset |
 | ::: | G | 80x25 | 8x16 | 640x400 | 256 | . | A000 | Chips&Technologies 64310 |
 | 79h | G | 80x30 | 8x16 | 640x480 | 256 | . | . | Cardinal, C&T chipset |
-     = G  80x30	 8x16  640x480	256	  .   A000 Chips&Technologies 64310
-     = G 100x75	  .    800x600	 16???	  .   A000 Quadram Ultra VGA
-     = G 100x75	 8x8   800x600	 16	  .	.  Genoa SuperEGA BIOS 3.0+
-     = G 100x75	 8x8   800x600	 16	  .	.  Genoa 6400
- 7Ah = T 114x60	 8x8	  .	 16	  .   B800 Quadram Ultra VGA
-     = T 114x60	 8x8	  .	  .	  .	.  Genoa SuperEGA BIOS 3.0+
-     = G    .	  .    720x540	256	  .	.  C&T chipset, Cardinal
- 7Bh = G    .	  .    800x600	256	  .	.  C&T chipset, Cardinal
-     = G 114x60	  .    912x480	 16???	  .   A000 Quadram Ultra VGA
-     = G    .	  .    912x480	 16	  .	.  Genoa SuperEGA BIOS 3.0+
- 7Ch = G    .	  .    512x512	 16	  .	.  Genoa
-     = G 100x37	 8x16  800x600	256	  .	.  C&T 82C453/F65530 chipsets
-     = G 100x37	 8x16  800x600	256	  .   A000 Chips&Technologies 64310
-     = G 200x75	 8x16 1600x1200	  . [16]  .   A000 Diamond Stealth64 Video 2xx1
- 7Dh = G  64x32	 8x16  512x512	256	  .	.  Genoa
- 7Eh =	special mode set (see AX=007Eh)		.  Paradise VGA, AT&T VDC600
-     = G  80x25	 8x16  640x400	256	  .	.  Genoa 6400
-     = G    .	  .   1024x768	256	  .	.  C&T 82C453 chipset
-     = G 128x48	 8x16 1024x768	256	  .   A000 Chips&Technologies 64310
-     = G  90x43	  .	  .	mono	  .   B000 HERCULES.COM on HGC [14]
- 7Fh =	special function set (see AX=007Fh/BH=00h) Paradise VGA, AT&T VDC600
-     = G 128x48	 8x16 1024x768	  4	  .	.  Genoa 6400
-     = G  90x29	  .	  .	mono	  .   B000 HERCULES.COM on HGC [14]
- 82h = T  80x25	  .	  .	B&W	  .	.  AT&T VDC overlay mode [6]
- 83h = T  80x25	  .	  .	  .	  .	.  AT&T VDC overlay mode [6]
- 86h = G    .	  .    640x200	B&W	  .	.  AT&T VDC overlay mode [6]
- 88h = G  90x43	 8x8   720x348	mono	  .   B000 Hercules + MSHERC.COM
- C0h = G    .	  .    640x400	2/prog palette	.  AT&T VDC overlay mode [6]
-     = G    .	  .    640x400	2/prog palette	.  Olivetti Quaderno overlay
- C4h =	disable output	  .	  .	  .	.  AT&T VDC overlay mode [6]
- C8h = G  80x50	 8x8   640x400	  2	  .   B800 Olivetti Quaderno overlay
- D0h = G    .	  .    640x400	  2	  .   B800 DEC VAXmate AT&T mode
-Notes:
+| ::: | G | 80x30 | 8x16 | 640x480 | 256 | . | A000 | Chips&Technologies 64310 |
+| ::: | G | 100x75 | . | 800x600 | 16??? | . | A000 | Quadram Ultra VGA |
+| ::: | G | 100x75 | 8x8 | 800x600 | 16 | . | . | Genoa SuperEGA BIOS 3.0+ |
+| ::: | G | 100x75 | 8x8 | 800x600 | 16 | . | . | Genoa 6400 |
+| 7Ah | T | 114x60 | 8x8 | . | 16 | . | B800 | Quadram Ultra VGA |
+| ::: | T | 114x60 | 8x8 | . | . | . | . | Genoa SuperEGA BIOS 3.0+ |
+| ::: | G | . | . | 720x540 | 256 | . | . | C&T chipset, Cardinal |
+| 7Bh | G | . | . | 800x600 | 256 | . | . | C&T chipset, Cardinal |
+| ::: | G | 114x60 | . | 912x480 | 16??? | . | A000 | Quadram Ultra VGA |
+| ::: | G | . | . | 912x480 | 16 | . | . | Genoa SuperEGA BIOS 3.0+ |
+| 7Ch | G | . | . | 512x512 | 16 | . | . | Genoa |
+| ::: | G | 100x37 | 8x16 | 800x600 | 256 | . | . | C&T 82C453/F65530 chipsets |
+| ::: | G | 100x37 | 8x16 | 800x600 | 256 | . | A000 | Chips&Technologies 64310 |
+| ::: | G | 200x75 | 8x16 | 1600x1200 | .[16] | . | A000 | Diamond Stealth64 Video 2xx1 |
+| 7Dh | G | 64x32 | 8x16 | 512x512 | 256 | . | . | Genoa |
+| 7Eh | special mode set (see AX=007Eh)	|||||| . | Paradise VGA, AT&T VDC600 |
+| ::: | G | 80x25 | 8x16 | 640x400 | 256 | . | . | Genoa 6400 |
+| ::: | G | . | . | 1024x768 | 256 | . | . | C&T 82C453 chipset |
+| ::: | G | 128x48 | 8x16 | 1024x768 | 256 | . | A000 | Chips&Technologies 64310 |
+| ::: | G | 90x43 | . | . | mono | . | B000 | HERCULES.COM on HGC [14] |
+| 7Fh | special function set (see AX=007Fh/BH=00h) ||||||| Paradise VGA, AT&T VDC600 |
+| ::: | G | 128x48 | 8x16 | 1024x768 | 4 | . | . | Genoa 6400 |
+| ::: | G | 90x29 | . | . | mono | . | B000 | HERCULES.COM on HGC [14] |
+| 82h | T | 80x25 | . | . | B&W | . | . | AT&T VDC overlay mode [6] |
+| 83h | T | 80x25 | . | . | . | . | . | AT&T VDC overlay mode [6] |
+| 86h | G | . | . | 640x200 | B&W | . | . | AT&T VDC overlay mode [6] |
+| 88h | G | 90x43 | 8x8 | 720x348 | mono | . | B000 | Hercules + MSHERC.COM |
+| C0h | G | . | . | 640x400 | 2/prog palette | . | . | AT&T VDC overlay mode [6] |
+| ::: | G | . | . | 640x400 | 2/prog palette | . | . | Olivetti Quaderno overlay |
+| C4h | disable output ||| . | . | . | . | AT&T VDC overlay mode [6] |
+| C8h | G | 80x50 | 8x8 | 640x400 | 2 | . | B800 | Olivetti Quaderno overlay |
+| D0h | G | . | . | 640x400 | 2 | . | B800 | DEC VAXmate AT&T mode |
+
+===== Notes =====
+
 [1] interlaced only
 [2] for ATI EGA Wonder, mode 08h is only valid if SMS.COM is loaded resident.
       SMS maps mode 08h to mode 27h if the byte at location 0040:0063 is 0B4h,
