@@ -160,7 +160,7 @@
 | 28h | T | ???x??? | . | . | . | . | . | VEGA VGA |
 | ::: | G | . | . | 512x512 | 256 | . | . | Avance Logic AL2101 |
 | ::: | G | . | . | 1024x768 | 256 | . | . | Realtek RTVGA (1meg) |
-| ::: | G | 160x64 | 8x16 | 1280x1024 | 16 | . | . | Chips&Technologies 64310 [1] |
+| ::: | G | 160x64 | 8x16 | 1280x1024 | 16 | . | . | Chips&Technologies 64310((interlaced only)) |
 | 29h | G | . | . | 640x400 | 256 | . | . | Avance Logic AL2101 |
 | ::: | G | . | . | 800x600 | 16 | . | . | VEGA VGA |
 | ::: | G | 100x37 | 8x16 | 800x600 | 16 | . | A000 | Orchid |
@@ -229,13 +229,13 @@
 | ::: | G | 128x48 | 8x16 | 1024x768 | 256/256K | 1 | A000 | Tseng ET4000 chipset |
 | ::: | G | . | . | 1024x768 | 256 | . | . | Orchid ProDesigner II |
 | ::: | G | . | . | 1024x768 | 256 | . | . | Compaq QVision 1024/1280 |
-| ::: | G | 160x64 | 8x16 | 1280x1024 | 256 | . | . | Chips&Technologies 64310 [1] |
+| ::: | G | 160x64 | 8x16 | 1280x1024 | 256 | . | . | Chips&Technologies 64310 ((interlaced only)) |
 | 39h | G | . | . | 1280x1024 | 16 | . | . | Compaq QVision 1280 |
 | 3Ah | G | . | . | 1280x1024 | 256 | . | . | Compaq QVision 1280 |
 | 3Bh | G | . | . | 512x480 | 256 | . | . | Compaq QVision 1024/1280 |
 | 3Ch | G | . | . | 640x400 | 64K | . | . | Compaq QVision 1024/1280 |
 | 3Dh | G | . | . | 1280x1024 | 16 | . | . | Definicon |
-| ::: | G | 128x64 | 8x16 | 1280x1024 | 16 | 1 | A000 | Tseng ET4000 v3.00 [1,7] |
+| ::: | G | 128x64 | 8x16 | 1280x1024 | 16 | 1 | A000 | Tseng ET4000 v3.00 ((interlaced only)) [7] |
 | 3Eh | G | . | . | 1280x961 | 16 | . | . | Definicon |
 | ::: | G | . | . | 640x480 | 64K | . | . | Compaq QVision 1024/1280 |
 | 3Fh | G | . | . | 1280x1024 | 256 | . | . | Hercules ??? (ET4000W32) |
@@ -465,7 +465,7 @@
 | ::: | G | 100x75 | 8x8 | 800x600 | 16/256K | . | A000 | Trident TVGA 8800, 8900 |
 | ::: | G | . | . | 800x600 | ??? | . | . | Vobis MVGA |
 | ::: | G | 100x37 | 8x16 | 800x600 | . | . | . | NEL Electronics BIOS |
-| ::: | G | 128x48 | 8x16 | 1024x768 | 16 | . | A000 | NCR 77C22 [1,9] |
+| ::: | G | 128x48 | 8x16 | 1024x768 | 16 | . | A000 | NCR 77C22 ((interlaced only)) [9] |
 | 5Ch | T | 100x37 | 8x16 | . | . | . | . | NEL Electronics BIOS |
 | ::: | G | . | . | 640x400 | 256 | . | . | Logix, ATI Prism Elite |
 | ::: | G | . | . | 640x400 | 256 | . | . | Maxxon, SEFCO TVGA, Imtec |
@@ -544,7 +544,7 @@
 | ::: | G | . | . | 720x540 | 16 | . | . | Tatung VGA |
 | ::: | G | . | . | 720x540 | 16 | . | . | Video7 V-RAM VGA |
 | ::: | G | 96x64 | 8x16 | 768x1024 | 16/256K | . | A000 | Trident TVGA 88/8900 512K |
-| ::: | G | 128x48 | 8x16 | 1024x768 | 256 | . | A000 | NCR 77C22 [1,9] |
+| ::: | G | 128x48 | 8x16 | 1024x768 | 256 | . | A000 | NCR 77C22 ((interlaced only)) [9] |
 | ::: | G | 144x54 | 8x16 | 1152x864 | . | . | A000 | Diamond Stealth64 Video 2xx1 |
 | 62h | T | 132x32 | 8x11 | . | 16/64 | 6 | B800 | Quadram Ultra VGA |
 | ::: | T | 132x32 | 8x12 | . | 16 | . | . | Genoa 6400 |
@@ -580,8 +580,8 @@
 | ::: | G | . | . | 800x600 | ??? | . | . | SAMPO-Mira VGA |
 | ::: | G | . | . | 1024x768 | 4 | . | . | Video7 V-RAM VGA |
 | ::: | G | 128x48 | 8x16 | 1024x768 | 256 | . | A000 | ATI VGA Wonder Plus,ATI XL |
-| ::: | G | 160x64 | 8x16 | 1280x1024 | 16/256K | . | A000 | WD90C [1] |
-| ::: | G | 160x64 | 8x16 | 1280x1024 | 16/256K | . | A000 | Diamond Speedstar 24X [1] |
+| ::: | G | 160x64 | 8x16 | 1280x1024 | 16/256K | . | A000 | WD90C ((interlaced only)) |
+| ::: | G | 160x64 | 8x16 | 1280x1024 | 16/256K | . | A000 | Diamond Speedstar 24X ((interlaced only)) |
 | 65h | T | 80x50 | 8x8 | 528x400 | 16 | . | B800 | C&T 82C450 BIOS |
 | ::: | G | . | . | 800x600 | 64K | . | A000 | Cirrus CL-GD 5422/5426 |
 | ::: | G | . | . | 1024x768 | 16 | . | . | Video7 V-RAM VGA |
@@ -596,7 +596,7 @@
 | ::: | G | . | . | 640x480 | 256 | . | . | Video7 V-RAM VGA |
 | ::: | G | . | . | 800x600 | 32K | . | A000 | Cirrus CL-GD 5422/5426 |
 | ::: | G | 128x48 | 8x16 | 1024x768 | 4 | . | A000 | ATI VGA Wonder |
-| ::: | G | 160x64 | 8x16 | 1280x1024 | 16 | . | A000 | NCR 77C22 [1,9] |
+| ::: | G | 160x64 | 8x16 | 1280x1024 | 16 | . | A000 | NCR 77C22 ((interlaced only)) [9] |
 | 68h | G | 80x25 | 8x16 | 640x400 | . | . | A000 | Diamond Stealth64 Video 2xx1 |
 | 69h | T | 132x50 | 8x8 | 1056x400 | 16/256K | . | B800 | WD90C |
 | ::: | T | 132x50 | 8x8 | . | 16 | . | B800 | Diamond Speedstar 24X |
@@ -614,19 +614,19 @@
 | ::: | G | 100x37 | 8x16 | 800x600 | 16 | . | A000 | Diamond Stealth64 Video 2xx1 |
 | ::: | G | 100x42 | 8x14 | 800x600 | . | . | A000 | ATI VGA Wonder (undoc) |
 | ::: | G | . | . | 800x600 | 16 | . | A000 | Chips&Technologies chipset
-| ::: | G | 160x64 | 8x16 | 1280x1024 | 256 | . | A000 | NCR 77C22 [1,9] |
+| ::: | G | 160x64 | 8x16 | 1280x1024 | 256 | . | A000 | NCR 77C22 ((interlaced only)) [9] |
 | 6Bh | T | 100x37 | 8x16 | . | 16 | . | . | Genoa 6400 |
 | ::: | T | 100x37 | 8x16 | . | . | . | . | NEL Electronics BIOS |
 | ::: | G | 100x37 | 8x16 | 800x600 | . | . | A000 | Diamond Stealth64 Video 2xx1 |
 | 6Ch | G | 80x30 | 8x16 | 640x480 | 16M | . | A000 | Trident 8900CL/BIOS C04 |
 | ::: | G | 100x75 | 8x8 | 800x600 | 256 | . | . | Genoa 6400 |
 | ::: | G | 128x48 | 8x16 | 1024x768 | 2 | . | A000 | Diamond Stealth64 Video 2xx1 |
-| ::: | G | 160x60 | 8x16 | 1280x960 | 16/256K | . | A000 | WD90C [1] |
-| ::: | G | 160x60 | 8x16 | 1280x960 | 16/256K | . | A000 | Diamond Speedstar 24X [1] |
-| ::: | G | 160x64 | 8x16 | 1280x1024 | 16/256K | . | A000 | Cirrus CL-GD 5422/5426 [1] |
+| ::: | G | 160x60 | 8x16 | 1280x960 | 16/256K | . | A000 | WD90C ((interlaced only)) |
+| ::: | G | 160x60 | 8x16 | 1280x960 | 16/256K | . | A000 | Diamond Speedstar 24X ((interlaced only)) |
+| ::: | G | 160x64 | 8x16 | 1280x1024 | 16/256K | . | A000 | Cirrus CL-GD 5422/5426 ((interlaced only)) |
 | 6Dh | G | 80x25 | 8x14 | 640x350 | 64K | . | A000 | STB Lightspeed ET4000/W32P |
 | ::: | G | 128x48 | 8x16 | 1024x768 | . | . | A000 | Diamond Stealth64 Video 2xx1 |
-| ::: | G | 160x64 | 8x16 | 1280x1024 | 256/256K | . | A000 | Cirrus CL-GD 5422/5426 [1] |
+| ::: | G | 160x64 | 8x16 | 1280x1024 | 256/256K | . | A000 | Cirrus CL-GD 5422/5426 ((interlaced only)) |
 | 6Eh | G | 40x25 | 8x8 | 320x200 | 64K | . | A000 | Cirrus CL-GD 5422/5426 |
 | ::: | G | 160x64 | 8x16 | 1280x1024 | 2 | . | A000 | Diamond Stealth64 Video 2xx1 |
 | 6Fh | G | 40x25 | 8x8 | 320x200 | 16M | . | A000 | Cirrus CL-GD 5422/5426 |
@@ -672,7 +672,7 @@
 | ::: | G | 80x30 | 8x16 | 640x480 | 32K | . | A000 | Trident 8900C/BIOS C03 |
 | ::: | G | 100x37 | 8x16 | 800x600 | . | . | A000 | Diamond Stealth64 Video 2xx1 |
 | ::: | G | 128x48 | 8x16 | 1024x768 | 16 | 1 | A000 | Ahead A, Ahead B (512K) |
-| ::: | G | . | . | 1024x768 | 64K | . | A000 | Cirrus CL-GD 5422/5426 [1] |
+| ::: | G | . | . | 1024x768 | 64K | . | A000 | Cirrus CL-GD 5422/5426 ((interlaced only)) |
 | 75h | G | 80x30 | 8x16 | 640x480 | 64K | . | A000 | Trident 8900C/BIOS C03 |
 | ::: | G | 80x66 | . | 640x528 | 16??? | . | A000 | Quadram Ultra VGA |
 | ::: | G | 80x66 | . | 640x528 | 16 | . | . | Genoa SuperEGA BIOS 3.0+ |
@@ -684,7 +684,7 @@
 | ::: | G | 100x75 | 8x8 | 800x600 | 32K | . | A000 | Trident 8900C/BIOS C03 |
 | ::: | G | 128x48 | 8x16 | 1024x768 | 2 | 1 | A000 | Ahead B |
 | ::: | G | 128x48 | 8x16 | 1024x768 | . | . | A000 | Diamond Stealth64 Video 2xx1 |
-| ::: | G | 160x64 | 8x16 | 1280x1024 | 16 | . | A000 | Chips&Technologies 64310 [1] |
+| ::: | G | 160x64 | 8x16 | 1280x1024 | 16 | . | A000 | Chips&Technologies 64310 ((interlaced only)) |
 | 77h | G | 94x29 | . | 752x410 | 16??? | . | A000 | Quadram Ultra VGA |
 | ::: | G | 94x29 | . | 752x410 | 16 | . | . | Genoa SuperEGA BIOS 3.0+ |
 | ::: | G | 100x75 | 8x8 | 800x600 | 64K | . | A000 | Trident 8900C/BIOS C03 |
@@ -732,7 +732,7 @@
 
 ===== Notes =====
 
-[1] interlaced only
+
 [2] for ATI EGA Wonder, mode 08h is only valid if SMS.COM is loaded resident.
       SMS maps mode 08h to mode 27h if the byte at location 0040:0063 is 0B4h,
       otherwise to mode 23h, thus selecting the appropriate (monochrome or
