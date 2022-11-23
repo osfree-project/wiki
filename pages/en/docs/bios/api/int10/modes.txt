@@ -315,51 +315,51 @@
 | ::: | T | 80x60 | 8x8 | . | 16/256K | . | B800 | Oak OTI-067/OTI-077 [8] |
 | ::: | G | . | . | 640x400 | 16M | . | . | Compaq QVision 1024/1280 |
 | ::: | G | 144x54 | 8x16 | 1152x864 | . | . | A000 | Diamond Stealth64 Video 2xx1 |
- 4Fh = T 132x25	  .	  .	  .	  .	.  VEGA VGA
-     = T 132x60	  .	  .	  .	  .	.  some Oak Tech VGA [8]
-     = G    .	  .    640x480	 16M	  .	.  Compaq QVision 1280
- 50h = T  80x30	 8x16	  .	 16/256K  .   B800 Trident TVGA 8800/8900
-     = T  80x34	  .	  .	  .	  .	.  Lava Chrome II EGA
-     = T  80x43	  .	  .	mono	  .	.  VEGA VGA
-     = T 132x25	 9x14	  .	mono	  .	.  Ahead Systems EGA2001
-     = T 132x25	 9x14	  .	  4	  4   B800 Ahead B
-     = T 132x25	 8x14	  .	 16	  8   B800 OAK Technologies VGA-16
-     = T 132x25	 8x14	  .	 16/256K  .   B800 Oak OTI-037/067/077 [8]
-     = T 132x25	 8x14 1056x350	 16	  8   B800 UM587 chipset
-     = T 132x30	  .	  .	 16	  .	.  MORSE VGA
-     = T 132x30	  .	  .	  .	  .	.  Cirrus 510/520 chipset
-     = G  80x30	 8x16  640x480	 16	  .	.  Paradise EGA-480
-     = G  80x30	 8x16  640x480	 16	  .	.  NEL Electronics BIOS
-     = G  80x30	 8x16  640x480	 16M	  .	.  Chips&Technologies 64310
-     = G    .	  .    640x480	mono???	  .	.  Taxan 565 EGA
-     = G  40x25	 8x8   320x200	  .	  .	.  Genoa SuperEGA BIOS 3.0+
- 51h = T  80x30	 8x16	  .	  .	  .	.  Paradise EGA-480
-     = T  80x30	 9x16	  .	  .	  .	.  NEL Electronics BIOS
-     = T  80x30	  .	  .	  .	  .	.  Lava Chrome II EGA
-     = T  80x43	 8x11	  .	 16/256K  .   B800 Trident TVGA 8800/8900
-     = T 132x25	  .	  .	mono	  .	.  VEGA VGA
-     = T 132x28	 9x12	  .	  4	  4   B800 Ahead B
-     = T 132x43	 8x8	  .	 16	  5   B800 OAK Technologies VGA-16
-     = T 132x43	 8x8	  .	 16/256K  .   B800 Oak OTI-037/067/077
-     = T 132x43	 8x8  1056x344	 16	  5   B800 UM587 chipset
-     = T 132x50	  .	  .	 16	  .	.  MORSE VGA
-     = T 132x50	  .	  .	  .	  .	.  Cirrus 510/520 chipset
-     = G  80x34	 8x14  640x480	 16	  .	.  ATI EGA Wonder
-     = G  80x25	 8x8   640x200	  .	  .	.  Genoa SuperEGA BIOS 3.0+
- 52h = T  80x60	  .	  .	  .	  .	.  Lava Chrome II EGA
-     = T  80x60	 8x8	  .	 16/256K  .   B800 Trident TVGA 8800/8900
-     = T 132x43	  .	  .	mono	  .	.  VEGA VGA
-     = T 132x44	 9x8	  .	mono	  .	.  Ahead Systems EGA2001
-     = T 132x44	 9x8	  .	  4	  2   B800 Ahead B
-     = T 132x60	  .	  .	 16	  .	.  MORSE VGA
-     = T 132x60	  .	  .	  .	  .	.  Cirrus 510/520 chipset
-     = G  80x25	 8x19  640x480	 16	  1   A000 AX VGA (Kanji&superimpose)
-     = G  94x29	 8x14  752x410	 16	  .	.  ATI EGA Wonder
-     = G 100x75	 8x8   800x600	 16	  1   A000 OAK Technologies VGA-16
-     = G 100x75	 8x8   800x600	 16	  .   A000 Oak OTI-037 chipset [8]
-     = G 100x37	 8x16  800x600	 16	  .   A000 Oak OTI-067/077 chips [8]
-     = G 100x75	 8x8   800x600	 16	  .   A000 UM587 chipset
-     = G 128x30	 8x16 1024x480	 16	  .	.  NEL Electronics BIOS
+| 4Fh | T | 132x25 | . | . | . | . | . | VEGA VGA |
+| ::: | T | 132x60 | . | . | . | . | . | some Oak Tech VGA [8] |
+| ::: | G | . | . | 640x480 | 16M | . | . | Compaq QVision 1280 |
+| 50h | T | 80x30 | 8x16 | . | 16/256K | . | B800 | Trident TVGA 8800/8900 |
+| ::: | T | 80x34 | . | . | . | . | . | Lava Chrome II EGA |
+| ::: | T | 80x43 | . | . | mono | . | . | VEGA VGA |
+| ::: | T | 132x25 | 9x14 | . | mono | . | . | Ahead Systems EGA2001 |
+| ::: | T | 132x25 | 9x14 | . | 4 | 4 | B800 | Ahead B |
+| ::: | T | 132x25 | 8x14 | . | 16 | 8 | B800 | OAK Technologies VGA-16 |
+| ::: | T | 132x25 | 8x14 | . | 16/256K | . | B800 | Oak OTI-037/067/077 [8] |
+| ::: | T | 132x25 | 8x14 | 1056x350 | 16 | 8 | B800 | UM587 chipset |
+| ::: | T | 132x30 | . | . | 16 | . | . | MORSE VGA |
+| ::: | T | 132x30 | . | . | . | . | . | Cirrus 510/520 chipset |
+| ::: | G | 80x30 | 8x16 | 640x480 | 16 | . | . | Paradise EGA-480 |
+| ::: | G | 80x30 | 8x16 | 640x480 | 16 | . | . | NEL Electronics BIOS |
+| ::: | G | 80x30 | 8x16 | 640x480 | 16M | . | . | Chips&Technologies 64310 |
+| ::: | G | . | . | 640x480 | mono??? | . | . | Taxan 565 EGA |
+| ::: | G | 40x25 | 8x8 | 320x200 | . | . | . | Genoa SuperEGA BIOS 3.0+ |
+| 51h | T | 80x30 | 8x16 | . | . | . | . | Paradise EGA-480 |
+| ::: | T | 80x30 | 9x16 | . | . | . | . | NEL Electronics BIOS |
+| ::: | T | 80x30 | . | . | . | . | . | Lava Chrome II EGA |
+| ::: | T | 80x43 | 8x11 | . | 16/256K | . | B800 | Trident TVGA 8800/8900 |
+| ::: | T | 132x25 | . | . | mono | . | . | VEGA VGA |
+| ::: | T | 132x28 | 9x12 | . | 4 | 4 | B800 | Ahead B |
+| ::: | T | 132x43 | 8x8 | . | 16 | 5 | B800 | OAK Technologies VGA-16 |
+| ::: | T | 132x43 | 8x8 | . | 16/256K | . | B800 | Oak OTI-037/067/077 |
+| ::: | T | 132x43 | 8x8 | 1056x344 | 16 | 5 | B800 | UM587 chipset |
+| ::: | T | 132x50 | . | . | 16 | . | . | MORSE VGA |
+| ::: | T | 132x50 | . | . | . | . | . | Cirrus 510/520 chipset |
+| ::: | G | 80x34 | 8x14 | 640x480 | 16 | . | . | ATI EGA Wonder |
+| ::: | G | 80x25 | 8x8 | 640x200 | . | . | . | Genoa SuperEGA BIOS 3.0+ |
+| 52h | T | 80x60 | . | . | . | . | . | Lava Chrome II EGA |
+| ::: | T | 80x60 | 8x8 | . | 16/256K | . | B800 | Trident TVGA 8800/8900 |
+| ::: | T | 132x43 | . | . | mono | . | . | VEGA VGA |
+| ::: | T | 132x44 | 9x8 | . | mono | . | . | Ahead Systems EGA2001 |
+| ::: | T | 132x44 | 9x8 | . | 4 | 2 | B800 | Ahead B |
+| ::: | T | 132x60 | . | . | 16 | . | . | MORSE VGA |
+| ::: | T | 132x60 | . | . | . | . | . | Cirrus 510/520 chipset |
+| ::: | G | 80x25 | 8x19 | 640x480 | 16 | 1 | A000 | AX VGA (Kanji&superimpose) |
+| ::: | G | 94x29 | 8x14 | 752x410 | 16 | . | . | ATI EGA Wonder |
+| ::: | G | 100x75 | 8x8 | 800x600 | 16 | 1 | A000 | OAK Technologies VGA-16 |
+| ::: | G | 100x75 | 8x8 | 800x600 | 16 | . | A000 | Oak OTI-037 chipset [8] |
+| ::: | G | 100x37 | 8x16 | 800x600 | 16 | . | A000 | Oak OTI-067/077 chips [8] |
+| ::: | G | 100x75 | 8x8 | 800x600 | 16 | . | A000 | UM587 chipset |
+| ::: | G | 128x30 | 8x16 | 1024x480 | 16 | . | . | NEL Electronics BIOS |
  53h = T  80x25	 8x16	  .	  .	  .	.  NEL Electronics BIOS
      = T  80x60	  .	  .	 16	  .	.  MORSE VGA
      = T  80x60	  .	  .	  .	  .	.  Cirrus 510/520 chipset
