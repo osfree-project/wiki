@@ -635,68 +635,68 @@
 | ::: | T | 40x25 | 8x8 | . | 16 | 8 | B800 | Quadram (CGA double scan) |
 | ::: | T | 40x25 | 8x8 | (CGA dblscan)	|| . | . | Genoa SuperEGA BIOS 3.0+ |
 | ::: | G | . | . | 360x480 | 256 | . | . | Cirrus 510/520/5320 chips |
-     = G  90x28	 8x14  720x392	 16	  1   A000 Ahead B
-     = G  80x30	 8x16  640x480	  .	  .   A000 Diamond Stealth64 Video 2xx1
-     = G 100x38	 8x16  800x600	 16	  .   A000 C&T chipset, Cardinal
-     = G    .	  .   1024x480	256	  .   A000 Trident 8900C BIOS C3.0
- 71h = T  80x25	 8x8	  .	 16	  8   B800 Quadram (CGA double scan)
-     = T  80x25	 8x8   (CGA dblscan)	  .	.  Genoa SuperEGA BIOS 3.0+
-     = G    .	  .    528x400	256	  .	.  Cirrus 510/520 chipset
-     = G  80x30	 8x16  640x480	 16M	  .   A000 Cirrus CL-GD 5422/5426
-     = G  80x30	 8x16  640x480	  .	  .   A000 Diamond Stealth64 Video 2xx1
-     = G 100x35	 8x16  800x600	 16/64	  .   A000 NSI Smart EGA+
-     = G 100x75	 8x8   800x600	 16	  1   A000 Ahead B (same as 6Ah)
-     = G    .	  .    960x720	 16	  .	.  C&T chipset, Cardinal
-     = G    .	  .   1024x480	256	  .   A000 Trident 8900C BIOS C3.0
- 72h = T  80x60	 8x8	  .	 16	  .   B800 Quadram Ultra VGA
-     = T  80x60	 8x8	  .	 16	  .   B800 Genoa 6400
-     = T  80x60	 8x8	  .	 16	  .   B800 Genoa SuperEGA BIOS 3.0+
-     = G    .	  .    528x480	256	  .	.  Cirrus 510/520 chipset
-     = G  80x25	 8x19  640x480	 16	  1   A000 DOS/V w/ any VGA
-     = G  80x30	 8x16  640x480	  .	  .   A000 Diamond Stealth64 Video 2xx1
-     = G    .	  .    640x480	32K	  .   A000 ATI
-     = G    .	  .    640x480	16M	  .   A000 WD90C
-     = G    .	  .    640x480	16M	  .   A000 Diamond Speedstar 24X
-     = G    .	  .   1024x768	 16	  .	.  C&T chipset, Cardinal
-     = G 128x48	 8x16 1024x768i	 16	  .   A000 C&T 82C450 BIOS
-     = G 128x48	 8x16 1024x768	 16	  .   A000 C&T 65530 BIOS (multisync)
- 73h = G  80x60	 8x8   640x480	 16	  .   A000 Quadram Ultra VGA
-     = G  80x60	 8x8   640x480	 16	  .	.  Genoa 6400
-     = G  80x60	 8x8   640x480	 16	  .	.  Genoa SuperEGA BIOS 3.0+
-     = G 100x37	 8x16  800x600	  .	  .   A000 Diamond Stealth64 Video 2xx1
-     = T  80x25	 8x19  640x475	 16	  1   none DOS/V, emulated in VGA graph
- 74h = T  80x66	 8x8	  .	 16	  .   B800 Quadram Ultra VGA
-     = T  80x66	 8x8	  .	 16	  .   B800 Genoa 6400
-     = T  80x66	 8x8	  .	 16	  .   B800 Genoa SuperEGA BIOS 3.0+
-     = G    .	  .    640x400	  2	  .   B800 Toshiba 3100 AT&T mode
-     = G  80x30	 8x16  640x480	 32K	  .   A000 Trident 8900C/BIOS C03
-     = G 100x37	 8x16  800x600	  .	  .   A000 Diamond Stealth64 Video 2xx1
-     = G 128x48	 8x16 1024x768	 16	  1   A000 Ahead A, Ahead B (512K)
-     = G    .	  .   1024x768	 64K	  .   A000 Cirrus CL-GD 5422/5426 [1]
- 75h = G  80x30	 8x16  640x480	 64K	  .   A000 Trident 8900C/BIOS C03
-     = G  80x66	  .    640x528	 16???	  .   A000 Quadram Ultra VGA
-     = G  80x66	  .    640x528	 16	  .	.  Genoa SuperEGA BIOS 3.0+
-     = G 100x37	 8x16  800x600	  .	  .   A000 Diamond Stealth64 Video 2xx1
-     = G 128x48	 8x16 1024x768	  4	  1   A000 Ahead B
-     = G 128x48	 8x16 1024x768	 16	  .   A000 Chips&Technologies 64310
- 76h = T  94x29	 8x14	  .	 16	  .   B800 Quadram Ultra VGA
-     = T  94x29	 8x14	  .	  .	  .	.  Genoa SuperEGA BIOS 3.0+
-     = G 100x75	 8x8   800x600	 32K	  .   A000 Trident 8900C/BIOS C03
-     = G 128x48	 8x16 1024x768	  2	  1   A000 Ahead B
-     = G 128x48	 8x16 1024x768	  .	  .   A000 Diamond Stealth64 Video 2xx1
-     = G 160x64	 8x16 1280x1024	 16	  .   A000 Chips&Technologies 64310 [1]
- 77h = G  94x29	  .    752x410	 16???	  .   A000 Quadram Ultra VGA
-     = G  94x29	  .    752x410	 16	  .	.  Genoa SuperEGA BIOS 3.0+
-     = G 100x75	 8x8   800x600	 64K	  .   A000 Trident 8900C/BIOS C03
-     = G 128x48	 8x16 1024x768	  .	  .   A000 Diamond Stealth64 Video 2xx1
- 78h = T 100x37	 8x16	  .	 16	  .	.  Genoa 6400
-     = T 100x75	 8x8	  .	 16	  .   B800 Quadram Ultra VGA
-     = T 100x75	 8x8	  .	  .	  .	.  Genoa SuperEGA BIOS 3.0+
-     = G    .	  .    640x400	256	  .	.  STB VGA/EM-16 Plus
-     = G  80x25	 8x16  640x400	256	  .	.  Cardinal, C&T chipset
-     = G    .	  .    640x400	256	  .	.  Cirrus 5320 chipset
-     = G  80x25	 8x16  640x400	256	  .   A000 Chips&Technologies 64310
- 79h = G  80x30	 8x16  640x480	256	  .	.  Cardinal, C&T chipset
+| ::: | G | 90x28 | 8x14 | 720x392 | 16 | 1 | A000 | Ahead B |
+| ::: | G | 80x30 | 8x16 | 640x480 | . | . | A000 | Diamond Stealth64 Video 2xx1 |
+| ::: | G | 100x38 | 8x16 | 800x600 | 16 | . | A000 | C&T chipset, Cardinal |
+| ::: | G | . | . | 1024x480 | 256 | . | A000 | Trident 8900C BIOS C3.0 |
+| 71h | T | 80x25 | 8x8 | . | 16 | 8 | B800 | Quadram (CGA double scan) |
+| ::: | T | 80x25 | 8x8 | (CGA dblscan) || . | . | Genoa SuperEGA BIOS 3.0+ |
+| ::: | G | . | . | 528x400 | 256 | . | . | Cirrus 510/520 chipset |
+| ::: | G | 80x30 | 8x16 | 640x480 | 16M | . | A000 | Cirrus CL-GD 5422/5426 |
+| ::: | G | 80x30 | 8x16 | 640x480 | . | . | A000 | Diamond Stealth64 Video 2xx1 |
+| ::: | G | 100x35 | 8x16 | 800x600 | 16/64 | . | A000 | NSI Smart EGA+ |
+| ::: | G | 100x75 | 8x8 | 800x600 | 16 | 1 | A000 | Ahead B (same as 6Ah) |
+| ::: | G | . | . | 960x720 | 16 | . | . | C&T chipset, Cardinal |
+| ::: | G | . | . | 1024x480 | 256 | . | A000 | Trident 8900C BIOS C3.0 |
+| 72h | T | 80x60 | 8x8 | . | 16 | . | B800 | Quadram Ultra VGA |
+| ::: | T | 80x60 | 8x8 | . | 16 | . | B800 | Genoa 6400 |
+| ::: | T | 80x60 | 8x8 | . | 16 | . | B800 | Genoa SuperEGA BIOS 3.0+ |
+| ::: | G | . | . | 528x480 | 256 | . | . | Cirrus 510/520 chipset |
+| ::: | G | 80x25 | 8x19 | 640x480 | 16 | 1 | A000 | DOS/V w/ any VGA |
+| ::: | G | 80x30 | 8x16 | 640x480 | . | . | A000 | Diamond Stealth64 Video 2xx1 |
+| ::: | G | . | . | 640x480 | 32K | . | A000 | ATI |
+| ::: | G | . | . | 640x480 | 16M | . | A000 | WD90C |
+| ::: | G | . | . | 640x480 | 16M | . | A000 | Diamond Speedstar 24X |
+| ::: | G | . | . | 1024x768 | 16 | . | . | C&T chipset, Cardinal |
+| ::: | G | 128x48 | 8x16 | 1024x768i | 16 | . | A000 | C&T 82C450 BIOS |
+| ::: | G | 128x48 | 8x16 | 1024x768 | 16 | . | A000 | C&T 65530 BIOS (multisync) |
+| 73h | G | 80x60 | 8x8 | 640x480 | 16 | . | A000 | Quadram Ultra VGA |
+| ::: | G | 80x60 | 8x8 | 640x480 | 16 | . | . | Genoa 6400 |
+| ::: | G | 80x60 | 8x8 | 640x480 | 16 | . | . | Genoa SuperEGA BIOS 3.0+ |
+| ::: | G | 100x37 | 8x16 | 800x600 | . | . | A000 | Diamond Stealth64 Video 2xx1 |
+| ::: | T | 80x25 | 8x19 | 640x475 | 16 | 1 | none | DOS/V, emulated in VGA graph |
+| 74h | T | 80x66 | 8x8 | . | 16 | . | B800 | Quadram Ultra VGA |
+| ::: | T | 80x66 | 8x8 | . | 16 | . | B800 | Genoa 6400 |
+| ::: | T | 80x66 | 8x8 | . | 16 | . | B800 | Genoa SuperEGA BIOS 3.0+ |
+| ::: | G | . | . | 640x400 | 2 | . | B800 | Toshiba 3100 AT&T mode |
+| ::: | G | 80x30 | 8x16 | 640x480 | 32K | . | A000 | Trident 8900C/BIOS C03 |
+| ::: | G | 100x37 | 8x16 | 800x600 | . | . | A000 | Diamond Stealth64 Video 2xx1 |
+| ::: | G | 128x48 | 8x16 | 1024x768 | 16 | 1 | A000 | Ahead A, Ahead B (512K) |
+| ::: | G | . | . | 1024x768 | 64K | . | A000 | Cirrus CL-GD 5422/5426 [1] |
+| 75h | G | 80x30 | 8x16 | 640x480 | 64K | . | A000 | Trident 8900C/BIOS C03 |
+| ::: | G | 80x66 | . | 640x528 | 16??? | . | A000 | Quadram Ultra VGA |
+| ::: | G | 80x66 | . | 640x528 | 16 | . | . | Genoa SuperEGA BIOS 3.0+ |
+| ::: | G | 100x37 | 8x16 | 800x600 | . | . | A000 | Diamond Stealth64 Video 2xx1 |
+| ::: | G | 128x48 | 8x16 | 1024x768 | 4 | 1 | A000 | Ahead B |
+| ::: | G | 128x48 | 8x16 | 1024x768 | 16 | . | A000 | Chips&Technologies 64310 |
+| 76h | T | 94x29 | 8x14 | . | 16 | . | B800 | Quadram Ultra VGA |
+| ::: | T | 94x29 | 8x14 | . | . | . | . | Genoa SuperEGA BIOS 3.0+ |
+| ::: | G | 100x75 | 8x8 | 800x600 | 32K | . | A000 | Trident 8900C/BIOS C03 |
+| ::: | G | 128x48 | 8x16 | 1024x768 | 2 | 1 | A000 | Ahead B |
+| ::: | G | 128x48 | 8x16 | 1024x768 | . | . | A000 | Diamond Stealth64 Video 2xx1 |
+| ::: | G | 160x64 | 8x16 | 1280x1024 | 16 | . | A000 | Chips&Technologies 64310 [1] |
+| 77h | G | 94x29 | . | 752x410 | 16??? | . | A000 | Quadram Ultra VGA |
+| ::: | G | 94x29 | . | 752x410 | 16 | . | . | Genoa SuperEGA BIOS 3.0+ |
+| ::: | G | 100x75 | 8x8 | 800x600 | 64K | . | A000 | Trident 8900C/BIOS C03 |
+| ::: | G | 128x48 | 8x16 | 1024x768 | . | . | A000 | Diamond Stealth64 Video 2xx1 |
+| 78h | T | 100x37 | 8x16 | . | 16 | . | . | Genoa 6400 |
+| ::: | T | 100x75 | 8x8 | . | 16 | . | B800 | Quadram Ultra VGA |
+| ::: | T | 100x75 | 8x8 | . | . | . | . | Genoa SuperEGA BIOS 3.0+ |
+| ::: | G | . | . | 640x400 | 256 | . | . | STB VGA/EM-16 Plus |
+| ::: | G | 80x25 | 8x16 | 640x400 | 256 | . | . | Cardinal, C&T chipset |
+| ::: | G | . | . | 640x400 | 256 | . | . | Cirrus 5320 chipset |
+| ::: | G | 80x25 | 8x16 | 640x400 | 256 | . | A000 | Chips&Technologies 64310 |
+| 79h | G | 80x30 | 8x16 | 640x480 | 256 | . | . | Cardinal, C&T chipset |
      = G  80x30	 8x16  640x480	256	  .   A000 Chips&Technologies 64310
      = G 100x75	  .    800x600	 16???	  .   A000 Quadram Ultra VGA
      = G 100x75	 8x8   800x600	 16	  .	.  Genoa SuperEGA BIOS 3.0+
