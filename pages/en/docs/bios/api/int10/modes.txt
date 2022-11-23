@@ -308,13 +308,13 @@
 | ::: | G | 80x30 | 8x16 | 640x480 | . | . | . | Lava Chrome II EGA |
 | ::: | G | 80x30 | 8x16 | 640x480 | . | . | A000 | Diamond Stealth64 Video 2xx1 |
 | 4Bh | G | 100x37 | 8x16 | 800x600 | . | . | A000 | Diamond Stealth64 Video 2xx1 |
- 4Dh = T 120x25	  .	  .	  .	  .	.  VEGA VGA
-     = G    .	  .    512x480	 16M	  .	.  Compaq QVision 1024/1280
-     = G 128x48	 8x16 1024x768	  .	  .   A000 Diamond Stealth64 Video 2xx1
- 4Eh = T 120x43	  .	  .	  .	  .	.  VEGA VGA
-     = T  80x60	 8x8	  .	 16/256K  .   B800 Oak OTI-067/OTI-077 [8]
-     = G    .	  .    640x400	 16M	  .	.  Compaq QVision 1024/1280
-     = G 144x54	 8x16 1152x864	  .	  .   A000 Diamond Stealth64 Video 2xx1
+| 4Dh | T | 120x25 | . | . | . | . | . | VEGA VGA |
+| ::: | G | . | . | 512x480 | 16M | . | . | Compaq QVision 1024/1280 |
+| ::: | G | 128x48 | 8x16 | 1024x768 | . | . | A000 | Diamond Stealth64 Video 2xx1 |
+| 4Eh | T | 120x43 | . | . | . | . | . | VEGA VGA |
+| ::: | T | 80x60 | 8x8 | . | 16/256K | . | B800 | Oak OTI-067/OTI-077 [8] |
+| ::: | G | . | . | 640x400 | 16M | . | . | Compaq QVision 1024/1280 |
+| ::: | G | 144x54 | 8x16 | 1152x864 | . | . | A000 | Diamond Stealth64 Video 2xx1 |
  4Fh = T 132x25	  .	  .	  .	  .	.  VEGA VGA
      = T 132x60	  .	  .	  .	  .	.  some Oak Tech VGA [8]
      = G    .	  .    640x480	 16M	  .	.  Compaq QVision 1280
