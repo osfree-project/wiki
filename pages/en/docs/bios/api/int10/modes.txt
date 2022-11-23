@@ -38,9 +38,9 @@
 | ::: | G | 80x25 | 8x16 | 640x400 | mono | . | . | Tandy 2000 |
 | ::: | G | 90x43 | 8x8 | 720x348 | mono | . | . | Hercules + HERCBIOS [15] |
 | 0Ah | G | 80x25 | 8x8 | 640x200 | 4 | . | . | PCjr, Tandy 1000 |
-| 0Bh | reserved |  |  |  |  |  |  | (EGA BIOS internal use) |
+| 0Bh | reserved ||||||| (EGA BIOS internal use) |
 | ::: | G | 80x25 | 8x8 | 640x200 | 16 | . | . | Tandy 1000 SL/TL [13] |
-| 0Ch | reserved |  |  |  |  |  |  | (EGA BIOS internal use) |
+| 0Ch | reserved ||||||| (EGA BIOS internal use) |
 | 0Dh | G | 40x25 | 8x8 | 320x200 | 16 | 8 | A000 | EGA,VGA |
 | 0Eh | G | 80x25 | 8x8 | 640x200 | 16 | 4 | A000 | EGA,VGA |
 | 0Fh | G | 80x25 | 8x14 | 640x350 | mono | 2 | A000 | EGA,VGA |
@@ -282,32 +282,32 @@
 | ::: | G | . | . | 640x200 of 640x400 viewport | | | | AT&T 6300 (unsupported) |
 | ::: | G | . | . | 640x480 | 64K | . | . | Avance Logic AL2101 |
 | ::: | G | 100x37 | 8x16 | 800x600 | 64K | . | . | Chips&Technologies 64310 |
- 44h =	disable VDC and DEB output		.  AT&T 6300
-     = T 100x60	  .	  .	  .	  .	.  VEGA VGA
-     = T 100x60	  .	  .	  .	  .	.  Tatung VGA
-     = T 100x60	  .	  .	  .	  .	.  Video7 V-RAM VGA
-     = T  80x32	  .    720x352	mono	  .	.  Genoa SuperEGA BIOS 3.0+
-     = G    .	  .    800x600	 64K	  .	.  Avance Logic AL2101
- 45h = T 132x28	  .	  .	  .	  .	.  Tatung VGA
-     = T 132x28	  .	  .	  .	  .	.  Video7 V-RAM VGA
-     = T  80x44	  .    720x352	mono	  .	.  Genoa SuperEGA BIOS 3.0+
- 46h = T 132x25	 8x14	  .	mono	  .	.  Genoa 6400
-     = T 132x25	 9x14	  .	mono	  .	.  Genoa SuperEGA BIOS 3.0+
-     = G 100x40	 8x15  800x600	  2	  .	.  AT&T VDC600
- 47h = T 132x29	 8x12	  .	mono	  .	.  Genoa 6400
-     = T 132x29	 9x12	  .	mono	  .	.  Genoa SuperEGA BIOS 3.0+
-     = T 132x28	 9x16 1188x448	 16/256K  .   B800 WD90C
-     = T 132x28	 9x16	  .	 16	  .   B800 Diamond Speedstar 24X
-     = G 100x37	 8x16  800x600	 16	  .	.  AT&T VDC600
- 48h = T 132x32	 8x12	  .	mono	  .	.  Genoa 6400
-     = T 132x32	 9x11	  .	mono	  .	.  Genoa SuperEGA BIOS 3.0+
-     = G  80x50	 8x8   640x400	  2	  .   B800 AT&T 6300, AT&T VDC600
-     = G  80x50	 8x8   640x400	  2	  .   B800 Olivetti Quaderno
- 49h = T 132x44	 8x8	  .	mono	  .	.  Genoa 6400
-     = T 132x44	 9x8	  .	mono	  .	.  Genoa SuperEGA BIOS 3.0+
-     = G  80x30	 8x16  640x480	  .	  .	.  Lava Chrome II EGA
-     = G  80x30	 8x16  640x480	  .	  .   A000 Diamond Stealth64 Video 2xx1
- 4Bh = G 100x37	 8x16  800x600	  .	  .   A000 Diamond Stealth64 Video 2xx1
+| 44h | disable VDC and DEB output |||||| . | AT&T 6300 |
+| ::: | T | 100x60 | . | . | . | . | . | VEGA VGA |
+| ::: | T | 100x60 | . | . | . | . | . | Tatung VGA |
+| ::: | T | 100x60 | . | . | . | . | . | Video7 V-RAM VGA |
+| ::: | T | 80x32 | . | 720x352 | mono | . | . | Genoa SuperEGA BIOS 3.0+ |
+| ::: | G | . | . | 800x600 | 64K | . | . | Avance Logic AL2101 |
+| 45h | T | 132x28 | . | . | . | . | . | Tatung VGA |
+| ::: | T | 132x28 | . | . | . | . | . | Video7 V-RAM VGA |
+| ::: | T | 80x44 | . | 720x352 | mono | . | . | Genoa SuperEGA BIOS 3.0+ |
+| 46h | T | 132x25 | 8x14 | . | mono | . | . | Genoa 6400 |
+| ::: | T | 132x25 | 9x14 | . | mono | . | . | Genoa SuperEGA BIOS 3.0+ |
+| ::: | G | 100x40 | 8x15 | 800x600 | 2 | . | . | AT&T VDC600 |
+| 47h | T | 132x29 | 8x12 | . | mono | . | . | Genoa 6400 |
+| ::: | T | 132x29 | 9x12 | . | mono | . | . | Genoa SuperEGA BIOS 3.0+ |
+| ::: | T | 132x28 | 9x16 | 1188x448 | 16/256K | . | B800 | WD90C |
+| ::: | T | 132x28 | 9x16 | . | 16 | . | B800 | Diamond Speedstar 24X |
+| ::: | G | 100x37 | 8x16 | 800x600 | 16 | . | . | AT&T VDC600 |
+| 48h | T | 132x32 | 8x12 | . | mono | . | . | Genoa 6400 |
+| ::: | T | 132x32 | 9x11 | . | mono | . | . | Genoa SuperEGA BIOS 3.0+ |
+| ::: | G | 80x50 | 8x8 | 640x400 | 2 | . | B800 | AT&T 6300, AT&T VDC600 |
+| ::: | G | 80x50 | 8x8 | 640x400 | 2 | . | B800 | Olivetti Quaderno |
+| 49h | T | 132x44 | 8x8 | . | mono | . | . | Genoa 6400 |
+| ::: | T | 132x44 | 9x8 | . | mono | . | . | Genoa SuperEGA BIOS 3.0+ |
+| ::: | G | 80x30 | 8x16 | 640x480 | . | . | . | Lava Chrome II EGA |
+| ::: | G | 80x30 | 8x16 | 640x480 | . | . | A000 | Diamond Stealth64 Video 2xx1 |
+| 4Bh | G | 100x37 | 8x16 | 800x600 | . | . | A000 | Diamond Stealth64 Video 2xx1 |
  4Dh = T 120x25	  .	  .	  .	  .	.  VEGA VGA
      = G    .	  .    512x480	 16M	  .	.  Compaq QVision 1024/1280
      = G 128x48	 8x16 1024x768	  .	  .   A000 Diamond Stealth64 Video 2xx1
