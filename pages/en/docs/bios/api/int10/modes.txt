@@ -514,107 +514,107 @@
 | ::: | G | 128x48 | 8x16 | 1024x768 | 16 | . | . | Genoa 6400 |
 | ::: | G | 128x48 | 8x16 | 1024x768 | 16/256K | . | A000 Zymos Poach, Hi Res 512 |
 | ::: | G | 128x48 | 8x16 | 1024x768 | 16/256K | . | A000 Trident TVGA 88/8900 512K |
- 60h = T 132x25	 8x14	  .	 16/64	  8   B800 Quadram Ultra VGA
-     = T 132x25	 8x14	  .	 16	  .	.  Genoa 6400
-     = T 132x25	 8x14	  .	 16	  .	.  Genoa SuperEGA BIOS 3.0+
-     = T 132x25	  .	  .	  .	  .	.  Cirrus 5320 chipset
-     = T 132x25	 8x16 1056x400	 16	  .   B800 Chips&Technologies chipset
-     = G  80x???  .    ???x400	  .	  .	.  Corona/Cordata BIOS 4.10+
-     = G  80x25	 8x16  640x400	256	  1   A000 Ahead A, Ahead B
-     = G    .	  .    752x410	  .	  .	.  VEGA VGA
-     = G    .	  .    752x410	 16	  .	.  Tatung VGA
-     = G    .	  .    752x410	 16	  .	.  Video7 V-RAM VGA
-     = G 128x48	 8x16 1024x768	  4/256K  .   A000 Trident TVGA 8900
-     = G 128x48	 8x16 1024x768	256/256K  .   A000 WD90C
-     = G 128x48	 8x16 1024x768	256/256K  .   A000 Diamond Speedstar 24X
-     = G 128x48	 8x16 1024x768	256/256K  .   A000 Cirrus CL-GD5420/5422/5426
-     = G 144x54	 8x16 1152x864	  .	  .   A000 Diamond Stealth64 Video 2xx1
- 61h = T 132x29	 8x12	  .	 16/64	  8   B800 Quadram Ultra VGA
-     = T 132x29	 8x8	  .	 16	  .	.  Genoa 6400
-     = T 132x29	 8x8	  .	 16	  .	.  Genoa SuperEGA BIOS 3.0+
-     = T 132x50	  .	  .	  .	  .	.  Cirrus 5320 chipset
-     = T 132x50	 8x8  1056x400	 16	  .   B800 Chips&Technologies chipset
-     = T 132x50	 8x16 1056x800	 16	  .   B800 Chips&Technologies 64310
-     = G    .	  .    ???x400	  .	  .	.  Corona/Cordata BIOS 4.10+
-     = G  80x25	 8x16  640x400	256	  .   A000 ATI VGA Wonder,VGA Wonder+
-     = G  80x25	 8x16  640x400	256	  .   A000 ATI Ultra 8514A,ATI XL
-     = G  80x25	 8x16  640x400	  .	  .   A000 Diamond Stealth64 Video 2xx1
-     = G  80x30	 8x16  640x480	256	  1   A000 Ahead A, Ahead B (512K)
-     = G    .	  .    720x540	  .	  .	.  VEGA VGA
-     = G    .	  .    720x540	 16	  .	.  Tatung VGA
-     = G    .	  .    720x540	 16	  .	.  Video7 V-RAM VGA
-     = G  96x64	 8x16  768x1024	 16/256K  .   A000 Trident TVGA 88/8900 512K
-     = G 128x48	 8x16 1024x768	256	  .   A000 NCR 77C22 [1,9]
-     = G 144x54	 8x16 1152x864	  .	  .   A000 Diamond Stealth64 Video 2xx1
- 62h = T 132x32	 8x11	  .	 16/64	  6   B800 Quadram Ultra VGA
-     = T 132x32	 8x12	  .	 16	  .	.  Genoa 6400
-     = T 132x32	 8x11	  .	 16	  .	.  Genoa SuperEGA BIOS 3.0+
-     = T 132x43	 8x8  1056x344	 16	  .   B800 C&T 82C450 BIOS
-     = G    .	  .    640x450	 16	  .	.  Cirrus 510/520 chipset
-     = G  80x30	 8x16  640x480	256	  .   A000 ATI VGA Wonder,VGA Wonder+
-     = G  80x30	 8x16  640x480	256	  .   A000 ATI Ultra 8514A,ATI XL
-     = G  80x30	 8x16  640x480	32K	  .   A000 WD90C
-     = G  80x30	 8x16  640x480	32K	  .   A000 Diamond Speedstar 24X
-     = G    .	  .    800x600	  .	  .	.  VEGA VGA
-     = G    .	  .    800x600	 16	  .	.  Tatung VGA
-     = G    .	  .    800x600	 16	  .	.  Video7 V-RAM VGA
-     = G 100x75	 8x8   800x600	256	  1   A000 Ahead A, Ahead B (512K)
-     = G 128x48	 8x16 1024x768	256/256K  .   A000 Trident TVGA 8900, Zymos
-     = G 128x48	 8x16 1024x768	256	  .   A000 NCR 77C22 [9]
- 63h = T 132x44	 8x8	  .	 16/64	  5   B800 Quadram Ultra VGA
-     = T 132x44	 8x8	  .	 16	  .	.  Genoa 6400
-     = T 132x44	 8x8	  .	 16	  .	.  Genoa SuperEGA BIOS 3.0+
-     = G    .	  .    720x540	 16	  .	.  MORSE VGA
-     = G    .	  .    720x540	 16	  .	.  Cirrus 510/520 chipset
-     = G 100x42	 8x14  800x600	256	  .   A000 ATI VGA Wonder,VGA Wonder+
-     = G 100x42	 8x14  800x600	256	  .   A000 ATI Ultra 8514A,ATI XL
-     = G    .	  .    800x600	32K	  .   A000 WD90C
-     = G    .	  .    800x600	32K	  .   A000 Diamond Speedstar 24X
-     = G 128x48	 7x16 1024x768	256	  1   A000 Ahead B (1MB)
-     = G    .	  .   1024x768	  2	  .	.  Video7 V-RAM VGA
- 64h = T 132x60	 8x8	  .	 16	  .	.  Genoa 6400
-     = T  80x43	 8x8   528x344	 16	  .   B800 C&T 82C450 BIOS
-     = G    .	  .    640x480	64K	  .   A000 Cirrus CL-GD 5422/5426
-     = G    .	  .    800x600	 16	  .	.  MORSE VGA
-     = G    .	  .    800x600	 16	  .	.  Cirrus 510/520 chipset
-     = G    .	  .    800x600	???	  .	.  SAMPO-Mira VGA
-     = G    .	  .   1024x768	  4	  .	.  Video7 V-RAM VGA
-     = G 128x48	 8x16 1024x768	256	  .   A000 ATI VGA Wonder Plus,ATI XL
-     = G 160x64	 8x16 1280x1024	 16/256K  .   A000 WD90C [1]
-     = G 160x64	 8x16 1280x1024	 16/256K  .   A000 Diamond Speedstar 24X [1]
- 65h = T  80x50	 8x8   528x400	 16	  .   B800 C&T 82C450 BIOS
-     = G    .	  .    800x600	64K	  .   A000 Cirrus CL-GD 5422/5426
-     = G    .	  .   1024x768	 16	  .	.  Video7 V-RAM VGA
-     = G 128x48	 8x16 1024x768	 16	  .   A000 ATI VGA Wonder
- 66h = T  80x50	 8x8   640x400	 16/256K  .   B800 WD90C
-     = T  80x50	 8x8	  .	 16	  .   B800 Diamond Speedstar 24X
-     = G    .	  .    640x400	256	  .	.  Tatung VGA
-     = G    .	  .    640x400	256	  .	.  Video7 V-RAM VGA
-     = G    .	  .    640x480	32K	  .   A000 Cirrus CL-GD 5422/5426
- 67h = T  80x43	 8x8   640x344	 16/256K  .   B800 WD90C
-     = T  80x43	 8x8	  .	 16	  .   B800 Diamond Speedstar 24X
-     = G    .	  .    640x480	256	  .	.  Video7 V-RAM VGA
-     = G    .	  .    800x600	32K	  .   A000 Cirrus CL-GD 5422/5426
-     = G 128x48	 8x16 1024x768	  4	  .   A000 ATI VGA Wonder
-     = G 160x64	 8x16 1280x1024	 16	  .   A000 NCR 77C22 [1,9]
- 68h = G  80x25	 8x16  640x400	  .	  .   A000 Diamond Stealth64 Video 2xx1
- 69h = T 132x50	 8x8  1056x400	 16/256K  .   B800 WD90C
-     = T 132x50	 8x8	  .	 16	  .   B800 Diamond Speedstar 24X
-     = G  80x30	 8x16  640x480	  .	  .   A000 Diamond Stealth64 Video 2xx1
-     = G    .	  .    720x540	256	  .   A000 Video7 V-RAM VGA
- 6Ah = G    .	  .    800x600	 16	  .   A000 VESA standard interface
-     = G 100x75	 8x8   800x600	 16	  .   A000 Genoa 6400
-     = G 100x75	 8x8   800x600	 16	  .   A000 Diamond Speedstar 24X
-     = G    .	  .    800x600	 16	  .   A000 Ahead A
-     = G 100x75	 8x8   800x600	 16	  1   A000 Ahead B (VESA) [see 71h]
-     = G    .	  .    800x600	 16	  .	.  Zymos Poach, Hi Res 512
-     = G    .	  .    800x600	 16	  .	.  Epson LT-386SX in CRT Mode
-     = G    .	  .    800x600	 16	  .	.  Compuadd 316SL in CRT Mode
-     = G 100x37	 8x16  800x600	 16/256K  .   A000 Cirrus CL-GD5420/5422/5426
-     = G 100x37	 8x16  800x600	 16	  .   A000 Diamond Stealth64 Video 2xx1
-     = G 100x42	 8x14  800x600	  .	  .   A000 ATI VGA Wonder (undoc)
-     = G    .	  .    800x600	 16	  .   A000 Chips&Technologies chipset
-     = G 160x64	 8x16 1280x1024 256	  .   A000 NCR 77C22 [1,9]
+| 60h | T | 132x25 | 8x14 | . | 16/64 | 8 | B800 | Quadram Ultra VGA |
+| ::: | T | 132x25 | 8x14 | . | 16 | . | . | Genoa 6400 |
+| ::: | T | 132x25 | 8x14 | . | 16 | . | . | Genoa SuperEGA BIOS 3.0+ |
+| ::: | T | 132x25 | . | . | . | . | . | Cirrus 5320 chipset |
+| ::: | T | 132x25 | 8x16 | 1056x400 | 16 | . | B800 | Chips&Technologies chipset |
+| ::: | G | 80x??? | . | ???x400 | . | . | . | Corona/Cordata BIOS 4.10+ |
+| ::: | G | 80x25 | 8x16 | 640x400 | 256 | 1 | A000 | Ahead A, Ahead B |
+| ::: | G | . | . | 752x410 | . | . | . | VEGA VGA |
+| ::: | G | . | . | 752x410 | 16 | . | . | Tatung VGA |
+| ::: | G | . | . | 752x410 | 16 | . | . | Video7 V-RAM VGA |
+| ::: | G | 128x48 | 8x16 | 1024x768 | 4/256K | . | A000 | Trident TVGA 8900 |
+| ::: | G | 128x48 | 8x16 | 1024x768 | 256/256K | . | A000 | WD90C |
+| ::: | G | 128x48 | 8x16 | 1024x768 | 256/256K | . | A000 | Diamond Speedstar 24X |
+| ::: | G | 128x48 | 8x16 | 1024x768 | 256/256K | . | A000 | Cirrus CL-GD5420/5422/5426 |
+| ::: | G | 144x54 | 8x16 | 1152x864 | . | . | A000 | Diamond Stealth64 Video 2xx1 |
+| 61h | T | 132x29 | 8x12 | . | 16/64 | 8 | B800 | Quadram Ultra VGA |
+| ::: | T | 132x29 | 8x8 | . | 16 | . | . | Genoa 6400 |
+| ::: | T | 132x29 | 8x8 | . | 16 | . | . | Genoa SuperEGA BIOS 3.0+ |
+| ::: | T | 132x50 | . | . | . | . | . | Cirrus 5320 chipset |
+| ::: | T | 132x50 | 8x8 | 1056x400 | 16 | . | B800 | Chips&Technologies chipset |
+| ::: | T | 132x50 | 8x16 | 1056x800 | 16 | . | B800 | Chips&Technologies 64310 |
+| ::: | G | . | . | ???x400 | . | . | . | Corona/Cordata BIOS 4.10+ |
+| ::: | G | 80x25 | 8x16 | 640x400 | 256 | . | A000 | ATI VGA Wonder,VGA Wonder+ |
+| ::: | G | 80x25 | 8x16 | 640x400 | 256 | . | A000 | ATI Ultra 8514A,ATI XL |
+| ::: | G | 80x25 | 8x16 | 640x400 | . | . | A000 | Diamond Stealth64 Video 2xx1 |
+| ::: | G | 80x30 | 8x16 | 640x480 | 256 | 1 | A000 | Ahead A, Ahead B (512K) |
+| ::: | G | . | . | 720x540 | . | . | . | VEGA VGA |
+| ::: | G | . | . | 720x540 | 16 | . | . | Tatung VGA |
+| ::: | G | . | . | 720x540 | 16 | . | . | Video7 V-RAM VGA |
+| ::: | G | 96x64 | 8x16 | 768x1024 | 16/256K | . | A000 | Trident TVGA 88/8900 512K |
+| ::: | G | 128x48 | 8x16 | 1024x768 | 256 | . | A000 | NCR 77C22 [1,9] |
+| ::: | G | 144x54 | 8x16 | 1152x864 | . | . | A000 | Diamond Stealth64 Video 2xx1 |
+| 62h | T | 132x32 | 8x11 | . | 16/64 | 6 | B800 | Quadram Ultra VGA |
+| ::: | T | 132x32 | 8x12 | . | 16 | . | . | Genoa 6400 |
+| ::: | T | 132x32 | 8x11 | . | 16 | . | . | Genoa SuperEGA BIOS 3.0+ |
+| ::: | T | 132x43 | 8x8 | 1056x344 | 16 | . | B800 | C&T 82C450 BIOS |
+| ::: | G | . | . | 640x450 | 16 | . | . | Cirrus 510/520 chipset |
+| ::: | G | 80x30 | 8x16 | 640x480 | 256 | . | A000 | ATI VGA Wonder,VGA Wonder+ |
+| ::: | G | 80x30 | 8x16 | 640x480 | 256 | . | A000 | ATI Ultra 8514A,ATI XL |
+| ::: | G | 80x30 | 8x16 | 640x480 | 32K | . | A000 | WD90C |
+| ::: | G | 80x30 | 8x16 | 640x480 | 32K | . | A000 | Diamond Speedstar 24X |
+| ::: | G | . | . | 800x600 | . | . | . | VEGA VGA |
+| ::: | G | . | . | 800x600 | 16 | . | . | Tatung VGA |
+| ::: | G | . | . | 800x600 | 16 | . | . | Video7 V-RAM VGA |
+| ::: | G | 100x75 | 8x8 | 800x600 | 256 | 1 | A000 | Ahead A, Ahead B (512K) |
+| ::: | G | 128x48 | 8x16 | 1024x768 | 256/256K | . | A000 | Trident TVGA 8900, Zymos |
+| ::: | G | 128x48 | 8x16 | 1024x768 | 256 | . | A000 | NCR 77C22 [9] |
+| 63h | T | 132x44 | 8x8 | . | 16/64 | 5 | B800 | Quadram Ultra VGA |
+| ::: | T | 132x44 | 8x8 | . | 16 | . | . | Genoa 6400 |
+| ::: | T | 132x44 | 8x8 | . | 16 | . | . | Genoa SuperEGA BIOS 3.0+ |
+| ::: | G | . | . | 720x540 | 16 | . | . | MORSE VGA |
+| ::: | G | . | . | 720x540 | 16 | . | . | Cirrus 510/520 chipset |
+| ::: | G | 100x42 | 8x14 | 800x600 | 256 | . | A000 | ATI VGA Wonder,VGA Wonder+ |
+| ::: | G | 100x42 | 8x14 | 800x600 | 256 | . | A000 | ATI Ultra 8514A,ATI XL |
+| ::: | G | . | . | 800x600 | 32K | . | A000 | WD90C |
+| ::: | G | . | . | 800x600 | 32K | . | A000 | Diamond Speedstar 24X |
+| ::: | G | 128x48 | 7x16 | 1024x768 | 256 | 1 | A000 | Ahead B (1MB) |
+| ::: | G | . | . | 1024x768 | 2 | . | . | Video7 V-RAM VGA |
+| 64h | T | 132x60 | 8x8 | . | 16 | . | . | Genoa 6400 |
+| ::: | T | 80x43 | 8x8 | 528x344 | 16 | . | B800 | C&T 82C450 BIOS |
+| ::: | G | . | . | 640x480 | 64K | . | A000 | Cirrus CL-GD 5422/5426 |
+| ::: | G | . | . | 800x600 | 16 | . | . | MORSE VGA |
+| ::: | G | . | . | 800x600 | 16 | . | . | Cirrus 510/520 chipset |
+| ::: | G | . | . | 800x600 | ??? | . | . | SAMPO-Mira VGA |
+| ::: | G | . | . | 1024x768 | 4 | . | . | Video7 V-RAM VGA |
+| ::: | G | 128x48 | 8x16 | 1024x768 | 256 | . | A000 | ATI VGA Wonder Plus,ATI XL |
+| ::: | G | 160x64 | 8x16 | 1280x1024 | 16/256K | . | A000 | WD90C [1] |
+| ::: | G | 160x64 | 8x16 | 1280x1024 | 16/256K | . | A000 | Diamond Speedstar 24X [1] |
+| 65h | T | 80x50 | 8x8 | 528x400 | 16 | . | B800 | C&T 82C450 BIOS |
+| ::: | G | . | . | 800x600 | 64K | . | A000 | Cirrus CL-GD 5422/5426 |
+| ::: | G | . | . | 1024x768 | 16 | . | . | Video7 V-RAM VGA |
+| ::: | G | 128x48 | 8x16 | 1024x768 | 16 | . | A000 | ATI VGA Wonder |
+| 66h | T | 80x50 | 8x8 | 640x400 | 16/256K | . | B800 | WD90C |
+| ::: | T | 80x50 | 8x8 | . | 16 | . | B800 | Diamond Speedstar 24X |
+| ::: | G | . | . | 640x400 | 256 | . | . | Tatung VGA |
+| ::: | G | . | . | 640x400 | 256 | . | . | Video7 V-RAM VGA |
+| ::: | G | . | . | 640x480 | 32K | . | A000 | Cirrus CL-GD 5422/5426 |
+| 67h | T | 80x43 | 8x8 | 640x344 | 16/256K | . | B800 | WD90C |
+| ::: | T | 80x43 | 8x8 | . | 16 | . | B800 | Diamond Speedstar 24X |
+| ::: | G | . | . | 640x480 | 256 | . | . | Video7 V-RAM VGA |
+| ::: | G | . | . | 800x600 | 32K | . | A000 | Cirrus CL-GD 5422/5426 |
+| ::: | G | 128x48 | 8x16 | 1024x768 | 4 | . | A000 | ATI VGA Wonder |
+| ::: | G | 160x64 | 8x16 | 1280x1024 | 16 | . | A000 | NCR 77C22 [1,9] |
+| 68h | G | 80x25 | 8x16 | 640x400 | . | . | A000 | Diamond Stealth64 Video 2xx1 |
+| 69h | T | 132x50 | 8x8 | 1056x400 | 16/256K | . | B800 | WD90C |
+| ::: | T | 132x50 | 8x8 | . | 16 | . | B800 | Diamond Speedstar 24X |
+| ::: | G | 80x30 | 8x16 | 640x480 | . | . | A000 | Diamond Stealth64 Video 2xx1 |
+| ::: | G | . | . | 720x540 | 256 | . | A000 | Video7 V-RAM VGA |
+| 6Ah | G | . | . | 800x600 | 16 | . | A000 | VESA standard interface |
+| ::: | G | 100x75 | 8x8 | 800x600 | 16 | . | A000 | Genoa 6400 |
+| ::: | G | 100x75 | 8x8 | 800x600 | 16 | . | A000 | Diamond Speedstar 24X |
+| ::: | G | . | . | 800x600 | 16 | . | A000 | Ahead A |
+| ::: | G | 100x75 | 8x8 | 800x600 | 16 | 1 | A000 | Ahead B (VESA) [see 71h] |
+| ::: | G | . | . | 800x600 | 16 | . | . | Zymos Poach, Hi Res 512 |
+| ::: | G | . | . | 800x600 | 16 | . | . | Epson LT-386SX in CRT Mode |
+| ::: | G | . | . | 800x600 | 16 | . | . | Compuadd 316SL in CRT Mode |
+| ::: | G | 100x37 | 8x16 | 800x600 | 16/256K | . | A000 | Cirrus CL-GD5420/5422/5426 |
+| ::: | G | 100x37 | 8x16 | 800x600 | 16 | . | A000 | Diamond Stealth64 Video 2xx1 |
+| ::: | G | 100x42 | 8x14 | 800x600 | . | . | A000 | ATI VGA Wonder (undoc) |
+| ::: | G | . | . | 800x600 | 16 | . | A000 | Chips&Technologies chipset
+| ::: | G | 160x64 | 8x16 | 1280x1024 | 256 | . | A000 NCR 77C22 [1,9] |
  6Bh = T 100x37	 8x16	  .	 16	  .	.  Genoa 6400
      = T 100x37	 8x16	  .	  .	  .	.  NEL Electronics BIOS
      = G 100x37	 8x16  800x600	  .	  .   A000 Diamond Stealth64 Video 2xx1
