@@ -445,75 +445,75 @@
 | ::: | G | . | . | 800x600 | ??? | . | . | ELT VGA PLUS 16 |
 | ::: | G | 100x37 | 8x16 | 800x600 | 16/256K | . | A000 | Cirrus CL-GD5420/5422/5426 |
 | ::: | G | 160x64 | 8x16 | 1280x1024 | 16 | . | A000 | Oak OTI-077 chipset [8] |
- 59h = T  80x43	 9x8	  .	  .	  .	.  NEL Electronics BIOS
-     = T  80x66	 8x8	  .	 16/256K  .   A000 ATI VIP
-     = T 132x43	 9x11	  .	 16/256K  .   B800 Trident TVGA 8800/8900
-     = G 100x75	 8x8   800x600	  2	  .   A000 Paradise VGA
-     = G 100x75	 8x8   800x600	  2	  .	.  AT&T VDC600
-     = G    .	  .    800x600	  2	  .	.  AST VGA Plus, Compaq VGA
-     = G    .	  .    800x600	  2	  .	.  Dell VGA
-     = G    .	  .    800x600	  2	  .	.  Hewlett-Packard D1180A
-     = G 100x75	 8x8   800x600	  2	  .   A000 NCR 77C22 [9]
-     = G 128x48	 8x16 1024x768	256	  .   A000 Oak OTI-077 chipset [8]
- 5Ah = T  80x60	 8x8	  .	  .	  .	.  NEL Electronics BIOS
-     = T 132x60	 9x8	  .	 16/256K  .   B800 Trident TVGA 8800/8900
-     = G 128x48	 8x16 1024x768	  2	  .   A000 NCR 77C22 [9]
- 5Bh = T  80x30	 8x16	  .	  .	  .   B800 ATI VGA Wonder (undoc)
-     = G    .	  .    640x350	256	  .	.  Genoa 6400
-     = G  80x25	 8x16  640x400	 32K	  .   A000 Oak OTI-067/077 chips [8]
-     = G    .	  .    800x600	 16	  .	.  Maxxon, SEFCO TVGA, Imtec
-     = G 100x75	 8x8   800x600	 16/256K  .   A000 Trident TVGA 8800, 8900
-     = G    .	  .    800x600	???	  .	.  Vobis MVGA
-     = G 100x37	 8x16  800x600	  .	  .	.  NEL Electronics BIOS
-     = G 128x48	 8x16 1024x768	 16	  .   A000 NCR 77C22 [1,9]
- 5Ch = T 100x37	 8x16	  .	  .	  .	.  NEL Electronics BIOS
-     = G    .	  .    640x400	256	  .	.  Logix, ATI Prism Elite
-     = G    .	  .    640x400	256	  .	.  Maxxon, SEFCO TVGA, Imtec
-     = G  80x25	 8x16  640x400	256/256K  .   A000 Zymos Poach, Hi Res 512
-     = G  80x25	 8x16  640x400	256/256K  .   A000 Trident TVGA 8800/8900
-     = G  80x30	 8x16  640x480	256	  .	.  Genoa 6400
-     = G  80x30	 8x16  640x480	 32K	  .   A000 Oak OTI-077 chipset [8]
-     = G 100x75	 8x8   800x600	256	  .   A000 NCR 77C22 [9]
-     = G 100x75	 8x8   800x600	256/256K  .   A000 WD90C
-     = G 100x75	 8x8   800x600	256/256K  .   A000 Diamond Speedstar 24X
-     = G 100x37	 8x16  800x600	256/256K  .   A000 Cirrus CL-GD5420/5422/5426
- 5Dh = T 100x75	 8x8	  .	  .	  .	.  NEL Electronics BIOS
-     = G  80x25	 8x14  640x350	 64K	  .	.  STB Lightspeed ET4000/W32P
-     = G    .	  .    640x480	256	  .	.  Logix, ATI Prism Elite
-     = G    .	  .    640x480	256	  .	.  Maxxon, SEFCO TVGA, Imtec
-     = G  80x30	 8x16  640x480	256/256K  .   A000 Zymos Poach, Hi Res 512
-     = G  80x30	 8x16  640x480	256/256K  .   A000 Trident TVGA 8800 (512K)
-     = G 128x48	 8x16 1024x768	 16	  .   A000 NCR 77C22 [9]
-     = G 128x48	 8x16 1024x768	 16/256K  .   A000 WD90C
-     = G 128x48	 8x16 1024x768	 16	  .   A000 Diamond Speedstar 24X
-     = G 128x48	 8x16 1024x768	 16/256K  .   A000 Cirrus CL-GD5420/5422/5426
- 5Eh = G    .	  .    640x400	256	  .	.  Paradise VGA,VEGA VGA
-     = G    .	  .    640x400	256	  .	.  AST VGA Plus, NCR 77C22
-     = G    .	  .    640x400	256	  .	.  Compaq VGA, Dell VGA
-     = G  80x25	 8x16  640x400	256	  .	.  AT&T VDC600
-     = G  80x25	 8x16  640x400	256	  .   A000 NCR 77C22 [9]
-     = G  80x25	 8x16  640x400	256/256K  .   A000 WD90C
-     = G  80x25	 8x16  640x400	256/256K  .   A000 Diamond Speedstar 24X
-     = G    .	  .    800x600	 16	  .	.  Logix, ATI Prism Elite
-     = G 100x37	 8x16  800x600	 16	  .	.  NEL Electronics BIOS
-     = G 100x75	 8x8   800x600	256	  .	.  Genoa 6400
-     = G 100x75	 8x8   800x600	256/256K  .   A000 Zymos Poach, Trident 8900
-     = G 100x75	 8x8   800x600	256/256K  .   A000 Hi Res 512
- 5Fh = G  80x25	 8x16  640x400	 64K	  .	.  STB Lightspeed ET4000/W32P
-     = G    .	  .    640x480	256	  .	.  Paradise VGA
-     = G    .	  .    640x480	256	  .	.  AST VGA Plus, NCR 77C22
-     = G    .	  .    640x480	256	  .	.  Compaq VGA, Dell VGA
-     = G    .	  .    640x480	256	  .	.  Hewlett-Packard D1180A
-     = G  80x30	 8x16  640x480	256	  .	.  AT&T VDC600 (512K)
-     = G  80x30	 8x16  640x480	256	  .   A000 NCR 77C22 [9]
-     = G  80x30	 8x16  640x480	256/256K  .   A000 WD90C
-     = G  80x30	 8x16  640x480	256/256K  .   A000 Diamond Speedstar 24X
-     = G  80x30	 8x16  640x480	256/256K  .   A000 Cirrus CL-GD5420/5422/5426
-     = G    .	  .   1024x768	 16	  .	.  Logix, ATI Prism Elite
-     = G    .	  .   1024x768	 16	  .	.  Maxxon, Imtec
-     = G 128x48	 8x16 1024x768	 16	  .	.  Genoa 6400
-     = G 128x48	 8x16 1024x768	 16/256K  .   A000 Zymos Poach, Hi Res 512
-     = G 128x48	 8x16 1024x768	 16/256K  .   A000 Trident TVGA 88/8900 512K
+| 59h | T | 80x43 | 9x8 | . | . | . | . | NEL Electronics BIOS |
+| ::: | T | 80x66 | 8x8 | . | 16/256K | . | A000 | ATI VIP |
+| ::: | T | 132x43 | 9x11 | . | 16/256K | . | B800 | Trident TVGA 8800/8900 |
+| ::: | G | 100x75 | 8x8 | 800x600 | 2 | . | A000 | Paradise VGA |
+| ::: | G | 100x75 | 8x8 | 800x600 | 2 | . | . | AT&T VDC600 |
+| ::: | G | . | . | 800x600 | 2 | . | . | AST VGA Plus, Compaq VGA |
+| ::: | G | . | . | 800x600 | 2 | . | . | Dell VGA |
+| ::: | G | . | . | 800x600 | 2 | . | . | Hewlett-Packard D1180A |
+| ::: | G | 100x75 | 8x8 | 800x600 | 2 | . | A000 | NCR 77C22 [9] |
+| ::: | G | 128x48 | 8x16 | 1024x768 | 256 | . | A000 | Oak OTI-077 chipset [8] |
+| 5Ah | T | 80x60 | 8x8 | . | . | . | . | NEL Electronics BIOS |
+| ::: | T | 132x60 | 9x8 | . | 16/256K | . | B800 | Trident TVGA 8800/8900 |
+| ::: | G | 128x48 | 8x16 | 1024x768 | 2 | . | A000 | NCR 77C22 [9] |
+| 5Bh | T | 80x30 | 8x16 | . | . | . | B800 | ATI VGA Wonder (undoc) |
+| ::: | G | . | . | 640x350 | 256 | . | . | Genoa 6400 |
+| ::: | G | 80x25 | 8x16 | 640x400 | 32K | . | A000 | Oak OTI-067/077 chips [8] |
+| ::: | G | . | . | 800x600 | 16 | . | . | Maxxon, SEFCO TVGA, Imtec |
+| ::: | G | 100x75 | 8x8 | 800x600 | 16/256K | . | A000 | Trident TVGA 8800, 8900 |
+| ::: | G | . | . | 800x600 | ??? | . | . | Vobis MVGA |
+| ::: | G | 100x37 | 8x16 | 800x600 | . | . | . | NEL Electronics BIOS |
+| ::: | G | 128x48 | 8x16 | 1024x768 | 16 | . | A000 | NCR 77C22 [1,9] |
+| 5Ch | T | 100x37 | 8x16 | . | . | . | . | NEL Electronics BIOS |
+| ::: | G | . | . | 640x400 | 256 | . | . | Logix, ATI Prism Elite |
+| ::: | G | . | . | 640x400 | 256 | . | . | Maxxon, SEFCO TVGA, Imtec |
+| ::: | G | 80x25 | 8x16 | 640x400 | 256/256K | . | A000 | Zymos Poach, Hi Res 512 |
+| ::: | G | 80x25 | 8x16 | 640x400 | 256/256K | . | A000 | Trident TVGA 8800/8900 |
+| ::: | G | 80x30 | 8x16 | 640x480 | 256 | . | . | Genoa 6400 |
+| ::: | G | 80x30 | 8x16 | 640x480 | 32K | . | A000 | Oak OTI-077 chipset [8] |
+| ::: | G | 100x75 | 8x8 | 800x600 | 256 | . | A000 | NCR 77C22 [9] |
+| ::: | G | 100x75 | 8x8 | 800x600 | 256/256K | . | A000 | WD90C |
+| ::: | G | 100x75 | 8x8 | 800x600 | 256/256K | . | A000 | Diamond Speedstar 24X |
+| ::: | G | 100x37 | 8x16 | 800x600 | 256/256K | . | A000 | Cirrus CL-GD5420/5422/5426 |
+| 5Dh | T | 100x75 | 8x8 | . | . | . | . | NEL Electronics BIOS |
+| ::: | G | 80x25 | 8x14 | 640x350 | 64K | . | . | STB Lightspeed ET4000/W32P |
+| ::: | G | . | . | 640x480 | 256 | . | . | Logix, ATI Prism Elite |
+| ::: | G | . | . | 640x480 | 256 | . | . | Maxxon, SEFCO TVGA, Imtec |
+| ::: | G | 80x30 | 8x16 | 640x480 | 256/256K | . | A000 | Zymos Poach, Hi Res 512 |
+| ::: | G | 80x30 | 8x16 | 640x480 | 256/256K | . | A000 | Trident TVGA 8800 (512K) |
+| ::: | G | 128x48 | 8x16 | 1024x768 | 16 | . | A000 | NCR 77C22 [9] |
+| ::: | G | 128x48 | 8x16 | 1024x768 | 16/256K | . | A000 | WD90C |
+| ::: | G | 128x48 | 8x16 | 1024x768 | 16 | . | A000 | Diamond Speedstar 24X |
+| ::: | G | 128x48 | 8x16 | 1024x768 | 16/256K | . | A000 | Cirrus CL-GD5420/5422/5426 |
+| 5Eh | G | . | . | 640x400 | 256 | . | . | Paradise VGA,VEGA VGA |
+| ::: | G | . | . | 640x400 | 256 | . | . | AST VGA Plus, NCR 77C22 |
+| ::: | G | . | . | 640x400 | 256 | . | . | Compaq VGA, Dell VGA |
+| ::: | G | 80x25 | 8x16 | 640x400 | 256 | . | . | AT&T VDC600 |
+| ::: | G | 80x25 | 8x16 | 640x400 | 256 | . | A000 | NCR 77C22 [9] |
+| ::: | G | 80x25 | 8x16 | 640x400 | 256/256K | . | A000 | WD90C |
+| ::: | G | 80x25 | 8x16 | 640x400 | 256/256K | . | A000 | Diamond Speedstar 24X |
+| ::: | G | . | . | 800x600 | 16 | . | . | Logix, ATI Prism Elite |
+| ::: | G | 100x37 | 8x16 | 800x600 | 16 | . | . | NEL Electronics BIOS |
+| ::: | G | 100x75 | 8x8 | 800x600 | 256 | . | . | Genoa 6400 |
+| ::: | G | 100x75 | 8x8 | 800x600 | 256/256K | . | A000 | Zymos Poach, Trident 8900 |
+| ::: | G | 100x75 | 8x8 | 800x600 | 256/256K | . | A000 | Hi Res 512 |
+| 5Fh | G | 80x25 | 8x16 | 640x400 | 64K | . | . | STB Lightspeed ET4000/W32P |
+| ::: | G | . | . | 640x480 | 256 | . | . | Paradise VGA |
+| ::: | G | . | . | 640x480 | 256 | . | . | AST VGA Plus, NCR 77C22 |
+| ::: | G | . | . | 640x480 | 256 | . | . | Compaq VGA, Dell VGA |
+| ::: | G | . | . | 640x480 | 256 | . | . | Hewlett-Packard D1180A |
+| ::: | G | 80x30 | 8x16 | 640x480 | 256 | . | . | AT&T VDC600 (512K) |
+| ::: | G | 80x30 | 8x16 | 640x480 | 256 | . | A000 | NCR 77C22 [9] |
+| ::: | G | 80x30 | 8x16 | 640x480 | 256/256K | . | A000 | WD90C |
+| ::: | G | 80x30 | 8x16 | 640x480 | 256/256K | . | A000 | Diamond Speedstar 24X |
+| ::: | G | 80x30 | 8x16 | 640x480 | 256/256K | . | A000 | Cirrus CL-GD5420/5422/5426 |
+| ::: | G | . | . | 1024x768 | 16 | . | . | Logix, ATI Prism Elite |
+| ::: | G | . | . | 1024x768 | 16 | . | . | Maxxon, Imtec |
+| ::: | G | 128x48 | 8x16 | 1024x768 | 16 | . | . | Genoa 6400 |
+| ::: | G | 128x48 | 8x16 | 1024x768 | 16/256K | . | A000 Zymos Poach, Hi Res 512 |
+| ::: | G | 128x48 | 8x16 | 1024x768 | 16/256K | . | A000 Trident TVGA 88/8900 512K |
  60h = T 132x25	 8x14	  .	 16/64	  8   B800 Quadram Ultra VGA
      = T 132x25	 8x14	  .	 16	  .	.  Genoa 6400
      = T 132x25	 8x14	  .	 16	  .	.  Genoa SuperEGA BIOS 3.0+
