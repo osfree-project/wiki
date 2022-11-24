@@ -18,13 +18,13 @@
 | ::: | T | 80x25 | 8x14 | 640x350 | 16/64 | 8 | B800 | EGA |
 | ::: | T | 80x25 | 8x16 | 640x400 | 16 | 8 | B800 | MCGA |
 | ::: | T | 80x25 | 9x16 | 720x400 | 16 | 8 | B800 | VGA |
-| ::: | T | 80x43 | 8x8 | 640x350 | 16 | 4 | B800 | EGA,VGA [17] |
-| ::: | T | 80x50 | 8x8 | 640x400 | 16 | 4 | B800 | VGA [17] |
+| ::: | T | 80x43 | 8x8 | 640x350 | 16 | 4 | B800 | EGA,VGA ((For 43-line text on EGA or 43/50-line text on VGA, you must load an 8x8 font using AX=1102h after switching to mode 3; VGA may also require using INT 10/AH=12h/BL=30h)) |
+| ::: | T | 80x50 | 8x8 | 640x400 | 16 | 4 | B800 | VGA ((For 43-line text on EGA or 43/50-line text on VGA, you must load an 8x8 font using AX=1102h after switching to mode 3; VGA may also require using INT 10/AH=12h/BL=30h)) |
 | 04h | G | 40x25 | 8x8 | 320x200 | 4 | . | B800 | CGA,PCjr,EGA,MCGA,VGA |
 | 05h | G | 40x25 | 8x8 | 320x200 | 4gray | . | B800 | CGA,PCjr,EGA |
 | ::: | G | 40x25 | 8x8 | 320x200 | 4 | . | B800 | MCGA,VGA |
 | 06h | G | 80x25 | 8x8 | 640x200 | 2 | . | B800 | CGA,PCjr,EGA,MCGA,VGA |
-| ::: | G | 80x25 | . | . | mono | . | B000 | HERCULES.COM on HGC [14] |
+| ::: | G | 80x25 | . | . | mono | . | B000 | HERCULES.COM on HGC ((HERCULES.COM is a graphics-mode BIOS extension for Hercules-compatible graphics cards by Soft Warehouse, Inc.  Its installation check is to test whether the word preceding the INT 10 handler is 4137h.)) |
 | 07h | T | 80x25 | 9x14 | 720x350 | mono | var | B000 | MDA,Hercules,EGA |
 | ::: | T | 80x25 | 9x16 | 720x400 | mono | . | B000 | VGA |
 | 08h | T | 132x25 | 8x8 | 1056x200 | 16 | . | B800 | ATI EGA/VGA Wonder ((for ATI EGA Wonder, mode 08h is only valid if SMS.COM is loaded resident. SMS maps mode 08h to mode 27h if the byte at location 0040:0063 is 0B4h, otherwise to mode 23h, thus selecting the appropriate (monochrome or color) 132x25 character mode. for ATI VGA Wonder, mode 08h is the same, and only valid if VCONFIG loaded resident)) |
@@ -32,11 +32,11 @@
 | ::: | G | 20x25 | 8x8 | 160x200 | 16 | . | . | PCjr, Tandy 1000 |
 | ::: | G | 80x25 | 8x16 | 640x400 | color | . | . | Tandy 2000 |
 | ::: | G | 90x43 | 8x8 | 720x348 | mono | . | B000 | Hercules + MSHERC.COM |
-| ::: | G | 90x45 | 8x8 | 720x360 | mono | . | B000 | Hercules + HERKULES [11] |
-| ::: | G | 90x29 | 8x12 | 720x348 | mono | . | . | Hercules + HERCBIOS [15] |
+| ::: | G | 90x45 | 8x8 | 720x360 | mono | . | B000 | Hercules + HERKULES ((HERKULES simulates a 90x45 text mode in Hercules graphics mode; the installation check for HERKULES.COM is the signature "Herkules" two bytes beyond the INT 10 handler)) |
+| ::: | G | 90x29 | 8x12 | 720x348 | mono | . | . | Hercules + HERCBIOS ((The Hercules-graphics video modes for HERCBIOS (shareware by Dave Tutelman) may be changed by a command-line switch; the 90x43 character-cell mode's number is always one higher than the 90x29 mode (whose default is mode 08h))) |
 | 09h | G | 40x25 | 8x8 | 320x200 | 16 | . | . | PCjr, Tandy 1000 |
 | ::: | G | 80x25 | 8x16 | 640x400 | mono | . | . | Tandy 2000 |
-| ::: | G | 90x43 | 8x8 | 720x348 | mono | . | . | Hercules + HERCBIOS [15] |
+| ::: | G | 90x43 | 8x8 | 720x348 | mono | . | . | Hercules + HERCBIOS ((The Hercules-graphics video modes for HERCBIOS (shareware by Dave Tutelman) may be changed by a command-line switch; the 90x43 character-cell mode's number is always one higher than the 90x29 mode (whose default is mode 08h))) |
 | 0Ah | G | 80x25 | 8x8 | 640x200 | 4 | . | . | PCjr, Tandy 1000 |
 | 0Bh | reserved ||||||| (EGA BIOS internal use) |
 | ::: | G | 80x25 | 8x8 | 640x200 | 16 | . | . | Tandy 1000 SL/TL ((The Tandy 1000SL/TL BIOS does not actually support this mode)) |
@@ -59,36 +59,36 @@
 | 16h | G | 80x25 | 8x14 | 640x350 | . | . | . | Lava Chrome II EGA |
 | ::: | G | . | . | 800x600 | 16 | . | . | Tecmar VGA/AD |
 | 17h | T | 132x25 | . | . | . | . | . | Tecmar VGA/AD |
-| ::: | T | 80x43 | 8x8 | 640x348 | 16 | 4 | B800 | Tseng ET4000 BIOS [10] |
+| ::: | T | 80x43 | 8x8 | 640x348 | 16 | 4 | B800 | Tseng ET4000 BIOS ((mode 17h supported by Tseng ET4000 BIOS 8.01X dated 1990/09/14, but not v8.01X dated 1992/02/28; mode 21h supported by 1992/02/28 version but not 1990/09/14 version)) |
 | ::: | G | 80x34 | 8x14 | 640x480 | . | . | . | Lava Chrome II EGA |
-| 18h | T | 80x30 | 9x16 | 720x480 | 16 | 1 | A000 | Realtek RTVGA [12] |
+| 18h | T | 80x30 | 9x16 | 720x480 | 16 | 1 | A000 | Realtek RTVGA ((The Realtek RTVGA BIOS v3.C10 crashes when attempting to switch into modes 21h or 27h; this version of the BIOS also sets the BIOS data area incorrectly for extended text modes, resulting in scrolling after only 24 lines (the VMODE.EXE utility does set the data area correctly))) |
 | ::: | T | 132x25 | . | . | mono | . | B000 | Cirrus 5320 chipset |
 | ::: | T | 132x44 | 8x8 | 1056x352 | mono | . | B000 | Tseng Labs EVA |
 | ::: | T | 132x44 | 9x8 | 1188x352 | 4gray | 2 | B000 | Tseng ET3000 chipset |
 | ::: | T | 132x44 | 8x8 | 1056x352 | 16/256 | 2 | B000 | Tseng ET4000 chipset |
 | ::: | G | 80x34 | 8x14 | 640x480 | . | . | . | Lava Chrome II EGA |
 | ::: | G | . | . | 1024x768 | 16 | . | . | Tecmar VGA/AD |
-| 19h | T | 80x43 | 9x11 | 720x473 | 16 | 1 | A000 | Realtek RTVGA [12] |
+| 19h | T | 80x43 | 9x11 | 720x473 | 16 | 1 | A000 | Realtek RTVGA ((The Realtek RTVGA BIOS v3.C10 crashes when attempting to switch into modes 21h or 27h; this version of the BIOS also sets the BIOS data area incorrectly for extended text modes, resulting in scrolling after only 24 lines (the VMODE.EXE utility does set the data area correctly))) |
 | ::: | T | 132x25 | 8x14 | 1056x350 | mono | . | B000 | Tseng Labs EVA |
 | ::: | T | 132x25 | 9x14 | 1188x350 | 4gray | 4 | B000 | Tseng ET3000 chipset |
 | ::: | T | 132x25 | 8x14 | 1056x350 | 16/256 | 4 | B000 | Tseng ET4000 chipset |
 | ::: | T | 132x34 | . | . | mono | . | B000 | Cirrus 5320 chipset |
-| 1Ah | T | 80x60 | 9x8 | 720x480 | 16 | 1 | A000 | Realtek RTVGA [12] |
+| 1Ah | T | 80x60 | 9x8 | 720x480 | 16 | 1 | A000 | Realtek RTVGA ((The Realtek RTVGA BIOS v3.C10 crashes when attempting to switch into modes 21h or 27h; this version of the BIOS also sets the BIOS data area incorrectly for extended text modes, resulting in scrolling after only 24 lines (the VMODE.EXE utility does set the data area correctly))) |
 | ::: | T | 132x28 | 8x13 | 1056x364 | mono | . | B000 | Tseng Labs EVA |
 | ::: | T | 132x28 | 9x13 | 1188x364 | 4gray | 4 | B000 | Tseng ET3000 chipset |
 | ::: | T | 132x28 | 8x13 | 1056x364 | 16/256 | 4 | B000 | Tseng ET4000 chipset |
 | ::: | T | 132x44 | . | . | mono | . | B000 | Cirrus 5320 chipset |
 | ::: | G | . | . | 640x350 | 256 | . | . | Tecmar VGA/AD |
-| 1Bh | T | 132x25 | 9x14 | 1188x350 | 16 | 1 | A000 | Realtek RTVGA [12] |
+| 1Bh | T | 132x25 | 9x14 | 1188x350 | 16 | 1 | A000 | Realtek RTVGA ((The Realtek RTVGA BIOS v3.C10 crashes when attempting to switch into modes 21h or 27h; this version of the BIOS also sets the BIOS data area incorrectly for extended text modes, resulting in scrolling after only 24 lines (the VMODE.EXE utility does set the data area correctly))) |
 | ::: | G | . | . | 640x400 | 256 | . | . | Tecmar VGA/AD |
 | 1Ch | T | 132x25 | . | . | . | . | . | Cirrus 5320 chipset |
-| ::: | T | 132x30 | 9x16 | 1188x480 | 16 | 1 | A000 | Realtek RTVGA [12] |
+| ::: | T | 132x30 | 9x16 | 1188x480 | 16 | 1 | A000 | Realtek RTVGA ((The Realtek RTVGA BIOS v3.C10 crashes when attempting to switch into modes 21h or 27h; this version of the BIOS also sets the BIOS data area incorrectly for extended text modes, resulting in scrolling after only 24 lines (the VMODE.EXE utility does set the data area correctly))) |
 | ::: | G | . | . | 640x480 | 256 | . | . | Tecmar VGA/AD |
 | 1Dh | T | 132x43 | . | . | . | . | . | Cirrus 5320 chipset |
-| ::: | T | 132x43 | 9x11 | 1188x473 | 16 | 1 | A000 | Realtek RTVGA [12] |
+| ::: | T | 132x43 | 9x11 | 1188x473 | 16 | 1 | A000 | Realtek RTVGA ((The Realtek RTVGA BIOS v3.C10 crashes when attempting to switch into modes 21h or 27h; this version of the BIOS also sets the BIOS data area incorrectly for extended text modes, resulting in scrolling after only 24 lines (the VMODE.EXE utility does set the data area correctly))) |
 | ::: | G | . | . | 800x600 | 256 | . | . | Tecmar VGA/AD |
 | 1Eh | T | 132x44 | . | . | . | . | . | Cirrus 5320 chipset |
-| ::: | T | 132x60 | 9x8 | 1188x480 | 16 | 1 | A000 | Realtek RTVGA [12] |
+| ::: | T | 132x60 | 9x8 | 1188x480 | 16 | 1 | A000 | Realtek RTVGA ((The Realtek RTVGA BIOS v3.C10 crashes when attempting to switch into modes 21h or 27h; this version of the BIOS also sets the BIOS data area incorrectly for extended text modes, resulting in scrolling after only 24 lines (the VMODE.EXE utility does set the data area correctly))) |
 | 1Fh | G | 100x75 | 8x8 | 800x600 | 16 | 1 | A000 | Realtek RTVGA |
 | 20h | T | 132x25 | . | . | 16 | . | . | Avance Logic AL2101 |
 | ::: | G | 40x16 | . | 240x128 | mono | . | B000 | HP 95LX/100LX/200LX |
@@ -98,9 +98,9 @@
 | ::: | T | 132x30 | . | . | 16 | . | . | Avance Logic AL2101 |
 | ::: | T | 132x44 | 9x9 | 1188x396 | 16/256K | . | B800 | WD90C |
 | ::: | T | 132x44 | 9x9 | 1188x396 | 16 | . | B800 | Diamond Speedstar 24X |
-| ::: | T | 132x60 | . | . | 16 | 2 | B800 | Tseng ET4000 chipset [10] |
+| ::: | T | 132x60 | . | . | 16 | 2 | B800 | Tseng ET4000 chipset ((mode 17h supported by Tseng ET4000 BIOS 8.01X dated 1990/09/14, but not v8.01X dated 1992/02/28; mode 21h supported by 1992/02/28 version but not 1990/09/14 version)) |
 | ::: | G | 80x43 | 8x8 | 720x348 | mono | . | B000 | DESQview 2.x+Hercules ((DESQview intercepts calls to change into these two modes (21h is page 0, 22h is page 1) even if there is no Hercules graphics board installed)) |
-| ::: | G | 128x48 | 8x16 | 1024x768 | 16 | 1 | A000 | Realtek RTVGA [12] |
+| ::: | G | 128x48 | 8x16 | 1024x768 | 16 | 1 | A000 | Realtek RTVGA ((The Realtek RTVGA BIOS v3.C10 crashes when attempting to switch into modes 21h or 27h; this version of the BIOS also sets the BIOS data area incorrectly for extended text modes, resulting in scrolling after only 24 lines (the VMODE.EXE utility does set the data area correctly))) |
 | 22h | T | 132x43 | . | . | . | . | . | Allstar Peacock (VGA) |
 | ::: | T | 132x43 | . | . | 16 | . | . | Avance Logic AL2101 |
 | ::: | T | 132x44 | 8x8 | 1056x352 | . | . | B800 | Tseng Labs EVA |
@@ -155,7 +155,7 @@
 | 27h | T | 132x25 | 8x8 | 1056x200 | mono | . | B000 | ATI EGA Wonder,ATI VIP |
 | ::: | G | . | . | 720x512 | 16 | . | . | VEGA VGA |
 | ::: | G | . | . | 720x512 | 16 | . | . | Genoa |
-| ::: | G | 100x75 | 8x8 | 800x600 | 256 | 1 | A000 | Realtek RTVGA [12] |
+| ::: | G | 100x75 | 8x8 | 800x600 | 256 | 1 | A000 | Realtek RTVGA ((The Realtek RTVGA BIOS v3.C10 crashes when attempting to switch into modes 21h or 27h; this version of the BIOS also sets the BIOS data area incorrectly for extended text modes, resulting in scrolling after only 24 lines (the VMODE.EXE utility does set the data area correctly))) |
 | ::: | G | . | . | 960x720 | 16 | . | . | Avance Logic AL2101 |
 | 28h | T | ???x??? | . | . | . | . | . | VEGA VGA |
 | ::: | G | . | . | 512x512 | 256 | . | . | Avance Logic AL2101 |
@@ -710,16 +710,16 @@
 | 7Ch | G | . | . | 512x512 | 16 | . | . | Genoa |
 | ::: | G | 100x37 | 8x16 | 800x600 | 256 | . | . | C&T 82C453/F65530 chipsets |
 | ::: | G | 100x37 | 8x16 | 800x600 | 256 | . | A000 | Chips&Technologies 64310 |
-| ::: | G | 200x75 | 8x16 | 1600x1200 | .[16] | . | A000 | Diamond Stealth64 Video 2xx1 |
+| ::: | G | 200x75 | 8x16 | 1600x1200 | .((Stealth64 Video 2001-series BIOS v1.03 reports 76 lines for mode 7Ch, resulting in incorrect scrolling for TTY output (scrolling occurs only after the end of the 76th line, which is not displayed))) | . | A000 | Diamond Stealth64 Video 2xx1 |
 | 7Dh | G | 64x32 | 8x16 | 512x512 | 256 | . | . | Genoa |
 | 7Eh | special mode set (see AX=007Eh)	|||||| . | Paradise VGA, AT&T VDC600 |
 | ::: | G | 80x25 | 8x16 | 640x400 | 256 | . | . | Genoa 6400 |
 | ::: | G | . | . | 1024x768 | 256 | . | . | C&T 82C453 chipset |
 | ::: | G | 128x48 | 8x16 | 1024x768 | 256 | . | A000 | Chips&Technologies 64310 |
-| ::: | G | 90x43 | . | . | mono | . | B000 | HERCULES.COM on HGC [14] |
+| ::: | G | 90x43 | . | . | mono | . | B000 | HERCULES.COM on HGC ((HERCULES.COM is a graphics-mode BIOS extension for Hercules-compatible graphics cards by Soft Warehouse, Inc.  Its installation check is to test whether the word preceding the INT 10 handler is 4137h.)) |
 | 7Fh | special function set (see AX=007Fh/BH=00h) ||||||| Paradise VGA, AT&T VDC600 |
 | ::: | G | 128x48 | 8x16 | 1024x768 | 4 | . | . | Genoa 6400 |
-| ::: | G | 90x29 | . | . | mono | . | B000 | HERCULES.COM on HGC [14] |
+| ::: | G | 90x29 | . | . | mono | . | B000 | HERCULES.COM on HGC ((HERCULES.COM is a graphics-mode BIOS extension for Hercules-compatible graphics cards by Soft Warehouse, Inc.  Its installation check is to test whether the word preceding the INT 10 handler is 4137h.)) |
 | 82h | T | 80x25 | . | . | B&W | . | . | AT&T VDC overlay mode ((for AT&T VDC overlay modes, BL contains the DEB mode, which may be 06h, 40h, or 44h)) |
 | 83h | T | 80x25 | . | . | . | . | . | AT&T VDC overlay mode ((for AT&T VDC overlay modes, BL contains the DEB mode, which may be 06h, 40h, or 44h)) |
 | 86h | G | . | . | 640x200 | B&W | . | . | AT&T VDC overlay mode ((for AT&T VDC overlay modes, BL contains the DEB mode, which may be 06h, 40h, or 44h)) |
@@ -730,29 +730,8 @@
 | C8h | G | 80x50 | 8x8 | 640x400 | 2 | . | B800 | Olivetti Quaderno overlay |
 | D0h | G | . | . | 640x400 | 2 | . | B800 | DEC VAXmate AT&T mode |
 
-===== Notes =====
 
 
-[10] mode 17h supported by Tseng ET4000 BIOS 8.01X dated 1990/09/14, but not
-      v8.01X dated 1992/02/28; mode 21h supported by 1992/02/28 version but not
-      1990/09/14 version
-[11] HERKULES simulates a 90x45 text mode in Hercules graphics mode; the
-      installation check for HERKULES.COM is the signature "Herkules" two
-      bytes beyond the INT 10 handler
-[12] The Realtek RTVGA BIOS v3.C10 crashes when attempting to switch into
-      modes 21h or 27h; this version of the BIOS also sets the BIOS data area
-      incorrectly for extended text modes, resulting in scrolling after only
-      24 lines (the VMODE.EXE	utility does set the data area correctly)
-[14] HERCULES.COM is a graphics-mode BIOS extension for Hercules-compatible
-      graphics cards by Soft Warehouse, Inc.  Its installation check is to
-      test whether the word preceding the INT 10 handler is 4137h.
-[15] The Hercules-graphics video modes for HERCBIOS (shareware by Dave
-      Tutelman) may be changed by a command-line switch; the 90x43
-      character-cell mode's number is always one higher than the 90x29 mode
-      (whose default is mode 08h)
-[16] Stealth64 Video 2001-series BIOS v1.03 reports 76 lines for mode 7Ch,
-      resulting in incorrect scrolling for TTY output (scrolling occurs only
-      after the end of the 76th line, which is not displayed)
-[17] For 43-line text on EGA or 43/50-line text on VGA, you must load an 8x8
-      font using AX=1102h after switching to mode 3; VGA may also require
-      using INT 10/AH=12h/BL=30h
+
+ 
+
