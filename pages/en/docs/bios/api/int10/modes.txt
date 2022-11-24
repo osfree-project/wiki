@@ -27,8 +27,8 @@
 | ::: | G | 80x25 | . | . | mono | . | B000 | HERCULES.COM on HGC [14] |
 | 07h | T | 80x25 | 9x14 | 720x350 | mono | var | B000 | MDA,Hercules,EGA |
 | ::: | T | 80x25 | 9x16 | 720x400 | mono | . | B000 | VGA |
-| 08h | T | 132x25 | 8x8 | 1056x200 | 16 | . | B800 | ATI EGA/VGA Wonder [2] |
-| ::: | T | 132x25 | 8x8 | 1056x200 | mono | . | B000 | ATI EGA/VGA Wonder [2] |
+| 08h | T | 132x25 | 8x8 | 1056x200 | 16 | . | B800 | ATI EGA/VGA Wonder ((for ATI EGA Wonder, mode 08h is only valid if SMS.COM is loaded resident. SMS maps mode 08h to mode 27h if the byte at location 0040:0063 is 0B4h, otherwise to mode 23h, thus selecting the appropriate (monochrome or color) 132x25 character mode. for ATI VGA Wonder, mode 08h is the same, and only valid if VCONFIG loaded resident)) |
+| ::: | T | 132x25 | 8x8 | 1056x200 | mono | . | B000 | ATI EGA/VGA Wonder ((for ATI EGA Wonder, mode 08h is only valid if SMS.COM is loaded resident. SMS maps mode 08h to mode 27h if the byte at location 0040:0063 is 0B4h, otherwise to mode 23h, thus selecting the appropriate (monochrome or color) 132x25 character mode. for ATI VGA Wonder, mode 08h is the same, and only valid if VCONFIG loaded resident)) |
 | ::: | G | 20x25 | 8x8 | 160x200 | 16 | . | . | PCjr, Tandy 1000 |
 | ::: | G | 80x25 | 8x16 | 640x400 | color | . | . | Tandy 2000 |
 | ::: | G | 90x43 | 8x8 | 720x348 | mono | . | B000 | Hercules + MSHERC.COM |
@@ -39,7 +39,7 @@
 | ::: | G | 90x43 | 8x8 | 720x348 | mono | . | . | Hercules + HERCBIOS [15] |
 | 0Ah | G | 80x25 | 8x8 | 640x200 | 4 | . | . | PCjr, Tandy 1000 |
 | 0Bh | reserved ||||||| (EGA BIOS internal use) |
-| ::: | G | 80x25 | 8x8 | 640x200 | 16 | . | . | Tandy 1000 SL/TL [13] |
+| ::: | G | 80x25 | 8x8 | 640x200 | 16 | . | . | Tandy 1000 SL/TL ((The Tandy 1000SL/TL BIOS does not actually support this mode)) |
 | 0Ch | reserved ||||||| (EGA BIOS internal use) |
 | 0Dh | G | 40x25 | 8x8 | 320x200 | 16 | 8 | A000 | EGA,VGA |
 | 0Eh | G | 80x25 | 8x8 | 640x200 | 16 | 4 | A000 | EGA,VGA |
@@ -51,7 +51,7 @@
 | ::: | G | 80x30 | 8x16 | 640x480 | 16/64 | . | A000 | ATI EGA Wonder |
 | ::: | G | . | . | 640x480 | 16 | . | . | UltraVision+256K EGA |
 | 13h | G | 40x25 | 8x8 | 320x200 | 256/256K | . | A000 | VGA,MCGA,ATI VIP |
-| 14h | T | 132x25 | Nx16 | . | 16 | . | B800 | XGA, IBM Enhanced VGA [3] |
+| 14h | T | 132x25 | Nx16 | . | 16 | . | B800 | XGA, IBM Enhanced VGA ((early XGA boards support 132-column text but do not have this BIOS mode)) |
 | ::: | T | 132x25 | 8x16 | 1056x400 | 16/256K | . | . | Cirrus CL-GD5420/5422/5426 |
 | ::: | G | 80x25 | 8x8 | 640x200 | . | . | . | Lava Chrome II EGA |
 | ::: | G | . | . | 640x400 | 16 | . | . | Tecmar VGA/AD |
@@ -99,7 +99,7 @@
 | ::: | T | 132x44 | 9x9 | 1188x396 | 16/256K | . | B800 | WD90C |
 | ::: | T | 132x44 | 9x9 | 1188x396 | 16 | . | B800 | Diamond Speedstar 24X |
 | ::: | T | 132x60 | . | . | 16 | 2 | B800 | Tseng ET4000 chipset [10] |
-| ::: | G | 80x43 | 8x8 | 720x348 | mono | . | B000 | DESQview 2.x+Hercules [4] |
+| ::: | G | 80x43 | 8x8 | 720x348 | mono | . | B000 | DESQview 2.x+Hercules ((DESQview intercepts calls to change into these two modes (21h is page 0, 22h is page 1) even if there is no Hercules graphics board installed)) |
 | ::: | G | 128x48 | 8x16 | 1024x768 | 16 | 1 | A000 | Realtek RTVGA [12] |
 | 22h | T | 132x43 | . | . | . | . | . | Allstar Peacock (VGA) |
 | ::: | T | 132x43 | . | . | 16 | . | . | Avance Logic AL2101 |
@@ -110,7 +110,7 @@
 | ::: | T | 132x44 | 8x8 | 1056x352 | 16 | 2 | B800 | Ahead B |
 | ::: | T | 132x44 | 8x9 | 1056x398 | 16 | . | . | STB Lightspeed ET4000/W32P |
 | ::: | T | 132x44 | . | . | 16 | . | . | Orchid Prodesigner VGA |
-| ::: | G | 80x43 | 8x8 | 720x348	mono	  .   B800 DESQview 2.x+Hercules [4]
+| ::: | G | 80x43 | 8x8 | 720x348	mono	  .   B800 DESQview 2.x+Hercules ((DESQview intercepts calls to change into these two modes (21h is page 0, 22h is page 1) even if there is no Hercules graphics board installed)) |
 | ::: | G | 96x64 | 8x16 | 768x1024 | 16 | 1 | A000 | Realtek RTVGA |
 | ::: | G | 100x37 | 8x16 | 800x600 | 16 | . | . | C&T 64310/65530 BIOS | 
 | 23h | T | 132x25 | 6x14 | 792x350 | . | . | B800 | Tseng Labs EVA |
@@ -235,7 +235,7 @@
 | 3Bh | G | . | . | 512x480 | 256 | . | . | Compaq QVision 1024/1280 |
 | 3Ch | G | . | . | 640x400 | 64K | . | . | Compaq QVision 1024/1280 |
 | 3Dh | G | . | . | 1280x1024 | 16 | . | . | Definicon |
-| ::: | G | 128x64 | 8x16 | 1280x1024 | 16 | 1 | A000 | Tseng ET4000 v3.00 ((interlaced only)) [7] |
+| ::: | G | 128x64 | 8x16 | 1280x1024 | 16 | 1 | A000 | Tseng ET4000 v3.00 ((interlaced only)) ((BIOS text support is broken in this undocumented mode; scrolling moves only about 1/3 of the screen (and does even that portion incorrectly), while screen clears only clear about 3/4.)) |
 | 3Eh | G | . | . | 1280x961 | 16 | . | . | Definicon |
 | ::: | G | . | . | 640x480 | 64K | . | . | Compaq QVision 1024/1280 |
 | 3Fh | G | . | . | 1280x1024 | 256 | . | . | Hercules ??? (ET4000W32) |
@@ -312,11 +312,11 @@
 | ::: | G | . | . | 512x480 | 16M | . | . | Compaq QVision 1024/1280 |
 | ::: | G | 128x48 | 8x16 | 1024x768 | . | . | A000 | Diamond Stealth64 Video 2xx1 |
 | 4Eh | T | 120x43 | . | . | . | . | . | VEGA VGA |
-| ::: | T | 80x60 | 8x8 | . | 16/256K | . | B800 | Oak OTI-067/OTI-077 [8] |
+| ::: | T | 80x60 | 8x8 | . | 16/256K | . | B800 | Oak OTI-067/OTI-077 ((The Oak OTI-037/067/077 modes are present in the Oak VGA BIOS, which OEMs may choose to use only partially or not at all; thus, not all Oak boards support all "Oak" modes listed here)) |
 | ::: | G | . | . | 640x400 | 16M | . | . | Compaq QVision 1024/1280 |
 | ::: | G | 144x54 | 8x16 | 1152x864 | . | . | A000 | Diamond Stealth64 Video 2xx1 |
 | 4Fh | T | 132x25 | . | . | . | . | . | VEGA VGA |
-| ::: | T | 132x60 | . | . | . | . | . | some Oak Tech VGA [8] |
+| ::: | T | 132x60 | . | . | . | . | . | some Oak Tech VGA ((The Oak OTI-037/067/077 modes are present in the Oak VGA BIOS, which OEMs may choose to use only partially or not at all; thus, not all Oak boards support all "Oak" modes listed here)) |
 | ::: | G | . | . | 640x480 | 16M | . | . | Compaq QVision 1280 |
 | 50h | T | 80x30 | 8x16 | . | 16/256K | . | B800 | Trident TVGA 8800/8900 |
 | ::: | T | 80x34 | . | . | . | . | . | Lava Chrome II EGA |
@@ -324,7 +324,7 @@
 | ::: | T | 132x25 | 9x14 | . | mono | . | . | Ahead Systems EGA2001 |
 | ::: | T | 132x25 | 9x14 | . | 4 | 4 | B800 | Ahead B |
 | ::: | T | 132x25 | 8x14 | . | 16 | 8 | B800 | OAK Technologies VGA-16 |
-| ::: | T | 132x25 | 8x14 | . | 16/256K | . | B800 | Oak OTI-037/067/077 [8] |
+| ::: | T | 132x25 | 8x14 | . | 16/256K | . | B800 | Oak OTI-037/067/077 ((The Oak OTI-037/067/077 modes are present in the Oak VGA BIOS, which OEMs may choose to use only partially or not at all; thus, not all Oak boards support all "Oak" modes listed here)) |
 | ::: | T | 132x25 | 8x14 | 1056x350 | 16 | 8 | B800 | UM587 chipset |
 | ::: | T | 132x30 | . | . | 16 | . | . | MORSE VGA |
 | ::: | T | 132x30 | . | . | . | . | . | Cirrus 510/520 chipset |
@@ -356,8 +356,8 @@
 | ::: | G | 80x25 | 8x19 | 640x480 | 16 | 1 | A000 | AX VGA (Kanji&superimpose) |
 | ::: | G | 94x29 | 8x14 | 752x410 | 16 | . | . | ATI EGA Wonder |
 | ::: | G | 100x75 | 8x8 | 800x600 | 16 | 1 | A000 | OAK Technologies VGA-16 |
-| ::: | G | 100x75 | 8x8 | 800x600 | 16 | . | A000 | Oak OTI-037 chipset [8] |
-| ::: | G | 100x37 | 8x16 | 800x600 | 16 | . | A000 | Oak OTI-067/077 chips [8] |
+| ::: | G | 100x75 | 8x8 | 800x600 | 16 | . | A000 | Oak OTI-037 chipset ((The Oak OTI-037/067/077 modes are present in the Oak VGA BIOS, which OEMs may choose to use only partially or not at all; thus, not all Oak boards support all "Oak" modes listed here)) |
+| ::: | G | 100x37 | 8x16 | 800x600 | 16 | . | A000 | Oak OTI-067/077 chips ((The Oak OTI-037/067/077 modes are present in the Oak VGA BIOS, which OEMs may choose to use only partially or not at all; thus, not all Oak boards support all "Oak" modes listed here)) |
 | ::: | G | 100x75 | 8x8 | 800x600 | 16 | . | A000 | UM587 chipset |
 | ::: | G | 128x30 | 8x16 | 1024x480 | 16 | . | . | NEL Electronics BIOS |
 | 53h | T | 80x25 | 8x16 | . | . | . | . | NEL Electronics BIOS |
@@ -367,7 +367,7 @@
 | ::: | T | 132x43 | . | . | . | . | . | Lava Chrome II EGA |
 | ::: | G | 80x25 | 8x19 | 640x480 | 16 | 1 | A000 | AX VGA (Kanji, no superimp.) |
 | ::: | G | . | . | 640x480 | 256 | . | . | Oak VGA |
-| ::: | G | 80x30 | 8x16 | 640x480 | 256 | . | A000 | Oak OTI-067/OTI-077 [8] |
+| ::: | G | 80x30 | 8x16 | 640x480 | 256 | . | A000 | Oak OTI-067/OTI-077 ((The Oak OTI-037/067/077 modes are present in the Oak VGA BIOS, which OEMs may choose to use only partially or not at all; thus, not all Oak boards support all "Oak" modes listed here)) |
 | ::: | G | 100x40 | 8x14 | 800x560 | 16 | . | . | ATI EGA Wonder,ATI VIP |
 | ::: | G | . | . | . | . | . | . | AX PC |
 | 54h | T | 132x25 | . | . | . | . | . | Lava Chrome II EGA |
@@ -385,11 +385,11 @@
 | ::: | T | 132x43 | 9x9 | 1188x387 | 16/256K | . | B800 | Diamond Stealth 24 |
 | ::: | T | 132x43 | 8x8 | . | . | . | B800 | Diamond Stealth64 Video 2xx1 |
 | ::: | T | 132x43 | 8x8 | 1056x350 | 16/256K | . | . | Cirrus CL-GD5420/5422/5426 |
-| ::: | T | 132x50 | 8x8 | . | 16 | . | A000 | NCR 77C22 [9] |
+| ::: | T | 132x50 | 8x8 | . | 16 | . | A000 | NCR 77C22 ((this card uses the full 128K A000h-BFFFh range for the video buffer, precluding the use of a monochrome adapter in the same system)) |
 | ::: | G | 100x42 | 8x14 | 800x600 | 16 | . | A000 | ATI EGA Wonder, VGA Wonder |
 | ::: | G | 100x42 | 8x14 | 800x600 | 16 | . | A000 | ATI Ultra 8514A, ATI XL |
 | ::: | G | . | . | 800x600 | 256 | . | A000 | Oak VGA |
-| ::: | G | 100x37 | 8x16 | 800x600 | 256 | . | A000 | Oak OTI-067/077 chips [8] |
+| ::: | G | 100x37 | 8x16 | 800x600 | 256 | . | A000 | Oak OTI-067/077 chips ((The Oak OTI-037/067/077 modes are present in the Oak VGA BIOS, which OEMs may choose to use only partially or not at all; thus, not all Oak boards support all "Oak" modes listed here)) |
 | 55h | T | 80x66 | 8x8 | . | 16/256K | . | A000 | ATI VIP |
 | ::: | T | 132x25 | 8x14 | . | . | . | . | Paradise EGA-480 |
 | ::: | T | 132x25 | 8x14 | . | . | . | . | NEL Electronics BIOS |
@@ -399,7 +399,7 @@
 | ::: | T | 132x25 | . | . | . | . | . | AST VGA Plus |
 | ::: | T | 132x25 | . | . | . | . | . | Hewlett-Packard D1180A |
 | ::: | T | 132x25 | 7x16 | . | 16 | . | . | AT&T VDC600 |
-| ::: | T | 132x25 | 8x16 | . | 16 | . | A000 | NCR 77C22 [9] |
+| ::: | T | 132x25 | 8x16 | . | 16 | . | A000 | NCR 77C22 ((this card uses the full 128K A000h-BFFFh range for the video buffer, precluding the use of a monochrome adapter in the same system)) |
 | ::: | T | 132x25 | 9x16 | 1188x400 | 16/256K | . | B800 | WD90C |
 | ::: | T | 132x25 | 9x16 | 1188x400 | 16/256K | . | B800 | Diamond Speedstar 24X |
 | ::: | T | 132x25 | 9x16 | 1188x400 | 16/256K | . | B800 | Diamond Stealth 24 |
@@ -407,20 +407,20 @@
 | ::: | T | 132x25 | 8x14 | 1056x350 | 16/256K | . | . | Cirrus CL-GD5420/5422/5426 |
 | ::: | T | 132x43 | 8x11 | . | 16/256K | . | B800 | Trident TVGA 8800/8900 |
 | ::: | G | 94x29 | 8x14 | 752x410 | . | . | . | Lava Chrome II EGA |
-| ::: | G | 128x48 | 8x16 | 1024x768 | 16/256K | . | A000 | ATI VGA Wonder v4+  [5] |
+| ::: | G | 128x48 | 8x16 | 1024x768 | 16/256K | . | A000 | ATI VGA Wonder v4+  ((ATI BIOS v4-1.00 has a text-scrolling bug in this mode)) |
 | ::: | G | . | . | 1024x768 | 16/256K | . | . | ATI VGA Wonder Plus |
 | ::: | G | . | . | 1024x768 | 16/256K | . | . | ATI Ultra 8514A,ATI XL |
-| ::: | G | 128x48 | 8x16 | 1024x768 | 4 | . | A000 | Oak OTI-067/077 chips [8] |
+| ::: | G | 128x48 | 8x16 | 1024x768 | 4 | . | A000 | Oak OTI-067/077 chips ((The Oak OTI-037/067/077 modes are present in the Oak VGA BIOS, which OEMs may choose to use only partially or not at all; thus, not all Oak boards support all "Oak" modes listed here)) |
 | 56h | T | 132x43 | 8x8 | . | 3??? | 2 | B000 | NSI Smart EGA+ |
 | ::: | T | 132x43 | 7x9 | . | 4 | . | B000 | Paradise VGA |
 | ::: | T | 132x43 | 8x9 | . | 4 | . | B000 | Paradise VGA on multisync |
 | ::: | T | 132x43 | . | . | mono | . | . | Taxan 565 EGA |
 | ::: | T | 132x43 | 7x9 | . | 2 | . | . | AT&T VDC600 |
 | ::: | T | 132x43 | 9x8 | . | . | . | . | NEL Electronics BIOS |
-| ::: | T | 132x50 | 8x8 | . | 4 | . | A000 | NCR 77C22 [9] |
+| ::: | T | 132x50 | 8x8 | . | 4 | . | A000 | NCR 77C22 ((this card uses the full 128K A000h-BFFFh range for the video buffer, precluding the use of a monochrome adapter in the same system)) |
 | ::: | T | 132x60 | 8x8 | . | 16/256K | . | B800 | Trident TVGA 8800/8900 |
 | ::: | G | . | . | 1024x768 | 16 | . | A000 | Oak VGA |
-| ::: | G | 128x48 | 8x16 | 1024x768 | 16 | . | A000 | Oak OTI-067/077 chips [8] |
+| ::: | G | 128x48 | 8x16 | 1024x768 | 16 | . | A000 | Oak OTI-067/077 chips ((The Oak OTI-037/067/077 modes are present in the Oak VGA BIOS, which OEMs may choose to use only partially or not at all; thus, not all Oak boards support all "Oak" modes listed here)) |
 | 57h | T | 132x25 | 8x14 | . | 3??? | 4 | B000 | NSI Smart EGA+ |
 | ::: | T | 132x25 | 7x16 | . | 4 | . | B000 | Paradise VGA |
 | ::: | T | 132x25 | 8x16 | . | 4 | . | B000 | Paradise VGA on multisync |
@@ -428,15 +428,15 @@
 | ::: | T | 132x25 | . | . | mono | . | . | Taxan 565 EGA |
 | ::: | T | 132x25 | 7x16 | . | 2 | . | . | AT&T VDC600 |
 | ::: | T | 132x25 | 9x14 | . | 16/256K | . | B800 | Trident TVGA 8800/8900 |
-| ::: | T | 132x25 | 8x16 | . | 4 | . | A000 | NCR 77C22 [9] |
-| ::: | G | 96x48 | 8x16 | 768x1024 | 16 | . | A000 | Oak OTI-067/077 chips [8] |
+| ::: | T | 132x25 | 8x16 | . | 4 | . | A000 | NCR 77C22 ((this card uses the full 128K A000h-BFFFh range for the video buffer, precluding the use of a monochrome adapter in the same system)) |
+| ::: | G | 96x48 | 8x16 | 768x1024 | 16 | . | A000 | Oak OTI-067/077 chips ((The Oak OTI-037/067/077 modes are present in the Oak VGA BIOS, which OEMs may choose to use only partially or not at all; thus, not all Oak boards support all "Oak" modes listed here)) |
 | 58h | T | 80x33 | 8x14 | . | 16 | . | B800 | ATI EGA Wonder,ATI VIP |
 | ::: | T | 80x32 | 9x16 | . | 16 | . | . | Genoa 6400 |
 | ::: | T | 80x43 | 8x8 | . | . | . | . | NEL Electronics BIOS |
 | ::: | T | 132x30 | 9x16 | . | 16/256K | . | B800 | Trident TVGA 8800/8900 |
 | ::: | G | 100x75 | 8x8 | 800x600 | 16/256K | . | A000 | Paradise VGA |
 | ::: | G | 100x75 | 8x8 | 800x600 | 16 | . | . | AT&T VDC600 |
-| ::: | G | 100x75 | 8x8 | 800x600 | 16 | . | A000 | NCR 77C22 [9] |
+| ::: | G | 100x75 | 8x8 | 800x600 | 16 | . | A000 | NCR 77C22 ((this card uses the full 128K A000h-BFFFh range for the video buffer, precluding the use of a monochrome adapter in the same system)) |
 | ::: | G | 100x75 | 8x8 | 800x600 | 16 | . | A000 | Diamond Speedstar 24X |
 | ::: | G | 100x75 | 8x8 | 800x600 | 16/256K | . | A000 | Paradise VGA, WD90C |
 | ::: | G | . | . | 800x600 | 16 | . | . | AST VGA Plus, Compaq VGA |
@@ -444,7 +444,7 @@
 | ::: | G | . | . | 800x600 | 16 | . | . | Hewlett-Packard D1180A |
 | ::: | G | . | . | 800x600 | ??? | . | . | ELT VGA PLUS 16 |
 | ::: | G | 100x37 | 8x16 | 800x600 | 16/256K | . | A000 | Cirrus CL-GD5420/5422/5426 |
-| ::: | G | 160x64 | 8x16 | 1280x1024 | 16 | . | A000 | Oak OTI-077 chipset [8] |
+| ::: | G | 160x64 | 8x16 | 1280x1024 | 16 | . | A000 | Oak OTI-077 chipset ((The Oak OTI-037/067/077 modes are present in the Oak VGA BIOS, which OEMs may choose to use only partially or not at all; thus, not all Oak boards support all "Oak" modes listed here)) |
 | 59h | T | 80x43 | 9x8 | . | . | . | . | NEL Electronics BIOS |
 | ::: | T | 80x66 | 8x8 | . | 16/256K | . | A000 | ATI VIP |
 | ::: | T | 132x43 | 9x11 | . | 16/256K | . | B800 | Trident TVGA 8800/8900 |
@@ -453,27 +453,27 @@
 | ::: | G | . | . | 800x600 | 2 | . | . | AST VGA Plus, Compaq VGA |
 | ::: | G | . | . | 800x600 | 2 | . | . | Dell VGA |
 | ::: | G | . | . | 800x600 | 2 | . | . | Hewlett-Packard D1180A |
-| ::: | G | 100x75 | 8x8 | 800x600 | 2 | . | A000 | NCR 77C22 [9] |
-| ::: | G | 128x48 | 8x16 | 1024x768 | 256 | . | A000 | Oak OTI-077 chipset [8] |
+| ::: | G | 100x75 | 8x8 | 800x600 | 2 | . | A000 | NCR 77C22 ((this card uses the full 128K A000h-BFFFh range for the video buffer, precluding the use of a monochrome adapter in the same system)) |
+| ::: | G | 128x48 | 8x16 | 1024x768 | 256 | . | A000 | Oak OTI-077 chipset ((The Oak OTI-037/067/077 modes are present in the Oak VGA BIOS, which OEMs may choose to use only partially or not at all; thus, not all Oak boards support all "Oak" modes listed here)) |
 | 5Ah | T | 80x60 | 8x8 | . | . | . | . | NEL Electronics BIOS |
 | ::: | T | 132x60 | 9x8 | . | 16/256K | . | B800 | Trident TVGA 8800/8900 |
-| ::: | G | 128x48 | 8x16 | 1024x768 | 2 | . | A000 | NCR 77C22 [9] |
+| ::: | G | 128x48 | 8x16 | 1024x768 | 2 | . | A000 | NCR 77C22 ((this card uses the full 128K A000h-BFFFh range for the video buffer, precluding the use of a monochrome adapter in the same system)) |
 | 5Bh | T | 80x30 | 8x16 | . | . | . | B800 | ATI VGA Wonder (undoc) |
 | ::: | G | . | . | 640x350 | 256 | . | . | Genoa 6400 |
-| ::: | G | 80x25 | 8x16 | 640x400 | 32K | . | A000 | Oak OTI-067/077 chips [8] |
+| ::: | G | 80x25 | 8x16 | 640x400 | 32K | . | A000 | Oak OTI-067/077 chips ((The Oak OTI-037/067/077 modes are present in the Oak VGA BIOS, which OEMs may choose to use only partially or not at all; thus, not all Oak boards support all "Oak" modes listed here)) |
 | ::: | G | . | . | 800x600 | 16 | . | . | Maxxon, SEFCO TVGA, Imtec |
 | ::: | G | 100x75 | 8x8 | 800x600 | 16/256K | . | A000 | Trident TVGA 8800, 8900 |
 | ::: | G | . | . | 800x600 | ??? | . | . | Vobis MVGA |
 | ::: | G | 100x37 | 8x16 | 800x600 | . | . | . | NEL Electronics BIOS |
-| ::: | G | 128x48 | 8x16 | 1024x768 | 16 | . | A000 | NCR 77C22 ((interlaced only)) [9] |
+| ::: | G | 128x48 | 8x16 | 1024x768 | 16 | . | A000 | NCR 77C22 ((interlaced only)) ((this card uses the full 128K A000h-BFFFh range for the video buffer, precluding the use of a monochrome adapter in the same system)) |
 | 5Ch | T | 100x37 | 8x16 | . | . | . | . | NEL Electronics BIOS |
 | ::: | G | . | . | 640x400 | 256 | . | . | Logix, ATI Prism Elite |
 | ::: | G | . | . | 640x400 | 256 | . | . | Maxxon, SEFCO TVGA, Imtec |
 | ::: | G | 80x25 | 8x16 | 640x400 | 256/256K | . | A000 | Zymos Poach, Hi Res 512 |
 | ::: | G | 80x25 | 8x16 | 640x400 | 256/256K | . | A000 | Trident TVGA 8800/8900 |
 | ::: | G | 80x30 | 8x16 | 640x480 | 256 | . | . | Genoa 6400 |
-| ::: | G | 80x30 | 8x16 | 640x480 | 32K | . | A000 | Oak OTI-077 chipset [8] |
-| ::: | G | 100x75 | 8x8 | 800x600 | 256 | . | A000 | NCR 77C22 [9] |
+| ::: | G | 80x30 | 8x16 | 640x480 | 32K | . | A000 | Oak OTI-077 chipset ((The Oak OTI-037/067/077 modes are present in the Oak VGA BIOS, which OEMs may choose to use only partially or not at all; thus, not all Oak boards support all "Oak" modes listed here)) |
+| ::: | G | 100x75 | 8x8 | 800x600 | 256 | . | A000 | NCR 77C22 ((this card uses the full 128K A000h-BFFFh range for the video buffer, precluding the use of a monochrome adapter in the same system)) |
 | ::: | G | 100x75 | 8x8 | 800x600 | 256/256K | . | A000 | WD90C |
 | ::: | G | 100x75 | 8x8 | 800x600 | 256/256K | . | A000 | Diamond Speedstar 24X |
 | ::: | G | 100x37 | 8x16 | 800x600 | 256/256K | . | A000 | Cirrus CL-GD5420/5422/5426 |
@@ -483,7 +483,7 @@
 | ::: | G | . | . | 640x480 | 256 | . | . | Maxxon, SEFCO TVGA, Imtec |
 | ::: | G | 80x30 | 8x16 | 640x480 | 256/256K | . | A000 | Zymos Poach, Hi Res 512 |
 | ::: | G | 80x30 | 8x16 | 640x480 | 256/256K | . | A000 | Trident TVGA 8800 (512K) |
-| ::: | G | 128x48 | 8x16 | 1024x768 | 16 | . | A000 | NCR 77C22 [9] |
+| ::: | G | 128x48 | 8x16 | 1024x768 | 16 | . | A000 | NCR 77C22 ((this card uses the full 128K A000h-BFFFh range for the video buffer, precluding the use of a monochrome adapter in the same system)) |
 | ::: | G | 128x48 | 8x16 | 1024x768 | 16/256K | . | A000 | WD90C |
 | ::: | G | 128x48 | 8x16 | 1024x768 | 16 | . | A000 | Diamond Speedstar 24X |
 | ::: | G | 128x48 | 8x16 | 1024x768 | 16/256K | . | A000 | Cirrus CL-GD5420/5422/5426 |
@@ -491,7 +491,7 @@
 | ::: | G | . | . | 640x400 | 256 | . | . | AST VGA Plus, NCR 77C22 |
 | ::: | G | . | . | 640x400 | 256 | . | . | Compaq VGA, Dell VGA |
 | ::: | G | 80x25 | 8x16 | 640x400 | 256 | . | . | AT&T VDC600 |
-| ::: | G | 80x25 | 8x16 | 640x400 | 256 | . | A000 | NCR 77C22 [9] |
+| ::: | G | 80x25 | 8x16 | 640x400 | 256 | . | A000 | NCR 77C22 ((this card uses the full 128K A000h-BFFFh range for the video buffer, precluding the use of a monochrome adapter in the same system)) |
 | ::: | G | 80x25 | 8x16 | 640x400 | 256/256K | . | A000 | WD90C |
 | ::: | G | 80x25 | 8x16 | 640x400 | 256/256K | . | A000 | Diamond Speedstar 24X |
 | ::: | G | . | . | 800x600 | 16 | . | . | Logix, ATI Prism Elite |
@@ -505,7 +505,7 @@
 | ::: | G | . | . | 640x480 | 256 | . | . | Compaq VGA, Dell VGA |
 | ::: | G | . | . | 640x480 | 256 | . | . | Hewlett-Packard D1180A |
 | ::: | G | 80x30 | 8x16 | 640x480 | 256 | . | . | AT&T VDC600 (512K) |
-| ::: | G | 80x30 | 8x16 | 640x480 | 256 | . | A000 | NCR 77C22 [9] |
+| ::: | G | 80x30 | 8x16 | 640x480 | 256 | . | A000 | NCR 77C22 ((this card uses the full 128K A000h-BFFFh range for the video buffer, precluding the use of a monochrome adapter in the same system)) |
 | ::: | G | 80x30 | 8x16 | 640x480 | 256/256K | . | A000 | WD90C |
 | ::: | G | 80x30 | 8x16 | 640x480 | 256/256K | . | A000 | Diamond Speedstar 24X |
 | ::: | G | 80x30 | 8x16 | 640x480 | 256/256K | . | A000 | Cirrus CL-GD5420/5422/5426 |
@@ -544,7 +544,7 @@
 | ::: | G | . | . | 720x540 | 16 | . | . | Tatung VGA |
 | ::: | G | . | . | 720x540 | 16 | . | . | Video7 V-RAM VGA |
 | ::: | G | 96x64 | 8x16 | 768x1024 | 16/256K | . | A000 | Trident TVGA 88/8900 512K |
-| ::: | G | 128x48 | 8x16 | 1024x768 | 256 | . | A000 | NCR 77C22 ((interlaced only)) [9] |
+| ::: | G | 128x48 | 8x16 | 1024x768 | 256 | . | A000 | NCR 77C22 ((interlaced only)) ((this card uses the full 128K A000h-BFFFh range for the video buffer, precluding the use of a monochrome adapter in the same system)) |
 | ::: | G | 144x54 | 8x16 | 1152x864 | . | . | A000 | Diamond Stealth64 Video 2xx1 |
 | 62h | T | 132x32 | 8x11 | . | 16/64 | 6 | B800 | Quadram Ultra VGA |
 | ::: | T | 132x32 | 8x12 | . | 16 | . | . | Genoa 6400 |
@@ -560,7 +560,7 @@
 | ::: | G | . | . | 800x600 | 16 | . | . | Video7 V-RAM VGA |
 | ::: | G | 100x75 | 8x8 | 800x600 | 256 | 1 | A000 | Ahead A, Ahead B (512K) |
 | ::: | G | 128x48 | 8x16 | 1024x768 | 256/256K | . | A000 | Trident TVGA 8900, Zymos |
-| ::: | G | 128x48 | 8x16 | 1024x768 | 256 | . | A000 | NCR 77C22 [9] |
+| ::: | G | 128x48 | 8x16 | 1024x768 | 256 | . | A000 | NCR 77C22 ((this card uses the full 128K A000h-BFFFh range for the video buffer, precluding the use of a monochrome adapter in the same system)) |
 | 63h | T | 132x44 | 8x8 | . | 16/64 | 5 | B800 | Quadram Ultra VGA |
 | ::: | T | 132x44 | 8x8 | . | 16 | . | . | Genoa 6400 |
 | ::: | T | 132x44 | 8x8 | . | 16 | . | . | Genoa SuperEGA BIOS 3.0+ |
@@ -596,7 +596,7 @@
 | ::: | G | . | . | 640x480 | 256 | . | . | Video7 V-RAM VGA |
 | ::: | G | . | . | 800x600 | 32K | . | A000 | Cirrus CL-GD 5422/5426 |
 | ::: | G | 128x48 | 8x16 | 1024x768 | 4 | . | A000 | ATI VGA Wonder |
-| ::: | G | 160x64 | 8x16 | 1280x1024 | 16 | . | A000 | NCR 77C22 ((interlaced only)) [9] |
+| ::: | G | 160x64 | 8x16 | 1280x1024 | 16 | . | A000 | NCR 77C22 ((interlaced only)) ((this card uses the full 128K A000h-BFFFh range for the video buffer, precluding the use of a monochrome adapter in the same system)) |
 | 68h | G | 80x25 | 8x16 | 640x400 | . | . | A000 | Diamond Stealth64 Video 2xx1 |
 | 69h | T | 132x50 | 8x8 | 1056x400 | 16/256K | . | B800 | WD90C |
 | ::: | T | 132x50 | 8x8 | . | 16 | . | B800 | Diamond Speedstar 24X |
@@ -614,7 +614,7 @@
 | ::: | G | 100x37 | 8x16 | 800x600 | 16 | . | A000 | Diamond Stealth64 Video 2xx1 |
 | ::: | G | 100x42 | 8x14 | 800x600 | . | . | A000 | ATI VGA Wonder (undoc) |
 | ::: | G | . | . | 800x600 | 16 | . | A000 | Chips&Technologies chipset
-| ::: | G | 160x64 | 8x16 | 1280x1024 | 256 | . | A000 | NCR 77C22 ((interlaced only)) [9] |
+| ::: | G | 160x64 | 8x16 | 1280x1024 | 256 | . | A000 | NCR 77C22 ((interlaced only)) ((this card uses the full 128K A000h-BFFFh range for the video buffer, precluding the use of a monochrome adapter in the same system)) |
 | 6Bh | T | 100x37 | 8x16 | . | 16 | . | . | Genoa 6400 |
 | ::: | T | 100x37 | 8x16 | . | . | . | . | NEL Electronics BIOS |
 | ::: | G | 100x37 | 8x16 | 800x600 | . | . | A000 | Diamond Stealth64 Video 2xx1 |
@@ -720,39 +720,19 @@
 | 7Fh | special function set (see AX=007Fh/BH=00h) ||||||| Paradise VGA, AT&T VDC600 |
 | ::: | G | 128x48 | 8x16 | 1024x768 | 4 | . | . | Genoa 6400 |
 | ::: | G | 90x29 | . | . | mono | . | B000 | HERCULES.COM on HGC [14] |
-| 82h | T | 80x25 | . | . | B&W | . | . | AT&T VDC overlay mode [6] |
-| 83h | T | 80x25 | . | . | . | . | . | AT&T VDC overlay mode [6] |
-| 86h | G | . | . | 640x200 | B&W | . | . | AT&T VDC overlay mode [6] |
+| 82h | T | 80x25 | . | . | B&W | . | . | AT&T VDC overlay mode ((for AT&T VDC overlay modes, BL contains the DEB mode, which may be 06h, 40h, or 44h)) |
+| 83h | T | 80x25 | . | . | . | . | . | AT&T VDC overlay mode ((for AT&T VDC overlay modes, BL contains the DEB mode, which may be 06h, 40h, or 44h)) |
+| 86h | G | . | . | 640x200 | B&W | . | . | AT&T VDC overlay mode ((for AT&T VDC overlay modes, BL contains the DEB mode, which may be 06h, 40h, or 44h)) |
 | 88h | G | 90x43 | 8x8 | 720x348 | mono | . | B000 | Hercules + MSHERC.COM |
-| C0h | G | . | . | 640x400 | 2/prog palette | . | . | AT&T VDC overlay mode [6] |
+| C0h | G | . | . | 640x400 | 2/prog palette | . | . | AT&T VDC overlay mode ((for AT&T VDC overlay modes, BL contains the DEB mode, which may be 06h, 40h, or 44h)) |
 | ::: | G | . | . | 640x400 | 2/prog palette | . | . | Olivetti Quaderno overlay |
-| C4h | disable output ||| . | . | . | . | AT&T VDC overlay mode [6] |
+| C4h | disable output ||| . | . | . | . | AT&T VDC overlay mode ((for AT&T VDC overlay modes, BL contains the DEB mode, which may be 06h, 40h, or 44h)) |
 | C8h | G | 80x50 | 8x8 | 640x400 | 2 | . | B800 | Olivetti Quaderno overlay |
 | D0h | G | . | . | 640x400 | 2 | . | B800 | DEC VAXmate AT&T mode |
 
 ===== Notes =====
 
 
-[2] for ATI EGA Wonder, mode 08h is only valid if SMS.COM is loaded resident.
-      SMS maps mode 08h to mode 27h if the byte at location 0040:0063 is 0B4h,
-      otherwise to mode 23h, thus selecting the appropriate (monochrome or
-      color) 132x25 character mode.
-    for ATI VGA Wonder, mode 08h is the same, and only valid if VCONFIG loaded
-      resident
-[3] early XGA boards support 132-column text but do not have this BIOS mode
-[4] DESQview intercepts calls to change into these two modes (21h is page 0,
-      22h is page 1) even if there is no Hercules graphics board installed
-[5] ATI BIOS v4-1.00 has a text-scrolling bug in this mode
-[6] for AT&T VDC overlay modes, BL contains the DEB mode, which may be 06h,
-      40h, or 44h
-[7] BIOS text support is broken in this undocumented mode; scrolling moves
-      only about 1/3 of the screen (and does even that portion incorrectly),
-      while screen clears only clear about 3/4.
-[8] The Oak OTI-037/067/077 modes are present in the Oak VGA BIOS, which OEMs
-      may choose to use only partially or not at all; thus, not all Oak boards
-      support all "Oak" modes listed here
-[9] this card uses the full 128K A000h-BFFFh range for the video buffer,
-      precluding the use of a monochrome adapter in the same system
 [10] mode 17h supported by Tseng ET4000 BIOS 8.01X dated 1990/09/14, but not
       v8.01X dated 1992/02/28; mode 21h supported by 1992/02/28 version but not
       1990/09/14 version
@@ -763,7 +743,6 @@
       modes 21h or 27h; this version of the BIOS also sets the BIOS data area
       incorrectly for extended text modes, resulting in scrolling after only
       24 lines (the VMODE.EXE	utility does set the data area correctly)
-[13] The Tandy 1000SL/TL BIOS does not actually support this mode
 [14] HERCULES.COM is a graphics-mode BIOS extension for Hercules-compatible
       graphics cards by Soft Warehouse, Inc.  Its installation check is to
       test whether the word preceding the INT 10 handler is 4137h.
