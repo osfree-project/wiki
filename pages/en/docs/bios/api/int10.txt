@@ -8,8 +8,8 @@ Video BIOS API. All registers saved on entry and restores on return.
 
 ^ Function ^ Macro ^ Description ^ Version ^
 | [[en:docs:bios:api:int10:00|00H]] | [[en:docs:macrolib:@SetMode]]((Defined in MASM 5.x)) | Set Video Mode | 5150+ |
-| [[en:docs:bios:api:int10:01|01H]] | [[en:docs:macrolib:@SetCurSz]]((Defined in MASM 5.x))/[[en:docs:macrolib:@SetCsrSize]] | Set Cursor Shape Size | 5150+ |
-| [[en:docs:bios:api:int10:02|02H]] | [[en:docs:macrolib:@SetCurPos]]((Defined in MASM 5.x))/[[en:docs:macrolib:@SetCsrPos]] | Set Cursor Position | 5150+ |
+| [[en:docs:bios:api:int10:01|01H]] | [[en:docs:macrolib:@SetCurSz]]((Defined in MASM 5.x))/[[en:docs:macrolib:@SetCsrSize]]((Defined in MASM 6.x)) | Set Cursor Shape Size | 5150+ |
+| [[en:docs:bios:api:int10:02|02H]] | [[en:docs:macrolib:@SetCurPos]]((Defined in MASM 5.x))/[[en:docs:macrolib:@SetCsrPos]]((Defined in MASM 6.x)) | Set Cursor Position | 5150+ |
 | [[en:docs:bios:api:int10:03|03H]] | [[en:docs:macrolib:@GetCur]]((Defined in MASM 5.x)) | Get Current Cursor Position | 5150+ |
 | 04H | | READ LIGHT PEN POSITION | 5150+ |
 | [[en:docs:bios:api:int10:05|05H]]| [[en:docs:macrolib:@SetPage]]((Defined in MASM 5.x)) | Set Active Video Page | 5150+ |
