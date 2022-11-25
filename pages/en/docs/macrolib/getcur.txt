@@ -1,6 +1,6 @@
 {{page>en:templates:biosint}}
 
-====== @GetCur ======
+====== @GetCur/@GetCsr ======
 
 ===== Version =====
 
@@ -34,4 +34,6 @@ Get Current Cursor Position and Size
   CL = end scan line
   DH = row (00h is top)
   DL = column (00h is left)
+
+{{page>en:templates:biosapi}}
 

@@ -10,11 +10,15 @@ IBM 5150 and higher
 
 Get Cursor Position and Size
 
+===== osFree Macro Library =====
+
+[[en:docs:macrolib:@GetCur]]/[[en:docs:macrolib:@GetCsr]]
+
 ===== Family API =====
 
 [[en:docs:fapi:VioGetCurPos]] [[en:docs:fapi:VioGetCurType]]
 
-===== Input =====
+===== Parameters =====
 
   AH = 03h
   BH = page
@@ -40,10 +44,7 @@ INCLUDE BIOS.INC
   * a separate cursor is maintained for each of up to 8 display pages
   * many ROM BIOSes incorrectly return the default size for a color display (start 06h, end 07h) when a monochrome display is attached
   * With PhysTechSoft's PTS ROM-DOS the BH value is ignored on entry.
-
-===== Note =====
-
-Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+  * Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
 
 {{page>en:templates:biosapi}}
 
