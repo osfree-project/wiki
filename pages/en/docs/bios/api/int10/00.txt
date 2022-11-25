@@ -18,7 +18,7 @@ Specify the display mode for the currently active display adapter
 
 [[en:docs:fapi:VioSetMode]]
 
-===== Input =====
+===== Parameters =====
 
   * AH = 00h
   * AL = [[en:docs:bios:api:int10:modes|Mode]]
@@ -34,10 +34,7 @@ Specify the display mode for the currently active display adapter
 ===== Notes =====
 
   * IBM standard modes do not clear the screen if the high bit of AL is set (EGA or higher only)
-
-===== Note =====
-
-Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+  * Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
 
 {{page>en:templates:biosapi}}
 
