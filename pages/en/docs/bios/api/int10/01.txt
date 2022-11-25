@@ -12,13 +12,13 @@ Set Cursor Size
 
 ===== osFree Macro Library =====
 
-[[en:docs:macrolib:@SetCurSz]]
+[[en:docs:macrolib:@SetCurSz]]/[[en:docs:macrolib:@SetCurSize]]
 
 ===== Family API =====
 
 [[en:docs:fapi:VioSetCurType]]
 
-===== Input =====
+===== Parameters =====
 
   AH = 01h
   CH = Start line
@@ -35,10 +35,7 @@ none
   * applications which wish to change the cursor by programming the hardware directly on EGA or above should call INT 10/AX=1130h or read 0040h:0085h first to determine the current font height
   * on some adapters, setting the end line greater than the number of lines in the font will result in the cursor extending to the top of the next character cell on the right
   * AMI 386 BIOS and AST Premier 386 BIOS will lock up the system if AL is not equal to the current video mode
-
-===== Note =====
-
-Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+  * Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
 
 {{page>en:templates:biosapi}}
 
