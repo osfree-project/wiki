@@ -10,11 +10,15 @@ IBM 5150 and higher
 
 Set Cursor Position
 
+===== osFree Macro Library =====
+
+[[en:docs:macrolib:@SetCurPos]]/[[en:docs:macrolib:@SetCsrPos]]
+
 ===== Family API =====
 
 [[en:docs:fapi:VioSetCurPos]]
 
-===== Input =====
+===== Parameters =====
 
   AH = 02h
   BH = page
@@ -23,6 +27,7 @@ Set Cursor Position
 
 ===== Return =====
 
+None
 
 ===== Macro =====
 
@@ -34,13 +39,7 @@ INCLUDE BIOS.INC
 
 ===== Notes =====
 
-
-
-
-
-===== Note =====
-
-Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+  * Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
 
 {{page>en:templates:biosapi}}
 

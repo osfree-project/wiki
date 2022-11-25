@@ -12,7 +12,7 @@ Set Cursor Size
 
 ===== osFree Macro Library =====
 
-[[en:docs:macrolib:@SetCurSz]]/[[en:docs:macrolib:@SetCurSize]]
+[[en:docs:macrolib:@SetCurSz]]/[[en:docs:macrolib:@SetCsrSize]]
 
 ===== Family API =====
 

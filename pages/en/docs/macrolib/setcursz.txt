@@ -1,6 +1,6 @@
 {{page>en:templates:biosint}}
 
-====== @SetCurSz ======
+====== @SetCurSz/@SetCsrSize ======
 
 ===== Version =====
 
