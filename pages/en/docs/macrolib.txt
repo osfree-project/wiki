@@ -39,9 +39,9 @@ DPMI.INC contains macros for DPMI interrupts.
 
 ^ Macro ^ Description ^
 | [[en:docs:macrolib:@SetMode]] | Set current video mode |
-| [[en:docs:macrolib:@SetCurSz]] | Set cursor size |
-| [[en:docs:macrolib:@SetCurPos]] | Set cursor position |
-| [[en:docs:macrolib:@GetCur]] | Get cursor shape and position |
+| [[en:docs:macrolib:@SetCurSz]]/[[en:docs:macrolib:@SetCsrSize]] | Set cursor size |
+| [[en:docs:macrolib:@SetCurPos]]/[[en:docs:macrolib:@SetCsrPos]] | Set cursor position |
+| [[en:docs:macrolib:@GetCur]]/[[en:docs:macrolib:@GetCsr]] | Get cursor shape and position |
 | [[en:docs:macrolib:@SetPage]] | Set active video page |
 | [[en:docs:macrolib:@ScrollUp]] | Scroll screen area up |
 | [[en:docs:macrolib:@ScrollDn]] | Scroll screen area down |
