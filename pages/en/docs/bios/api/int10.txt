@@ -18,7 +18,7 @@ Video BIOS API. All registers saved on entry and restores on return.
 | [[en:docs:bios:api:int10:08|08H]]| [[en:docs:macrolib:@GetChAtr]]((Defined in MASM 5.x))/[[en:docs:macrolib:@GetCharAtr]]((Defined in MASM 6.x)) | Get Character Attribute | 5150+ |
 | [[en:docs:bios:api:int10:09|09H]]| [[en:docs:macrolib:@PutChAtr]]((Defined in MASM 5.x))/[[en:docs:macrolib:@PutCharAtr]]((Defined in MASM 6.x)) | Print Char With Attribute | 5150+ |
 | [[en:docs:bios:api:int10:0A|0AH]]| [[en:docs:macrolib:@PutCh]]((Defined in MASM 5.x))/[[en:docs:macrolib:@PutChar]]((Defined in MASM 6.x)) | Print Char | 5150+ |
-| [[en:docs:bios:api:int10:0B|0BH]]| [[en:docs:macrolib:@SetColor]]((Defined in MASM 5.x))/[[en:docs:macrolib:@SetPalet]]((Defined in MASM 5.x)) | Set Palette/Color | 5150+ |
+| [[en:docs:bios:api:int10:0B|0BH]]| [[en:docs:macrolib:@SetColor]]((Defined in MASM 5.x))/[[en:docs:macrolib:@SetPalet]]((Defined in MASM 5.x))/[[en:docs:macrolib:@SetPalette]]((Defined in MASM 6.x)) | Set Palette/Color | 5150+ |
 | [[en:docs:bios:api:int10:0C|0CH]]| [[en:docs:macrolib:@SetDot]]((osFree extension)) | Draw Pixel | 5150+ |
 | [[en:docs:bios:api:int10:0D|0DH]]| [[en:docs:macrolib:@GetDot]]((osFree extension)) | Get Pixel | 5150+ |
 | [[en:docs:bios:api:int10:0E|0EH]]| [[en:docs:macrolib:@WrtTTY]]((osFree extension)) | Write char in TTY mode | 5150+ |

@@ -1,6 +1,6 @@
 {{page>en:templates:biosint}}
 
-====== @PutChAtr ======
+====== @PutChAtr/@PutCharAtr ======
 
 ===== Version =====
 

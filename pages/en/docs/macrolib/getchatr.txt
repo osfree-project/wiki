@@ -1,6 +1,6 @@
 {{page>en:templates:biosint}}
 
-====== @GetChAtr ======
+====== @GetChAtr/@GetCharAtr ======
 
 ===== Version =====
 

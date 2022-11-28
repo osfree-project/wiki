@@ -1,6 +1,6 @@
 {{page>en:templates:biosint}}
 
-====== @SetPalet ======
+====== @SetPalet/@SetPalette ======
 
 ===== Version =====
 
