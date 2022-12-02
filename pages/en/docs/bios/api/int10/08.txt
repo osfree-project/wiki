@@ -10,11 +10,15 @@ IBM 5150 and higher
 
 Get character and attribute undr cursor
 
+===== osFree Macro Library =====
+
+[[en:docs:macrolib:@GetChAtr]]
+
 ===== Family API =====
 
 [[en:docs:fapi:VioReadCellStr]] [[en:docs:fapi:VioReadCharStr]]
 
-===== Input =====
+===== Parameters =====
 
   AH = 08h
   BH = page number
@@ -41,10 +45,7 @@ INCLUDE BIOS.INC
   * on the Tandy 2000, BH=FFh specifies that the current page should be used
   * because of the IBM BIOS specifications, there may exist some clone BIOSes which do not preserve SI or DI; the Novell DOS kernel preserves SI, DI, and BP before many INT 10h calls to avoid problems due to those registers not being preserved by the BIOS.
   * some IBM PC ROM BIOSes destroy BP when in graphics modes
-
-===== Note =====
-
-Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+  * Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
 
 {{page>en:templates:biosapi}}
 
