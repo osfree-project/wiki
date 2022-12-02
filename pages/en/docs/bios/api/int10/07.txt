@@ -10,11 +10,15 @@ IBM 5150 and higher
 
 Scroll screen region down
 
+===== osFree MacroLibrary =====
+
+[[en:docs:macrolib:@ScrollDn]]
+
 ===== Family API =====
 
 [[en:docs:fapi:VioScrollDn]]
 
-===== Input =====
+===== Parameters =====
 
   AH = 07h
   AL = number of lines by which to scroll down (00h = clear entire window)
@@ -36,10 +40,7 @@ INCLUDE BIOS.INC
 
   * some implementations (including the original IBM PC) have a bug which destroys BP
   * the Trident TVGA8900CL (BIOS dated 1992/9/8) clears DS to 0000h when scrolling in an SVGA mode (800x600 or higher)
-
-===== Note =====
-
-Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+  * Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
 
 {{page>en:templates:biosapi}}
 

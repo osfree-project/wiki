@@ -10,11 +10,15 @@ IBM 5150 and higher
 
 Set Active display page
 
+===== osFree Macro Library =====
+
+[[en:docs:macrolib:@SetPage]]
+
 ===== Family API =====
 
 Family API supports only one page
 
-===== Input =====
+===== Parameters =====
 
   AH = 05h
   AL = new page number (00h to number of pages - 1) (see #00010)
@@ -31,11 +35,8 @@ INCLUDE BIOS.INC
 
 ===== Notes =====
 
-to determine whether the requested page actually exists, use AH=0Fh to query the current page after making this call
-
-===== Note =====
-
-Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+  * to determine whether the requested page actually exists, use AH=0Fh to query the current page after making this call
+  * Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
 
 {{page>en:templates:biosapi}}
 
