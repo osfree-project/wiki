@@ -12,7 +12,7 @@ Get character and attribute undr cursor
 
 ===== osFree Macro Library =====
 
-[[en:docs:macrolib:@GetChAtr]]
+[[en:docs:macrolib:@GetChAtr]]/[[en:docs:macrolib:@GetCharAtr]]
 
 ===== Family API =====
 

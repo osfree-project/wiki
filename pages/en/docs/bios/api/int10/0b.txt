@@ -10,10 +10,15 @@ IBM 5150 and higher
 
 Set background color/palette
 
+===== osFree Macro Library =====
+
+[[en:docs:macrolib:@SetColor]]/[[en:docs:macrolib:@SetPalet]]/[[en:docs:macrolib:@SetPalette]]
+
 ===== Family API =====
 
+No equivalent
 
-===== Input =====
+===== Parameters =====
 
   * AH = 0Bh
   * BH = 00h
@@ -37,9 +42,7 @@ INCLUDE BIOS.INC
 
 ===== Notes =====
 
-===== Note =====
-
-Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+  * Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
 
 {{page>en:templates:biosapi}}
 

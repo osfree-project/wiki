@@ -12,7 +12,7 @@ Print character and attribute at cursor position
 
 ===== osFree Macro Library =====
 
-[[en:docs:macrolib:@PutChAtr]]
+[[en:docs:macrolib:@PutChAtr]]/[[en:docs:macrolib:@PutCharAtr]]
 
 ===== Family API =====
 

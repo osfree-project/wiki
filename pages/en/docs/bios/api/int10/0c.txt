@@ -10,10 +10,15 @@ IBM 5150 and higher
 
 Draw pixel in graph mode
 
+===== osFree Macro Library =====
+
+[[en:docs:macrolib:@SetDot]]
+
 ===== Family API =====
 
+No equivalent
 
-===== Input =====
+===== Parameters =====
 
   * AH = 0Ch
   * BH = page number
@@ -29,15 +34,13 @@ Draw pixel in graph mode
 <code asm>
 INCLUDE BIOS.INC
 
-@SetPixel 1, 10, 10, 0
+@SetDot 1, 10, 10, 0
 
 </code>
 
 ===== Notes =====
 
-===== Note =====
-
-Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+  * Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
 
 {{page>en:templates:biosapi}}
 

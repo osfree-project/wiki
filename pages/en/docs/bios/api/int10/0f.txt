@@ -10,11 +10,15 @@ IBM 5150 and higher
 
 Get video mode/status
 
+===== osFree Macro Library =====
+
+[[en:docs:macrolib:@GetMode]]/[[en:docs:macrolib:@VideoState]]
+
 ===== Family API =====
 
 [[en:docs:fapi:VioGetMode]]
 
-===== Input =====
+===== Parameters =====
 
   * AH = 0Fh
 
@@ -44,10 +48,7 @@ INCLUDE BIOS.INC
     * mode 06h: if WORD 0040h:0063h is 03B4h, may be in graphics page 0 (as set by DOSSHELL and other Microsoft software)
     * mode 07h: if BYTE 0040h:0065h bit 1 is set, Hercules card is in graphics mode, with bit 7 indicating the page (mode set by Hercules driver for Borland Turbo C)
   * the Tandy 2000 BIOS is only documented as returning AL, not AH or BH
-
-===== Note =====
-
-Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
+  * Text based on [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt List Release 61]]
 
 {{page>en:templates:biosapi}}
 
