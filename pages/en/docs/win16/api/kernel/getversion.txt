@@ -1,0 +1,49 @@
+{{page>en:templates:fapiint}}
+
+====== GetVersion ======
+
+This call returns the OS version number.
+
+===== Syntax =====
+
+<code c>
+ver=GetVersion()
+</code>
+
+===== Parameters =====
+
+None
+
+===== Return Value =====
+
+  * rc ([[WORD]]) - Windows version for Windows 1.x, 2.x !!!check this!!!
+  * rc ([[DWORD]]) - Windows version for Windows 3.x+ !!!check this!!!
+
+Return value description is:
+
+  * High Byte of Low DWord is a Minor Windows Version
+  * Low Byte of Low DWord is a Major Version
+  * High Byte of High Word is a Major DOS version
+  * Low Byte of High Word is a Minor DOS version
+
+===== Bindings =====
+
+==== C ====
+<code c>
+</code>
+
+==== MASM ====
+
+<code asm>
+</code>
+
+Returns WORD
+
+==== Example ====
+
+===== Notes =====
+
+  * Actual return value is a Double Word (not documented). High Word is a DOS (or other host platform) version.
+  * High Word was extended in versions later versions of Windows.
+
+{{page>en:templates:win16}}
