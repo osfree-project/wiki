@@ -1,6 +1,8 @@
 {{page>en:templates:win16api}}
 
-Note minimal checked windows version is 1.03
+Windows kernel for 8086 (KERNEL.EXE) doesn't uses DPMI or LDT for memory management. KERNEL.EXE for later versions of Windows emulates selectors functions via segments (like [[en:docs:FAPI]] does), but not so good (mostly functions returns errors). KRNL286.EXE and KRNL386.EXE uses direct LDT manipulations. Kernels for WOW uses DPMI functions. For now, osFree tries to reuse only DPMI (in future it is possible to implement direct LDT manipulation, may be).
+
+Note minimal checked windows version is 1.03.
 
 ^ Ordinal ^ Name ^ Description ^ Status ^^^ Version ^ ECMA-234 ^
 ^   :::   ^  ::: ^  :::        ^ Real ^ Std ^ Enh ^ ::: ^ ::: ^
