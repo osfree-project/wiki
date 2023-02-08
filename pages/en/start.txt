@@ -13,7 +13,7 @@ Several projects with similar goals exist (or existed). [[en:docs:projects|Here]
 
 Our project is reusing the code of many [[en:credits|opensource projects]].
 
-Our project alternative domain names: [[http://osfreeorgysalbcqrk3kqib55urra2mvtfmsoezcqwop2fed7jc64gqd.onion|Tor one]] and [[http://yf2xankbjprn7xs2pd67xix7idfqyxbbl2zul3dgwln2wwefqjsa.b32.i2p|I2P one]].
+Our project addresses in hidden networks: [[http://osfreeorgysalbcqrk3kqib55urra2mvtfmsoezcqwop2fed7jc64gqd.onion|Tor one]], [[http://yf2xankbjprn7xs2pd67xix7idfqyxbbl2zul3dgwln2wwefqjsa.b32.i2p|I2P one]], [[http://[200:ba50:4b2c:8dc9:9529:38de:5677:57a0]/|Yggdrasil]].
 
   * [[en:about|Learn more]] 
 
