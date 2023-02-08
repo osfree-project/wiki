@@ -12,7 +12,7 @@
 
 Мы используем код множества других [[ru:credits|открытых проектов]].
 
-Альтернативные доменные имена нашего проекта: в сетях [[http://osfreeorgysalbcqrk3kqib55urra2mvtfmsoezcqwop2fed7jc64gqd.onion|Tor]] и [[http://yf2xankbjprn7xs2pd67xix7idfqyxbbl2zul3dgwln2wwefqjsa.b32.i2p|I2P]].
+Адреса нашего проекта в скрытых сетях: [[http://osfreeorgysalbcqrk3kqib55urra2mvtfmsoezcqwop2fed7jc64gqd.onion|Tor]], [[http://yf2xankbjprn7xs2pd67xix7idfqyxbbl2zul3dgwln2wwefqjsa.b32.i2p|I2P]], [[http://[200:ba50:4b2c:8dc9:9529:38de:5677:57a0]/|Yggdrasil]].
 
   * [[ru:about|Подробности о проекте]]
 
