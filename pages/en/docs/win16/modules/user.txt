@@ -1,7 +1,6 @@
 {{page>en:templates:win16api}}
 
-^ Ordinal ^ Name ^ Description ^ Status ^^^ Version ^
-^   :::   ^  ::: ^  :::        ^ Real ^ Std ^ Enh ^ ::: ^
+^ Ordinal ^ Name ^ Description ^ Status ^ Version ^
 | 000 | USER | | | |
 | 001 | MESSAGEBOX | | | |
 | 002 | OLDEXITWINDOWS | | | |
