@@ -3,7 +3,7 @@
 ^ Ordinal ^ Name ^ Description ^ Status ^ Version ^
 | 000 | USER | | | |
 | 001 | MESSAGEBOX | | | |
-| 002 | OLDEXITWINDOWS | | | |
+| 002 | OLDEXITWINDOWS | | Done | |
 | 005 | INITAPP | | | |
 | 006 | POSTQUITMESSAGE | | | |
 | 007 | EXITWINDOWS | | | |
@@ -68,16 +68,16 @@
 | 045 | SETCURSOR | | | |
 | 046 | SETCURSORPOS | | | |
 | 047 | SHOWCURSOR | | | |
-| 048 | SETRECT | | | |
-| 049 | SETRECTEMPTY | | | |
-| 04a | COPYRECT | | | |
-| 04b | ISRECTEMPTY | | | |
-| 04c | PTINRECT | | | |
-| 04d | OFFSETRECT | | | |
-| 04e | INFLATERECT | | | |
-| 04f | INTERSECTRECT | | | |
-| 050 | UNIONRECT | | | |
-| 051 | FILLRECT | | | |
+| 048 | SETRECT | | Done | |
+| 049 | SETRECTEMPTY | | Done | |
+| 04a | COPYRECT | | Done | |
+| 04b | ISRECTEMPTY | | Done | |
+| 04c | PTINRECT | | Done | |
+| 04d | OFFSETRECT | | Done | |
+| 04e | INFLATERECT | | Done | |
+| 04f | INTERSECTRECT | | Done | |
+| 050 | UNIONRECT | | Done | |
+| 051 | FILLRECT | | Done | |
 | 052 | INVERTRECT | | | |
 | 053 | FRAMERECT | | | |
 | 054 | DRAWICON | | | |
@@ -145,10 +145,10 @@
 | 093 | SETCLIPBOARDVIEWER | | | |
 | 094 | GETCLIPBOARDVIEWER | | | |
 | 095 | CHANGECLIPBOARDCHAIN | | | |
-| 096 | LOADMENU | | | |
+| 096 | LOADMENU | | Done | |
 | 097 | CREATEMENU | | | |
 | 098 | DESTROYMENU | | | |
-| 099 | CHANGEMENU | | | |
+| 099 | CHANGEMENU | | Done | |
 | 09a | CHECKMENUITEM | | | |
 | 09b | ENABLEMENUITEM | | | |
 | 09c | GETSYSTEMMENU | | | |
@@ -170,8 +170,8 @@
 | 0ad | LOADCURSOR | | | |
 | 0ae | LOADICON | | | |
 | 0af | LOADBITMAP | | | |
-| 0b0 | LOADSTRING | | | |
-| 0b1 | LOADACCELERATORS | | | |
+| 0b0 | LOADSTRING | | Done | |
+| 0b1 | LOADACCELERATORS | | Done | |
 | 0b2 | TRANSLATEACCELERATOR | | | |
 | 0b3 | GETSYSTEMMETRICS | | | |
 | 0b4 | GETSYSCOLOR | | | |
@@ -235,7 +235,7 @@
 | 0f1 | CREATEDIALOGPARAM | | | |
 | 0f2 | CREATEDIALOGINDIRECTPARAM | | | |
 | 0f3 | GETDIALOGBASEUNITS | | | |
-| 0f4 | EQUALRECT | | | |
+| 0f4 | EQUALRECT | | Done | |
 | 0f5 | ENABLECOMMNOTIFICATION | | | |
 | 0f6 | EXITWINDOWSEXEC | | | |
 | 0f7 | GETCURSOR | | | |
@@ -289,7 +289,7 @@
 | 171 | COPYCURSOR | | | |
 | 172 | GETWINDOWPLACEMENT | | | |
 | 173 | SETWINDOWPLACEMENT | | | |
-| 175 | SUBTRACTRECT | | | |
+| 175 | SUBTRACTRECT | | Done | |
 | 18d | REGISTERCLASSEX | | | |
 | 192 | GETPRIORITYCLIPBOARDFORMAT | | | |
 | 193 | UNREGISTERCLASS | | | |
@@ -309,9 +309,9 @@
 | 1a5 | WVSPRINTF | | | |
 | 1a6 | DLGDIRSELECTEX | | | |
 | 1a7 | DLGDIRSELECTCOMBOBOXEX | | | |
-| 1ae | LSTRCMP | | | |
-| 1af | ANSIUPPER | | | |
-| 1b0 | ANSILOWER | | | |
+| 1ae | LSTRCMP | | Done | |
+| 1af | ANSIUPPER | | Done | |
+| 1b0 | ANSILOWER | | Done | |
 | 1b1 | ISCHARALPHA | | | |
 | 1b2 | ISCHARALPHANUMERIC | | | |
 | 1b3 | ISCHARUPPER | | | |
@@ -328,8 +328,8 @@
 | 1ce | CALCCHILDSCROLL | | | |
 | 1d2 | DRAWFOCUSRECT | | | |
 | 1d7 | LSTRCMPI | | | |
-| 1d8 | ANSINEXT | | | |
-| 1d9 | ANSIPREV | | | |
+| 1d8 | ANSINEXT | | Done | |
+| 1d9 | ANSIPREV | | Done | |
 | 1e2 | ENABLESCROLLBAR | | | |
 | 1e3 | SYSTEMPARAMETERSINFO | | | |
 | 1f3 | WNETERRORTEXT | | | |
