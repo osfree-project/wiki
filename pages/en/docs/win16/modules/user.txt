@@ -1,3 +1,5 @@
+{{page>en:templates:win16api}}
+
 ^ Ordinal ^ Name ^ Description ^ Status ^^^ Version ^
 ^   :::   ^  ::: ^  :::        ^ Real ^ Std ^ Enh ^ ::: ^
 | 000 | USER | | | |
