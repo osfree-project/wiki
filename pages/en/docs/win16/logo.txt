@@ -1,3 +1,5 @@
+{{page>en:templates:win16api}}
+
 Windows LOGO file is a raw binary with following structure
 
 ^ Offset ^ Description ^

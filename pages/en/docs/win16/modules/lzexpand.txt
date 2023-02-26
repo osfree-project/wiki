@@ -1,0 +1,13 @@
+{{page>en:templates:win16api}}
+
+^ Ordinal ^ Name ^ Description ^ Status ^ Version ^
+| 001 | LZCOPY          | | Done | |
+| 002 | LZOPENFILE      | | Done | |
+| 003 | LZINIT          | | Done | |
+| 004 | LZSEEK          | | Done | |
+| 005 | LZREAD          | | Done | |
+| 006 | LZCLOSE         | | Done | |
+| 007 | LZSTART         | | Done | |
+| 008 | COPYLZFILE      | | Done | |
+| 009 | LZDONE          | | Done | |
+| 010 | GETEXPANDEDNAME | | Done | |

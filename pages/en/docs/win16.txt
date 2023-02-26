@@ -1,3 +1,5 @@
+{{page>en:templates:win16api}}
+
 ==== Win16 personality ====
 
   * [[en:docs:bios:api|BIOS API]]
@@ -11,3 +13,4 @@
   * [[en:docs:win16:modules:kernel|KERNEL library]]
   * [[en:docs:win16:modules:gdi|GDI library]]
   * [[en:docs:win16:modules:user|USER library]]
+  * [[en:docs:win16:modules:lzexpand|LZEXPAND library]]
