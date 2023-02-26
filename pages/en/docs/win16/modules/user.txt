@@ -285,8 +285,8 @@
 | 14f | GETINPUTSTATE | | | |
 | 166 | ISMENU | | | |
 | 167 | GETDCEX | | | |
-| 170 | COPYICON | | | |
-| 171 | COPYCURSOR | | | |
+| 170 | COPYICON | | Done | |
+| 171 | COPYCURSOR | | Done | |
 | 172 | GETWINDOWPLACEMENT | | | |
 | 173 | SETWINDOWPLACEMENT | | | |
 | 175 | SUBTRACTRECT | | Done | |
