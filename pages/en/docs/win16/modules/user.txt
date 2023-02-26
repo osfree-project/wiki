@@ -78,8 +78,8 @@
 | 04f | INTERSECTRECT | | Done | |
 | 050 | UNIONRECT | | Done | |
 | 051 | FILLRECT | | Done | |
-| 052 | INVERTRECT | | | |
-| 053 | FRAMERECT | | | |
+| 052 | INVERTRECT | | Done | |
+| 053 | FRAMERECT | | Done | |
 | 054 | DRAWICON | | | |
 | 055 | DRAWTEXT | | | |
 | 056 | BEAR86 | | | |
