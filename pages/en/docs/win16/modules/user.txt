@@ -209,9 +209,10 @@
 | 0d5 | BUILDCOMMDCB | | | |
 | 0d6 | ESCAPECOMMFUNCTION | | | |
 | 0d7 | FLUSHCOMM | | | |
+| 0d8 | UserSeeUserDo | | Done | |
 | 0da | DIALOGBOXINDIRECT | | | |
 | 0db | CREATEDIALOGINDIRECT | | | |
-| 0dc | LOADMENUINDIRECT | | | |
+| 0dc | LOADMENUINDIRECT | | Done | |
 | 0dd | SCROLLDC | | | |
 | 0de | GETKEYBOARDSTATE | | | |
 | 0df | SETKEYBOARDSTATE | | | |
@@ -266,9 +267,10 @@
 | 110 | ISZOOMED | | | |
 | 115 | GETDLGCTRLID | | | |
 | 116 | GETDESKTOPHWND | | | |
+| 117 | OldSetDeskPattern | | Done | |
 | 11a | SELECTPALETTE | | | |
 | 11b | REALIZEPALETTE | | | |
-| 11c | GETFREESYSTEMRESOURCES | | | |
+| 11c | GETFREESYSTEMRESOURCES | | Done | |
 | 11e | GETDESKTOPWINDOW | | | |
 | 11f | GETLASTACTIVEPOPUP | | | |
 | 120 | GETMESSAGEEXTRAINFO | | | |
