@@ -299,9 +299,10 @@
 | 173 | SETWINDOWPLACEMENT | | | |
 | 175 | SUBTRACTRECT | | Done | |
 | 18d | REGISTERCLASSEX | | Done | |
+| 18e | GetClassInfoEx | | Done | |
 | 192 | GETPRIORITYCLIPBOARDFORMAT | | | |
 | 193 | UNREGISTERCLASS | | Done | |
-| 194 | GETCLASSINFO | | | |
+| 194 | GETCLASSINFO | | Done | |
 | 196 | CREATECURSOR | | Done | |
 | 197 | CREATEICON | | Done | |
 | 198 | CreateCursorIconIndirect | | Done | |
