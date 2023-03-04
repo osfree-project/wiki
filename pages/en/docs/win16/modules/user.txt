@@ -80,7 +80,7 @@
 | 051 | FILLRECT | | Done | |
 | 052 | INVERTRECT | | Done | |
 | 053 | FRAMERECT | | Done | |
-| 054 | DRAWICON | | | |
+| 054 | DRAWICON | | Done | |
 | 055 | DRAWTEXT | | | |
 | 056 | BEAR86 | | | |
 | 057 | DIALOGBOX | | | |
