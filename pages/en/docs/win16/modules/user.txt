@@ -299,8 +299,9 @@
 | 192 | GETPRIORITYCLIPBOARDFORMAT | | | |
 | 193 | UNREGISTERCLASS | | | |
 | 194 | GETCLASSINFO | | | |
-| 196 | CREATECURSOR | | | |
-| 197 | CREATEICON | | | |
+| 196 | CREATECURSOR | | Done | |
+| 197 | CREATEICON | | Done | |
+| 198 | CreateCursorIconIndirect | | Done | |
 | 19a | INSERTMENU | | | |
 | 19b | APPENDMENU | | | |
 | 19c | REMOVEMENU | | | |
