@@ -155,7 +155,7 @@
 | 09d | GETMENU | | | |
 | 09e | SETMENU | | | |
 | 09f | GETSUBMENU | | | |
-| 0a0 | DRAWMENUBAR | | | |
+| 0a0 | DRAWMENUBAR | | Done | |
 | 0a1 | GETMENUSTRING | | | |
 | 0a2 | HILITEMENUITEM | | | |
 | 0a3 | CREATECARET | | | |
