@@ -146,15 +146,15 @@
 | 094 | GETCLIPBOARDVIEWER | | | |
 | 095 | CHANGECLIPBOARDCHAIN | | | |
 | 096 | LOADMENU | | Done | |
-| 097 | CREATEMENU | | | |
-| 098 | DESTROYMENU | | | |
+| 097 | CREATEMENU | | Done | |
+| 098 | DESTROYMENU | | Done | |
 | 099 | CHANGEMENU | | Done | |
 | 09a | CHECKMENUITEM | | | |
 | 09b | ENABLEMENUITEM | | | |
-| 09c | GETSYSTEMMENU | | | |
-| 09d | GETMENU | | | |
-| 09e | SETMENU | | | |
-| 09f | GETSUBMENU | | | |
+| 09c | GETSYSTEMMENU | | Done | |
+| 09d | GETMENU | | Done | |
+| 09e | SETMENU | | Done | |
+| 09f | GETSUBMENU | | Done | |
 | 0a0 | DRAWMENUBAR | | Done | |
 | 0a1 | GETMENUSTRING | | | |
 | 0a2 | HILITEMENUITEM | | | |
