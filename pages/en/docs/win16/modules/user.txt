@@ -318,12 +318,12 @@
 | 1ae | LSTRCMP | | Done | |
 | 1af | ANSIUPPER | | Done | |
 | 1b0 | ANSILOWER | | Done | |
-| 1b1 | ISCHARALPHA | | | |
-| 1b2 | ISCHARALPHANUMERIC | | | |
+| 1b1 | ISCHARALPHA | | Done | |
+| 1b2 | ISCHARALPHANUMERIC | | Done | |
 | 1b3 | ISCHARUPPER | | Done | |
 | 1b4 | ISCHARLOWER | | Done | |
-| 1b5 | ANSIUPPERBUFF | | | |
-| 1b6 | ANSILOWERBUFF | | | |
+| 1b5 | ANSIUPPERBUFF | | Done | |
+| 1b6 | ANSILOWERBUFF | | Done | |
 | 1bd | DEFFRAMEPROC | | | |
 | 1bf | DEFMDICHILDPROC | | | |
 | 1c3 | TRANSLATEMDISYSACCEL | | | |
