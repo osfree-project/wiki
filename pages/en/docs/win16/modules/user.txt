@@ -279,12 +279,15 @@
 | 124 | UNHOOKWINDOWSHOOKEX | | | |
 | 125 | CALLNEXTHOOKEX | | | |
 | 126 | LOCKWINDOWUPDATE | | | |
+| 12b | mouse_event | | Done | |
 | 134 | DEFDLGPROC | | | |
 | 135 | GETCLIPCURSOR | | | |
 | 13f | SCROLLWINDOWEX | | | |
 | 14b | ENABLEHARDWAREINPUT | | | |
+| 14d | IsUserIdle | | Done | |
 | 14e | GETQUEUESTATUS | | | |
 | 14f | GETINPUTSTATE | | | |
+| 151 | GetMouseEventProc | | Done | |
 | 166 | ISMENU | | | |
 | 167 | GETDCEX | | | |
 | 170 | COPYICON | | Done | |
