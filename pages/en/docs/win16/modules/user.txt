@@ -329,8 +329,8 @@
 | 1c3 | TRANSLATEMDISYSACCEL | | | |
 | 1c4 | CREATEWINDOWEX | | | |
 | 1c6 | ADJUSTWINDOWRECTEX | | | |
-| 1c9 | DESTROYICON | | | |
-| 1ca | DESTROYCURSOR | | | |
+| 1c9 | DESTROYICON | | Done | |
+| 1ca | DESTROYCURSOR | | Done | |
 | 1ce | CALCCHILDSCROLL | | | |
 | 1d2 | DRAWFOCUSRECT | | | |
 | 1d7 | LSTRCMPI | | Done | |
