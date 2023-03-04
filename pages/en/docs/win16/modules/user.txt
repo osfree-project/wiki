@@ -305,8 +305,8 @@
 | 1a0 | TRACKPOPUPMENU | | | |
 | 1a1 | GETMENUCHECKMARKDIMENSIONS | | | |
 | 1a2 | SETMENUITEMBITMAPS | | | |
-| 1a4 | _WSPRINTF | | | |
-| 1a5 | WVSPRINTF | | | |
+| 1a4 | _WSPRINTF | | Done | |
+| 1a5 | WVSPRINTF | | Done | |
 | 1a6 | DLGDIRSELECTEX | | | |
 | 1a7 | DLGDIRSELECTCOMBOBOXEX | | | |
 | 1ae | LSTRCMP | | Done | |
@@ -327,7 +327,7 @@
 | 1ca | DESTROYCURSOR | | | |
 | 1ce | CALCCHILDSCROLL | | | |
 | 1d2 | DRAWFOCUSRECT | | | |
-| 1d7 | LSTRCMPI | | | |
+| 1d7 | LSTRCMPI | | Done | |
 | 1d8 | ANSINEXT | | Done | |
 | 1d9 | ANSIPREV | | Done | |
 | 1e2 | ENABLESCROLLBAR | | | |
