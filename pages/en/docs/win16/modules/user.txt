@@ -320,8 +320,8 @@
 | 1b0 | ANSILOWER | | Done | |
 | 1b1 | ISCHARALPHA | | | |
 | 1b2 | ISCHARALPHANUMERIC | | | |
-| 1b3 | ISCHARUPPER | | | |
-| 1b4 | ISCHARLOWER | | | |
+| 1b3 | ISCHARUPPER | | Done | |
+| 1b4 | ISCHARLOWER | | Done | |
 | 1b5 | ANSIUPPERBUFF | | | |
 | 1b6 | ANSILOWERBUFF | | | |
 | 1bd | DEFFRAMEPROC | | | |
