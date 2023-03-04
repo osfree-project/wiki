@@ -283,6 +283,7 @@
 | 134 | DEFDLGPROC | | | |
 | 135 | GETCLIPCURSOR | | | |
 | 13f | SCROLLWINDOWEX | | | |
+| 146 | GetControlBrush | | Done | |
 | 14b | ENABLEHARDWAREINPUT | | | |
 | 14d | IsUserIdle | | Done | |
 | 14e | GETQUEUESTATUS | | | |
