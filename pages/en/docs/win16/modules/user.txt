@@ -313,8 +313,8 @@
 | 19e | MODIFYMENU | | Done | |
 | 19f | CREATEPOPUPMENU | | Done | |
 | 1a0 | TRACKPOPUPMENU | | Done | |
-| 1a1 | GETMENUCHECKMARKDIMENSIONS | | | |
-| 1a2 | SETMENUITEMBITMAPS | | | |
+| 1a1 | GETMENUCHECKMARKDIMENSIONS | | Done | |
+| 1a2 | SETMENUITEMBITMAPS | | Done | |
 | 1a4 | _WSPRINTF | | Done | |
 | 1a5 | WVSPRINTF | | Done | |
 | 1a6 | DLGDIRSELECTEX | | | |
