@@ -175,7 +175,7 @@
 | 0b2 | TRANSLATEACCELERATOR | | | |
 | 0b3 | GETSYSTEMMETRICS | | Done | |
 | 0b4 | GETSYSCOLOR | | Done | |
-| 0b5 | SETSYSCOLORS | | | |
+| 0b5 | SETSYSCOLORS | | Done | |
 | 0b6 | BEAR182 | | | |
 | 0b7 | GETCARETPOS | | | |
 | 0b8 | QUERYSENDMESSAGE | | | |
