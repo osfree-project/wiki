@@ -341,7 +341,7 @@
 | 1d8 | ANSINEXT | | Done | |
 | 1d9 | ANSIPREV | | Done | |
 | 1e2 | ENABLESCROLLBAR | | | |
-| 1e3 | SYSTEMPARAMETERSINFO | | | |
+| 1e3 | SYSTEMPARAMETERSINFO | | Done | |
 | 1f3 | WNETERRORTEXT | | Stub | |
 | 1f5 | WNETOPENJOB | | Stub | |
 | 1f6 | WNETCLOSEJOB | | Stub | |
