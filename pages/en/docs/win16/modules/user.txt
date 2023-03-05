@@ -242,7 +242,7 @@
 | 0f7 | GETCURSOR | | | |
 | 0f8 | GETOPENCLIPBOARDWINDOW | | | |
 | 0f9 | GETASYNCKEYSTATE | | | |
-| 0fa | GETMENUSTATE | | | |
+| 0fa | GETMENUSTATE | | Done | |
 | 0fb | SENDDRIVERMESSAGE | | | |
 | 0fc | OPENDRIVER | | | |
 | 0fd | CLOSEDRIVER | | | |
