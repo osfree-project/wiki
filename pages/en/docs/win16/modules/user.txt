@@ -255,8 +255,8 @@
 | 104 | DEFERWINDOWPOS | | | |
 | 105 | ENDDEFERWINDOWPOS | | | |
 | 106 | GETWINDOW | | | |
-| 107 | GETMENUITEMCOUNT | | | |
-| 108 | GETMENUITEMID | | | |
+| 107 | GETMENUITEMCOUNT | | Done | |
+| 108 | GETMENUITEMID | | Done | |
 | 109 | SHOWOWNEDPOPUPS | | | |
 | 10a | SETMESSAGEQUEUE | | | |
 | 10b | SHOWSCROLLBAR | | | |
@@ -311,8 +311,8 @@
 | 19c | REMOVEMENU | | Done | |
 | 19d | DELETEMENU | | Done | |
 | 19e | MODIFYMENU | | Done | |
-| 19f | CREATEPOPUPMENU | | | |
-| 1a0 | TRACKPOPUPMENU | | | |
+| 19f | CREATEPOPUPMENU | | Done | |
+| 1a0 | TRACKPOPUPMENU | | Done | |
 | 1a1 | GETMENUCHECKMARKDIMENSIONS | | | |
 | 1a2 | SETMENUITEMBITMAPS | | | |
 | 1a4 | _WSPRINTF | | Done | |
