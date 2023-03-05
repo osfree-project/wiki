@@ -149,15 +149,15 @@
 | 097 | CREATEMENU | | Done | |
 | 098 | DESTROYMENU | | Done | |
 | 099 | CHANGEMENU | | Done | |
-| 09a | CHECKMENUITEM | | | |
-| 09b | ENABLEMENUITEM | | | |
+| 09a | CHECKMENUITEM | | Done | |
+| 09b | ENABLEMENUITEM | | Done | |
 | 09c | GETSYSTEMMENU | | Done | |
 | 09d | GETMENU | | Done | |
 | 09e | SETMENU | | Done | |
 | 09f | GETSUBMENU | | Done | |
 | 0a0 | DRAWMENUBAR | | Done | |
-| 0a1 | GETMENUSTRING | | | |
-| 0a2 | HILITEMENUITEM | | | |
+| 0a1 | GETMENUSTRING | | Done | |
+| 0a2 | HILITEMENUITEM | | Done | |
 | 0a3 | CREATECARET | | | |
 | 0a4 | DESTROYCARET | | | |
 | 0a5 | SETCARETPOS | | | |
@@ -173,8 +173,8 @@
 | 0b0 | LOADSTRING | | Done | |
 | 0b1 | LOADACCELERATORS | | Done | |
 | 0b2 | TRANSLATEACCELERATOR | | | |
-| 0b3 | GETSYSTEMMETRICS | | | |
-| 0b4 | GETSYSCOLOR | | | |
+| 0b3 | GETSYSTEMMETRICS | | Done | |
+| 0b4 | GETSYSCOLOR | | Done | |
 | 0b5 | SETSYSCOLORS | | | |
 | 0b6 | BEAR182 | | | |
 | 0b7 | GETCARETPOS | | | |
