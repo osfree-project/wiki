@@ -306,11 +306,11 @@
 | 196 | CREATECURSOR | | Done | |
 | 197 | CREATEICON | | Done | |
 | 198 | CreateCursorIconIndirect | | Done | |
-| 19a | INSERTMENU | | | |
-| 19b | APPENDMENU | | | |
-| 19c | REMOVEMENU | | | |
-| 19d | DELETEMENU | | | |
-| 19e | MODIFYMENU | | | |
+| 19a | INSERTMENU | | Done | |
+| 19b | APPENDMENU | | Done | |
+| 19c | REMOVEMENU | | Done | |
+| 19d | DELETEMENU | | Done | |
+| 19e | MODIFYMENU | | Done | |
 | 19f | CREATEPOPUPMENU | | | |
 | 1a0 | TRACKPOPUPMENU | | | |
 | 1a1 | GETMENUCHECKMARKDIMENSIONS | | | |
