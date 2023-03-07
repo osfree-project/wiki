@@ -81,7 +81,7 @@
 | 052 | INVERTRECT | | Done | |
 | 053 | FRAMERECT | | Done | |
 | 054 | DRAWICON | | Done | |
-| 055 | DRAWTEXT | | | |
+| 055 | DRAWTEXT | | Done | |
 | 056 | BEAR86 | | | |
 | 057 | DIALOGBOX | | | |
 | 058 | ENDDIALOG | | | |
