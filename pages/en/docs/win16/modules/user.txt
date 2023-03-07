@@ -158,13 +158,13 @@
 | 0a0 | DRAWMENUBAR | | Done | |
 | 0a1 | GETMENUSTRING | | Done | |
 | 0a2 | HILITEMENUITEM | | Done | |
-| 0a3 | CREATECARET | | | |
-| 0a4 | DESTROYCARET | | | |
-| 0a5 | SETCARETPOS | | | |
-| 0a6 | HIDECARET | | | |
-| 0a7 | SHOWCARET | | | |
-| 0a8 | SETCARETBLINKTIME | | | |
-| 0a9 | GETCARETBLINKTIME | | | |
+| 0a3 | CREATECARET | | Done | |
+| 0a4 | DESTROYCARET | | Done | |
+| 0a5 | SETCARETPOS | | Done | |
+| 0a6 | HIDECARET | | Done | |
+| 0a7 | SHOWCARET | | Done | |
+| 0a8 | SETCARETBLINKTIME | | Done | |
+| 0a9 | GETCARETBLINKTIME | | Done| |
 | 0aa | ARRANGEICONICWINDOWS | | | |
 | 0ab | WINHELP | | | |
 | 0ad | LOADCURSOR | | | |
@@ -177,7 +177,7 @@
 | 0b4 | GETSYSCOLOR | | Done | |
 | 0b5 | SETSYSCOLORS | | Done | |
 | 0b6 | BEAR182 | | | |
-| 0b7 | GETCARETPOS | | | |
+| 0b7 | GETCARETPOS | | Done | |
 | 0b8 | QUERYSENDMESSAGE | | | |
 | 0b9 | GRAYSTRING | | Done | |
 | 0ba | SWAPMOUSEBUTTON | | | |
