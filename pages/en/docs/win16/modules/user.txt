@@ -193,22 +193,22 @@
 | 0c5 | GETTABBEDTEXTEXTENT | | | |
 | 0c6 | CASCADECHILDWINDOWS | | | |
 | 0c7 | TILECHILDWINDOWS | | | |
-| 0c8 | OPENCOMM | | | |
-| 0c9 | SETCOMMSTATE | | | |
-| 0ca | GETCOMMSTATE | | | |
-| 0cb | GETCOMMERROR | | | |
-| 0cc | READCOMM | | | |
-| 0cd | WRITECOMM | | | |
-| 0ce | TRANSMITCOMMCHAR | | | |
-| 0cf | CLOSECOMM | | | |
-| 0d0 | SETCOMMEVENTMASK | | | |
-| 0d1 | GETCOMMEVENTMASK | | | |
-| 0d2 | SETCOMMBREAK | | | |
-| 0d3 | CLEARCOMMBREAK | | | |
-| 0d4 | UNGETCOMMCHAR | | | |
-| 0d5 | BUILDCOMMDCB | | | |
-| 0d6 | ESCAPECOMMFUNCTION | | | |
-| 0d7 | FLUSHCOMM | | | |
+| 0c8 | OPENCOMM | | Stub | |
+| 0c9 | SETCOMMSTATE | | Stub | |
+| 0ca | GETCOMMSTATE | | Stub | |
+| 0cb | GETCOMMERROR | | Stub | |
+| 0cc | READCOMM | | Stub | |
+| 0cd | WRITECOMM | | Stub | |
+| 0ce | TRANSMITCOMMCHAR | | Stub | |
+| 0cf | CLOSECOMM | | Stub | |
+| 0d0 | SETCOMMEVENTMASK | | Stub | |
+| 0d1 | GETCOMMEVENTMASK | | Stub | |
+| 0d2 | SETCOMMBREAK | | Stub | |
+| 0d3 | CLEARCOMMBREAK | | Stub | |
+| 0d4 | UNGETCOMMCHAR | | Stub | |
+| 0d5 | BUILDCOMMDCB | | Stub | |
+| 0d6 | ESCAPECOMMFUNCTION | | Stub | |
+| 0d7 | FLUSHCOMM | | Stub | |
 | 0d8 | UserSeeUserDo | | Done | |
 | 0da | DIALOGBOXINDIRECT | | | |
 | 0db | CREATEDIALOGINDIRECT | | | |
@@ -237,7 +237,7 @@
 | 0f2 | CREATEDIALOGINDIRECTPARAM | | | |
 | 0f3 | GETDIALOGBASEUNITS | | | |
 | 0f4 | EQUALRECT | | Done | |
-| 0f5 | ENABLECOMMNOTIFICATION | | | |
+| 0f5 | ENABLECOMMNOTIFICATION | | Stub | |
 | 0f6 | EXITWINDOWSEXEC | | | |
 | 0f7 | GETCURSOR | | | |
 | 0f8 | GETOPENCLIPBOARDWINDOW | | | |
