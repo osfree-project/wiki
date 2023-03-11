@@ -260,10 +260,10 @@
 | 109 | SHOWOWNEDPOPUPS | | | |
 | 10a | SETMESSAGEQUEUE | | | |
 | 10b | SHOWSCROLLBAR | | | |
-| 10c | GLOBALADDATOM | | | |
-| 10d | GLOBALDELETEATOM | | | |
-| 10e | GLOBALFINDATOM | | | |
-| 10f | GLOBALGETATOMNAME | | | |
+| 10c | GLOBALADDATOM | | Done | |
+| 10d | GLOBALDELETEATOM | | Done | |
+| 10e | GLOBALFINDATOM | | Done | |
+| 10f | GLOBALGETATOMNAME | | Done | |
 | 110 | ISZOOMED | | | |
 | 115 | GETDLGCTRLID | | | |
 | 116 | GETDESKTOPHWND | | | |
