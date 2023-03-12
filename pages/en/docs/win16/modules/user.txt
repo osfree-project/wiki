@@ -119,11 +119,11 @@
 | 079 | SETWINDOWSHOOK | | | |
 | 07a | CALLWINDOWPROC | | | |
 | 07b | CALLMSGFILTER | | | |
-| 07c | UPDATEWINDOW | | | |
-| 07d | INVALIDATERECT | | | |
-| 07e | INVALIDATERGN | | | |
-| 07f | VALIDATERECT | | | |
-| 080 | VALIDATERGN | | | |
+| 07c | UPDATEWINDOW | | Done | |
+| 07d | INVALIDATERECT | | Done | |
+| 07e | INVALIDATERGN | | Done | |
+| 07f | VALIDATERECT | | Done | |
+| 080 | VALIDATERGN | | Done | |
 | 081 | GETCLASSWORD | | | |
 | 082 | SETCLASSWORD | | | |
 | 083 | GETCLASSLONG | | | |
