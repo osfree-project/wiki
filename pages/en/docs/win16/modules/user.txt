@@ -83,21 +83,21 @@
 | 054 | DRAWICON | | Done | |
 | 055 | DRAWTEXT | | Done | |
 | 056 | BEAR86 | | | |
-| 057 | DIALOGBOX | | | |
+| 057 | DIALOGBOX | | Done | |
 | 058 | ENDDIALOG | | | |
-| 059 | CREATEDIALOG | | | |
+| 059 | CREATEDIALOG | | Done | |
 | 05a | ISDIALOGMESSAGE | | | |
 | 05b | GETDLGITEM | | | |
-| 05c | SETDLGITEMTEXT | | | |
-| 05d | GETDLGITEMTEXT | | | |
+| 05c | SETDLGITEMTEXT | | Done | |
+| 05d | GETDLGITEMTEXT | | Done | |
 | 05e | SETDLGITEMINT | | | |
 | 05f | GETDLGITEMINT | | | |
 | 060 | CHECKRADIOBUTTON | | | |
-| 061 | CHECKDLGBUTTON | | | |
-| 062 | ISDLGBUTTONCHECKED | | | |
-| 063 | DLGDIRSELECT | | | |
+| 061 | CHECKDLGBUTTON | | Done | |
+| 062 | ISDLGBUTTONCHECKED | | Done | |
+| 063 | DLGDIRSELECT | | Done | |
 | 064 | DLGDIRLIST | | | |
-| 065 | SENDDLGITEMMESSAGE | | | |
+| 065 | SENDDLGITEMMESSAGE | Done | | |
 | 066 | ADJUSTWINDOWRECT | | | |
 | 067 | MAPDIALOGRECT | | | |
 | 068 | MESSAGEBEEP | | | |
@@ -187,7 +187,7 @@
 | 0bf | CHILDWINDOWFROMPOINT | | | |
 | 0c0 | INSENDMESSAGE | | | |
 | 0c1 | ISCLIPBOARDFORMATAVAILABLE | | | |
-| 0c2 | DLGDIRSELECTCOMBOBOX | | | |
+| 0c2 | DLGDIRSELECTCOMBOBOX | | Done | |
 | 0c3 | DLGDIRLISTCOMBOBOX | | | |
 | 0c4 | TABBEDTEXTOUT | | | |
 | 0c5 | GETTABBEDTEXTEXTENT | | | |
@@ -210,8 +210,8 @@
 | 0d6 | ESCAPECOMMFUNCTION | | Stub | |
 | 0d7 | FLUSHCOMM | | Stub | |
 | 0d8 | UserSeeUserDo | | Done | |
-| 0da | DIALOGBOXINDIRECT | | | |
-| 0db | CREATEDIALOGINDIRECT | | | |
+| 0da | DIALOGBOXINDIRECT | | Done | |
+| 0db | CREATEDIALOGINDIRECT | | Done | |
 | 0dc | LOADMENUINDIRECT | | Done | |
 | 0dd | SCROLLDC | | | |
 | 0de | GETKEYBOARDSTATE | | | |
@@ -233,7 +233,7 @@
 | 0ee | EXCLUDEUPDATERGN | | | |
 | 0ef | DIALOGBOXPARAM | | | |
 | 0f0 | DIALOGBOXINDIRECTPARAM | | | |
-| 0f1 | CREATEDIALOGPARAM | | | |
+| 0f1 | CREATEDIALOGPARAM | | Done | |
 | 0f2 | CREATEDIALOGINDIRECTPARAM | | | |
 | 0f3 | GETDIALOGBASEUNITS | | | |
 | 0f4 | EQUALRECT | | Done | |
