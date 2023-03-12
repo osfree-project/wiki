@@ -10,9 +10,9 @@
 | 00a | SETTIMER | | | |
 | 00b | BEAR11 | | | |
 | 00c | KILLTIMER | | | |
-| 00d | GETTICKCOUNT | | | |
+| 00d | GETTICKCOUNT | | Done | |
 | 00e | GETTIMERRESOLUTION | | | |
-| 00f | GETCURRENTTIME | | | |
+| 00f | GETCURRENTTIME | | Done | |
 | 010 | CLIPCURSOR | | | |
 | 011 | GETCURSORPOS | | | |
 | 012 | SETCAPTURE | | | |
