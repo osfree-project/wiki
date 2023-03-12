@@ -33,9 +33,9 @@
 | 021 | GETCLIENTRECT | | | |
 | 022 | ENABLEWINDOW | | | |
 | 023 | ISWINDOWENABLED | | | |
-| 024 | GETWINDOWTEXT | | | |
-| 025 | SETWINDOWTEXT | | | |
-| 026 | GETWINDOWTEXTLENGTH | | | |
+| 024 | GETWINDOWTEXT | | Done | |
+| 025 | SETWINDOWTEXT | | Done | |
+| 026 | GETWINDOWTEXTLENGTH | | Done | |
 | 027 | BEGINPAINT | | | |
 | 028 | ENDPAINT | | | |
 | 029 | CREATEWINDOW | | Done | |
