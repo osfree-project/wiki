@@ -116,7 +116,7 @@
 | 076 | REGISTERWINDOWMESSAGE | | | |
 | 077 | GETMESSAGEPOS | | | |
 | 078 | GETMESSAGETIME | | | |
-| 079 | SETWINDOWSHOOK | | | |
+| 079 | SETWINDOWSHOOK | | Done | |
 | 07a | CALLWINDOWPROC | | | |
 | 07b | CALLMSGFILTER | | | |
 | 07c | UPDATEWINDOW | | Done | |
@@ -227,7 +227,7 @@
 | 0e8 | SETWINDOWPOS | | | |
 | 0e9 | SETPARENT | | | |
 | 0ea | UNHOOKWINDOWSHOOK | | | |
-| 0eb | DEFHOOKPROC | | | |
+| 0eb | DEFHOOKPROC | | Done | |
 | 0ec | GETCAPTURE | | | |
 | 0ed | GETUPDATERGN | | | |
 | 0ee | EXCLUDEUPDATERGN | | | |
