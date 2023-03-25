@@ -48,5 +48,6 @@ DPMI 1.0 clients should use this function in preference to Int 31H Function 0A00
 Text based on [[http://www.delorie.com/djgpp/doc/dpmi/]]
 
 
+{{page>en:templates:dpmi:int}}
 
 

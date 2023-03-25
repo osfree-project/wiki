@@ -57,5 +57,6 @@ Under DPMI hosts, the major version number is returned in DH and the minor versi
 Text based on [[http://www.delorie.com/djgpp/doc/dpmi/]]
 
 
+{{page>en:templates:dpmi:int}}
 
 

@@ -36,6 +36,7 @@ This function should not be used to determine if a DPMI host is present. A clien
 
 Text based on [[http://www.delorie.com/djgpp/doc/dpmi/]]
 
+{{page>en:templates:dpmi:int}}
 
 
 
