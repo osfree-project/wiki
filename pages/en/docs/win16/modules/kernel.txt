@@ -242,14 +242,6 @@ UnLockData 1.03
 SetPriority 1.03
 AddFontResource 1.03
 RemoveFontResource 1.03
-LoadBitmap 1.03
-LoadCursor 1.03
-LoadIcon 1.03
-LoadMenu 1.03
-LoadString 1.03
-LoadAccelerators 1.03
-AnsiToOem 1.03
-OemToAnsi 1.03
-MAKEINTATOM 1.03 (Macro?)
+
 
 {{page>en:templates:win16}}
