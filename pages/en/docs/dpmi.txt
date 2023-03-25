@@ -81,3 +81,5 @@
 | 31 | [[en:docs:dpmi:api:int31:0D:03|0D03]] | Free Serialization on Shared Memory | 1.0 |
 | 31 | [[en:docs:dpmi:api:int31:0E:00|0E00]] | Get Coprocessor Status | 1.0 |
 | 31 | [[en:docs:dpmi:api:int31:0E:01|0E01]] | Set Coprocessor Emulation | 1.0 |
+
+{{page>en:templates:dpmi:int}}
