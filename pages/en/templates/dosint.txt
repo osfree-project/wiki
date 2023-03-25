@@ -1,3 +1,3 @@
-{{logos:dos.gif?35x35}}
+{{logos:dos.gif?35x35}} {{logos:win16.gif}}
 
-**Note: This API call is for DOS personality only. Use [[en:docs:fapi|Family API]] for portability.**
+**Note: This API call is for DOS and Win16 personality only. Use [[en:docs:fapi|Family API]] for portability.**

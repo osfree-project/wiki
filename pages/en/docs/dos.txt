@@ -1,3 +1,5 @@
+{{page>en:templates:dosint}}
+
 ====== DOS personality ======
 
 
