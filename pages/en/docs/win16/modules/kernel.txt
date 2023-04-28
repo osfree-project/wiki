@@ -26,7 +26,7 @@ Note minimal checked windows version is 1.03.
 | 018| [[en:docs:win16:api:kernel:GlobalLock]] | Retrieve the absolute memory address of the global memory block | | | | 1.03 | Yes |
 | 019| [[en:docs:win16:api:kernel:GlobalUnlock]] | Unlock the global memory block | | | | 1.03 | Yes |
 | 020| [[en:docs:win16:api:kernel:GlobalSize]] | Retrieve the current size, in bytes, of the global memory block | | | | 1.03 | Yes |
-| 021| [[en:docs:win16:api:kernel:GlobalHandle]] | | | | | | Yes |
+| 021| [[en:docs:win16:api:kernel:GlobalHandle]] | Retrieve handle for given address | | | | | Yes |
 | 022| [[en:docs:win16:api:kernel:GlobalFlags]] | Return information1 about the specified global memory block | | | | 1.03 | Yes |
 | 023| [[en:docs:win16:api:kernel:LockSegment]] | | | |
 | 024| [[en:docs:win16:api:kernel:UnlockSegment]] | | | |
@@ -106,7 +106,7 @@ Note minimal checked windows version is 1.03.
 | 098| [[en:docs:win16:api:kernel:GetLastDiskChange]] |  | | | | | |
 | 099| [[en:docs:win16:api:kernel:GetLpErrMode]] |  | | | | | |
 | 100| [[en:docs:win16:api:kernel:ValidateCodeSegments]] | | | |
-| 101| [[en:docs:win16:api:kernel:NoHookDosCall]] |  | | | | | |
+| 101| [[en:docs:win16:api:kernel:NoHookDosCall]] | Call DOS INT 21H directly | | | | | |
 | 102| [[en:docs:win16:api:kernel:Dos3Call]] | | | |
 | 103| [[en:docs:win16:api:kernel:NetbiosCall]] | | | |
 | 104| [[en:docs:win16:api:kernel:GetCodeInto]] | | | |
@@ -178,29 +178,29 @@ Note minimal checked windows version is 1.03.
 | 170| [[en:docs:win16:api:kernel:AllocCSToDSAlisa]] | | | |
 | 171| [[en:docs:win16:api:kernel:AllocDSToCSAlias]] | | | |
 | 172| [[en:docs:win16:api:kernel:AllocAlias]] |  | | | | | |
-| 173| [[en:docs:win16:api:kernel:__ROMBIOS]] |  | | | | | |
-| 174| [[en:docs:win16:api:kernel:__A000H]] |  | | | | | |
+| 173| [[en:docs:win16:api:kernel:__ROMBIOS]] | BIOS selector | | | | | |
+| 174| [[en:docs:win16:api:kernel:__A000H]] | Selector of A000:0000 | | | | | |
 | 175| [[en:docs:win16:api:kernel:AllocSelector]] | | | |
 | 176| [[en:docs:win16:api:kernel:FreeSelector]] | | | |
 | 177| [[en:docs:win16:api:kernel:PrestoChangoSelector]] | | | |
 | 178| [[en:docs:win16:api:kernel:__WINFLAGS]] |  | | | | | |
-| 179| [[en:docs:win16:api:kernel:__D000H]] |  | | | | | |
+| 179| [[en:docs:win16:api:kernel:__D000H]] | Selector of D000:0000 | | | | | |
 | 180| [[en:docs:win16:api:kernel:LongPtrAdd]] |  | | | | | |
-| 181| [[en:docs:win16:api:kernel:__B000H]] |  | | | | | |
-| 182| [[en:docs:win16:api:kernel:__B800H]] |  | | | | | |
-| 183| [[en:docs:win16:api:kernel:__0000H]] |  | | | | | |
-| 184| [[en:docs:win16:api:kernel:GlobalDOSAlloc]] | | | |
-| 185| [[en:docs:win16:api:kernel:GlobalDOSFree]] | | | |
-| 186| [[en:docs:win16:api:kernel:GetSelectorBase]] | | | |
-| 187| [[en:docs:win16:api:kernel:SetSelectorBase]] | | | |
-| 188| [[en:docs:win16:api:kernel:GetSelectorLimit]] | | | |
-| 189| [[en:docs:win16:api:kernel:SetSelectorLimit]] | | | |
-| 190| [[en:docs:win16:api:kernel:__E000H]] |  | | | | | |
+| 181| [[en:docs:win16:api:kernel:__B000H]] | Selector of B000:0000 | | | | | |
+| 182| [[en:docs:win16:api:kernel:__B800H]] | Selector of B800:0000 | | | | | |
+| 183| [[en:docs:win16:api:kernel:__0000H]] | Selector of 0000:0000 | | | | | |
+| 184| [[en:docs:win16:api:kernel:GlobalDOSAlloc]] | Allocate memory blocks in the first megabyte address space | | |
+| 185| [[en:docs:win16:api:kernel:GlobalDOSFree]] | Free memory blocks in the first megabyte address space | | |
+| 186| [[en:docs:win16:api:kernel:GetSelectorBase]] | Get selector base address | | |
+| 187| [[en:docs:win16:api:kernel:SetSelectorBase]] | Sel selector base address | | |
+| 188| [[en:docs:win16:api:kernel:GetSelectorLimit]] | Get selector memory limit | | |
+| 189| [[en:docs:win16:api:kernel:SetSelectorLimit]] | Set selector memory limit | | |
+| 190| [[en:docs:win16:api:kernel:__E000H]] | Selector of E000:0000 | | | | | |
 | 191| [[en:docs:win16:api:kernel:GlobalPageLock]] | | | |
 | 192| [[en:docs:win16:api:kernel:GlobalPageUnlock]] | | | |
-| 193| [[en:docs:win16:api:kernel:__0040H]] |  | | | | | |
-| 194| [[en:docs:win16:api:kernel:__F000H]] |  | | | | | |
-| 195| [[en:docs:win16:api:kernel:__C000H]] |  | | | | | |
+| 193| [[en:docs:win16:api:kernel:__0040H]] | Selector of 0040:0000 | | | | | |
+| 194| [[en:docs:win16:api:kernel:__F000H]] | Selector of F000:0000 | | | | | |
+| 195| [[en:docs:win16:api:kernel:__C000H]] | Selector of C000:0000 | | | | | |
 | 196| [[en:docs:win16:api:kernel:SelectorAccessRights]] | | | |
 | 197| [[en:docs:win16:api:kernel:GlobalFix]] | | | | | | Yes |
 | 198| [[en:docs:win16:api:kernel:GlobalUnfix]] | | | | | | Yes |
