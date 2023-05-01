@@ -1,0 +1,23 @@
+{{page>en:templates:win16api}}
+
+======  ======
+
+===== Brief =====
+
+===== Syntax =====
+
+===== Parameters =====
+
+===== Return Code =====
+
+===== Notes =====
+
+===== Example Code =====
+
+==== C Binding ====
+
+==== MASM Binding ====
+
+===== See also =====
+
+{{page>en:templates:win16}}
