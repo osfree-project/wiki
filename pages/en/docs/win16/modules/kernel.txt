@@ -16,7 +16,7 @@ Note minimal checked windows version is 1.03.
 | 008| [[en:docs:win16:api:kernel:LocalLock]] | Lock the local memory block | | | | 1.03 | Yes |
 | 009| [[en:docs:win16:api:kernel:LocalUnlock]] | Unlock the local memory block | | | | 1.03 | Yes |
 | 010| [[en:docs:win16:api:kernel:LocalSize]] | Retrieve the current size, in bytes, of the local memory block | | | | 1.03 | Yes |
-| 011| [[en:docs:win16:api:kernel:LocalHandle]] | | | | | | Yes |
+| 011| [[en:docs:win16:api:kernel:LocalHandle]] | Retrieve the handle associated with the specified pointer to a local memory object | | | | | Yes |
 | 012| [[en:docs:win16:api:kernel:LocalFlags]] | Return information about the specified local memory block | | | | 1.03 | Yes |
 | 013| [[en:docs:win16:api:kernel:LocalCompact]] | Generate free bytes of memory by compacting, if necessary, the module's local heap | | | | 1.03 | Yes |
 | 014| [[en:docs:win16:api:kernel:LocalNotify]] | | | | 
