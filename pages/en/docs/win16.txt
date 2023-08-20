@@ -2,6 +2,12 @@
 
 ==== Win16 personality ====
 
+=== Applications ===
+
+  * [[en:docs:win16:applications:clock|Clock]]
+
+=== API ===
+
   * [[en:docs:bios:api|BIOS API]]
   * [[en:docs:dos|DOS API]]
   * [[en:docs:xms:api|XMS API]]
