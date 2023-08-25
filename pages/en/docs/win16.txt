@@ -5,6 +5,7 @@
 === Applications ===
 
   * [[en:docs:win16:applications:clock|Clock]]
+  * [[en:docs:win16:applications:clock|Notepad]]
 
 === API ===
 
