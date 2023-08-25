@@ -1,0 +1,3 @@
+^ Ordinal ^ Name ^ Description ^ Status ^ Version ^
+| 000| GDI | | | |
+| 001 | [[en:docs:win16:api:shell:|]] | | | |
