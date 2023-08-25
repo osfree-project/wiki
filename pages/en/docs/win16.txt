@@ -24,4 +24,5 @@
   * [[en:docs:win16:modules:kernel|KERNEL library]]
   * [[en:docs:win16:modules:gdi|GDI library]]
   * [[en:docs:win16:modules:user|USER library]]
+  * [[en:docs:win16:modules:shell|SHELL library]]
   * [[en:docs:win16:modules:lzexpand|LZEXPAND library]]
