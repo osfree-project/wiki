@@ -1,3 +1,29 @@
+{{page>en:templates:win16api}}
+
 ^ Ordinal ^ Name ^ Description ^ Status ^ Version ^
-| 000| GDI | | | |
-| 001 | [[en:docs:win16:api:shell:|]] | | | |
+| 001 | [[en:docs:win16:api:shell:RegOpenKey]] | | | |
+| 002 | [[en:docs:win16:api:shell:RegCreateKey]] | | | |
+| 003 | [[en:docs:win16:api:shell:RegCloseKey]] | | | |
+| 004 | [[en:docs:win16:api:shell:RegDeleteKey]] | | | |
+| 005 | [[en:docs:win16:api:shell:RegSetValue]] | | | |
+| 006 | [[en:docs:win16:api:shell:RegQueryValue]] | | | |
+| 007 | [[en:docs:win16:api:shell:RegEnumKey]] | | | |
+| 008 | [[en:docs:win16:api:shell:WEP]] | | Done  | |
+| 009 | [[en:docs:win16:api:shell:DragAcceptFiles]] | | | |
+| 011 | [[en:docs:win16:api:shell:DragQueryFile]] | | | |
+| 012 | [[en:docs:win16:api:shell:DragFinish]] | | | |
+| 013 | [[en:docs:win16:api:shell:DragQueryPoint]] | | | |
+| 020 | [[en:docs:win16:api:shell:ShellExecute]] | | | |
+| 021 | [[en:docs:win16:api:shell:FindExecutable]] | | | |
+| 022 | [[en:docs:win16:api:shell:ShellAbout]] | Show standard About dialog | Done | |
+| 033 | [[en:docs:win16:api:shell:AboutDlgProc]] | About Dialog Window Procedure | Done | |
+| 034 | [[en:docs:win16:api:shell:ExtractIcon]] | | | |
+| 036 | [[en:docs:win16:api:shell:ExtractAssociatedIcon]] | | | |
+| 037 | [[en:docs:win16:api:shell:DoEnvironmentSubst]] | | | |
+| 038 | [[en:docs:win16:api:shell:FindEnvironmentString]] | | | |
+| 039 | [[en:docs:win16:api:shell:InternalExtractIcon]] | | | |
+| 101 | [[en:docs:win16:api:shell:DLLEntryPoint]] | | | |
+| 102 | [[en:docs:win16:api:shell:RegisterShellHook]] | | | |
+| 103 | [[en:docs:win16:api:shell:ShellHookProc]] | | | |
+
+{{page>en:templates:win16}}
