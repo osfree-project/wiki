@@ -1,23 +1,23 @@
 {{page>en:templates:win16api}}
 
 ^ Ordinal ^ Name ^ Description ^ Status ^ Version ^
-| 001 | [[en:docs:win16:api:shell:RegOpenKey]] | | | |
-| 002 | [[en:docs:win16:api:shell:RegCreateKey]] | | | |
-| 003 | [[en:docs:win16:api:shell:RegCloseKey]] | | | |
-| 004 | [[en:docs:win16:api:shell:RegDeleteKey]] | | | |
-| 005 | [[en:docs:win16:api:shell:RegSetValue]] | | | |
-| 006 | [[en:docs:win16:api:shell:RegQueryValue]] | | | |
-| 007 | [[en:docs:win16:api:shell:RegEnumKey]] | | | |
+| 001 | [[en:docs:win16:api:shell:RegOpenKey]] | Open the specified key | | |
+| 002 | [[en:docs:win16:api:shell:RegCreateKey]] | Create or open the specified key | | |
+| 003 | [[en:docs:win16:api:shell:RegCloseKey]] | Close a key | | |
+| 004 | [[en:docs:win16:api:shell:RegDeleteKey]] | Delete the specified key | | |
+| 005 | [[en:docs:win16:api:shell:RegSetValue]] | Associate a text string with a specified key | | |
+| 006 | [[en:docs:win16:api:shell:RegQueryValue]] | Retrieve the text string associated with a specified key | | |
+| 007 | [[en:docs:win16:api:shell:RegEnumKey]] | Enumerate the subkeys of a specified key | | |
 | 008 | [[en:docs:win16:api:shell:WEP]] | | Done  | |
-| 009 | [[en:docs:win16:api:shell:DragAcceptFiles]] | | | |
-| 011 | [[en:docs:win16:api:shell:DragQueryFile]] | | | |
-| 012 | [[en:docs:win16:api:shell:DragFinish]] | | | |
-| 013 | [[en:docs:win16:api:shell:DragQueryPoint]] | | | |
-| 020 | [[en:docs:win16:api:shell:ShellExecute]] | | | |
-| 021 | [[en:docs:win16:api:shell:FindExecutable]] | | | |
+| 009 | [[en:docs:win16:api:shell:DragAcceptFiles]] | Register whether a given window accepts dropped files | | |
+| 011 | [[en:docs:win16:api:shell:DragQueryFile]] | Retrieve the number of dropped files and their filenames | | |
+| 012 | [[en:docs:win16:api:shell:DragFinish]] | Release memory that Windows allocated for use in transferring filenames to the application | | |
+| 013 | [[en:docs:win16:api:shell:DragQueryPoint]] | Retrieve the window coordinates of the cursor when a file is dropped | | |
+| 020 | [[en:docs:win16:api:shell:ShellExecute]] | Open or print the specified file | | |
+| 021 | [[en:docs:win16:api:shell:FindExecutable]] | Find and retrieve the executable filename that is associated with a specified filename | | |
 | 022 | [[en:docs:win16:api:shell:ShellAbout]] | Show standard About dialog | Done | |
 | 033 | [[en:docs:win16:api:shell:AboutDlgProc]] | About Dialog Window Procedure | Done | |
-| 034 | [[en:docs:win16:api:shell:ExtractIcon]] | | | |
+| 034 | [[en:docs:win16:api:shell:ExtractIcon]] | Retrieve the handle of an icon from a specified executable file, dynamic-link library (DLL), or icon file | | |
 | 036 | [[en:docs:win16:api:shell:ExtractAssociatedIcon]] | | | |
 | 037 | [[en:docs:win16:api:shell:DoEnvironmentSubst]] | | | |
 | 038 | [[en:docs:win16:api:shell:FindEnvironmentString]] | | | |
