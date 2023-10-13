@@ -2,7 +2,21 @@
 
 {{logos:fiasco.png?35}}{{logos:os2.gif?35x35}}{{logos:dos.gif?35x35}}{{logos:win16.gif?28x35}}{{logos:win32.gif?28x35}}{{logos:linux.jpg?35x35}}{{logos:java.gif?35x35}}
 
-===== About osFree =====
+==== About osFree ====
+
+The osFree project is aimed at producing an operating system with support of OS/2 compatible personality as the base personality. We have used the following rules in our research and development:
+
+  * Usable
+  * Extensible
+  * Open
+  * Easy
+
+As a result, we have the following considerations:
+
+  * [[wp>IBM_Common_User_Access|CUA]] for usability (see IBM [[wp>IBM_System_Application_Architecture|SAA]] [[wp>IBM_Common_User_Access|CUA]])
+  * [[wp>Object-oriented_programming|OOP]] principles and modularity in both Microkernel interfaces and [[wp>IBM_System_Object_Model|SOM]], together with binary compatability, for extensibility
+  * Documentation and Open-source for openness
+  * All of the above for ease of use
 
 ==== What is osFree? ====
 
@@ -45,44 +59,7 @@ It is possible to embed the mixed 16/32 to pure 32-bit apps converter in the exe
 
 We have a plan for limited support of DOS and Win16 personalities (for historic reasons). But we don't limit you to add more personalities.
 
-==== Lightweight ====
-
-OS/2 is one of most lightweight 32-bit OS. osFree also will be as lightweight as possible. We don't want to request 1 Gb minimum for work. We want to make it work on as minimal hardware as it possible. This will allow to use osFree in embeded area.
-
-==== Open ====
-
-osFree components come under open licenses like BSD and (L)GPL licenses. And we try to document interfaces as much as possible. So you are free to extend it as you wish.
-
-==== Object-oriented ====
-
-osFree tries to extend object-oriented design of desktop to other parts of the system, using OOP principles. We use [[wp>SOM]] as a base object model, as designed by IBM for OS/2 desktop and other parts of the system. Also, we want to introduce CPI+, GPI+, PM+, i.e., we plan to make the object-oriented wrappers for current CPI ((OS/2 kernel Control Program Interface)), GPI ((Graphics Programming Interface)) and [[wp>Presentation_Manager|PM]] services. Access to low-level services of the kernel also planned to be represented as SOM objects.
-
-==== Contributing ====
-
-[[en:teams|We]] have a lot of things still to do, so any help is welcome. Not only for code development, but also documentation writing, web page maintenance, distribution maintenance, and much more. See the [[en:roadmap|Project Roadmap]] for more information about where we intend to go.
-
-[[en:teams|We]] are also looking for developers. For newbies, we have a number of [[en:smalltasks|small tasks]]. If you're an experienced developer, there are plenty of [[en:bigtasks|complex tasks]] awaiting your talents! Check out the [[en:develop|development page]] for more information about developing for us, and look at our [[en:legal|licensing]].
-
-osFree IRC channel is #osFree at [[irc://efnet/osfree|EFnet]] and [[irc://irc.ecomstation.com/osfree|eCSnet]].
-
--------
-
-
-The osFree project is aimed at producing an operating system with support of OS/2 compatible personality as the base personality. We have used the following rules in our research and development:
-
-  * Usable
-  * Extensible
-  * Open
-  * Easy
-
-As a result, we have the following considerations:
-
-  * [[wp>IBM_Common_User_Access|CUA]] for usability (see IBM [[wp>IBM_System_Application_Architecture|SAA]] [[wp>IBM_Common_User_Access|CUA]])
-  * [[wp>Object-oriented_programming|OOP]] principles and modularity in both Microkernel interfaces and [[wp>IBM_System_Object_Model|SOM]], together with binary compatability, for extensibility
-  * Documentation and Open-source for openness
-  * All of the above for ease of use
-
-==== General design ====
+==== General design of osFree ====
 
 We propose to reuse some or most of OS/2 PPC design with some reformulation. Since OS/2 support is our primary target, of course, we propose to reuse most of OS/2 technologies.
 
@@ -115,5 +92,25 @@ Of course you are free to add another personality.
 At present time we have closed view about file systems support and boot process. We are reusing OS/2 concept of [[en:ibm:ifs:index|IFS]]'es. Most notable differences from OS/2 PC are the absence of MiniFSD (like it is in OS/2 PPC) and 32-bit [[en:ibm:ifs:index|IFS]] main driver. For more information about the boot process look at [[en:docs:boot:index|Boot process guides and references]].
 
 For general development guidelines see [[en:develop:guidelines|Developer Reference]].
+
+==== Lightweight ====
+
+OS/2 is one of most lightweight 32-bit OS. osFree also will be as lightweight as possible. We don't want to request 1 Gb minimum for work. We want to make it work on as minimal hardware as it possible. This will allow to use osFree in embeded area.
+
+==== Open ====
+
+osFree components come under open licenses like BSD and (L)GPL licenses. And we try to document interfaces as much as possible. So you are free to extend it as you wish.
+
+==== Object-oriented ====
+
+osFree tries to extend object-oriented design of desktop to other parts of the system, using OOP principles. We use [[wp>SOM]] as a base object model, as designed by IBM for OS/2 desktop and other parts of the system. Also, we want to introduce CPI+, GPI+, PM+, i.e., we plan to make the object-oriented wrappers for current CPI ((OS/2 kernel Control Program Interface)), GPI ((Graphics Programming Interface)) and [[wp>Presentation_Manager|PM]] services. Access to low-level services of the kernel also planned to be represented as SOM objects.
+
+==== Contributing ====
+
+[[en:teams|We]] have a lot of things still to do, so any help is welcome. Not only for code development, but also documentation writing, web page maintenance, distribution maintenance, and much more. See the [[en:roadmap|Project Roadmap]] for more information about where we intend to go.
+
+[[en:teams|We]] are also looking for developers. For newbies, we have a number of [[en:smalltasks|small tasks]]. If you're an experienced developer, there are plenty of [[en:bigtasks|complex tasks]] awaiting your talents! Check out the [[en:develop|development page]] for more information about developing for us, and look at our [[en:legal|licensing]].
+
+osFree IRC channel is #osFree at [[irc://efnet/osfree|EFnet]] and [[irc://irc.ecomstation.com/osfree|eCSnet]].
 
 ~~DISCUSSION~~
