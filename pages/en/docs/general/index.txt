@@ -4,6 +4,8 @@
 
 ==== About osFree ====
 
+osFree is a [[wp>FOSS| free and open-source]] operating system project based on the [[wp>L4_microkernel_family|L4]] microkernel aiming to be binary compatible with [[wp>OS/2|OS/2]] (ia32). Also, a parallel coexistence of several "alien" OS API's is possible.
+
 The osFree project is aimed at producing an operating system with support of OS/2 compatible personality as the base personality. We have used the following rules in our research and development:
 
   * Usable
@@ -18,28 +20,17 @@ As a result, we have the following considerations:
   * Documentation and Open-source for openness
   * All of the above for ease of use
 
-==== What is osFree? ====
+==== Lightweight ====
 
-osFree is a [[wp>FOSS| free and open-source]] operating system project based on the [[wp>L4_microkernel_family|L4]] microkernel aiming to be binary compatible with [[wp>OS/2|OS/2]] (ia32). Also, a parallel coexistence of several "alien" OS API's is possible.
+OS/2 is one of most lightweight 32-bit OS. osFree also will be as lightweight as possible. We don't want to request 1 Gb minimum for work. We want to make it work on as minimal hardware as it possible. This will allow to use osFree in embeded area.
 
-==== Why use a microkernel ====
+==== Open ====
 
-  * microkernel can serve as a base for different OS API's, implemented on top of it. These API's can be executed concurrently, having their common part as small as the microkernel is. This allows for parallel (non-layered) implementation of concurrent API's.
-  * OS API over a microkernel is implemented in user level, leaving only microkernel in privileged kernel mode. Such OS components as thread schedulers, memory managers, swapper task, even direct hardware access and interrupt handling, are moved to userlevel too.
-  * this allows implementing stable system with rock stable small kernel and less stable user level components, which (as it shows [[http://www.minix3.org/|Minix]] design, for example) can be restarted (even automatically) after it has failed. The microkernel itself can be well-debugged, and even, formally verified with mathematical methods as error-proof. So that, the errors in microkernel are very unlikely, and other OS components could be not so critical.
-  * this also allows to use ordinary development techniques for drivers as driver in microkernel system does not radically differ from other applications.
-  * microkernel architecture improves dependability of the system, which means that dependencies between system components are well-defined. Servers executing over a microkernel, interact only through well-defined interfaces and incapsulate their internals, which closely resembles the object-oriented approach.
-  * microkernel system improves isolation of errors inside system components, because servers are executing in separate address spaces.
-  * microkernel abstracts hardware from usermode servers, which allows implementation of portable operating systems, where all usermode system part remains unchanged in its source form, requiring only its recompilation.
+osFree components come under open licenses like BSD and (L)GPL licenses. And we try to document interfaces as much as possible. So you are free to extend it as you wish.
 
-==== Why L4? ====
+==== Object-oriented ====
 
-  * L4 is a second-generation microkernel, which improves overall system performance significantly. This can be demonstrated by L4Linux as an example. L4Linux is essentially a port of Linux to a new 'L4' architecture. Its hardware access code was changed, so it is accessed not directly, but through L4 mechanisms. The Linux kernel performance can be tested by benchmarks, which shows a loss of about 2% of performance of native Linux kernel. We were tried to start L4Linux on a real machine and did not noticed the difference. This shows that L4 demonstrated excellent performance with very small loss.
-  * It's minimality and moving all policies outside the kernel, leaving inside it only minimal set of mechanisms, makes it almost universal and makes it possible to implement almost any desired API.
-  * We're must not reinvent the wheel: it has all required mechanisms, which we need
-  * A set of general-purpose services is already implemented for it, so we're not left with bare kernel
-  * L4Linux can be used as Linux personality base. It is yet at development stage but nevertheless, almost all is working. On our laptop, only PCMCIA modem was not working (it could be fixed, though, by doing ioremap to other addresses -- the original addresses used by the driver, are used in L4-based system). Wi-fi, bluetooth stack, USB stack, filesystems, CD writing -- all these were working! And one more inconvenience: as the video is working over the native graphical L4 console, which at present is working via VESA mode (only selected video cards are supported with acceleration), so the video support is way limited.
-  * Device Driver Environment (DDE) could be used in future as a drivers framework. It ports Linux (DDE/Linux) and FreeBSD (DDE/FreeBSD) drivers to L4 userlevel. So, the big codebase of Linux drivers can be reused in future. In contrast with windows ones, they are available in source form and could be ported to user-level.
+osFree tries to extend object-oriented design of desktop to other parts of the system, using OOP principles. We use [[wp>SOM]] as a base object model, as designed by IBM for OS/2 desktop and other parts of the system. Also, we want to introduce CPI+, GPI+, PM+, i.e., we plan to make the object-oriented wrappers for current CPI ((OS/2 kernel Control Program Interface)), GPI ((Graphics Programming Interface)) and [[wp>Presentation_Manager|PM]] services. Access to low-level services of the kernel also planned to be represented as SOM objects.
 
 ==== Why re-implement OS/2? ====
 
@@ -72,6 +63,7 @@ In general, we'll use L4 microkernel as a core of the system. On top of L4 we pl
     * DOS personality
     * Win16 personality
   * Win32 personality
+  * Java personality
 
 **[[en:docs:general:neutral|Neutral personality]]** or **Personality-neutral services** is the real OS API. It is a set of servers and libraries giving away various services. All other personalities need to work via Neutral personality. Most probably, many Neutral services API's will be reused almost as is (in the form of simple wrappers). The Neutral Personality API can be compared with Native NT API -- they are almost functionally equivalent.
 
@@ -83,9 +75,11 @@ In general, we'll use L4 microkernel as a core of the system. On top of L4 we pl
 
 **[[en:docs:dos|DOS personality]]** aimed to provide the functionality of DOS. DOS was supported by the original OS/2 and is still used by many people. For us, this direction of development is very perspective, though it has less priority than OS/2 personality development.  So, we don't want to lose too much forces on this goal, so we'll most probably reuse other projects here, like QEMU, VBOX, DosBox, DosEmu, FreeDos etc.
 
-**[[en:docs:win16|Win16 personality]]** aimed to provide partial or full functionality of Win16 up to version Windows ME. Win16 personality actually work under MVM prsonality. Seamless desktop integration are planned.
+**[[en:docs:win16|Win16 personality]]** aimed to provide partial or full functionality of Win16 up to version Windows ME. Win16 personality actually work under DOS personality. Seamless desktop integration are planned.
 
 **[[en:docs:general:win32|Win32 personality]]** aimed to provide partial or full functionality of Win32. Windows is also one of the mainstream OSes and we can't ignore its existence. **If** it will be possible to para-virtualize ReactOS then we'll also provide Win32 functionality (there is an idea of implementing a HAL, working above l4env/l4re). Otherwise Win32 support will come via WINE project.
+
+**[[en:docs:general:java|Java personality]]** aimed to provide JVM. OS/2 JVM was one of best implementations.
 
 Of course you are free to add another personality.
 
@@ -93,17 +87,26 @@ At present time we have closed view about file systems support and boot process.
 
 For general development guidelines see [[en:develop:guidelines|Developer Reference]].
 
-==== Lightweight ====
+==== Why use a microkernel ====
 
-OS/2 is one of most lightweight 32-bit OS. osFree also will be as lightweight as possible. We don't want to request 1 Gb minimum for work. We want to make it work on as minimal hardware as it possible. This will allow to use osFree in embeded area.
+  * microkernel can serve as a base for different OS API's, implemented on top of it. These API's can be executed concurrently, having their common part as small as the microkernel is. This allows for parallel (non-layered) implementation of concurrent API's.
+  * OS API over a microkernel is implemented in user level, leaving only microkernel in privileged kernel mode. Such OS components as thread schedulers, memory managers, swapper task, even direct hardware access and interrupt handling, are moved to userlevel too.
+  * this allows implementing stable system with rock stable small kernel and less stable user level components, which (as it shows [[http://www.minix3.org/|Minix]] design, for example) can be restarted (even automatically) after it has failed. The microkernel itself can be well-debugged, and even, formally verified with mathematical methods as error-proof. So that, the errors in microkernel are very unlikely, and other OS components could be not so critical.
+  * this also allows to use ordinary development techniques for drivers as driver in microkernel system does not radically differ from other applications.
+  * microkernel architecture improves dependability of the system, which means that dependencies between system components are well-defined. Servers executing over a microkernel, interact only through well-defined interfaces and incapsulate their internals, which closely resembles the object-oriented approach.
+  * microkernel system improves isolation of errors inside system components, because servers are executing in separate address spaces.
+  * microkernel abstracts hardware from usermode servers, which allows implementation of portable operating systems, where all usermode system part remains unchanged in its source form, requiring only its recompilation.
 
-==== Open ====
+==== Why L4? ====
 
-osFree components come under open licenses like BSD and (L)GPL licenses. And we try to document interfaces as much as possible. So you are free to extend it as you wish.
+  * L4 is a second-generation microkernel, which improves overall system performance significantly. This can be demonstrated by L4Linux as an example. L4Linux is essentially a port of Linux to a new 'L4' architecture. Its hardware access code was changed, so it is accessed not directly, but through L4 mechanisms. The Linux kernel performance can be tested by benchmarks, which shows a loss of about 2% of performance of native Linux kernel. We were tried to start L4Linux on a real machine and did not noticed the difference. This shows that L4 demonstrated excellent performance with very small loss.
+  * It's minimality and moving all policies outside the kernel, leaving inside it only minimal set of mechanisms, makes it almost universal and makes it possible to implement almost any desired API.
+  * We're must not reinvent the wheel: it has all required mechanisms, which we need
+  * A set of general-purpose services is already implemented for it, so we're not left with bare kernel
+  * L4Linux can be used as Linux personality base. It is yet at development stage but nevertheless, almost all is working. On our laptop, only PCMCIA modem was not working (it could be fixed, though, by doing ioremap to other addresses -- the original addresses used by the driver, are used in L4-based system). Wi-fi, bluetooth stack, USB stack, filesystems, CD writing -- all these were working! And one more inconvenience: as the video is working over the native graphical L4 console, which at present is working via VESA mode (only selected video cards are supported with acceleration), so the video support is way limited.
+  * Device Driver Environment (DDE) could be used in future as a drivers framework. It ports Linux (DDE/Linux) and FreeBSD (DDE/FreeBSD) drivers to L4 userlevel. So, the big codebase of Linux drivers can be reused in future. In contrast with windows ones, they are available in source form and could be ported to user-level.
 
-==== Object-oriented ====
 
-osFree tries to extend object-oriented design of desktop to other parts of the system, using OOP principles. We use [[wp>SOM]] as a base object model, as designed by IBM for OS/2 desktop and other parts of the system. Also, we want to introduce CPI+, GPI+, PM+, i.e., we plan to make the object-oriented wrappers for current CPI ((OS/2 kernel Control Program Interface)), GPI ((Graphics Programming Interface)) and [[wp>Presentation_Manager|PM]] services. Access to low-level services of the kernel also planned to be represented as SOM objects.
 
 ==== Contributing ====
 
