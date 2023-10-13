@@ -9,9 +9,9 @@
 | 006 | [[en:docs:win16:api:shell:RegQueryValue]] | Retrieve the text string associated with a specified key | | 3.1 |
 | 007 | [[en:docs:win16:api:shell:RegEnumKey]] | Enumerate the subkeys of a specified key | | 3.1 |
 | 008 | [[en:docs:win16:api:shell:WEP]] | DLL Exit procedure | Done  | 3.1 |
-| 009 | [[en:docs:win16:api:shell:DragAcceptFiles]] | Register whether a given window accepts dropped files | | 3.1 |
+| 009 | [[en:docs:win16:api:shell:DragAcceptFiles]] | Register whether a given window accepts dropped files | Done | 3.1 |
 | 011 | [[en:docs:win16:api:shell:DragQueryFile]] | Retrieve the number of dropped files and their filenames | | 3.1 |
-| 012 | [[en:docs:win16:api:shell:DragFinish]] | Release memory that Windows allocated for use in transferring filenames to the application | | 3.1 |
+| 012 | [[en:docs:win16:api:shell:DragFinish]] | Release memory that Windows allocated for use in transferring filenames to the application | Done | 3.1 |
 | 013 | [[en:docs:win16:api:shell:DragQueryPoint]] | Retrieve the window coordinates of the cursor when a file is dropped | | 3.1 |
 | 020 | [[en:docs:win16:api:shell:ShellExecute]] | Open or print the specified file | | 3.1 |
 | 021 | [[en:docs:win16:api:shell:FindExecutable]] | Find and retrieve the executable filename that is associated with a specified filename | | 3.1 |
