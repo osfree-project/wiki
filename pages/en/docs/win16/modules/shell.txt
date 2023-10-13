@@ -8,7 +8,7 @@
 | 005 | [[en:docs:win16:api:shell:RegSetValue]] | Associate a text string with a specified key | | 3.1 |
 | 006 | [[en:docs:win16:api:shell:RegQueryValue]] | Retrieve the text string associated with a specified key | | 3.1 |
 | 007 | [[en:docs:win16:api:shell:RegEnumKey]] | Enumerate the subkeys of a specified key | | 3.1 |
-| 008 | [[en:docs:win16:api:shell:WEP]] | | Done  | 3.1 |
+| 008 | [[en:docs:win16:api:shell:WEP]] | DLL Exit procedure | Done  | 3.1 |
 | 009 | [[en:docs:win16:api:shell:DragAcceptFiles]] | Register whether a given window accepts dropped files | | 3.1 |
 | 011 | [[en:docs:win16:api:shell:DragQueryFile]] | Retrieve the number of dropped files and their filenames | | 3.1 |
 | 012 | [[en:docs:win16:api:shell:DragFinish]] | Release memory that Windows allocated for use in transferring filenames to the application | | 3.1 |
@@ -18,10 +18,10 @@
 | 022 | [[en:docs:win16:api:shell:ShellAbout]] | Show standard About dialog | Done | 3.1 |
 | 033 | [[en:docs:win16:api:shell:AboutDlgProc]] | About Dialog Window Procedure | Done | 3.1 |
 | 034 | [[en:docs:win16:api:shell:ExtractIcon]] | Retrieve the handle of an icon from a specified executable file, dynamic-link library (DLL), or icon file | | 3.1 |
-| 036 | [[en:docs:win16:api:shell:ExtractAssociatedIcon]] | | | |
-| 037 | [[en:docs:win16:api:shell:DoEnvironmentSubst]] | | | |
-| 038 | [[en:docs:win16:api:shell:FindEnvironmentString]] | | | |
-| 039 | [[en:docs:win16:api:shell:InternalExtractIcon]] | | | |
+| 036 | [[en:docs:win16:api:shell:ExtractAssociatedIcon]] | Retrieve the handle of an icon associated with file type | | 3.1 |
+| 037 | [[en:docs:win16:api:shell:DoEnvironmentSubst]] | Parse input string that contains references to one or more environment variables and replaces them with their values | | 3.1 |
+| 038 | [[en:docs:win16:api:shell:FindEnvironmentString]] | Return pointer into the DOS environment | | 3.1 |
+| 039 | [[en:docs:win16:api:shell:InternalExtractIcon]] | Retrieve handles of icons from EXE, DLL or ICO files| | 3.1 |
 | 101 | [[en:docs:win16:api:shell:DLLEntryPoint]] | | | |
 | 102 | [[en:docs:win16:api:shell:RegisterShellHook]] | | | |
 | 103 | [[en:docs:win16:api:shell:ShellHookProc]] | | | |
