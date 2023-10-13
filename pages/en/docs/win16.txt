@@ -2,6 +2,10 @@
 
 ==== Win16 personality ====
 
+=== Introduction ===
+
+Win16 Personality for osFree is planned to be implemented as Windows clone based on various sources. Most notable is HX-DOS Extender for KERNEL, Wine and Twin for USER and other core DLLs. GDI.EXE not handled yet. Applications collected and backported to Win16 from ReactOS and Wine implementations.
+
 === Applications ===
 
   * [[en:docs:win16:applications:clock|Clock]]

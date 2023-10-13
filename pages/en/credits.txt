@@ -42,5 +42,7 @@ Much thanks to those projects: (software or documentation)
   * XWPHelpers
   * 4os2
   * [[https://trac.netlabs.org/xworkplace|XWorkplace]]
+  * Wine
+  * ReactOS
 
 and other projects here. Please add it if we missed one.

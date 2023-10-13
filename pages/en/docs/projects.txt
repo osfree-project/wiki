@@ -22,10 +22,11 @@ osFree project is limited in available resources, so, when developing, the princ
 
 ^OS part   ^Source repository ^Enhancement cause ^
 |Bootoader  |GRUB Legacy |Providing the support of IFS technology |
-|Kernel       |DROPS/Fiasco |The base for Personality neutral servers implementation |
+|Kernel       |DROPS/Fiasco/l4Env/L4Re |The base for Personality neutral servers implementation |
 |REXX       |ReginaREXX/OOREXX |Scripting language support |
 |PM         |FreePM |Making a minimally working/usable version |
-|SOM/WPS    |Voyager |A "reverse" adaptation to PM with preserving of the compatibility |
+|SOM/WPS    | somFree | Direct code reuse |
 |GNU/Linux Personality |L4Linux/Afterburner/GNU/Debian |Direct code reuse |
+|Family API | HX-DOS Extender | Reuse OS/2 Emulation Layer |
 
 ~~DISCUSSION~~
