@@ -3,7 +3,7 @@
 ^ Memory Manager | GlobalAlloc GlobalCompact GlobalDiscard GlobalFree GlobalLock GlobalReAlloc GlobalSize GlobalUnlock GlobalFlags LocalAlloc LocalCompact LocalDiscard LocalFree LocalLock LocalFreeze LocalMelt LocalReAlloc LocalSize LocalUnlock LocalHandleDelta LockData  UnlockData LocalFlags |
 ^ Task Scheduler | GetCurrentTask Yield SetPriority |
 ^ Resource Manager | AddFontResource RemoveFontResource LoadBitmap LoadCursor LoadIcon LoadMenu LoadString LoadAccelerators FindResource LoadResource AllocResource LockResource FreeResource AccessResource SizeofResource SetResourceHandler |
-^ String Translation | AnsiUpper AnsiLower AnsiNext AnsiPrev |
+^ String Translation | [[en:docs:win16:api:kernel:AnsiUpper]] [[en:docs:win16:api:kernel:AnsiLower]] [[en:docs:win16:api:kernel:AnsiNext]] [[en:docs:win16:api:kernel:AnsiPrev]] |
 ^ Atom Manager | [[en:docs:win16:api:kernel:InitAtomTable]] [[en:docs:win16:api:kernel:AddAtom]] [[en:docs:win16:api:kernel:DeleteAtom]] [[en:docs:win16:api:kernel:FindAtom]] [[en:docs:win16:api:kernel:GetAtomName]] |
 ^ Windows Initialization File | GetProfileInt GetProfileString WriteProfileString |
 ^ Debugging | FatalExit |
