@@ -4,7 +4,7 @@
 ^ Task Scheduler | GetCurrentTask Yield SetPriority |
 ^ Resource Manager | AddFontResource RemoveFontResource LoadBitmap LoadCursor LoadIcon LoadMenu LoadString LoadAccelerators FindResource LoadResource AllocResource LockResource FreeResource AccessResource SizeofResource SetResourceHandler |
 ^ String Translation | AnsiUpper AnsiLower AnsiNext AnsiPrev |
-^ Atom Manager | InitAtomTable AddAtom DeleteAtom FindAtom GetAtomName |
+^ Atom Manager | [[en:docs:win16:api:kernel:InitAtomTable]] [[en:docs:win16:api:kernel:AddAtom]] [[en:docs:win16:api:kernel:DeleteAtom]] [[en:docs:win16:api:kernel:FindAtom]] [[en:docs:win16:api:kernel:GetAtomName]] |
 ^ Windows Initialization File | GetProfileInt GetProfileString WriteProfileString |
 ^ Debugging | FatalExit |
 ^ File I/O | OpenFile GetTempFileName GetTempDrive |

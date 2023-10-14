@@ -10,17 +10,17 @@
 | 007 | [[en:docs:win16:api:shell:RegEnumKey]] | Enumerate the subkeys of a specified key | | 3.1 |
 | 008 | [[en:docs:win16:api:shell:WEP]] | DLL Exit procedure | Done  | 3.1 |
 | 009 | [[en:docs:win16:api:shell:DragAcceptFiles]] | Register whether a given window accepts dropped files | Done | 3.1 |
-| 011 | [[en:docs:win16:api:shell:DragQueryFile]] | Retrieve the number of dropped files and their filenames | | 3.1 |
+| 011 | [[en:docs:win16:api:shell:DragQueryFile]] | Retrieve the number of dropped files and their filenames | Done | 3.1 |
 | 012 | [[en:docs:win16:api:shell:DragFinish]] | Release memory that Windows allocated for use in transferring filenames to the application | Done | 3.1 |
-| 013 | [[en:docs:win16:api:shell:DragQueryPoint]] | Retrieve the window coordinates of the cursor when a file is dropped | | 3.1 |
+| 013 | [[en:docs:win16:api:shell:DragQueryPoint]] | Retrieve the window coordinates of the cursor when a file is dropped | Done | 3.1 |
 | 020 | [[en:docs:win16:api:shell:ShellExecute]] | Open or print the specified file | | 3.1 |
 | 021 | [[en:docs:win16:api:shell:FindExecutable]] | Find and retrieve the executable filename that is associated with a specified filename | | 3.1 |
 | 022 | [[en:docs:win16:api:shell:ShellAbout]] | Show standard About dialog | Done | 3.1 |
 | 033 | [[en:docs:win16:api:shell:AboutDlgProc]] | About Dialog Window Procedure | Done | 3.1 |
 | 034 | [[en:docs:win16:api:shell:ExtractIcon]] | Retrieve the handle of an icon from a specified executable file, dynamic-link library (DLL), or icon file | | 3.1 |
 | 036 | [[en:docs:win16:api:shell:ExtractAssociatedIcon]] | Retrieve the handle of an icon associated with file type | | 3.1 |
-| 037 | [[en:docs:win16:api:shell:DoEnvironmentSubst]] | Parse input string that contains references to one or more environment variables and replaces them with their values | | 3.1 |
-| 038 | [[en:docs:win16:api:shell:FindEnvironmentString]] | Return pointer into the DOS environment | | 3.1 |
+| 037 | [[en:docs:win16:api:shell:DoEnvironmentSubst]] | Parse input string that contains references to one or more environment variables and replaces them with their values | Done | 3.1 |
+| 038 | [[en:docs:win16:api:shell:FindEnvironmentString]] | Return pointer into the DOS environment | Done | 3.1 |
 | 039 | [[en:docs:win16:api:shell:InternalExtractIcon]] | Retrieve handles of icons from EXE, DLL or ICO files| | 3.1 |
 | 101 | [[en:docs:win16:api:shell:DLLEntryPoint]] | | | |
 | 102 | [[en:docs:win16:api:shell:RegisterShellHook]] | | | |
