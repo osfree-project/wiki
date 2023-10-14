@@ -1,0 +1,29 @@
+{{page>en:templates:win16api}}
+
+====== DragQueryFiles ======
+
+===== Brief =====
+
+===== Syntax =====
+
+
+
+===== Parameters =====
+
+===== Return Code =====
+
+None
+
+===== Notes =====
+
+
+===== Example Code =====
+
+==== C Binding ====
+
+==== MASM Binding ====
+
+===== See also =====
+
+
+{{page>en:templates:win16}}
