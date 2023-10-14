@@ -239,7 +239,6 @@ LocalFreeze 1.03
 LocalMelt 1.03
 LockData 1.03
 UnLockData 1.03
-SetPriority 1.03
 AddFontResource 1.03
 RemoveFontResource 1.03
 
