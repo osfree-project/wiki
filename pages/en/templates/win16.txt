@@ -8,3 +8,4 @@
 ^ Windows Initialization File | GetProfileInt GetProfileString WriteProfileString |
 ^ Debugging | FatalExit |
 ^ File I/O | OpenFile GetTempFileName GetTempDrive |
+^ Registry | [[en:docs:win16:api:shell:RegOpenKey]] [[en:docs:win16:api:shell:RegCreateKey]] [[en:docs:win16:api:shell:RegCloseKey]] [[en:docs:win16:api:shell:RegDeleteKey]] [[en:docs:win16:api:shell:RegSetValue]] [[en:docs:win16:api:shell:RegQueryValue]] [[en:docs:win16:api:shell:RegEnumKey]] |
