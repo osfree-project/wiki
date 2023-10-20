@@ -4,15 +4,19 @@
 
 ===== Brief =====
 
+Releases the handle of the key specified by the hkey parameter by closing the key. The Registration Database is updated when all keys are closed.
+
 ===== Syntax =====
 
-
+LONG RegCloseKey (HKEY hkey);
 
 ===== Parameters =====
 
+Key handle
+
 ===== Return Code =====
 
-None
+If successful, the function returns ERROR_SUCCESS. Otherwise, it returns an error value.
 
 ===== Notes =====
 

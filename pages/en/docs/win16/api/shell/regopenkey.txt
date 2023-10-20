@@ -4,15 +4,18 @@
 
 ===== Brief =====
 
+Opens a Registration Database key. The szSubKey parameter points to the string that specifies the name of the key to open. The lpResult parameter is the address of the handle of the key opened. The hkey parameter is the handle of the parent key which may be HKEY_CLASSES_ROOT and cannot be NULL.
+
 ===== Syntax =====
 
-
+LONG RegOpenKey(HKEY hkey, LPCSTR szSubKey, HKEY *lpResult);
 
 ===== Parameters =====
 
 ===== Return Code =====
 
-None
+Returns ERROR_SUCCESS, if it is successful. Otherwise, it returns an error value.
+
 
 ===== Notes =====
 
