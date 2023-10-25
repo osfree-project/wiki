@@ -4,9 +4,11 @@
 
 ===== Brief =====
 
+The RegCreateKey() function either creates a Registration Database key or opens the specified key if it already exists. The szSubKey parameter points to the string that specifies the name of the key to open or create. The lpResult parameter is the address of the handle of the key created or opened. The hkey parameter is the handle of the parent key which can be HKEY_CLASSES_ROOT. 0 or 1 is a same as HKEY_CLASSES_ROOT.
+
 ===== Syntax =====
 
-
+LONG RegCreateKey(HKEY hkey, LPCSTR szSubKey, HKEY *lpResult);
 
 ===== Parameters =====
 
