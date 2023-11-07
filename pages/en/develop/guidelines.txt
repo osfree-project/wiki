@@ -45,45 +45,6 @@ build process will be started.
 
 For more information about build system read [[en:develop:bldenv|Build system]] document.
 
-==== The Directory Tree ====
-
-Please look at the source code tree to understand how files are to be placed. Please understand that the osFree source tree contains the code for an operating system and some toolkit tools. Please, DO NOT place unrelated tools or applications in this tree. The Toolkit is a set of helper utilities, which are built for development system (under which the OS is built). They are necessary for OS files building.
-
-==== Global/Shared/Private Headers ====
-
-Each level of the source tree contains two standard directories: 
-
-|//shared//  |Contains code shared among all source at this level and deeper levels |
-|//include//  |Contains header files for the above |
-
-Each levels/part of the OS should have a specific prefix that allows a developer to easily find what part of the OS a header/library file belongs to. For example code shared by the whole tree should be included with:
-
-<code c>#include <all_shared.h></code>
-
-and code shared by all commandline tools should include:
-
-<code c>#include <cmd_shared.h></code>
-
-Try to create as few shared code headers as possible. Each “shared” directory should contain one (1) library (.lib) file (xxx_shared.lib) with all shared code and each “include” directory should contain one main header file including all other (xxx_shared.h).
-
-Example of use of common files:
-
-<code c>
-// Use the normal OS/2 INCL_ since our toolkit is the OS/2 toolkit
-#define INCL_DOSERROR
-
-// Include os2.h
-#include <os2.h>
-
-// Include any needed normal C library
-#include <malloc.h>
-#include <string.h>
-
-// Include all shared code and shared code for command line tools
-#include <all_shared.h>
-#include <cmd_shared.h>
-</code>
-
 ==== Documentation ====
 
   * Private code (not shared with other code) should be documented only in the source.
