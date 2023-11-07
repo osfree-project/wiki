@@ -8,6 +8,5 @@
   * Write EAUTIL tool
   * Add /S switch to TIME command (CMD.EXE)
   * Collect documentation for parts, used in osFree
-  * Replace all_getopt by code with osFree license code instead of GPL code (to prevent license problems)
   * improvement of mkmsgf tool from hobbes
 
