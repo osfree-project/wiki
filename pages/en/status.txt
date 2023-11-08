@@ -143,17 +143,17 @@ Here is each small component status:
 |::: |KEYB	|None	| | | |
 |::: |LABEL	|Done	|osFree	|Bartosz Tomasik	| |
 |::: |LVM	|None	| | | |
-|::: |MAKEINI	|None	|GPL	|Ulrich Moeller	|Port to OpenWatcom |
+|::: |MAKEINI	|Done   |GPL	|Ulrich Moeller	| |
 |::: |MD	|Done	|osFree	|Bartosz Tomasik	| |
 |::: |MKDIR	|Done	|osFree	|Bartosz Tomasik	| |
-|::: |MKMSGF	|None	| | | |
+|::: |MKMSGF	|Done   | | | |
 |::: |MODE	|None	| | | |
 |::: |MORE	|Done	|Public	|Stephen Lacy	| |
 |::: |PATCH	|None	| | | |
 |::: |PDUMPSYS	|None	| | | |
 |::: |PDUMPUSR	|None	| | | |
 |::: |PFILES	|None	| | | |
-|::: |PRINT	|None	| | | |
+|::: |PRINT	|Done   | | | |
 |::: |PROCDUMP	|None | | | |
 |::: |PSTAT	|None	| | | |
 |::: |RECOVER	|Done	|osFree	|Bartosz Tomasik	| |
@@ -163,20 +163,20 @@ Here is each small component status:
 |::: |SPOOL	|None	| | | |
 |::: |STRACE	|None	| | | |
 |::: |SYSINSTX	|Done	|osFree	|Bartosz Tomasik	| |
-|::: |SYSLEVEL	|None	| | | |
+|::: |SYSLEVEL	|Done   | | | |
 |::: |TRACE	|None | | | |
 |::: |TRAPDUMP	|None | | | |
 |::: |TREE	|Done	|osFree	|Cristiano Guadagnino, \\ Bartosz Tomasik	| |
 |::: |TRSPOOL	|None	| | | |
 |::: |UNDELETE	|None	| | | |
-|::: |XCOPY	|None	|GPL	|Vitus Jensen	|Port to OpenWatcom, Finish tool |
+|::: |XCOPY	|Done   |GPL	|Vitus Jensen	| |
 |::: |VER	|Done	|osFree	|Bartosz Tomasik	| |
 |::: |VMDISK	|None	| | | |
 |::: |VOL	|Done	|osFree	|Bartosz Tomasik	| |
 |Classic REXX	|REGINA.DLL	|Done	|LGPL	|Anders Christensen, \\ Mark Hessling	| |
 |::: |REXX.DLL	|Done	|LGPL	|Yuri Prokushev	| |
 |::: |REXXAPI.DLL	|Done	|LGPL	|Yuri Prokushev	| |
-|::: |REXXUTIL.DLL	|None	|MPL	|Patrick TJ McPhee |Port to OS/2 |
+|::: |REXXUTIL.DLL	|Done   |MPL	|Patrick TJ McPhee | |
 |CPI	|DOSCALLS.DLL	|None	| | | |
 |::: |KBDCALLS.DLL	|Done	|osFree	|Yuri Prokushev	| |
 |::: |MOUCALLS.DLL	|Done	|osFree	|Yuri Prokushev	| |
@@ -190,9 +190,9 @@ Here is each small component status:
 |Object REXX	| |None	| | | |
 |MDOS CLI tools	|APPEND	|None	| | | |
 |::: |ASSIGN	|None	| | | |
-|::: |COMMAND	|None	| | | |
+|::: |COMMAND	|Done	| | | |
 |::: |JOIN	|None	| | | |
-|::: |MEM	|None	| | | |
+|::: |MEM	|Done	| | | |
 |::: |SUBST	|None	| | | |
 |::: |GRAFTABL	|None	| | | |
 |IPF API	|HELPMGR.DLL	|Done	|GPL	|NewView project	| |
