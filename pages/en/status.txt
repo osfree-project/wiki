@@ -6,8 +6,6 @@ For now a lot of tools are already finished (mainly thanks to JP Software for th
 
 However, don't limit yourself to command line tools. If you're interested in developing a kernel loader (some source exists), kernel, device drivers, or other parts of the osFree system, you are welcome to work on them! We will be glad to see you as an osFree developer!
 
-We have a [[http://osfree.org/dp/|management system]] installed on this server to maintain the status of osFree. Currently this system is not integrated into DokuWiki, and is open to anyone logged into the guest account. 
-
 ==== osFree roadmap ====
 
 For osFree development plan, milestones (passed ones, current ones and the correspondence of them to system versions, see osFree [[roadmap]])
@@ -128,7 +126,7 @@ Here is each small component status:
 |::: |BACKUP	|None	| | | | 	 	 
 |::: |BLDLEVEL	|Done	|osFree	|Yuri Prokushev	| |
 |::: |CHKDSK	|Done	|osFree	|Bartosz Tomasik	| |
-|::: |COMP	|None	|GPL	|Knut St. Osmundsen	|Port to OpenWatcom, \\ Finish tool |
+|::: |COMP	|Done	|GPL	|Knut St. Osmundsen	| |
 |::: |CLS	|Done	|osFree	|Bartosz Tomasik	| |
 |::: |DISKCOMP	|None	|GPL	|Eric Auer, \\ Michal Meller	|Port to OS/2 |
 |::: |DISKCOPY	|None	| | | |
@@ -136,7 +134,7 @@ Here is each small component status:
 |::: |EAUTIL	|None | | | |
 |::: |EJECT	|Done	|osFree	|Bartosz Tomasik	| |
 |::: |FDISK	|Done	|osFree	|Yuri Prokushev	| |
-|::: |FIND	|None	|GPL	|Jim Hall	|Port to OS/2 |
+|::: |FIND	|Done	|GPL	|Jim Hall	| |
 |::: |FORMAT	|Done	|osFree	|Bartosz Tomasik	| |
 |::: |FSACCESS	|None	| | | |
 |::: |HELPMSG	|Done	|osFree	|Yuri Prokushev	| |
@@ -159,7 +157,7 @@ Here is each small component status:
 |::: |RECOVER	|Done	|osFree	|Bartosz Tomasik	| |
 |::: |REPLACE	|None	| | | |
 |::: |RESTORE	|None	| | | |
-|::: |SORT	|None	|GPL	|Eric Auer, Jim Lynch	|Port to OpenWatcom |
+|::: |SORT	|Done	|GPL	|Eric Auer, Jim Lynch	| |
 |::: |SPOOL	|None	| | | |
 |::: |STRACE	|None	| | | |
 |::: |SYSINSTX	|Done	|osFree	|Bartosz Tomasik	| |
@@ -174,8 +172,8 @@ Here is each small component status:
 |::: |VMDISK	|None	| | | |
 |::: |VOL	|Done	|osFree	|Bartosz Tomasik	| |
 |Classic REXX	|REGINA.DLL	|Done	|LGPL	|Anders Christensen, \\ Mark Hessling	| |
-|::: |REXX.DLL	|Done	|LGPL	|Yuri Prokushev	| |
-|::: |REXXAPI.DLL	|Done	|LGPL	|Yuri Prokushev	| |
+|::: |REXX.DLL	|Done	|LGPL	|Yuri Prokushev, \\ Valery Sedletski | |
+|::: |REXXAPI.DLL	|Done	|LGPL	|Yuri Prokushev, \\ Valery Sedletski	| |
 |::: |REXXUTIL.DLL	|Done   |MPL	|Patrick TJ McPhee | |
 |CPI	|DOSCALLS.DLL	|None	| | | |
 |::: |KBDCALLS.DLL	|Done	|osFree	|Yuri Prokushev	| |
