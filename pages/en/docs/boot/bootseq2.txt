@@ -184,7 +184,7 @@ When initially transferring control to OS2LDR from a “black box”, the follow
 
 ^Register 	^Contains 	                ^Description                                           ^
 |DH 	        |Boot mode flags 	        |Provides information about current state of boot process|
-|DL 	        |Boot disk drive number 	This parameter is ignored if either the BBF_NOVOLIO or BBF_MINIFSD flags are not set.|
+|DL 	        |Boot disk drive number 	| This parameter is ignored if either the BBF_NOVOLIO or BBF_MINIFSD flags are not set.|
 |DS:SI 	        |Pointer to the BOOT Media's BPB |This parameter is ignored if either the BBF_NOVOLIO or BBF_MINIFSD flags are not set.|
 |ES:DI 	        |Pointer to a Memory map structure |This parameter contains information about loaded modules
 
