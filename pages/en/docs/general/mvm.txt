@@ -30,7 +30,7 @@ It maintains the address space layout of a VM application, loads a firmware (for
 
 ==== The DOS emulation kernel (doskrnl) ====
 
-The DOS emulation kernel is a special rehosted DOS kernel working via OS/2 (or PN ((Personality Neutral))) services. For example, file system API's of int 21h are implemented via OS/2 (or PN) file API's.
+The DOS emulation kernel is a special rehosted DOS kernel working via OS/2 (or PN ((Personality Neutral))) services. For example, file system API's of int 21h are implemented via OS/2 (or PN) file API's. Access to OS/2 API's done via SVC API (superviser call?) which is trap of HLT instuction folowed by call number and inverted call number.
 
 ==== Instruction Set Translator (IST) ====
 
