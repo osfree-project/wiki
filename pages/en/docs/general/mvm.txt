@@ -30,11 +30,11 @@ It maintains the address space layout of a VM application, loads a firmware (for
 
 ==== The DOS emulation kernel (doskrnl) ====
 
-The DOS emulation kernel is a special rehosted DOS kernel working via OS/2 (or PN ((Personality Neutral))) services. For example, file system API's of int 21h are implemented via OS/2 (or PN) file API's. Access to OS/2 API's done via SVC API (superviser call?) which is trap of HLT instuction folowed by call number and inverted call number.
+The DOS emulation kernel is a special rehosted DOS kernel working via OS/2 (or PN ((Personality Neutral))) services. For example, file system API's of int 21h are implemented via OS/2 (or PN) file API's. Access to OS/2 API's done via SVC API (supervisor call?) which is trap of HLT instruction followed by call number and inverted call number.
 
 ==== Instruction Set Translator (IST) ====
 
-The IST is a DLL, emulating the instructions of Guest hardware via Host CPU instructions. It exports a set of entry points, each correspoinding the emulated instruction.
+The IST is a DLL, emulating the instructions of Guest hardware via Host CPU instructions. It exports a set of entry points, each corresponding the emulated instruction.
 
 The similar component exist in QEMU -- but it is linked statically with the emulator binary.
 
