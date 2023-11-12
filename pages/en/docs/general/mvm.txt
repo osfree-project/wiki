@@ -45,7 +45,7 @@ Linked list in standard DOS Device drivers format
 | :::   |    Bit 2 = 1 if Current NUL device     |
 | :::   |    Bit 3 = 1 if Current CLOCK dev      |
 | :::   |    Bit 4 = 1 if SPECIAL                |
-| :::   |  Bit 14 is the IOCTL bit (see below)   |
+| :::   |  Bit 14 is the IOCTL bit               |
 | :::   |  Bit 13 is the NON IBM FORMAT bit      |
 | WORD  | Pointer to Device strategy entry point |
 | WORD  | Pointer to Device interrupt entry point |
