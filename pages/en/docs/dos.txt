@@ -2,7 +2,7 @@
 
 ====== DOS personality ======
 
-
+  * [[en:docs:kernel:DOSKRNL]]
   * [[en:docs:bios:api|BIOS API]]
   * [[en:docs:dos:api|DOS API]]
   * [[en:docs:fapi|Family API]]
