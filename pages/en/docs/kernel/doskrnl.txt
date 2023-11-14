@@ -46,10 +46,10 @@ DOSKRNL search and initialize XMS driver and moves some parts to HMA. Most other
 
 CONFIG.SYS device information and some other settings not parsed by DOSKRNL, but passed via init structure. Here list of DOSKRNL options:
 
-- RMSIZE
-- DEVICE
-- COMSPEC
-- DOS
+  * RMSIZE
+  * DEVICE
+  * SHELL
+  * DOS
 
 todo add more info here
 
