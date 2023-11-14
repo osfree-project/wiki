@@ -68,7 +68,7 @@ VDDs linked list (in init area) in standard DOS Device drivers format
 | WORD  | Pointer to Device interrupt entry point |
 | 8-BYTE | character device name field. Character devices set a device name. For block devices the first byte is the number of units |
 
-DOSKRNL search and initialize XMS driver and 
+DOSKRNL search and initialize XMS driver and moves some parts to HMA.
 ==== Instruction Set Translator (IST) ====
 
 The IST is a DLL, emulating the instructions of Guest hardware via Host CPU instructions. It exports a set of entry points, each corresponding the emulated instruction.
