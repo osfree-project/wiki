@@ -15,7 +15,6 @@ Here's the section related to the OS/2 API implementation
   * [[en:docs:fapi|Family API]]
   * [[en:docs:os2:api:vio|VIO API]]
   * [[en:docs:os2:api:cpi|CPI API]]
-  * [[en:docs:general:mvm|MVM server]]
   * [[en:docs:os2:os2srv|main OS/2 server]]
   * [[en:docs:os2:os2exec|os2exec server]]
   * [[en:docs:os2:os2fs|filesystem server]]
