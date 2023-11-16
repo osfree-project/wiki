@@ -13,7 +13,7 @@
 | Data Exchange | [[en:docs:os2:modules:pmclip|pmclip]] [[en:docs:os2:modules:pmdde|pmdde]] [[en:docs:os2:modules:pmddeml|pmddeml]] |
 | VDM PM interface | [[en:docs:os2:modules:pmvdmh|pmvdmh]] [[en:docs:os2:modules:pmvdmp|pmvdmp]] [[en:docs:os2:modules:seamless|seamless]] [[en:docs:os2:modules:shield|shield]] |
 | WPS | [[en:docs:os2:modules:pmwp|pmwp]] [[en:docs:os2:modules:pmwpmri|pmwpmri]] [[en:docs:os2:modules:pmvddrop|pmvddrop]] |
-| Miscellaneous | [[en:docs:os2:modules:pmpic|pmpic]] [[en:docs:os2:modules:pmtkt|pmtkt]] |
+| Miscellaneous | [[en:docs:os2:modules:pmpic|pmpic]] [[en:docs:os2:modules:pmtkt|pmtkt]] [[en:docs:os2:modules:mvdm|mvdm]] |
 
 
 
