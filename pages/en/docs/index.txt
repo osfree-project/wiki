@@ -1,4 +1,4 @@
-{{logos:os2.gif?35x35}} {{logos:dos.gif?35x35}} {{logos:win16.gif}}
+{{logos:fiasco.png?35}}{{logos:os2.gif?35x35}} {{logos:dos.gif?35x35}} {{logos:win16.gif}}
 
 ===== osFree documentation =====
 

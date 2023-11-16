@@ -1,3 +1,5 @@
+XMS API implemented via VXMS.DLL VDD
+
 ^ Function ^ Description ^ Status ^ Version ^
 | 00h | Get XMS Version Number | | |
 | 01h | Request High Memory Area | | |
