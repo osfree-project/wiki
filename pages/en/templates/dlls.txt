@@ -25,10 +25,10 @@
 |  BVH     | | |)@22|-|  BVS  |.@8 | | | | |!| | | | | | | | | |BVH=Base Video Handlers|BVS=[[en:docs:os2:modules:BVSCALLS]]
 | |    |   | | |!   | | |   | |!   | | | | |!| | | | | | | | | |
 | |    |   | | |)@22|-|  BKS  |+@8 | FFF |-@8  |'| | | | | | | | | | | | |BKS=[[en:docs:os2:modules:BKSCALLS]]|FFF=[[en:docs:os2:modules:EMXWRAP]] ([[en:docs:os2:modules:SUB32]])
-| |    |   | | |!   | | |   | |!   | | | | | | | | | | | | | | |
-| |    |   | | |)@22|-| BMS   |(@8 | | | | | | | | | | | | | | |BMS=[[en:docs:os2:modules:BMSCALLS]]
-| |    |   | | |!   | | |   | |!   | | | | | | | | | | | | | | |
-| |    |   | | |)@22|-| MON   |'@8 | | | | | | | | | | | | | | |MON=[[en:docs:os2:modules:MONCALLS]]
+| |    |   | | |!   | | |   | |!   | |!@1 | | | | | | | | | | | | |
+| |    |   | | |)@22|-| BMS   |(@8 | |)@22 | O2C | | | | | | | | | | | |BMS=[[en:docs:os2:modules:BMSCALLS]]|O2C=[[en:docs:os2:modules:OS2CHAR2]]
+| |    |   | | |!   | | |   | |!   | |! | | | | | | | | | | | | |
+| |    |   | | |)@22|-| MON   |'@8 | |` | C1632 | | | | | | | | | | | |MON=[[en:docs:os2:modules:MONCALLS]]|C1632=[[en:docs:os2:modules:CON3216]]
 | |    |   | | |!   | | |   | |    | | | | | | | | | | | | | | |
 | |    |   | | |)@22|-| KBD   |    | | | | | | | | | | | | | | |KBD=[[en:docs:os2:modules:KBDCALLS]]
 | |    |   | | |!   | | |   | |    | | | | | | | | | | | | | | |
