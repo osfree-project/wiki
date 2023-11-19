@@ -2,6 +2,14 @@
 
 XMS API implemented via VXMS.DLL VDD
 
+  mov     ax,4310h
+  int     2Fh
+  mov     word ptr [XMSCALL],bx
+  mov     word ptr [XMSCALL+2],es
+  
+  mov     ah,00h
+  call    [XMSCALL]
+
 ^ Function ^ Description ^ Status ^ Version ^
 | [[en:docs:xms:api:00|00h]] | Get XMS Version Number | | 2 |
 | [[en:docs:xms:api:01|01h]] | Request High Memory Area | | 2 |
