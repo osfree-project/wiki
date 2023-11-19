@@ -1,0 +1,31 @@
+{{page>en:templates:dosint}}
+
+
+====== AH=10H ======
+
+===== Version =====
+
+2 and higher
+
+===== Brief =====
+
+
+===== Family API =====
+
+none
+
+===== Input =====
+
+  AH = 10h
+
+===== Return =====
+
+
+
+===== Notes =====
+
+
+===== See also =====
+
+
+

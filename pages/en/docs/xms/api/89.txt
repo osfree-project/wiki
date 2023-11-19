@@ -1,0 +1,31 @@
+{{page>en:templates:dosint}}
+
+
+====== AH=89H ======
+
+===== Version =====
+
+3 and higher
+
+===== Brief =====
+
+
+===== Family API =====
+
+none
+
+===== Input =====
+
+  AH = 89h
+
+===== Return =====
+
+
+
+===== Notes =====
+
+
+===== See also =====
+
+
+

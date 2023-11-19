@@ -1,0 +1,31 @@
+{{page>en:templates:dosint}}
+
+
+====== AH=8EH ======
+
+===== Version =====
+
+3 and higher
+
+===== Brief =====
+
+
+===== Family API =====
+
+none
+
+===== Input =====
+
+  AH = 8Eh
+
+===== Return =====
+
+
+
+===== Notes =====
+
+
+===== See also =====
+
+
+

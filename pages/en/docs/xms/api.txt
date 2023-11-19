@@ -3,27 +3,27 @@
 XMS API implemented via VXMS.DLL VDD
 
 ^ Function ^ Description ^ Status ^ Version ^
-| [[en:docs:xms:api:00|00h]] | Get XMS Version Number | | |
-| [[en:docs:xms:api:01|01h]] | Request High Memory Area | | |
-| [[en:docs:xms:api:02|02h]] | Release High Memory Area | | |
-| [[en:docs:xms:api:03|03h]] | Global Enable A20 | | |
-| [[en:docs:xms:api:04|04h]] | Global Disable A20 | | |
-| [[en:docs:xms:api:05|05h]] | Local Enable A20 | | |
-| [[en:docs:xms:api:06|06h]] | Local Disable A20 | | |
-| [[en:docs:xms:api:07|07h]] | Query A20 | | |
-| [[en:docs:xms:api:08|08h]] | Query Free Extended Memory | | |
-| [[en:docs:xms:api:09|09h]] | Allocate Extended Memory Block | | |
-| [[en:docs:xms:api:0a|0Ah]] | Free Extended Memory Block | | |
-| [[en:docs:xms:api:0b|0Bh]] | Move Extended Memory Block | | |
-| [[en:docs:xms:api:0c|0Ch]] | Lock Extended Memory Block | | |
-| [[en:docs:xms:api:0d|0Dh]] | Unlock Extended Memory Block | | |
-| [[en:docs:xms:api:0e|0Eh]] | Get Handle Information | | |
-| [[en:docs:xms:api:0f|0Fh]] | Reallocate Extended Memory Block | | |
-| [[en:docs:xms:api:10|10h]] | Request Upper Memory Block | | |
-| [[en:docs:xms:api:11|11h]] | Release Upper Memory Block | | |
-| [[en:docs:xms:api:12|12h]] | Realloc Upper Memory Block | | |
-| [[en:docs:xms:api:88|88h]] | Query any Free Extended Memory | | |
-| [[en:docs:xms:api:89|89h]] | Allocate any Extended Memory Block | | |
-| [[en:docs:xms:api:8e|8Eh]] | Get Extended EMB Handle | | |
-| [[en:docs:xms:api:8f|8Fh]] | Realloc any Extended Memory | | |
+| [[en:docs:xms:api:00|00h]] | Get XMS Version Number | | 2 |
+| [[en:docs:xms:api:01|01h]] | Request High Memory Area | | 2 |
+| [[en:docs:xms:api:02|02h]] | Release High Memory Area | | 2 |
+| [[en:docs:xms:api:03|03h]] | Global Enable A20 | | 2 |
+| [[en:docs:xms:api:04|04h]] | Global Disable A20 | | 2 |
+| [[en:docs:xms:api:05|05h]] | Local Enable A20 | | 2 |
+| [[en:docs:xms:api:06|06h]] | Local Disable A20 | | 2 |
+| [[en:docs:xms:api:07|07h]] | Query A20 | | 2 |
+| [[en:docs:xms:api:08|08h]] | Query Free Extended Memory | | 2 |
+| [[en:docs:xms:api:09|09h]] | Allocate Extended Memory Block | | 2 |
+| [[en:docs:xms:api:0a|0Ah]] | Free Extended Memory Block | | 2 |
+| [[en:docs:xms:api:0b|0Bh]] | Move Extended Memory Block | | 2 |
+| [[en:docs:xms:api:0c|0Ch]] | Lock Extended Memory Block | | 2 |
+| [[en:docs:xms:api:0d|0Dh]] | Unlock Extended Memory Block | | 2 |
+| [[en:docs:xms:api:0e|0Eh]] | Get Handle Information | | 2 |
+| [[en:docs:xms:api:0f|0Fh]] | Reallocate Extended Memory Block | | 2 |
+| [[en:docs:xms:api:10|10h]] | Request Upper Memory Block | | 2 |
+| [[en:docs:xms:api:11|11h]] | Release Upper Memory Block | | 2 |
+| [[en:docs:xms:api:12|12h]] | Realloc Upper Memory Block | | 2 |
+| [[en:docs:xms:api:88|88h]] | Query any Free Extended Memory | | 3 |
+| [[en:docs:xms:api:89|89h]] | Allocate any Extended Memory Block | | 3 |
+| [[en:docs:xms:api:8e|8Eh]] | Get Extended EMB Handle | | 3 |
+| [[en:docs:xms:api:8f|8Fh]] | Realloc any Extended Memory | | 3 |
       
