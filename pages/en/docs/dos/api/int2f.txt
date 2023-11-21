@@ -2,9 +2,10 @@
 
 ====== INT 2FH ======
 
-^ AX ^ Description ^
+^ AH ^ Description ^
 | [[en:docs:tasklist|4AH]] | Task list     |
 | [[en:docs:switcher|4BH]] | Task switcher |
 | [[en:docs:dpmi|16H]]     | DPMI |
+| [[en:docs:xms:api|43H]]  | XMS |
 
 {{page>en:templates:int}}
