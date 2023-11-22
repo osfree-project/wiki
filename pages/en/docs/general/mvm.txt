@@ -55,7 +55,7 @@ Superviser calls API aimed to call host services from VM.
 ^ Ordinal ^ Description ^
 | 0 | |
 | 1 | |
-| 2 | |
+| 2 | Terminate VDM and return code to parent process from AX |
 | 3 | |
 | 4 | |
 | 5 | |
