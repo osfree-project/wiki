@@ -25,8 +25,9 @@ As in most DOS kernels, DOSKRNL moves initialization code to higher memory using
 
 VDDs linked list (in init area) in standard DOS Device drivers format
 
-| DWORD | Pointer to next device (Must be set to -1 for last device)  |
-| WORD  | Attributes                      |
+^ offset ^ Size ^ Description ^
+|  0     | DWORD | Pointer to next device (Must be set to -1 for last device)  |
+|  4     | WORD  | Attributes                      |
 | :::   | Bit 15 = 1 if char device 0 if blk     |
 | :::   |  if bit 15 is 1                        |
 | :::   |    Bit 0 = 1 if Current sti device     |
@@ -36,9 +37,9 @@ VDDs linked list (in init area) in standard DOS Device drivers format
 | :::   |    Bit 4 = 1 if SPECIAL                |
 | :::   |  Bit 14 is the IOCTL bit               |
 | :::   |  Bit 13 is the NON IBM FORMAT bit      |
-| WORD  | Pointer to Device strategy entry point |
-| WORD  | Pointer to Device interrupt entry point |
-| 8-BYTE | character device name field. Character devices set a device name. For block devices the first byte is the number of units |
+|  6    | WORD  | Pointer to Device strategy entry point |
+|  8    | WORD  | Pointer to Device interrupt entry point |
+| 0ah   | 8-BYTE | character device name field. Character devices set a device name. For block devices the first byte is the number of units |
 
 DOSKRNL search and initialize XMS driver and moves some parts to HMA. Most other initialization things is same. DOSKRNL initializes standard device drivers and adds and initializes VDDs, passed via init structure. Some things (at least COMMAND.COM, device drivers) also passed via init structure. not CONFIG.SYS. At the present time interface not investigated well.
 
