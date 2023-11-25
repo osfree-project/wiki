@@ -18,29 +18,29 @@
 | [[en:docs:dos:api:int21:0c|0CH]] | Flush input buffer and input | 1.0+ |
 | [[en:docs:dos:api:int21:0d|0DH]] | Disk reset | 1.0+ |
 | [[en:docs:dos:api:int21:0e|0EH]] | Set default drive | 1.0+ |
-| [[en:docs:dos:api:int21:0f|0FH]] | Open file | 1.0+ |
-| [[en:docs:dos:api:int21:10|10H]] | Close file | 1.0+ |
-| [[en:docs:dos:api:int21:11|11H]] | Find first file | 1.0+ |
-| [[en:docs:dos:api:int21:12|12H]] | Find next file | 1.0+ |
-| [[en:docs:dos:api:int21:13|13H]] | Delete file | 1.0+ |
-| [[en:docs:dos:api:int21:14|14H]] | Sequential read | 1.0+ |
-| [[en:docs:dos:api:int21:15|15H]] | Sequential write | 1.0+ |
-| [[en:docs:dos:api:int21:16|16H]] | Create or truncate file | 1.0+ |
-| [[en:docs:dos:api:int21:17|17H]] | Rename file | 1.0+ |
+| [[en:docs:dos:api:int21:0f|0FH]] | Open file (FCB) | 1.0+ |
+| [[en:docs:dos:api:int21:10|10H]] | Close file (FCB) | 1.0+ |
+| [[en:docs:dos:api:int21:11|11H]] | Find first file (FCB) | 1.0+ |
+| [[en:docs:dos:api:int21:12|12H]] | Find next file (FCB) | 1.0+ |
+| [[en:docs:dos:api:int21:13|13H]] | Delete file (FCB) | 1.0+ |
+| [[en:docs:dos:api:int21:14|14H]] | Sequential read (FCB) | 1.0+ |
+| [[en:docs:dos:api:int21:15|15H]] | Sequential write (FCB) | 1.0+ |
+| [[en:docs:dos:api:int21:16|16H]] | Create or truncate file (FCB) | 1.0+ |
+| [[en:docs:dos:api:int21:17|17H]] | Rename file (FCB) | 1.0+ |
 | [[en:docs:dos:api:int21:19|19H]] | Get default drive | 1.0+ |
 | [[en:docs:dos:api:int21:1a|1AH]] | Set disk transfer address | 1.0+ |
 | [[en:docs:dos:api:int21:1b|1BH]] | Get allocation info for default drive | 1.0+ |
 | [[en:docs:dos:api:int21:1c|1CH]] | Get allocation info for specified drive | 1.0+ |
 | [[en:docs:dos:api:int21:1f|1FH]] | Get disk parameter block for default drive | 1.0+ |
-| [[en:docs:dos:api:int21:21|21H]] | Random read | 1.0+ |
-| [[en:docs:dos:api:int21:22|22H]] | Random write | 1.0+ |
-| [[en:docs:dos:api:int21:23|23H]] | Get file size in records | 1.0+ |
-| [[en:docs:dos:api:int21:24|24H]] | Set random record number | 1.0+ |
+| [[en:docs:dos:api:int21:21|21H]] | Random read (FCB) | 1.0+ |
+| [[en:docs:dos:api:int21:22|22H]] | Random write (FCB) | 1.0+ |
+| [[en:docs:dos:api:int21:23|23H]] | Get file size in records (FCB) | 1.0+ |
+| [[en:docs:dos:api:int21:24|24H]] | Set random record number (FCB) | 1.0+ |
 | [[en:docs:dos:api:int21:25|25H]] | Set interrupt vector | 1.0+ |
 | [[en:docs:dos:api:int21:26|26H]] | Create PSP | 1.0+ |
-| [[en:docs:dos:api:int21:27|27H]] | Random block read | 1.0+ |
-| [[en:docs:dos:api:int21:28|28H]] | Random block write | 1.0+ |
-| [[en:docs:dos:api:int21:29|29H]] | Parse filename | 1.0+ |
+| [[en:docs:dos:api:int21:27|27H]] | Random block read (FCB) | 1.0+ |
+| [[en:docs:dos:api:int21:28|28H]] | Random block write (FCB) | 1.0+ |
+| [[en:docs:dos:api:int21:29|29H]] | Parse filename (FCB) | 1.0+ |
 | [[en:docs:dos:api:int21:2a|2AH]] | Get date | 1.0+ |
 | [[en:docs:dos:api:int21:2b|2BH]] | Set date | 1.0+ |
 | [[en:docs:dos:api:int21:2c|2CH]] | Get time | 1.0+ |
