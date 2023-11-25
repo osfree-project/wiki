@@ -60,7 +60,7 @@ Superviser calls API aimed to call host services from VM.
 | 4 | |
 | 5 | |
 | 6 | |
-| 7 | |
+| 7 | Set DTA from DS:DX |
 | 8 | |
 | 9 | |
 | 10 | |
@@ -97,7 +97,7 @@ Superviser calls API aimed to call host services from VM.
 | 41 | |
 | 42 | |
 | 43 | |
-| 44 | |
+| 44 | Set VERIFY flag from AL |
 | 45 | |
 | 46 | |
 | 47 | |
