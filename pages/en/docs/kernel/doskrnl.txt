@@ -54,6 +54,11 @@ CONFIG.SYS device information and some other settings not parsed by DOSKRNL, but
 
 todo add more info here
 
+
+===== API =====
+
+According different sources IBM DOSKRNL implements API on level of MS-DOS 5.x. osFree DOSKRNL supports API as in FreeDOS kernel. More information about implemented functions available [[en:docs:dos:api|here]]. DOSKRNL also implements some extensions to API mostly aimet to communicate with host system.
+
 ===== Supervisor calls =====
 
 DOSKRNL uses SVC interface to call host functions.
