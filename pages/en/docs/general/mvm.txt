@@ -82,7 +82,7 @@ Superviser calls API aimed to call host services from VM.
 | 26 | |
 | 27 | |
 | 28 | |
-| 29 | |
+| 29 | Delete file using FCB DS:DX -> unopened FCB ES -> environment segment |
 | 30 | |
 | 31 | |
 | 32 | |
