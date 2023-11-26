@@ -58,9 +58,11 @@ CONFIG.SYS device information and some other settings not parsed by DOSKRNL, but
   * DEVICE
   * SHELL
   * DOS
+  * BREAK
 
 todo add more info here
 
+Also most of these setting can be adjusted via DOS Properties (aka DOS Settings). Refer [[https://archive.org/download/gg243731/gg243731_OS2_V2_0_Vol_2_DOS_and_Windows_Environment.pdf|OS/2 Version 2.0 Volume 2: DOS and Windows Environment]] for more information.
 
 ===== API =====
 
