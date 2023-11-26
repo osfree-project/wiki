@@ -10,11 +10,15 @@ On DOSKRNL start SS:BP contains some structure which contains initial informatio
 | 0      | 2    | First free segment after DOSKRNL |
 | 2      | 2    | Size of memory - first free segment (paragraphs) |
 | 4      | 2    | Size of init area (paragraphs)|
-| ????   | ???  | Unknown |
+| 6      | 2    | Value of BREAK setting | 
+| 8      | 2    | Value of DOS setting | 
+| 10     | 4    | Far pointer to list of DOS DEVICE setting |
+| 14     | 4    | Far pointer to SHELL (filepath only) |
+| 18     | 4    | Far pointer to SHELL (arguments) |
 | 22     | 4    | Pointer to linked list of VDD |
 | 25     | 1    | Current drive (0-A, 1-B,...)|
 | 26     | 1    | Boot drive (0-A, 1-B,...) |
-
+| ????   | ???  | ???? |
 
 Memory map on DOSKRNL start:
 
