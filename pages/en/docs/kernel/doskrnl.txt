@@ -12,6 +12,9 @@ On DOSKRNL start SS:BP contains some structure which contains initial informatio
 | 4      | 2    | Size of init area |
 | ????   | ???  | Unknown |
 | 22     | 4    | Pointer to linked list of VDD |
+| 25     | 1    | Current drive |
+| 26     | 1    | Boot drive |
+
 
 Memory map on DOSKRNL start:
 
