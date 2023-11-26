@@ -61,7 +61,6 @@ According different sources IBM DOSKRNL implements API on level of MS-DOS 5.x. o
 
 ===== Supervisor calls =====
 
-DOSKRNL uses SVC interface to call host functions.
+DOSKRNL uses [[en:docs:mvm:api|SVC]] interface to call host functions.
 
-todo add more info after SVC investigate
 

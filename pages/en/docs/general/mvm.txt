@@ -6,7 +6,7 @@ This is an infrastructure for running VM's with unmodified OS's
 
 The MVM server is a central server of the MVM personality -- the infrastructure for running multiple virtual machines on top of L4 microkernel. It is almost separate from OS/2 personality, but can be controlled by OS/2 programs via DosOpenVDD/DosCloseVDD/DosRequestVDD API's. 
 
-So, the MVM server exposes some interfaces to other OS personalities to be controlled by them. Also, it starts VM's, which are executed in the context of a VM monitor, running a guest OS (DOS, for example). The VM environment is defined by the VDD's ((Virtual Device Drivers)) loaded. The MVM server loads VDD's, which are a kind of plugins. Also, it exports some helper API's for VDD's via MVDM.DLL.
+So, the MVM server exposes some interfaces to other OS personalities to be controlled by them. Also, it starts VM's, which are executed in the context of a VM monitor, running a guest OS (DOS, for example). The VM environment is defined by the VDD's ((Virtual Device Drivers)) loaded. The MVM server loads VDD's, which are a kind of plugins. Also, it exports some helper API's for VDD's via [[en:docs:os2:modules:mvdm|MVDM.DLL]].
 
 ==== Virtual Device Drivers (VDD's) ====
 
