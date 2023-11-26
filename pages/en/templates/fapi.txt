@@ -5,7 +5,7 @@
 | ::: | Memory Manager | [[en:docs:fapi:DosFreeSeg]] [[en:docs:fapi:DosSubAlloc]] [[en:docs:fapi:DosSubFree]] [[en:docs:fapi:DosSubSet]] [[en:docs:fapi:DosAllocHuge]] [[en:docs:fapi:DosAllocSeg]] [[en:docs:fapi:DosReallocHuge]] [[en:docs:fapi:DosReallocSeg]] [[en:docs:fapi:DosGetHugeShift]] [[en:docs:fapi:DosCreateCSAlias]] |
 | ::: | NLS | [[en:docs:fapi:DosCaseMap]] [[en:docs:fapi:DosGetCtryInfo]] [[en:docs:fapi:DosGetDBCSEv]] [[en:docs:fapi:DosSetCtryCode]] [[en:docs:fapi:DosGetCollate]] [[en:docs:fapi:DosGetMessage]] [[en:docs:fapi:DosInsMessage]] [[en:docs:fapi:DosPutMessage]] |
 | ::: | Date and Time | [[en:docs:fapi:DosSetDateTime]] [[en:docs:fapi:DosGetDateTime]] |
-| ::: | Devices | [[en:docs:fapi:DosDevConfig]] [[en:docs:fapi:DosDevIOCtl]] |
+| ::: | Devices | [[en:docs:fapi:DosDevConfig]] [[en:docs:fapi:DosDevIOCtl]] [[en:docs:fapi:DosDevIOCtl2]] |
 | ::: | Signals | [[en:docs:fapi:DosHoldSignal]] [[en:docs:fapi:DosSetSigHandler]] |
 | ::: | Misc | [[en:docs:fapi:BadDynLink]] [[en:docs:fapi:DosGetEnv]] [[en:docs:fapi:DosGetMachineMode]] [[en:docs:fapi:DosGetVersion]] [[en:docs:fapi:DosError]] [[en:docs:fapi:DosErrClass]] [[en:docs:fapi:DosSetVec]] |
 | KBD || [[en:docs:fapi:KbdCharIn]] [[en:docs:fapi:KbdFlushBuffer]] [[en:docs:fapi:KbdGetStatus]] [[en:docs:fapi:KbdSetStatus]]  [[en:docs:fapi:KbdStringIn]] [[en:docs:fapi:KbdPeek]]  |
