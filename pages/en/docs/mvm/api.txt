@@ -52,7 +52,7 @@ Superviser calls API aimed to call host services from MVM.
 | 46 | |
 | 47 | |
 | 48 | |
-| 49 | |
+| 49 | Parse filename to FCB (params and result same as in int21h AH=29h) |
 | 50 | |
 | 51 | |
 | 52 | |
