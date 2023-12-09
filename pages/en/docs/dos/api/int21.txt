@@ -96,9 +96,10 @@
 | [[en:docs:dos:api:int21:5e|5EH]] | Network functions | 3.0+ |
 | [[en:docs:dos:api:int21:5f|5FH]] | Network redirection functions | 3.0+ |
 | [[en:docs:dos:api:int21:60|60H]] | Qualify filename | 3.0+ |
+| [[en:docs:dos:api:int21:61|61H]] | OS/2 File System | OS/2 1.0+ |
 | [[en:docs:dos:api:int21:62|62H]] | Get current PSP | 3.0+ |
 | [[en:docs:dos:api:int21:63|63H]] | Get DBCS lead byte table pointer | 3.0+ |
-| [[en:docs:dos:api:int21:64|64H]] | Set wait for external event flag | 3.2+ |
+| [[en:docs:dos:api:int21:64|64H]] | Set wait for external event flag / OS/2 VDM API | 3.2+ / OS/2 2.0+ |
 | [[en:docs:dos:api:int21:65|65H]] | Get extended country info | 3.3+ |
 | [[en:docs:dos:api:int21:66|66H]] | Get or set code page | 3.3+ |
 | [[en:docs:dos:api:int21:67|67H]] | Set handle count | 3.3+ |

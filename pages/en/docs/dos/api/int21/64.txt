@@ -17,10 +17,11 @@ SET DEVICE DRIVER LOOKAHEAD FLAG
 
   AH = 64h
   AL = flag
-  00h (default) call device driver function 5 (non-dest read)
-  before INT 21/AH=01h,08h,0Ah
+  00h (default) call device driver function 5 (non-dest read) before INT 21/AH=01h,08h,0Ah
   nonzero don't call driver function 5
 
+  CX = 636Ch - Call OS/2 VDM function
+  
 ===== Return =====
 
   Nothing (MS-DOS)
@@ -28,11 +29,11 @@ SET DEVICE DRIVER LOOKAHEAD FLAG
 
 ===== Notes =====
 
-	This function is called by the DOS 3.3+ PRINT.COM. Under MS-DOS, this function does not use any of the DOS-internal stacks and may thus be called at any time, even during another DOS call
+This function is called by the DOS 3.3+ PRINT.COM. Under MS-DOS, this function does not use any of the DOS-internal stacks and may thus be called at any time, even during another DOS call
           
 ===== See also =====
 
-   AH=01h - AH=08h - AH=0Ah - AX=5D06h
+AH=01h - AH=08h - AH=0Ah - AX=5D06h
 
 ===== Note =====
 
