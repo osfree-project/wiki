@@ -96,7 +96,7 @@
 | [[en:docs:dos:api:int21:5e|5EH]] | Network functions | 3.0+ |
 | [[en:docs:dos:api:int21:5f|5FH]] | Network redirection functions | 3.0+ |
 | [[en:docs:dos:api:int21:60|60H]] | Qualify filename | 3.0+ |
-| [[en:docs:dos:api:int21:61|61H]] | OS/2 File System | OS/2 1.0+ |
+| [[en:docs:dos:api:int21:61|61H]] | OS/2 File System Join/Subst | OS/2 1.0+ |
 | [[en:docs:dos:api:int21:62|62H]] | Get current PSP | 3.0+ |
 | [[en:docs:dos:api:int21:63|63H]] | Get DBCS lead byte table pointer | 3.0+ |
 | [[en:docs:dos:api:int21:64|64H]] | Set wait for external event flag / OS/2 VDM API | 3.2+ / OS/2 2.0+ |
@@ -106,6 +106,9 @@
 | [[en:docs:dos:api:int21:68|68H]] | Commit file | 3.3+ |
 | [[en:docs:dos:api:int21:69|69H]] | Get or set media id | 4.0+ |
 | [[en:docs:dos:api:int21:6a|6AH]] | Commit file | 4.0+ |
-| [[en:docs:dos:api:int21:6c|6CH]] | Extended open/create file | 4.0+ |
+| [[en:docs:dos:api:int21:6c|6CH]] | Extended open/create file | 4.0+ / OS/2 1.0+|
+| [[en:docs:dos:api:int21:6d|6DH]] | Extended MAke directory | OS/2 1.0+ |
+| [[en:docs:dos:api:int21:6e|6EH]] | DosEnumAttrib | OS/2 1.0+ |
+| [[en:docs:dos:api:int21:6f|6FH]] | DosQMaxEASize | OS/2 1.0+ |
 
 {{page>en:templates:int}}
