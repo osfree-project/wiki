@@ -1,6 +1,6 @@
 ====== SVC API ======
 
-Superviser calls API aimed to call host services from MVM.
+Supervisor calls API aimed to call host services from MVM.
 
 ^ Ordinal ^ Description ^
 | 0 | |
@@ -13,9 +13,9 @@ Superviser calls API aimed to call host services from MVM.
 | 7 | Set DTA from DS:DX |
 | 8 | |
 | 9 | |
-| 10 | |
+| 10 | Set system date (params same as in int21h AH=2Bh) |
 | 11 | |
-| 12 | |
+| 12 | Get system date (result same as in int21h AH=2Ah) |
 | 13 | |
 | 14 | |
 | 15 | |
