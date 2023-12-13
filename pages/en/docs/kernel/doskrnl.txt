@@ -4,7 +4,7 @@ DOSKRNL is a specialized DOS kernel changed to support DOS in MVM.
 
 ===== Startup =====
 
-On DOSKRNL start SS:BP contains pointer to the area info data structure which contains initial information for DOS kernel. Exact structure format not know, know some info produced by VBIOS. SS:SP contains stack pointer (initially point to area after init structure, size around 400 bytes)
+On DOSKRNL start SS:BP contains pointer to the area info data structure which contains initial information for DOS kernel. Exact structure format not know, know some info produced by VBIOS. SS:SP contains stack pointer (initially point to area after init structure, size around 800 bytes)
 
 ^ Offset ^ Size ^ Description ^
 | 0      | 2    | First free segment after DOSKRNL |
@@ -16,8 +16,8 @@ On DOSKRNL start SS:BP contains pointer to the area info data structure which co
 | 14     | 4    | Far pointer to SHELL (filepath only) |
 | 18     | 4    | Far pointer to SHELL (arguments) |
 | 22     | 4    | Far pointer to linked list of VDD |
-| 26     | 1    | Current drive (0-A, 1-B,...)|
-| 27     | 1    | Boot drive (0-A, 1-B,...) |
+| 26     | 1    | Current drive (1-A, 2-B, 3-C, ...)|
+| 27     | 1    | Boot drive (1-A, 2-B, 3-C, ...) |
 | ????   | ???  | ???? |
 
 Memory map on DOSKRNL start:
