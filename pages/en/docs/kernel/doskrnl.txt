@@ -25,10 +25,11 @@ Memory map on DOSKRNL start:
 | Init area         | [BP+0+BP+2-BP+4]:0 |
 | Free              | [BP+0]:0 |
 | DOSKRNL           | ???:0 |
+| some data         | ??? |
 | CMOS Data         | 40:0 |
 | Interrupt vectors | 0:0  |
 
-As in most DOS kernels, DOSKRNL moves initialization code to higher memory. But uses init structure, not BIOS INT 12h, for memory information.
+As in most DOS kernels, DOSKRNL moves initialization code to higher conventional memory. But uses init structure, not BIOS INT 12h, for memory information.
 
 VDDs linked list (in init area) in standard DOS Device drivers format
 
