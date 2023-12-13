@@ -1,3 +1,5 @@
+{{page>en:templates:dosint}}
+
 ====== DOSKRNL ======
 
 DOSKRNL is a specialized FreeDOS kernel changed to support DOS in MVM. Mostly all FAT code removed as well as CONFIG.SYS parser. So it smaller in compare with original FreeDOS kernel. Also image format changed because different load logic.
