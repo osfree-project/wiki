@@ -24,7 +24,7 @@ Memory map on DOSKRNL start:
 
 | Init area         | [BP+0+BP+2-BP+4]:0 |
 | Free              | [BP+0]:0 |
-| DOSKRNL           | 60:0 |
+| DOSKRNL           | ???:0 |
 | CMOS Data         | 40:0 |
 | Interrupt vectors | 0:0  |
 
