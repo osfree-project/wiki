@@ -30,11 +30,11 @@ DOSKRNL init structure:
 | 27     | 1    | Boot drive (1-A, 2-B, 3-C, ...) |
 | ????   | ???  | ???? |
 
-DEVICES is ASCIIZ string with list of DOS devices to be loaded divided by 0AH (???)
+DEVICES is ASCIIZ string with list of DOS devices to be loaded divided by 0AH
 
 SHELL is ASCIIZ string.
 
-SHELL arguments is ASCIIZ string (seems, first byte is as string length)
+SHELL arguments is ASCIIZ string (first byte is as string length, string ends with 0dh)
 
 VDD is linked list of structures:
 
