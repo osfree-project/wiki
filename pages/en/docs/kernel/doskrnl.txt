@@ -83,6 +83,61 @@ todo add more info here
 
 Also most of these setting can be adjusted via DOS Properties (aka DOS Settings). Refer [[https://archive.org/download/gg243731/gg243731_OS2_V2_0_Vol_2_DOS_and_Windows_Environment.pdf|OS/2 Version 2.0 Volume 2: DOS and Windows Environment]] for more information.
 
+===== Properties =====
+
+  * COM_DIRECT_ACCESS
+  * COM_HOLD
+  * COM_RECEIVE_BUFFER_FLUSH
+  * COM_SELECT
+  * DOS_AUTOEXEC
+  * DOS_BACKGROUND_EXECUTION
+  * DOS_BREAK
+  * DOS_DEVICE
+  * DOS_FCBS
+  * DOS_FCBS_KEEP
+  * DOS_FILES
+  * DOS_HIGH
+  * DOS_LASTDRIVE
+  * DOS_RMSIZE
+  * DOS_SHELL
+  * DOS_STARTUP_DRIVE
+  * DOS_UMB
+  * DOS_VERSION
+  * DPMI_DOS_API
+  * DPMI_MEMORY_LIMIT
+  * DPMI_NETWORK_BUFF_SIZE
+  * EMS_FRAME_LOCATION
+  * EMS_HIGH_OS_MAP_REGION
+  * EMS_LOW_OS_MAP_REGION
+  * EMS_MEMORY_LIMIT
+  * HW_NOSOUND
+  * HW_ROM_TO_RAM
+  * HW_TIMER
+  * IDLE_SECONDS
+  * IDLE_SENSITIVITY
+  * INT_DURING_IO
+  * KBD_ALTHOME_BYPASS
+  * KBD_BUFFER_EXTEND
+  * KBD_CTRL_BYPASS
+  * KBD_RATE_LOCK
+  * MEM_EXCLUDE_REGION
+  * MEM_INCLUDE_REGION
+  * MOUSE_EXCLUSIVE_ACCESS
+  * PRINT_SEPARATE_OUTPUT
+  * PRINT_TIMEOUT
+  * SESSION_PRIORITY
+  * VIDEO_8514A_XGA_IOTRAP
+  * VIDEO_FASTPASTE
+  * VIDEO_MODE_RESTRICTIONS
+  * VIDEO_ONDEMAND_MEMORY
+  * VIDEO_RETRACE_EMULATION
+  * VIDEO_ROM_EMULATION
+  * VIDEO_SWITCH_NOTIFICATION
+  * VIDEO_WINDOW_REFRESH
+  * XMS _HANDLES
+  * XMS_MEMORY_LIMIT
+  * XMS_MINIMUM_HMA 
+
 ===== API =====
 
 According different sources IBM DOSKRNL implements API on level of MS-DOS 5.x. osFree DOSKRNL supports API as in FreeDOS kernel. More information about implemented functions available [[en:docs:dos:api|here]]. DOSKRNL also implements some extensions to API mostly aimed to communicate with host system.
