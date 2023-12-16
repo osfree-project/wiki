@@ -110,7 +110,7 @@
 | ::: | T | 132x44 | 8x8 | 1056x352 | 16 | 2 | B800 | Ahead B |
 | ::: | T | 132x44 | 8x9 | 1056x398 | 16 | . | . | STB Lightspeed ET4000/W32P |
 | ::: | T | 132x44 | . | . | 16 | . | . | Orchid Prodesigner VGA |
-| ::: | G | 80x43 | 8x8 | 720x348	mono	  .   B800 DESQview 2.x+Hercules ((DESQview intercepts calls to change into these two modes (21h is page 0, 22h is page 1) even if there is no Hercules graphics board installed)) |
+| ::: | G | 80x43 | 8x8 | 720x348 | . |	mono | B800 | DESQview 2.x+Hercules ((DESQview intercepts calls to change into these two modes (21h is page 0, 22h is page 1) even if there is no Hercules graphics board installed)) |
 | ::: | G | 96x64 | 8x16 | 768x1024 | 16 | 1 | A000 | Realtek RTVGA |
 | ::: | G | 100x37 | 8x16 | 800x600 | 16 | . | . | C&T 64310/65530 BIOS | 
 | 23h | T | 132x25 | 6x14 | 792x350 | . | . | B800 | Tseng Labs EVA |

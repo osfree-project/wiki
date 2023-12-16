@@ -20,7 +20,7 @@ none
 
 ===== Return =====
 
-  * (E)AX = BIOS equipment list word (see #00226,#03215 at INT 4B"Tandy")
+  * (E)AX = BIOS equipment list word (see [[00226|equipment]],#03215 at INT 4B"Tandy")
 
 ===== Macro =====
 
