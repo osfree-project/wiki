@@ -134,7 +134,7 @@ Also most of these setting can be adjusted via DOS Properties (aka DOS Settings)
   * VIDEO_ROM_EMULATION
   * VIDEO_SWITCH_NOTIFICATION
   * VIDEO_WINDOW_REFRESH
-  * XMS _HANDLES
+  * XMS_HANDLES
   * XMS_MEMORY_LIMIT
   * XMS_MINIMUM_HMA 
 
