@@ -1,0 +1,6 @@
+Format of floppy format address field buffer entry (one per sector in track):
+^ Offset ^ Size ^ Description ^
+| 00h | BYTE | track number |
+| 01h | BYTE | head number (0-based) |
+| 02h | BYTE | sector number |
+| 03h | BYTE | sector size (00h=128 bytes, 01h=256 bytes, 02h=512, 03h=1024) |

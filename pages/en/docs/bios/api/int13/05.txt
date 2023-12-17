@@ -21,13 +21,13 @@ none
   * CH = track number
   * DH = head number
   * DL = drive number
-  * ES:BX -> address field buffer (see #00235)
+  * ES:BX -> address field buffer (see [[00235|format]])
 
 ===== Return =====
 
   * CF set on error
   * CF clear if successful
-  * AH = status (see #00234)
+  * AH = status (see [[00234|status]])
 
 ===== Macro =====
 

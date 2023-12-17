@@ -23,7 +23,7 @@ None. Most error statuses available via API return codes.
 
   * CF clear if successful (returned status 00h)
   * CF set on error
-  * AH = status of previous operation (see #00234)
+  * AH = status of previous operation (see [[00234|status]])
 
 ===== Macro =====
 

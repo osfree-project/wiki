@@ -28,7 +28,7 @@ none
 
   * CF set on error
   * CF clear if successful
-  * AH = status (see #00234)
+  * AH = status (see [[00234|status]])
   * AL = number of sectors verified
 
 ===== Macro =====

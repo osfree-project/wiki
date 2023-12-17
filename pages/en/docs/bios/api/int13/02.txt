@@ -29,7 +29,7 @@ Read sector
   * CF set on error
     * if AH = 11h (corrected ECC error), AL = burst length
   * CF clear if successful
-  * AH = status (see #00234)
+  * AH = status (see [[00234|status]])
   * AL = number of sectors transferred (only valid if CF set for some BIOSes)
 
 ===== Macro =====
