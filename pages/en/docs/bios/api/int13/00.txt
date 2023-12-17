@@ -21,7 +21,7 @@ Reset disk system
 
 ===== Return =====
 
-  * AH = status (see [[00234:status]])
+  * AH = status (see [[00234|status]])
     * CF clear if successful (returned AH=00h)
     * CF set on error
 
