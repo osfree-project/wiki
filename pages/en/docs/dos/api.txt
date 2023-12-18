@@ -20,6 +20,6 @@ Most of DOS API calls are invoked using software interrupt INT 21H. In most case
 | [[en:docs:dos:api:int2A|2AH]] | Networking and critical section | 3.0+ | Called by DOS kernel to interface with networking software |
 | [[en:docs:dos:api:int2E|2EH]] | Reload transient | 2.0+ | Implemented in COMMAND.COM |
 | [[en:docs:dos:api:int2F|2FH]] | Multiplex | 3.0+ | Implemented in DOS kernel and various programs (PRINT, MSCDEX, DOSKEY, APPEND, etc.) depending on subfunction number |
-| [[en:docs:dpmi|31H]] | DPMI | | DPMI services |
+
 
 {{page>en:templates:int}}
