@@ -9,6 +9,7 @@
 
 ===== Brief =====
 
+Obtains the version number of the Extended Memory Specification that is supported by the installed driver.
 
 ===== Family API =====
 
@@ -20,7 +21,9 @@ none
 
 ===== Return =====
 
-
+  * AX status: 0000H = successful, 0001H = error and BL=XMS error code (if BL >= 80H) else  = XMS version number in BCD; e.g., 0234H=2.34
+  * BX    driver internal version number
+  * DX    HMA flag: 0001H = HMA exists; 0000H=HMA does not exist
 
 ===== Notes =====
 
