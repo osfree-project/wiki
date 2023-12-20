@@ -2,6 +2,14 @@
 
 XMS API implemented via VXMS.DLL VDD
 
+            ; Is an XMS driver installed?
+            mov     ax,4300h
+            int     2Fh
+            cmp     al,80h
+            jne     NoXMSDriver
+            
+            
+
   mov     ax,4310h
   int     2Fh
   mov     word ptr [XMSCALL],bx
