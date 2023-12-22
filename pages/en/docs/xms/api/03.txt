@@ -9,6 +9,7 @@
 
 ===== Brief =====
 
+Global Enable A20
 
 ===== Family API =====
 
@@ -20,7 +21,8 @@ none
 
 ===== Return =====
 
-
+  * AX = 0001h if the A20 line is enabled, 0000h otherwise
+  * BL = Error code
 
 ===== Notes =====
 
