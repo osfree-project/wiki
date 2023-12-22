@@ -14,26 +14,26 @@ For osFree development plan, milestones (passed ones, current ones and the corre
 
 Here is each small component status:
 
-^System part	^System subpart	^Status	^License	^Developers	^To Do ^
-|osFree art	|osFree logo	|Done	|osFree	|Cristiano Guadagnino, \\ Alex Kramer |	|
+^System part            ^System subpart	^Status	^License	^Developers	^To Do ^
+|osFree art             |osFree logo	|Done	|osFree	|Cristiano Guadagnino, \\ Alex Kramer |	|
 |Global shared code	|dynamic lists/dynamic stacks code	|Done	|osFree	|Cristiano Guadagnino	| |
 |::: |messaging functions	|Done	|osFree	|Henk Kelder, \\ Bartosz Tomasik | |
 |::: |path manipulation code	|Done	|osFree	|Bartosz Tomasik	| |
-|:::	|disk info functions	|Done	|osFree	|Bartosz Tomasik	| |
-|:::	|file system functions	|Done	|osFree	|Bartosz Tomasik	| |
-|:::	|directory-tree recurse \\ helper functions	|Done	|osFree	|Cristiano Guadagnino, \\ Bartosz Tomasik | |
+|::: |disk info functions	|Done	|osFree	|Bartosz Tomasik	| |
+|::: |file system functions	|Done	|osFree	|Bartosz Tomasik	| |
+|::: |directory-tree recurse \\ helper functions	|Done	|osFree	|Cristiano Guadagnino, \\ Bartosz Tomasik | |
 |CLI tools shared code	|messaging functions	|Done	|osFree	|Cristiano Guadagnino, \\ Bartosz Tomasik	| |
 |::: |filesystem functions	|Done	|osFree	|Bartosz Tomasik	| |
 |::: |shared code, calling 16-bit \\ dynamically loaded functions	|Done	|osFree	|Michal Necasek	| |
 |Documentation	|Build Level Information	|Done	|osFree	|Yuri Prokushev	| |
 |CMD.EXE	|	Extension	| |4OS2	|JP Software	| |
-|:::	|ACTIVATE	| |4OS2	|JP Software	| |
-|:::	|ALIAS	|	|4OS2	|JP Software	| |
-|:::	|BEEP	|	|4OS2	|JP Software	| |
+|::: |ACTIVATE	| |4OS2	|JP Software	| |
+|::: |ALIAS	|	|4OS2	|JP Software	| |
+|::: |BEEP	|	|4OS2	|JP Software	| |
 |::: |CALL	|Done	|4OS2	|JP Software	 | |
 |::: |CANCEL	|	|4OS2	|JP Software	| |
-|:::	|CASE	|	|4OS2	|JP Software	| |
-|:::	|CD	|Done	|4OS2	|JP Software	| |
+|::: |CASE	|	|4OS2	|JP Software	| |
+|::: |CD	|Done	|4OS2	|JP Software	| |
 |::: |CDD	|	|4OS2	|JP Software	| |
 |::: |CHCP	|Done	|4OS2	|JP Software | |
 |::: |CHDIR	|Done	|4OS2	|JP Software	| |
@@ -42,12 +42,12 @@ Here is each small component status:
 |::: |DATE	|Done	|4OS2	|JP Software	| |
 |::: |DEFAULT	| |4OS2	|JP Software	| |
 |::: |DEL	|Done	|4OS2	|JP Software	| |
-|:::	|DELAY	| |4OS2	|JP Software	| |
-|:::	|DESCRIBE	| |4OS2	|JP Software	| |
-|:::	|DETACH	|Done	|4OS2	|JP Software	| |
-|:::	|DIR	|Done	|4OS2	|JP Software	| |
-|:::	|DIRHISTORY	| |4OS2	|JP Software	| |
-|:::	|DIRS	| |4OS2	|JP Software	| |
+|::: |DELAY	| |4OS2	|JP Software	| |
+|::: |DESCRIBE	| |4OS2	|JP Software	| |
+|::: |DETACH	|Done	|4OS2	|JP Software	| |
+|::: |DIR	|Done	|4OS2	|JP Software	| |
+|::: |DIRHISTORY	| |4OS2	|JP Software	| |
+|::: |DIRS	| |4OS2	|JP Software	| |
 |::: |DO	| |4OS2	|JP Software	| |
 |::: |DPATH	|Done	|4OS2	|JP Software	| |
 |::: |DRAWBOX	|	|4OS2	|JP Software	| |
@@ -175,22 +175,22 @@ Here is each small component status:
 |::: |REXX.DLL	|Done	|LGPL	|Yuri Prokushev, \\ Valery Sedletski | |
 |::: |REXXAPI.DLL	|Done	|LGPL	|Yuri Prokushev, \\ Valery Sedletski	| |
 |::: |REXXUTIL.DLL	|Done   |MPL	|Patrick TJ McPhee | |
-|CPI	|DOSCALLS.DLL	|None	| | | |
-|::: |KBDCALLS.DLL	|Done	|osFree	|Yuri Prokushev	| |
-|::: |MOUCALLS.DLL	|Done	|osFree	|Yuri Prokushev	| |
-|::: |MSG.DLL	|Done	|osFree	|Yuri Prokushev	| |
-|::: |NLS.DLL	|Done	|osFree	|Yuri Prokushev	| |
-|::: |QUECALLS.DLL	|Done	|osFree	|Yuri Prokushev	| |
-|::: |SESMGR.DLL	|Done	|osFree	|Yuri Prokushev	| |
-|::: |VIOCALLS.DLL	|Done	|osFree	|Yuri Prokushev	| |
+|CPI |[[en:docs:os2:modules:doscalls|DOSCALLS.DLL]] |None	| | | |
+|::: |[[en:docs:os2:modules:kbdcalls|KBDCALLS.DLL]] |Done	|osFree	|Yuri Prokushev	| |
+|::: |[[en:docs:os2:modules:moucalls|MOUCALLS.DLL]] |Done	|osFree	|Yuri Prokushev	| |
+|::: |[[en:docs:os2:modules:msg|MSG.DLL]]           |Done	|osFree	|Yuri Prokushev	| |
+|::: |[[en:docs:os2:modules:nls|NLS.DLL]]           |Done	|osFree	|Yuri Prokushev	| |
+|::: |[[en:docs:os2:modules:quecalls|QUECALLS.DLL]] |Done	|osFree	|Yuri Prokushev	| |
+|::: |[[en:docs:os2:modules:sesmgr|SESMGR.DLL]]     |Done	|osFree	|Yuri Prokushev	| |
+|::: |[[en:docs:os2:modules:viocalls|VIOCALLS.DLL]] |Done	|osFree	|Yuri Prokushev	| |
 |SOM	|SOM.DLL	|None | | | |
 |DSOM	|SOMD.DLL	|None	| | | |
 |Object REXX	| |None	| | | |
 |MDOS CLI tools	|APPEND	|None	| | | |
 |::: |ASSIGN	|None	| | | |
-|::: |COMMAND	|Done	| | | |
+|::: |COMMAND	|Done	| GPL | FreeDOS team \\ Valery Sedletski | |
 |::: |JOIN	|None	| | | |
-|::: |MEM	|Done	| | | |
+|::: |MEM	|Done	| | FreeDOS team | |
 |::: |SUBST	|None	| | | |
 |::: |GRAFTABL	|None	| | | |
 |IPF API	|HELPMGR.DLL	|Done	|GPL	|NewView project	| |
