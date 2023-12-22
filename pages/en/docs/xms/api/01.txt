@@ -9,6 +9,7 @@
 
 ===== Brief =====
 
+Request High Memory Area
 
 ===== Family API =====
 
@@ -17,10 +18,12 @@ none
 ===== Input =====
 
   AH = 01h
+  DX = Space needed in the HMA by the caller in bytes (if the caller is a TSR or device driver), DX = FFFFh (if the caller is an application program)
 
 ===== Return =====
 
-
+  AX = 0001h if the HMA is assigned to the caller, 0000h otherwise
+  BL = Error code
 
 ===== Notes =====
 
