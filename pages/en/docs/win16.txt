@@ -8,8 +8,19 @@ Win16 Personality for osFree is planned to be implemented as Windows clone based
 
 === Applications ===
 
-  * [[en:docs:win16:applications:clock|Clock]]
-  * [[en:docs:win16:applications:clock|Notepad]]
+  * [[en:docs:win16:applications:CALC]]
+  * [[en:docs:win16:applications:CHARMAP]]
+  * [[en:docs:win16:applications:CLIPBRD]]
+  * [[en:docs:win16:applications:CLOCK]]
+  * [[en:docs:win16:applications:NOTEPAD]]
+  * [[en:docs:win16:applications:PIFEDIT]]
+  * [[en:docs:win16:applications:PROGMAN]]
+  * [[en:docs:win16:applications:SOL]]
+  * [[en:docs:win16:applications:TASKMAN]]
+  * [[en:docs:win16:applications:WINFILE]]
+  * [[en:docs:win16:applications:WINHELP]]
+  * [[en:docs:win16:applications:WINMINE]]
+  * [[en:docs:win16:applications:WINVER]]
 
 === API ===
 
