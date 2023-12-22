@@ -136,7 +136,6 @@ Here is each small component status:
 |::: |FDISK	|Done	|osFree	|Yuri Prokushev	| |
 |::: |FIND	|Done	|GPL	|Jim Hall	| |
 |::: |FORMAT	|Done	|osFree	|Bartosz Tomasik	| |
-|::: |FSACCESS	|None	| | | |
 |::: |HELPMSG	|Done	|osFree	|Yuri Prokushev	| |
 |::: |KEYB	|None	| | | |
 |::: |LABEL	|Done	|osFree	|Bartosz Tomasik	| |
@@ -187,12 +186,32 @@ Here is each small component status:
 |DSOM	|SOMD.DLL	|None	| | | |
 |Object REXX	| |None	| | | |
 |MDOS CLI tools	|APPEND	|None	| | | |
-|::: |ASSIGN	|None	| | | |
-|::: |COMMAND	|Done	| GPL | FreeDOS team \\ Valery Sedletski | |
-|::: |JOIN	|None	| | | |
-|::: |MEM	|Done	| | FreeDOS team | |
-|::: |SUBST	|None	| | | |
+|::: |ASSIGN	|None   | | | |
+|::: |ATTRIB    |None   | | | |
+|::: |BASIC     |None   | | | |
+|::: |COMMAND	|Done   | GPL | FreeDOS team \\ Valery Sedletski | |
+|::: |COMP      |None   | | | |
+|::: |DEBUG     |Done   | | | |
+|::: |DISKCOMP  |None   | | | |
+|::: |DISKCOPY  |None   | | | |
+|::: |EDLIN     |Done   | | | |
+|::: |EXIT_VDM  |Done   | | | |
+|::: |FC        |None   | | | |
+|::: |FIND      |None   | | | |
+|::: |FSACCESS	|None	| | | |
 |::: |GRAFTABL	|None	| | | |
+|::: |HELP      |None   | | | |
+|::: |HELPMSG   |None   | | | |
+|::: |JOIN	|None	| | | |
+|::: |LABEL     |None	| | | |
+|::: |MEM	|Done	| | FreeDOS team | |
+|::: |MORE	|None	| | | |
+|::: |MOVE      |None	| | | |
+|::: |MSD       |None	| | | |
+|::: |QBASIC    |None	| | | |
+|::: |SORT      |None	| | | |
+|::: |SUBST	|None	| | | |
+|::: |XCOPY     |None   | | | |
 |IPF API	|HELPMGR.DLL	|Done	|GPL	|NewView project	| |
 |PM tools	|VIEW	|Done	|GPL	|NewView project	| |
 |::: |FFSTCONF	|None | | | |

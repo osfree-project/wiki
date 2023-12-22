@@ -2,6 +2,7 @@
 
 ====== DOS personality ======
 
+  * [[en:docs:dos:cmd:index|Command line reference]]
   * [[en:docs:kernel:DOSKRNL]]
   * [[en:docs:bios:api|BIOS API]]
   * [[en:docs:dos:api|DOS API]]
