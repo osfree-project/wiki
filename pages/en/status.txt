@@ -185,33 +185,33 @@ Here is each small component status:
 |SOM	|SOM.DLL	|None | | | |
 |DSOM	|SOMD.DLL	|None	| | | |
 |Object REXX	| |None	| | | |
-|MDOS CLI tools	|APPEND	|None	| | | |
-|::: |ASSIGN	|None   | | | |
-|::: |ATTRIB    |None   | | | |
-|::: |BASIC     |None   | | | |
-|::: |COMMAND	|Done   | GPL | FreeDOS team \\ Valery Sedletski | |
-|::: |COMP      |None   | | | |
-|::: |DEBUG     |Done   | | | |
-|::: |DISKCOMP  |None   | | | |
-|::: |DISKCOPY  |None   | | | |
-|::: |EDLIN     |Done   | | | |
-|::: |EXIT_VDM  |Done   | | | |
-|::: |FC        |None   | | | |
-|::: |FIND      |None   | | | |
-|::: |FSACCESS	|None	| | | |
-|::: |GRAFTABL	|None	| | | |
-|::: |HELP      |None   | | | |
-|::: |HELPMSG   |None   | | | |
-|::: |JOIN	|None	| | | |
-|::: |LABEL     |None	| | | |
-|::: |MEM	|Done	| | FreeDOS team | |
-|::: |MORE	|None	| | | |
-|::: |MOVE      |None	| | | |
-|::: |MSD       |None	| | | |
-|::: |QBASIC    |None	| | | |
-|::: |SORT      |None	| | | |
-|::: |SUBST	|None	| | | |
-|::: |XCOPY     |None   | | | |
+|MDOS CLI tools	|[[en:docs:dos:cmd:APPEND]]	|None	| | | |
+|::: |[[en:docs:dos:cmd:ASSIGN]]    |None   | | | |
+|::: |[[en:docs:dos:cmd:ATTRIB]]    |None   | | | |
+|::: |[[en:docs:dos:cmd:BASIC]]     |None   | | | |
+|::: |[[en:docs:dos:cmd:COMMAND]]   |Done   | GPL | FreeDOS team \\ Valery Sedletski | |
+|::: |[[en:docs:dos:cmd:COMP]]      |None   | | | |
+|::: |[[en:docs:dos:cmd:DEBUG]]     |Done   | | | |
+|::: |[[en:docs:dos:cmd:DISKCOMP]]  |None   | | | |
+|::: |[[en:docs:dos:cmd:DISKCOPY]]  |None   | | | |
+|::: |[[en:docs:dos:cmd:EDLIN]]     |Done   | | | |
+|::: |[[en:docs:dos:cmd:EXIT_VDM]]  |Done   | | | |
+|::: |[[en:docs:dos:cmd:FC]]        |None   | | | |
+|::: |[[en:docs:dos:cmd:FIND]]      |None   | | | |
+|::: |[[en:docs:dos:cmd:FSACCESS]]  |None	| | | |
+|::: |[[en:docs:dos:cmd:GRAFTABL]]  |None	| | | |
+|::: |[[en:docs:dos:cmd:HELP]]      |None   | | | |
+|::: |[[en:docs:dos:cmd:HELPMSG]]   |None   | | | |
+|::: |[[en:docs:dos:cmd:JOIN]]      |None	| | | |
+|::: |[[en:docs:dos:cmd:LABEL]]     |None	| | | |
+|::: |[[en:docs:dos:cmd:MEM]]       |Done	| | FreeDOS team | |
+|::: |[[en:docs:dos:cmd:MORE]]      |None	| | | |
+|::: |[[en:docs:dos:cmd:MOVE]]      |None	| | | |
+|::: |[[en:docs:dos:cmd:MSD]]       |None	| | | |
+|::: |[[en:docs:dos:cmd:QBASIC]]    |None	| | | |
+|::: |[[en:docs:dos:cmd:SORT]]      |None	| | | |
+|::: |[[en:docs:dos:cmd:SUBST]]     |None	| | | |
+|::: |[[en:docs:dos:cmd:XCOPY]]     |None   | | | |
 |IPF API	|HELPMGR.DLL	|Done	|GPL	|NewView project	| |
 |PM tools	|VIEW	|Done	|GPL	|NewView project	| |
 |::: |FFSTCONF	|None | | | |

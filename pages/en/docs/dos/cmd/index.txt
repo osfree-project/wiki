@@ -1,3 +1,5 @@
+{{logos:dos.gif?35x35}} {{logos:win16.gif}}
+
   * [[en:docs:dos:cmd:APPEND]]
   * [[en:docs:dos:cmd:ASSIGN]]
   * [[en:docs:dos:cmd:ATTRIB]]
