@@ -34,4 +34,9 @@ All screenshots in this section are of software currently under development.
 ^FreeLDR 0.0.5 main screen ((menu screen)) ^
 |{{screenshots:freeldr005.gif?200|FreeLDR 0.0.5}} |
 
+=== Development ===
+
+^Win16 Clock ^
+|{{:screenshots:analog.png?200|Win16 Clock}} |
+
 ~~DISCUSSION~~
