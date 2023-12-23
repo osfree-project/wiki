@@ -1,8 +1,8 @@
 ====== Clock ======
 
 The simplest application is Clock. Clock displays the current date and time, using either analog or digital representation, as shown below:
-  
-{{:screenshots:analog.png?400|}}
+
+{{:en:docs:win16:applications:digital.png|Digital clock}}
 
 View can be changed using Settings menu items Analog and Digital. You can disable or enable display of Seconds and Date part of the current time. All things changed in Settings saved on Clock close. On startup Clock restores all Settings. 
 

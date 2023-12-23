@@ -4,7 +4,7 @@
 
 === Introduction ===
 
-Win16 Personality for osFree is planned to be implemented as Windows clone based on various sources. Most notable is HX-DOS Extender for KERNEL, Wine and Twin for USER and other core DLLs. GDI.EXE not handled yet. Applications collected and backported to Win16 from ReactOS and Wine implementations.
+Win16 Personality for osFree is planned to be implemented as Windows clone based on various sources. Most notable is HX-DOS Extender for KERNEL, Wine and Twin for USER and other core DLLs. GDI.EXE not handled yet. Applications collected and backported to Win16 mostly from ReactOS and Wine implementations. Also other third parties source code are used, like MAX386.
 
 === Applications ===
 
