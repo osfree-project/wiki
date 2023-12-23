@@ -37,3 +37,6 @@ Clock saves and restores its settings via CLOCK.INI file. All settings stored in
   * Options
   * Position
 
+===== Download =====
+
+You can download source code and binaries from [[https://github.com/osfree-project/clock|GitHub]]. Clock comes under LGPL-2.1 license.
