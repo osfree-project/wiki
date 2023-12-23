@@ -28,7 +28,7 @@ To prevent overlapping of Clock by other windows you can set **Always on top** m
 
 ===== Date and Time format =====
 
-Date and time format can be adjusted via Control Panel. Restart Clock to apply changes.
+Date and time format can be adjusted via [[en:docs:win16:applications:control|Control Panel]]. Restart Clock to apply changes.
 
 ===== CLOCK.INI =====
 
@@ -42,3 +42,5 @@ Clock saves and restores its settings via CLOCK.INI file. All settings stored in
 ===== Download =====
 
 You can download source code and binaries from [[https://github.com/osfree-project/clock|GitHub]]. Clock comes under LGPL-2.1 license.
+
+{{page>en:templates:win16app}}
