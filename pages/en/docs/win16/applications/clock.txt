@@ -14,7 +14,11 @@ Font, used for Digital Clock can be changed via **Set Font…** item of **Settin
 
 ===== Title bar and Icon clock =====
 
-Title bar of Clock window can be hide by mouse double-click on clock face or via **Settings** menu. While title bar is hidden window can be moved by mouse click and move on any part of window, except frame.  Mouse double-click or Esc key can be used to restore title bar. If you **Minimize** window, then simplified clock shown on Icon. To prevent overlapping of clock by other windows you can set **Always on top** mode via **System** menu.
+Title bar of Clock window can be hide by mouse double-click on clock face or via **Settings** menu. While title bar is hidden window can be moved by mouse click and move on any part of window, except frame.  Mouse double-click or Esc key can be used to restore title bar.
+
+{{:en:docs:win16:applications:notitle.png|Clock without title}}
+
+If you **Minimize** window, then simplified clock shown on Icon. To prevent overlapping of Clock by other windows you can set **Always on top** mode via **System** menu.
 
 ===== Date and Time format =====
 
