@@ -1,321 +1,321 @@
 ===== Command Reference (CMD/4OS/2) =====
 
-  * [[en:docs:os2:cmd:about|About Command reference]]
-  * [[en:docs:os2:cmd:cmdline|The Command Line]]
-    * [[en:docs:os2:cmd:cmdline:editing|Command-Line Editing]]
-    * [[en:docs:os2:cmd:cmdline:hist|Command History and Recall]]
-    * [[en:docs:os2:cmd:cmdline:histwin|Command History Window]]
-    * [[en:docs:os2:cmd:cmdline:cmd-names-and-parm|Command Names and Parameters]]
-    * [[en:docs:os2:cmd:cmdline:completion|Filename Completion]]
-    * [[en:docs:os2:cmd:cmdline:auto-dir-chg|Automatic Directory Changes]]
-    * [[en:docs:os2:cmd:cmdline:dirhist|Directory History Window]]
-      * [[en:docs:os2:cmd:cmdline:dirhist:local-and-glob|Local and Global Directory History]]
-    * [[en:docs:os2:cmd:cmdline:mult-cmds|Multiple Commands]]
-    * [[en:docs:os2:cmd:cmdline:aliases|Expanding and Disabling Aliases]]
-    * [[en:docs:os2:cmd:cmdline:cmdline-help|Command Line Help]]
-    * [[en:docs:os2:cmd:cmdline:cmdline-len-limits|Command-Line Length Limits]]
-  * [[en:docs:os2:cmd:file|File Selection]]
-    * [[en:docs:os2:cmd:file:parentdir|Extended Parent Directory Names]]
-    * [[en:docs:os2:cmd:file:wild|Wildcards]]
-    * [[en:docs:os2:cmd:file:ranges|Ranges]]
-      * [[en:docs:os2:cmd:file:ranges|Date, Time, and Size Ranges]]
-        * [[en:docs:os2:cmd:file:ranges:date|Date Ranges]]
-        * [[en:docs:os2:cmd:file:ranges:time|Time Ranges]]
-        * [[en:docs:os2:cmd:file:ranges:size|Size Ranges]]
-      * [[en:docs:os2:cmd:file:exclusion|File Exclusion Ranges]]
-    * [[en:docs:os2:cmd:file:mult|Multiple Filenames]]
-    * [[en:docs:os2:cmd:file:incl|Include Lists]]
-    * [[en:docs:os2:cmd:file:ext|Executable Extensions]]
-  * [[en:docs:os2:cmd:navig|Directory Navigation]]
-      * [[en:docs:os2:cmd:navig:ext-search|Extended Directory Searches]]
-      * [[en:docs:os2:cmd:navig:cdpath|CDPATH]]
-  * [[en:docs:os2:cmd:other|Other Features]]
-    * [[en:docs:os2:cmd:other:prompts|Page and File Prompts]]
-    * [[en:docs:os2:cmd:other:redir|Redirection and Piping]]
-      * [[en:docs:os2:cmd:other:redir:redirection|Redirection]]
-      * [[en:docs:os2:cmd:other:redir:piping|Piping]]
-    * [[en:docs:os2:cmd:other:keystack|Using the Keystack]]
-    * [[en:docs:os2:cmd:other:waiting|Waiting for Applications to Finish]]
-    * [[en:docs:os2:cmd:other:criterr|Critical Errors]]
-    * [[en:docs:os2:cmd:other:cond|Conditional Commands]]
-    * [[en:docs:os2:cmd:other:grouping|Command Grouping]]
-    * [[en:docs:os2:cmd:other:escape|Escape Character]]
-  * [[en:docs:os2:cmd:internal|Internal Commands]]
-    * [[en:docs:os2:cmd:internal:help|?]] - List the internal commands
-    * [[en:docs:os2:cmd:internal:activate|ACTIVATE]] - Activate a window
-    * [[en:docs:os2:cmd:internal:alias|ALIAS]] - Create or display aliases
-    * [[en:docs:os2:cmd:internal:attrib|ATTRIB]] - Change or view file attributes
-    * [[en:docs:os2:cmd:internal:beep|BEEP]] - Beep the speaker
-    * [[en:docs:os2:cmd:internal:call|CALL]] - Execute one batch file from another
-    * [[en:docs:os2:cmd:internal:cancel|CANCEL]] - Terminate batch file processing
-    * [[en:docs:os2:cmd:internal:cd|CD]] - Change the current directory
-    * [[en:docs:os2:cmd:internal:cdd|CDD]] - Change the current drive and directory
-    * [[en:docs:os2:cmd:internal:chcp|CHCP]] - Change the current code page
-    * [[en:docs:os2:cmd:internal:cls|CLS]] - Clear the screen
-    * [[en:docs:os2:cmd:internal:color|COLOR]] - Change the display colors
-    * [[en:docs:os2:cmd:internal:copy|COPY]] - Copy files
-    * [[en:docs:os2:cmd:internal:date|DATE]] - Change the system date
-    * [[en:docs:os2:cmd:internal:del|DEL]] - Delete one or more files
-    * [[en:docs:os2:cmd:internal:delay|DELAY]] - Pause for a specified length of time
-    * [[en:docs:os2:cmd:internal:describe|DESCRIBE]] - Create or modify file descriptions
-    * [[en:docs:os2:cmd:internal:detach|DETACH]] - Start a program in detached mode
-    * [[en:docs:os2:cmd:internal:dir|DIR]] - Display directories
-    * [[en:docs:os2:cmd:internal:dirhistory|DIRHISTORY]] - Display, read, or modify the directory history list
-    * [[en:docs:os2:cmd:internal:dirs|DIRS]] - Display the directory stack
-    * [[en:docs:os2:cmd:internal:do|DO]] - Create loops in batch files
-    * [[en:docs:os2:cmd:internal:dpath|DPATH]] - Set the data search path
-    * [[en:docs:os2:cmd:internal:drawbox|DRAWBOX]] - Draw a box
-    * [[en:docs:os2:cmd:internal:drawhline|DRAWHLINE]] - Draw a horizontal line
-    * [[en:docs:os2:cmd:internal:drawvline|DRAWVLINE]] - Draw a vertical line
-    * [[en:docs:os2:cmd:internal:echo|ECHO]] and [[en:docs:os2:cmd:internal:echo|ECHOERR]] - Display a message / set echo state
-    * [[en:docs:os2:cmd:internal:echos|ECHOS]] and [[en:docs:os2:cmd:internal:echos|ECHOSERR]] - Display a message without CR/LF
-    * [[en:docs:os2:cmd:internal:endlocal|ENDLOCAL]] - Restore the saved environment
-    * [[en:docs:os2:cmd:internal:eset|ESET]] - Edit environment variables and aliases
-    * [[en:docs:os2:cmd:internal:except|EXCEPT]] - Exclude files from a command
-    * [[en:docs:os2:cmd:internal:exit|EXIT]] - Exit CMD.EXE
-    * [[en:docs:os2:cmd:internal:ffind|FFIND]] - Search for files
-    * [[en:docs:os2:cmd:internal:for|FOR]] - Repeat a command
-    * [[en:docs:os2:cmd:internal:free|FREE]] - Display total and free disk space
-    * [[en:docs:os2:cmd:internal:global|GLOBAL]] - Execute a command all subdirectories
-    * [[en:docs:os2:cmd:internal:gosub|GOSUB]] - Execute a subroutine in a batch file
-    * [[en:docs:os2:cmd:internal:goto|GOTO]] - Branch within a batch file
-    * [[en:docs:os2:cmd:internal:help|HELP]] - Display help
-    * [[en:docs:os2:cmd:internal:history|HISTORY]] - Manage the history list
-    * [[en:docs:os2:cmd:internal:if|IF]] - Execute a command if a condition is true
-    * [[en:docs:os2:cmd:internal:if-then-else|IFF]] - [[en:docs:os2:cmd:internal:if-then-else|IF]] / [[en:docs:os2:cmd:internal:if-then-else|THEN]] / [[en:docs:os2:cmd:internal:if-then-else|ELSE]] conditional command execution
-    * [[en:docs:os2:cmd:internal:inkey|INKEY]] - Get a character from the keyboard
-    * [[en:docs:os2:cmd:internal:input|INPUT]] - Get a string from the keyboard
-    * [[en:docs:os2:cmd:internal:keybd|KEYBD]] - Set the keyboard toggles
-    * [[en:docs:os2:cmd:internal:keys|KEYS]] - Enable or disable the history list
-    * [[en:docs:os2:cmd:internal:keystack|KEYSTACK]] - Feed keystrokes to a program or command
-    * [[en:docs:os2:cmd:internal:list|LIST]] - Display a file
-    * [[en:docs:os2:cmd:internal:loadbtm|LOADBTM]] - Switch a batch file's mode
-    * [[en:docs:os2:cmd:internal:log|LOG]] - Save a log of commands
-    * [[en:docs:os2:cmd:internal:md|MD]] - Create a subdirectory
-    * [[en:docs:os2:cmd:internal:memory|MEMORY]] - Display memory statistics
-    * [[en:docs:os2:cmd:internal:move|MOVE]] - Move files
-    * [[en:docs:os2:cmd:internal:on|ON]] - Handle Ctrl-Break and errors in batch files
-    * [[en:docs:os2:cmd:internal:option|OPTION]] - Modify the command processor configuration
-    * [[en:docs:os2:cmd:internal:path|PATH]] - Set the executable file search path
-    * [[en:docs:os2:cmd:internal:pause|PAUSE]] - Suspend batch file or alias execution
-    * [[en:docs:os2:cmd:internal:popd|POPD]] - Restore the disk drive and directory
-    * [[en:docs:os2:cmd:internal:prompt|PROMPT]] - Change the command-line prompt
-    * [[en:docs:os2:cmd:internal:pushd|PUSHD]] - Save the disk drive and directory
-    * [[en:docs:os2:cmd:internal:quit|QUIT]] - Terminate a batch file
-    * [[en:docs:os2:cmd:internal:rd|RD]] - Remove subdirectories
-    * [[en:docs:os2:cmd:internal:reboot|REBOOT]] - Reboot the system
-    * [[en:docs:os2:cmd:internal:rem|REM]] - Put a comment in a batch file
-    * [[en:docs:os2:cmd:internal:ren|REN]] - Rename files or subdirectories
-    * [[en:docs:os2:cmd:internal:return|RETURN]] - Return from a subroutine in a batch file
-    * [[en:docs:os2:cmd:internal:screen|SCREEN]] - Position the cursor and display text
-    * [[en:docs:os2:cmd:internal:scrput|SCRPUT]] - Display text in color
-    * [[en:docs:os2:cmd:internal:select|SELECT]] - Select files for a command
-    * [[en:docs:os2:cmd:internal:set|SET]] - Create or modify environment variables
-    * [[en:docs:os2:cmd:internal:setdos|SETDOS]] - Set the CMD.EXE configuration
-    * [[en:docs:os2:cmd:internal:setlocal|SETLOCAL]] - Save the environment
-    * [[en:docs:os2:cmd:internal:shift|SHIFT]] - Shift batch file parameters
-    * [[en:docs:os2:cmd:internal:shralias|SHRALIAS]] - Load or unload SHRALIAS.EXE
-    * [[en:docs:os2:cmd:internal:start|START]] - Start a program in another session
-    * [[en:docs:os2:cmd:internal:switch|SWITCH]] - Select commands based on a value
-    * [[en:docs:os2:cmd:internal:tee|TEE]] - "Tee" pipe fitting
-    * [[en:docs:os2:cmd:internal:text|TEXT]] - Display text in a batch file
-    * [[en:docs:os2:cmd:internal:time|TIME]] - Set the system time
-    * [[en:docs:os2:cmd:internal:timer|TIMER]] - Start or stop a stopwatch
-    * [[en:docs:os2:cmd:internal:title|TITLE]] - Window title
-    * [[en:docs:os2:cmd:internal:touch|TOUCH]] - Change date and time stamps
-    * [[en:docs:os2:cmd:internal:tree|TREE]] - Directory tree
-    * [[en:docs:os2:cmd:internal:type|TYPE]] - Display file(s)
-    * [[en:docs:os2:cmd:internal:unalias|UNALIAS]] - Remove aliases
-    * [[en:docs:os2:cmd:internal:unset|UNSET]] - Remove environment variables
-    * [[en:docs:os2:cmd:internal:ver|VER]] - Display the CMD.EXE and OS/2 version
-    * [[en:docs:os2:cmd:internal:verify|VERIFY]] - Enable or disable disk write verification
-    * [[en:docs:os2:cmd:internal:vol|VOL]] - Display disk volume labels
-    * [[en:docs:os2:cmd:internal:vscrput|VSCRPUT]] - Display text vertically and in color
-    * [[en:docs:os2:cmd:internal:window|WINDOW]] - Change the window state or title
-    * [[en:docs:os2:cmd:internal:y|Y]] - "Y" pipe fitting
-  * [[en:docs:os2:cmd:external|External Commands]]
-  * [[en:docs:os2:cmd:alias|Aliases]]
-  * [[en:docs:os2:cmd:batch|Batch Files]]
-    * [[en:docs:os2:cmd:batch:bat-cmd-btm|.BAT, .CMD, and .BTM Files]]
-    * [[en:docs:os2:cmd:batch:echoing|Echoing in Batch Files]]
-    * [[en:docs:os2:cmd:batch:params|Batch File Parameters]]
-    * [[en:docs:os2:cmd:batch:envvars|Using Environment Variables]]
-    * [[en:docs:os2:cmd:batch:cmds|Batch File Commands]]
-    * [[en:docs:os2:cmd:batch:interrupting|Interrupting a Batch File]]
-    * [[en:docs:os2:cmd:batch:automatic|Automatic Batch Files]]
-    * [[en:docs:os2:cmd:batch:detecting-cmd|Detecting CMD.EXE]]
-    * [[en:docs:os2:cmd:batch:using-aliases|Using Aliases in Batch Files]]
-    * [[en:docs:os2:cmd:batch:debugging|Debugging Batch Files]]
-    * [[en:docs:os2:cmd:batch:processing|Batch File String Processing]]
-    * [[en:docs:os2:cmd:batch:line-cont|Batch File Line Continuation]]
-    * [[en:docs:os2:cmd:batch:compression|Batch File Compression]]
-    * [[en:docs:os2:cmd:batch:special-char|Special Character Compatibility]]
-    * [[en:docs:os2:cmd:batch:cmdparse|Command Parsing]]
-    * [[en:docs:os2:cmd:batch:argquot|Argument Quoting]]
-    * [[en:docs:os2:cmd:batch:rexx|REXX Support]]
-    * [[en:docs:os2:cmd:batch:extproc|EXTPROC Support]]
-  * [[en:docs:os2:cmd:env|Environment Variables and Functions]]
-    * [[en:docs:os2:cmd:env:cdpath|CDPATH]]
-    * [[en:docs:os2:cmd:env:cmdline|cmdline]]
-    * [[en:docs:os2:cmd:env:colordir|COLORDIR]]
-    * [[en:docs:os2:cmd:env:comspec|COMSPEC]]
-    * [[en:docs:os2:cmd:env:filecompletion|FILECOMPLETION]]
-    * [[en:docs:os2:cmd:env:path|PATH]]
-    * [[en:docs:os2:cmd:env:pathext|PATHEXT]]
-    * [[en:docs:os2:cmd:env:prompt|PROMPT]]
-    * [[en:docs:os2:cmd:env:internal|Internal Variables]]
-      * [[en:docs:os2:cmd:env:internal:quest|?]]
-      * [[en:docs:os2:cmd:env:internal:qquest|_?]]
-      * [[en:docs:os2:cmd:env:internal:eq|=]]
-      * [[en:docs:os2:cmd:env:internal:plus|+]]
-      * [[en:docs:os2:cmd:env:internal:4ver|_4VER]]
-      * [[en:docs:os2:cmd:env:internal:ansi|_ANSI]]
-      * [[en:docs:os2:cmd:env:internal:apmac|_APMAC]]
-      * [[en:docs:os2:cmd:env:internal:apmbatt|_APMBATT]]
-      * [[en:docs:os2:cmd:env:internal:apmlife|_APMLIFE]]
-      * [[en:docs:os2:cmd:env:internal:batch|_BATCH]]
-      * [[en:docs:os2:cmd:env:internal:batchline|_BATCHLINE]]
-      * [[en:docs:os2:cmd:env:internal:batchname|_BATCHNAME]]
-      * [[en:docs:os2:cmd:env:internal:bg|_BG]]
-      * [[en:docs:os2:cmd:env:internal:boot|_BOOT]]
-      * [[en:docs:os2:cmd:env:internal:ci|_CI]]
-      * [[en:docs:os2:cmd:env:internal:cmdproc|_CMDPROC]]
-      * [[en:docs:os2:cmd:env:internal:co|_CO]]
-      * [[en:docs:os2:cmd:env:internal:codepage|_CODEPAGE]]
-      * [[en:docs:os2:cmd:env:internal:column|_COLUMN]]
-      * [[en:docs:os2:cmd:env:internal:columns|_COLUMNS]]
-      * [[en:docs:os2:cmd:env:internal:country|_COUNTRY]]
-      * [[en:docs:os2:cmd:env:internal:cpu|_CPU]]
-      * [[en:docs:os2:cmd:env:internal:cwd|_CWD]]
-      * [[en:docs:os2:cmd:env:internal:cwds|_CWDS]]
-      * [[en:docs:os2:cmd:env:internal:cwp|_CWP]]
-      * [[en:docs:os2:cmd:env:internal:cwps|_CWPS]]
-      * [[en:docs:os2:cmd:env:internal:date|_DATE]]
-      * [[en:docs:os2:cmd:env:internal:day|_DAY]]
-      * [[en:docs:os2:cmd:env:internal:disk|_DISK]]
-      * [[en:docs:os2:cmd:env:internal:dname|_DNAME]]
-      * [[en:docs:os2:cmd:env:internal:dos|_DOS]]
-      * [[en:docs:os2:cmd:env:internal:dosver|_DOSVER]]
-      * [[en:docs:os2:cmd:env:internal:dow|_DOW]]
-      * [[en:docs:os2:cmd:env:internal:dowi|_DOWI]]
-      * [[en:docs:os2:cmd:env:internal:doy|_DOY]]
-      * [[en:docs:os2:cmd:env:internal:fg|_FG]]
-      * [[en:docs:os2:cmd:env:internal:hlogfile|_HLOGFILE]]
-      * [[en:docs:os2:cmd:env:internal:hour|_HOUR]]
-      * [[en:docs:os2:cmd:env:internal:kbhit|_KBHIT]]
-      * [[en:docs:os2:cmd:env:internal:lastdisk|_LASTDISK]]
-      * [[en:docs:os2:cmd:env:internal:logfile|_LOGFILE]]
-      * [[en:docs:os2:cmd:env:internal:minute|_MINUTE]]
-      * [[en:docs:os2:cmd:env:internal:monitor|_MONITOR]]
-      * [[en:docs:os2:cmd:env:internal:month|_MONTH]]
-      * [[en:docs:os2:cmd:env:internal:mouse|_MOUSE]]
-      * [[en:docs:os2:cmd:env:internal:ndp|_NDP]]
-      * [[en:docs:os2:cmd:env:internal:pid|_PID]]
-      * [[en:docs:os2:cmd:env:internal:pipe|_PIPE]]
-      * [[en:docs:os2:cmd:env:internal:ppid|_PPID]]
-      * [[en:docs:os2:cmd:env:internal:ptype|_PTYPE]]
-      * [[en:docs:os2:cmd:env:internal:row|_ROW]]
-      * [[en:docs:os2:cmd:env:internal:rows|_ROWS]]
-      * [[en:docs:os2:cmd:env:internal:second|_SECOND]]
-      * [[en:docs:os2:cmd:env:internal:shell|_SHELL]]
-      * [[en:docs:os2:cmd:env:internal:sid|_SID]]
-      * [[en:docs:os2:cmd:env:internal:syserr|_SYSERR]]
-      * [[en:docs:os2:cmd:env:internal:time|_TIME]]
-      * [[en:docs:os2:cmd:env:internal:transient|_TRANSIENT]]
-      * [[en:docs:os2:cmd:env:internal:video|_VIDEO]]
-      * [[en:docs:os2:cmd:env:internal:wintitle|_WINTITLE]]
-      * [[en:docs:os2:cmd:env:internal:xpixels|_XPIXELS]]
-      * [[en:docs:os2:cmd:env:internal:year|_YEAR]]
-      * [[en:docs:os2:cmd:env:internal:ypixels|_YPIXELS]]
-    * [[en:docs:os2:cmd:func|Variable Functions]]
-      * [[en:docs:os2:cmd:func:alias|@ALIAS]]
-      * [[en:docs:os2:cmd:func:ascii|@ASCII]]
-      * [[en:docs:os2:cmd:func:attrib|@ATTRIB]]
-      * [[en:docs:os2:cmd:func:cdrom|@CDROM]]
-      * [[en:docs:os2:cmd:func:char|@CHAR]]
-      * [[en:docs:os2:cmd:func:clip|@CLIP]]
-      * [[en:docs:os2:cmd:func:comma|@COMMA]]
-      * [[en:docs:os2:cmd:func:convert|@CONVERT]]
-      * [[en:docs:os2:cmd:func:date|@DATE]]
-      * [[en:docs:os2:cmd:func:day|@DAY]]
-      * [[en:docs:os2:cmd:func:dec|@DEC]]
-      * [[en:docs:os2:cmd:func:descript|@DESCRIPT]]
-      * [[en:docs:os2:cmd:func:device|@DEVICE]]
-      * [[en:docs:os2:cmd:func:diskfree|@DISKFREE]]
-      * [[en:docs:os2:cmd:func:disktotal|@DISKTOTAL]]
-      * [[en:docs:os2:cmd:func:diskused|@DISKUSED]]
-      * [[en:docs:os2:cmd:func:dosmem|@DOSMEM]]
-      * [[en:docs:os2:cmd:func:dow|@DOW]]
-      * [[en:docs:os2:cmd:func:dowi|@DOWI]]
-      * [[en:docs:os2:cmd:func:doy|@DOY]]
-      * [[en:docs:os2:cmd:func:earead|@EAREAD]]
-      * [[en:docs:os2:cmd:func:eawrite|@EAWRITE]]
-      * [[en:docs:os2:cmd:func:eval|@EVAL]]
-      * [[en:docs:os2:cmd:func:exec|@EXEC]]
-      * [[en:docs:os2:cmd:func:execstr|@EXECSTR]]
-      * [[en:docs:os2:cmd:func:exetype|@EXETYPE]]
-      * [[en:docs:os2:cmd:func:expand|@EXPAND]]
-      * [[en:docs:os2:cmd:func:ext|@EXT]]
-      * [[en:docs:os2:cmd:func:fileage|@FILEAGE]]
-      * [[en:docs:os2:cmd:func:fileclose|@FILECLOSE]]
-      * [[en:docs:os2:cmd:func:filedate|@FILEDATE]]
-      * [[en:docs:os2:cmd:func:filename|@FILENAME]]
-      * [[en:docs:os2:cmd:func:fileopen|@FILEOPEN]]
-      * [[en:docs:os2:cmd:func:fileread|@FILEREAD]]
-      * [[en:docs:os2:cmd:func:files|@FILES]]
-      * [[en:docs:os2:cmd:func:fileseek|@FILESEEK]]
-      * [[en:docs:os2:cmd:func:fileseekl|@FILESEEKL]]
-      * [[en:docs:os2:cmd:func:filesize|@FILESIZE]]
-      * [[en:docs:os2:cmd:func:filetime|@FILETIME]]
-      * [[en:docs:os2:cmd:func:filewrite|@FILEWRITE]]
-      * [[en:docs:os2:cmd:func:filewriteb|@FILEWRITEB]]
-      * [[en:docs:os2:cmd:func:findclose|@FINDCLOSE]]
-      * [[en:docs:os2:cmd:func:findfirst|@FINDFIRST]]
-      * [[en:docs:os2:cmd:func:findnext|@FINDNEXT]]
-      * [[en:docs:os2:cmd:func:format|@FORMAT]]
-      * [[en:docs:os2:cmd:func:fstype|@FSTYPE]]
-      * [[en:docs:os2:cmd:func:full|@FULL]]
-      * [[en:docs:os2:cmd:func:if|@IF]]
-      * [[en:docs:os2:cmd:func:inc|@INC]]
-      * [[en:docs:os2:cmd:func:index|@INDEX]]
-      * [[en:docs:os2:cmd:func:insert|@INSERT]]
-      * [[en:docs:os2:cmd:func:instr|@INSTR]]
-      * [[en:docs:os2:cmd:func:int|@INT]]
-      * [[en:docs:os2:cmd:func:label|@LABEL]]
-      * [[en:docs:os2:cmd:func:left|@LEFT]]
-      * [[en:docs:os2:cmd:func:len|@LEN]]
-      * [[en:docs:os2:cmd:func:line|@LINE]]
-      * [[en:docs:os2:cmd:func:lines|@LINES]]
-      * [[en:docs:os2:cmd:func:lower|@LOWER]]
-      * [[en:docs:os2:cmd:func:makeage|@MAKEAGE]]
-      * [[en:docs:os2:cmd:func:makedate|@MAKEDATE]]
-      * [[en:docs:os2:cmd:func:maketime|@MAKETIME]]
-      * [[en:docs:os2:cmd:func:month|@MONTH]]
-      * [[en:docs:os2:cmd:func:name|@NAME]]
-      * [[en:docs:os2:cmd:func:numeric|@NUMERIC]]
-      * [[en:docs:os2:cmd:func:path|@PATH]]
-      * [[en:docs:os2:cmd:func:random|@RANDOM]]
-      * [[en:docs:os2:cmd:func:readscr|@READSCR]]
-      * [[en:docs:os2:cmd:func:ready|@READY]]
-      * [[en:docs:os2:cmd:func:remote|@REMOTE]]
-      * [[en:docs:os2:cmd:func:removable|@REMOVABLE]]
-      * [[en:docs:os2:cmd:func:repeat|@REPEAT]]
-      * [[en:docs:os2:cmd:func:replace|@REPLACE]]
-      * [[en:docs:os2:cmd:func:rexx|@REXX]]
-      * [[en:docs:os2:cmd:func:right|@RIGHT]]
-      * [[en:docs:os2:cmd:func:search|@SEARCH]]
-      * [[en:docs:os2:cmd:func:select|@SELECT]]
-      * [[en:docs:os2:cmd:func:strip|@STRIP]]
-      * [[en:docs:os2:cmd:func:substr|@SUBSTR]]
-      * [[en:docs:os2:cmd:func:time|@TIME]]
-      * [[en:docs:os2:cmd:func:timer|@TIMER]]
-      * [[en:docs:os2:cmd:func:trim|@TRIM]]
-      * [[en:docs:os2:cmd:func:unique|@UNIQUE]]
-      * [[en:docs:os2:cmd:func:upper|@UPPER]]
-      * [[en:docs:os2:cmd:func:wild|@WILD]]
-      * [[en:docs:os2:cmd:func:word|@WORD]]
-      * [[en:docs:os2:cmd:func:words|@WORDS]]
-      * [[en:docs:os2:cmd:func:year|@YEAR]]
+  * [[en:ibm:cmd:about|About Command reference]]
+  * [[en:ibm:cmd:cmdline|The Command Line]]
+    * [[en:ibm:cmd:cmdline:editing|Command-Line Editing]]
+    * [[en:ibm:cmd:cmdline:hist|Command History and Recall]]
+    * [[en:ibm:cmd:cmdline:histwin|Command History Window]]
+    * [[en:ibm:cmd:cmdline:cmd-names-and-parm|Command Names and Parameters]]
+    * [[en:ibm:cmd:cmdline:completion|Filename Completion]]
+    * [[en:ibm:cmd:cmdline:auto-dir-chg|Automatic Directory Changes]]
+    * [[en:ibm:cmd:cmdline:dirhist|Directory History Window]]
+      * [[en:ibm:cmd:cmdline:dirhist:local-and-glob|Local and Global Directory History]]
+    * [[en:ibm:cmd:cmdline:mult-cmds|Multiple Commands]]
+    * [[en:ibm:cmd:cmdline:aliases|Expanding and Disabling Aliases]]
+    * [[en:ibm:cmd:cmdline:cmdline-help|Command Line Help]]
+    * [[en:ibm:cmd:cmdline:cmdline-len-limits|Command-Line Length Limits]]
+  * [[en:ibm:cmd:file|File Selection]]
+    * [[en:ibm:cmd:file:parentdir|Extended Parent Directory Names]]
+    * [[en:ibm:cmd:file:wild|Wildcards]]
+    * [[en:ibm:cmd:file:ranges|Ranges]]
+      * [[en:ibm:cmd:file:ranges|Date, Time, and Size Ranges]]
+        * [[en:ibm:cmd:file:ranges:date|Date Ranges]]
+        * [[en:ibm:cmd:file:ranges:time|Time Ranges]]
+        * [[en:ibm:cmd:file:ranges:size|Size Ranges]]
+      * [[en:ibm:cmd:file:exclusion|File Exclusion Ranges]]
+    * [[en:ibm:cmd:file:mult|Multiple Filenames]]
+    * [[en:ibm:cmd:file:incl|Include Lists]]
+    * [[en:ibm:cmd:file:ext|Executable Extensions]]
+  * [[en:ibm:cmd:navig|Directory Navigation]]
+      * [[en:ibm:cmd:navig:ext-search|Extended Directory Searches]]
+      * [[en:ibm:cmd:navig:cdpath|CDPATH]]
+  * [[en:ibm:cmd:other|Other Features]]
+    * [[en:ibm:cmd:other:prompts|Page and File Prompts]]
+    * [[en:ibm:cmd:other:redir|Redirection and Piping]]
+      * [[en:ibm:cmd:other:redir:redirection|Redirection]]
+      * [[en:ibm:cmd:other:redir:piping|Piping]]
+    * [[en:ibm:cmd:other:keystack|Using the Keystack]]
+    * [[en:ibm:cmd:other:waiting|Waiting for Applications to Finish]]
+    * [[en:ibm:cmd:other:criterr|Critical Errors]]
+    * [[en:ibm:cmd:other:cond|Conditional Commands]]
+    * [[en:ibm:cmd:other:grouping|Command Grouping]]
+    * [[en:ibm:cmd:other:escape|Escape Character]]
+  * [[en:ibm:cmd:internal|Internal Commands]]
+    * [[en:ibm:cmd:internal:help|?]] - List the internal commands
+    * [[en:ibm:cmd:internal:activate|ACTIVATE]] - Activate a window
+    * [[en:ibm:cmd:internal:alias|ALIAS]] - Create or display aliases
+    * [[en:ibm:cmd:internal:attrib|ATTRIB]] - Change or view file attributes
+    * [[en:ibm:cmd:internal:beep|BEEP]] - Beep the speaker
+    * [[en:ibm:cmd:internal:call|CALL]] - Execute one batch file from another
+    * [[en:ibm:cmd:internal:cancel|CANCEL]] - Terminate batch file processing
+    * [[en:ibm:cmd:internal:cd|CD]] - Change the current directory
+    * [[en:ibm:cmd:internal:cdd|CDD]] - Change the current drive and directory
+    * [[en:ibm:cmd:internal:chcp|CHCP]] - Change the current code page
+    * [[en:ibm:cmd:internal:cls|CLS]] - Clear the screen
+    * [[en:ibm:cmd:internal:color|COLOR]] - Change the display colors
+    * [[en:ibm:cmd:internal:copy|COPY]] - Copy files
+    * [[en:ibm:cmd:internal:date|DATE]] - Change the system date
+    * [[en:ibm:cmd:internal:del|DEL]] - Delete one or more files
+    * [[en:ibm:cmd:internal:delay|DELAY]] - Pause for a specified length of time
+    * [[en:ibm:cmd:internal:describe|DESCRIBE]] - Create or modify file descriptions
+    * [[en:ibm:cmd:internal:detach|DETACH]] - Start a program in detached mode
+    * [[en:ibm:cmd:internal:dir|DIR]] - Display directories
+    * [[en:ibm:cmd:internal:dirhistory|DIRHISTORY]] - Display, read, or modify the directory history list
+    * [[en:ibm:cmd:internal:dirs|DIRS]] - Display the directory stack
+    * [[en:ibm:cmd:internal:do|DO]] - Create loops in batch files
+    * [[en:ibm:cmd:internal:dpath|DPATH]] - Set the data search path
+    * [[en:ibm:cmd:internal:drawbox|DRAWBOX]] - Draw a box
+    * [[en:ibm:cmd:internal:drawhline|DRAWHLINE]] - Draw a horizontal line
+    * [[en:ibm:cmd:internal:drawvline|DRAWVLINE]] - Draw a vertical line
+    * [[en:ibm:cmd:internal:echo|ECHO]] and [[en:docs:os2:cmd:internal:echo|ECHOERR]] - Display a message / set echo state
+    * [[en:ibm:cmd:internal:echos|ECHOS]] and [[en:docs:os2:cmd:internal:echos|ECHOSERR]] - Display a message without CR/LF
+    * [[en:ibm:cmd:internal:endlocal|ENDLOCAL]] - Restore the saved environment
+    * [[en:ibm:cmd:internal:eset|ESET]] - Edit environment variables and aliases
+    * [[en:ibm:cmd:internal:except|EXCEPT]] - Exclude files from a command
+    * [[en:ibm:cmd:internal:exit|EXIT]] - Exit CMD.EXE
+    * [[en:ibm:cmd:internal:ffind|FFIND]] - Search for files
+    * [[en:ibm:cmd:internal:for|FOR]] - Repeat a command
+    * [[en:ibm:cmd:internal:free|FREE]] - Display total and free disk space
+    * [[en:ibm:cmd:internal:global|GLOBAL]] - Execute a command all subdirectories
+    * [[en:ibm:cmd:internal:gosub|GOSUB]] - Execute a subroutine in a batch file
+    * [[en:ibm:cmd:internal:goto|GOTO]] - Branch within a batch file
+    * [[en:ibm:cmd:internal:help|HELP]] - Display help
+    * [[en:ibm:cmd:internal:history|HISTORY]] - Manage the history list
+    * [[en:ibm:cmd:internal:if|IF]] - Execute a command if a condition is true
+    * [[en:ibm:cmd:internal:if-then-else|IFF]] - [[en:docs:os2:cmd:internal:if-then-else|IF]] / [[en:docs:os2:cmd:internal:if-then-else|THEN]] / [[en:ibm:cmd:internal:if-then-else|ELSE]] conditional command execution
+    * [[en:ibm:cmd:internal:inkey|INKEY]] - Get a character from the keyboard
+    * [[en:ibm:cmd:internal:input|INPUT]] - Get a string from the keyboard
+    * [[en:ibm:cmd:internal:keybd|KEYBD]] - Set the keyboard toggles
+    * [[en:ibm:cmd:internal:keys|KEYS]] - Enable or disable the history list
+    * [[en:ibm:cmd:internal:keystack|KEYSTACK]] - Feed keystrokes to a program or command
+    * [[en:ibm:cmd:internal:list|LIST]] - Display a file
+    * [[en:ibm:cmd:internal:loadbtm|LOADBTM]] - Switch a batch file's mode
+    * [[en:ibm:cmd:internal:log|LOG]] - Save a log of commands
+    * [[en:ibm:cmd:internal:md|MD]] - Create a subdirectory
+    * [[en:ibm:cmd:internal:memory|MEMORY]] - Display memory statistics
+    * [[en:ibm:cmd:internal:move|MOVE]] - Move files
+    * [[en:ibm:cmd:internal:on|ON]] - Handle Ctrl-Break and errors in batch files
+    * [[en:ibm:cmd:internal:option|OPTION]] - Modify the command processor configuration
+    * [[en:ibm:cmd:internal:path|PATH]] - Set the executable file search path
+    * [[en:ibm:cmd:internal:pause|PAUSE]] - Suspend batch file or alias execution
+    * [[en:ibm:cmd:internal:popd|POPD]] - Restore the disk drive and directory
+    * [[en:ibm:cmd:internal:prompt|PROMPT]] - Change the command-line prompt
+    * [[en:ibm:cmd:internal:pushd|PUSHD]] - Save the disk drive and directory
+    * [[en:ibm:cmd:internal:quit|QUIT]] - Terminate a batch file
+    * [[en:ibm:cmd:internal:rd|RD]] - Remove subdirectories
+    * [[en:ibm:cmd:internal:reboot|REBOOT]] - Reboot the system
+    * [[en:ibm:cmd:internal:rem|REM]] - Put a comment in a batch file
+    * [[en:ibm:cmd:internal:ren|REN]] - Rename files or subdirectories
+    * [[en:ibm:cmd:internal:return|RETURN]] - Return from a subroutine in a batch file
+    * [[en:ibm:cmd:internal:screen|SCREEN]] - Position the cursor and display text
+    * [[en:ibm:cmd:internal:scrput|SCRPUT]] - Display text in color
+    * [[en:ibm:cmd:internal:select|SELECT]] - Select files for a command
+    * [[en:ibm:cmd:internal:set|SET]] - Create or modify environment variables
+    * [[en:ibm:cmd:internal:setdos|SETDOS]] - Set the CMD.EXE configuration
+    * [[en:ibm:cmd:internal:setlocal|SETLOCAL]] - Save the environment
+    * [[en:ibm:cmd:internal:shift|SHIFT]] - Shift batch file parameters
+    * [[en:ibm:cmd:internal:shralias|SHRALIAS]] - Load or unload SHRALIAS.EXE
+    * [[en:ibm:cmd:internal:start|START]] - Start a program in another session
+    * [[en:ibm:cmd:internal:switch|SWITCH]] - Select commands based on a value
+    * [[en:ibm:cmd:internal:tee|TEE]] - "Tee" pipe fitting
+    * [[en:ibm:cmd:internal:text|TEXT]] - Display text in a batch file
+    * [[en:ibm:cmd:internal:time|TIME]] - Set the system time
+    * [[en:ibm:cmd:internal:timer|TIMER]] - Start or stop a stopwatch
+    * [[en:ibm:cmd:internal:title|TITLE]] - Window title
+    * [[en:ibm:cmd:internal:touch|TOUCH]] - Change date and time stamps
+    * [[en:ibm:cmd:internal:tree|TREE]] - Directory tree
+    * [[en:ibm:cmd:internal:type|TYPE]] - Display file(s)
+    * [[en:ibm:cmd:internal:unalias|UNALIAS]] - Remove aliases
+    * [[en:ibm:cmd:internal:unset|UNSET]] - Remove environment variables
+    * [[en:ibm:cmd:internal:ver|VER]] - Display the CMD.EXE and OS/2 version
+    * [[en:ibm:cmd:internal:verify|VERIFY]] - Enable or disable disk write verification
+    * [[en:ibm:cmd:internal:vol|VOL]] - Display disk volume labels
+    * [[en:ibm:cmd:internal:vscrput|VSCRPUT]] - Display text vertically and in color
+    * [[en:ibm:cmd:internal:window|WINDOW]] - Change the window state or title
+    * [[en:ibm:cmd:internal:y|Y]] - "Y" pipe fitting
+  * [[en:ibm:cmd:external|External Commands]]
+  * [[en:ibm:cmd:alias|Aliases]]
+  * [[en:ibm:cmd:batch|Batch Files]]
+    * [[en:ibm:cmd:batch:bat-cmd-btm|.BAT, .CMD, and .BTM Files]]
+    * [[en:ibm:cmd:batch:echoing|Echoing in Batch Files]]
+    * [[en:ibm:cmd:batch:params|Batch File Parameters]]
+    * [[en:ibm:cmd:batch:envvars|Using Environment Variables]]
+    * [[en:ibm:cmd:batch:cmds|Batch File Commands]]
+    * [[en:ibm:cmd:batch:interrupting|Interrupting a Batch File]]
+    * [[en:ibm:cmd:batch:automatic|Automatic Batch Files]]
+    * [[en:ibm:cmd:batch:detecting-cmd|Detecting CMD.EXE]]
+    * [[en:ibm:cmd:batch:using-aliases|Using Aliases in Batch Files]]
+    * [[en:ibm:cmd:batch:debugging|Debugging Batch Files]]
+    * [[en:ibm:cmd:batch:processing|Batch File String Processing]]
+    * [[en:ibm:cmd:batch:line-cont|Batch File Line Continuation]]
+    * [[en:ibm:cmd:batch:compression|Batch File Compression]]
+    * [[en:ibm:cmd:batch:special-char|Special Character Compatibility]]
+    * [[en:ibm:cmd:batch:cmdparse|Command Parsing]]
+    * [[en:ibm:cmd:batch:argquot|Argument Quoting]]
+    * [[en:ibm:cmd:batch:rexx|REXX Support]]
+    * [[en:ibm:cmd:batch:extproc|EXTPROC Support]]
+  * [[en:ibm:cmd:env|Environment Variables and Functions]]
+    * [[en:ibm:cmd:env:cdpath|CDPATH]]
+    * [[en:ibm:cmd:env:cmdline|cmdline]]
+    * [[en:ibm:cmd:env:colordir|COLORDIR]]
+    * [[en:ibm:cmd:env:comspec|COMSPEC]]
+    * [[en:ibm:cmd:env:filecompletion|FILECOMPLETION]]
+    * [[en:ibm:cmd:env:path|PATH]]
+    * [[en:ibm:cmd:env:pathext|PATHEXT]]
+    * [[en:ibm:cmd:env:prompt|PROMPT]]
+    * [[en:ibm:cmd:env:internal|Internal Variables]]
+      * [[en:ibm:cmd:env:internal:quest|?]]
+      * [[en:ibm:cmd:env:internal:qquest|_?]]
+      * [[en:ibm:cmd:env:internal:eq|=]]
+      * [[en:ibm:cmd:env:internal:plus|+]]
+      * [[en:ibm:cmd:env:internal:4ver|_4VER]]
+      * [[en:ibm:cmd:env:internal:ansi|_ANSI]]
+      * [[en:ibm:cmd:env:internal:apmac|_APMAC]]
+      * [[en:ibm:cmd:env:internal:apmbatt|_APMBATT]]
+      * [[en:ibm:cmd:env:internal:apmlife|_APMLIFE]]
+      * [[en:ibm:cmd:env:internal:batch|_BATCH]]
+      * [[en:ibm:cmd:env:internal:batchline|_BATCHLINE]]
+      * [[en:ibm:cmd:env:internal:batchname|_BATCHNAME]]
+      * [[en:ibm:cmd:env:internal:bg|_BG]]
+      * [[en:ibm:cmd:env:internal:boot|_BOOT]]
+      * [[en:ibm:cmd:env:internal:ci|_CI]]
+      * [[en:ibm:cmd:env:internal:cmdproc|_CMDPROC]]
+      * [[en:ibm:cmd:env:internal:co|_CO]]
+      * [[en:ibm:cmd:env:internal:codepage|_CODEPAGE]]
+      * [[en:ibm:cmd:env:internal:column|_COLUMN]]
+      * [[en:ibm:cmd:env:internal:columns|_COLUMNS]]
+      * [[en:ibm:cmd:env:internal:country|_COUNTRY]]
+      * [[en:ibm:cmd:env:internal:cpu|_CPU]]
+      * [[en:ibm:cmd:env:internal:cwd|_CWD]]
+      * [[en:ibm:cmd:env:internal:cwds|_CWDS]]
+      * [[en:ibm:cmd:env:internal:cwp|_CWP]]
+      * [[en:ibm:cmd:env:internal:cwps|_CWPS]]
+      * [[en:ibm:cmd:env:internal:date|_DATE]]
+      * [[en:ibm:cmd:env:internal:day|_DAY]]
+      * [[en:ibm:cmd:env:internal:disk|_DISK]]
+      * [[en:ibm:cmd:env:internal:dname|_DNAME]]
+      * [[en:ibm:cmd:env:internal:dos|_DOS]]
+      * [[en:ibm:cmd:env:internal:dosver|_DOSVER]]
+      * [[en:ibm:cmd:env:internal:dow|_DOW]]
+      * [[en:ibm:cmd:env:internal:dowi|_DOWI]]
+      * [[en:ibm:cmd:env:internal:doy|_DOY]]
+      * [[en:ibm:cmd:env:internal:fg|_FG]]
+      * [[en:ibm:cmd:env:internal:hlogfile|_HLOGFILE]]
+      * [[en:ibm:cmd:env:internal:hour|_HOUR]]
+      * [[en:ibm:cmd:env:internal:kbhit|_KBHIT]]
+      * [[en:ibm:cmd:env:internal:lastdisk|_LASTDISK]]
+      * [[en:ibm:cmd:env:internal:logfile|_LOGFILE]]
+      * [[en:ibm:cmd:env:internal:minute|_MINUTE]]
+      * [[en:ibm:cmd:env:internal:monitor|_MONITOR]]
+      * [[en:ibm:cmd:env:internal:month|_MONTH]]
+      * [[en:ibm:cmd:env:internal:mouse|_MOUSE]]
+      * [[en:ibm:cmd:env:internal:ndp|_NDP]]
+      * [[en:ibm:cmd:env:internal:pid|_PID]]
+      * [[en:ibm:cmd:env:internal:pipe|_PIPE]]
+      * [[en:ibm:cmd:env:internal:ppid|_PPID]]
+      * [[en:ibm:cmd:env:internal:ptype|_PTYPE]]
+      * [[en:ibm:cmd:env:internal:row|_ROW]]
+      * [[en:ibm:cmd:env:internal:rows|_ROWS]]
+      * [[en:ibm:cmd:env:internal:second|_SECOND]]
+      * [[en:ibm:cmd:env:internal:shell|_SHELL]]
+      * [[en:ibm:cmd:env:internal:sid|_SID]]
+      * [[en:ibm:cmd:env:internal:syserr|_SYSERR]]
+      * [[en:ibm:cmd:env:internal:time|_TIME]]
+      * [[en:ibm:cmd:env:internal:transient|_TRANSIENT]]
+      * [[en:ibm:cmd:env:internal:video|_VIDEO]]
+      * [[en:ibm:cmd:env:internal:wintitle|_WINTITLE]]
+      * [[en:ibm:cmd:env:internal:xpixels|_XPIXELS]]
+      * [[en:ibm:cmd:env:internal:year|_YEAR]]
+      * [[en:ibm:cmd:env:internal:ypixels|_YPIXELS]]
+    * [[en:ibm:cmd:func|Variable Functions]]
+      * [[en:ibm:cmd:func:alias|@ALIAS]]
+      * [[en:ibm:cmd:func:ascii|@ASCII]]
+      * [[en:ibm:cmd:func:attrib|@ATTRIB]]
+      * [[en:ibm:cmd:func:cdrom|@CDROM]]
+      * [[en:ibm:cmd:func:char|@CHAR]]
+      * [[en:ibm:cmd:func:clip|@CLIP]]
+      * [[en:ibm:cmd:func:comma|@COMMA]]
+      * [[en:ibm:cmd:func:convert|@CONVERT]]
+      * [[en:ibm:cmd:func:date|@DATE]]
+      * [[en:ibm:cmd:func:day|@DAY]]
+      * [[en:ibm:cmd:func:dec|@DEC]]
+      * [[en:ibm:cmd:func:descript|@DESCRIPT]]
+      * [[en:ibm:cmd:func:device|@DEVICE]]
+      * [[en:ibm:cmd:func:diskfree|@DISKFREE]]
+      * [[en:ibm:cmd:func:disktotal|@DISKTOTAL]]
+      * [[en:ibm:cmd:func:diskused|@DISKUSED]]
+      * [[en:ibm:cmd:func:dosmem|@DOSMEM]]
+      * [[en:ibm:cmd:func:dow|@DOW]]
+      * [[en:ibm:cmd:func:dowi|@DOWI]]
+      * [[en:ibm:cmd:func:doy|@DOY]]
+      * [[en:ibm:cmd:func:earead|@EAREAD]]
+      * [[en:ibm:cmd:func:eawrite|@EAWRITE]]
+      * [[en:ibm:cmd:func:eval|@EVAL]]
+      * [[en:ibm:cmd:func:exec|@EXEC]]
+      * [[en:ibm:cmd:func:execstr|@EXECSTR]]
+      * [[en:ibm:cmd:func:exetype|@EXETYPE]]
+      * [[en:ibm:cmd:func:expand|@EXPAND]]
+      * [[en:ibm:cmd:func:ext|@EXT]]
+      * [[en:ibm:cmd:func:fileage|@FILEAGE]]
+      * [[en:ibm:cmd:func:fileclose|@FILECLOSE]]
+      * [[en:ibm:cmd:func:filedate|@FILEDATE]]
+      * [[en:ibm:cmd:func:filename|@FILENAME]]
+      * [[en:ibm:cmd:func:fileopen|@FILEOPEN]]
+      * [[en:ibm:cmd:func:fileread|@FILEREAD]]
+      * [[en:ibm:cmd:func:files|@FILES]]
+      * [[en:ibm:cmd:func:fileseek|@FILESEEK]]
+      * [[en:ibm:cmd:func:fileseekl|@FILESEEKL]]
+      * [[en:ibm:cmd:func:filesize|@FILESIZE]]
+      * [[en:ibm:cmd:func:filetime|@FILETIME]]
+      * [[en:ibm:cmd:func:filewrite|@FILEWRITE]]
+      * [[en:ibm:cmd:func:filewriteb|@FILEWRITEB]]
+      * [[en:ibm:cmd:func:findclose|@FINDCLOSE]]
+      * [[en:ibm:cmd:func:findfirst|@FINDFIRST]]
+      * [[en:ibm:cmd:func:findnext|@FINDNEXT]]
+      * [[en:ibm:cmd:func:format|@FORMAT]]
+      * [[en:ibm:cmd:func:fstype|@FSTYPE]]
+      * [[en:ibm:cmd:func:full|@FULL]]
+      * [[en:ibm:cmd:func:if|@IF]]
+      * [[en:ibm:cmd:func:inc|@INC]]
+      * [[en:ibm:cmd:func:index|@INDEX]]
+      * [[en:ibm:cmd:func:insert|@INSERT]]
+      * [[en:ibm:cmd:func:instr|@INSTR]]
+      * [[en:ibm:cmd:func:int|@INT]]
+      * [[en:ibm:cmd:func:label|@LABEL]]
+      * [[en:ibm:cmd:func:left|@LEFT]]
+      * [[en:ibm:cmd:func:len|@LEN]]
+      * [[en:ibm:cmd:func:line|@LINE]]
+      * [[en:ibm:cmd:func:lines|@LINES]]
+      * [[en:ibm:cmd:func:lower|@LOWER]]
+      * [[en:ibm:cmd:func:makeage|@MAKEAGE]]
+      * [[en:ibm:cmd:func:makedate|@MAKEDATE]]
+      * [[en:ibm:cmd:func:maketime|@MAKETIME]]
+      * [[en:ibm:cmd:func:month|@MONTH]]
+      * [[en:ibm:cmd:func:name|@NAME]]
+      * [[en:ibm:cmd:func:numeric|@NUMERIC]]
+      * [[en:ibm:cmd:func:path|@PATH]]
+      * [[en:ibm:cmd:func:random|@RANDOM]]
+      * [[en:ibm:cmd:func:readscr|@READSCR]]
+      * [[en:ibm:cmd:func:ready|@READY]]
+      * [[en:ibm:cmd:func:remote|@REMOTE]]
+      * [[en:ibm:cmd:func:removable|@REMOVABLE]]
+      * [[en:ibm:cmd:func:repeat|@REPEAT]]
+      * [[en:ibm:cmd:func:replace|@REPLACE]]
+      * [[en:ibm:cmd:func:rexx|@REXX]]
+      * [[en:ibm:cmd:func:right|@RIGHT]]
+      * [[en:ibm:cmd:func:search|@SEARCH]]
+      * [[en:ibm:cmd:func:select|@SELECT]]
+      * [[en:ibm:cmd:func:strip|@STRIP]]
+      * [[en:ibm:cmd:func:substr|@SUBSTR]]
+      * [[en:ibm:cmd:func:time|@TIME]]
+      * [[en:ibm:cmd:func:timer|@TIMER]]
+      * [[en:ibm:cmd:func:trim|@TRIM]]
+      * [[en:ibm:cmd:func:unique|@UNIQUE]]
+      * [[en:ibm:cmd:func:upper|@UPPER]]
+      * [[en:ibm:cmd:func:wild|@WILD]]
+      * [[en:ibm:cmd:func:word|@WORD]]
+      * [[en:ibm:cmd:func:words|@WORDS]]
+      * [[en:ibm:cmd:func:year|@YEAR]]
   * [[en:docs:os2:cmd:ini|CMD.INI]]
     * [[en:docs:os2:cmd:ini:modifying|Modifying the .INI File]]
     * [[en:docs:os2:cmd:ini:using|Using the .INI File]]

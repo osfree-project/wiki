@@ -6,7 +6,7 @@ Here's the section related to the OS/2 API implementation
   * [[en:docs:os2:status|OS/2 personality prototype status]]
   * [[en:docs:os2:ifs|Installable File System]]
   * [[en:docs:os2:ixf|Installable Executable Format]]
-  * [[en:docs:os2:cmd:index|Command Line Reference]]
+  * [[en:ibm:cmd:index|Command Line Reference]]
   * [[en:docs:os2:modules|Modules and their entry points]]
   * [[en:docs:os2:pm:index|Presentation Manager]]
   * [[ru:docs:os2:freepm:index|FreePM Documentation]]
