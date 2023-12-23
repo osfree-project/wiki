@@ -1,0 +1,6 @@
+{{logos:win16.gif}}
+
+====== Calculator ======
+
+
+{{page>en:templates:win16app}}

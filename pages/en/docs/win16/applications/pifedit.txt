@@ -1,0 +1,6 @@
+{{logos:win16.gif}}
+
+====== PIF Editor ======
+
+
+{{page>en:templates:win16app}}

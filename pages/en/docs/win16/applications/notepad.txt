@@ -1,0 +1,6 @@
+{{logos:win16.gif}}
+
+====== Notepad ======
+
+
+{{page>en:templates:win16app}}
