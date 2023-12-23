@@ -1,3 +1,5 @@
+{{logos:win16.gif}}
+
 ====== Clock ======
 
 The simplest application is Clock. Clock displays the current date and time, using either analog or digital representation, as shown below:
