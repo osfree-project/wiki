@@ -18,10 +18,22 @@ Title bar of Clock window can be hide by mouse double-click on clock face or via
 
 {{:en:docs:win16:applications:notitle.png|Clock without title}}
 
-If you **Minimize** window, then simplified clock shown on Icon. To prevent overlapping of Clock by other windows you can set **Always on top** mode via **System** menu.
+If you **Minimize** window, then simplified clock shown on Icon.
+
+{{:en:docs:win16:applications:icon.png|Icon clock}}
+
+To prevent overlapping of Clock by other windows you can set **Always on top** mode via **System** menu.
 
 ===== Date and Time format =====
 
 Date and time format can be adjusted via Control Panel. Restart Clock to apply changes.
 
+===== CLOCK.INI =====
+
+Clock saves and restores its settings via CLOCK.INI file. All settings stored in Clock section
+
+  * Maximized
+  * sFont
+  * Options
+  * Position
 
