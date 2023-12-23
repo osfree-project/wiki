@@ -2,14 +2,16 @@
 
 The simplest application is Clock. Clock displays the current date and time, using either analog or digital representation, as shown below:
 
-{{:en:docs:win16:applications:digital.png|Digital clock}}
+{{:en:docs:win16:applications:digital.png|Digital clock}} {{:en:docs:win16:applications:analog.png|Analog clock}}
 
-View can be changed using Settings menu items Analog and Digital. You can disable or enable display of Seconds and Date part of the current time. All things changed in Settings saved on Clock close. On startup Clock restores all Settings. 
+View can be changed using **Settings** menu items **Analog** and **Digital**. You can disable or enable display of **Seconds** and **Date** part of the current time. All things changed in **Settings** saved on Clock close. On startup Clock restores all Settings. 
 
 ===== Clock’s Font =====
 
 Font, used for Digital Clock can be changed via **Set Font…** item of **Settings** menu.
- 
+
+{{:en:docs:win16:applications:font.png|Font setting}}
+
 ===== Title bar and Icon clock =====
 
 Title bar of Clock window can be hide by mouse double-click on clock face or via **Settings** menu. While title bar is hidden window can be moved by mouse click and move on any part of window, except frame.  Mouse double-click or Esc key can be used to restore title bar. If you **Minimize** window, then simplified clock shown on Icon. To prevent overlapping of clock by other windows you can set **Always on top** mode via **System** menu.
