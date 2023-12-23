@@ -32,10 +32,10 @@ Date and time format can be adjusted via Control Panel. Restart Clock to apply c
 
 Clock saves and restores its settings via CLOCK.INI file. All settings stored in Clock section
 
-  * Maximized
-  * sFont
-  * Options
-  * Position
+  * Maximized = 1 | 0
+  * sFont = Facename
+  * Options = bAnalog, bMinimized, bSeconds, bWithoutTitle, bAlwaysOnTop, bDate
+  * Position = x1, y1, x2, y2
 
 ===== Download =====
 
