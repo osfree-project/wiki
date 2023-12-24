@@ -6,4 +6,9 @@ Simple application which show standard About dialog from SHELL.DLL. View of dial
 
 {{:en:docs:win16:applications:winver.png|Windows Version}}
 
+===== Download =====
+
+You can download source code and binaries from [[https://github.com/osfree-project/winver|GitHub]]. Windows Version comes under LGPL-2.1 license.
+
+
 {{page>en:templates:win16app}}
