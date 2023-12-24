@@ -2,5 +2,12 @@
 
 ====== Task Manager ======
 
+{{:en:docs:win16:applications:tasklist.png|Task Manager}}
+
+===== Download =====
+
+You can download source code and binaries from [[https://github.com/osfree-project/taskman|GitHub]]. Task Manager comes under osFree license.
+
 
 {{page>en:templates:win16app}}
+
