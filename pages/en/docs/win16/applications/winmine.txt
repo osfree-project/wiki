@@ -1,0 +1,33 @@
+{{logos:win16.gif}}
+
+====== Minesweeper ======
+
+Minesweeper is a game.
+
+{{:en:docs:win16:applications:minesweeper.png|Minesweeper}}
+
+The goal of Minesweeper is to uncover all the squares on a grid that do not contain mines without being "blown up" by clicking on a square with a mine underneath. The location of most mines is discovered through a logical process, but some require guessing, usually with a 50-50 chance of being correct. Clicking on the game board will reveal what is hidden underneath the chosen square or squares (a large number of blank squares [bordering 0 mines] may be revealed in one go if they are adjacent to each other). Some squares are blank while others contain numbers (from 1 to 8), with each number being the number of mines adjacent to the uncovered square.
+
+To help the player avoid hitting a mine, the location of a suspected mine can be marked by flagging it with the right mouse button; however, if a player is unsure if a square is safe or not, they can tag it with a question mark (?). The game is won once all blank or numbered squares have been uncovered by the player without hitting a mine; any remaining mines not identified by flags are automatically flagged by the computer. However, in the event that a game is lost and the player had mistakenly flagged a safe square, that square will either appear with a red X, or else a red X covering the mine (both denoting the square as safe). The game board comes in three set sizes with a predetermined number of mines: "beginner", "intermediate", and "expert", although a "custom" option is available as well.
+
+===== Starting game =====
+
+To start new game select **New** item from **Game** menu, press F2 or click Smile button.
+
+===== Game mode =====
+
+You can change game mode by selecting item **Beginner**, **Intermediate** or **Expert** from **Game** menu. Also you can define custom game mode by selection **Custom** item.
+
+===== Help marks =====
+
+Right mouse click allow to set '?' marks. You can disable or enable such mode selecting **Mark (?)** item from **Game** menu.
+
+===== Best times =====
+
+To show best time results of previous games select **Best Times** item from **Game** menu.
+
+===== Notes =====
+
+Text partially based on [[https://en.wikipedia.org/wiki/Microsoft_Minesweeper]]
+
+{{page>en:templates:win16app}}
