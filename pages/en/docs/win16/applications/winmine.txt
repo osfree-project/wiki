@@ -26,6 +26,10 @@ Right mouse click allow to set '?' marks. You can disable or enable such mode se
 
 To show best time results of previous games select **Best Times** item from **Game** menu.
 
+===== Download =====
+
+You can download source code and binaries from [[https://github.com/osfree-project/minesweeper|GitHub]]. Minesweeper comes under LGPL-2.1 license.
+
 ===== Notes =====
 
 Text partially based on [[https://en.wikipedia.org/wiki/Microsoft_Minesweeper]]
