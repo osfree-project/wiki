@@ -37,7 +37,7 @@ Win16 Personality for osFree is planned to be implemented as Windows clone based
 | [[en:docs:win16:applications:WINHELP]] | |
 | [[en:docs:win16:applications:WINMINE]] | Done |
 | [[en:docs:win16:applications:WINSHELD]] | |
-| [[en:docs:win16:applications:WINVER]] | Done |
+| [[en:docs:win16:applications:WINVER|Windows Version]] | Done |
 | [[en:docs:win16:applications:WRITE]] | |
 
 === API ===

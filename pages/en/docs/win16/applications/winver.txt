@@ -1,0 +1,9 @@
+{{logos:win16.gif}}
+
+====== Windows Version ======
+
+Simple application which show standard About dialog from SHELL.DLL. View of dialog depended on implementation.
+
+{{:en:docs:win16:applications:winver.png|Windows Version}}
+
+{{page>en:templates:win16app}}
