@@ -2,7 +2,29 @@
 
 ====== Task Manager ======
 
+Task manager show running processes and allow control application windows.
+
 {{:en:docs:win16:applications:tasklist.png|Task Manager}}
+
+===== Switching to application window =====
+
+Bring Task Manager window using Ctrl-Esc key combination or double click on free desktop area. Select required application window from the list and press **Switch To** button on double click on window name in list.
+
+===== Closing task =====
+
+Bring Task Manager window, select application window in list and press **End Task** button.
+
+===== Changing windows position =====
+
+Bring Task Manager window and press **Cascade** to position window as cascade from left top corner of desktop. To tile windows vertically press **Tile** button. To tile windows horizontally press **Tile** button with Shift key pressed down.
+
+===== Arrange desktop icons =====
+
+Bring Task Manager window and press **Arrange Icons** to arrainge icons on desktop.
+
+===== Closing Task Manager =====
+
+Press Esc key, **Cancel** button or use **Close** item of **System menu**.
 
 ===== Download =====
 
