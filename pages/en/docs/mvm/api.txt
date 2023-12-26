@@ -4,7 +4,7 @@ Supervisor calls API aimed to call host services from MVM.
 
 ^ Ordinal ^ Description ^
 | 0 | |
-| 1 | |
+| 1 | Terminate with error message (top of stack - far pointer to message ASCIIZ) |
 | 2 | Terminate MVM and return code to parent process from AX |
 | 3 | |
 | 4 | Reset disk buffers |
