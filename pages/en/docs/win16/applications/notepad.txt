@@ -2,5 +2,8 @@
 
 ====== Notepad ======
 
+Notepad is a simple text editor to edit file up to around 64kb.
+
+{{:en:docs:win16:applications:notepad.png|Notepad}}
 
 {{page>en:templates:win16app}}
