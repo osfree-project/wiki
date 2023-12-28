@@ -31,7 +31,7 @@ Win16 Personality for osFree is planned to be implemented as Windows clone based
 | [[en:docs:win16:applications:SETUP]] | |
 | [[en:docs:win16:applications:SOL]] | |
 | [[en:docs:win16:applications:SOUNDREC|Sound Recorder]] | |
-| [[en:docs:win16:applications:SYSEDIT]] | |
+| [[en:docs:win16:applications:SYSEDIT|System Configuration Editor]] | |
 | [[en:docs:win16:applications:TASKMAN|Task Manager]] | Done |
 | [[en:docs:win16:applications:WINFILE]] | |
 | [[en:docs:win16:applications:WINHELP]] | |
