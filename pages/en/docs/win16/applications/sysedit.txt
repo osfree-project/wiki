@@ -1,0 +1,6 @@
+{{logos:win16.gif}}
+
+====== System Configuration Editor ======
+
+
+{{page>en:templates:win16app}}
