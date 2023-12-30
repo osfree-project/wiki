@@ -1,0 +1,13 @@
+{{logos:win16.gif}}
+
+====== EXPAND ======
+
+This is tool used to expand compressed files. SSZD compression only supported. KWAJ compressed file willbe decompressed incorrectly.
+
+{{:en:docs:win16:applications:expand.png|Expand}}
+
+===== Note =====
+
+This tool will be moved to DOS tools later
+
+{{page>en:templates:win16app}}

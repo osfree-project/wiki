@@ -17,7 +17,7 @@ Win16 Personality for osFree is planned to be implemented as Windows clone based
 | [[en:docs:win16:applications:CLOCK|Clock]] | Done |
 | [[en:docs:win16:applications:CONTROL|Control Panel]] | |
 | [[en:docs:win16:applications:DRWATSON]] | |
-| [[en:docs:win16:applications:EXPAND]] | |
+| [[en:docs:win16:applications:EXPAND]] | Done |
 | [[en:docs:win16:applications:FASTOPEN]] | |
 | [[en:docs:win16:applications:MPLAYER]] | |
 | [[en:docs:win16:applications:MSD]] | |
@@ -31,7 +31,7 @@ Win16 Personality for osFree is planned to be implemented as Windows clone based
 | [[en:docs:win16:applications:SETUP]] | |
 | [[en:docs:win16:applications:SOL]] | |
 | [[en:docs:win16:applications:SOUNDREC|Sound Recorder]] | |
-| [[en:docs:win16:applications:SYSEDIT|System Configuration Editor]] | |
+| [[en:docs:win16:applications:SYSEDIT|System Configuration Editor]] | Done |
 | [[en:docs:win16:applications:TASKMAN|Task Manager]] | Done |
 | [[en:docs:win16:applications:WINFILE]] | |
 | [[en:docs:win16:applications:WINHELP]] | |
