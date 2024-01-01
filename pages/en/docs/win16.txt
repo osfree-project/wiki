@@ -13,7 +13,7 @@ Win16 Personality for osFree is planned to be implemented as Windows clone based
 | [[en:docs:win16:applications:CALENDAR]] | |
 | [[en:docs:win16:applications:CARDFILE]] | |
 | [[en:docs:win16:applications:CHARMAP]] | |
-| [[en:docs:win16:applications:CLIPBRD]] | Done |
+| [[en:docs:win16:applications:CLIPBRD|Clipboard Viewer]] | Done |
 | [[en:docs:win16:applications:CLOCK|Clock]] | Done |
 | [[en:docs:win16:applications:CONTROL|Control Panel]] | |
 | [[en:docs:win16:applications:DRWATSON]] | |
