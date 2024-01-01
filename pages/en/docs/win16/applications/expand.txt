@@ -2,12 +2,14 @@
 
 ====== EXPAND ======
 
-This is tool used to expand compressed files. SSZD compression only supported. KWAJ compressed file willbe decompressed incorrectly.
-
-{{:en:docs:win16:applications:expand.png|Expand}}
+This is tool used to expand compressed files by COMPRESS tool.
 
 ===== Note =====
 
 This tool will be moved to DOS tools later
+
+===== Download =====
+
+You can download source code and binaries from [[https://github.com/osfree-project/expand|GitHub]]. Expand comes under LGPL-2.1 license.
 
 {{page>en:templates:win16app}}
