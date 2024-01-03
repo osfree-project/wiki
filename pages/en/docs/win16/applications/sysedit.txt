@@ -4,4 +4,8 @@
 
 {{:en:docs:win16:applications:sysedit.png|System Configuration Editor}}
 
+===== Download =====
+
+You can download source code and binaries from [[https://github.com/osfree-project/sysedit|GitHub]]. System Configuration Editor comes under GPL-3.0 license.
+
 {{page>en:templates:win16app}}
