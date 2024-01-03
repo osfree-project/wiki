@@ -2,5 +2,6 @@
 
 ====== System Configuration Editor ======
 
+{{:en:docs:win16:applications:sysedit.png|System Configuration Editor}}
 
 {{page>en:templates:win16app}}
