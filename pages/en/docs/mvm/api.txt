@@ -21,7 +21,7 @@ Supervisor calls API aimed to call host services from MVM.
 | 15 | |
 | 16 | Delete directory (params and result same as in int21h AH=3ah)|
 | 17 | |
-| 18 | |
+| 18 | Get current directory (params and result same as in int21h AH=47h)|
 | 19 | Change directory (params and result same as in int21h AH=3bh)|
 | 20 | |
 | 21 | |
