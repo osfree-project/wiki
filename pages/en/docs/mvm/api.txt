@@ -9,7 +9,7 @@ Supervisor calls API aimed to call host services from MVM.
 | 3 | |
 | 4 | Reset disk buffers |
 | 5 | |
-| 6 | |
+| 6 | Select default drive (params and result same as in int21h AH=0eh) |
 | 7 | Set DTA from DS:DX |
 | 8 | |
 | 9 | |
