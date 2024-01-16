@@ -187,31 +187,31 @@ Here is each small component status:
 |Object REXX	| |None	| | | |
 |MDOS CLI tools	|[[en:docs:dos:cmd:APPEND]]	|None	| | | |
 |::: |[[en:docs:dos:cmd:ASSIGN]]    |None   | | | |
-|::: |[[en:docs:dos:cmd:ATTRIB]]    |None   | | | |
+|::: |[[en:docs:dos:cmd:ATTRIB]]    | Done   | | FreeDOS team | |
 |::: |[[en:docs:dos:cmd:BASIC]]     |None   | | | |
-|::: |[[en:docs:dos:cmd:COMMAND]]   |Done   | GPL | FreeDOS team \\ Valery Sedletski | |
-|::: |[[en:docs:dos:cmd:COMP]]      |None   | | | |
-|::: |[[en:docs:dos:cmd:DEBUG]]     |Done   | | | |
-|::: |[[en:docs:dos:cmd:DISKCOMP]]  |None   | | | |
+|::: |[[en:docs:dos:cmd:COMMAND]]   | Done   | GPL | FreeDOS team \\ Valery Sedletski | |
+|::: |[[en:docs:dos:cmd:COMP]]      | Done   | | FreeDOS team | |
+|::: |[[en:docs:dos:cmd:DEBUG]]     | Done   | | FreeDOS team | |
+|::: |[[en:docs:dos:cmd:DISKCOMP]]  | Done   | | FreeDOS team | |
 |::: |[[en:docs:dos:cmd:DISKCOPY]]  |None   | | | |
-|::: |[[en:docs:dos:cmd:EDLIN]]     |Done   | | | |
-|::: |[[en:docs:dos:cmd:EXIT_VDM]]  |Done   | | | |
-|::: |[[en:docs:dos:cmd:FC]]        |None   | | | |
-|::: |[[en:docs:dos:cmd:FIND]]      |None   | | | |
+|::: |[[en:docs:dos:cmd:EDLIN]]     | Done   | | FreeDOS team | |
+|::: |[[en:docs:dos:cmd:EXIT_VDM]]  | Done   | | Yuri Prokushev| |
+|::: |[[en:docs:dos:cmd:FC]]        | Done   | | FreeDOS team | |
+|::: |[[en:docs:dos:cmd:FIND]]      | Done | | FreeDOS team | |
 |::: |[[en:docs:dos:cmd:FSACCESS]]  |None	| | | |
 |::: |[[en:docs:dos:cmd:GRAFTABL]]  |None	| | | |
 |::: |[[en:docs:dos:cmd:HELP]]      |None   | | | |
 |::: |[[en:docs:dos:cmd:HELPMSG]]   |None   | | | |
 |::: |[[en:docs:dos:cmd:JOIN]]      |None	| | | |
-|::: |[[en:docs:dos:cmd:LABEL]]     |None	| | | |
-|::: |[[en:docs:dos:cmd:MEM]]       |Done	| | FreeDOS team | |
-|::: |[[en:docs:dos:cmd:MORE]]      |None	| | | |
-|::: |[[en:docs:dos:cmd:MOVE]]      |None	| | | |
+|::: |[[en:docs:dos:cmd:LABEL]]     | Done	| | FreeDOS team | |
+|::: |[[en:docs:dos:cmd:MEM]]       | Done	| | FreeDOS team | |
+|::: |[[en:docs:dos:cmd:MORE]]      | Done	| | FreeDOS team | |
+|::: |[[en:docs:dos:cmd:MOVE]]      | Done	| | FreeDOS team | |
 |::: |[[en:docs:dos:cmd:MSD]]       |None	| | | |
 |::: |[[en:docs:dos:cmd:QBASIC]]    |None	| | | |
-|::: |[[en:docs:dos:cmd:SORT]]      |None	| | | |
-|::: |[[en:docs:dos:cmd:SUBST]]     |None	| | | |
-|::: |[[en:docs:dos:cmd:XCOPY]]     |None   | | | |
+|::: |[[en:docs:dos:cmd:SORT]]      | Done	| | FreeDOS team | |
+|::: |[[en:docs:dos:cmd:SUBST]]     | None	| | | |
+|::: |[[en:docs:dos:cmd:XCOPY]]     | Done | | FreeDOS team | |
 |Win16 Applications| [[en:docs:win16:applications:CALC]]     |None   | | | |
 |::: |[[en:docs:win16:applications:CHARMAP]]     |None   | | | |
 |::: |[[en:docs:win16:applications:CLIPBRD]]     |None   | | | |

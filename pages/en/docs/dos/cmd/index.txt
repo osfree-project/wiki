@@ -1,4 +1,4 @@
-{{logos:dos.gif?35x35}} {{logos:win16.gif}}
+{{logos:dos.gif?35x35}}
 
 ^ Command ^ Status ^ Dual mode ^
 | [[en:docs:dos:cmd:APPEND]] | | No |
@@ -12,10 +12,10 @@
 | [[en:docs:dos:cmd:DISKCOMP]] | Done | No |
 | [[en:docs:dos:cmd:DISKCOPY]] | | No |
 | [[en:docs:dos:cmd:DOSKEY]] | | No |
-| [[en:docs:dos:cmd:EDIT]] | | No |
+| [[en:docs:dos:cmd:EDIT]] | Done | No |
 | [[en:docs:dos:cmd:EDLIN]] | Done | No |
 | [[en:docs:dos:cmd:EXIT_VDM]] | Done | No |
-| [[en:docs:dos:cmd:FC]] | | No |
+| [[en:docs:dos:cmd:FC]] | Done | No |
 | [[en:docs:dos:cmd:FIND]] | Done | No |
 | [[en:docs:dos:cmd:FSACCESS]] | | No |
 | [[en:docs:dos:cmd:GWBASIC]] | | No |
