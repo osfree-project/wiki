@@ -8,8 +8,27 @@ Build message file from message source file
 ===== Syntax =====
 
 <diagram>
-|-|v|drive|v|v| path |v|MKMSGF|v|drive|v|v| path |v|
-| |`|-|-|-|'|`|-|-|-|'| | | |`|-|-|-|'|`|-|-|-|'|
+|-|v|-|-|-|v|v|-|-|-|v|MKMSGF|v|-|-|-|v|v|-|-|-|v|infile|v|-|-|-|v|v|-|-|-|v|outfile|-@2|
+| |`|drive|'|`|path|'| | | |`|drive|'|`|path|'|  | | |`|drive|'|`|path|'|
+
+|-@2|v|-|-|-|v|(|
+|   |)|/?|(|
+|   |!| | | |!|
+|   |)|/V|(|
+|   |!| | | |!|
+|   |)|/D <DBCS range or country>|(|
+|   |!| | | |!|
+|   |)|/P <code page>|(|
+|   |!| | | |!|
+|   |)|/L <language id,sub id>|(|
+|   |!| | | |!|
+|   |)|/I <path>|(|
+|   |!| | | |!|
+|   |)|/A|(|
+|   |!| | | |!|
+|   |`|/C|'|
+
+
 </diagram>
 MKMSGF infile[.ext] outfile[.ext] [/?] [/V] [/D <DBCS range or country>] [/P <code page>] [/L <language id,sub id>]
 
