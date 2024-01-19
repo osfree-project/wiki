@@ -55,3 +55,22 @@ Mike Note: The %0 can be used with any message type!!!! So here is how this work
 Component-Message Example
 
 For example, DOS0100E: is DOS error message 100. For additional examples, see the Input Message File Example.
+
+
+Following is an example of an input message file:
+
+  ; This is a sample of an input
+  ; message file for component MAB
+  ; starting with three comment lines.
+  MAB
+  MAB0100E: File not found
+  MAB0101?:
+  MAB0102H: Usage: del [drive:][path] filename
+  MAB0103?:
+  MAB0104I: %1 files copied
+  MAB0105W: Warning! All data will be destroyed!
+  MAB0106?:
+  MAB0107?:
+  MAB0108P: Do you wish to apply these patches (Y or N)? %0
+  MAB0109E: Divide overflow
+

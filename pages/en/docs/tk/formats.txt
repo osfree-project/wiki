@@ -1,3 +1,10 @@
 ====== File formats ======
 
-  * [[en:docs:tk:formats:msgsrc|Messages source file]]
+  * [[en:docs:tk:formats:msgsrc|Message source file]]
+  * [[en:docs:tk:formats:msg|Message binary file]]
+  * [[en:docs:tk:formats:uni|Unified interface file]]
+  * [[en:docs:tk:formats:idl|Interface Definition Language]]
+  * [[en:docs:tk:formats:com|Command file format]]
+  * [[en:docs:tk:formats:exe|Executable file format]]
+  * [[en:docs:tk:formats:newexe|New Executable file format]]
+  * [[en:docs:tk:formats:lxexe|Linear Executable file format]]

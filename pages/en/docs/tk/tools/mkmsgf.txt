@@ -215,23 +215,6 @@ The help option (/?) is invalid due to the purpose of the definition file.
 Note: Any combination of /P /D /L and /V switches can be used for either the command line or msg_definition_file execution method.
 Input Message File Example
 
-Following is an example of an input message file:
-
-  ; This is a sample of an input
-  ; message file for component MAB
-  ; starting with three comment lines.
-  MAB
-  MAB0100E: File not found
-  MAB0101?:
-  MAB0102H: Usage: del [drive:][path] filename
-  MAB0103?:
-  MAB0104I: %1 files copied
-  MAB0105W: Warning! All data will be destroyed!
-  MAB0106?:
-  MAB0107?:
-  MAB0108P: Do you wish to apply these patches (Y or N)? %0
-  MAB0109E: Divide overflow
-  
 ====== Notes ======
 
 Text based on [[https://github.com/MikeyG/mkmsgf/wiki/MKMSGF-Usage]]
