@@ -8,8 +8,8 @@ Build message file from message source file
 ===== Syntax =====
 
 <diagram>
-|-|v|-|-|-|v|v|-|-|-|v|MKMSGF|v|-|-|-|v|v|-|-|-|v|infile|v|-|-|-|v|v|-|-|-|v|outfile|-@2|
-| |`|drive|'|`|path|'| | | |`|drive|'|`|path|'|  | | |`|drive|'|`|path|'|
+|v|-|-|-|v|v|-|-|-|v|MKMSGF|v|-|-|-|v|v|-|-|-|v|infile|v|-|-|-|v|v|-|-|-|v|outfile|-@2|
+|`|drive|'|`|path|'| | | |`|drive|'|`|path|'|  | | |`|drive|'|`|path|'|
 
 |-@2|v|-|-|-|v|(|
 |   |)|/?|(|
