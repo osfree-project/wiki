@@ -1,55 +1,24 @@
-The following is from the OS/2 Tools Reference book that is included with the OS/2 Tookit. My additional comments are mark with a bold Mike Note:.
-Syntax
+====== MKMSGF ======
 
-MKMSGF infile outfile [options] 
-   OR 
-MKMSGF @controlfile 
+===== Brief =====
 
-The infile field specifies the input file that contains message definitions. The input-file name can be any valid OS/2 file name, optionally preceded by a drive letter and a path.
+Build message file from message source file
 
-The outfile field specifies the output file created by MKMSGF. The output-file name can be any valid OS/2 file name, optionally preceded by a drive letter and a path.
 
-To differentiate between the two files, the following convention is recommended, using the same file name.
+===== Syntax =====
 
-The infile file should have a .TXT extension. The outfile file should have a .MSG extension.
+   MKMSGF infile[.ext] outfile[.ext] [/?] [/V] [/D <DBCS range or country>] [/P <code page>] [/L <language id,sub id>]
 
-Note: The output file cannot have the same file name and extension as the input file.
-Help
+===== Arguments =====
 
-There are two ways to display MKMSGF help.
-Short Syntax Help
+  * infile - the input file that contains message definitions. The input-file name can be any valid OS/2 file name, optionally preceded by a drive letter and a path.
+  * outfile field specifies the output file created by MKMSGF. The output-file name can be any valid OS/2 file name, optionally preceded by a drive letter and a path.
 
-To display a short version of MKMSGF syntax help, type MKMSGF at the prompt, with no parameters. The following will be displayed:
+A valid DBCS range is: n10,n11,n20,n21,...,nn0,nn1
 
-Operating System/2 Make Message File Utility (MKMSGF)
-Version 4.00.007 Oct  4 2001
-Copyright (C) IBM Corporation 1987, 1990, 1993-2001
-Copyright (C) Microsoft Corp. 1987, 1990
-All rights reserved.
+A single number is taken as a DBCS country code.
 
-   MKMSGF infile[.ext] outfile[.ext] [/V]
-[/D <DBCS range or country>] [/P <code page>] [/L <language id,sub id>]
-
-Long Help
-
-To display a longer version of MKMSGF help, including defaults, country codes, and language IDs, type MKMSGF /? at the prompt. The following will be displayed:
-
-Operating System/2 Make Message File Utility (MKMSGF)
-Version 4.00.007 Oct  4 2001
-Copyright (C) IBM Corporation 1987, 1990, 1993-2001
-Copyright (C) Microsoft Corp. 1987, 1990
-All rights reserved.
-
-Use MKMSGF as follows:
-        MKMSGF <inputfile> <outputfile> [/V]
-                [/D <DBCS range or country>] [/P <code page>]
-                [/L <language family id,sub id>]
-        where the default values are:
-           code page  -  none
-           DBCS range -  none
-        A valid DBCS range is: n10,n11,n20,n21,...,nn0,nn1
-        A single number is taken as a DBCS country code.
-        The valid OS/2 language/sublanguage ID values are:
+The valid OS/2 language/sublanguage ID values are:
 
         Language ID:
         Code    Family  Sub     Language                Principal country
@@ -102,7 +71,8 @@ Use MKMSGF as follows:
         SLO     34      1       Slovene                 Slovenia
 
 For a complete list of code pages and country codes, see the code page table under COUNTRYCODE in the online book Control Program Programming Guide and Reference.
-Input Message File
+
+===== Input Message File Format =====
 
 The input message file is a standard ASCII file that contains three types of lines:
 
@@ -116,10 +86,10 @@ Comment lines are allowed anywhere in the input message file, except between the
 
 In the Input Message File Example, the comment lines are
 
-; This is a sample of an input
-; message file for component DOS
-; starting with three comment lines.
-Component Identifier Line
+  ; This is a sample of an input
+  ; message file for component DOS
+  ; starting with three comment lines.
+  Component Identifier Line
 
 The component-identifier line contains a three-character name identifier that precedes all MKMSGF message numbers.
 
@@ -137,26 +107,14 @@ The message header is comprised of the following parts:
     Followed by a blank space.
 
 The following message types are used:
-Type 	Meaning
-E 	Error
-H 	Help
-I 	Information
-P 	Prompt
-W 	Warning
-? 	no message assigned to this number
 
-Mike Note:
-This is an additional example:
-<Comp_ID><Msg_Num><Msg_Type><Colon_Space><Message>
-[ XXX0000T: Message .... ]
-
-The message header is comprised of the following parts:
-
-Comp_ID - A three-character component identifier
-Msg_Num - A four-digit message number
-Msg_Type - A single character specifying message type (E, H, I, P, W, ?)
-
-The message header must begin in the first column of the line. Only one header can precede the text of a message, although a message can span multiple lines.
+  Type 	Meaning
+  E 	Error
+  H 	Help
+  I 	Information
+  P 	Prompt
+  W 	Warning
+  ? 	no message assigned to this number
 
 Message numbers can start at any number, but messages must be numbered sequentially. If you do not use a message number, you must insert an empty entry in its place in the text file. An empty entry consists of the message number, with ? as the message type, and no text.
 
@@ -167,9 +125,11 @@ The character % has a special meaning when used within the text of a message:
 Mike Note: The %0 can be used with any message type!!!! So here is how this works: The message file is scanned, and each is saved. However, if you place a %0 as the last character the <LF> <CR> is dropped and it does not matter the type of message (E, H, I, P, W, or ?). This is how the IBM MKMSGF worked and my clone works the same way.
 
 %1 - %9 are used to identify variable string insertion within the text of a message. These variables correspond to the Itable and IvCount parameters in the DosGetMessage call.
+
 Component-Message Example
 
 For example, DOS0100E: is DOS error message 100. For additional examples, see the Input Message File Example.
+
 Output File
 
 The output file contains the indexed message file that DosGetMessage will use. The output-file name can be any valid OS/2 file name, optionally preceded by a drive letter and a path. The output file cannot have the same name as the input file.
@@ -180,27 +140,28 @@ To differentiate between the two files, the following convention is recommended,
     The outfile file should have a .MSG extension.
 
 Help-message file names begin with the component identifier, followed by H.MSG. For example, the help file associated with the component identifier DOS would be DOSH.MSG.
+
 Options
 
 Text-based messages in different code pages can be created using MKMSGF to display errors, help information, prompt, or provide general information to the application user.
 
 MKMSGF uses the following parameter formats to build message files:
 
-MKMSGF infile outfile /Pcodepage 
-MKMSGF infile outfile /Ddbcsrange or country id 
-MKMSGF infile outfile /LlangID,VerId 
-MKMSGF infile outfile /V 
-MKMSGF infile outfile /? 
-MKMSGF @controlfile 
+  MKMSGF infile outfile /Pcodepage 
+  MKMSGF infile outfile /Ddbcsrange or country id 
+  MKMSGF infile outfile /LlangID,VerId 
+  MKMSGF infile outfile /V 
+  MKMSGF infile outfile /? 
+  MKMSGF @controlfile 
 
     Infile is the ASCII-text source file.
 
 Example:
 
-MSG
-MSG0001I: (mm%4dd%4yy) %2%4%1%4%3
-MSG0002I: (dd%4mm%4yy) %1%4%2%4%3
-MSG0003I: Current date is: %0
+  MSG
+  MSG0001I: (mm%4dd%4yy) %2%4%1%4%3
+  MSG0002I: (dd%4mm%4yy) %1%4%2%4%3
+  MSG0003I: Current date is: %0
 
 %0 is a special argument that displays a prompt for user input.
 %1 - %9 are the arguments the user can use to insert text in a message.
@@ -209,16 +170,17 @@ MSG0003I: Current date is: %0
     @controlfile is the message definition file.
 
 Options Summary
-Type 	Meaning
-/P 	Code-page ID for the input message file.
-/D 	DbcsRange or country ID for the input message file.
-/L 	Language family ID (one word) and language version ID (one word).
-/V 	Verbose display of message file control variables as the message file is being created.
-/? 	Help display of command syntax for MKMSGF.
-
+  Type 	Meaning
+  /P 	Code-page ID for the input message file.
+  /D 	DbcsRange or country ID for the input message file.
+  /L 	Language family ID (one word) and language version ID (one word).
+  /V 	Verbose display of message file control variables as the message file is being created.
+  /? 	Help display of command syntax for MKMSGF.
+  
 Note: Any combination of /P, /D, /L, and /V switches can be used for either the command line or @controlfile execution method.
 
 The / switch prefix and the - prefix can be used interchangeably when defining switches to MKMSGF.
+
 /Verbose Option Output Example
 
 Following is a sample of MKMSGF output, using the Verbose option (/V). This output was produced using the following command:
@@ -233,9 +195,9 @@ mkmsgf myapp.txt myapp.msg /v
   Language family id and sub id = unspecified
   flags     = none
   CP_type   = SBCS
-"myapp.txt": length = 382 bytes.
-29 messages scanned.  Writing output file...
-Size of table entry: word
+  "myapp.txt": length = 382 bytes.
+  29 messages scanned.  Writing output file...
+  Size of table entry: word
 
 /P Option
 
@@ -246,11 +208,6 @@ For a complete list of code pages, see the code page table under COUNTRYCODE in 
 Up to 16 /P combinations can be saved with the message file.
 
 /P cannot be used to identify DBCS data.
-
-Mike Note: To the best of my knowledge, and I know little about codepages right now, this option just stores the codepages in the main FILECOUNTRYINFO codepages array. When running MKMSGF for CP 850 and 437 it would be /P 850 /P 437. For example, this is the decompile of the OSO001.MSG from and English system:
-
-; Codepage 1        0x352 (850)
-; Codepage 2        0x1B5 (437)  
 
 /D Option
 
@@ -269,6 +226,7 @@ A valid language family with invalid or undefined language version id will cause
 /A /C /I Options
 
 I saw these and documented them as existing years ago, but never really looked at them in depth. I made some notes on a separate page: The A, C, and I Options.
+
 /E
 
 See the The Extended Structure page for more information. This tacks on what I call a fake extended header at the end of the file and updates the header offset.
@@ -280,11 +238,11 @@ The control file has the following format:
 
 Example:
 
-root.in root. Out /Pcodepage /Ddbcsrang/ctryid /LlangID,VerId
-sub.001 sub1.out /Pcodepage /Ddbcsrang/ctryid /LlangID,VerId
-                 .
-                 .
-sub.00n subn.out /Pcodepage /Ddbcsrang/ctryid /LlangID,VerId
+  root.in root. Out /Pcodepage /Ddbcsrang/ctryid /LlangID,VerId
+  sub.001 sub1.out /Pcodepage /Ddbcsrang/ctryid /LlangID,VerId
+                   .
+                   .
+  sub.00n subn.out /Pcodepage /Ddbcsrang/ctryid /LlangID,VerId
 
 The help option (/?) is invalid due to the purpose of the definition file.
 
@@ -293,21 +251,21 @@ Input Message File Example
 
 Following is an example of an input message file:
 
-; This is a sample of an input
-; message file for component MAB
-; starting with three comment lines.
-MAB
-MAB0100E: File not found
-MAB0101?:
-MAB0102H: Usage: del [drive:][path] filename
-MAB0103?:
-MAB0104I: %1 files copied
-MAB0105W: Warning! All data will be destroyed!
-MAB0106?:
-MAB0107?:
-MAB0108P: Do you wish to apply these patches (Y or N)? %0
-MAB0109E: Divide overflow
-
+  ; This is a sample of an input
+  ; message file for component MAB
+  ; starting with three comment lines.
+  MAB
+  MAB0100E: File not found
+  MAB0101?:
+  MAB0102H: Usage: del [drive:][path] filename
+  MAB0103?:
+  MAB0104I: %1 files copied
+  MAB0105W: Warning! All data will be destroyed!
+  MAB0106?:
+  MAB0107?:
+  MAB0108P: Do you wish to apply these patches (Y or N)? %0
+  MAB0109E: Divide overflow
+  
 ====== Notes ======
 
 Text based on [[https://github.com/MikeyG/mkmsgf/wiki/MKMSGF-Usage]]
