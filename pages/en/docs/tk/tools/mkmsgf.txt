@@ -128,17 +128,6 @@ MKMSGF uses the following parameter formats to build message files:
   MKMSGF @controlfile 
 
     Infile is the ASCII-text source file.
-
-Example:
-
-  MSG
-  MSG0001I: (mm%4dd%4yy) %2%4%1%4%3
-  MSG0002I: (dd%4mm%4yy) %1%4%2%4%3
-  MSG0003I: Current date is: %0
-
-%0 is a special argument that displays a prompt for user input.
-%1 - %9 are the arguments the user can use to insert text in a message.
-
     Outfile is the binary output message file.
     @controlfile is the message definition file.
 
