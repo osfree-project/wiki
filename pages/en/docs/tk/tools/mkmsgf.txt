@@ -100,7 +100,7 @@ The valid OS/2 language/sublanguage ID values are:
         BAH     33      1       Bahasa                  Indonesia
         SLO     34      1       Slovene                 Slovenia
 
-For a complete list of code pages and country codes, see the code page table under COUNTRYCODE in the online book Control Program Programming Guide and Reference.
+For a complete list of code pages and country codes, see the code page table under [[https://komh.github.io/os2books/os2tk45/cp2/061_L2_COUNTRYCODE.html|COUNTRYCODE]] in the online book Control Program Programming Guide and Reference.
 
 
 Output File
