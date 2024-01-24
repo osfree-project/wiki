@@ -132,20 +132,20 @@ Here is each small component status:
 |::: |DISKCOPY	|None	| | | |
 |::: |DTRACE	|None	| | | |
 |::: |EAUTIL	|None | | | |
-|::: |EJECT	|Done	|osFree	|Bartosz Tomasik	| |
-|::: |FDISK	|Done	|osFree	|Yuri Prokushev	| |
-|::: |FIND	|Done	|GPL	|Jim Hall	| |
-|::: |FORMAT	|Done	|osFree	|Bartosz Tomasik	| |
-|::: |HELPMSG	|Done	|osFree	|Yuri Prokushev	| |
+|::: |EJECT	|Done	| osFree	|Bartosz Tomasik	| |
+|::: |FDISK	|Done	| osFree	|Yuri Prokushev	| |
+|::: |FIND	|Done	| GPL	|Jim Hall	| |
+|::: |FORMAT	|Done	| osFree	|Bartosz Tomasik	| |
+|::: |HELPMSG	|Done	| osFree	|Yuri Prokushev	| |
 |::: |KEYB	|None	| | | |
-|::: |LABEL	|Done	|osFree	|Bartosz Tomasik	| |
+|::: |LABEL	|Done	| osFree	|Bartosz Tomasik	| |
 |::: |LVM	|None	| | | |
-|::: |MAKEINI	|Done   |GPL	|Ulrich Moeller	| |
-|::: |MD	|Done	|osFree	|Bartosz Tomasik	| |
-|::: |MKDIR	|Done	|osFree	|Bartosz Tomasik	| |
-|::: |MKMSGF	|Done   | | | |
+|::: |MAKEINI	|Done   | GPL	|Ulrich Moeller	| |
+|::: |MD	|Done	| osFree	|Bartosz Tomasik	| |
+|::: |MKDIR	|Done	| osFree	|Bartosz Tomasik	| |
+|::: |MKMSGF	|Done   | GPL 2+ | Michael K Greene, \\ Yuri Prokushev, \\ Veit Kannegieser | |
 |::: |MODE	|None	| | | |
-|::: |MORE	|Done	|Public	|Stephen Lacy	| |
+|::: |MORE	|Done	| Public	|Stephen Lacy	| |
 |::: |PATCH	|None	| | | |
 |::: |PDUMPSYS	|None	| | | |
 |::: |PDUMPUSR	|None	| | | |
