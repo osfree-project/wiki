@@ -215,16 +215,16 @@ Here is each small component status:
 |Win16 Applications| [[en:docs:win16:applications:CALC]]     |None   | | | |
 |::: |[[en:docs:win16:applications:CHARMAP]]     |None   | | | |
 |::: |[[en:docs:win16:applications:CLIPBRD]]     |None   | | | |
-|::: |[[en:docs:win16:applications:CLOCK]]     |None   | | | |
-|::: |[[en:docs:win16:applications:NOTEPAD]]     |None   | | | |
-|::: |[[en:docs:win16:applications:PIFEDIT]]     |None   | | | |
-|::: |[[en:docs:win16:applications:PROGMAN]]     |None   | | | |
+|::: |[[en:docs:win16:applications:CLOCK]]     | Done   | | Wine project \\ Yuri Prokushev | |
+|::: |[[en:docs:win16:applications:NOTEPAD]]     | Done | | Wine project \\ Yuri Prokushev | |
+|::: |[[en:docs:win16:applications:PIFEDIT]]     | None   | | | |
+|::: |[[en:docs:win16:applications:PROGMAN]]     | None   | | | |
 |::: |[[en:docs:win16:applications:SOL]]     |None   | | | |
-|::: |[[en:docs:win16:applications:TASKMAN]]     |None   | | | |
-|::: |[[en:docs:win16:applications:WINFILE]]     |None   | | | |
-|::: |[[en:docs:win16:applications:WINHELP]]     |None   | | | |
-|::: |[[en:docs:win16:applications:WINMINE]]     |None   | | | |
-|::: |[[en:docs:win16:applications:WINVER]]     |None   | | | |
+|::: |[[en:docs:win16:applications:TASKMAN]]     | Done   | osFree | Yuri Prokushev | |
+|::: |[[en:docs:win16:applications:WINFILE]]     | None   | | | |
+|::: |[[en:docs:win16:applications:WINHELP]]     | None   | | | |
+|::: |[[en:docs:win16:applications:WINMINE]]     | None   | | | |
+|::: |[[en:docs:win16:applications:WINVER]]     | Done   | | Wine project \\ Yuri Prokushev | |
 |IPF API	|HELPMGR.DLL	|Done	|GPL	|NewView project	| |
 |PM tools	|VIEW	|Done	|GPL	|NewView project	| |
 |::: |FFSTCONF	|None | | | |
