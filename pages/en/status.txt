@@ -228,10 +228,10 @@ Here is each small component status:
 |IPF API	|HELPMGR.DLL	|Done	|GPL	|NewView project	| |
 |PM tools	|VIEW	|Done	|GPL	|NewView project	| |
 |::: |FFSTCONF	|None | | | |
-|::: |FFSTPCT	None | | | | 	 
-|::: |SYSLOG	None | | | |
-|::: |TRACEFMT	None | | | |
-|::: |DDINSTAL	None | | | |
+|::: |FFSTPCT	|None | | | | 	 
+|::: |SYSLOG	|None | | | |
+|::: |TRACEFMT	|None | | | |
+|::: |DDINSTAL	|None | | | |
 |MM tools	|PICVIEW	|None | | | |
 |TCP/IP |Stack	|None | | | |
 |TCP/IP CLI tools	|PING	 |None	|BSD	|Patrick Haller, Yuri Prokushev	| |
