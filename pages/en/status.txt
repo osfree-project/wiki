@@ -214,18 +214,18 @@ Here is each small component status:
 |::: |[[en:docs:dos:cmd:XCOPY]]     | Done | | FreeDOS team | |
 |Win16 Applications| [[en:docs:win16:applications:CALC]]     |None   | | | |
 |::: |[[en:docs:win16:applications:CHARMAP]]     |None   | | | |
-|::: |[[en:docs:win16:applications:CLIPBRD]]     |None   | | | |
-|::: |[[en:docs:win16:applications:CLOCK]]     | Done   | | Wine project \\ Yuri Prokushev | |
-|::: |[[en:docs:win16:applications:NOTEPAD]]     | Done | | Wine project \\ Yuri Prokushev | |
+|::: |[[en:docs:win16:applications:CLIPBRD]]     | Done   | GPL2.0+ | | ReactOS project \\ Yuri Prokushev |
+|::: |[[en:docs:win16:applications:CLOCK]]     | Done   | LGPL2.1+ | Wine project \\ Yuri Prokushev | |
+|::: |[[en:docs:win16:applications:NOTEPAD]]     | Done | LGPL2.1+ | Wine project \\ Yuri Prokushev | |
 |::: |[[en:docs:win16:applications:PIFEDIT]]     | None   | | | |
 |::: |[[en:docs:win16:applications:PROGMAN]]     | None   | | | |
 |::: |[[en:docs:win16:applications:SOL]]     |None   | | | |
 |::: |[[en:docs:win16:applications:TASKMAN]]     | Done   | osFree | Yuri Prokushev | |
 |::: |[[en:docs:win16:applications:WINFILE]]     | None   | | | |
 |::: |[[en:docs:win16:applications:WINHELP]]     | None   | | | |
-|::: |[[en:docs:win16:applications:WINMINE]]     | None   | | | |
-|::: |[[en:docs:win16:applications:WINVER]]     | Done   | | Wine project \\ Yuri Prokushev | |
-|IPF API	|HELPMGR.DLL	|Done	|GPL	|NewView project	| |
+|::: |[[en:docs:win16:applications:WINMINE]]     | Done   | LGPL2.1+ | Wine project \\ Joshua Thielen \\ Nathan Lineback \\ Yuri Prokushev| |
+|::: |[[en:docs:win16:applications:WINVER]]     | Done   | LGPL2.1+ | Wine project \\ Yuri Prokushev | |
+|IPF API	|HELPMGR.DLL	| Done	| GPL	|NewView project	| |
 |PM tools	|VIEW	|Done	|GPL	|NewView project	| |
 |::: |FFSTCONF	|None | | | |
 |::: |FFSTPCT	|None | | | | 	 
