@@ -1,6 +1,7 @@
 ====== osFree Toolkit ======
 
-osFree toolkit is a set of tools, header files and documentation to produce osFree programs and libraries.
+osFree toolkit is a set of tools, header files and documentation to produce osFree programs and libraries. osFree toolkit composed using various OS/2 Toolkits as reference. It exists for various host platforms.
 
+  * [[en:docs:tk:install|Toolkit installation]]
   * [[en:docs:tk:tools|Tools reference]]
   * [[en:docs:tk:formats|File formats]]

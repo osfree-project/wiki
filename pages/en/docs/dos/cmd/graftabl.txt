@@ -1,0 +1,5 @@
+{{logos:dos.gif?35x35}} {{logos:win16.gif}}
+
+====== GRAFTABL ======
+
+{{page>en:templates:doscmd}}

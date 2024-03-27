@@ -88,7 +88,7 @@ The valid OS/2 language/sublanguage ID values are:
         PTG     22      2       Portuguese              Portugal
         RMS     23      1       Rhaeto-Romanic          Switzerland
         ROM     24      1       Romanian                Romania
-        RUS     25      1       Russian                 U.S.S.R.
+        RUS     25      1       Russian                 Russian Federation
         SHL     26      1       Croato-Serbian (Lat     Yugoslavia
         SHC     26      2       Serbo-Croatian (Cyr     Yugoslavia
         SKY     27      1       Slovakian               Czechoslovakia
@@ -102,19 +102,19 @@ The valid OS/2 language/sublanguage ID values are:
 
 For a complete list of code pages and country codes, see the code page table under [[https://komh.github.io/os2books/os2tk45/cp2/061_L2_COUNTRYCODE.html|COUNTRYCODE]] in the online book Control Program Programming Guide and Reference.
 
+===== Output File =====
 
-Output File
 
 The output file contains the indexed message file that DosGetMessage will use. The output-file name can be any valid OS/2 file name, optionally preceded by a drive letter and a path. The output file cannot have the same name as the input file.
 
 To differentiate between the two files, the following convention is recommended, using the same file name.
 
     The infile file should have a .TXT extension.
-    The outfile file should have a .MSG extension.
+    The outfile file can have a .MSG or .INC extension.
 
 Help-message file names begin with the component identifier, followed by H.MSG. For example, the help file associated with the component identifier DOS would be DOSH.MSG.
 
-Options
+===== Options =====
 
 Text-based messages in different code pages can be created using MKMSGF to display errors, help information, prompt, or provide general information to the application user.
 
@@ -128,16 +128,20 @@ MKMSGF uses the following parameter formats to build message files:
   MKMSGF @controlfile 
 
     Infile is the ASCII-text source file.
-    Outfile is the binary output message file.
+    Outfile is the binary output message file or MASM include file.
     @controlfile is the message definition file.
 
-Options Summary
+===== Options Summary =====
+
   Type 	Meaning
   /P 	Code-page ID for the input message file.
   /D 	DbcsRange or country ID for the input message file.
   /L 	Language family ID (one word) and language version ID (one word).
   /V 	Verbose display of message file control variables as the message file is being created.
   /? 	Help display of command syntax for MKMSGF.
+  /A    Produce MASM include file using INC file as include file for message constants
+  /C    Produce MASM include file using H file as include file for message constants
+  /I    Include paths
   
 Note: Any combination of /P, /D, /L, and /V switches can be used for either the command line or @controlfile execution method.
 
@@ -185,14 +189,13 @@ The Language option (/L) specifies the language family ID (one word) and languag
 Valid combination of language family and language version will be set for this file.
 
 A valid language family with invalid or undefined language version id will cause a default value of 1 to be set for language version.
-/A /C /I Options
 
-I saw these and documented them as existing years ago, but never really looked at them in depth. I made some notes on a separate page: The A, C, and I Options.
 
 /E
 
-See the The Extended Structure page for more information. This tacks on what I call a fake extended header at the end of the file and updates the header offset.
-Control Files
+Produce fake extended header. This tacks on what I call a fake extended header at the end of the file and updates the header offset.
+
+===== Control File =====
 
 The control file (@controlfile) is used to create multiple-code-page message files. The at sign (@) is not part of the file name, but rather, a delimiter required before a control-file name.
 
