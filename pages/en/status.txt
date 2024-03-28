@@ -186,34 +186,34 @@ Here is each small component status:
 |DSOM	|SOMD.DLL	|None	| | | |
 |Object REXX	| |None	| | | |
 |DOSKRNL | DOSKRNL | None | GPL2.0+ | FreeDOS team | |
-|MDOS CLI tools	|[[en:docs:dos:cmd:APPEND]] | Done | GPL2.0+ | FreeDOS team \\ Yuri Prokushev | |
-|::: |[[en:docs:dos:cmd:ASSIGN]]    | Done | GPL2.0+ | FreeDOS team \\ Yuri Prokushev | |
-|::: |[[en:docs:dos:cmd:ATTRIB]]    | Done | GPL2.0+ | FreeDOS team | Rework to dual mode |
+|MDOS CLI tools	|[[en:docs:dos:cmd:APPEND]] | **Done** | GPL2.0+ | FreeDOS team \\ Yuri Prokushev | |
+|::: |[[en:docs:dos:cmd:ASSIGN]]    | **Done** | GPL2.0+ | FreeDOS team \\ Yuri Prokushev | |
+|::: |[[en:docs:dos:cmd:ATTRIB]]    | **Done** | GPL2.0+ | FreeDOS team | Rework to dual mode |
 |::: |[[en:docs:dos:cmd:BASIC]]     | None | GPL2.0+ | BW-BASIC team | |
-|::: |[[en:docs:dos:cmd:COMMAND]]   | Done | GPL2.0+ | FreeDOS team \\ Valery Sedletski | |
-|::: |[[en:docs:dos:cmd:COMP]]      | Done | MIT | FreeDOS team | Rework to dual mode |
-|::: |[[en:docs:dos:cmd:DEBUG]]     | Done | MIT | FreeDOS team | |
-|::: |[[en:docs:dos:cmd:DISKCOMP]]  | Done | GPL2.0+ | FreeDOS team | |
+|::: |[[en:docs:dos:cmd:COMMAND]]   | **Done** | GPL2.0+ | FreeDOS team \\ Valery Sedletski | |
+|::: |[[en:docs:dos:cmd:COMP]]      | **Done** | MIT | FreeDOS team | Rework to dual mode |
+|::: |[[en:docs:dos:cmd:DEBUG]]     | **Done** | MIT | FreeDOS team | |
+|::: |[[en:docs:dos:cmd:DISKCOMP]]  | **Done** | GPL2.0+ | FreeDOS team | |
 |::: |[[en:docs:dos:cmd:DISKCOPY]]  | None | GPL2.0+ | FreeDOS team | |
-|::: |[[en:docs:dos:cmd:EDLIN]]     | Done | GPL2.0+ | FreeDOS team | |
-|::: |[[en:docs:dos:cmd:EDIT]]      | None | GPL2.0+ | FreeDOS team | |
-|::: |[[en:docs:dos:cmd:EXIT_VDM]]  | Done | osFree | Yuri Prokushev| |
-|::: |[[en:docs:dos:cmd:FC]]        | Done | GPL2.0+ | FreeDOS team | Rework to dual mode |
-|::: |[[en:docs:dos:cmd:FIND]]      | Done | GPL2.0+  | FreeDOS team | Rework to dual mode |
+|::: |[[en:docs:dos:cmd:EDLIN]]     | **Done** | GPL2.0+ | FreeDOS team | |
+|::: |[[en:docs:dos:cmd:EDIT]]      | **Done** | GPL2.0+ | FreeDOS team | |
+|::: |[[en:docs:dos:cmd:EXIT_VDM]]  | **Done** | osFree | Yuri Prokushev| |
+|::: |[[en:docs:dos:cmd:FC]]        | **Done** | GPL2.0+ | FreeDOS team | Rework to dual mode |
+|::: |[[en:docs:dos:cmd:FIND]]      | **Done** | GPL2.0+  | FreeDOS team | Rework to dual mode |
 |::: |[[en:docs:dos:cmd:FSACCESS]]  | None | osFree | | |
-|::: |[[en:docs:dos:cmd:GRAFTABL]]  | Done | MIT | FreeDOS team \\ Yuri Prokushev | |
-|::: |[[en:docs:dos:cmd:HELP]]      | Done | osFree | | |
+|::: |[[en:docs:dos:cmd:GRAFTABL]]  | **Done** | MIT | FreeDOS team \\ Yuri Prokushev | |
+|::: |[[en:docs:dos:cmd:HELP]]      | **Done** | osFree | | |
 |::: |[[en:docs:dos:cmd:HELPMSG]]   | None | osFree | | |
 |::: |[[en:docs:dos:cmd:JOIN]]      | None | osFree | | |
-|::: |[[en:docs:dos:cmd:LABEL]]     | Done | GPL2.0+ | FreeDOS team | |
-|::: |[[en:docs:dos:cmd:MEM]]       | Done | GPL2.0+ | FreeDOS team | |
-|::: |[[en:docs:dos:cmd:MORE]]      | Done | GPL2.0+ | FreeDOS team | Rework to dual mode |
-|::: |[[en:docs:dos:cmd:MOVE]]      | Done | GPL2.0+ | FreeDOS team | Rework to dual mode |
+|::: |[[en:docs:dos:cmd:LABEL]]     | **Done** | GPL2.0+ | FreeDOS team | |
+|::: |[[en:docs:dos:cmd:MEM]]       | **Done** | GPL2.0+ | FreeDOS team | |
+|::: |[[en:docs:dos:cmd:MORE]]      | **Done** | GPL2.0+ | FreeDOS team | Rework to dual mode |
+|::: |[[en:docs:dos:cmd:MOVE]]      | **Done** | GPL2.0+ | FreeDOS team | Rework to dual mode |
 |::: |[[en:docs:dos:cmd:MSD]]       | None | | | |
 |::: |[[en:docs:dos:cmd:QBASIC]]    | None | GPL2.0+ | FreeDOS team \\ BW-BASIC Team| |
-|::: |[[en:docs:dos:cmd:SORT]]      | Done | GPL2.0+ | FreeDOS team | Rework to dual mode |
+|::: |[[en:docs:dos:cmd:SORT]]      | **Done** | GPL2.0+ | FreeDOS team | Rework to dual mode |
 |::: |[[en:docs:dos:cmd:SUBST]]     | None | osFree | |
-|::: |[[en:docs:dos:cmd:XCOPY]]     | Done | GPL2.0+ | FreeDOS team | Rework to dual mode |
+|::: |[[en:docs:dos:cmd:XCOPY]]     | **Done** | GPL2.0+ | FreeDOS team | Rework to dual mode |
 |Win16 Applications| [[en:docs:win16:applications:CALC]]     |None   | | | |
 |::: |[[en:docs:win16:applications:CHARMAP]]     |None   | | | |
 |::: |[[en:docs:win16:applications:CLIPBRD]]     | Done  | GPL2.0+ | ReactOS project \\ Yuri Prokushev | |
