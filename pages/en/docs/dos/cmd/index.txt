@@ -1,36 +1,37 @@
 {{logos:dos.gif?35x35}}
 
 ^ Command ^ Status ^ Dual mode ^
-| [[en:docs:dos:cmd:APPEND]] | Dome | No |
-| [[en:docs:dos:cmd:ASSIGN]] | Dome | No |
-| [[en:docs:dos:cmd:ATTRIB]] | Done | No |
+| [[en:docs:dos:cmd:APPEND]] | **Done** | No |
+| [[en:docs:dos:cmd:ASSIGN]] | **Done** | No |
+| [[en:docs:dos:cmd:ATTRIB]] | **Done** | No |
 | [[en:docs:dos:cmd:BASIC]] | | No |
 | [[en:docs:dos:cmd:BASICA]] | | No |
-| [[en:docs:dos:cmd:COMMAND]] | Done | No |
-| [[en:docs:dos:cmd:COMP]] | Done | No |
-| [[en:docs:dos:cmd:DEBUG]] | Done | No |
-| [[en:docs:dos:cmd:DISKCOMP]] | Done | No |
+| [[en:docs:dos:cmd:COMMAND]] | **Done** | No |
+| [[en:docs:dos:cmd:COMP]] | **Done** | No |
+| [[en:docs:dos:cmd:COMP]] | **Done** | No |
+| [[en:docs:dos:cmd:DEBUG]] | **Done** | No |
+| [[en:docs:dos:cmd:DISKCOMP]] | **Done** | No |
 | [[en:docs:dos:cmd:DISKCOPY]] | | No |
 | [[en:docs:dos:cmd:DOSKEY]] | | No |
-| [[en:docs:dos:cmd:EDIT]] | Done | No |
-| [[en:docs:dos:cmd:EDLIN]] | Done | No |
-| [[en:docs:dos:cmd:EXIT_VDM]] | Done | No |
-| [[en:docs:dos:cmd:FC]] | Done | No |
-| [[en:docs:dos:cmd:FIND]] | Done | No |
+| [[en:docs:dos:cmd:EDIT]] | **Done** | No |
+| [[en:docs:dos:cmd:EDLIN]] | **Done** | No |
+| [[en:docs:dos:cmd:EXIT_VDM]] | **Done** | No |
+| [[en:docs:dos:cmd:FC]] | **Done** | No |
+| [[en:docs:dos:cmd:FIND]] | **Done** | No |
 | [[en:docs:dos:cmd:FSACCESS]] | | No |
-| [[en:docs:dos:cmd:GRAFTABL]] | Done | No |
+| [[en:docs:dos:cmd:GRAFTABL]] | **Done** | No |
 | [[en:docs:dos:cmd:GWBASIC]] | | No |
-| [[en:docs:dos:cmd:HELP]] | Done | No |
+| [[en:docs:dos:cmd:HELP]] | **Done** | No |
 | [[en:docs:dos:cmd:HELPMSG]] | | No |
 | [[en:docs:dos:cmd:JOIN]] | | No |
-| [[en:docs:dos:cmd:LABEL]] | Done | No |
-| [[en:docs:dos:cmd:MEM]] | Done | No |
-| [[en:docs:dos:cmd:MORE]] | Done | No |
-| [[en:docs:dos:cmd:MOVE]] | Done | No |
+| [[en:docs:dos:cmd:LABEL]] | **Done** | No |
+| [[en:docs:dos:cmd:MEM]] | **Done** | No |
+| [[en:docs:dos:cmd:MORE]] | **Done** | No |
+| [[en:docs:dos:cmd:MOVE]] | **Done** | No |
 | [[en:docs:dos:cmd:MSD]] | | No |
 | [[en:docs:dos:cmd:QBASIC]] | | No |
-| [[en:docs:dos:cmd:SORT]] | Done | No |
+| [[en:docs:dos:cmd:SORT]] | **Done** | No |
 | [[en:docs:dos:cmd:SUBST]] | | No |
-| [[en:docs:dos:cmd:XCOPY]] | Done | No |
+| [[en:docs:dos:cmd:XCOPY]] | **Done** | No |
 
 {{page>en:templates:doscmd}}
