@@ -195,7 +195,7 @@ Here is each small component status:
 |::: |[[en:docs:dos:cmd:COMP]]      | **Done** | MIT | FreeDOS team | Rework to dual mode |
 |::: |[[en:docs:dos:cmd:DEBUG]]     | **Done** | MIT | FreeDOS team | |
 |::: |[[en:docs:dos:cmd:DISKCOMP]]  | **Done** | GPL2.0+ | FreeDOS team | |
-|::: |[[en:docs:dos:cmd:DISKCOPY]]  | None | GPL2.0+ | FreeDOS team | |
+|::: |[[en:docs:dos:cmd:DISKCOPY]]  | **Done** | GPL2.0+ | FreeDOS team | |
 |::: |[[en:docs:dos:cmd:EDLIN]]     | **Done** | GPL2.0+ | FreeDOS team | |
 |::: |[[en:docs:dos:cmd:EDIT]]      | **Done** | GPL2.0+ | FreeDOS team | |
 |::: |[[en:docs:dos:cmd:EXIT_VDM]]  | **Done** | osFree | Yuri Prokushev| |
