@@ -67,4 +67,17 @@ WPS must be implemented
 
 Network must be implemented
 
+== Unsorted yet ==
+
+  - **osFree toolkit** Clone of OS/2 Toolkit
+  - **Command line tools** Clone of command line OS/2 tools
+  - **DOS Command line tools** Clone of DOS and dual mode tools
+  - **DOSKRNL** clone
+  - **Win16 applications** clone of Win16 GUI applications
+  - **Win16 DLLs** clone of high level Win16 DLLs
+  - **Win16 drivers** clone of base device drivers (COMM, KEYBOARD, SYSTEM, MOUSE)
+  - **Win16 USER.DLL** clone of Win16 USER.DLL
+  - **Win16 GDI.DLL** clone of Win16 GDI.DLL
+  - **Win16 kernel** clone of KRNL386.EXE
+
 ~~DISCUSSION~~
