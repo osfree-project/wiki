@@ -44,17 +44,21 @@ SOM tools and environment must be implemented. (Reused of somFree, not included 
 
 ^Version                   ^Requirements                                          ^Status           ^
 |0.2.1                         |SOM Compiler Watcom Linker Emitter     |Done |
-|0.2.2                         |SOM Compiler Preprocessor |Done |
-|0.2.3                         |SOM Compiler C Emitter must be implemented | Done (builtin) |
-|0.2.4                         |SOM Compiler C++ Emitter must be implemented | Done (builtin) |
+|0.2.2                         |SOM Compiler IDL Preprocessor |Done |
+|0.2.3                         |SOM Compiler H Emitter must be implemented | Done (builtin) |
+|0.2.4                         |SOM Compiler XH Emitter must be implemented | Done (builtin) |
 |0.2.5                         |SOM Emitter Framework classes must be implemented | In progress |
-|0.2.6                         |SOM Compiler must be implemented | Done |
+|0.2.6                         |SOM Compiler IDL must be implemented | Done (No Emitter Framework) |
 |0.2.7                         |SOM CPI Intefaces |Not Done |
 |                              |SOM Run-time Kernel | Not done |
 |                              |SOM Event Management Framework | not done |
 |                              |SOMObjects Interface Repository Framework | not done }
 |                              |SOMObjects Utility Classes | not done |
 |                              |Distributed SOM Frameword | not done |
+|                              |SOM Compiler OIDL Preprocessor | Done |
+|                              |SOM Compiler OIDL must be implemented | None |
+|                              |SOM Compiler library must be implemented | None |
+|                              |VisualAge Runtime subset for SOM (Win32 Host only)| None |
 
 == 0.4 ==
 
