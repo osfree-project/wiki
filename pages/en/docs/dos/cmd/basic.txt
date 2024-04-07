@@ -2,4 +2,172 @@
 
 ====== BASIC ======
 
+===== Keywords =====
+
+List of IBM Personal Computer BASIC 1.10 words
+
+  * Dsk - Disk BASIC (BASIC.COM)
+  * Adv - Advanced BASIC (BASICA.COM)
+
+  - ABS
+  - ASC
+  - ATN
+  - AUTO
+  - BEEP
+  - BLOAD
+  - BSAVE
+  - CALL
+  - CDBL
+  - CHAIN (Dsk+)
+  - CHR$
+  - CINT
+  - CIRCLE (Adv+)
+  - CLEAR
+  - CLOSE
+  - CLS
+  - COLOR
+  - COM(n) (Adv+)
+  - COMMON (Dsk+)
+  - CONT
+  - COS
+  - CSNG
+  - CSRLIN
+  - CVI (Dsk+)
+  - CVS (Dsk+)
+  - CVD (Dsk+)
+  - DATA
+  - DATE$ (Dsk+)
+  - DEF FN
+  - DEF SEG
+  - DEFtype 
+  - DEF USR
+  - DELETE
+  - DIM
+  - DRAW (Adv+)
+  - EDIT
+  - END
+  - EOF
+  - ERASE
+  - ERR
+  - ERL
+  - ERROR
+  - EXP
+  - FIELD (Dsk+)
+  - FILES (Dsk+)
+  - FIX
+  - FOR/NEXT
+  - FRE
+  - GET (Dsk+)
+  - GET (Adv+)
+  - GOSUB/RETURN
+  - GOTO
+  - HEX$
+  - IF
+  - INKEY$
+  - INP
+  - INPUT
+  - INPUT#
+  - INPUT$
+  - INSTR
+  - INT
+  - KEY
+  - KEY(N) (Adv+)
+  - KILL (Dsk+)
+  - LEFT$
+  - LEN
+  - LET
+  - LINE
+  - LINE INPUT
+  - LINE INPUT#
+  - LIST
+  - LLIST
+  - LOAD
+  - LOC (Dsk+)
+  - LOCATE
+  - LOF (Dsk+)
+  - LOG
+  - LPOS
+  - LPRINT
+  - LPRINT USING
+  - LSET (Dsk+)
+  - RSET (Dsk+)
+  - MERGE
+  - MID$
+  - MKI$ (Dsk+)
+  - MKS$ (Dsk+)
+  - MKD$ (Dsk+)
+  - MOTOR
+  - NAME (Dsk+)
+  - NEW
+  - OCT$
+  - ON COM (Adv+)
+  - ON ERROR
+  - ON GOSUB
+  - ON GOTO
+  - ON KEY (Adv+)
+  - ON PEN (Adv+)
+  - ON STRIG (Adv+)
+  - OPEN
+  - OPEN "COM (Dsk+)
+  - OPTION BASE
+  - OUT
+  - PAINT (Adv+)
+  - PEEK
+  - PEN
+  - PLAY (Adv+)
+  - POINT
+  - POKE
+  - POS
+  - PRINT
+  - PRINT USING
+  - PRINT #
+  - PRINT # USING
+  - PSET
+  - PRESET
+  - PUT (Dsk+)
+  - PUT (Adv+)
+  - RANDOMIZE
+  - READ
+  - REM
+  - RENUM
+  - RESET (Dsk+)
+  - RESTORE
+  - RESUME
+  - RETURN
+  - RIGHT$
+  - RND
+  - RUN
+  - SAVE
+  - SCREEN()
+  - SCREEN
+  - SGN
+  - SIN
+  - SOUND
+  - SPACE$
+  - SPC
+  - SQR
+  - STICK
+  - STOP
+  - STR$
+  - STRIG
+  - STRING$
+  - SWAP
+  - SYSTEM (Dsk+)
+  - TAB
+  - TAN
+  - TIME$ (Dsk+)
+  - TRON
+  - TROFF
+  - USR
+  - VAL
+  - VARPTR
+  - VARPTR$ (Dsk+)
+  - WAIT
+  - WHILE/WEND
+  - WIDTH
+  - WRITE
+  - WRITE #
+
+
+
 {{page>en:templates:doscmd}}
