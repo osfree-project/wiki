@@ -6,11 +6,11 @@ This is an infrastructure for running VM's with modified/unmodified OS's
 
 The MVM server is a central server of the MVM personality -- the infrastructure for running multiple virtual machines on top of L4 microkernel. It is almost separate from OS/2 personality, but can be controlled by OS/2 programs via DosOpenVDD/DosCloseVDD/DosRequestVDD API's. 
 
-So, the MVM server exposes some interfaces to other OS personalities to be controlled by them. Also, it starts VM's, which are executed in the context of a VM monitor, running a guest OS (DOS, for example). The VM environment is defined by the VDD's ((Virtual Device Drivers)) loaded. The MVM server loads VDD's, which are a kind of plugins. Also, it exports some helper API's for VDD's via [[en:docs:os2:modules:mvdm|MVDM.DLL]].
+So, the MVM server exposes some interfaces to other OS personalities to be controlled by them. Also, it starts VM's, which are executed in the context of a VM monitor, running a guest OS (DOS, for example). The VM environment is defined by the VDD's ((Virtual Device Drivers)) loaded. The MVM server loads VDD's, which are a kind of plugins.
 
 ==== Virtual Device Drivers (VDD's) ====
 
-A VDD is like a plugin for MVM Server, and it can communicate with outside programs via request API (DosRequestVDD for OS/2 programs). On the other side, from the VM point of view, the VDD emulates some BIOS services/Option ROM's, a hardware devices of guest platform. It installs interrupt handlers, catches I/O ports or MMIO registers accesses from inside the guest OS. A VDD implements its services based on VDD helpers API, served by the MVM server.
+A VDD is like a plugin for MVM Server, and it can communicate with outside programs via request API (DosRequestVDD for OS/2 programs). On the other side, from the VM point of view, the VDD emulates some BIOS services/Option ROM's, a hardware devices of guest platform. It installs interrupt handlers, catches I/O ports or MMIO registers accesses from inside the guest OS. A VDD implements its services based on VDD helpers API, served by the MVM server. It exports helper API's for VDD's via [[en:docs:os2:modules:mvdm|MVDM.DLL]].
 
 Originally, the MV(D)M were used to emulate a 8086 machine with BIOS and DOS/Win 3.1. But now it is a trend for many OS'es to have the kernel virtual machines, like kvm in Linux or VirtualPC in WinNT. Our MVM personality is our solution of the same kind, but it not so monolithic like qemu/kvm -- it decomposed to several parts, in best IBM solutions design traditions. The VDD's are like plugins for MVM server, allowing to extend the MVM environment. They're loadable modules (DLL's). 
 
@@ -30,7 +30,7 @@ It maintains the address space layout of a VM application, loads a firmware (for
 
 ==== The DOS emulation kernel (doskrnl) ====
 
-The DOS emulation kernel is a special rehosted DOS kernel working via OS/2 (or PN ((Personality Neutral))) services. For example, file system API's of int 21h are implemented via OS/2 (or PN) file API's. Access to OS/2 API's done via [[en:docs:mvm:api|SVC API]] (supervisor call?) which is trap of HLT instruction followed by call number and inverted call number. Also DOSKRNL provides MVM specific API for DOS applications. See [[en:docs:kernel:doskrnl|DOSKRNL]] documentation for more info.
+The DOS emulation kernel is a special rehosted DOS kernel working via OS/2 (or PN ((Personality Neutral))) services. For example, file system API's of int 21h are implemented via OS/2 (or PN) file API's. Access to OS/2 API's done via [[en:docs:mvm:api|SVC API]] (supervisor call?) which is trap of HLT instruction followed by call number and inverted call number. Also DOSKRNL provides MVM specific API for DOS applications. See [[en:docs:kernel:doskrnl|DOSKRNL]] documentation for more info. It is not required to use DOS emulation kernel. Standard DOS kernel (FreeDOS, for example) can be used, but access to host file systems will be limited.
 
 ==== Instruction Set Translator (IST) ====
 
@@ -48,5 +48,8 @@ These extensions can be used to run unmodified OS'es on top of a hypervisor (it 
 
 Microkernels and Hypervisors are very similar things. Microkernels implement similar features. For example, the Fiasco.OC microkernel supports SVM and VT-x and allows to run unmodified Linux in very thin VM's. This feature can be utilized in our MVM personality too.
 
+==== Other kernels ====
+
+It is possible to rehost other kernels, like CP/M-86, to MVM enviroment. It can be achieved via SVC interface,
 
 ~~DISCUSSION~~
