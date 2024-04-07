@@ -47,9 +47,14 @@ SOM tools and environment must be implemented. (Reused of somFree, not included 
 |0.2.2                         |SOM Compiler Preprocessor |Done |
 |0.2.3                         |SOM Compiler C Emitter must be implemented | Done (builtin) |
 |0.2.4                         |SOM Compiler C++ Emitter must be implemented | Done (builtin) |
-|0.2.5                         |Emitter Framework classes must be implemented | In progress |
+|0.2.5                         |SOM Emitter Framework classes must be implemented | In progress |
 |0.2.6                         |SOM Compiler must be implemented | Done |
 |0.2.7                         |SOM CPI Intefaces |Not Done |
+|                              |SOM Run-time Kernel | Not done |
+|                              |SOM Event Management Framework | not done |
+|                              |SOMObjects Interface Repository Framework | not done }
+|                              |SOMObjects Utility Classes | not done |
+|                              |Distributed SOM Frameword | not done |
 
 == 0.4 ==
 
