@@ -1,6 +1,6 @@
 ===== MVM/DOS personality =====
 
-This is an infrastructure for running VM's with unmodified OS's
+This is an infrastructure for running VM's with modified/unmodified OS's
 
 ==== MVM server ====
 
