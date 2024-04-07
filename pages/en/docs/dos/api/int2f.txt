@@ -3,13 +3,13 @@
 ====== INT 2FH ======
 
 ^ AH ^ Description ^
+| [[en:docs:dos:cmd:assign:api|06H]]  | ASSIGN |
 | [[en:docs:tasklist|4AH]] | Task list     |
 | [[en:docs:switcher|4BH]] | Task switcher |
 | [[en:docs:dpmi|16H]]     | DPMI |
 | [[en:docs:xms:api|43H]]  | XMS |
-| [[en:docs:dos:cmd:append:api|??H]]  | APPEND |
-| [[en:docs:dos:cmd:assign:api|??H]]  | ASSIGN |
-| [[en:docs:dos:cmd:graftabl:api|??H]]  | GRAFTABL |
+| [[en:docs:dos:cmd:graftabl:api|B0H]]  | GRAFTABL |
+| [[en:docs:dos:cmd:append:api|B7H]]  | APPEND |
 
 
 {{page>en:templates:int}}
