@@ -182,10 +182,21 @@ Here is each small component status:
 |::: |[[en:docs:os2:modules:quecalls|QUECALLS.DLL]] |Done	|osFree	|Yuri Prokushev	| |
 |::: |[[en:docs:os2:modules:sesmgr|SESMGR.DLL]]     |Done	|osFree	|Yuri Prokushev	| |
 |::: |[[en:docs:os2:modules:viocalls|VIOCALLS.DLL]] |Done	|osFree	|Yuri Prokushev	| |
-|SOM	|SOM.DLL	|None | | | |
+|::: |[[en:docs:os2:modules:bmscalls|BMSCALLS.DLL]] |None	|	|	| |
+|::: |[[en:docs:os2:modules:bkscalls|BKSCALLS.DLL]] |None	|	|	| |
+|::: |[[en:docs:os2:modules:bvscalls|BVSCALLS.DLL]] |None	|	|	| |
+|SOM |SOM.DLL	 | None | | | |
+|::: |SOMC.DLL   | None | | | |
+|::: |SC.EXE     | None | | | |
+|::: |SOMCPP.EXE | None | | | |
+|::: |SOMIPC.EXE | None | | | |
+|::: |SPP.EXE    | None | | | |
+|::: |SOMOPC.EXE | None | | | |
+|::: |SOME.DLL   | None | | | |
 |DSOM	|SOMD.DLL	|None	| | | |
 |Object REXX	| |None	| | | |
 |DOSKRNL | DOSKRNL | None | GPL2.0+ | FreeDOS team | |
+|FSFILTER | FSFILTER.SYSL | None | | | |
 |MDOS CLI tools	|[[en:docs:dos:cmd:APPEND]] | **Done** | GPL2.0+ | FreeDOS team \\ Yuri Prokushev | |
 |::: |[[en:docs:dos:cmd:ASSIGN]]    | **Done** | GPL2.0+ | FreeDOS team \\ Yuri Prokushev | |
 |::: |[[en:docs:dos:cmd:ATTRIB]]    | **Done** | GPL2.0+ | FreeDOS team | Rework to dual mode |
