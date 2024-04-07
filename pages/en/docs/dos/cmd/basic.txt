@@ -9,164 +9,164 @@ List of IBM Personal Computer BASIC 1.10 words
   * Dsk - Disk BASIC (BASIC.COM)
   * Adv - Advanced BASIC (BASICA.COM)
 
-  - ABS
-  - ASC
-  - ATN
-  - AUTO
-  - BEEP
-  - BLOAD
-  - BSAVE
-  - CALL
-  - CDBL
-  - CHAIN (Dsk+)
-  - CHR$
-  - CINT
-  - CIRCLE (Adv+)
-  - CLEAR
-  - CLOSE
-  - CLS
-  - COLOR
-  - COM(n) (Adv+)
-  - COMMON (Dsk+)
-  - CONT
-  - COS
-  - CSNG
-  - CSRLIN
-  - CVI (Dsk+)
-  - CVS (Dsk+)
-  - CVD (Dsk+)
-  - DATA
-  - DATE$ (Dsk+)
-  - DEF FN
-  - DEF SEG
-  - DEFtype 
-  - DEF USR
-  - DELETE
-  - DIM
-  - DRAW (Adv+)
-  - EDIT
-  - END
-  - EOF
-  - ERASE
-  - ERR
-  - ERL
-  - ERROR
-  - EXP
-  - FIELD (Dsk+)
-  - FILES (Dsk+)
-  - FIX
-  - FOR/NEXT
-  - FRE
-  - GET (Dsk+)
-  - GET (Adv+)
-  - GOSUB/RETURN
-  - GOTO
-  - HEX$
-  - IF
-  - INKEY$
-  - INP
-  - INPUT
-  - INPUT#
-  - INPUT$
-  - INSTR
-  - INT
-  - KEY
-  - KEY(N) (Adv+)
-  - KILL (Dsk+)
-  - LEFT$
-  - LEN
-  - LET
-  - LINE
-  - LINE INPUT
-  - LINE INPUT#
-  - LIST
-  - LLIST
-  - LOAD
-  - LOC (Dsk+)
-  - LOCATE
-  - LOF (Dsk+)
-  - LOG
-  - LPOS
-  - LPRINT
-  - LPRINT USING
-  - LSET (Dsk+)
-  - RSET (Dsk+)
-  - MERGE
-  - MID$
-  - MKI$ (Dsk+)
-  - MKS$ (Dsk+)
-  - MKD$ (Dsk+)
-  - MOTOR
-  - NAME (Dsk+)
-  - NEW
-  - OCT$
-  - ON COM (Adv+)
-  - ON ERROR
-  - ON GOSUB
-  - ON GOTO
-  - ON KEY (Adv+)
-  - ON PEN (Adv+)
-  - ON STRIG (Adv+)
-  - OPEN
-  - OPEN "COM (Dsk+)
-  - OPTION BASE
-  - OUT
-  - PAINT (Adv+)
-  - PEEK
-  - PEN
-  - PLAY (Adv+)
-  - POINT
-  - POKE
-  - POS
-  - PRINT
-  - PRINT USING
-  - PRINT #
-  - PRINT # USING
-  - PSET
-  - PRESET
-  - PUT (Dsk+)
-  - PUT (Adv+)
-  - RANDOMIZE
-  - READ
-  - REM
-  - RENUM
-  - RESET (Dsk+)
-  - RESTORE
-  - RESUME
-  - RETURN
-  - RIGHT$
-  - RND
-  - RUN
-  - SAVE
-  - SCREEN()
-  - SCREEN
-  - SGN
-  - SIN
-  - SOUND
-  - SPACE$
-  - SPC
-  - SQR
-  - STICK
-  - STOP
-  - STR$
-  - STRIG
-  - STRING$
-  - SWAP
-  - SYSTEM (Dsk+)
-  - TAB
-  - TAN
-  - TIME$ (Dsk+)
-  - TRON
-  - TROFF
-  - USR
-  - VAL
-  - VARPTR
-  - VARPTR$ (Dsk+)
-  - WAIT
-  - WHILE/WEND
-  - WIDTH
-  - WRITE
-  - WRITE #
+  - [[en:docs:dos:cmd:basic:ABS]]
+  - [[en:docs:dos:cmd:basic:ASC]]
+  - [[en:docs:dos:cmd:basic:ATN]]
+  - [[en:docs:dos:cmd:basic:AUTO]]
+  - [[en:docs:dos:cmd:basic:BEEP]]
+  - [[en:docs:dos:cmd:basic:BLOAD]]
+  - [[en:docs:dos:cmd:basic:BSAVE]]
+  - [[en:docs:dos:cmd:basic:CALL]]
+  - [[en:docs:dos:cmd:basic:CDBL]]
+  - [[en:docs:dos:cmd:basic:CHAIN]] (Dsk+)
+  - [[en:docs:dos:cmd:basic:CHR$]]
+  - [[en:docs:dos:cmd:basic:CINT]]
+  - [[en:docs:dos:cmd:basic:CIRCLE]] (Adv+)
+  - [[en:docs:dos:cmd:basic:CLEAR]]
+  - [[en:docs:dos:cmd:basic:CLOSE]]
+  - [[en:docs:dos:cmd:basic:CLS]]
+  - [[en:docs:dos:cmd:basic:COLOR]]
+  - [[en:docs:dos:cmd:basic:COM(n)]] (Adv+)
+  - [[en:docs:dos:cmd:basic:COMMON]] (Dsk+)
+  - [[en:docs:dos:cmd:basic:CONT]]
+  - [[en:docs:dos:cmd:basic:COS]]
+  - [[en:docs:dos:cmd:basic:CSNG]]
+  - [[en:docs:dos:cmd:basic:CSRLIN]]
+  - [[en:docs:dos:cmd:basic:CVI]] (Dsk+)
+  - [[en:docs:dos:cmd:basic:CVS]] (Dsk+)
+  - [[en:docs:dos:cmd:basic:CVD]] (Dsk+)
+  - [[en:docs:dos:cmd:basic:DATA]]
+  - [[en:docs:dos:cmd:basic:DATE$]] (Dsk+)
+  - [[en:docs:dos:cmd:basic:DEF FN]]
+  - [[en:docs:dos:cmd:basic:DEF SEG]]
+  - [[en:docs:dos:cmd:basic:DEFtype]]
+  - [[en:docs:dos:cmd:basic:DEF USR]]
+  - [[en:docs:dos:cmd:basic:DELETE]]
+  - [[en:docs:dos:cmd:basic:DIM]]
+  - [[en:docs:dos:cmd:basic:DRAW]] (Adv+)
+  - [[en:docs:dos:cmd:basic:EDIT]]
+  - [[en:docs:dos:cmd:basic:END]]
+  - [[en:docs:dos:cmd:basic:EOF]]
+  - [[en:docs:dos:cmd:basic:ERASE]]
+  - [[en:docs:dos:cmd:basic:ERR]]
+  - [[en:docs:dos:cmd:basic:ERL]]
+  - [[en:docs:dos:cmd:basic:ERROR]]
+  - [[en:docs:dos:cmd:basic:EXP]]
+  - [[en:docs:dos:cmd:basic:FIELD]] (Dsk+)
+  - [[en:docs:dos:cmd:basic:FILES]] (Dsk+)
+  - [[en:docs:dos:cmd:basic:FIX]]
+  - [[en:docs:dos:cmd:basic:FOR/NEXT]]
+  - [[en:docs:dos:cmd:basic:FRE]]
+  - [[en:docs:dos:cmd:basic:GET]] (Dsk+)
+  - [[en:docs:dos:cmd:basic:GET]] (Adv+)
+  - [[en:docs:dos:cmd:basic:GOSUB/RETURN]]
+  - [[en:docs:dos:cmd:basic:GOTO]]
+  - [[en:docs:dos:cmd:basic:HEX$]]
+  - [[en:docs:dos:cmd:basic:IF]]
+  - [[en:docs:dos:cmd:basic:INKEY$]]
+  - [[en:docs:dos:cmd:basic:INP]]
+  - [[en:docs:dos:cmd:basic:INPUT]]
+  - [[en:docs:dos:cmd:basic:INPUT#]]
+  - [[en:docs:dos:cmd:basic:INPUT$]]
+  - [[en:docs:dos:cmd:basic:INSTR]]
+  - [[en:docs:dos:cmd:basic:INT]]
+  - [[en:docs:dos:cmd:basic:KEY]]
+  - [[en:docs:dos:cmd:basic:KEY(N)]] (Adv+)
+  - [[en:docs:dos:cmd:basic:KILL]] (Dsk+)
+  - [[en:docs:dos:cmd:basic:LEFT$]]
+  - [[en:docs:dos:cmd:basic:LEN]]
+  - [[en:docs:dos:cmd:basic:LET]]
+  - [[en:docs:dos:cmd:basic:LINE]]
+  - [[en:docs:dos:cmd:basic:LINE INPUT]]
+  - [[en:docs:dos:cmd:basic:LINE INPUT#]]
+  - [[en:docs:dos:cmd:basic:LIST]]
+  - [[en:docs:dos:cmd:basic:LLIST]]
+  - [[en:docs:dos:cmd:basic:LOAD]]
+  - [[en:docs:dos:cmd:basic:LOC]] (Dsk+)
+  - [[en:docs:dos:cmd:basic:LOCATE]]
+  - [[en:docs:dos:cmd:basic:LOF]] (Dsk+)
+  - [[en:docs:dos:cmd:basic:LOG]]
+  - [[en:docs:dos:cmd:basic:LPOS]]
+  - [[en:docs:dos:cmd:basic:LPRINT]]
+  - [[en:docs:dos:cmd:basic:LPRINT USING]]
+  - [[en:docs:dos:cmd:basic:LSET]] (Dsk+)
+  - [[en:docs:dos:cmd:basic:RSET]] (Dsk+)
+  - [[en:docs:dos:cmd:basic:MERGE]]
+  - [[en:docs:dos:cmd:basic:MID$]]
+  - [[en:docs:dos:cmd:basic:MKI$]] (Dsk+)
+  - [[en:docs:dos:cmd:basic:MKS$]] (Dsk+)
+  - [[en:docs:dos:cmd:basic:MKD$]] (Dsk+)
+  - [[en:docs:dos:cmd:basic:MOTOR]]
+  - [[en:docs:dos:cmd:basic:NAME]] (Dsk+)
+  - [[en:docs:dos:cmd:basic:NEW]]
+  - [[en:docs:dos:cmd:basic:OCT$]]
+  - [[en:docs:dos:cmd:basic:ON COM]] (Adv+)
+  - [[en:docs:dos:cmd:basic:ON ERROR]]
+  - [[en:docs:dos:cmd:basic:ON GOSUB]]
+  - [[en:docs:dos:cmd:basic:ON GOTO]]
+  - [[en:docs:dos:cmd:basic:ON KEY]] (Adv+)
+  - [[en:docs:dos:cmd:basic:ON PEN]] (Adv+)
+  - [[en:docs:dos:cmd:basic:ON STRIG]] (Adv+)
+  - [[en:docs:dos:cmd:basic:OPEN]]
+  - [[en:docs:dos:cmd:basic:OPEN "COM]] (Dsk+)
+  - [[en:docs:dos:cmd:basic:OPTION BASE]]
+  - [[en:docs:dos:cmd:basic:OUT]]
+  - [[en:docs:dos:cmd:basic:PAINT]] (Adv+)
+  - [[en:docs:dos:cmd:basic:PEEK]]
+  - [[en:docs:dos:cmd:basic:PEN]]
+  - [[en:docs:dos:cmd:basic:PLAY]] (Adv+)
+  - [[en:docs:dos:cmd:basic:POINT]]
+  - [[en:docs:dos:cmd:basic:POKE]]
+  - [[en:docs:dos:cmd:basic:POS]]
+  - [[en:docs:dos:cmd:basic:PRINT]]
+  - [[en:docs:dos:cmd:basic:PRINT USING]]
+  - [[en:docs:dos:cmd:basic:PRINT #]]
+  - [[en:docs:dos:cmd:basic:PRINT # USING]]
+  - [[en:docs:dos:cmd:basic:PSET]]
+  - [[en:docs:dos:cmd:basic:PRESET]]
+  - [[en:docs:dos:cmd:basic:PUT]] (Dsk+)
+  - [[en:docs:dos:cmd:basic:PUT]] (Adv+)
+  - [[en:docs:dos:cmd:basic:RANDOMIZE]]
+  - [[en:docs:dos:cmd:basic:READ]]
+  - [[en:docs:dos:cmd:basic:REM]]
+  - [[en:docs:dos:cmd:basic:RENUM]]
+  - [[en:docs:dos:cmd:basic:RESET]] (Dsk+)
+  - [[en:docs:dos:cmd:basic:RESTORE]]
+  - [[en:docs:dos:cmd:basic:RESUME]]
+  - [[en:docs:dos:cmd:basic:RETURN]]
+  - [[en:docs:dos:cmd:basic:RIGHT$]]
+  - [[en:docs:dos:cmd:basic:RND]]
+  - [[en:docs:dos:cmd:basic:RUN]]
+  - [[en:docs:dos:cmd:basic:SAVE]]
+  - [[en:docs:dos:cmd:basic:SCREEN()]]
+  - [[en:docs:dos:cmd:basic:SCREEN]]
+  - [[en:docs:dos:cmd:basic:SGN]]
+  - [[en:docs:dos:cmd:basic:SIN]]
+  - [[en:docs:dos:cmd:basic:SOUND]]
+  - [[en:docs:dos:cmd:basic:SPACE$]]
+  - [[en:docs:dos:cmd:basic:SPC]]
+  - [[en:docs:dos:cmd:basic:SQR]]
+  - [[en:docs:dos:cmd:basic:STICK]]
+  - [[en:docs:dos:cmd:basic:STOP]]
+  - [[en:docs:dos:cmd:basic:STR$]]
+  - [[en:docs:dos:cmd:basic:STRIG]]
+  - [[en:docs:dos:cmd:basic:STRING$]]
+  - [[en:docs:dos:cmd:basic:SWAP]]
+  - [[en:docs:dos:cmd:basic:SYSTEM]] (Dsk+)
+  - [[en:docs:dos:cmd:basic:TAB]]
+  - [[en:docs:dos:cmd:basic:TAN]]
+  - [[en:docs:dos:cmd:basic:TIME$]] (Dsk+)
+  - [[en:docs:dos:cmd:basic:TRON]]
+  - [[en:docs:dos:cmd:basic:TROFF]]
+  - [[en:docs:dos:cmd:basic:USR]]
+  - [[en:docs:dos:cmd:basic:VAL]]
+  - [[en:docs:dos:cmd:basic:VARPTR]]
+  - [[en:docs:dos:cmd:basic:VARPTR$]] (Dsk+)
+  - [[en:docs:dos:cmd:basic:WAIT]]
+  - [[en:docs:dos:cmd:basic:WHILE/WEND]]
+  - [[en:docs:dos:cmd:basic:WIDTH]]
+  - [[en:docs:dos:cmd:basic:WRITE]]
+  - [[en:docs:dos:cmd:basic:WRITE #]]
 
 
 
