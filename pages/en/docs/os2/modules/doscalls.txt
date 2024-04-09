@@ -390,7 +390,7 @@ The [[en:docs:os2:api:cpi|CP (Control Program) API]]. Names is not used for expo
 |  381 | [[en:docs:os2:api:cpi:DosExitMustComplete]]           | | |
 |  382 | [[en:docs:os2:api:cpi:DosSetRelMaxFH]]                | Gate to KAL | Done |
 |  383 | [[en:docs:os2:api:cpi:DOS16PUTMESSAGE]]               | Wrapper around [[en:docs:os2:api:cpi:DosPutMessage]] | | | |
-|  384 | [[en:docs:os2:api:cpi:DOS16TRUEGETMESSAGE]]           | Wrapper around [[en:docs:os2:api:cpi:DosTrueGetMessage]] | | | |
+|  384 | [[en:docs:os2:api:cpi:DOS16TRUEGETMESSAGE]]           | Wrapper around [[en:docs:os2:api:cpi:DosTrueGetMessage]] | Done | | |
 |  385 | [[en:docs:os2:api:cpi:DOS16INSMESSAGE]]               | Wrapper around [[en:docs:os2:api:cpi:DosInsertMessage]] | | | |
 |  386 | [[en:docs:os2:api:cpi:DosInsertMessage]]              | | Done |
 |  387 | [[en:docs:os2:api:cpi:DosPutMessage]]                 | | Done |
