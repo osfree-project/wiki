@@ -1,0 +1,13 @@
+====== CLS ======
+
+===== Syntax =====
+
+<code basic>
+N  = CLS
+</code>
+
+===== Description =====
+
+Clears the screen. Cursor is positioned at row 1, column 1.
+
+

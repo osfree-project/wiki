@@ -1,0 +1,12 @@
+====== CONT ======
+
+===== Syntax =====
+
+<code basic>
+CONT
+</code>
+
+===== Description =====
+
+Continue a BASIC program after a STOP has been executed.  Program resumes at the line after the STOP.
+

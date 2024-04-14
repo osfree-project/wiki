@@ -1,0 +1,12 @@
+====== COMMON ======
+
+===== Syntax =====
+
+<code basic>
+COMMON variable [, ...]
+</code>
+
+===== Description =====
+
+Designates variables to be passed to a CHAINed program.
+

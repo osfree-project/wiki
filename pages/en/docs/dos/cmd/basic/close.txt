@@ -1,0 +1,18 @@
+====== CLOSE ======
+
+===== Syntax =====
+
+<code basic>
+N  = CLOSE
+N  = CLOSE( X )
+</code>
+
+===== Parameter =====
+
+X  is a number, [MININT,MAXINT]
+
+===== Description =====
+
+Close all open files. Close file number X.
+
+

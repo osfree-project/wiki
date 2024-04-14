@@ -1,0 +1,17 @@
+====== COS ======
+
+===== Syntax =====
+
+<code basic>
+N  = COS( X )
+</code>
+
+===== Parameter =====
+
+X  is a number
+
+===== Description =====
+
+The cosine of X, where X is in radians.
+
+

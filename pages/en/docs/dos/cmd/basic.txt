@@ -20,14 +20,12 @@ List of IBM Personal Computer BASIC 1.10 words
 | [[en:docs:dos:cmd:basic:CHR$]] | **Done** |
 | [[en:docs:dos:cmd:basic:CINT]] | **Done** |
 | [[en:docs:dos:cmd:basic:CIRCLE]] (Adv+) | **Done** |
-  - [[en:docs:dos:cmd:basic:CLOSE]]
-  - [[en:docs:dos:cmd:basic:CLS]]
-  - [[en:docs:dos:cmd:basic:COLOR]]
-  - [[en:docs:dos:cmd:basic:COM(n)]] (Adv+)
-  - [[en:docs:dos:cmd:basic:COMMON]] (Dsk+)
-  - [[en:docs:dos:cmd:basic:CONT]]
-  - [[en:docs:dos:cmd:basic:COS]]
-  - [[en:docs:dos:cmd:basic:CSNG]]
+| [[en:docs:dos:cmd:basic:CLOSE]] | **Done** |
+| [[en:docs:dos:cmd:basic:CLS]] | **Done** |
+| [[en:docs:dos:cmd:basic:COLOR]] | |
+| [[en:docs:dos:cmd:basic:COM(n)]] (Adv+) | |
+| [[en:docs:dos:cmd:basic:COS]] | **Done** |
+| [[en:docs:dos:cmd:basic:CSNG]] | **Done** |
   - [[en:docs:dos:cmd:basic:CSRLIN]]
   - [[en:docs:dos:cmd:basic:CVI]] (Dsk+)
   - [[en:docs:dos:cmd:basic:CVS]] (Dsk+)
@@ -174,7 +172,7 @@ List of IBM Personal Computer BASIC 1.10 words
 | [[en:docs:dos:cmd:basic:BSAVE]] | |
 | [[en:docs:dos:cmd:basic:CHAIN]] (Dsk+) | **Done** |
 | [[en:docs:dos:cmd:basic:CLEAR]] | **Done** |
-
-
+| [[en:docs:dos:cmd:basic:COMMON]] (Dsk+) | **Done** |
+| [[en:docs:dos:cmd:basic:CONT]] | **Done** |
 
 {{page>en:templates:doscmd}}
