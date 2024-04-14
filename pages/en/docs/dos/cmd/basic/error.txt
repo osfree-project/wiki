@@ -1,0 +1,18 @@
+====== ERROR ======
+
+===== Syntax =====
+
+<code basic>
+N  = ERROR( X )
+</code>
+
+===== Parameter =====
+
+X  is a number, [0,255]
+
+===== Description =====
+
+Simulate the error number in X.
+
+
+

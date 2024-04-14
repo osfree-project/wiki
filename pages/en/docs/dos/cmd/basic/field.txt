@@ -1,0 +1,12 @@
+====== FIELD ======
+
+===== Syntax =====
+
+<code basic>
+FIELD [#] filenum, number AS variable$ [, ...]
+</code>
+
+===== Description =====
+
+Assigns number bytes in the buffer of random file filenum to the variable variable$.  GET
+will automatically update the variable, and PUT will automatically use the variable.

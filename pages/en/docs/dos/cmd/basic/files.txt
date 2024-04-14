@@ -1,0 +1,20 @@
+====== FILES ======
+
+===== Syntax =====
+
+<code basic>
+N  = FILES
+N  = FILES( A$ )
+</code>
+
+===== Parameter =====
+
+A$ is a string, LEN >= 1
+
+===== Description =====
+
+Displays all the file names.
+Displays all the file names matching A$.
+
+
+
