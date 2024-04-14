@@ -1,0 +1,13 @@
+====== IF/THEN/ELSE ======
+
+===== Syntax =====
+
+<code basic>
+IF value THEN line1 [ELSE line2]
+</code>
+
+===== Description =====
+
+Single line standard IF command.  If the value is non-zero, then branh to line1.  If the
+value is zero and ELSE is provided, then branch to line2.  Otherwise continue to the
+next line.  LABELS are not allowed.

@@ -1,0 +1,15 @@
+====== HEX$ ======
+
+===== Syntax =====
+
+<code basic>
+S$ = HEX$( X )
+</code>
+
+===== Parameter =====
+
+X  is a number, [MININT,MAXINT]
+
+===== Description =====
+
+The the hexadecimal (base 16) representation of X.
