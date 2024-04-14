@@ -34,9 +34,6 @@ List of IBM Personal Computer BASIC 1.10 words
 | [[en:docs:dos:cmd:basic:CVS]] (Dsk+) | **Done** |
 | [[en:docs:dos:cmd:basic:DATE$]] (Dsk+) | **Done** |
 
-  - [[en:docs:dos:cmd:basic:DEF USR]]
-  - [[en:docs:dos:cmd:basic:DELETE]]
-  - [[en:docs:dos:cmd:basic:DIM]]
   - [[en:docs:dos:cmd:basic:DRAW]] (Adv+)
   - [[en:docs:dos:cmd:basic:EDIT]]
   - [[en:docs:dos:cmd:basic:END]]
@@ -178,5 +175,10 @@ List of IBM Personal Computer BASIC 1.10 words
 | [[en:docs:dos:cmd:basic:DEF SEG]] | |
 | [[en:docs:dos:cmd:basic:DEFDBL]] | **Done** |
 | [[en:docs:dos:cmd:basic:DEFINT]] | **Done** |
+| [[en:docs:dos:cmd:basic:DEFSNG]] | **Done** |
+| [[en:docs:dos:cmd:basic:DEFSTR]] | **Done** |
+| [[en:docs:dos:cmd:basic:DEF USR]] | |
+| [[en:docs:dos:cmd:basic:DELETE]] | **Done** |
+| [[en:docs:dos:cmd:basic:DIM]] | **Done** |
 
 {{page>en:templates:doscmd}}

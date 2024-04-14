@@ -1,0 +1,14 @@
+====== DEFSTR ======
+
+===== Syntax =====
+
+<code basic>
+DEFSTR letter[-letter] [, ...]
+</code>
+
+===== Description =====
+
+Declares variables with single-letter names as string variables.
+
+
+

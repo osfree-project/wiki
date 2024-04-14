@@ -1,0 +1,16 @@
+====== DELETE ======
+
+===== Syntax =====
+
+<code basic>
+DELETE line [- line]
+</code>
+
+===== Description =====
+
+Deletes program lines indicated by the argument(s).  All program lines have a
+number, which is visible with the LIST command.  If line numbers are not provided,
+they are assigned beginning with 1.  Deleting a non-existing line does not cause an error.
+
+
+

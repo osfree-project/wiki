@@ -1,0 +1,14 @@
+====== DEFSNG ======
+
+===== Syntax =====
+
+<code basic>
+DEFSNG letter[-letter] [, ...]
+</code>
+
+===== Description =====
+
+Declares variables with single-letter names as numeric variables.
+
+
+
