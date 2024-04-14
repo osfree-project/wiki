@@ -1,0 +1,17 @@
+====== CVS ======
+
+===== Syntax =====
+
+<code basic>
+N  = CVS( A$ )
+</code>
+
+===== Parameter =====
+
+A$ is a string, LEN >= sizeof(FLT)
+
+===== Description =====
+
+The single-precision value in A$, which was created by MKS$.
+
+

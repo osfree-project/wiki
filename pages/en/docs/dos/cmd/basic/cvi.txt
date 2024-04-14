@@ -1,0 +1,17 @@
+====== CVI ======
+
+===== Syntax =====
+
+<code basic>
+N  = CVI( A$ )
+</code>
+
+===== Parameter =====
+
+A$ is a string, LEN >= sizeof(INT)
+
+===== Description =====
+
+The short (16-bit) integer value in A$, which was created by MKI$.
+
+

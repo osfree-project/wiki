@@ -1,0 +1,18 @@
+====== CVD ======
+
+===== Syntax =====
+
+<code basic>
+N  = CVD( A$ )
+</code>
+
+===== Parameter =====
+
+A$ is a string, LEN >= sizeof(DBL)
+
+===== Description =====
+
+The double-precision value in A$, which was created by MKD$.
+
+
+

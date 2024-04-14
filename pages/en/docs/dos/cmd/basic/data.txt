@@ -1,0 +1,12 @@
+====== DATA ======
+
+===== Syntax =====
+
+<code basic>
+DATA constant [, ...]
+</code>
+
+===== Description =====
+
+Stores numeric and string constants to be accessed by READ.
+

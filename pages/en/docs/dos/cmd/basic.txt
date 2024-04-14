@@ -26,11 +26,10 @@ List of IBM Personal Computer BASIC 1.10 words
 | [[en:docs:dos:cmd:basic:COM(n)]] (Adv+) | |
 | [[en:docs:dos:cmd:basic:COS]] | **Done** |
 | [[en:docs:dos:cmd:basic:CSNG]] | **Done** |
-  - [[en:docs:dos:cmd:basic:CSRLIN]]
-  - [[en:docs:dos:cmd:basic:CVI]] (Dsk+)
-  - [[en:docs:dos:cmd:basic:CVS]] (Dsk+)
-  - [[en:docs:dos:cmd:basic:CVD]] (Dsk+)
-  - [[en:docs:dos:cmd:basic:DATA]]
+| [[en:docs:dos:cmd:basic:CSRLIN]] | |
+| [[en:docs:dos:cmd:basic:CVD]] (Dsk+) | **Done** |
+| [[en:docs:dos:cmd:basic:CVI]] (Dsk+) | **Done** |
+| [[en:docs:dos:cmd:basic:CVS]] (Dsk+) | **Done** |
   - [[en:docs:dos:cmd:basic:DATE$]] (Dsk+)
   - [[en:docs:dos:cmd:basic:DEF FN]]
   - [[en:docs:dos:cmd:basic:DEF SEG]]
@@ -174,5 +173,6 @@ List of IBM Personal Computer BASIC 1.10 words
 | [[en:docs:dos:cmd:basic:CLEAR]] | **Done** |
 | [[en:docs:dos:cmd:basic:COMMON]] (Dsk+) | **Done** |
 | [[en:docs:dos:cmd:basic:CONT]] | **Done** |
+| [[en:docs:dos:cmd:basic:DATA]] | **Done** |
 
 {{page>en:templates:doscmd}}

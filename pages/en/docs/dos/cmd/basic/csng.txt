@@ -1,0 +1,17 @@
+====== CSNG ======
+
+===== Syntax =====
+
+<code basic>
+N  = CSNG( X )
+</code>
+
+===== Parameter =====
+
+X  is a number, [MINFLT,MAXFLT]
+
+===== Description =====
+
+The single-precision value of X.
+
+
