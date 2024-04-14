@@ -1,0 +1,17 @@
+====== CINT ======
+
+===== Syntax =====
+
+<code basic>
+N  = CINT( X )
+</code>
+
+===== Parameter =====
+
+X  is a number, [MININT,MAXINT]
+
+===== Description =====
+
+The short (16-bit) integer value of X.
+
+

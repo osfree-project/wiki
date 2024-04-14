@@ -1,0 +1,17 @@
+====== CDBL ======
+
+===== Syntax =====
+
+<code basic>
+N  = CDBL( X )
+</code>
+
+===== Parameter =====
+
+X  is a number, [MINDBL,MAXDBL]
+
+===== Description =====
+
+The double-precision value of X.
+
+

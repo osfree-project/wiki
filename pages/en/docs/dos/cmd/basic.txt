@@ -17,11 +17,9 @@ List of IBM Personal Computer BASIC 1.10 words
 | [[en:docs:dos:cmd:basic:ATN]] | **Done** |
 | [[en:docs:dos:cmd:basic:CALL]] | |
 | [[en:docs:dos:cmd:basic:CDBL]] | **Done** |
-  - [[en:docs:dos:cmd:basic:CHAIN]] (Dsk+)
-  - [[en:docs:dos:cmd:basic:CHR$]]
-  - [[en:docs:dos:cmd:basic:CINT]]
-  - [[en:docs:dos:cmd:basic:CIRCLE]] (Adv+)
-  - [[en:docs:dos:cmd:basic:CLEAR]]
+| [[en:docs:dos:cmd:basic:CHR$]] | **Done** |
+| [[en:docs:dos:cmd:basic:CINT]] | **Done** |
+| [[en:docs:dos:cmd:basic:CIRCLE]] (Adv+) | **Done** |
   - [[en:docs:dos:cmd:basic:CLOSE]]
   - [[en:docs:dos:cmd:basic:CLS]]
   - [[en:docs:dos:cmd:basic:COLOR]]
@@ -174,6 +172,8 @@ List of IBM Personal Computer BASIC 1.10 words
 | [[en:docs:dos:cmd:basic:BEEP]] | |
 | [[en:docs:dos:cmd:basic:BLOAD]] | |
 | [[en:docs:dos:cmd:basic:BSAVE]] | |
+| [[en:docs:dos:cmd:basic:CHAIN]] (Dsk+) | **Done** |
+| [[en:docs:dos:cmd:basic:CLEAR]] | **Done** |
 
 
 

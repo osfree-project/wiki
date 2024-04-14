@@ -1,0 +1,17 @@
+====== CHR$ ======
+
+===== Syntax =====
+
+<code basic>
+S$ = CHR$( X )
+</code>
+
+===== Parameter =====
+
+X  is a number, [0,255]
+
+===== Description =====
+
+The one-character string with the character corresponding to the numeric code X. On ASCII systems, CHR$(65) returns "A".
+
+

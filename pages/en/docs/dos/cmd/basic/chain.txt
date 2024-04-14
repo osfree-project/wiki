@@ -1,0 +1,12 @@
+====== CHAIN ======
+
+===== Syntax =====
+
+<code basic>
+CHAIN filename$ [, linenumber]
+</code>
+
+===== Description =====
+
+Load and execute another BASIC program, without clearing common variables.
+

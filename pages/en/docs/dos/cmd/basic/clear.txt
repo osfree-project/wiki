@@ -1,0 +1,12 @@
+====== CLEAR ======
+
+===== Syntax =====
+
+<code basic>
+CLEAR
+</code>
+
+===== Description =====
+
+Sets all numeric variables to 0, and all string variables to empty strings.
+
