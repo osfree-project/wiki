@@ -1,0 +1,16 @@
+====== ASC ======
+
+===== Syntax =====
+
+<code basic>
+N  = ASC( A$ )
+</code>
+
+===== Parameter =====
+
+A$ is a string, LEN >= 1
+
+===== Description =====
+
+The numeric code for the first letter in A$. For example, ASC("ABC") returns 65 on ASCII systems.
+

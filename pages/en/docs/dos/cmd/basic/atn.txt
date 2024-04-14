@@ -1,0 +1,17 @@
+====== ATN ======
+
+===== Syntax =====
+
+<code basic>
+N  = ATN( X )
+</code>
+
+===== Parameter =====
+
+X  is a number
+
+===== Description =====
+
+The arctangent of X in radians, i.e. the angle whose tangent is X, where -PI/2 < ATN(X) < PI/2.
+
+

@@ -1,0 +1,17 @@
+====== AUTO ======
+
+===== Syntax =====
+
+<code basic>
+AUTO [start [, increment]]
+</code>
+
+===== Description =====
+
+Automatic line numbering for manual program entry.  If the line already exists, then an
+asterisk is displayed and pressing ENTER leaves the line as-is.  If the line does not
+exist, then an asterisk is not displayed and pressing ENTER terminates AUTO mode. 
+Regardless whether the line exists, entering the command MAN will terminate AUTO mode. 
+AUTO mode is also terminated by any ERROR or by pressing control-C.
+
+

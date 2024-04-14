@@ -9,10 +9,13 @@ List of IBM Personal Computer BASIC 1.10 words
   * Dsk - Disk BASIC (BASIC.COM)
   * Adv - Advanced BASIC (BASICA.COM)
 
-  - [[en:docs:dos:cmd:basic:ABS]]
-  - [[en:docs:dos:cmd:basic:ASC]]
-  - [[en:docs:dos:cmd:basic:ATN]]
-  - [[en:docs:dos:cmd:basic:AUTO]]
+==== Functions ====
+
+^ Name ^ Status ^
+| [[en:docs:dos:cmd:basic:ABS]] | **Done** |
+| [[en:docs:dos:cmd:basic:ASC]] | **Done** |
+| [[en:docs:dos:cmd:basic:ATN]] | **Done** |
+
   - [[en:docs:dos:cmd:basic:BEEP]]
   - [[en:docs:dos:cmd:basic:BLOAD]]
   - [[en:docs:dos:cmd:basic:BSAVE]]
@@ -168,6 +171,10 @@ List of IBM Personal Computer BASIC 1.10 words
   - [[en:docs:dos:cmd:basic:WRITE]]
   - [[en:docs:dos:cmd:basic:WRITE #]]
 
+==== Command ====
+
+^ Name ^ Status ^
+| [[en:docs:dos:cmd:basic:AUTO]] | **Done** |
 
 
 {{page>en:templates:doscmd}}

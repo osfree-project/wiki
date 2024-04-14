@@ -1,0 +1,16 @@
+====== ABS ======
+
+===== Syntax =====
+
+<code basic>
+N = ABS (X)
+</code>
+
+===== Parameter =====
+
+X is number
+
+===== Description =====
+
+The absolute value of X.
+
