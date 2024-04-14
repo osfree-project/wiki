@@ -1,0 +1,13 @@
+====== INKEY$ ======
+
+===== Syntax =====
+
+<code basic>
+S$ = INKEY$
+</code>
+
+
+===== Description =====
+
+The keypress, if available. If a keypress is not available, then immediately returns an
+empty string.
