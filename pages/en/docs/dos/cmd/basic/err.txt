@@ -1,0 +1,15 @@
+====== ERR ======
+
+===== Syntax =====
+
+<code basic>
+N  = ERR
+</code>
+
+===== Description =====
+
+The error number of the most recent error.
+
+
+
+

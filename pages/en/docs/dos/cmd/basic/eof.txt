@@ -1,0 +1,18 @@
+====== EOF ======
+
+===== Syntax =====
+
+<code basic>
+N  = EOF( X )
+</code>
+
+===== Parameter =====
+
+X  is a number, [MININT,MAXINT]
+
+===== Description =====
+
+If device number X is at the end-of-file, then -1, otherwise 0.
+
+
+

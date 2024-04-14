@@ -1,0 +1,16 @@
+====== END ======
+
+===== Syntax =====
+
+<code basic>
+END
+</code>
+
+===== Description =====
+
+Terminates program execution. If the BASIC program was executed from the operating
+system level, then control returns to the operating system, otherwise control returns
+to the BASIC prompt.
+
+
+

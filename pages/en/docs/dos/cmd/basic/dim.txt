@@ -1,0 +1,16 @@
+====== DIM ======
+
+===== Syntax =====
+
+<code basic>
+DIM [# filenum,] variable([ lower TO ] upper)
+</code>
+
+===== Description =====
+
+Declares variables and specifies the dimensions of array variables.  For array
+variables, if the lower bound is not provided, then the OPTION BASE value is used.
+If filenum is provided, then the variable is virtual.
+
+
+

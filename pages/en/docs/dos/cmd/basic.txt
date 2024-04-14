@@ -33,15 +33,10 @@ List of IBM Personal Computer BASIC 1.10 words
 | [[en:docs:dos:cmd:basic:CVI]] (Dsk+) | **Done** |
 | [[en:docs:dos:cmd:basic:CVS]] (Dsk+) | **Done** |
 | [[en:docs:dos:cmd:basic:DATE$]] (Dsk+) | **Done** |
-
-  - [[en:docs:dos:cmd:basic:DRAW]] (Adv+)
-  - [[en:docs:dos:cmd:basic:EDIT]]
-  - [[en:docs:dos:cmd:basic:END]]
-  - [[en:docs:dos:cmd:basic:EOF]]
-  - [[en:docs:dos:cmd:basic:ERASE]]
-  - [[en:docs:dos:cmd:basic:ERR]]
-  - [[en:docs:dos:cmd:basic:ERL]]
-  - [[en:docs:dos:cmd:basic:ERROR]]
+| [[en:docs:dos:cmd:basic:EOF]] | **Done** |
+| [[en:docs:dos:cmd:basic:ERL]] | **Done** |
+| [[en:docs:dos:cmd:basic:ERR]] | **Done** |
+| [[en:docs:dos:cmd:basic:ERROR]] | **Done** |
   - [[en:docs:dos:cmd:basic:EXP]]
   - [[en:docs:dos:cmd:basic:FIELD]] (Dsk+)
   - [[en:docs:dos:cmd:basic:FILES]] (Dsk+)
@@ -180,5 +175,9 @@ List of IBM Personal Computer BASIC 1.10 words
 | [[en:docs:dos:cmd:basic:DEF USR]] | |
 | [[en:docs:dos:cmd:basic:DELETE]] | **Done** |
 | [[en:docs:dos:cmd:basic:DIM]] | **Done** |
+| [[en:docs:dos:cmd:basic:DRAW]] (Adv+) | |
+| [[en:docs:dos:cmd:basic:EDIT]] | |
+| [[en:docs:dos:cmd:basic:END]] | **Done** |
+| [[en:docs:dos:cmd:basic:ERASE]] | **Done** |
 
 {{page>en:templates:doscmd}}

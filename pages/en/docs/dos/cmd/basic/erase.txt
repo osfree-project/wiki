@@ -1,0 +1,14 @@
+====== ERASE ======
+
+===== Syntax =====
+
+<code basic>
+ERASE variable [, ...]
+</code>
+
+===== Description =====
+
+Eliminates arrayed variables from a program.
+
+
+

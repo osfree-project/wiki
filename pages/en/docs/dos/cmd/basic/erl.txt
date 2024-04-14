@@ -1,0 +1,15 @@
+====== ERL ======
+
+===== Syntax =====
+
+<code basic>
+N  = ERL
+</code>
+
+===== Description =====
+
+The line number of the most recent error.
+
+
+
+
