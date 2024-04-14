@@ -1,0 +1,11 @@
+====== GOTO ======
+
+===== Syntax =====
+
+<code basic>
+GOTO line
+</code>
+
+===== Description =====
+
+Branches program execution to the specified line.  The line may be a number or a label.

@@ -1,0 +1,12 @@
+====== GOSUB ======
+
+===== Syntax =====
+
+<code basic>
+GOSUB line
+</code>
+
+===== Description =====
+
+Initiates a subroutine call to the line specified.  The subroutine must end with
+RETURN.  The line may be a number or a label.
