@@ -1,0 +1,14 @@
+====== DEFDBL ======
+
+===== Syntax =====
+
+<code basic>
+DEFDBL letter[-letter] [, ...]
+</code>
+
+===== Description =====
+
+Declares variables with single-letter names as numeric variables.
+
+
+

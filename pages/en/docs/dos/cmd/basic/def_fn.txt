@@ -1,0 +1,12 @@
+====== DEF FN ======
+
+===== Syntax =====
+
+<code basic>
+DEF FNname[( arg [,...] )] = value
+</code>
+
+===== Description =====
+
+Defines a single-line function.  Single-line functions require an equal sign.
+

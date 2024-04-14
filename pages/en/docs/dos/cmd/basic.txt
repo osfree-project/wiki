@@ -33,9 +33,7 @@ List of IBM Personal Computer BASIC 1.10 words
 | [[en:docs:dos:cmd:basic:CVI]] (Dsk+) | **Done** |
 | [[en:docs:dos:cmd:basic:CVS]] (Dsk+) | **Done** |
 | [[en:docs:dos:cmd:basic:DATE$]] (Dsk+) | **Done** |
-  - [[en:docs:dos:cmd:basic:DEF FN]]
-  - [[en:docs:dos:cmd:basic:DEF SEG]]
-  - [[en:docs:dos:cmd:basic:DEFtype]]
+
   - [[en:docs:dos:cmd:basic:DEF USR]]
   - [[en:docs:dos:cmd:basic:DELETE]]
   - [[en:docs:dos:cmd:basic:DIM]]
@@ -176,5 +174,9 @@ List of IBM Personal Computer BASIC 1.10 words
 | [[en:docs:dos:cmd:basic:COMMON]] (Dsk+) | **Done** |
 | [[en:docs:dos:cmd:basic:CONT]] | **Done** |
 | [[en:docs:dos:cmd:basic:DATA]] | **Done** |
+| [[en:docs:dos:cmd:basic:DEF FN]] | **Done** |
+| [[en:docs:dos:cmd:basic:DEF SEG]] | |
+| [[en:docs:dos:cmd:basic:DEFDBL]] | **Done** |
+| [[en:docs:dos:cmd:basic:DEFINT]] | **Done** |
 
 {{page>en:templates:doscmd}}
