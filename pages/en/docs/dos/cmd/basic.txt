@@ -15,12 +15,8 @@ List of IBM Personal Computer BASIC 1.10 words
 | [[en:docs:dos:cmd:basic:ABS]] | **Done** |
 | [[en:docs:dos:cmd:basic:ASC]] | **Done** |
 | [[en:docs:dos:cmd:basic:ATN]] | **Done** |
-
-  - [[en:docs:dos:cmd:basic:BEEP]]
-  - [[en:docs:dos:cmd:basic:BLOAD]]
-  - [[en:docs:dos:cmd:basic:BSAVE]]
-  - [[en:docs:dos:cmd:basic:CALL]]
-  - [[en:docs:dos:cmd:basic:CDBL]]
+| [[en:docs:dos:cmd:basic:CALL]] | |
+| [[en:docs:dos:cmd:basic:CDBL]] | **Done** |
   - [[en:docs:dos:cmd:basic:CHAIN]] (Dsk+)
   - [[en:docs:dos:cmd:basic:CHR$]]
   - [[en:docs:dos:cmd:basic:CINT]]
@@ -175,6 +171,10 @@ List of IBM Personal Computer BASIC 1.10 words
 
 ^ Name ^ Status ^
 | [[en:docs:dos:cmd:basic:AUTO]] | **Done** |
+| [[en:docs:dos:cmd:basic:BEEP]] | |
+| [[en:docs:dos:cmd:basic:BLOAD]] | |
+| [[en:docs:dos:cmd:basic:BSAVE]] | |
+
 
 
 {{page>en:templates:doscmd}}
