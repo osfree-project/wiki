@@ -1,0 +1,15 @@
+====== FOR/NEXT======
+
+===== Syntax =====
+
+<code basic>
+FOR variable = start TO finish [STEP increment]
+NEXT [variable]
+
+</code>
+
+===== Description =====
+
+FOR - NEXT structure.  The loop will continue a fixed number of times, which is
+determined by the values of start, finish, and increment.
+

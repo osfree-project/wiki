@@ -1,0 +1,18 @@
+====== GET ======
+
+===== Syntax =====
+
+<code basic>
+N  = GET( X )
+N  = GET( X, Y )
+</code>
+
+===== Parameter =====
+
+X  is a number, [MININT,MAXINT]
+Y  is a number, [MININT,MAXINT]
+
+===== Description =====
+
+For file X, gets the next available record.
+For file X, gets record number Y.  The first record number is 1.

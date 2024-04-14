@@ -1,0 +1,17 @@
+====== FRE ======
+
+===== Syntax =====
+
+<code basic>
+N  = FRE( X )
+</code>
+
+===== Parameter =====
+
+X  is a number
+
+===== Description =====
+
+The number of bytes of available memory.  This function is provided for backward
+compatibility only and it always returns a fixed value of 32000.  The value of X is
+ignored.

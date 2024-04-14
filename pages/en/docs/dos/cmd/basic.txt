@@ -40,11 +40,8 @@ List of IBM Personal Computer BASIC 1.10 words
 | [[en:docs:dos:cmd:basic:EXP]] | **Done** |
 | [[en:docs:dos:cmd:basic:FILES]] (Dsk+) | **Done** |
 | [[en:docs:dos:cmd:basic:FIX]] | **Done** |
-  - [[en:docs:dos:cmd:basic:FOR/NEXT]]
-  - [[en:docs:dos:cmd:basic:FRE]]
-  - [[en:docs:dos:cmd:basic:GET]] (Dsk+)
-  - [[en:docs:dos:cmd:basic:GET]] (Adv+)
-  - [[en:docs:dos:cmd:basic:GOSUB/RETURN]]
+| [[en:docs:dos:cmd:basic:FRE]] | **Done** |
+| [[en:docs:dos:cmd:basic:GET]] (Dsk+) | **Done** |
   - [[en:docs:dos:cmd:basic:GOTO]]
   - [[en:docs:dos:cmd:basic:HEX$]]
   - [[en:docs:dos:cmd:basic:IF]]
@@ -179,5 +176,8 @@ List of IBM Personal Computer BASIC 1.10 words
 | [[en:docs:dos:cmd:basic:END]] | **Done** |
 | [[en:docs:dos:cmd:basic:ERASE]] | **Done** |
 | [[en:docs:dos:cmd:basic:FIELD]] (Dsk+) | **Done** |
+| [[en:docs:dos:cmd:basic:FOR/NEXT]] | **Done** |
+| [[en:docs:dos:cmd:basic:GET (Graphics)]] (Adv+) | |
+| [[en:docs:dos:cmd:basic:GOSUB]] | **Done** | |
 
 {{page>en:templates:doscmd}}
