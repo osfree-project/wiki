@@ -9,6 +9,8 @@ List of IBM Personal Computer BASIC 1.10 words
   * Dsk - Disk BASIC (BASIC.COM)
   * Adv - Advanced BASIC (BASICA.COM)
 
+  * Gw - GW-BASIC 3.23
+
 ==== Functions ====
 
 ^ Name ^ Status ^
@@ -30,7 +32,7 @@ List of IBM Personal Computer BASIC 1.10 words
 | [[en:docs:dos:cmd:basic:CVD]] (Dsk+) | **Done** |
 | [[en:docs:dos:cmd:basic:CVI]] (Dsk+) | **Done** |
 | [[en:docs:dos:cmd:basic:CVS]] (Dsk+) | **Done** |
-  - [[en:docs:dos:cmd:basic:DATE$]] (Dsk+)
+| [[en:docs:dos:cmd:basic:DATE$]] (Dsk+) | **Done** |
   - [[en:docs:dos:cmd:basic:DEF FN]]
   - [[en:docs:dos:cmd:basic:DEF SEG]]
   - [[en:docs:dos:cmd:basic:DEFtype]]

@@ -1,0 +1,14 @@
+====== DATE$ ======
+
+===== Syntax =====
+
+<code basic>
+S$ = DATE$
+</code>
+
+===== Description =====
+
+The current date based on the internal clock as a string in the format set by OPTION DATE.
+
+
+
