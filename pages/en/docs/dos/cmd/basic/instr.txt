@@ -1,0 +1,22 @@
+====== INSTR ======
+
+===== Syntax =====
+
+<code basic>
+N  = INSTR( A$, B$ )
+N  = INSTR( X, A$, B$ )
+</code>
+
+===== Parameter =====
+
+X  is a number, [1,MAXLEN]
+A$ is a string, LEN >= 0
+B$ is a string, LEN >= 0
+
+===== Description =====
+
+The position at which B$ occurs in A$, beginning at position 1.
+
+The position at which B$ occurs in A$, beginning at position X.
+
+

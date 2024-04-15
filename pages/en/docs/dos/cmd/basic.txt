@@ -2,6 +2,10 @@
 
 ====== BASIC ======
 
+===== Description =====
+
+BASIC is a Disk BASIC dialect, compatible with IBM Personal Computer BASIC.
+
 ===== Keywords =====
 
 List of IBM Personal Computer BASIC 1.10 words
@@ -46,11 +50,9 @@ List of IBM Personal Computer BASIC 1.10 words
 | [[en:docs:dos:cmd:basic:INKEY$]] | **Done** |
 | [[en:docs:dos:cmd:basic:INP]] |  |
 | [[en:docs:dos:cmd:basic:INPUT (function)|INPUT$]] | **Done** |
-  - [[en:docs:dos:cmd:basic:INSTR]]
-  - [[en:docs:dos:cmd:basic:INT]]
-  - [[en:docs:dos:cmd:basic:KEY]]
-  - [[en:docs:dos:cmd:basic:KEY(N)]] (Adv+)
-  - [[en:docs:dos:cmd:basic:KILL]] (Dsk+)
+| [[en:docs:dos:cmd:basic:INSTR]] | **Done** |
+| [[en:docs:dos:cmd:basic:INT]] | **Done** |
+| [[en:docs:dos:cmd:basic:KILL]] (Dsk+) | **Done** |
   - [[en:docs:dos:cmd:basic:LEFT$]]
   - [[en:docs:dos:cmd:basic:LEN]]
   - [[en:docs:dos:cmd:basic:LET]]
@@ -179,5 +181,7 @@ List of IBM Personal Computer BASIC 1.10 words
 | [[en:docs:dos:cmd:basic:IF]] | **Done** |
 | [[en:docs:dos:cmd:basic:INPUT]] | **Done** |
 | [[en:docs:dos:cmd:basic:INPUT#]] | **Done** |
+| [[en:docs:dos:cmd:basic:KEY]] | |
+| [[en:docs:dos:cmd:basic:KEY(N)]] (Adv+) | |
 
 {{page>en:templates:doscmd}}

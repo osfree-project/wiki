@@ -1,0 +1,17 @@
+====== KILL ======
+
+===== Syntax =====
+
+<code basic>
+N  = KILL( A$ )
+</code>
+
+===== Parameter =====
+
+A$ is a string, LEN >= 1
+
+===== Description =====
+
+Removes the file named in A$.
+
+

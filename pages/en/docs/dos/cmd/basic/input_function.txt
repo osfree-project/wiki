@@ -1,0 +1,21 @@
+====== INPUT$ ======
+
+===== Syntax =====
+
+<code basic>
+S$ = INPUT$( X )
+S$ = INPUT$( X, Y )
+</code>
+
+===== Parameter =====
+
+X  is a number, [0,MAXLEN]
+Y  is a number, [MININT,MAXINT]
+
+===== Description =====
+
+The string of X characters, read from the terminal.
+
+The string of X characters, read from file Y.
+
+
