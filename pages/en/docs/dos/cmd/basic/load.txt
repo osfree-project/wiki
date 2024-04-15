@@ -1,0 +1,11 @@
+====== LOAD ======
+
+===== Syntax =====
+
+<code basic>
+LOAD [filename$]
+</code>
+
+===== Description =====
+
+Loads an ASCII BASIC program into memory.

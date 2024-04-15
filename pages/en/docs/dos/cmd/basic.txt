@@ -55,8 +55,6 @@ List of IBM Personal Computer BASIC 1.10 words
 | [[en:docs:dos:cmd:basic:KILL]] (Dsk+) | **Done** |
 | [[en:docs:dos:cmd:basic:LEFT$]] | **Done** |
 | [[en:docs:dos:cmd:basic:LEN]] | **Done** |
-  - [[en:docs:dos:cmd:basic:LLIST]]
-  - [[en:docs:dos:cmd:basic:LOAD]]
   - [[en:docs:dos:cmd:basic:LOC]] (Dsk+)
   - [[en:docs:dos:cmd:basic:LOCATE]]
   - [[en:docs:dos:cmd:basic:LOF]] (Dsk+)
@@ -182,5 +180,7 @@ List of IBM Personal Computer BASIC 1.10 words
 | [[en:docs:dos:cmd:basic:LINE]] | |
 | [[en:docs:dos:cmd:basic:LINE INPUT]] | **Done** |
 | [[en:docs:dos:cmd:basic:LIST]] | **Done** |
+| [[en:docs:dos:cmd:basic:LLIST]] | **Done** |
+| [[en:docs:dos:cmd:basic:LOAD]] | **Done** |
 
 {{page>en:templates:doscmd}}
