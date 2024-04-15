@@ -55,11 +55,11 @@ List of IBM Personal Computer BASIC 1.10 words
 | [[en:docs:dos:cmd:basic:KILL]] (Dsk+) | **Done** |
 | [[en:docs:dos:cmd:basic:LEFT$]] | **Done** |
 | [[en:docs:dos:cmd:basic:LEN]] | **Done** |
-  - [[en:docs:dos:cmd:basic:LOC]] (Dsk+)
-  - [[en:docs:dos:cmd:basic:LOCATE]]
-  - [[en:docs:dos:cmd:basic:LOF]] (Dsk+)
-  - [[en:docs:dos:cmd:basic:LOG]]
-  - [[en:docs:dos:cmd:basic:LPOS]]
+| [[en:docs:dos:cmd:basic:LOC]] (Dsk+) | **Done** |
+| [[en:docs:dos:cmd:basic:LOCATE]] | **Done** |
+| [[en:docs:dos:cmd:basic:LOF]] (Dsk+) | **Done** |
+| [[en:docs:dos:cmd:basic:LOG]] | **Done** |
+| [[en:docs:dos:cmd:basic:LPOS]] | **Done** |
   - [[en:docs:dos:cmd:basic:LPRINT]]
   - [[en:docs:dos:cmd:basic:LPRINT USING]]
   - [[en:docs:dos:cmd:basic:LSET]] (Dsk+)

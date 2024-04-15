@@ -1,0 +1,13 @@
+====== LPOS ======
+
+===== Syntax =====
+
+<code basic>
+N  = LOG( X )
+</code>
+
+===== Description =====
+
+The current cursor position in the line for the printer.
+
+

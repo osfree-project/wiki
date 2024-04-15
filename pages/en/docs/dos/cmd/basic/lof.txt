@@ -1,0 +1,17 @@
+====== LOF ======
+
+===== Syntax =====
+
+<code basic>
+N  = LOF( X )
+</code>
+
+===== Parameter =====
+
+X  is a number, [MININT,MAXINT]
+
+===== Description =====
+
+The length of file X.
+
+

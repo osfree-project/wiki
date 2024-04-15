@@ -1,0 +1,17 @@
+====== LOC ======
+
+===== Syntax =====
+
+<code basic>
+N  = LOC( X )
+</code>
+
+===== Parameter =====
+
+X  is a number, [MININT,MAXINT]
+
+===== Description =====
+
+The location of file X; the next record that GET or PUT statements will use.
+
+

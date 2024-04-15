@@ -1,0 +1,17 @@
+====== LOG ======
+
+===== Syntax =====
+
+<code basic>
+N  = LOG( X )
+</code>
+
+===== Parameter =====
+
+X  is a number, >  0
+
+===== Description =====
+
+The natural logarithm of X; X shall be greater than zero.
+
+

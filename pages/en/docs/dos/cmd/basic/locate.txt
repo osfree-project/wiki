@@ -1,0 +1,18 @@
+====== LOCATE ======
+
+===== Syntax =====
+
+<code basic>
+N  = LOCATE( X, Y )
+</code>
+
+===== Parameter =====
+
+X  is a number, [0,255]
+Y  is a number, [0,255]
+
+===== Description =====
+
+Locates the cursor to row X, column Y.
+
+
