@@ -1,0 +1,11 @@
+====== LPRINT ======
+
+===== Syntax =====
+
+<code basic>
+LPRINT [USING format-string$;] value ...
+</code>
+
+===== Description =====
+
+Send output to the printer (stderr).

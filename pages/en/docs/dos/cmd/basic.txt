@@ -60,8 +60,6 @@ List of IBM Personal Computer BASIC 1.10 words
 | [[en:docs:dos:cmd:basic:LOF]] (Dsk+) | **Done** |
 | [[en:docs:dos:cmd:basic:LOG]] | **Done** |
 | [[en:docs:dos:cmd:basic:LPOS]] | **Done** |
-  - [[en:docs:dos:cmd:basic:LPRINT]]
-  - [[en:docs:dos:cmd:basic:LPRINT USING]]
   - [[en:docs:dos:cmd:basic:LSET]] (Dsk+)
   - [[en:docs:dos:cmd:basic:RSET]] (Dsk+)
   - [[en:docs:dos:cmd:basic:MERGE]]
@@ -182,5 +180,7 @@ List of IBM Personal Computer BASIC 1.10 words
 | [[en:docs:dos:cmd:basic:LIST]] | **Done** |
 | [[en:docs:dos:cmd:basic:LLIST]] | **Done** |
 | [[en:docs:dos:cmd:basic:LOAD]] | **Done** |
+| [[en:docs:dos:cmd:basic:LPRINT]] | **Done** |
+
 
 {{page>en:templates:doscmd}}
