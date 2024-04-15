@@ -1,0 +1,17 @@
+====== INP ======
+
+===== Syntax =====
+
+<code basic>
+N  = INP( X )
+</code>
+
+===== Parameter =====
+
+X  is a number, [0,255]
+
+===== Description =====
+
+The value read from machine port X.  Causes ERROR 73.
+
+

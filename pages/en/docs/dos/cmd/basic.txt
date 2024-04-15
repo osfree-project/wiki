@@ -44,10 +44,8 @@ List of IBM Personal Computer BASIC 1.10 words
 | [[en:docs:dos:cmd:basic:GET]] (Dsk+) | **Done** |
 | [[en:docs:dos:cmd:basic:HEX$]] | **Done** |
 | [[en:docs:dos:cmd:basic:INKEY$]] | **Done** |
-  - [[en:docs:dos:cmd:basic:INP]]
-  - [[en:docs:dos:cmd:basic:INPUT]]
-  - [[en:docs:dos:cmd:basic:INPUT#]]
-  - [[en:docs:dos:cmd:basic:INPUT$]]
+| [[en:docs:dos:cmd:basic:INP]] |  |
+| [[en:docs:dos:cmd:basic:INPUT (function)|INPUT$]] | **Done** |
   - [[en:docs:dos:cmd:basic:INSTR]]
   - [[en:docs:dos:cmd:basic:INT]]
   - [[en:docs:dos:cmd:basic:KEY]]
@@ -179,5 +177,7 @@ List of IBM Personal Computer BASIC 1.10 words
 | [[en:docs:dos:cmd:basic:GOSUB]] | **Done** |
 | [[en:docs:dos:cmd:basic:GOTO]] | **Done** |
 | [[en:docs:dos:cmd:basic:IF]] | **Done** |
+| [[en:docs:dos:cmd:basic:INPUT]] | **Done** |
+| [[en:docs:dos:cmd:basic:INPUT#]] | **Done** |
 
 {{page>en:templates:doscmd}}

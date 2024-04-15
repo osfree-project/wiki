@@ -1,0 +1,17 @@
+====== INPUT ======
+
+===== Syntax =====
+
+<code basic>
+INPUT "prompt string" , variable [, ...]
+INPUT variable [, ...]
+INPUT # filenum , variable [, ...]s
+</code>
+
+===== Description =====
+
+Reads input from the terminal after displaying a prompt.
+
+Reads input from the terminal.
+
+Reads input from the file specified by filenum.
