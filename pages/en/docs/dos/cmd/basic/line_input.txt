@@ -1,0 +1,11 @@
+====== LINE INPUT ======
+
+===== Syntax =====
+
+<code basic>
+LINE INPUT [[#] filenum,]["prompt string";] variable$
+</code>
+
+===== Description =====
+
+Reads entire line from the keyboard or a file into variable$.

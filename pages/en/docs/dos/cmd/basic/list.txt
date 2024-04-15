@@ -1,0 +1,11 @@
+====== LIST ======
+
+===== Syntax =====
+
+<code basic>
+LIST line1 [- line2]
+</code>
+
+===== Description =====
+
+Lists BASIC program lines from line1 to line2 to the console on stdout.
