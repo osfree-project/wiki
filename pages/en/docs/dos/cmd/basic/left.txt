@@ -1,0 +1,18 @@
+====== LEFT$ ======
+
+===== Syntax =====
+
+<code basic>
+S$ = LEFT$( A$, X )
+</code>
+
+===== Parameter =====
+
+A$ is a string, LEN >= 0
+X  is a number, [0,MAXLEN]
+
+===== Description =====
+
+The X left-most characters of A$, beginning from postion 1.
+
+

@@ -1,0 +1,17 @@
+====== LEN ======
+
+===== Syntax =====
+
+<code basic>
+N  = LEN( A$ )
+</code>
+
+===== Parameter =====
+
+A$ is a string, LEN >= 0
+
+===== Description =====
+
+The length of A$.
+
+
