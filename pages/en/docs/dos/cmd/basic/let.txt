@@ -1,0 +1,11 @@
+====== LET ======
+
+===== Syntax =====
+
+<code basic>
+[LET] variable [, ...] = value
+</code>
+
+===== Description =====
+
+Assigns the value to the variable.  The LET keyword is optional.
