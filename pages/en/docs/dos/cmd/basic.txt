@@ -60,9 +60,6 @@ List of IBM Personal Computer BASIC 1.10 words
 | [[en:docs:dos:cmd:basic:LOF]] (Dsk+) | **Done** |
 | [[en:docs:dos:cmd:basic:LOG]] | **Done** |
 | [[en:docs:dos:cmd:basic:LPOS]] | **Done** |
-  - [[en:docs:dos:cmd:basic:LSET]] (Dsk+)
-  - [[en:docs:dos:cmd:basic:RSET]] (Dsk+)
-  - [[en:docs:dos:cmd:basic:MERGE]]
   - [[en:docs:dos:cmd:basic:MID$]]
   - [[en:docs:dos:cmd:basic:MKI$]] (Dsk+)
   - [[en:docs:dos:cmd:basic:MKS$]] (Dsk+)
@@ -107,6 +104,7 @@ List of IBM Personal Computer BASIC 1.10 words
   - [[en:docs:dos:cmd:basic:RETURN]]
   - [[en:docs:dos:cmd:basic:RIGHT$]]
   - [[en:docs:dos:cmd:basic:RND]]
+  - [[en:docs:dos:cmd:basic:RSET]] (Dsk+)
   - [[en:docs:dos:cmd:basic:RUN]]
   - [[en:docs:dos:cmd:basic:SAVE]]
   - [[en:docs:dos:cmd:basic:SCREEN()]]
@@ -181,6 +179,8 @@ List of IBM Personal Computer BASIC 1.10 words
 | [[en:docs:dos:cmd:basic:LLIST]] | **Done** |
 | [[en:docs:dos:cmd:basic:LOAD]] | **Done** |
 | [[en:docs:dos:cmd:basic:LPRINT]] | **Done** |
+| [[en:docs:dos:cmd:basic:LSET]] (Dsk+) | **Done** |
+| [[en:docs:dos:cmd:basic:MERGE]] | **Done** |
 
 
 {{page>en:templates:doscmd}}

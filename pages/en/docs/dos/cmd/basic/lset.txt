@@ -1,0 +1,14 @@
+====== LSET ======
+
+===== Syntax =====
+
+<code basic>
+LSET variable$ = value
+</code>
+
+===== Description =====
+
+Left-aligns the value into variable$.  If the length of the value is too short, then it is
+padded on the right with spaces.  If the length of the value is too long, then it is
+truncated on the right.  This is only for use with variables assigned to a random access
+buffer with FIELD command.
