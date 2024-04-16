@@ -1,0 +1,17 @@
+====== OCT$ ======
+
+===== Syntax =====
+
+<code basic>
+S$ = OCT$( X )
+</code>
+
+===== Parameter =====
+
+X  is a number, [MININT,MAXINT]
+
+===== Description =====
+
+The the octal (base 8) representation of X.
+
+
