@@ -60,7 +60,7 @@ List of IBM Personal Computer BASIC 1.10 words
 | [[en:docs:dos:cmd:basic:LOF]] (Dsk+) | **Done** |
 | [[en:docs:dos:cmd:basic:LOG]] | **Done** |
 | [[en:docs:dos:cmd:basic:LPOS]] | **Done** |
-  - [[en:docs:dos:cmd:basic:MID$]]
+| [[en:docs:dos:cmd:basic:MID$]] | **Done** |
   - [[en:docs:dos:cmd:basic:MKI$]] (Dsk+)
   - [[en:docs:dos:cmd:basic:MKS$]] (Dsk+)
   - [[en:docs:dos:cmd:basic:MKD$]] (Dsk+)

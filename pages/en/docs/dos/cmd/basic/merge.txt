@@ -1,0 +1,12 @@
+====== MERGE ======
+
+===== Syntax =====
+
+<code basic>
+MERGE filename$
+</code>
+
+===== Description =====
+
+Merges the BASIC program in filename$ into the current BASIC program.  Lines in filename$
+replace any matching lines in the current program.
