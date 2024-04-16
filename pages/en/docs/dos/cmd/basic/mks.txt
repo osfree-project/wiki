@@ -1,0 +1,17 @@
+====== MKS$ ======
+
+===== Syntax =====
+
+<code basic>
+S$ = MKS$( X )
+</code>
+
+===== Parameter =====
+
+X  is a number, [MINFLT,MAXFLT]
+
+===== Description =====
+
+The internal representation of X as a string.
+
+
