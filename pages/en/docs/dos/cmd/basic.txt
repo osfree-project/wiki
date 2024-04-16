@@ -64,7 +64,6 @@ List of IBM Personal Computer BASIC 1.10 words
 | [[en:docs:dos:cmd:basic:MKD$]] (Dsk+) | **Done** |
 | [[en:docs:dos:cmd:basic:MKI$]] (Dsk+) | **Done** |
 | [[en:docs:dos:cmd:basic:MKS$]] (Dsk+) | **Done** |
-  - [[en:docs:dos:cmd:basic:NEW]]
   - [[en:docs:dos:cmd:basic:OCT$]]
   - [[en:docs:dos:cmd:basic:ON COM]] (Adv+)
   - [[en:docs:dos:cmd:basic:ON ERROR]]
@@ -181,6 +180,7 @@ List of IBM Personal Computer BASIC 1.10 words
 | [[en:docs:dos:cmd:basic:MERGE]] | **Done** |
 | [[en:docs:dos:cmd:basic:MOTOR]] | |
 | [[en:docs:dos:cmd:basic:NAME]] (Dsk+) | **Done** |
+| [[en:docs:dos:cmd:basic:NEW]] | **Done** |
 
 
 {{page>en:templates:doscmd}}

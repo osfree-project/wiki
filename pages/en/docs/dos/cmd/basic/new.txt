@@ -1,0 +1,11 @@
+====== NAME ======
+
+===== Syntax =====
+
+<code basic>
+NAME old$ AS new$
+</code>
+
+===== Description =====
+
+Changes the name of an existing file.
