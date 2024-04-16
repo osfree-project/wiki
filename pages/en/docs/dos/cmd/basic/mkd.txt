@@ -1,0 +1,17 @@
+====== MKD$ ======
+
+===== Syntax =====
+
+<code basic>
+S$ = MKD$( X )
+</code>
+
+===== Parameter =====
+
+X  is a number, [MINDBL,MAXDBL]
+
+===== Description =====
+
+The internal representation of X as a string.
+
+

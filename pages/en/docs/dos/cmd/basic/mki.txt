@@ -1,0 +1,17 @@
+====== MKI$ ======
+
+===== Syntax =====
+
+<code basic>
+S$ = MKI$( X )
+</code>
+
+===== Parameter =====
+
+X  is a number, [MININT,MAXINT]
+
+===== Description =====
+
+The internal representation of the short (16-bit) integer X as a string.
+
+

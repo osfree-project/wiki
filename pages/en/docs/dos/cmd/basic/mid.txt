@@ -1,0 +1,25 @@
+====== MID$ ======
+
+===== Syntax =====
+
+<code basic>
+MID$( variable$, start [, count ] ) = value
+S$ = MID$( A$, X )
+S$ = MID$( A$, X, Y )
+</code>
+
+===== Parameter =====
+
+A$ is a string, LEN >= 0
+X  is a number, [1,MAXLEN]
+Y  is a number, [0,MAXLEN]
+
+===== Description =====
+
+Replaces a subtring of variable$ with value.
+
+The characters of A$, starting from postion X.
+
+The Y characters of A$, starting from postion X.
+
+
