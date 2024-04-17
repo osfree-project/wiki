@@ -65,9 +65,6 @@ List of IBM Personal Computer BASIC 1.10 words
 | [[en:docs:dos:cmd:basic:MKI$]] (Dsk+) | **Done** |
 | [[en:docs:dos:cmd:basic:MKS$]] (Dsk+) | **Done** |
 | [[en:docs:dos:cmd:basic:OCT$]] | **Done** |
-  - [[en:docs:dos:cmd:basic:ON ERROR]]
-  - [[en:docs:dos:cmd:basic:ON GOSUB]]
-  - [[en:docs:dos:cmd:basic:ON GOTO]]
   - [[en:docs:dos:cmd:basic:ON KEY]] (Adv+)
   - [[en:docs:dos:cmd:basic:ON PEN]] (Adv+)
   - [[en:docs:dos:cmd:basic:ON STRIG]] (Adv+)
@@ -181,6 +178,9 @@ List of IBM Personal Computer BASIC 1.10 words
 | [[en:docs:dos:cmd:basic:NAME]] (Dsk+) | **Done** |
 | [[en:docs:dos:cmd:basic:NEW]] | **Done** |
 | [[en:docs:dos:cmd:basic:ON COM]] (Adv+) | |
+| [[en:docs:dos:cmd:basic:ON ERROR]] | **Done** |
+| [[en:docs:dos:cmd:basic:ON GOSUB]] | **Done** |
+| [[en:docs:dos:cmd:basic:ON GOTO]] | **Done** |
 
 
 {{page>en:templates:doscmd}}

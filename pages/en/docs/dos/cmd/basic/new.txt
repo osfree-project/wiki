@@ -1,11 +1,11 @@
-====== NAME ======
+====== NEW ======
 
 ===== Syntax =====
 
 <code basic>
-NAME old$ AS new$
+NEW
 </code>
 
 ===== Description =====
 
-Changes the name of an existing file.
+Deletes the program in memory and clears all variables.

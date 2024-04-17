@@ -1,0 +1,13 @@
+====== ON ERROR ======
+
+===== Syntax =====
+
+<code basic>
+ON ERROR GOTO errline
+</code>
+
+===== Description =====
+
+When a trappable error occurs, execute GOTO errline.  The error handler must terminate
+with a RESUME command.  If the line number is 0 (zerp), then use the default error handler.
+Valid when OPTION ERROR GOTO.

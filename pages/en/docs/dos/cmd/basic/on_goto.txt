@@ -1,0 +1,11 @@
+====== ON GOTO ======
+
+===== Syntax =====
+
+<code basic>
+ON value GOTO line [, ...]
+</code>
+
+===== Description =====
+
+Branches based on the rounded value.

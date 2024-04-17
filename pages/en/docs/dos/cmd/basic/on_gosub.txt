@@ -1,0 +1,11 @@
+====== ON GOSUB ======
+
+===== Syntax =====
+
+<code basic>
+ON value GOSUB line [, ...]
+</code>
+
+===== Description =====
+
+Calls based on the rounded value.
