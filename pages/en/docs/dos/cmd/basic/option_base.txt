@@ -1,0 +1,12 @@
+====== OPTION BASE ======
+
+===== Syntax =====
+
+<code basic>
+OPTION BASE integer
+</code>
+
+===== Description =====
+
+Sets the default lowest array subscript.
+

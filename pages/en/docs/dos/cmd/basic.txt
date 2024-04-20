@@ -6,6 +6,8 @@
 
 BASIC is a Disk BASIC dialect, compatible with IBM Personal Computer BASIC.
 
+Target goal is a QBASIC 1.1 compatibility.
+
 ===== Keywords =====
 
 List of IBM Personal Computer BASIC 1.10 words
@@ -65,9 +67,6 @@ List of IBM Personal Computer BASIC 1.10 words
 | [[en:docs:dos:cmd:basic:MKI$]] (Dsk+) | **Done** |
 | [[en:docs:dos:cmd:basic:MKS$]] (Dsk+) | **Done** |
 | [[en:docs:dos:cmd:basic:OCT$]] | **Done** |
-  - [[en:docs:dos:cmd:basic:OPEN]]
-  - [[en:docs:dos:cmd:basic:OPEN "COM]] (Dsk+)
-  - [[en:docs:dos:cmd:basic:OPTION BASE]]
   - [[en:docs:dos:cmd:basic:OUT]]
   - [[en:docs:dos:cmd:basic:PAINT]] (Adv+)
   - [[en:docs:dos:cmd:basic:PEEK]]
@@ -181,6 +180,9 @@ List of IBM Personal Computer BASIC 1.10 words
 | [[en:docs:dos:cmd:basic:ON KEY]] (Adv+) | |
 | [[en:docs:dos:cmd:basic:ON PEN]] (Adv+) | |
 | [[en:docs:dos:cmd:basic:ON STRIG]] (Adv+) | |
+| [[en:docs:dos:cmd:basic:OPEN]] | **Done** |
+| [[en:docs:dos:cmd:basic:OPTION BASE]] | **Done** |
+
 
 
 {{page>en:templates:doscmd}}

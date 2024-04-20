@@ -1,0 +1,23 @@
+====== OPEN ======
+
+===== Syntax =====
+
+<code basic>
+OPEN filename$ FOR INPUT|OUTPUT|APPEND|BINARY|RANDOM|VIRTUAL AS [#] fileenumber [LEN [=] record-length]
+N  = OPEN( A$, X, B$ )
+N  = OPEN( A$, X, B$, Y )
+</code>
+
+===== Parameter =====
+
+A$ is a string, LEN >= 1
+X  is a number, [MININT,MAXINT]
+B$ is a string, LEN >= 1
+Y  is a number, [MININT,MAXINT]
+
+===== Description =====
+
+Opens a file for use. RANDOM requires LEN.
+
+Open file number X.  A$ is the mode: "I", "O", "A", "R".  B$ is the file name.  Y is the record length.
+
