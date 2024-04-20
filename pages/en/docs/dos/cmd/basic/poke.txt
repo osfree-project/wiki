@@ -1,0 +1,19 @@
+====== POKE ======
+
+===== Syntax =====
+
+<code basic>
+N  = POKE( X, Y )
+</code>
+
+===== Parameter =====
+
+X  is a number, [MINLNG,MAXLNG]
+Y  is a number, [0,255]
+
+===== Description =====
+
+Sends Y to hardware address X.  Causes ERROR 73.
+
+
+

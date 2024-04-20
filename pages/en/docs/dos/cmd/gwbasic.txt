@@ -1,5 +1,1 @@
-{{logos:dos.gif?35x35}} {{logos:win16.gif}}
-
-====== GWBASIC ======
-
-{{page>en:templates:doscmd}}
+~~REDIRECT>en:docs:dos:cmd:basic~~

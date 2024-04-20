@@ -69,10 +69,8 @@ List of IBM Personal Computer BASIC 1.10 words
 | [[en:docs:dos:cmd:basic:OCT$]] | **Done** |
 | [[en:docs:dos:cmd:basic:OUT]] | |
 | [[en:docs:dos:cmd:basic:PEEK]] | |
-  - [[en:docs:dos:cmd:basic:PEN]]
-  - [[en:docs:dos:cmd:basic:PLAY]] (Adv+)
-  - [[en:docs:dos:cmd:basic:POINT]]
-  - [[en:docs:dos:cmd:basic:POKE]]
+| [[en:docs:dos:cmd:basic:POINT]] | |
+| [[en:docs:dos:cmd:basic:POKE]] | |
   - [[en:docs:dos:cmd:basic:POS]]
   - [[en:docs:dos:cmd:basic:PRINT]]
   - [[en:docs:dos:cmd:basic:PRINT USING]]
@@ -182,6 +180,8 @@ List of IBM Personal Computer BASIC 1.10 words
 | [[en:docs:dos:cmd:basic:OPEN]] | **Done** |
 | [[en:docs:dos:cmd:basic:OPTION BASE]] | **Done** |
 | [[en:docs:dos:cmd:basic:PAINT]] (Adv+) | |
+| [[en:docs:dos:cmd:basic:PEN]] | |
+| [[en:docs:dos:cmd:basic:PLAY]] (Adv+) | |
 
 
 

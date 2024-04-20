@@ -36,7 +36,7 @@ All screenshots in this section are of software currently under development.
 
 === Development ===
 
-^Win16 Clock ^
-|{{:screenshots:analog.png?200|Win16 Clock}} |
+^Win16 Clock ^Win16 Task List |
+|{{:screenshots:analog.png?200|Win16 Clock}} | {{:en:docs:win16:applications:tasklist.png?200|Win16 Task List}} |
 
 ~~DISCUSSION~~
