@@ -1,0 +1,18 @@
+====== PEEK ======
+
+===== Syntax =====
+
+<code basic>
+N  = PEEK( X )
+</code>
+
+===== Parameter =====
+
+X  is a number, [MINLNG,MAXLNG]
+
+===== Description =====
+
+The value read from hardware address X. Causes ERROR 73.
+
+
+
