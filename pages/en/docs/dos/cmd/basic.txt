@@ -4,16 +4,22 @@
 
 ===== Description =====
 
-BASIC is a Disk BASIC dialect, compatible with IBM Personal Computer BASIC.
+  * BASIC is a Disk BASIC dialect, compatible with IBM Personal Computer BASIC.
+  * BASICA is a Advanced BASIC dialect, compatible with IBM Personal Computer BASIC.
+  * GWBASIC is a same as Advanced BASIC dialect, compatible with IBM Personal Computer BASIC.
+
+BASIC and BASICA not depended on BIOS Cassete BASIC.
 
 Target goal is a QBASIC 1.1 compatibility.
 
 ===== Keywords =====
 
-List of IBM Personal Computer BASIC 1.10 words
+For now only IBM Personal Computer BASIC 1.10 words checked
 
   * Dsk - Disk BASIC (BASIC.COM)
   * Adv - Advanced BASIC (BASICA.COM)
+
+In plans:
 
   * Gw - GW-BASIC 3.23
 
