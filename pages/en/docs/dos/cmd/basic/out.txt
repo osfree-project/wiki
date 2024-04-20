@@ -1,0 +1,19 @@
+====== OUT ======
+
+===== Syntax =====
+
+<code basic>
+N  = OUT( X, Y )
+</code>
+
+===== Parameter =====
+
+X  is a number, [MININT,MAXINT]
+Y  is a number, [0,255]
+
+===== Description =====
+
+Sends Y to hardware port X.  Causes ERROR 73.
+
+
+
