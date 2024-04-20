@@ -1,0 +1,18 @@
+====== PRINT ======
+
+===== Syntax =====
+
+<code basic>
+PRINT # filenum , [USING format$;] value ...
+PRINT [USING format$;] value ...
+</code>
+
+===== Description =====
+
+Sends output to a file.
+
+Sends output to the screen.
+
+
+
+

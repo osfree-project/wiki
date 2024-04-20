@@ -1,0 +1,22 @@
+====== PUT ======
+
+===== Syntax =====
+
+<code basic>
+N  = PUT( X )
+N  = PUT( X, Y )
+</code>
+
+===== Parameter =====
+
+X  is a number, [MININT,MAXINT]
+Y  is a number, [MININT,MAXINT]
+
+===== Description =====
+
+For file X, puts the next available record.
+
+For file X, puts record number Y.  The first record number is 1.
+
+
+

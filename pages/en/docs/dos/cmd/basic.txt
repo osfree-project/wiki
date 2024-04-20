@@ -71,15 +71,8 @@ List of IBM Personal Computer BASIC 1.10 words
 | [[en:docs:dos:cmd:basic:PEEK]] | |
 | [[en:docs:dos:cmd:basic:POINT]] | |
 | [[en:docs:dos:cmd:basic:POKE]] | |
-  - [[en:docs:dos:cmd:basic:POS]]
-  - [[en:docs:dos:cmd:basic:PRINT]]
-  - [[en:docs:dos:cmd:basic:PRINT USING]]
-  - [[en:docs:dos:cmd:basic:PRINT #]]
-  - [[en:docs:dos:cmd:basic:PRINT # USING]]
-  - [[en:docs:dos:cmd:basic:PSET]]
-  - [[en:docs:dos:cmd:basic:PRESET]]
-  - [[en:docs:dos:cmd:basic:PUT]] (Dsk+)
-  - [[en:docs:dos:cmd:basic:PUT]] (Adv+)
+| [[en:docs:dos:cmd:basic:POS]] | **Done** |
+| [[en:docs:dos:cmd:basic:PUT]] (Dsk+) | **Done** |
   - [[en:docs:dos:cmd:basic:RANDOMIZE]]
   - [[en:docs:dos:cmd:basic:READ]]
   - [[en:docs:dos:cmd:basic:REM]]
@@ -182,6 +175,10 @@ List of IBM Personal Computer BASIC 1.10 words
 | [[en:docs:dos:cmd:basic:PAINT]] (Adv+) | |
 | [[en:docs:dos:cmd:basic:PEN]] | |
 | [[en:docs:dos:cmd:basic:PLAY]] (Adv+) | |
+| [[en:docs:dos:cmd:basic:PRINT]] | **Done** |
+| [[en:docs:dos:cmd:basic:PSET]] | |
+| [[en:docs:dos:cmd:basic:PRESET]] | |
+| [[en:docs:dos:cmd:basic:PUT (Graphics)]] (Adv+) | |
 
 
 

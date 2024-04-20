@@ -1,0 +1,21 @@
+====== POS ======
+
+===== Syntax =====
+
+<code basic>
+N  = POS
+N  = POS( X )
+</code>
+
+===== Parameter =====
+
+X  is a number, [MININT,MAXINT]
+
+===== Description =====
+
+The current cursor position in the line.
+
+The current cursor position in the line for file X.
+
+
+
