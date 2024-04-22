@@ -43,7 +43,7 @@ BUGS
           
 ===== See also =====
 
- AH=[[en:docs:dos:api:int21:11|11h]],AH=[[en:docs:dos:api:int21:4f|4Fh]],AX=4301h,AX=714Eh,AX=71A1h,AX=F257h/SF=02h, INT 2F/AX=111Bh,INT 2F/AX=B711h
+ AH=[[en:docs:dos:api:int21:11|11h]],AH=[[en:docs:dos:api:int21:4f|4Fh]],AX=[[en:docs:dos:api:int21:43:01|4301h]],AX=[[en:docs:dos:api:int21:71:4e|714Eh]],AX=[[[[en:docs:dos:api:int21:71:a1|71A1h]],AX=F257h/SF=02h, INT 2F/AX=111Bh,INT 2F/AX=B711h
 
 ===== Note =====
 
