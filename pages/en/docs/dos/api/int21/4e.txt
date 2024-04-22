@@ -12,6 +12,7 @@
 
 ===== Family API =====
 
+[[en:docs:fapi:DosFindFirst]]
 
 ===== Input =====
 
@@ -30,35 +31,19 @@
 
 ===== Notes =====
 
-	for search attributes other than 08h, all files with at MOST the
-	  specified combination of hidden, system, and directory attributes
-	  will be returned.  Under DOS 2.x, searching for attribute 08h
-	  (volume label) will also return normal files, while under DOS 3.0+
-	  only the volume label (if any) will be returned.
-	this call also returns successfully if given the name of a character
-	  device without wildcards.  DOS 2.x returns attribute 00h, size 0,
-	  and the current date and time.  DOS 3.0+ returns attribute 40h and
-	  the current date and time.
-	immediately after an INT 2F/AX=B711h (APPEND return found name), the
-	  name at DS:DX will be overwritten; if AL=00h on entry, the actual
-	  found pathname will be stored, otherwise, the actual found path
-	  will be prepended to the original filespec without a path.
-	under LANtastic, this call may be used to obtain a list of a server's
-	  shared resources by searching for "\\SERVER\*.*"; a list of printer
-	  resources may be obtained by searching for "\\SERVER\@*.*"
-	under the FlashTek X-32 DOS extender, the filespec pointer is in DS:EDX
-BUGS:	under DOS 3.x and 4.x, the second and subsequent calls to this function
-	  with a character device name (no wildcards) and search attributes
-	  which include the volume-label bit (08h) will fail unless there is
-	  an intervening DOS call which implicitly or explicity performs a
-	  directory search without the volume-label bit.  Such implicit
-	  searches are performed by CREATE (AH=3Ch), OPEN (AH=3Dh), UNLINK
-	  (AH=41h), and RENAME (AH=56h)
-	DR DOS 3.41 and 5.0 return the Directory attribute for the volume label
+  * for search attributes other than 08h, all files with at MOST the specified combination of hidden, system, and directory attributes will be returned. Under DOS 2.x, searching for attribute 08h (volume label) will also return normal files, while under DOS 3.0+ only the volume label (if any) will be returned.
+  * this call also returns successfully if given the name of a character device without wildcards.  DOS 2.x returns attribute 00h, size 0, and the current date and time.  DOS 3.0+ returns attribute 40h and the current date and time.
+  * immediately after an INT 2F/AX=B711h (APPEND return found name), the name at DS:DX will be overwritten; if AL=00h on entry, the actual found pathname will be stored, otherwise, the actual found path  will be prepended to the original filespec without a path.
+  * under LANtastic, this call may be used to obtain a list of a server's shared resources by searching for "\\SERVER\*.*"; a list of printer resources may be obtained by searching for "\\SERVER\@*.*"
+  * under the FlashTek X-32 DOS extender, the filespec pointer is in DS:EDX
+
+BUGS
+  * under DOS 3.x and 4.x, the second and subsequent calls to this function with a character device name (no wildcards) and search attributes which include the volume-label bit (08h) will fail unless there is an intervening DOS call which implicitly or explicity performs a directory search without the volume-label bit.  Such implicit searches are performed by CREATE (AH=3Ch), OPEN (AH=3Dh), UNLINK (AH=41h), and RENAME (AH=56h)
+  * DR DOS 3.41 and 5.0 return the Directory attribute for the volume label
           
 ===== See also =====
 
- AH=11h,AH=4Fh,AX=4301h,AX=714Eh,AX=71A1h,AX=F257h/SF=02h, INT 2F/AX=111Bh,INT 2F/AX=B711h
+ AH=[[en:docs:dos:api:int21:11|11h]],AH=[[en:docs:dos:api:int21:4f|4Fh]],AX=4301h,AX=714Eh,AX=71A1h,AX=F257h/SF=02h, INT 2F/AX=111Bh,INT 2F/AX=B711h
 
 ===== Note =====
 
