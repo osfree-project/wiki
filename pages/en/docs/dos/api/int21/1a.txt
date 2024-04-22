@@ -25,12 +25,12 @@ none
 
 ===== Notes =====
 
-Notes:  the DTA is set to PSP:0080h when a program is started
-        under the FlashTek X-32 DOS extender, the pointer is in DS:EDX
+  * The DTA is set to PSP:0080h when a program is started
+  * under the FlashTek X-32 DOS extender, the pointer is in DS:EDX
           
 ===== See also =====
 
-AH=11h,AH=12h,AH=2Fh,AH=4Eh,AH=4Fh
+AH=[[en:docs:dos:api:int21:11|11h]],AH=[[en:docs:dos:api:int21:12|12h]],AH=[[en:docs:dos:api:int21:2f|2Fh]],AH=[[en:docs:dos:api:int21:4e|4Eh]],AH=[[en:docs:dos:api:int21:4f|4Fh]]
 
 ===== Note =====
 
