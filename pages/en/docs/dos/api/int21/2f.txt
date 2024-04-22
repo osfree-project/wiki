@@ -12,6 +12,7 @@ GET DISK TRANSFER AREA ADDRESS
 
 ===== Family API =====
 
+none
 
 ===== Input =====
 
@@ -23,11 +24,11 @@ GET DISK TRANSFER AREA ADDRESS
 
 ===== Notes =====
 
-  under the FlashTek X-32 DOS extender, the pointer is in ES:EBX
+  * under the FlashTek X-32 DOS extender, the pointer is in ES:EBX
 
 ===== See also =====
 
- AH=1Ah
+ AH=[[en:docs:dos:api:int21:1a|1Ah]]
 
 ===== Note =====
 
