@@ -1,0 +1,11 @@
+====== WHILE ======
+
+===== Syntax =====
+
+<code basic>
+WHILE value
+</code>
+
+===== Description =====
+
+Top of a WHILE - WEND structure.  If the value is non-zero, then the loop is terminated.

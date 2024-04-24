@@ -1,0 +1,19 @@
+====== VAL ======
+
+===== Syntax =====
+
+<code basic>
+N  = VAL( A$ )
+</code>
+
+===== Parameters =====
+
+A$ is a string, LEN >= 1
+
+===== Description =====
+
+The value of the numeric-constant associated with A$, if the string associated with A$ is
+a numeric-constant.  Leading and trailing spaces in the string are ignored.  If the
+evaluation of the numeric-constant would result in a value which causes an underflow,
+then the value returned shall be zero.  For example, VAL( " 123.5 " ) = 123.5, VAL(
+"2.E-99" ) could be zero, and VAL( "MCMXVII" ) causes an exception.

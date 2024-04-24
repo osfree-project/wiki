@@ -95,17 +95,15 @@ In plans:
 | [[en:docs:dos:cmd:basic:TAB]] | **Done** |
 | [[en:docs:dos:cmd:basic:TAN]] | **Done** |
 | [[en:docs:dos:cmd:basic:TIME$]] (Dsk+) | **Done** |
-  - [[en:docs:dos:cmd:basic:TRON]]
-  - [[en:docs:dos:cmd:basic:TROFF]]
-  - [[en:docs:dos:cmd:basic:USR]]
-  - [[en:docs:dos:cmd:basic:VAL]]
-  - [[en:docs:dos:cmd:basic:VARPTR]]
-  - [[en:docs:dos:cmd:basic:VARPTR$]] (Dsk+)
-  - [[en:docs:dos:cmd:basic:WAIT]]
-  - [[en:docs:dos:cmd:basic:WHILE/WEND]]
-  - [[en:docs:dos:cmd:basic:WIDTH]]
-  - [[en:docs:dos:cmd:basic:WRITE]]
-  - [[en:docs:dos:cmd:basic:WRITE #]]
+| [[en:docs:dos:cmd:basic:TRON]] | **Done** |
+| [[en:docs:dos:cmd:basic:TROFF]] | **Done** |
+| [[en:docs:dos:cmd:basic:USR]] | |
+| [[en:docs:dos:cmd:basic:VAL]] | **Done** |
+| [[en:docs:dos:cmd:basic:VARPTR]] | |
+| [[en:docs:dos:cmd:basic:VARPTR$]] (Dsk+) | |
+| [[en:docs:dos:cmd:basic:WAIT]] | |
+| [[en:docs:dos:cmd:basic:WIDTH]] | **Done** |
+| [[en:docs:dos:cmd:basic:WRITE]] | **Done** |
 
 ==== Command ====
 
@@ -185,6 +183,8 @@ In plans:
 | [[en:docs:dos:cmd:basic:STRIG]] | |
 | [[en:docs:dos:cmd:basic:SWAP]] | **Done** |
 | [[en:docs:dos:cmd:basic:SYSTEM]] (Dsk+) | **Done** |
+| [[en:docs:dos:cmd:basic:WEND]] | **Done** |
+| [[en:docs:dos:cmd:basic:WHILE]] | **Done** |
 
 
 {{page>en:templates:doscmd}}

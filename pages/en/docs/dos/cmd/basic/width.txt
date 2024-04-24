@@ -1,0 +1,25 @@
+====== WIDTH ======
+
+===== Syntax =====
+
+<code basic>
+N  = WIDTH( X )
+N  = WIDTH( X, Y )
+</code>
+
+===== Parameters =====
+
+X  is a number, [0,255]
+
+X  is a number, [MININT,MAXINT]
+Y  is a number, [0,255]
+
+===== Description =====
+
+For console, sets the line width to X. Zero means no wrapping will occur.
+
+If X = 0, sets the console width to Y.
+If X < 0, sets the printer width to Y.
+If X is an open file number, sets the file line width to Y.
+Otherwise sets the console rows to X and the line width to Y.
+A value of zero for Y means no wrapping will occur.

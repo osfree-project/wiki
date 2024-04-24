@@ -1,0 +1,11 @@
+====== WEND ======
+
+===== Syntax =====
+
+<code basic>
+WEND
+</code>
+
+===== Description =====
+
+Bottom of a WHILE - WEND structure.

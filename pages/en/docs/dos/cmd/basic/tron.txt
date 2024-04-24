@@ -1,0 +1,11 @@
+====== TRON ======
+
+===== Syntax =====
+
+<code basic>
+N  = TRON
+</code>
+
+===== Description =====
+
+Turn tracing ON
