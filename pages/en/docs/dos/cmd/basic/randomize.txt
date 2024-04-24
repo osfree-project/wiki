@@ -1,0 +1,21 @@
+====== RANDOMIZE ======
+
+===== Syntax =====
+
+<code basic>
+N  = RANDOMIZE
+N  = RANDOMIZE( X )
+</code>
+
+===== Parameter =====
+
+X  is a number
+
+===== Description =====
+
+Seeds the pseudo-random number generator with TIME.
+
+Seeds the pseudo-random number generator with X.
+
+
+
