@@ -1,0 +1,16 @@
+====== SGN ======
+
+===== Syntax =====
+
+<code basic>
+N  = SGN( X )
+</code>
+
+===== Parameters =====
+
+X  is a number
+
+===== Description =====
+
+The sign of X: -1 if X < 0, 0 if X = 0, and +1 if X > 0.
+

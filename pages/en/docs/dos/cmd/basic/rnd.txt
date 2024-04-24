@@ -1,0 +1,21 @@
+====== RND ======
+
+===== Syntax =====
+
+<code basic>
+N  = RND
+N  = RND( X )
+</code>
+
+===== Parameters =====
+
+X  is a number
+
+===== Description =====
+
+The next pseudo-random number in an implementation-defined sequence of pseudo-random numbers uniformly distributed in the range 0 <= RND < 1.
+
+Returns a pseudorandom number in the range [0,1].  The value of X is ignored.
+
+
+

@@ -1,0 +1,11 @@
+====== SAVE ======
+
+===== Syntax =====
+
+<code basic>
+SAVE [filename$]
+</code>
+
+===== Description =====
+
+Saves the current program into the file filename$ in ASCII format.

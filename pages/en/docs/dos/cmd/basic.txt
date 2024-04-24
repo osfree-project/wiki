@@ -82,14 +82,10 @@ In plans:
 | [[en:docs:dos:cmd:basic:RANDOMIZE]] | **Done** |
 | [[en:docs:dos:cmd:basic:RESET]] (Dsk+) | **Done** |
 | [[en:docs:dos:cmd:basic:RIGHT$]] | **Done** |
-  - [[en:docs:dos:cmd:basic:RND]]
-  - [[en:docs:dos:cmd:basic:RSET]] (Dsk+)
-  - [[en:docs:dos:cmd:basic:RUN]]
-  - [[en:docs:dos:cmd:basic:SAVE]]
-  - [[en:docs:dos:cmd:basic:SCREEN()]]
-  - [[en:docs:dos:cmd:basic:SCREEN]]
-  - [[en:docs:dos:cmd:basic:SGN]]
-  - [[en:docs:dos:cmd:basic:SIN]]
+| [[en:docs:dos:cmd:basic:RND]] | **Done** |
+| [[en:docs:dos:cmd:basic:SCREEN()]] | |
+| [[en:docs:dos:cmd:basic:SGN]] | **Done** |
+| [[en:docs:dos:cmd:basic:SIN]] | **Done** |
   - [[en:docs:dos:cmd:basic:SOUND]]
   - [[en:docs:dos:cmd:basic:SPACE$]]
   - [[en:docs:dos:cmd:basic:SPC]]
@@ -185,5 +181,10 @@ In plans:
 | [[en:docs:dos:cmd:basic:RESTORE]] | **Done** |
 | [[en:docs:dos:cmd:basic:RESUME]] | **Done** |
 | [[en:docs:dos:cmd:basic:RETURN]] | **Done** |
+| [[en:docs:dos:cmd:basic:RSET]] (Dsk+) | **Done**|
+| [[en:docs:dos:cmd:basic:RUN]] | **Done** |
+| [[en:docs:dos:cmd:basic:SAVE]] | **Done** |
+| [[en:docs:dos:cmd:basic:SCREEN (Statement)]] | |
+
 
 {{page>en:templates:doscmd}}

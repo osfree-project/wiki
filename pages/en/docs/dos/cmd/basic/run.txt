@@ -1,0 +1,14 @@
+====== RUN ======
+
+===== Syntax =====
+
+<code basic>
+RUN filename$
+RUN line
+</code>
+
+===== Description =====
+
+Loads a new BAASIC program and executes the program from the start.
+
+Executes the program in memory beginning at line.
