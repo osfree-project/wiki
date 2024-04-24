@@ -1,0 +1,16 @@
+====== SPACE$ ======
+
+===== Syntax =====
+
+<code basic>
+S$ = SPACE$( X )
+</code>
+
+===== Parameters =====
+
+X  is a number, [0,MAXLEN]
+
+===== Description =====
+
+The string of X blank spaces.
+

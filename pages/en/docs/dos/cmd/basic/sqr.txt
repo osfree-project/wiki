@@ -1,0 +1,16 @@
+====== SQR ======
+
+===== Syntax =====
+
+<code basic>
+N  = SQR( X )
+</code>
+
+===== Parameters =====
+
+X  is a number, >= 0
+
+===== Description =====
+
+The non-negative square root of X;  X shall be non-negative.
+

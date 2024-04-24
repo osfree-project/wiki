@@ -86,16 +86,12 @@ In plans:
 | [[en:docs:dos:cmd:basic:SCREEN()]] | |
 | [[en:docs:dos:cmd:basic:SGN]] | **Done** |
 | [[en:docs:dos:cmd:basic:SIN]] | **Done** |
-  - [[en:docs:dos:cmd:basic:SOUND]]
-  - [[en:docs:dos:cmd:basic:SPACE$]]
-  - [[en:docs:dos:cmd:basic:SPC]]
-  - [[en:docs:dos:cmd:basic:SQR]]
-  - [[en:docs:dos:cmd:basic:STICK]]
-  - [[en:docs:dos:cmd:basic:STOP]]
-  - [[en:docs:dos:cmd:basic:STR$]]
-  - [[en:docs:dos:cmd:basic:STRIG]]
-  - [[en:docs:dos:cmd:basic:STRING$]]
-  - [[en:docs:dos:cmd:basic:SWAP]]
+| [[en:docs:dos:cmd:basic:SPACE$]] | **Done** |
+| [[en:docs:dos:cmd:basic:SPC]] | **Done** |
+| [[en:docs:dos:cmd:basic:SQR]] | **Done** |
+| [[en:docs:dos:cmd:basic:STICK]] | |
+| [[en:docs:dos:cmd:basic:STR$]] | **Done** |
+| [[en:docs:dos:cmd:basic:STRING$]] | **Done** |
   - [[en:docs:dos:cmd:basic:SYSTEM]] (Dsk+)
   - [[en:docs:dos:cmd:basic:TAB]]
   - [[en:docs:dos:cmd:basic:TAN]]
@@ -185,6 +181,10 @@ In plans:
 | [[en:docs:dos:cmd:basic:RUN]] | **Done** |
 | [[en:docs:dos:cmd:basic:SAVE]] | **Done** |
 | [[en:docs:dos:cmd:basic:SCREEN (Statement)]] | |
+| [[en:docs:dos:cmd:basic:SOUND]] | |
+| [[en:docs:dos:cmd:basic:STOP]] | **Done** |
+| [[en:docs:dos:cmd:basic:STRIG]] | |
+| [[en:docs:dos:cmd:basic:SWAP]] | **Done** |
 
 
 {{page>en:templates:doscmd}}

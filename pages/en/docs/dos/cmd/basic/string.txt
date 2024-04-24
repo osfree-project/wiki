@@ -1,0 +1,20 @@
+====== STRING$ ======
+
+===== Syntax =====
+
+<code basic>
+S$ = STRING$( X, A$ )
+S$ = STRING$( X, Y )
+</code>
+
+===== Parameters =====
+
+X  is a number, [0,MAXLEN]
+A$ is a string, LEN >= 1
+Y  is a number, [0,255]
+
+===== Description =====
+
+The string X bytes long consisting of the first character of A$.
+
+The string X bytes long consisting of CHR$(Y).

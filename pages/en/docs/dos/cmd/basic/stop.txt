@@ -1,0 +1,12 @@
+====== STOP ======
+
+===== Syntax =====
+
+<code basic>
+STOP
+</code>
+
+===== Description =====
+
+Interrupts program execution and displays the line number of the STOP command.  For use
+when debugging BASIC programs.  Whether STOP issues a SIGINT signal is implementation defined.

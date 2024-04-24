@@ -1,0 +1,16 @@
+====== SPC ======
+
+===== Syntax =====
+
+<code basic>
+S$ = SPC( X )
+</code>
+
+===== Parameters =====
+
+X  is a number
+
+===== Description =====
+
+The string of X spaces.  Only for use within the PRINT command.
+

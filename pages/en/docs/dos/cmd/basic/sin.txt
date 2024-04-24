@@ -1,0 +1,16 @@
+====== SIN ======
+
+===== Syntax =====
+
+<code basic>
+N  = SIN( X )
+</code>
+
+===== Parameters =====
+
+X  is a number
+
+===== Description =====
+
+The sine of X, where X is in radians.
+
