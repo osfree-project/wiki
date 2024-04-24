@@ -1,0 +1,11 @@
+====== SWAP ======
+
+===== Syntax =====
+
+<code basic>
+SWAP variable, variable
+</code>
+
+===== Description =====
+
+Swaps the values of two variables. Both variables must be of the same type.

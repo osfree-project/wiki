@@ -1,0 +1,15 @@
+====== TAN ======
+
+===== Syntax =====
+
+<code basic>
+N  = TAN( X )
+</code>
+
+===== Parameters =====
+
+X  is a number
+
+===== Description =====
+
+The tangent of X, where X is in radians.

@@ -1,0 +1,11 @@
+====== SYSTEM ======
+
+===== Syntax =====
+
+<code basic>
+SYSTEM
+</code>
+
+===== Description =====
+
+Exits to the operating system.

@@ -92,10 +92,9 @@ In plans:
 | [[en:docs:dos:cmd:basic:STICK]] | |
 | [[en:docs:dos:cmd:basic:STR$]] | **Done** |
 | [[en:docs:dos:cmd:basic:STRING$]] | **Done** |
-  - [[en:docs:dos:cmd:basic:SYSTEM]] (Dsk+)
-  - [[en:docs:dos:cmd:basic:TAB]]
-  - [[en:docs:dos:cmd:basic:TAN]]
-  - [[en:docs:dos:cmd:basic:TIME$]] (Dsk+)
+| [[en:docs:dos:cmd:basic:TAB]] | **Done** |
+| [[en:docs:dos:cmd:basic:TAN]] | **Done** |
+| [[en:docs:dos:cmd:basic:TIME$]] (Dsk+) | **Done** |
   - [[en:docs:dos:cmd:basic:TRON]]
   - [[en:docs:dos:cmd:basic:TROFF]]
   - [[en:docs:dos:cmd:basic:USR]]
@@ -185,6 +184,7 @@ In plans:
 | [[en:docs:dos:cmd:basic:STOP]] | **Done** |
 | [[en:docs:dos:cmd:basic:STRIG]] | |
 | [[en:docs:dos:cmd:basic:SWAP]] | **Done** |
+| [[en:docs:dos:cmd:basic:SYSTEM]] (Dsk+) | **Done** |
 
 
 {{page>en:templates:doscmd}}

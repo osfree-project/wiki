@@ -1,0 +1,15 @@
+====== TAB ======
+
+===== Syntax =====
+
+<code basic>
+S$ = TAB( X )
+</code>
+
+===== Parameters =====
+
+X  is a number
+
+===== Description =====
+
+The string required to advance to column X. Only for use within the PRINT command.

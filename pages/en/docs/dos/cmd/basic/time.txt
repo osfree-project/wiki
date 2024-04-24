@@ -1,0 +1,13 @@
+====== TIME$ ======
+
+===== Syntax =====
+
+<code basic>
+S$ = TIME$
+</code>
+
+===== Description =====
+
+The time of day in 24-hour notation according to ISO 3307.  For example, the value of TIME$
+at 11:15 AM is "11:15:00".  If there is no clock available, then the value of TIME$
+shall be "99:99:99".  The value of TIME$ at midnight is "00:00:00".
