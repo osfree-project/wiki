@@ -23,6 +23,88 @@ In plans:
 
   * Gw - GW-BASIC 3.23
 
+==== Commands/Statements ====
+
+^ Name ^ Status ^
+| [[en:docs:dos:cmd:basic:AUTO]] | **Done** |
+| [[en:docs:dos:cmd:basic:BEEP]] | |
+| [[en:docs:dos:cmd:basic:BLOAD]] | |
+| [[en:docs:dos:cmd:basic:BSAVE]] | |
+| [[en:docs:dos:cmd:basic:CHAIN]] (Dsk+) | **Done** |
+| [[en:docs:dos:cmd:basic:CLEAR]] | **Done** |
+| [[en:docs:dos:cmd:basic:COMMON]] (Dsk+) | **Done** |
+| [[en:docs:dos:cmd:basic:CONT]] | **Done** |
+| [[en:docs:dos:cmd:basic:DATA]] | **Done** |
+| [[en:docs:dos:cmd:basic:DEF FN]] | **Done** |
+| [[en:docs:dos:cmd:basic:DEF SEG]] | |
+| [[en:docs:dos:cmd:basic:DEFDBL]] | **Done** |
+| [[en:docs:dos:cmd:basic:DEFINT]] | **Done** |
+| [[en:docs:dos:cmd:basic:DEFSNG]] | **Done** |
+| [[en:docs:dos:cmd:basic:DEFSTR]] | **Done** |
+| [[en:docs:dos:cmd:basic:DEF USR]] | |
+| [[en:docs:dos:cmd:basic:DELETE]] | **Done** |
+| [[en:docs:dos:cmd:basic:DIM]] | **Done** |
+| [[en:docs:dos:cmd:basic:DRAW]] (Adv+) | |
+| [[en:docs:dos:cmd:basic:EDIT]] | |
+| [[en:docs:dos:cmd:basic:END]] | **Done** |
+| [[en:docs:dos:cmd:basic:ERASE]] | **Done** |
+| [[en:docs:dos:cmd:basic:FIELD]] (Dsk+) | **Done** |
+| [[en:docs:dos:cmd:basic:FOR/NEXT]] | **Done** |
+| [[en:docs:dos:cmd:basic:GET (Graphics)]] (Adv+) | |
+| [[en:docs:dos:cmd:basic:GOSUB]] | **Done** |
+| [[en:docs:dos:cmd:basic:GOTO]] | **Done** |
+| [[en:docs:dos:cmd:basic:IF]] | **Done** |
+| [[en:docs:dos:cmd:basic:INPUT]] | **Done** |
+| [[en:docs:dos:cmd:basic:INPUT#]] | **Done** |
+| [[en:docs:dos:cmd:basic:KEY]] | |
+| [[en:docs:dos:cmd:basic:KEY(N)]] (Adv+) | |
+| [[en:docs:dos:cmd:basic:LET]] | **Done** |
+| [[en:docs:dos:cmd:basic:LINE]] | |
+| [[en:docs:dos:cmd:basic:LINE INPUT]] | **Done** |
+| [[en:docs:dos:cmd:basic:LIST]] | **Done** |
+| [[en:docs:dos:cmd:basic:LLIST]] | **Done** |
+| [[en:docs:dos:cmd:basic:LOAD]] | **Done** |
+| [[en:docs:dos:cmd:basic:LPRINT]] | **Done** |
+| [[en:docs:dos:cmd:basic:LSET]] (Dsk+) | **Done** |
+| [[en:docs:dos:cmd:basic:MERGE]] | **Done** |
+| [[en:docs:dos:cmd:basic:MOTOR]] | |
+| [[en:docs:dos:cmd:basic:NAME]] (Dsk+) | **Done** |
+| [[en:docs:dos:cmd:basic:NEW]] | **Done** |
+| [[en:docs:dos:cmd:basic:ON COM]] (Adv+) | |
+| [[en:docs:dos:cmd:basic:ON ERROR]] | **Done** |
+| [[en:docs:dos:cmd:basic:ON GOSUB]] | **Done** |
+| [[en:docs:dos:cmd:basic:ON GOTO]] | **Done** |
+| [[en:docs:dos:cmd:basic:ON KEY]] (Adv+) | |
+| [[en:docs:dos:cmd:basic:ON PEN]] (Adv+) | |
+| [[en:docs:dos:cmd:basic:ON STRIG]] (Adv+) | |
+| [[en:docs:dos:cmd:basic:OPEN]] | **Done** |
+| [[en:docs:dos:cmd:basic:OPTION BASE]] | **Done** |
+| [[en:docs:dos:cmd:basic:PAINT]] (Adv+) | |
+| [[en:docs:dos:cmd:basic:PEN]] | |
+| [[en:docs:dos:cmd:basic:PLAY]] (Adv+) | |
+| [[en:docs:dos:cmd:basic:PRINT]] | **Done** |
+| [[en:docs:dos:cmd:basic:PSET]] | |
+| [[en:docs:dos:cmd:basic:PRESET]] | |
+| [[en:docs:dos:cmd:basic:PUT (Graphics)]] (Adv+) | |
+| [[en:docs:dos:cmd:basic:READ]] | **Done** |
+| [[en:docs:dos:cmd:basic:REM]] | **Done** |
+| [[en:docs:dos:cmd:basic:RENUM]] | |
+| [[en:docs:dos:cmd:basic:RESTORE]] | **Done** |
+| [[en:docs:dos:cmd:basic:RESUME]] | **Done** |
+| [[en:docs:dos:cmd:basic:RETURN]] | **Done** |
+| [[en:docs:dos:cmd:basic:RSET]] (Dsk+) | **Done**|
+| [[en:docs:dos:cmd:basic:RUN]] | **Done** |
+| [[en:docs:dos:cmd:basic:SAVE]] | **Done** |
+| [[en:docs:dos:cmd:basic:SCREEN (Statement)]] | |
+| [[en:docs:dos:cmd:basic:SOUND]] | |
+| [[en:docs:dos:cmd:basic:STOP]] | **Done** |
+| [[en:docs:dos:cmd:basic:STRIG]] | |
+| [[en:docs:dos:cmd:basic:SWAP]] | **Done** |
+| [[en:docs:dos:cmd:basic:SYSTEM]] (Dsk+) | **Done** |
+| [[en:docs:dos:cmd:basic:WEND]] | **Done** |
+| [[en:docs:dos:cmd:basic:WHILE]] | **Done** |
+| [[en:docs:dos:cmd:basic:WRITE]] | **Done** |
+
 ==== Functions ====
 
 ^ Name ^ Status ^
@@ -103,88 +185,5 @@ In plans:
 | [[en:docs:dos:cmd:basic:VARPTR$]] (Dsk+) | |
 | [[en:docs:dos:cmd:basic:WAIT]] | |
 | [[en:docs:dos:cmd:basic:WIDTH]] | **Done** |
-| [[en:docs:dos:cmd:basic:WRITE]] | **Done** |
-
-==== Command ====
-
-^ Name ^ Status ^
-| [[en:docs:dos:cmd:basic:AUTO]] | **Done** |
-| [[en:docs:dos:cmd:basic:BEEP]] | |
-| [[en:docs:dos:cmd:basic:BLOAD]] | |
-| [[en:docs:dos:cmd:basic:BSAVE]] | |
-| [[en:docs:dos:cmd:basic:CHAIN]] (Dsk+) | **Done** |
-| [[en:docs:dos:cmd:basic:CLEAR]] | **Done** |
-| [[en:docs:dos:cmd:basic:COMMON]] (Dsk+) | **Done** |
-| [[en:docs:dos:cmd:basic:CONT]] | **Done** |
-| [[en:docs:dos:cmd:basic:DATA]] | **Done** |
-| [[en:docs:dos:cmd:basic:DEF FN]] | **Done** |
-| [[en:docs:dos:cmd:basic:DEF SEG]] | |
-| [[en:docs:dos:cmd:basic:DEFDBL]] | **Done** |
-| [[en:docs:dos:cmd:basic:DEFINT]] | **Done** |
-| [[en:docs:dos:cmd:basic:DEFSNG]] | **Done** |
-| [[en:docs:dos:cmd:basic:DEFSTR]] | **Done** |
-| [[en:docs:dos:cmd:basic:DEF USR]] | |
-| [[en:docs:dos:cmd:basic:DELETE]] | **Done** |
-| [[en:docs:dos:cmd:basic:DIM]] | **Done** |
-| [[en:docs:dos:cmd:basic:DRAW]] (Adv+) | |
-| [[en:docs:dos:cmd:basic:EDIT]] | |
-| [[en:docs:dos:cmd:basic:END]] | **Done** |
-| [[en:docs:dos:cmd:basic:ERASE]] | **Done** |
-| [[en:docs:dos:cmd:basic:FIELD]] (Dsk+) | **Done** |
-| [[en:docs:dos:cmd:basic:FOR/NEXT]] | **Done** |
-| [[en:docs:dos:cmd:basic:GET (Graphics)]] (Adv+) | |
-| [[en:docs:dos:cmd:basic:GOSUB]] | **Done** |
-| [[en:docs:dos:cmd:basic:GOTO]] | **Done** |
-| [[en:docs:dos:cmd:basic:IF]] | **Done** |
-| [[en:docs:dos:cmd:basic:INPUT]] | **Done** |
-| [[en:docs:dos:cmd:basic:INPUT#]] | **Done** |
-| [[en:docs:dos:cmd:basic:KEY]] | |
-| [[en:docs:dos:cmd:basic:KEY(N)]] (Adv+) | |
-| [[en:docs:dos:cmd:basic:LET]] | **Done** |
-| [[en:docs:dos:cmd:basic:LINE]] | |
-| [[en:docs:dos:cmd:basic:LINE INPUT]] | **Done** |
-| [[en:docs:dos:cmd:basic:LIST]] | **Done** |
-| [[en:docs:dos:cmd:basic:LLIST]] | **Done** |
-| [[en:docs:dos:cmd:basic:LOAD]] | **Done** |
-| [[en:docs:dos:cmd:basic:LPRINT]] | **Done** |
-| [[en:docs:dos:cmd:basic:LSET]] (Dsk+) | **Done** |
-| [[en:docs:dos:cmd:basic:MERGE]] | **Done** |
-| [[en:docs:dos:cmd:basic:MOTOR]] | |
-| [[en:docs:dos:cmd:basic:NAME]] (Dsk+) | **Done** |
-| [[en:docs:dos:cmd:basic:NEW]] | **Done** |
-| [[en:docs:dos:cmd:basic:ON COM]] (Adv+) | |
-| [[en:docs:dos:cmd:basic:ON ERROR]] | **Done** |
-| [[en:docs:dos:cmd:basic:ON GOSUB]] | **Done** |
-| [[en:docs:dos:cmd:basic:ON GOTO]] | **Done** |
-| [[en:docs:dos:cmd:basic:ON KEY]] (Adv+) | |
-| [[en:docs:dos:cmd:basic:ON PEN]] (Adv+) | |
-| [[en:docs:dos:cmd:basic:ON STRIG]] (Adv+) | |
-| [[en:docs:dos:cmd:basic:OPEN]] | **Done** |
-| [[en:docs:dos:cmd:basic:OPTION BASE]] | **Done** |
-| [[en:docs:dos:cmd:basic:PAINT]] (Adv+) | |
-| [[en:docs:dos:cmd:basic:PEN]] | |
-| [[en:docs:dos:cmd:basic:PLAY]] (Adv+) | |
-| [[en:docs:dos:cmd:basic:PRINT]] | **Done** |
-| [[en:docs:dos:cmd:basic:PSET]] | |
-| [[en:docs:dos:cmd:basic:PRESET]] | |
-| [[en:docs:dos:cmd:basic:PUT (Graphics)]] (Adv+) | |
-| [[en:docs:dos:cmd:basic:READ]] | **Done** |
-| [[en:docs:dos:cmd:basic:REM]] | **Done** |
-| [[en:docs:dos:cmd:basic:RENUM]] | |
-| [[en:docs:dos:cmd:basic:RESTORE]] | **Done** |
-| [[en:docs:dos:cmd:basic:RESUME]] | **Done** |
-| [[en:docs:dos:cmd:basic:RETURN]] | **Done** |
-| [[en:docs:dos:cmd:basic:RSET]] (Dsk+) | **Done**|
-| [[en:docs:dos:cmd:basic:RUN]] | **Done** |
-| [[en:docs:dos:cmd:basic:SAVE]] | **Done** |
-| [[en:docs:dos:cmd:basic:SCREEN (Statement)]] | |
-| [[en:docs:dos:cmd:basic:SOUND]] | |
-| [[en:docs:dos:cmd:basic:STOP]] | **Done** |
-| [[en:docs:dos:cmd:basic:STRIG]] | |
-| [[en:docs:dos:cmd:basic:SWAP]] | **Done** |
-| [[en:docs:dos:cmd:basic:SYSTEM]] (Dsk+) | **Done** |
-| [[en:docs:dos:cmd:basic:WEND]] | **Done** |
-| [[en:docs:dos:cmd:basic:WHILE]] | **Done** |
-
 
 {{page>en:templates:doscmd}}

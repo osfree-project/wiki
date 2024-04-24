@@ -1,0 +1,14 @@
+====== WRITE ======
+
+===== Syntax =====
+
+<code basic>
+WRITE # filenum, value [, .... ]
+WRITE value [, .... ]
+</code>
+
+===== Description =====
+
+Outputs value to a file.    Strings are quoted and each value is separated by a comma.
+
+Outputs value to the screen.  Strings are quoted and each value is separated by a comma.
