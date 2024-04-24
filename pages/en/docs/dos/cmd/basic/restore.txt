@@ -1,0 +1,16 @@
+====== RESTORE ======
+
+===== Syntax =====
+
+<code basic>
+RESTORE [line]
+</code>
+
+===== Description =====
+
+Resets the line used for the next READ statement.  Line may be either a number or a label.
+
+
+
+
+

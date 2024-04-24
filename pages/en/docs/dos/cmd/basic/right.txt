@@ -1,0 +1,19 @@
+====== RIGHT$ ======
+
+===== Syntax =====
+
+<code basic>
+S$ = RIGHT$( A$, X )
+</code>
+
+===== Parameters =====
+
+A$ is a string, LEN >= 0
+X  is a number, [0,MAXLEN]
+
+===== Description =====
+
+The right-most X characters of A$.
+
+
+

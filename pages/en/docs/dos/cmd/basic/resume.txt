@@ -1,0 +1,23 @@
+====== RESUME ======
+
+===== Syntax =====
+
+<code basic>
+RESUME
+RESUME line
+RESUME NEXT
+RESUME 0
+</code>
+
+===== Description =====
+
+Used in an error handler to specify the next line to execute.  Branch to ERL.
+
+Used in an error handler to specify the next line to execute.  Branch to the specified line.
+
+Used in an error handler to specify the next line to execute.  Branch to the line after ERL.
+
+Used in an error handler to specify the next line to execute.  Branch to ERL.
+
+
+

@@ -80,13 +80,8 @@ In plans:
 | [[en:docs:dos:cmd:basic:POS]] | **Done** |
 | [[en:docs:dos:cmd:basic:PUT]] (Dsk+) | **Done** |
 | [[en:docs:dos:cmd:basic:RANDOMIZE]] | **Done** |
-  - [[en:docs:dos:cmd:basic:REM]]
-  - [[en:docs:dos:cmd:basic:RENUM]]
-  - [[en:docs:dos:cmd:basic:RESET]] (Dsk+)
-  - [[en:docs:dos:cmd:basic:RESTORE]]
-  - [[en:docs:dos:cmd:basic:RESUME]]
-  - [[en:docs:dos:cmd:basic:RETURN]]
-  - [[en:docs:dos:cmd:basic:RIGHT$]]
+| [[en:docs:dos:cmd:basic:RESET]] (Dsk+) | **Done** |
+| [[en:docs:dos:cmd:basic:RIGHT$]] | **Done** |
   - [[en:docs:dos:cmd:basic:RND]]
   - [[en:docs:dos:cmd:basic:RSET]] (Dsk+)
   - [[en:docs:dos:cmd:basic:RUN]]
@@ -185,7 +180,10 @@ In plans:
 | [[en:docs:dos:cmd:basic:PRESET]] | |
 | [[en:docs:dos:cmd:basic:PUT (Graphics)]] (Adv+) | |
 | [[en:docs:dos:cmd:basic:READ]] | **Done** |
-
-
+| [[en:docs:dos:cmd:basic:REM]] | **Done** |
+| [[en:docs:dos:cmd:basic:RENUM]] | |
+| [[en:docs:dos:cmd:basic:RESTORE]] | **Done** |
+| [[en:docs:dos:cmd:basic:RESUME]] | **Done** |
+| [[en:docs:dos:cmd:basic:RETURN]] | **Done** |
 
 {{page>en:templates:doscmd}}

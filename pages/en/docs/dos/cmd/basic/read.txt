@@ -1,0 +1,16 @@
+====== READ ======
+
+===== Syntax =====
+
+<code basic>
+READ variable [, ...]
+</code>
+
+===== Description =====
+
+Reads values from DATA statements.
+
+
+
+
+

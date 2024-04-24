@@ -1,0 +1,15 @@
+====== RESET ======
+
+===== Syntax =====
+
+<code basic>
+N  = RESET
+</code>
+
+
+===== Description =====
+
+Close all open files.
+
+
+

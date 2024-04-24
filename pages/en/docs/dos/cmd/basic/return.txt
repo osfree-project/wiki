@@ -1,0 +1,11 @@
+====== RETURN ======
+
+===== Syntax =====
+
+<code basic>
+RETURN
+</code>
+
+===== Description =====
+
+Concludes a subroutine called by GOSUB.
