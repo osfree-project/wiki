@@ -38,7 +38,7 @@ Return: AL = status
         
 ===== See also =====
 
-AH=0Fh,AH=15h,AH=1Ah,AH=3Fh"DOS",INT 2F/AX=1108h
+AH=[[en:docs:dos:api:int21:0f|0Fh]],AH=[[en:docs:dos:api:int21:15|15h]],AH=[[en:docs:dos:api:int21:1a|1Ah]],AH=[[en:docs:dos:api:int21:3f|3Fh]]"DOS",INT 2F/AX=1108h
 
 ===== Note =====
 
