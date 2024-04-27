@@ -28,7 +28,7 @@ DISK RESET
 
 ===== See also =====
 
-AX=5D01h,AX=710Dh,INT 13/AH=00h,INT 2F/AX=1120h
+AX=[[en:docs:dos:api:int21:5d:01|5D01h]],AX=[[en:docs:dos:api:int21:71:0d|710Dh]],INT 13/AH=00h,INT 2F/AX=1120h
 
 ===== Note =====
 

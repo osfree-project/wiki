@@ -29,7 +29,7 @@ as appropriate for the specified input function
 
 ===== See also =====
 
-AH=01h,AH=06h"INPUT",AH=07h,AH=08h,AH=0Ah
+AH=[[en:docs:dos:api:int21:01|01h]],AH=[[en:docs:dos:api:int21:06|06h]]"INPUT",AH=[[en:docs:dos:api:int21:07|07h]],AH=[[en:docs:dos:api:int21:08|08h]],AH=[[en:docs:dos:api:int21:0a|0Ah]]
 
 ===== Note =====
 
