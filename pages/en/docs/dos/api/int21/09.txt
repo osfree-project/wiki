@@ -31,7 +31,7 @@ WRITE STRING TO STANDARD OUTPUT
 
 ===== See also =====
 
-AH=02h,AH=06h"OUTPUT"
+AH=[[en:docs:dos:api:int21:02|02h]],AH=[[en:docs:dos:api:int21:06|06h]]"OUTPUT"
 
 ===== Note =====
 

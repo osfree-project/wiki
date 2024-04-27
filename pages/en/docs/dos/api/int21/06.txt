@@ -31,6 +31,7 @@ On input:
 
   ZF set if no character available
             AL = 00h
+
   ZF clear if character available
             AL = character read
 
@@ -48,7 +49,7 @@ On input:
 
 ===== See also =====
 
-AH=02h,AH=09h,AH=0BH
+AH=[[en:docs:dos:api:int21:02|02h]],AH=[[en:docs:dos:api:int21:09|09h]],AH=[[en:docs:dos:api:int21:0b|0BH]]
 
 ===== Note =====
 

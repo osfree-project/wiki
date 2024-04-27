@@ -30,7 +30,7 @@ READ CHARACTER FROM STDAUX
 
 ===== See also =====
 
-AH=04h,INT 14/AH=02h,INT E0/CL=03h
+AH=[[en:docs:dos:api:int21:04|04h]],INT 14/AH=02h,INT E0/CL=03h
 
 ===== Note =====
 

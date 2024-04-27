@@ -43,7 +43,7 @@ under DOS 1.x, but they may be redirected under DOS 2+
 
 ===== See also =====
 
-AH=06h,AH=07h,AH=08h,AH=0Ah
+AH=[[en:docs:dos:api:int21:06|06h]],AH=[[en:docs:dos:api:int21:07|07h]],AH=[[en:docs:dos:api:int21:08|08h]],AH=[[en:docs:dos:api:int21:0a|0Ah]]
 
 ===== Note =====
 

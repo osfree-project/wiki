@@ -30,7 +30,7 @@ CHARACTER INPUT WITHOUT ECHO
 
 ===== See also =====
 
-AH=01h,AH=06h,AH=07h,AH=0Ah,AH=64h"DOS 3.2+"
+AH=[[en:docs:dos:api:int21:01|01h]],AH=[[en:docs:dos:api:int21:06|06h]],AH=[[en:docs:dos:api:int21:07|07h]],AH=[[en:docs:dos:api:int21:0a|0Ah]],AH=[[en:docs:dos:api:int21:64|64h]]"DOS 3.2+"
 
 ===== Note =====
 

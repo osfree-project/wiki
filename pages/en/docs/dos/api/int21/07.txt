@@ -32,7 +32,7 @@ DIRECT CHARACTER INPUT, WITHOUT ECHO
 
 ===== See also =====
 
-AH=01h,AH=06h,AH=08h,AH=0Ah
+AH=[[en:docs:dos:api:int21:01|01h]],AH=[[en:docs:dos:api:int21:06|06h]],AH=[[en:docs:dos:api:int21:08|08h]],AH=[[en:docs:dos:api:int21:0a|0Ah]]
 
 ===== Note =====
 

@@ -34,7 +34,7 @@ nothing
 
 ===== See also =====
 
-AH=03h,INT 14/AH=01h,INT E0/CL=04h
+AH=[[en:docs:dos:api:int21:03|03h]],INT 14/AH=01h,INT E0/CL=04h
 
 ===== Note =====
 

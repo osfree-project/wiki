@@ -33,7 +33,7 @@ WRITE CHARACTER TO STANDARD OUTPUT
 
 ===== See also =====
 
-AH=06h,AH=09h
+AH=[[en:docs:dos:api:int21:06|06h]],AH=[[en:docs:dos:api:int21:09|09h]]
 
 ===== Note =====
 

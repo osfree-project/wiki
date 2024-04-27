@@ -32,7 +32,7 @@ GET STDIN STATUS
 
 ===== See also =====
 
-AH=06h"INPUT",AX=4406h
+AH=[[en:docs:dos:api:int21:06|06h]]"INPUT",AX=[[en:docs:dos:api:int21:44:06|4406h]]
 
 ===== Note =====
 

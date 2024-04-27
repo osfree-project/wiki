@@ -37,7 +37,7 @@ Format of DOS input buffer:
 
 ===== See also =====
 
-AH=0Ch,INT 2F/AX=4810h
+AH=[[en:docs:dos:api:int21:0c|0Ch]],INT 2F/AX=4810h
 
 ===== Note =====
 
