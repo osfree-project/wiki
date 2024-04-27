@@ -154,7 +154,7 @@ Offset  Size    Description     (Table 01351)
 
 ===== See also =====
 
-AH=10h,AH=16h,AH=3Dh,AX=4303h
+AH=[[en:docs:dos:api:int21:10|10h]],AH=[[en:docs:dos:api:int21:16|16h]],AH=[[en:docs:dos:api:int21:3d|3Dh]],AX=[[en:docs:dos:api:int21:43:03|4303h]]
 
 ===== Note =====
 

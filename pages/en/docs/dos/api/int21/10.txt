@@ -31,7 +31,7 @@ AL = status       00h successful       FFh failed
         
 ===== See also =====
 
-AH=0Fh,AH=16h,AH=3Eh
+AH=[[en:docs:dos:api:int21:0f|0Fh]],AH=[[en:docs:dos:api:int21:16|16h]],AH=[[en:docs:dos:api:int21:3e|3Eh]]
 
 ===== Note =====
 

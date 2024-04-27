@@ -37,7 +37,7 @@ SELECT DEFAULT DRIVE
 
 ===== See also =====
 
-AH=19h,AH=3Bh,AH=DBh
+AH=[[en:docs:dos:api:int21:19|19h]],AH=[[en:docs:dos:api:int21:3b|3Bh]],AH=[[en:docs:dos:api:int21:db|DBh]]
 
 ===== Note =====
 
