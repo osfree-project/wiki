@@ -46,7 +46,7 @@ Return: AL = status
         
 ===== See also =====
 
-AH=41h,INT 2F/AX=1113h
+AH=[[en:docs:dos:api:int21:41|41h]],INT 2F/AX=1113h
 
 ===== Note =====
 

@@ -130,7 +130,7 @@ SeeAlso: #01352,INT 21/AX=5704h,INT 21/AH=71h
         
 ===== See also =====
 
-SeeAlso: AH=12h,AH=1Ah,AH=4Eh,INT 2F/AX=111Bh
+SeeAlso: AH=[[en:docs:dos:api:int21:12|12h]],AH=[[en:docs:dos:api:int21:1a|1Ah]],AH=[[en:docs:dos:api:int21:4e|4Eh]],INT 2F/AX=111Bh
 
 ===== Note =====
 

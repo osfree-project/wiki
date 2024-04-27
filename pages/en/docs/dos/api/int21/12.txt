@@ -33,7 +33,7 @@ Note:   (see AH=11h)
         
 ===== See also =====
 
-AH=1Ah,AH=4Fh,INT 2F/AX=111Ch
+AH=[[en:docs:dos:api:int21:1a|1Ah]],AH=[[en:docs:dos:api:int21:4f|4Fh]],INT 2F/AX=111Ch
 
 ===== Note =====
 
