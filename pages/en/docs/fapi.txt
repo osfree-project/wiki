@@ -2,7 +2,16 @@
 
 ====== Family API ======
 
-Family API (FAPI) is a subset of [[en:docs:os2:api:cpi|Control Program API]] which can be used to write binary portable applications. Such applications can be run as on OS/2 as on DOS system without any modifications. It is known 2 versions of original Family API 1.00 and 1.10. Also exists side Family API implementation. FAMAPI by Jonathan de Boyne Pollard and HX DOS Extender API by Andreas Grech. Versions up to 1.10 is a original OS/2 Family API. 1.20 and higher is a osFree extensions.
+Family API (FAPI) is a subset of [[en:docs:os2:api:cpi|Control Program API]] which can be used to write binary portable applications. Such applications can be run as on OS/2 as on DOS system without any modifications.
+
+It is known 3 versions of original Family API 1.00, 1.10 and [[https://github.com/microsoft/MS-DOS/tree/main/v4.0/src/MAPPER|Mapper]] from MS-DOS 4.0. 
+
+Also exists side Family API implementation:
+  * FAMAPI by [[http://jdebp.info/Softwares/famapi.html|Jonathan de Boyne Pollard]]
+  * HX DOS Extender API by [[https://github.com/Baron-von-Riedesel/HX|Andreas Grech]]
+  * os2api by [[https://github.com/malxau/os2api|Malcolm Smith]]
+
+Versions up to 1.10 is a original OS/2 Family API. 1.20 and higher is a osFree extensions.
 
 ====== Dual OS applications ======
 
