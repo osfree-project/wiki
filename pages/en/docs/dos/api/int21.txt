@@ -62,6 +62,10 @@
 | [[en:docs:dos:api:int21:35|35H]] | Get interrupt vector | 2.0+ |
 | [[en:docs:dos:api:int21:36|36H]] | Get free disk space | 2.0+ |
 | [[en:docs:dos:api:int21:37|37H]] | Extended functions | 2.0+ |
+| [[en:docs:dos:api:int21:37:00|3700H]] | Get switch character | 2.0+         |
+| [[en:docs:dos:api:int21:37:01|3701H]] | Set switch character | 2.0+         |
+| [[en:docs:dos:api:int21:37:02|3702H]] | Get availdev flag    | 2.x and 3.3+ |
+| [[en:docs:dos:api:int21:37:03|3703H]] | Set availdev flag    | 2.x and 3.3+ |
 | [[en:docs:dos:api:int21:38|38H]] | Get or set country info | 2.0+ |
 | [[en:docs:dos:api:int21:39|39H]] | Create subdirectory | 2.0+ |
 | [[en:docs:dos:api:int21:3a|3AH]] | Remove subdirectory | 2.0+ |
