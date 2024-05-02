@@ -32,20 +32,15 @@
 
 ===== Notes =====
 
-  for origins 01h and 02h, the pointer may be positioned before the
-          start of the file; no error is returned in that case (except under
-          Windows NT), but subsequent attempts at I/O will produce errors
-        if the new position is beyond the current end of file, the file will
-          be extended by the next write (see AH=40h); for FAT32 drives, the
-          file must have been opened with AX=6C00h with the "extended size"
-          flag in order to expand the file beyond 2GB
-  BUG:    using this method to grow a file from zero bytes to a very large size
-          can corrupt the FAT in some versions of DOS; the file should first
-          be grown from zero to one byte and then to the desired large size
+for origins 01h and 02h, the pointer may be positioned before the start of the file; no error is returned in that case (except under Windows NT), but subsequent attempts at I/O will produce errors
+          
+if the new position is beyond the current end of file, the file will be extended by the next write (see AH=40h); for FAT32 drives, the file must have been opened with AX=6C00h with the "extended size" flag in order to expand the file beyond 2GB
+          
+BUG:    using this method to grow a file from zero bytes to a very large size can corrupt the FAT in some versions of DOS; the file should first be grown from zero to one byte and then to the desired large size
           
 ===== See also =====
 
- AH=24h,INT 2F/AX=1228h
+AH=[[en:docs:dos:api:int21:24|24h]],INT 2F/AX=1228h
 
 ===== Note =====
 
