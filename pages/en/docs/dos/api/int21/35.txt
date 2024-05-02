@@ -24,12 +24,11 @@ GET INTERRUPT VECTOR
 
 ===== Notes =====
 
- under DR DOS 5.0+, this function does not use any of the DOS-internal
-          stacks and may thus be called at any time
+under DR DOS 5.0+, this function does not use any of the DOS-internal stacks and may thus be called at any time
           
 ===== See also =====
 
-AH=25h,AX=2503h
+AH=[[en:docs:dos:api:int21:25|25h]]
 
 ===== Note =====
 
