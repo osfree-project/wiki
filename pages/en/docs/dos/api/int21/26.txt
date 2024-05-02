@@ -89,7 +89,7 @@ Format of environment block:
 
 ^ Offset ^ Size ^ Description ^
 | 00h | N BYTEs | first environment variable, ASCIZ string of form "var=value" |
-| ::: | N BYTEs | second environment variable, ASCIZ string
+| ::: | N BYTEs | second environment variable, ASCIZ string |
 | ::: | ... |
 | ::: | N BYTEs | last environment variable, ASCIZ string of form "var=value" |
 | ::: | BYTE | 00h |
