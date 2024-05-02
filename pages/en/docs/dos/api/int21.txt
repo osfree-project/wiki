@@ -83,6 +83,24 @@
 | [[en:docs:dos:api:int21:43:00|4300H]] | Get file attributes                               | 2.0+    |
 | [[en:docs:dos:api:int21:43:01|4301H]] | Set file attributes  | 2.0+    |
 | [[en:docs:dos:api:int21:44|44H]] | Extended functions | 2.0+ |
+| [[en:docs:dos:api:int21:44:00|4400H]] | GET DEVICE INFORMATION                            | 2.0+    |
+| [[en:docs:dos:api:int21:44:01|4401H]] | SET DEVICE INFORMATION                            | 2.0+    |
+| [[en:docs:dos:api:int21:44:02|4402H]] | READ FROM CHARACTER DEVICE CONTROL CHANNEL        | 2.0+    |
+| [[en:docs:dos:api:int21:44:03|4403H]] | WRITE TO CHARACTER DEVICE CONTROL CHANNEL         | 2.0+    |
+| [[en:docs:dos:api:int21:44:04|4404H]] | READ FROM BLOCK DEVICE CONTROL CHANNEL            | 2.0+    |
+| [[en:docs:dos:api:int21:44:05|4405H]] | WRITE TO BLOCK DEVICE CONTROL CHANNEL             | 2.0+    |
+| [[en:docs:dos:api:int21:44:06|4406H]] | GET INPUT STATUS                                  | 2.0+    |
+| [[en:docs:dos:api:int21:44:07|4407H]] | GET OUTPUT STATUS                                 | 2.0+    |
+| [[en:docs:dos:api:int21:44:08|4408H]] | CHECK IF BLOCK DEVICE REMOVABLE                   | 3.0+    |
+| [[en:docs:dos:api:int21:44:09|4409H]] | CHECK IF BLOCK DEVICE REMOTE                      | 3.1+    |
+| [[en:docs:dos:api:int21:44:0A|440AH]] | CHECK IF HANDLE IS REMOTE                         | 3.1+    |
+| [[en:docs:dos:api:int21:44:0B|440BH]] | SET SHARING RETRY COUNT                           | 3.1+    |
+| [[en:docs:dos:api:int21:44:0C|440CH]] | GENERIC CHARACTER DEVICE REQUEST                  | 3.2+    |
+| [[en:docs:dos:api:int21:44:0D|440DH]] | GENERIC BLOCK DEVICE REQUEST                      | 3.2+    |
+| [[en:docs:dos:api:int21:44:0E|440EH]] | GET LOGICAL DRIVE MAP                             | 3.2+    |
+| [[en:docs:dos:api:int21:44:0F|440FH]] | SET LOGICAL DRIVE MAP                             | 3.2+    |
+| [[en:docs:dos:api:int21:44:10|4410H]] | QUERY GENERIC IOCTL CAPABILITY (HANDLE)           | 5.0+    |
+| [[en:docs:dos:api:int21:44:11|4411H]] | QUERY GENERIC IOCTL CAPABILITY (DRIVE)            | 5.0+    |
 | [[en:docs:dos:api:int21:45|45H]] | Duplicate handle | 2.0+ |
 | [[en:docs:dos:api:int21:46|46H]] | Redirect handle | 2.0+ |
 | [[en:docs:dos:api:int21:47|47H]] | Get current directory | 2.0+ |
