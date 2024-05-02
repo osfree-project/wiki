@@ -24,13 +24,11 @@ AL = drive (00h = A:, 01h = B:, etc)
 
 ===== Notes =====
 
- Novell NetWare uses the fact that DOS 2.x COMMAND.COM issues this call
-          from a particular location every time it starts a command to
-          determine when to issue an automatic EOJ
+ Novell NetWare uses the fact that DOS 2.x COMMAND.COM issues this call from a particular location every time it starts a command to determine when to issue an automatic EOJ
           
 ===== See also =====
 
-AH=0Eh,AH=47h,AH=BBh
+AH=[[en:docs:dos:api:int21:0e|0Eh]],AH=[[en:docs:dos:api:int21:47|47h]],AH=[[en:docs:dos:api:int21:bb|BBh]]
 
 ===== Note =====
 

@@ -67,6 +67,8 @@
 | [[en:docs:dos:api:int21:41|41H]] | Delete file | 2.0+ |
 | [[en:docs:dos:api:int21:42|42H]] | Move file pointer | 2.0+ |
 | [[en:docs:dos:api:int21:43|43H]] | Extended functions | 2.0+ |
+| [[en:docs:dos:api:int21:43:00|4300H]] | Get file attributes                               | 2.0+    |
+| [[en:docs:dos:api:int21:43:01|4301H]] | Set file attributes  | 2.0+    |
 | [[en:docs:dos:api:int21:44|44H]] | Extended functions | 2.0+ |
 | [[en:docs:dos:api:int21:45|45H]] | Duplicate handle | 2.0+ |
 | [[en:docs:dos:api:int21:46|46H]] | Redirect handle | 2.0+ |
