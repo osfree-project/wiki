@@ -118,7 +118,7 @@ Notes:  '*' indicates an OEM release of MS-DOS, while '-' indicates an OEM numbe
 
 ===== See also =====
 
-AX=[[en:docs:dos:api:int21:30:00|3000h]]/BX=3000h,AX=[[en:docs:dos:api:int21:33:06|3306h]],AX=[[en:docs:dos:api:int21:44:52|4452h]],AH=[[en:docs:dos:api:int21:87|87h]],INT 15/AX=4900h
+AX=[[en:docs:dos:api:int21:33:06|3306h]],INT 15/AX=4900h
  AH=20h"S/DOS",INT 2F/AX=122Fh,INT 2F/AX=4010h,INT 2F/AX=4A33h
  INT 2F/AX=E002h
 

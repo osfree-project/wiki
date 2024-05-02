@@ -51,6 +51,13 @@
 | [[en:docs:dos:api:int21:31|31H]] | Terminate and stay resident | 2.0+ |
 | [[en:docs:dos:api:int21:32|32H]] | Get disk parameter block for specified drive | 2.0+ |
 | [[en:docs:dos:api:int21:33|33H]] | Extended functions | 2.0+ |
+| [[en:docs:dos:api:int21:33:00|3300H]] | get current extended break state                  | 2.0+    |
+| [[en:docs:dos:api:int21:33:01|3301H]] | set state of extended Ctrl+C/Ctrl+Break checking  | 2.0+    |
+| [[en:docs:dos:api:int21:33:02|3302H]] | GET AND SET EXTENDED CONTROL-BREAK CHECKING STATE | 3.0+    |
+| [[en:docs:dos:api:int21:33:03|3303H]] | GET CURRENT CPSW STATE                            | 3.4/4.0 |
+| [[en:docs:dos:api:int21:33:04|3304H]] | SET CPSW STATE                                    | 3.4/4.0 |
+| [[en:docs:dos:api:int21:33:05|3305H]] | GET BOOT DRIVE                                    | 4.0+    |
+| [[en:docs:dos:api:int21:33:06|3306H]] | GET TRUE VERSION NUMBER                           | 5.0+    |
 | [[en:docs:dos:api:int21:34|34H]] | Get InDOS flag pointer | 2.0+ |
 | [[en:docs:dos:api:int21:35|35H]] | Get interrupt vector | 2.0+ |
 | [[en:docs:dos:api:int21:36|36H]] | Get free disk space | 2.0+ |
