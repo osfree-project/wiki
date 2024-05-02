@@ -35,7 +35,7 @@ GET COUNTRY-SPECIFIC INFORMATION
 
 ===== See also =====
 
- AX=3801h
+AX=[[en:docs:dos:api:int21:38:01|3801h]]
 
 
 ===== Note =====

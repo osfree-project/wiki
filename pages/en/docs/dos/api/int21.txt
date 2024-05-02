@@ -67,6 +67,8 @@
 | [[en:docs:dos:api:int21:37:02|3702H]] | Get availdev flag    | 2.x and 3.3+ |
 | [[en:docs:dos:api:int21:37:03|3703H]] | Set availdev flag    | 2.x and 3.3+ |
 | [[en:docs:dos:api:int21:38|38H]] | Get or set country info | 2.0+ |
+| [[en:docs:dos:api:int21:38:00|3800H]] | Get current country info | 2.0+         |
+| [[en:docs:dos:api:int21:38:01|3801H]] | Get/set specified country info | 3.0+         |
 | [[en:docs:dos:api:int21:39|39H]] | Create subdirectory | 2.0+ |
 | [[en:docs:dos:api:int21:3a|3AH]] | Remove subdirectory | 2.0+ |
 | [[en:docs:dos:api:int21:3b|3BH]] | Change current directory | 2.0+ |

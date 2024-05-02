@@ -29,15 +29,15 @@ SET SWITCH CHARACTER
 
 ===== Notes =====
 
- documented in some OEM versions of some releases of DOS; DOS 2.x had
-          a SWITCHAR=c setting in CONFIG.SYS
-        supported by OS/2 compatibility box and Novell DOS 7
-        ignored by MS-DOS 5+ and DR DOS 3.41-6.0; DR DOS 6.0 and Novell DOS 7
-          leave AX unchanged
+documented in some OEM versions of some releases of DOS; DOS 2.x had a SWITCHAR=c setting in CONFIG.SYS
+          
+supported by OS/2 compatibility box and Novell DOS 7
+        
+ignored by MS-DOS 5+ and DR DOS 3.41-6.0; DR DOS 6.0 and Novell DOS 7 leave AX unchanged
 
 ===== See also =====
 
- AX=3700h
+AX=[[en:docs:dos:api:int21:37:00|3700h]]
 
 ===== Note =====
 
