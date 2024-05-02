@@ -97,37 +97,33 @@ C = open fails, INT 24 generated
 1 = open succeeds if file read-only, else fails with error code
 2 = open succeeds if file read-only, else fails with INT 24
 
-(Table 01404)
+
 Values for DOS 7.x file sharing behavior:
-          |     Second and subsequent Opens
- First    |Compat    Deny      Deny      Deny      Deny
- Open     |          All       Write     Read      None
-          |R W RW A  R W RW A  R W RW A  R W RW A  R W RW A
- - - - - -| - - - - - - - - - - - - - - - - - - - - - - - -
- Compat R |Y Y Y Y   N N N N   Y N N Y   N N N Y   Y N N Y
-        W |Y Y Y C   N N N N   N N N N   N N N Y   Y N N Y
-        RW|Y Y Y C   N N N N   N N N N   N N N Y   Y N N Y
-        NA|Y C C Y   N N N N   Y N N Y   N N N Y   Y N N Y
- - - - - -|
- Deny   R |C C C C   N N N N   N N N N   N N N N   N N N N
- All    W |C C C C   N N N N   N N N N   N N N N   N N N N
-        RW|C C C C   N N N N   N N N N   N N N N   N N N N
-        NA|C C C C   N N N N   N N N N   N N N N   N N N N
- - - - - -|
- Deny   R |Y C C Y   N N N N   Y N N Y   N N N Y   Y N N Y
- Write  W |C C C C   N N N N   N N N N   Y N N Y   Y N N Y
-        RW|C C C C   N N N N   N N N N   N N N Y   Y N N Y
-        NA|Y C C Y   N N N N   Y N N Y   N N N Y   Y N N Y
- - - - - -|
- Deny   R |C C C C   N N N N   N Y N N   N N N N   N Y N N
- Read   W |C C C C   N N N N   N N N N   N Y N N   N Y N N
-        RW|C C C C   N N N N   N N N N   N N N N   N Y N N
-        NA|Y Y Y Y   N N N N   Y Y Y Y   N N N Y   Y Y Y Y
- - - - - -|
- Deny   R |Y Y Y Y   N N N N   Y Y Y Y   N N N Y   Y Y Y Y
- None   W |C C C C   N N N N   N N N N   Y Y Y Y   Y Y Y Y
-        RW|C C C C   N N N N   N N N N   N N N Y   Y Y Y Y
-        NA|Y Y Y Y   N N N N   Y Y Y Y   N N N Y   Y Y Y Y
+
+^ First Open ^^ Second and subsequent Opens ^^^^^^^^^^^^^^^^^^^^
+^ :::           ^^ Compat ^^^^ Deny All ^^^^ Deny Write ^^^^ Deny Read ^^^^ Deny None ^^^^
+^ :::           ^^ R ^ W ^ RW ^ A^ R ^  W ^ RW ^ A ^ R ^ W ^ RW ^ A ^ R ^ W ^ RW ^ A ^ R ^ W ^ RW ^ A ^
+^ Compat     ^ R  | Y | Y | Y | Y | N | N | N | N | Y | N | N | Y | N | N | N | Y | Y | N | N | Y |
+^ :::        ^ W  | Y | Y | Y | C | N | N | N | N | N | N | N | N | N | N | N | Y | Y | N | N | Y |
+^ :::        ^ RW | Y | Y | Y | C | N | N | N | N | N | N | N | N | N | N | N | Y | Y | N | N | Y |
+^ :::        ^ NA | Y | C | C | Y | N | N | N | N | Y | N | N | Y | N | N | N | Y | Y | N | N | Y |
+^ Deny All   ^ R  | C | C | C | C | N | N | N | N | N | N | N | N | N | N | N | N | N | N | N | N |
+^ :::        ^ W  | C | C | C | C | N | N | N | N | N | N | N | N | N | N | N | N | N | N | N | N |
+^ :::        ^ RW | C | C | C | C | N | N | N | N | N | N | N | N | N | N | N | N | N | N | N | N |
+^ :::        ^ NA | C | C | C | C | N | N | N | N | N | N | N | N | N | N | N | N | N | N | N | N |
+^ Deny Write ^ R  | Y | C | C | Y | N | N | N | N | Y | N | N | Y | N | N | N | Y | Y | N | N | Y |
+^ :::        ^ W  | C | C | C | C | N | N | N | N | N | N | N | N | Y | N | N | Y | Y | N | N | Y |
+^ :::        ^ RW | C | C | C | C | N | N | N | N | N | N | N | N | N | N | N | Y | Y | N | N | Y |
+^ :::        ^ NA | Y | C | C | Y | N | N | N | N | Y | N | N | Y | N | N | N | Y | Y | N | N | Y |
+^ Deny Read  ^ R  | C | C | C | C | N | N | N | N | N | Y | N | N | N | N | N | N | N | Y | N | N |
+^ :::        ^ W  | C | C | C | C | N | N | N | N | N | N | N | N | N | Y | N | N | N | Y | N | N |
+^ :::        ^ RW | C | C | C | C | N | N | N | N | N | N | N | N | N | N | N | N | N | Y | N | N |
+^ :::        ^ NA | Y | Y | Y | Y | N | N | N | N | Y | Y | Y | Y | N | N | N | Y | Y | Y | Y | Y |
+^ Deny None  ^ R  | Y | Y | Y | Y | N | N | N | N | Y | Y | Y | Y | N | N | N | Y | Y | Y | Y | Y |
+^ :::        ^ W  | C | C | C | C | N | N | N | N | N | N | N | N | Y | Y | Y | Y | Y | Y | Y | Y |
+^ :::        ^ RW | C | C | C | C | N | N | N | N | N | N | N | N | N | N | N | Y | Y | Y | Y | Y |
+^ :::        ^ NA | Y | Y | Y | Y | N | N | N | N | Y | Y | Y | Y | N | N | N | Y | Y | Y | Y | Y |
+
 Legend: R -> reading, W -> writing, RW -> both reading & writing,
         A/NA -> reading without access time update
         Y = open succeeds, N = open fails with error code 05h
@@ -135,7 +131,7 @@ Legend: R -> reading, W -> writing, RW -> both reading & writing,
           
 ===== See also =====
 
-AH=0Fh,AH=3Ch,AX=4301h,AX=5D00h,INT 2F/AX=1116h,INT 2F/AX=1226h
+AH=[[en:docs:dos:api:int21:0f|0Fh]],AH=[[en:docs:dos:api:int21:3c|3Ch],AX=[[en:docs:dos:api:int21:43:01|4301h]],AX=[[en:docs:dos:api:int21:5d:00|5D00h]],INT 2F/AX=1116h,INT 2F/AX=1226h
 
 ===== Note =====
 

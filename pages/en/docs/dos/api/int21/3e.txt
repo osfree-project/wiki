@@ -27,15 +27,13 @@
 
 ===== Notes =====
 
-  if the file was written to, any pending disk writes are performed, the
-          time and date stamps are set to the current time, and the directory
-          entry is updated
-        recent versions of DOS preserve AH because some versions of Multiplan
-          had a bug which depended on AH being preserved
+if the file was written to, any pending disk writes are performed, the time and date stamps are set to the current time, and the directory entry is updated
+          
+recent versions of DOS preserve AH because some versions of Multiplan had a bug which depended on AH being preserved
           
 ===== See also =====
 
- AH=10h,AH=3Ch,AH=3Dh,INT 2F/AX=1106h,INT 2F/AX=1227h
+AH=[[en:docs:dos:api:int21:10|10h]],AH=[[en:docs:dos:api:int21:3c|3Ch]],AH=[[en:docs:dos:api:int21:3d|3Dh]],INT 2F/AX=1106h,INT 2F/AX=1227h
 
 ===== Note =====
 
