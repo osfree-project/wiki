@@ -35,7 +35,7 @@ Notes:  if file already exists, it is truncated to zero length
         
 ===== See also =====
 
-AH=0Fh,AH=10h,AH=3Ch
+AH=[[en:docs:dos:api:int21:0f|0Fh]],AH=[[en:docs:dos:api:int21:10|10h]],AH=[[en:docs:dos:api:int21:3c|3Ch]]
 
 ===== Note =====
 

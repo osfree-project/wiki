@@ -38,7 +38,7 @@ SEQUENTIAL WRITE TO FCB FILE
         
 ===== See also =====
 
-AH=0Fh,AH=14h,AH=1Ah,AH=40h,INT 2F/AX=1109h
+AH=[[en:docs:dos:api:int21:0f|0Fh]],AH=[[en:docs:dos:api:int21:14|14h]],AH=[[en:docs:dos:api:int21:1a|1Ah]],AH=[[en:docs:dos:api:int21:40|40h]],INT 2F/AX=1109h
 
 ===== Note =====
 

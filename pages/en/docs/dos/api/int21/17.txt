@@ -35,7 +35,7 @@ RENAME FILE USING FCB
         
 ===== See also =====
 
-AH=0Fh,AH=13h,AX=4303h,AH=56h,INT 2F/AX=1111h
+AH=[[en:docs:dos:api:int21:0f|0Fh]],AH=[[en:docs:dos:api:int21:13|13h]],AX=[[en:docs:dos:api:int21:43:03|4303h]],AH=en:docs:dos:api:int21::56|56h]],INT 2F/AX=1111h
 
 ===== Note =====
 
