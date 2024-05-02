@@ -27,15 +27,15 @@
 
 ===== Notes =====
 
-  if new directory name includes a drive letter, the default drive is
-          not changed, only the current directory on that drive
-        changing the current directory also changes the directory in which
-          FCB file calls operate
-        under the FlashTek X-32 DOS extender, the pointer is in DS:EDX
+if new directory name includes a drive letter, the default drive is not changed, only the current directory on that drive
+          
+changing the current directory also changes the directory in which FCB file calls operate
+          
+under the FlashTek X-32 DOS extender, the pointer is in DS:EDX
           
 ===== See also =====
 
- AH=47h,AX=713Bh,INT 2F/AX=1105h
+AH=[[en:docs:dos:api:int21:47|47h]],AX=[[en:docs:dos:api:int21:71:3b|713Bh]],INT 2F/AX=1105h
 
 ===== Note =====
 

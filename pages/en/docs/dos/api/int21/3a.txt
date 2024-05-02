@@ -27,12 +27,13 @@
 
 ===== Notes =====
 
-  directory must be empty (contain only '.' and '..' entries)
-        under the FlashTek X-32 DOS extender, the pointer is in DS:EDX
+directory must be empty (contain only '.' and '..' entries)
+
+under the FlashTek X-32 DOS extender, the pointer is in DS:EDX
           
 ===== See also =====
 
- AH=39h,AH=3Bh,AX=713Ah,AH=E2h/SF=0Bh,INT 2F/AX=1101h,INT 60/DI=0512h
+AH=[[en:docs:dos:api:int21:39|39h]],AH=[[en:docs:dos:api:int21:3b|3Bh]],AX=[[en:docs:dos:api:int21:71:3a|713Ah]],INT 2F/AX=1101h,INT 60/DI=0512h
 
 ===== Note =====
 

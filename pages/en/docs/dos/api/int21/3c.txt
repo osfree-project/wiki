@@ -48,7 +48,7 @@ DR DOS checks the system password or explicitly supplied password at the end of 
 
 ===== See also =====
 
-AH=16h,AH=3Dh,AH=5Ah,AH=5Bh,AH=93h,INT 2F/AX=1117h
+AH=[[en:docs:dos:api:int21:16|16h]],AH=[[en:docs:dos:api:int21:3d|3Dh]],AH=[[en:docs:dos:api:int21:5a|5Ah]],AH=[[en:docs:dos:api:int21:5b|5Bh]],INT 2F/AX=1117h
 
 ===== Note =====
 
