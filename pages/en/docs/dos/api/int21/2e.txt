@@ -27,13 +27,13 @@ none
 
 ===== Notes =====
 
-  default state at system boot is OFF
-        when ON, all disk writes are verified provided the device driver
-          supports read-after-write verification
+default state at system boot is OFF
+
+when ON, all disk writes are verified provided the device driver supports read-after-write verification
 
 ===== See also =====
 
- AH=54h
+AH=[[en:docs:dos:api:int21:54|54h]]
 
 ===== Note =====
 

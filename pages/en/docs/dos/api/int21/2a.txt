@@ -30,7 +30,7 @@ GET SYSTEM DATE
 
 ===== See also =====
 
- AH=2Bh"DOS",AH=2Ch,AH=E7h"Novell",INT 1A/AH=04h,INT 2F/AX=120Dh
+ AH=[[en:docs:dos:api:int21:2b|2Bh]],AH=[[en:docs:dos:api:int21:2c|2Ch]],INT 1A/AH=04h,INT 2F/AX=120Dh
 
 ===== Note =====
 

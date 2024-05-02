@@ -28,15 +28,11 @@ SET SYSTEM DATE
 
 ===== Notes =====
 
-  DOS 3.3+ also sets CMOS clock; due to the limitations of the CLOCK$
-          driver interface, the CMOS time is also updated to the current
-          DOS time (which is the BIOS time-of-day clock with the default
-          CLOCK$ driver)
-
+DOS 3.3+ also sets CMOS clock; due to the limitations of the CLOCK$ driver interface, the CMOS time is also updated to the current DOS time (which is the BIOS time-of-day clock with the default CLOCK$ driver)
 
 ===== See also =====
 
- AH=2Ah,AH=2Dh,INT 1A/AH=05h
+AH=[[en:docs:dos:api:int21:2a|2Ah]],AH=[[en:docs:dos:api:int21:2d|2Dh]],INT 1A/AH=05h
 
 ===== Note =====
 

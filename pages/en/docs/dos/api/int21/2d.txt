@@ -23,18 +23,16 @@ SET SYSTEM TIME
 
 ===== Return =====
 
-Return: AL = result
+ AL = result
             00h successful
             FFh invalid time, system time unchanged
 ===== Notes =====
 
-   DOS 3.3+ also sets CMOS clock; due to the limitations of the CLOCK$
-          driver interface, the CMOS date is also updated to the current
-          DOS date
+DOS 3.3+ also sets CMOS clock; due to the limitations of the CLOCK$ driver interface, the CMOS date is also updated to the current DOS date
 
 ===== See also =====
 
- AH=2Bh"DOS",AH=2Ch,INT 1A/AH=01h,INT 1A/AH=03h,INT 1A/AH=FFh"AT&T"
+AH=[[en:docs:dos:api:int21:2b|2Bh]],AH=[[en:docs:dos:api:int21:2c|2Ch]],INT 1A/AH=01h,INT 1A/AH=03h
 
 ===== Note =====
 

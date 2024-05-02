@@ -26,14 +26,14 @@ GET SYSTEM TIME
 
 ===== Notes =====
 
-   on most systems, the resolution of the system clock is about 5/100sec,
-          so returned times generally do not increment by 1
-        on some systems, DL may always return 00h
+on most systems, the resolution of the system clock is about 5/100sec, so returned times generally do not increment by 1
+
+on some systems, DL may always return 00h
 
 
 ===== See also =====
 
- AH=2Ah,AH=2Dh,AH=E7h"Novell",INT 1A/AH=00h,INT 1A/AH=02h,INT 1A/AH=FEh INT 2F/AX=120Dh
+AH=[[en:docs:dos:api:int21:2a|2Ah]],AH=[[en:docs:dos:api:int21:2d|2Dh]],INT 1A/AH=00h,INT 1A/AH=02h,INT 1A/AH=FEh INT 2F/AX=120Dh
 
 ===== Note =====
 
