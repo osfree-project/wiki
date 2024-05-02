@@ -9,6 +9,7 @@
 ===== Brief =====
 
 GET AND SET EXTENDED CONTROL-BREAK CHECKING STATE
+
 ===== Family API =====
 
 
@@ -26,15 +27,13 @@ GET AND SET EXTENDED CONTROL-BREAK CHECKING STATE
 
 ===== Notes =====
 
-  this function does not use any of the DOS-internal stacks and may thus
-          be called at any time; one possible use is modifying Control-Break
-          checking from within an interrupt handler or TSR
-        not supported by DR DOS through version 6.0 (error code 01h);
-          newly-supported by Novell DOS 7
+this function does not use any of the DOS-internal stacks and may thus be called at any time; one possible use is modifying Control-Break checking from within an interrupt handler or TSR
+
+not supported by DR DOS through version 6.0 (error code 01h); newly-supported by Novell DOS 7
 
 ===== See also =====
 
- AH=33h
+AH=[[en:docs:dos:api:int21:33|33h]]
 
 ===== Note =====
 

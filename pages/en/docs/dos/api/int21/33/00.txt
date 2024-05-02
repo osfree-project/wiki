@@ -8,7 +8,7 @@
 
 ===== Brief =====
 
-get current extended break state
+Get current extended break state
 
 ===== Family API =====
 
@@ -27,12 +27,11 @@ get current extended break state
 
 ===== Notes =====
 
-   under DOS 3.1+ and DR DOS, this function does not use any of the
-          DOS-internal stacks and may thus be called at any time
+under DOS 3.1+ and DR DOS, this function does not use any of the DOS-internal stacks and may thus be called at any time
 
 ===== See also =====
 
- AX=3302h
+AX=[[en:docs:dos:api:int21:33:02|3302h]]
 
 
 ===== Note =====
