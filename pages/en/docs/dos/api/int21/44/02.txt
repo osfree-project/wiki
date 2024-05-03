@@ -32,13 +32,13 @@ READ FROM CHARACTER DEVICE CONTROL CHANNEL
 
 ===== Notes =====
 
-	format of data is driver-specific
-	  (also see separate entries below for some specific cases)
-	this function was not supported by Digital Research's DOS Plus
+format of data is driver-specific (also see separate entries below for some specific cases)
+
+this function was not supported by Digital Research's DOS Plus
 
 ===== See also =====
 
- AX=4400h,AX=4403h"DOS",AX=4404h"DOS",INT 2F/AX=122Bh
+AX=[[en:docs:dos:api:int21:44:00|4400h]],AX=[[en:docs:dos:api:int21:44:03|4403h]],AX=[[en:docs:dos:api:int21:44:04|4404h]],INT 2F/AX=122Bh
 
 ===== Note =====
 

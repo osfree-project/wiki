@@ -31,11 +31,11 @@ SET DEVICE INFORMATION
 
 ===== Notes =====
 
-	this function was not supported by Digital Research's DOS Plus
+this function was not supported by Digital Research's DOS Plus
 
 ===== See also =====
 
- AX=4400h,INT 2F/AX=122Bh
+AX=[[en:docs:dos:api:int21:44:00|4400h]],INT 2F/AX=122Bh
 
 ===== Note =====
 

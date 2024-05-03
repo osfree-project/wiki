@@ -32,13 +32,13 @@ GET OUTPUT STATUS
 
 ===== Notes =====
 
-  for DOS 2+, files are always ready for output, even if the disk is
-	  full or no media is in the drive
-	this function was not supported by Digital Research's DOS Plus
+for DOS 2+, files are always ready for output, even if the disk is full or no media is in the drive
+
+this function was not supported by Digital Research's DOS Plus
 
 ===== See also =====
 
-  AX=4406h,INT 2F/AX=122Bh
+AX=[[en:docs:dos:api:int21:44:06|4406h]],INT 2F/AX=122Bh
 
 ===== Note =====
 

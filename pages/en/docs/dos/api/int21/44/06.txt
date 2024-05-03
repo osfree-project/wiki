@@ -33,17 +33,17 @@ GET INPUT STATUS
 
 ===== Notes =====
 
-	files may not register as being at EOF if positioned there by AH=42h
-	under DOS 5.0, on a successful return, AH contains either the next
-	  character which will be read or 1Ah if at EOF; under a Windows95
-	  DOS box, AH seems to be either unchanged or 00h
-	this function was not supported by Digital Research's DOS Plus
-   the CLOCK$ device under DR DOS 3.41 always indicates 'Ready'; this was
-	  corrected in v5.0
+files may not register as being at EOF if positioned there by AH=42h
+
+under DOS 5.0, on a successful return, AH contains either the next character which will be read or 1Ah if at EOF; under a Windows95 DOS box, AH seems to be either unchanged or 00h
+
+this function was not supported by Digital Research's DOS Plus
+
+the CLOCK$ device under DR DOS 3.41 always indicates 'Ready'; this was corrected in v5.0
 
 ===== See also =====
 
-  AX=4407h,INT 2F/AX=122Bh
+AX=[[en:docs:dos:api:int21:44:07|4407h]],INT 2F/AX=122Bh
 
 ===== Note =====
 

@@ -30,16 +30,13 @@ CHECK IF BLOCK DEVICE REMOVABLE
 
 ===== Notes =====
 
-	in addition to the normal operation, if Stacker is installed, this
-	  call also sets the volume number at offset 58h in the Stacker
-	  device driver (except under DR DOS 3.41-5.0, which do not pass
-	  through this call to the driver; use AX=440Eh instead)
-	  (see AX=4404h"Stacker",AX=440Eh,INT 25/AX=CDCDh)
-	this function was not supported by Digital Research's DOS Plus
+in addition to the normal operation, if Stacker is installed, this call also sets the volume number at offset 58h in the Stacker device driver (except under DR DOS 3.41-5.0, which do not pass through this call to the driver; use AX=440Eh instead) (see AX=4404h"Stacker",AX=440Eh,INT 25/AX=CDCDh)
+
+this function was not supported by Digital Research's DOS Plus
 
 ===== See also =====
 
-  AX=4400h,AX=4404h"Stacker",AX=4409h,INT 2F/AX=122Bh
+AX=[[en:docs:dos:api:int21:44:00|4400h]],AX=[[en:docs:dos:api:int21:44:09|4409h]],INT 2F/AX=122Bh
 
 ===== Note =====
 

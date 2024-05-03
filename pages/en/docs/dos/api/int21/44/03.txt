@@ -32,17 +32,15 @@ WRITE TO CHARACTER DEVICE CONTROL CHANNEL
 
 ===== Notes =====
 
-	format of data is driver-specific
-	  (also see separate entries below for some specific cases)
-	if the file handle refers to "4DOSSTAK", the 4DOS (v2.x-3.03)
-	  KEYSTACK.SYS driver will push the specified characters on the
-	  keyboard stack; similarly for "NDOSSTAK", the NDOS KEYSTACK.SYS
-	  driver will push the characters onto the keyboard stack
-	this function was not supported by Digital Research's DOS Plus
+format of data is driver-specific (also see separate entries below for some specific cases)
+
+if the file handle refers to "4DOSSTAK", the 4DOS (v2.x-3.03) KEYSTACK.SYS driver will push the specified characters on the keyboard stack; similarly for "NDOSSTAK", the NDOS KEYSTACK.SYS driver will push the characters onto the keyboard stack
+
+this function was not supported by Digital Research's DOS Plus
 
 ===== See also =====
 
- AX=4400h,AX=4402h"DOS 2+",AX=4405h"DOS",INT 2F/AX=122Bh, INT 2F/AX=D44Dh,INT 2F/AX=D44Fh
+AX=[[en:docs:dos:api:int21:44:00|4400h]],AX=[[en:docs:dos:api:int21:44:02|4402h]],AX=[[en:docs:dos:api:int21:44:05|4405h]],INT 2F/AX=122Bh, INT 2F/AX=D44Dh,INT 2F/AX=D44Fh
 
 ===== Note =====
 
