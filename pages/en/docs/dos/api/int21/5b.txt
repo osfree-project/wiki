@@ -28,15 +28,14 @@ CREATE NEW FILE
 
 ===== Notes =====
 
-	unlike AH=3Ch, this function will fail if the specified file exists
-	  rather than truncating it; this permits its use in creating semaphore
-	  files because it is an atomic "test and set" operation
-	under the FlashTek X-32 DOS extender, the filename pointer is in DS:EDX
+unlike AH=3Ch, this function will fail if the specified file exists rather than truncating it; this permits its use in creating semaphore files because it is an atomic "test and set" operation
+
+under the FlashTek X-32 DOS extender, the filename pointer is in DS:EDX
 
           
 ===== See also =====
 
-  AH=3Ch,AH=5Ah
+AH=[[en:docs:dos:api:int21:3c|3Ch]],AH=[[en:docs:dos:api:int21:5a|5Ah]]
 
 ===== Note =====
 

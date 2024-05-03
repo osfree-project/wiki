@@ -30,26 +30,21 @@ CREATE TEMPORARY FILE
 
 ===== Notes =====
 
-Desc:	creates a file with a unique name which must be explicitly deleted
-Notes:	under the FlashTek X-32 DOS extender, the path pointer is in DS:EDX
-	MS-DOS 3.0-4.0 and DR DOS 3.4-5.0 generate the filename as a sequence
-	  of hex digits based on the current date and time; MS-DOS 6+,
-	  DR DOS 6, and Novell DOS 7 use letters A-P in place of hex digits
-	MS-DOS 5.0 and DR DOS 3.41/5.0 will insert a missing trailing backslash
-	  before appending the generated filename, but due to this, an empty
-	  string results in a file in the root directory
-BUGS:	COMPAQ DOS 3.31 hangs if the pathname is at XXXXh:0000h; it apparently
-	  wraps around to the end of the segment
-	MS-DOS 5.00 revisions A and B and PC-DOS 5.00 revision A reportedly
-	  hang the system if the specified path is the root directory and the
-	  root directory is full (no free directory entries)
-	Mark Incley <mincley@krisalis.demon.co.uk> reports that this function
-	  hangs in MS-DOS 6.2x if the name includes two consecutive path
-	  separators (e.g. C:\\ )
+under the FlashTek X-32 DOS extender, the path pointer is in DS:EDX
+
+MS-DOS 3.0-4.0 and DR DOS 3.4-5.0 generate the filename as a sequence of hex digits based on the current date and time; MS-DOS 6+, DR DOS 6, and Novell DOS 7 use letters A-P in place of hex digits
+
+MS-DOS 5.0 and DR DOS 3.41/5.0 will insert a missing trailing backslash before appending the generated filename, but due to this, an empty string results in a file in the root directory
+
+BUGS:	COMPAQ DOS 3.31 hangs if the pathname is at XXXXh:0000h; it apparently wraps around to the end of the segment
+
+MS-DOS 5.00 revisions A and B and PC-DOS 5.00 revision A reportedly hang the system if the specified path is the root directory and the root directory is full (no free directory entries)
+
+Mark Incley <mincley@krisalis.demon.co.uk> reports that this function hangs in MS-DOS 6.2x if the name includes two consecutive path separators (e.g. C:\\)
           
 ===== See also =====
 
-  AH=3Ch,AH=5Bh
+AH=[[en:docs:dos:api:int21:3c|3Ch]],AH=[[en:docs:dos:api:int21:5b|5Bh]]
 
 ===== Note =====
 

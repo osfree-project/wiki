@@ -8,7 +8,7 @@
 
 ===== Brief =====
 
-lock region of file
+unlock region of file
 
 ===== Family API =====
 
@@ -32,20 +32,19 @@ lock region of file
 
 ===== Notes =====
 
-  error returned unless SHARE or network installed
-	an unlock call must specify the same region as some prior lock call
-	locked regions become entirely inaccessible to other processes
-	duplicate handles created with AH=45h or AH=46h inherit locks, but
-	  handles inherited by child processes (see AH=4Bh) do not
-	under DR DOS 3.41 and 5.0, if a process opens a file without the no-
-	  inherit flag and then starts a child, any locks set by the parent
-	  are ignored, and the child will only get an error if it tries to
-	  lock an area previously locked by the parent process.	 Under Novell
-	  DOS 7, this function is fully supported as in MS-DOS.
+error returned unless SHARE or network installed
+
+an unlock call must specify the same region as some prior lock call
+
+locked regions become entirely inaccessible to other processes
+
+duplicate handles created with AH=45h or AH=46h inherit locks, but handles inherited by child processes (see AH=4Bh) do not
+
+under DR DOS 3.41 and 5.0, if a process opens a file without the no-inherit flag and then starts a child, any locks set by the parent are ignored, and the child will only get an error if it tries to lock an area previously locked by the parent process. Under Novell DOS 7, this function is fully supported as in MS-DOS.
 
 ===== See also =====
 
-  AX=440Bh,AH=BCh,AH=BEh,INT 2F/AX=110Ah,INT 2F/AX=110Bh
+AX=[[en:docs:dos:api:int21:44:0b|440Bh]],INT 2F/AX=110Ah,INT 2F/AX=110Bh
 
 ===== Note =====
 
