@@ -29,7 +29,7 @@ GET VERIFY FLAG
           
 ===== See also =====
 
-  AH=2Eh
+AH=[[en:docs:dos:api:int21:2e|2Eh]]
 
 ===== Note =====
 
