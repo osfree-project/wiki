@@ -1,4 +1,4 @@
-===== MVM/DOS personality =====
+===== MVM/DOS/Win16 personality =====
 
 This is an infrastructure for running VM's with modified/unmodified OS's
 
