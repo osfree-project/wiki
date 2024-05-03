@@ -264,49 +264,51 @@ Note:	there is a report that some Microsoft documentation shifts all DOS
 SeeAlso: #01682,#01683,#01684,#01961
 
 Format of media ID structure:
-Offset	Size	Description	(Table 01681)
- 00h 12 BYTEs	ASCIZ volume label of required disk
- 0Ch	DWORD	serial number (DOS 4.0+)
+
+^ Offset ^ Size ^ Description ^
+| 00h | 12 BYTEs | ASCIZ volume label of required disk |
+| 0Ch | DWORD | serial number (DOS 4.0+) |
+
 SeeAlso: #01680
 
-(Table 01682)
+
 Values for DOS Error Class:
- 01h (1)  out of resource (storage space or I/O channels)
- 02h (2)  temporary situation (file or record lock)
- 03h (3)  authorization / permission problem (denied access)
- 04h (4)  internal system error (system software bug)
- 05h (5)  hardware failure
- 06h (6)  system failure (configuration file missing or incorrect)
- 07h (7)  application program error
- 08h (8)  not found
- 09h (9)  bad format
- 0Ah (10) locked
- 0Bh (11) media error
- 0Ch (12) already exists / collision with existing item
- 0Dh (13) unknown / other
- 0Eh (14) (undoc) cannot
- 0Fh (15) (undoc) time
+| 01h (1) | out of resource (storage space or I/O channels) |
+| 02h (2) | temporary situation (file or record lock) |
+| 03h (3) | authorization / permission problem (denied access) |
+| 04h (4) | internal system error (system software bug) |
+| 05h (5) | hardware failure |
+| 06h (6) | system failure (configuration file missing or incorrect) |
+| 07h (7) | application program error |
+| 08h (8) | not found |
+| 09h (9) | bad format |
+| 0Ah (10) | locked |
+| 0Bh (11) | media error |
+| 0Ch (12) | already exists / collision with existing item |
+| 0Dh (13) | unknown / other |
+| 0Eh (14) | (undoc) cannot |
+| 0Fh (15) | (undoc) time |
 SeeAlso: #01680,#01683,#01684
 
 (Table 01683)
 Values for DOS Suggested Action:
- 01h	retry
- 02h	delayed retry (after pause)
- 03h	prompt user to reenter input
- 04h	abort after cleanup
- 05h	immediate abort ("panic")
- 06h	ignore
- 07h	retry after user intervention
+| 01h | retry |
+| 02h | delayed retry (after pause) |
+| 03h | prompt user to reenter input |
+| 04h | abort after cleanup |
+| 05h | immediate abort ("panic") |
+| 06h | ignore |
+| 07h | retry after user intervention |
 SeeAlso: #01680,#01682,#01684
 
-(Table 01684)
+
 Values for DOS Error Locus:
- 01h	unknown or not appropriate
- 02h	block device (disk error)
- 03h	network related
- 04h	serial device (timeout)
- 04h	(PTS-DOS 6.51+ & S/DOS 1.0+) character device
- 05h	memory related
+| 01h | unknown or not appropriate |
+| 02h | block device (disk error) |
+| 03h | network related |
+| 04h | serial device (timeout) |
+| 04h | (PTS-DOS 6.51+ & S/DOS 1.0+) character device |
+| 05h | memory related |
 
           
 ===== See also =====
