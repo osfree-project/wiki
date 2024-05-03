@@ -3,92 +3,92 @@
 Supervisor calls API aimed to call host services from MVM.
 
 ^ Ordinal ^ Description ^
-| 0 | |
-| 1 | Terminate with error message (top of stack - far pointer to message ASCIIZ) |
-| 2 | Terminate MVM and return code to parent process from AX |
-| 3 | |
-| 4 | Reset disk buffers |
-| 5 | |
-| 6 | Select default drive (params and result same as in int21h AH=0eh) |
-| 7 | Set DTA from DS:DX |
-| 8 | |
-| 9 | |
-| 10 | Set system date (params and result same as in int21h AH=2Bh) |
-| 11 | Set system time (params and result same as in int21h AH=2Dh) |
-| 12 | Get system date (result same as in int21h AH=2Ah) |
-| 13 | Get system time (result same as in int21h AH=2Ch) |
-| 14 | |
-| 15 | |
-| 16 | Delete directory (params and result same as in int21h AH=3ah)|
-| 17 | |
-| 18 | Get current directory (params and result same as in int21h AH=47h)|
-| 19 | Change directory (params and result same as in int21h AH=3bh)|
-| 20 | |
-| 21 | |
-| 22 | |
-| 23 | |
-| 24 | |
-| 25 | |
-| 26 | |
-| 27 | |
-| 28 | |
-| 29 | Delete file using FCB DS:DX -> unopened FCB ES -> environment segment |
-| 30 | |
-| 31 | |
-| 32 | |
-| 33 | |
-| 34 | |
-| 35 | |
-| 36 | |
-| 37 | |
-| 38 | |
-| 39 | |
-| 40 | |
-| 41 | |
-| 42 | |
-| 43 | |
-| 44 | Set VERIFY flag from AL |
-| 45 | |
-| 46 | |
-| 47 | |
-| 48 | |
-| 49 | Parse filename to FCB (params and result same as in int21h AH=29h) |
-| 50 | |
-| 51 | |
-| 52 | |
-| 53 | |
-| 54 | |
-| 55 | |
-| 56 | |
-| 57 | |
-| 58 | |
-| 59 | |
-| 60 | |
-| 61 | |
-| 62 | |
-| 63 | |
-| 64 | |
-| 65 | |
-| 66 | |
-| 67 | |
-| 68 | |
-| 69 | |
-| 70 | |
-| 71 | |
-| 72 | |
-| 73 | |
-| 74 | |
-| 75 | |
-| 76 | |
-| 77 | |
-| 78 | |
-| 79 | |
-| 80 | |
-| 81 | |
-| 82 | |
-| 83 | |
-| 84 | |
-| 85 | |
+| [[en:docs:mvm:api:0]] | |
+| [[en:docs:mvm:api:1]] | Terminate with error message (top of stack - far pointer to message ASCIIZ) |
+| [[en:docs:mvm:api:2]] | Terminate MVM and return code to parent process from AX |
+| [[en:docs:mvm:api:3]] | |
+| [[en:docs:mvm:api:4]] | Reset disk buffers |
+| [[en:docs:mvm:api:5]] | |
+| [[en:docs:mvm:api:6]] | Select default drive (params and result same as in int21h AH=0eh) |
+| [[en:docs:mvm:api:7]] | Set DTA from DS:DX |
+| [[en:docs:mvm:api:8]] | |
+| [[en:docs:mvm:api:9]] | |
+| [[en:docs:mvm:api:10]] | Set system date (params and result same as in int21h AH=2Bh) |
+| [[en:docs:mvm:api:11]] | Set system time (params and result same as in int21h AH=2Dh) |
+| [[en:docs:mvm:api:12]] | Get system date (result same as in int21h AH=2Ah) |
+| [[en:docs:mvm:api:13]] | Get system time (result same as in int21h AH=2Ch) |
+| [[en:docs:mvm:api:14]] | |
+| [[en:docs:mvm:api:15]] | |
+| [[en:docs:mvm:api:16]] | Delete directory (params and result same as in int21h AH=3ah)|
+| [[en:docs:mvm:api:17]] | |
+| [[en:docs:mvm:api:18]] | Get current directory (params and result same as in int21h AH=47h)|
+| [[en:docs:mvm:api:19]] | Change directory (params and result same as in int21h AH=3bh)|
+| [[en:docs:mvm:api:20]] | |
+| [[en:docs:mvm:api:21]] | |
+| [[en:docs:mvm:api:22]] | |
+| [[en:docs:mvm:api:23]] | |
+| [[en:docs:mvm:api:24]] | |
+| [[en:docs:mvm:api:25]] | |
+| [[en:docs:mvm:api:26]] | |
+| [[en:docs:mvm:api:27]] | |
+| [[en:docs:mvm:api:28]] | |
+| [[en:docs:mvm:api:29]] | Delete file using FCB DS:DX -> unopened FCB ES -> environment segment |
+| [[en:docs:mvm:api:30]] | |
+| [[en:docs:mvm:api:31]] | |
+| [[en:docs:mvm:api:32]] | |
+| [[en:docs:mvm:api:33]] | |
+| [[en:docs:mvm:api:34]] | |
+| [[en:docs:mvm:api:35]] | |
+| [[en:docs:mvm:api:36]] | |
+| [[en:docs:mvm:api:37]] | |
+| [[en:docs:mvm:api:38]] | |
+| [[en:docs:mvm:api:39]] | |
+| [[en:docs:mvm:api:40]] | |
+| [[en:docs:mvm:api:41]] | |
+| [[en:docs:mvm:api:42]] | |
+| [[en:docs:mvm:api:43]] | |
+| [[en:docs:mvm:api:44]] | Set VERIFY flag from AL |
+| [[en:docs:mvm:api:45]] | |
+| [[en:docs:mvm:api:46]] | |
+| [[en:docs:mvm:api:47]] | |
+| [[en:docs:mvm:api:48]] | |
+| [[en:docs:mvm:api:49]] | Parse filename to FCB (params and result same as in int21h AH=29h) |
+| [[en:docs:mvm:api:50]] | |
+| [[en:docs:mvm:api:51]] | |
+| [[en:docs:mvm:api:52]] | |
+| [[en:docs:mvm:api:53]] | |
+| [[en:docs:mvm:api:54]] | |
+| [[en:docs:mvm:api:55]] | |
+| [[en:docs:mvm:api:56]] | |
+| [[en:docs:mvm:api:57]] | |
+| [[en:docs:mvm:api:58]] | |
+| [[en:docs:mvm:api:59]] | |
+| [[en:docs:mvm:api:60]] | |
+| [[en:docs:mvm:api:61]] | |
+| [[en:docs:mvm:api:62]] | |
+| [[en:docs:mvm:api:63]] | |
+| [[en:docs:mvm:api:64]] | |
+| [[en:docs:mvm:api:65]] | |
+| [[en:docs:mvm:api:66]] | |
+| [[en:docs:mvm:api:67]] | |
+| [[en:docs:mvm:api:68]] | |
+| [[en:docs:mvm:api:69]] | |
+| [[en:docs:mvm:api:70]] | |
+| [[en:docs:mvm:api:71]] | |
+| [[en:docs:mvm:api:72]] | |
+| [[en:docs:mvm:api:73]] | |
+| [[en:docs:mvm:api:74]] | |
+| [[en:docs:mvm:api:75]] | |
+| [[en:docs:mvm:api:76]] | |
+| [[en:docs:mvm:api:77]] | |
+| [[en:docs:mvm:api:78]] | |
+| [[en:docs:mvm:api:79]] | |
+| [[en:docs:mvm:api:80]] | |
+| [[en:docs:mvm:api:81]] | |
+| [[en:docs:mvm:api:82]] | |
+| [[en:docs:mvm:api:83]] | |
+| [[en:docs:mvm:api:84]] | |
+| [[en:docs:mvm:api:85]] | |
 
 
 
