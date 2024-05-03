@@ -28,14 +28,13 @@
 ===== Notes =====
 
 
-  moving file pointer for either handle will also move it for the other,
-	  because both will refer to the same system file table
-	for DOS versions prior to 3.3, file writes may be forced to disk by
-	  duplicating the file handle and closing the duplicate
+moving file pointer for either handle will also move it for the other, because both will refer to the same system file table
+
+for DOS versions prior to 3.3, file writes may be forced to disk by duplicating the file handle and closing the duplicate
           
 ===== See also =====
 
- AH=3Dh,AH=46h
+AH=[[en:docs:dos:api:int21:3d|3Dh]],AH=[[en:docs:dos:api:int21:46|46h]]
 
 ===== Note =====
 

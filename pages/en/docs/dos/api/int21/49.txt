@@ -26,16 +26,15 @@ FREE MEMORY
 
 ===== Notes =====
 
-  	apparently never returns an error 07h, despite official docs; DOS 2.1+
-	  code contains only an error 09h exit
-	DOS 2.1-6.0 does not coalesce adjacent free blocks when a block is
-	  freed, only when a block is allocated or resized
-	the code for this function is identical in DOS 2.1-6.0 except for
-	  calls to start/end a critical section in DOS 3.0+
+apparently never returns an error 07h, despite official docs; DOS 2.1+ code contains only an error 09h exit
+
+DOS 2.1-6.0 does not coalesce adjacent free blocks when a block is freed, only when a block is allocated or resized
+
+the code for this function is identical in DOS 2.1-6.0 except for calls to start/end a critical section in DOS 3.0+
           
 ===== See also =====
 
- AH=48h,AH=4Ah
+AH=[[en:docs:dos:api:int21:48|48h]],AH=[[en:docs:dos:api:int21:4a|4Ah]]
 
 ===== Note =====
 

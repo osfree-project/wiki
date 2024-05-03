@@ -28,13 +28,15 @@
 
 ===== Notes =====
 
-  the returned path does not include a drive or the initial backslash
-	many Microsoft products for Windows rely on AX being 0100h on success
-	under the FlashTek X-32 DOS extender, the buffer pointer is in DS:ESI
+the returned path does not include a drive or the initial backslash
+
+many Microsoft products for Windows rely on AX being 0100h on success
+
+under the FlashTek X-32 DOS extender, the buffer pointer is in DS:ESI
           
 ===== See also =====
 
- AH=19h,AH=3Bh,AH=71h,INT 15/AX=DE25h
+AH=[[en:docs:dos:api:int21:19|19h]],AH=[[en:docs:dos:api:int21:3b|3Bh]],AH=[[en:docs:dos:api:int21:71|71h]],INT 15/AX=DE25h
 
 ===== Note =====
 

@@ -28,14 +28,13 @@ RESIZE MEMORY BLOCK
 
 ===== Notes =====
 
-	under DOS 2.1-6.0, if there is insufficient memory to expand the block
-	  as much as requested, the block will be made as large as possible
-	DOS 2.1-6.0 coalesces any free blocks immediately following the block
-	  to be resized
+under DOS 2.1-6.0, if there is insufficient memory to expand the block as much as requested, the block will be made as large as possible
+
+DOS 2.1-6.0 coalesces any free blocks immediately following the block to be resized
           
 ===== See also =====
 
- AH=48h,AH=49h,AH=83h
+AH=[[en:docs:dos:api:int21:48|48h]],AH=[[en:docs:dos:api:int21:49|49h]]
 
 ===== Note =====
 

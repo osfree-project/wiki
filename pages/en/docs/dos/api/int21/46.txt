@@ -27,14 +27,15 @@
 
 ===== Notes =====
 
-  closes file with handle CX if it is still open
-	DOS 3.30 hangs if BX=CX on entry
-	moving file pointer for either handle will also move it for the other,
-	  because both will refer to the same system file table
+closes file with handle CX if it is still open
+
+DOS 3.30 hangs if BX=CX on entry
+
+moving file pointer for either handle will also move it for the other, because both will refer to the same system file table
           
 ===== See also =====
 
- AH=3Dh,AH=45h
+ AH=[[en:docs:dos:api:int21:3d|3Dh]],AH=[[en:docs:dos:api:int21:45|45h]]
 
 ===== Note =====
 
