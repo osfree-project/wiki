@@ -29,24 +29,17 @@ GET RETURN CODE (ERRORLEVEL)
 
 ===== Notes =====
 
-	the word in which DOS stores the return code is cleared after being
-	  read by this function, so the return code can only be retrieved once
-	COMMAND.COM stores the return code of the last external command it
-	  executed as ERRORLEVEL
-	this call should not be used if the child was started with AX=4B04h;
-	  use AH=8Ah instead
-	the following sequence will close a Virtual DOS Machine under OS/2 2.0
-	  through OS/2 Merlin (but may change in the future):
-	    MOV	AH,4Dh
-	    INT	21h
-	    HLT
-	    DB	02h,0FDh
-	  This sequence is the only way to close a specific VDM which was
-	  booted from floppy or a disk image.
+the word in which DOS stores the return code is cleared after being read by this function, so the return code can only be retrieved once
+
+COMMAND.COM stores the return code of the last external command it executed as ERRORLEVEL
+
+this call should not be used if the child was started with AX=4B04h; use AH=8Ah instead
+
+the [[en:docs:mvm:api:2|SVC function 2]] will close a Virtual DOS Machine under OS/2 2.0+. This call is the only way to close a specific VDM which was booted from floppy or a disk image.
           
 ===== See also =====
 
- AH=4Bh,AH=4Ch,AH=8Ah
+AH=[[en:docs:dos:api:int21:4b|4Bh]],AH=[[en:docs:dos:api:int21:4c|4Ch]]
 
 ===== Note =====
 

@@ -23,20 +23,21 @@ GET CURRENT PROCESS ID (GET PSP ADDRESS)
 
 ===== Notes =====
 
-	DOS uses the current PSP address to determine which processes own files
-	  and memory; it corresponds to process identifiers used by other OSs
-	under DOS 2.x, this function cannot be invoked inside an INT 28h
-	  handler without setting the Critical Error flag
-	under DOS 3.0+, this function does not use any of the DOS-internal
-	  stacks and may thus be called at any time, even during another
-	  INT 21h call
-	supported by OS/2 compatibility box
-	identical to the documented AH=62h
-	this call was undocumented prior to the release of DOS 5.0
+DOS uses the current PSP address to determine which processes own files and memory; it corresponds to process identifiers used by other OSs
+
+under DOS 2.x, this function cannot be invoked inside an INT 28h handler without setting the Critical Error flag
+
+under DOS 3.0+, this function does not use any of the DOS-internal stacks and may thus be called at any time, even during another INT 21h call
+
+supported by OS/2 compatibility box
+
+identical to the documented AH=62h
+
+this call was undocumented prior to the release of DOS 5.0
           
 ===== See also =====
 
- AH=26h,AH=50h,AH=62h
+AH=[[en:docs:dos:api:int21:26|26h]],AH=[[en:docs:dos:api:int21:50|50h]],AH=[[en:docs:dos:api:int21:62|62h]]
 
 ===== Note =====
 

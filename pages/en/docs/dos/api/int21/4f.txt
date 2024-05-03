@@ -28,17 +28,15 @@
 
 ===== Notes =====
 
-	under Novell DOS 7, if the FindFirst call (AH=4Eh) had CX=0088h, then
-	  the next matching deleted file will be returned
-	since the entire state of a FindFirst/FindNext sequence is contained
-	  in the data block in the DTA, other disk operations such as renaming,
-	  moving, deleting, or creating files can cause inaccurate directory
-	  searches, such as finding the same file twice
-   BUG:	DR DOS 3.41 and 5.0 return the Directory attribute for the volume label
+under Novell DOS 7, if the FindFirst call (AH=4Eh) had CX=0088h, then the next matching deleted file will be returned
+
+since the entire state of a FindFirst/FindNext sequence is contained in the data block in the DTA, other disk operations such as renaming, moving, deleting, or creating files can cause inaccurate directory searches, such as finding the same file twice
+
+BUG: DR DOS 3.41 and 5.0 return the Directory attribute for the volume label
           
 ===== See also =====
 
- AH=12h,AH=4Eh,AX=714Fh,AX=71A1h
+AH=[[en:docs:dos:api:int21:12|12h]],AH=[[en:docs:dos:api:int21:4e|4Eh]],AX=[[en:docs:dos:api:int21:71:4f|714Fh]],AX=[[en:docs:dos:api:int21:71:a1|71A1h]]
 
 ===== Note =====
 

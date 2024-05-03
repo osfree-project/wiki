@@ -39,72 +39,66 @@
 
 ===== Notes =====
 
-	DOS 2.x destroys all registers, including SS:SP
-	under ROM-based DOS, if no disk path characters (colons or slashes)
-	  are included in the program name, the name is searched for in the
-	  ROM module headers (see #01595) before searching on disk
-	for functions 00h and 01h, the calling process must ensure that there
-	  is enough unallocated memory available; if necessary, by releasing
-	  memory with AH=49h or AH=4Ah
-	for function 01h, the AX value to be passed to the child program is put
-	  on top of the child's stack
-	for function 03h, DOS assumes that the overlay is being loaded into
-	  memory allocated by the caller
-	function 01h was undocumented prior to the release of DOS 5.0
-	some versions (such as DR DOS 6.0) check the parameters and parameter
-	  block and return an error if an invalid value (such as an offset of
-	  FFFFh) is found
-	background programs under European MS-DOS 4.0 must use the new
-	  executable format
-	this function ignores the filename extension, instead checking the
-	  first two bytes of the file to determine whether there is a valid
-	  .EXE header (see #01594); if not, the file is assumed to be in .COM
-	  format.  If present, the file may be in any of several formats which
-	  are extensions of the original .EXE format (see #01593)
-	.COM-format executables begin running with the following register
-	  values:
+DOS 2.x destroys all registers, including SS:SP
+
+under ROM-based DOS, if no disk path characters (colons or slashes) are included in the program name, the name is searched for in the ROM module headers (see #01595) before searching on disk
+
+for functions 00h and 01h, the calling process must ensure that there is enough unallocated memory available; if necessary, by releasing memory with AH=49h or AH=4Ah
+
+for function 01h, the AX value to be passed to the child program is put on top of the child's stack
+
+for function 03h, DOS assumes that the overlay is being loaded into memory allocated by the caller
+
+function 01h was undocumented prior to the release of DOS 5.0
+
+some versions (such as DR DOS 6.0) check the parameters and parameter block and return an error if an invalid value (such as an offset of FFFFh) is found
+
+background programs under European MS-DOS 4.0 must use the new executable format
+
+this function ignores the filename extension, instead checking the first two bytes of the file to determine whether there is a valid .EXE header (see #01594); if not, the file is assumed to be in .COM format.  If present, the file may be in any of several formats which are extensions of the original .EXE format (see #01593)
+
+.COM-format executables begin running with the following register  values:
+
 		AL = 00h if first FCB has valid drive letter, FFh if not
 		AH = 00h if second FCB has valid drive letter, FFh if not
 		CS,DS,ES,SS = PSP segment
 		SP = offset of last word available in first 64K segment
 		(note: AX is always 0000h under DESQview)
-	old-format executables begin running with the following register
-	  values:
+
+old-format executables begin running with the following register values:
+
 		AL = 00h if first FCB has valid drive letter, FFh if not
 		AH = 00h if second FCB has valid drive letter, FFh if not
 		DS,ES = PSP segment
 		SS:SP as defined in .EXE header
 		(note: AX is always 0000h under DESQview)
-	new executables begin running with the following register values
+
+new executables begin running with the following register values
+
 		AX = environment segment
 		BX = offset of command tail in environment segment
 		CX = size of automatic data segment (0000h = 64K)
 		ES,BP = 0000h
 		DS = automatic data segment
 		SS:SP = initial stack
-	  the command tail corresponds to an old executable's PSP:0081h and
-	  following, except that the 0Dh is turned into a NUL (00h); new
-	  format executables have no PSP
-	under the FlashTek X-32 DOS extender, only function 00h is supported
-	  and the pointers are passed in DS:EDX and ES:EBX
-	DR DOS 6 always loads .EXE-format programs with no fixups and
-	  .COM-format programs starting with 9Ch 55h (PUSHF/PUSH BP) above the
-	  64K mark to avoid the EXEPACK bug, by extending the memory block
-	  containing the program's environment; this code is disabled if the
-	  name of the parent program as stored in the MCB is 'WIN'.
-	DR DOS 3.41 and 5.0 check for a valid filename before testing the
-	  subfunction number, so the otherwise invalid subfunction 02h will
-	  only return error code 01h if the given filename actually exists;
-	  otherwise, errors 02h, 03h, or 05h are returned
-  BUGS:	DOS 2.00 assumes that DS points at the current program's PSP
-	Load Overlay (subfunction 03h) loads up to 512 bytes too many if the
-	  file contains additional data after the actual overlay
-	Load but Do Not Execute (subfunction 01h) is reported to corrupt the
-	  top word of the caller's stack if the loaded module terminates with
-	  INT 21/AH=4Ch in some versions of MS-DOS, including v5.00.
+
+the command tail corresponds to an old executable's PSP:0081h and following, except that the 0Dh is turned into a NUL (00h); new format executables have no PSP
+
+under the FlashTek X-32 DOS extender, only function 00h is supported and the pointers are passed in DS:EDX and ES:EBX
+
+DR DOS 6 always loads .EXE-format programs with no fixups and .COM-format programs starting with 9Ch 55h (PUSHF/PUSH BP) above the 64K mark to avoid the EXEPACK bug, by extending the memory block containing the program's environment; this code is disabled if the name of the parent program as stored in the MCB is 'WIN'.
+
+DR DOS 3.41 and 5.0 check for a valid filename before testing the subfunction number, so the otherwise invalid subfunction 02h will only return error code 01h if the given filename actually exists; otherwise, errors 02h, 03h, or 05h are returned
+
+BUGS: DOS 2.00 assumes that DS points at the current program's PSP
+
+Load Overlay (subfunction 03h) loads up to 512 bytes too many if the file contains additional data after the actual overlay
+
+Load but Do Not Execute (subfunction 01h) is reported to corrupt the top word of the caller's stack if the loaded module terminates with INT 21/AH=4Ch in some versions of MS-DOS, including v5.00.
+
 ===== See also =====
 
-  AX=4B05h,AH=4Ch,AH=4Dh,AH=64h/BX=0025h,AH=8Ah,INT 2E,INT 60/DI=0604h
+AX=[[en:docs:dos:api:int21:4b:05|4B05h]],AH=[[en:docs:dos:api:int21:4c|4Ch]],AH=[[en:docs:dos:api:int21:4d|4Dh]],AH=[[en:docs:dos:api:int21:64|64h]]/BX=0025h,INT 2E,INT 60/DI=0604h
 
 ===== Note =====
 

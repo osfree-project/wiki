@@ -23,30 +23,23 @@
 
 ===== Notes =====
 
-	partially supported by OS/2 v1.1 compatibility box (however, most
-	  pointers are FFFFh:FFFFh, LASTDRIVE is FFh, and the NUL header "next"
-	  pointer is FFFFh:FFFFh).
-	partially supported by the Windows NT DOS box; contains only a
-	  rudimentary Current Directory Structure (see #01645)
-	on return, ES points at the DOS data segment (see also INT 2F/AX=1203h)
-	Quarterdeck's suggested check for the use of its DOSDATA.SYS or
-	  DOS-UP.SYS is to test whether the list-of-lists segment is greater
-	  than the segment of the first memory block; a better check for
-	  DOS-UP.SYS is INT 21/AX=2B01h/CX=444Dh
-	because not all DOS workalikes support all fields in the List of Lists,
-	  applications should ensure that pointers are neither 0000h:0000h
-	  nor FFFFh:FFFFh before using them
-	Windows for Workgroups 3.11 network and Windows95 set the path to
-	  the local drive and directory even for network drives; in that
-	  case the UNC form \\SERVER\SHARE can be obtained with
-	  INT 21/AX=5F02h or INT 21/AX=5F46h. LapLink RemoteAccess does the
-	  same even for INT 21/AX=5F02h
-	Windows95 GUI no longer returns the true path for a SUBSTed drive,
-	  but MS-DOS 7.00 does; use INT 21/AH=60h to obtain the true name
+partially supported by OS/2 v1.1 compatibility box (however, most pointers are FFFFh:FFFFh, LASTDRIVE is FFh, and the NUL header "next" pointer is FFFFh:FFFFh).
+
+partially supported by the Windows NT DOS box; contains only a rudimentary Current Directory Structure (see #01645)
+
+on return, ES points at the DOS data segment (see also INT 2F/AX=1203h)
+
+Quarterdeck's suggested check for the use of its DOSDATA.SYS or DOS-UP.SYS is to test whether the list-of-lists segment is greater than the segment of the first memory block; a better check for DOS-UP.SYS is INT 21/AX=2B01h/CX=444Dh
+
+because not all DOS workalikes support all fields in the List of Lists, applications should ensure that pointers are neither 0000h:0000h nor FFFFh:FFFFh before using them
+
+Windows for Workgroups 3.11 network and Windows95 set the path to the local drive and directory even for network drives; in that case the UNC form \\SERVER\SHARE can be obtained with INT 21/AX=5F02h or INT 21/AX=5F46h. LapLink RemoteAccess does the same even for INT 21/AX=5F02h
+
+Windows95 GUI no longer returns the true path for a SUBSTed drive, but MS-DOS 7.00 does; use INT 21/AH=60h to obtain the true name
           
 ===== See also =====
 
- INT 2F/AX=1203h
+INT 2F/AX=1203h
 
 ===== Note =====
 
