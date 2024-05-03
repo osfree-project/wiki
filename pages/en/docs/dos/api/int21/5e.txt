@@ -1,10 +1,10 @@
 {{page>en:templates:dosint}}
 
-====== Int 21H, AH=5dH ======
+====== Int 21H, AH=5EH ======
 
 ===== Input ======
 
- AH=5dH, AL=Subfunction
+ AH=5EH, AL=Subfunction
 
 ^ Subfunction                        ^ Description                                       ^ Version ^
 | [[en:docs:dos:api:int21:5e:00|00]] | GET MACHINE NAME                                  | 3.1+    |

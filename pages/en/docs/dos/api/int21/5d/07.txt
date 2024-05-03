@@ -28,12 +28,11 @@ GET REDIRECTED PRINTER MODE
 
 ===== Notes =====
 
-   MS-DOS and DR DOS 3.41/5.0 simply push AX on the stack and call
-	  INT 2F/AX=1125h
+MS-DOS and DR DOS 3.41/5.0 simply push AX on the stack and call INT 2F/AX=1125h
 
 ===== See also =====
 
-  AX=5D08h,AX=5D09h,INT 2F/AX=1125h
+AX=[[en:docs:dos:api:int21:5d:08|5D08h]],AX=[[en:docs:dos:api:int21:5d:09|5D09h]],INT 2F/AX=1125h
 
 ===== Note =====
 
