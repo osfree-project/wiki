@@ -28,21 +28,23 @@ SET FILE'S LAST-WRITTEN DATE AND TIME
 
 ===== Notes =====
 
- Bitfields for file time:
- Bit(s)	Description	(Table 01665)
- 15-11	hours (0-23)
- 10-5	minutes
- 4-0	seconds/2
+Bitfields for file time:
 
- Bitfields for file date:
- Bit(s)	Description	(Table 01666)
- 15-9	year - 1980
- 8-5	month
- 4-0	day
+^ Bit(s) ^ Description ^
+| 15-11 | hours (0-23) |
+| 10-5 | minutes |
+| 4-0 | seconds/2 |
+
+Bitfields for file date:
+
+^ Bit(s) ^ Description ^
+| 15-9 | year - 1980 |
+| 8-5 | month |
+| 4-0 | day |
           
 ===== See also =====
 
- AX=5700h,AX=5705h"Windows95",AX=5707h"Windows95"
+AX=[[en:docs:dos:api:int21:57:00|5700h]],AX=[[en:docs:dos:api:int21:57:05|5705h]]"Windows95",AX=[[en:docs:dos:api:int21:57:07|5707h]]"Windows95"
 
 ===== Note =====
 

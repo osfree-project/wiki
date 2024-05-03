@@ -120,7 +120,13 @@
 | [[en:docs:dos:api:int21:55|55H]] | Create program PSP | 2.0+ |
 | [[en:docs:dos:api:int21:56|56H]] | Rename file | 2.0+ |
 | [[en:docs:dos:api:int21:57|57H]] | Extended functions | 2.0+ |
+| [[en:docs:dos:api:int21:57:00|5700H]] | Get file's last-written date and time             | 2.0+    |
+| [[en:docs:dos:api:int21:57:01|5701H]] | Set file's last-written date and time             | 2.0+    |
 | [[en:docs:dos:api:int21:58|58H]] | Get or set allocation strategy | 2.11+ |
+| [[en:docs:dos:api:int21:58:00|5800H]] | Get memory allocation strategy                    | 2.11+    |
+| [[en:docs:dos:api:int21:58:01|5801H]] | Set memory allocation strategy                    | 2.11+    |
+| [[en:docs:dos:api:int21:58:02|5802H]] | Get UMB link state                                | 5+       |
+| [[en:docs:dos:api:int21:58:03|5803H]] | Set UMB link state                                | 5+       |
 | [[en:docs:dos:api:int21:59|59H]] | Get extended error info | 3.0+ |
 | [[en:docs:dos:api:int21:5a|5AH]] | Create unique file | 3.0+ |
 | [[en:docs:dos:api:int21:5b|5BH]] | Create new file | 3.0+ |

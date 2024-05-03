@@ -25,19 +25,17 @@ CREATE CHILD PSP
 
 ===== Notes =====
 
-	creates a "child" PSP rather than making an exact copy of the current
-	  PSP; the new PSP's parent pointer is set to the current PSP and the
-	  reference count for each inherited file is incremented
-	(DOS 2.0+) sets current PSP to DX
-	(DOS 3.0+) marks "no inherit" file handles as closed in child PSP
-	this function is implemented using the same code as AH=26h, so unlike
-	  other DOS 2+ functions, it does not return status in CF, instead
-	  returning status in AL as DOS 1.x functions do (but it never puts an
-	  explicit return value in AL)
+creates a "child" PSP rather than making an exact copy of the current PSP; the new PSP's parent pointer is set to the current PSP and the reference count for each inherited file is incremented
+
+(DOS 2.0+) sets current PSP to DX
+
+(DOS 3.0+) marks "no inherit" file handles as closed in child PSP
+
+this function is implemented using the same code as AH=26h, so unlike other DOS 2+ functions, it does not return status in CF, instead returning status in AL as DOS 1.x functions do (but it never puts an explicit return value in AL)
           
 ===== See also =====
 
-  AH=26h,AH=50h
+AH=[[en:docs:dos:api:int21:26|26h]],AH=[[en:docs:dos:api:int21:50|50h]]
 
 ===== Note =====
 
