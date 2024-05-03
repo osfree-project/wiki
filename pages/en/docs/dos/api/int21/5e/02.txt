@@ -35,7 +35,7 @@ SET NETWORK PRINTER SETUP STRING
 
 ===== See also =====
 
-  AX=5E03h,INT 2F/AX=111Fh
+AX=[[en:docs:dos:api:int21:5e:03|5E03h]],INT 2F/AX=111Fh
 
 ===== Note =====
 

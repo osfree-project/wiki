@@ -23,7 +23,7 @@ SET MACHINE NAME
 
 ===== Return =====
 
-  nothing
+nothing
 
 ===== Macro =====
 
@@ -34,7 +34,7 @@ SET MACHINE NAME
 
 ===== See also =====
 
-  AX=5E00h
+AX=[[en:docs:dos:api:int21:5e:00|5E00h]]
 
 ===== Note =====
 

@@ -30,12 +30,13 @@ GET PRINTER MODE
 
 ===== Notes =====
 
-  calls INT 2F/AX=111Fh with 5E05h on stack
-	supported by DR DOS 3.41+
+calls INT 2F/AX=111Fh with 5E05h on stack
+
+supported by DR DOS 3.41+
 
 ===== See also =====
 
-   AX=5E04h"DOS",INT 2F/AX=111Fh
+AX=[[en:docs:dos:api:int21:5e:04|5E04h],INT 2F/AX=111Fh
 
 ===== Note =====
 

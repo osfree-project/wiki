@@ -34,11 +34,11 @@ GET MACHINE NAME
 
 ===== Notes =====
 
-  supported by OS/2 v1.3+ compatibility box, PC-NFS
+supported by OS/2 v1.3+ compatibility box, PC-NFS
 
 ===== See also =====
 
-  AX=5E01h
+AX=[[en:docs:dos:api:int21:5e:01|5E01h]]
 
 ===== Note =====
 
