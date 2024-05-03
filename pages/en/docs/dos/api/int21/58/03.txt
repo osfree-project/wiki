@@ -31,16 +31,13 @@ SET UMB LINK STATE
 
 ===== Notes =====
 
-	a program which changes the UMB link state should restore it before
-	  terminating
-	UMBs will only be available if CONFIG.SYS contains the line DOS=UMB,
-	  the UMBs have been linked into the memory chain with AX=5803h, and
-	  the allocation strategy has been set to include high memory with
-	  AX=5801h
+a program which changes the UMB link state should restore it before terminating
+
+UMBs will only be available if CONFIG.SYS contains the line DOS=UMB, the UMBs have been linked into the memory chain with AX=5803h, and the allocation strategy has been set to include high memory with AX=5801h
    
 ===== See also =====
 
-  #01687,#02766 at INT 2F/AX=4310h
+#01687,#02766 at INT 2F/AX=4310h
 
 ===== Note =====
 
