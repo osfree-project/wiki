@@ -30,14 +30,13 @@ SET LOGICAL DRIVE MAP
 
 ===== Notes =====
 
- 	maps logical drives to physical drives, similar to DOS's treatment of
-	  a single physical floppy drive as both A: and B:
-	DR DOS 3.41-5.0 DRIVER.SYS does not support drive mapping and thus
-	  always returns an error on this function
+maps logical drives to physical drives, similar to DOS's treatment of a single physical floppy drive as both A: and B:
+
+DR DOS 3.41-5.0 DRIVER.SYS does not support drive mapping and thus always returns an error on this function
 
 ===== See also =====
 
-    AX=440Eh,INT 2F/AX=122Bh
+AX=[[en:docs:dos:api:int21:44:0e|440Eh]],INT 2F/AX=122Bh
 
 ===== Note =====
 

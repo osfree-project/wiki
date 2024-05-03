@@ -32,15 +32,15 @@ CHECK IF HANDLE IS REMOTE
 
 ===== Notes =====
 
-	if file is remote, Novell Advanced NetWare 2.0 returns the number of
-	  the file server on which the handle is located in CX
-	DR DOS 3.41 and 5.0 clear all bits of DX except bit 15; Novell DOS 7
-	  fully supports this function
-	this function was not supported by Digital Research's DOS Plus
+if file is remote, Novell Advanced NetWare 2.0 returns the number of the file server on which the handle is located in CX
+
+DR DOS 3.41 and 5.0 clear all bits of DX except bit 15; Novell DOS 7 fully supports this function
+
+this function was not supported by Digital Research's DOS Plus
 
 ===== See also =====
 
-   AX=4400h,AX=4409h,AH=52h,INT 2F/AX=122Bh
+AX=[[en:docs:dos:api:int21:44:00|4400h]],AX=[[en:docs:dos:api:int21:44:09|4409h]],AH=[[en:docs:dos:api:int21:52|52h]],INT 2F/AX=122Bh
 
 ===== Note =====
 

@@ -30,14 +30,15 @@ SET SHARING RETRY COUNT
 
 ===== Notes =====
 
-       delay is dependent on processor speed (value in CX specifies number of
-	  64K-iteration empty loops to execute)
-	if DX=0000h on entry, the retry count is left unchanged
-	this function was not supported by Digital Research's DOS Plus
+delay is dependent on processor speed (value in CX specifies number of 64K-iteration empty loops to execute)
+
+if DX=0000h on entry, the retry count is left unchanged
+
+this function was not supported by Digital Research's DOS Plus
 
 ===== See also =====
 
-    AH=52h,INT 2F/AX=1224h,INT 2F/AX=122Bh
+AH=[[en:docs:dos:api:int21:52|52h]],INT 2F/AX=1224h,INT 2F/AX=122Bh
 
 ===== Note =====
 

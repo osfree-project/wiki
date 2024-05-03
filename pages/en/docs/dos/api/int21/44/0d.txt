@@ -34,20 +34,21 @@ GENERIC BLOCK DEVICE REQUEST
 
 ===== Notes =====
 
-    	DOS 4.01 seems to ignore the high byte of the number of directory
-	  entries in the BPB for diskettes.
-	functions 46h and 66h undocumented in DOS 4.x, documented for DOS 5+
-	the DUBLDISK.SYS v2.6 driver only supports minor codes 60h and 67h
-	DR DOS 3.41-6.0 only support minor codes 40h-42h and 60h-62h; all
-	  other minor codes return error code 16h
-	some PCMCIA calls reportedly appear to be dangerous for MS-DOS versions
-	  prior to 5.0
-	minor code 60h normally produces no I/O except with AutoMount=1 for
-	  DBLSPACE/DRVSPACE
+DOS 4.01 seems to ignore the high byte of the number of directory entries in the BPB for diskettes.
+
+functions 46h and 66h undocumented in DOS 4.x, documented for DOS 5+
+
+the DUBLDISK.SYS v2.6 driver only supports minor codes 60h and 67h
+
+DR DOS 3.41-6.0 only support minor codes 40h-42h and 60h-62h; all other minor codes return error code 16h
+
+some PCMCIA calls reportedly appear to be dangerous for MS-DOS versions prior to 5.0
+
+minor code 60h normally produces no I/O except with AutoMount=1 for DBLSPACE/DRVSPACE
 
 ===== See also =====
 
-    AX=440Ch,AX=440Dh/CX=084Ah,AX=440Dh/CX=0871h,AH=69h,INT 2F/AX=0802h, INT 2F/AX=122Bh
+AX=[[en:docs:dos:api:int21:44:0c|440Ch]],AX=[[en:docs:dos:api:int21:44:0d|440Dh]]/CX=084Ah,AX=[[en:docs:dos:api:int21:44:0d|440Dh]]/CX=0871h,AH=[[en:docs:dos:api:int21:69|69h]],INT 2F/AX=0802h, INT 2F/AX=122Bh
 
 ===== Note =====
 
