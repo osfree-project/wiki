@@ -34,11 +34,11 @@ GET REDIRECTION MODE
 
 ===== Notes =====
 
-  Calls INT 2F/AX=111Eh with AX on top of the stack
+Calls INT 2F/AX=111Eh with AX on top of the stack
 
 ===== See also =====
 
-  AX=5F01h - INT 2F/AX=111Eh
+AX=[[en:docs:dos:api:int21:5f:01|5F01h]] - INT 2F/AX=111Eh
 
 ===== Note =====
 

@@ -34,11 +34,11 @@ SET REDIRECTION MODE
 
 ===== Notes =====
 
-  When redirection is off, the local device (if any) rather than the remote device is used. Calls INT 2F/AX=111Eh with AX on top of the stack
+When redirection is off, the local device (if any) rather than the remote device is used. Calls INT 2F/AX=111Eh with AX on top of the stack
 
 ===== See also =====
 
-  AX=5F00h - INT 2F/AX=111Eh - INT 60/AX=0002h
+AX=[[en:docs:dos:api:int21:5f:00|5F00h]] - INT 2F/AX=111Eh - INT 60/AX=0002h
 
 ===== Note =====
 
