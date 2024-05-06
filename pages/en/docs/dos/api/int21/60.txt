@@ -38,7 +38,7 @@ BUG: Windows95 incorrectly treats filenames where the first two characters after
           
 ===== See also =====
 
-AX=[[en:docs:dos:api:int21:5f:02|5F02h]] - AX=[[en:docs:dos:api:int21:5f:b3|5FB3h]] - AX=[[en:docs:dos:api:int21:71:60|7160h]]/CL=00h - INT 2F/
+AX=[[en:docs:dos:api:int21:5f:02|5F02h]] - AX=[[en:docs:dos:api:int21:71:60|7160h]]/CL=00h - INT 2F/
 
 ===== Note =====
 

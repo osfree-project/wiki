@@ -23,11 +23,11 @@ GET CURRENT PSP ADDRESS
 
 ===== Notes =====
 
-	This function does not use any of the DOS-internal stacks and may thus be called at any time, even during another INT 21h call. The current PSP is not necessarily the caller's PSP. Identical to the undocumented AH=51h
+This function does not use any of the DOS-internal stacks and may thus be called at any time, even during another INT 21h call. The current PSP is not necessarily the caller's PSP. Identical to the undocumented AH=51h
           
 ===== See also =====
 
-   AH=50h - AH=51h
+AH=[[en:docs:dos:api:int21:50|50h]] - AH=[[en:docs:dos:api:int21:51|51h]]
 
 ===== Note =====
 
