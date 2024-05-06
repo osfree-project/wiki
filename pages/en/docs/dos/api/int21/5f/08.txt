@@ -29,11 +29,11 @@ DISABLE DRIVE
 
 ===== Notes =====
 
- Simply clears the "valid" bit in the drive's CDS. This function is not supported by Novell DOS 7 through at least Update 4, but support was added by Update 13
+Simply clears the "valid" bit in the drive's CDS. This function is not supported by Novell DOS 7 through at least Update 4, but support was added by Update 13
 
 ===== See also =====
 
-  AH=52h - AX=5F07h"DOS"
+AH=[[en:docs:dos:api:int21:52|52h]] - AX=[[en:docs:dos:api:int21:5f:07|5F07h]]
   
 ===== Note =====
 

@@ -34,7 +34,7 @@ CANCEL REDIRECTION
 
 ===== See also =====
 
-  AX=5F03h - INT 2F/AX=111Eh - INT 60/AX=0003h
+  AX=[[en:docs:dos:api:int21:5f:03|5F03h]] - INT 2F/AX=111Eh - INT 60/AX=0003h
 
 ===== Note =====
 

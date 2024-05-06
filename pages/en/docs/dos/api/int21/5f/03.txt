@@ -36,12 +36,12 @@ REDIRECT DEVICE
 
 ===== Notes =====
 
- If device type is disk drive, DS:SI must point at either a null string or a string consisting the drive letter followed by a colon; if a null string, the network attempts to access the destination without redirecting a local drive. The DOS kernel calls INT 2F/AX=111Eh with AX on top of the stack. Also supported by Banyan VINES, LANtastic, and 10NET
+If device type is disk drive, DS:SI must point at either a null string or a string consisting the drive letter followed by a colon; if a null string, the network attempts to access the destination without redirecting a local drive. The DOS kernel calls INT 2F/AX=111Eh with AX on top of the stack. Also supported by Banyan VINES, LANtastic, and 10NET
 
 
 ===== See also =====
 
-  AX=5F02h - AX=5F04h - INT 2F/AX=111Eh - INT 60/
+  AX=[[en:docs:dos:api:int21:5f:02|5F02h]] - AX=[[en:docs:dos:api:int21:5f:04|5F04h]] - INT 2F/AX=111Eh - INT 60/
 
 ===== Note =====
 

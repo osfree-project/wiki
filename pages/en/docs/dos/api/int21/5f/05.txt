@@ -38,11 +38,11 @@ GET EXTENDED REDIRECTION LIST ENTRY
 
 ===== Notes =====
 
- The local session number allows sharing the redirector's session number. If an error is caused on the NETBIOS LSN, the redirector may be unable to correctly recover from errors. The DOS kernel calls INT 2F/AX=111Eh with AX on top of the stack. Supported by DR DOS 5.0. Also supported by 10NET v5.0
+The local session number allows sharing the redirector's session number. If an error is caused on the NETBIOS LSN, the redirector may be unable to correctly recover from errors. The DOS kernel calls INT 2F/AX=111Eh with AX on top of the stack. Supported by DR DOS 5.0. Also supported by 10NET v5.0
 
 ===== See also =====
 
-  AX=5F06h"Network" - INT 2F/AX=111Eh
+INT 2F/AX=111Eh
   
 ===== Note =====
 
