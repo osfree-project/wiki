@@ -44,11 +44,11 @@ GET REDIRECTION LIST ENTRY
 
 ===== Notes =====
 
- This function is passed through to INT 2F/AX=111Eh by the DOS kernel. Error code 12h is returned if BX is greater than the size of the list. Also supported by Banyan VINES, PC-NFS, LANtastic, and 10NET. Supported by LapLink RemoteAccess but returns the local drive letter; the remote drive letter can be obtained with INT 2F/AX=Cxxxh (see INT 2F/AX=C000h"LapLink"). The returned device name may or may not include a colon, depending on the network software
+This function is passed through to INT 2F/AX=111Eh by the DOS kernel. Error code 12h is returned if BX is greater than the size of the list. Also supported by Banyan VINES, PC-NFS, LANtastic, and 10NET. Supported by LapLink RemoteAccess but returns the local drive letter; the remote drive letter can be obtained with INT 2F/AX=Cxxxh (see INT 2F/AX=C000h"LapLink"). The returned device name may or may not include a colon, depending on the network software
 
 ===== See also =====
 
-  AX=5F03h - AX=5F46h - INT 2F/AX=111Eh 
+AX=[[en:docs:dos:api:int21:5f:03|5F03h]] - INT 2F/AX=111Eh 
 
 ===== Note =====
 
