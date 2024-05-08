@@ -35,12 +35,11 @@ get serial number
 
 ===== Notes =====
 
-
-   Does not generate a critical error; all errors are returned in AX. Error 0005h given if no extended BPB on disk. Does not work on network drives (error 0001h). Buffer after first two bytes is exact copy of bytes 27h thru 3Dh of extended BPB on disk. This function is supported under Novell NetWare versions 2.0A through 3.11; the returned serial number is the one a DIR would display, the volume label is the NetWare volume label, and the file system is set to "FAT16".. This function is not supported by Novell DOS 7 through Update 13, but Personal NetWare 1.0 and Update 15 do support this function. The serial number is computed from the current date and time when the disk is created; the first part is the sum of the seconds/hundredths and month/day, the second part is the sum of the hours/minutes and year. The volume label which is read or set is the one stored in the extended BPB on disks formatted with DOS 4.0+, rather than the special root directory entry used by the DIR command in COMMAND.COM (use AH=11h to find that volume label)
+Does not generate a critical error; all errors are returned in AX. Error 0005h given if no extended BPB on disk. Does not work on network drives (error 0001h). Buffer after first two bytes is exact copy of bytes 27h thru 3Dh of extended BPB on disk. This function is supported under Novell NetWare versions 2.0A through 3.11; the returned serial number is the one a DIR would display, the volume label is the NetWare volume label, and the file system is set to "FAT16".. This function is not supported by Novell DOS 7 through Update 13, but Personal NetWare 1.0 and Update 15 do support this function. The serial number is computed from the current date and time when the disk is created; the first part is the sum of the seconds/hundredths and month/day, the second part is the sum of the hours/minutes and year. The volume label which is read or set is the one stored in the extended BPB on disks formatted with DOS 4.0+, rather than the special root directory entry used by the DIR command in COMMAND.COM (use AH=11h to find that volume label)
 
 ===== See also =====
 
-   AX=440Dh"DOS 3.2+"
+AX=[[en:docs:dos:api:int21:44:0d|440Dh]]
    
 ===== Note =====
 

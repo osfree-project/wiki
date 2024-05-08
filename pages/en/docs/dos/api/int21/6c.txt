@@ -46,13 +46,13 @@ EXTENDED OPEN/CREATE
 
 ===== Notes =====
 
-  The PC LAN Program only supports existence actions (in DL) of 01h, 10h with sharing=compatibility, and 12h. DR DOS reportedly does not support this function and does not return an "invalid function call" error when this function is used.. The documented bits of BX are stored in the SFT when the file is opened (see #01641,#01642)
+The PC LAN Program only supports existence actions (in DL) of 01h, 10h with sharing=compatibility, and 12h. DR DOS reportedly does not support this function and does not return an "invalid function call" error when this function is used.. The documented bits of BX are stored in the SFT when the file is opened (see #01641,#01642)
 
-  BUG: This function has bugs (at least in DOS 5.0 and 6.2) when used with drives handled via the network redirector (INT 2F/AX=112Eh): - CX (attribute) is not passed to the redirector if DL=11h, - CX does not return the status, it is returned unchanged because DOS does a PUSH CX/POP CX when calling the redirector.
+BUG: This function has bugs (at least in DOS 5.0 and 6.2) when used with drives handled via the network redirector (INT 2F/AX=112Eh): - CX (attribute) is not passed to the redirector if DL=11h, - CX does not return the status, it is returned unchanged because DOS does a PUSH CX/POP CX when calling the redirector.
           
 ===== See also =====
 
-   AH=3Ch - AH=3Dh - AX=6C01h - AX=7160h/CL=00h
+AH=[[en:docs:dos:api:int21:3c|3Ch]] - AH=[[en:docs:dos:api:int21:3d|3Dh]] - AX=[[en:docs:dos:api:int21:6c:01|6C01h]] - AX=[[en:docs:dos:api:int21:71:60|7160h]]/CL=00h
 
 ===== Note =====
 

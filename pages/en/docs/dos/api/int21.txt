@@ -181,9 +181,11 @@
 | [[en:docs:dos:api:int21:67|67H]] | Set handle count | 3.3+ |
 | [[en:docs:dos:api:int21:68|68H]] | Commit file | 3.3+ |
 | [[en:docs:dos:api:int21:69|69H]] | Get or set media id | 4.0+ |
+| [[en:docs:dos:api:int21:69:00|6900H]] | Get serial number                                 | 4.0+    |
+| [[en:docs:dos:api:int21:69:01|6901H]] | Set serial number                                 | 4.0+    |
 | [[en:docs:dos:api:int21:6a|6AH]] | Commit file | 4.0+ |
 | [[en:docs:dos:api:int21:6c|6CH]] | Extended open/create file | 4.0+ / OS/2 1.0+|
-| [[en:docs:dos:api:int21:6d|6DH]] | Extended MAke directory | OS/2 1.0+ |
+| [[en:docs:dos:api:int21:6d|6DH]] | Extended Make directory | OS/2 1.0+ |
 | [[en:docs:dos:api:int21:6e|6EH]] | DosEnumAttrib | OS/2 1.0+ |
 | [[en:docs:dos:api:int21:6f|6FH]] | DosQMaxEASize | OS/2 1.0+ |
 
