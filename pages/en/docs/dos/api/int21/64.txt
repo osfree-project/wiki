@@ -33,7 +33,7 @@ This function is called by the DOS 3.3+ PRINT.COM. Under MS-DOS, this function d
           
 ===== See also =====
 
-AH=01h - AH=08h - AH=0Ah - AX=5D06h
+AH=[[en:docs:dos:api:int21:01|01h]] - AH=[[en:docs:dos:api:int21:08|08h]] - AH=[[en:docs:dos:api:int21:0a|0Ah]] - AX=[[en:docs:dos:api:int21:5d:06|5D06h]]
 
 ===== Note =====
 

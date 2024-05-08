@@ -23,8 +23,7 @@ SET GENERAL INTERNATIONALIZATION INFO
   
 ===== Return =====
 
-   nothing.  next call to AH=59h will return values from fields AX,BX,CX,
-	  DX,DI, and ES in corresponding registers
+nothing.  next call to AH=59h will return values from fields AX,BX,CX, DX,DI, and ES in corresponding registers
 
 ===== Macro =====
 
@@ -32,12 +31,12 @@ SET GENERAL INTERNATIONALIZATION INFO
 ===== Notes =====
 
 
-  This function will not overwrite the country or code-page numbers, but can be used to modify all other data about the country and code page
+This function will not overwrite the country or code-page numbers, but can be used to modify all other data about the country and code page
 
 
 ===== See also =====
 
-   AH=65h"GET EXTENDED" - AH=70h
+AH=[[en:docs:dos:api:int21:65|65h]] - AH=[[en:docs:dos:api:int21:70|70h]]
    
 ===== Note =====
 

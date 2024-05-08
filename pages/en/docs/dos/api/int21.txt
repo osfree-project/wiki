@@ -160,6 +160,21 @@
 | [[en:docs:dos:api:int21:63|63H]] | Get DBCS lead byte table pointer | 3.0+ |
 | [[en:docs:dos:api:int21:64|64H]] | Set wait for external event flag / OS/2 VDM API | 3.2+ / OS/2 2.0+ |
 | [[en:docs:dos:api:int21:65|65H]] | Get extended country info | 3.3+ |
+| [[en:docs:dos:api:int21:65:00|6500H]] | Set general internationalization info             | 7.1+    |
+| [[en:docs:dos:api:int21:65:01|6501H]] | Get general internationalization info             | 3.3+    |
+| [[en:docs:dos:api:int21:65:02|6502H]] | Get pointer to uppercase table                    | 3.3+    |
+| [[en:docs:dos:api:int21:65:03|6503H]] | Get pointer to lowercase table                    | 6.2+    |
+| [[en:docs:dos:api:int21:65:04|6504H]] | Get pointer to filename uppercase table           | 3.3+    |
+| [[en:docs:dos:api:int21:65:05|6505H]] | Get pointer to filename terminator table          | 3.3+    |
+| [[en:docs:dos:api:int21:65:06|6506H]] | Get pointer to collating sequence table           | 3.3+    |
+| [[en:docs:dos:api:int21:65:07|6507H]] | Get pointer to Double-Byte Character Set table    | 4+      |
+| [[en:docs:dos:api:int21:65:20|6520H]] | Capitalize character                              | 4+      |
+| [[en:docs:dos:api:int21:65:21|6521H]] | Capitalize string                                 | 4+      |
+| [[en:docs:dos:api:int21:65:22|6522H]] | Capitalize ASCIZ string                           | 4+      |
+| [[en:docs:dos:api:int21:65:23|6523H]] | Determine if character represents Yes/No response | 4+      |
+| [[en:docs:dos:api:int21:65:a0|65A0H]] | Capitalize filename character                     | 4+      |
+| [[en:docs:dos:api:int21:65:a1|65A1H]] | Capitalize counted filename string                | 4+      |
+| [[en:docs:dos:api:int21:65:a2|65A2H]] | Capitalize ASCIZ filename                         | 4+      |
 | [[en:docs:dos:api:int21:66|66H]] | Get or set code page | 3.3+ |
 | [[en:docs:dos:api:int21:67|67H]] | Set handle count | 3.3+ |
 | [[en:docs:dos:api:int21:68|68H]] | Commit file | 3.3+ |
