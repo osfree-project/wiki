@@ -30,7 +30,7 @@ It maintains the address space layout of a VM application, loads a firmware (for
 
 ==== The DOS emulation kernel (doskrnl) ====
 
-The DOS emulation kernel is a special rehosted DOS kernel working via OS/2 (or PN ((Personality Neutral))) services. For example, file system API's of int 21h are implemented via OS/2 (or PN) file API's. Access to OS/2 API's done via [[en:docs:mvm:api|SVC API]] (supervisor call?) which is trap of HLT instruction followed by call number and inverted call number. Also DOSKRNL provides MVM specific API for DOS applications. See [[en:docs:kernel:doskrnl|DOSKRNL]] documentation for more info. It is not required to use DOS emulation kernel. Standard DOS kernel (FreeDOS, for example) can be used, but access to host file systems will be limited.
+The DOS emulation kernel is a special rehosted DOS kernel (para-virtualized) working via OS/2 (or PN ((Personality Neutral))) services. For example, file system API's of int 21h are implemented via OS/2 (or PN) file API's. Access to OS/2 API's done via [[en:docs:mvm:api|SVC API]] (supervisor call?) which is trap of HLT instruction followed by call number and inverted call number. Also DOSKRNL provides MVM specific API for DOS applications. See [[en:docs:kernel:doskrnl|DOSKRNL]] documentation for more info. It is not required to use DOS emulation kernel. Standard DOS kernel (FreeDOS, for example) can be used, but access to host file systems will be limited.
 
 ==== Instruction Set Translator (IST) ====
 
@@ -50,7 +50,7 @@ Microkernels and Hypervisors are very similar things. Microkernels implement sim
 
 ==== Other kernels ====
 
-It is possible to rehost other kernels, like CP/M-86, to MVM enviroment. It can be achieved via SVC interface,
+It is possible to rehost (para-virtualize) other kernels, like CP/M-86, to MVM enviroment. It can be achieved via SVC interface,
 
 ==== API ====
 
