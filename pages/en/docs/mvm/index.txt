@@ -52,4 +52,10 @@ Microkernels and Hypervisors are very similar things. Microkernels implement sim
 
 It is possible to rehost other kernels, like CP/M-86, to MVM enviroment. It can be achieved via SVC interface,
 
+==== API ====
+
+  * [[en:docs:mvm:api|SVC API]]
+  * [[en:docs:bios:api|BIOS API]]
+
+
 ~~DISCUSSION~~
