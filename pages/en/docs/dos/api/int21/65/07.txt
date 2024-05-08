@@ -38,7 +38,7 @@
 
 ===== See also =====
 
-   AH=38h - AH=70h"MS-DOS 7" - INT 2F/AX=1401h - INT 2F/AX=14FEh
+AH=[[en:docs:dos:api:int21:38|38h]] - AH=[[en:docs:dos:api:int21:70|70h]] - INT 2F/AX=1401h - INT 2F/AX=14FEh
    
 ===== Note =====
 

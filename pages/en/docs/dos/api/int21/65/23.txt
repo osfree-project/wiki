@@ -34,9 +34,9 @@ DETERMINE IF CHARACTER REPRESENTS YES/NO RESPONSE
 
 ===== Notes =====
 
-  Supported by Novell DOS 7, though prior to Update 14, the results depended on the kernel variant rather than the YESCHAR= or COUNTRY= setting in CONFIG.SYS
+Supported by Novell DOS 7, though prior to Update 14, the results depended on the kernel variant rather than the YESCHAR= or COUNTRY= setting in CONFIG.SYS
 
-  BUG: Novell DOS commands and tools all use internal settings rather than this function, so the Yes/No responses are dependent on the specific country's variant being run rather than on the COUNTRY= setting
+BUG: Novell DOS commands and tools all use internal settings rather than this function, so the Yes/No responses are dependent on the specific country's variant being run rather than on the COUNTRY= setting
 
 ===== See also =====
 

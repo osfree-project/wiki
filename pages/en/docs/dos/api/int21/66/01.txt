@@ -36,7 +36,7 @@ GET GLOBAL CODE PAGE TABLE
 
 ===== See also =====
 
-   AX=6602h
+AX=[[en:docs:dos:api:int21:66:02|6602h]]
    
 ===== Note =====
 

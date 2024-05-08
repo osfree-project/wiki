@@ -176,6 +176,8 @@
 | [[en:docs:dos:api:int21:65:a1|65A1H]] | Capitalize counted filename string                | 4+      |
 | [[en:docs:dos:api:int21:65:a2|65A2H]] | Capitalize ASCIZ filename                         | 4+      |
 | [[en:docs:dos:api:int21:66|66H]] | Get or set code page | 3.3+ |
+| [[en:docs:dos:api:int21:66:01|6601H]] | Get global code page table                        | 3.3+    |
+| [[en:docs:dos:api:int21:66:02|6602H]] | Set global code page table                        | 3.3+    |
 | [[en:docs:dos:api:int21:67|67H]] | Set handle count | 3.3+ |
 | [[en:docs:dos:api:int21:68|68H]] | Commit file | 3.3+ |
 | [[en:docs:dos:api:int21:69|69H]] | Get or set media id | 4.0+ |

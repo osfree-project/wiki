@@ -32,7 +32,7 @@ FFLUSH - COMMIT FILE
           
 ===== See also =====
 
-   AX=5D01h - AH=6Ah - INT 2F/AX=1107h
+AX=[[en:docs:dos:api:int21:5d:01|5D01h]] - AH=[[en:docs:dos:api:int21:6a|6Ah]] - INT 2F/AX=1107h
 
 ===== Note =====
 

@@ -31,7 +31,7 @@ capitalize filename character
 
 ===== Notes =====
 
-  Nonfunctional in MS-DOS 4.00 through 7.10 (Win98) due to a bug (the code sets a pointer depending on the high bit of AL, but doesn't clear the bit before branching by function number). Supported and functional(!) in Novell DOS 7 (Update 15), as well as PC-DOS 7 and OS/2 MVDM
+Nonfunctional in MS-DOS 4.00 through 7.10 (Win98) due to a bug (the code sets a pointer depending on the high bit of AL, but doesn't clear the bit before branching by function number). Supported and functional(!) in Novell DOS 7 (Update 15), as well as PC-DOS 7 and OS/2 MVDM
 
 ===== See also =====
 
