@@ -2,15 +2,21 @@
 
 ===== Brief =====
 
+Get system date
+
 ===== Input =====
 
+none
 
 ===== Return =====
 
+  * CX = year (1980-2099)
+  * DH = month
+  * DL = day
+  * AL = day of week (00h=Sunday)
 
 ===== Notes =====
 
 
 ===== See also =====
-
 

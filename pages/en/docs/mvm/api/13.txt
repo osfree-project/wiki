@@ -2,15 +2,23 @@
 
 ===== Brief =====
 
+Get system time
+
 ===== Input =====
 
+none
 
 ===== Return =====
 
+  * CH = hour
+  * CL = minute
+  * DH = second
+  * DL = 1/100 seconds
 
 ===== Notes =====
 
 
 ===== See also =====
+
 
 
