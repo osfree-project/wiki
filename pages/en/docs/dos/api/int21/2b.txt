@@ -15,16 +15,16 @@ SET SYSTEM DATE
 
 ===== Input =====
 
-        AH = 2Bh
-        CX = year (1980-2099)
-        DH = month (1-12)
-        DL = day (1-31)
+  * AH = 2Bh
+  * CX = year (1980-2099)
+  * DH = month (1-12)
+  * DL = day (1-31)
 
 ===== Return =====
 
- AL = status
-            00h successful
-            FFh invalid date, system date unchanged
+  * AL = status
+    * 00h successful
+    * FFh invalid date, system date unchanged
 
 ===== Notes =====
 

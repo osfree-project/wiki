@@ -16,12 +16,12 @@ none
 
 ===== Input =====
 
-        AH = 1Ah
-        DS:DX -> Disk Transfer Area (DTA)
+  * AH = 1Ah
+  * DS:DX -> Disk Transfer Area (DTA)
 
 ===== Return =====
 
-none
+  * none
 
 ===== Notes =====
 
