@@ -4,25 +4,25 @@ Supervisor calls API aimed to call host services from MVM.
 
 ^ Ordinal ^ Description ^
 | [[en:docs:mvm:api:0]] | |
-| [[en:docs:mvm:api:1]] | Terminate with error message (top of stack - far pointer to message ASCIIZ) |
+| [[en:docs:mvm:api:1]] | Terminate MVM with error message (top of stack - far pointer to message ASCIIZ) |
 | [[en:docs:mvm:api:2]] | Terminate MVM and return code to parent process from AX |
 | [[en:docs:mvm:api:3]] | |
 | [[en:docs:mvm:api:4]] | Reset disk buffers |
 | [[en:docs:mvm:api:5]] | |
-| [[en:docs:mvm:api:6]] | Select default drive (params and result same as in int21h AH=[[en:docs:dos:api:int21:0e|0eh]]) |
-| [[en:docs:mvm:api:7]] | Set DTA from DS:DX |
+| [[en:docs:mvm:api:6]] | Select default drive (params and result same as in int21h AH=[[en:docs:dos:api:int21:0e|0EH]]) |
+| [[en:docs:mvm:api:7]] | Set DTA from DS:DX (params and result same as in int21h AH=[[en:docs:dos:api:int21:1a|1AH]])|
 | [[en:docs:mvm:api:8]] | |
 | [[en:docs:mvm:api:9]] | |
-| [[en:docs:mvm:api:10]] | Set system date (params and result same as in int21h AH=[[en:docs:dos:api:int21:2b|2Bh]]) |
-| [[en:docs:mvm:api:11]] | Set system time (params and result same as in int21h AH=[[en:docs:dos:api:int21:2d|2Dh]]) |
-| [[en:docs:mvm:api:12]] | Get system date (result same as in int21h AH=[[en:docs:dos:api:int21:2a|2Ah]]) |
-| [[en:docs:mvm:api:13]] | Get system time (result same as in int21h AH=[[en:docs:dos:api:int21:2c|2Ch]]) |
+| [[en:docs:mvm:api:10]] | Set system date (params and result same as in int21h AH=[[en:docs:dos:api:int21:2b|2BH]]) |
+| [[en:docs:mvm:api:11]] | Set system time (params and result same as in int21h AH=[[en:docs:dos:api:int21:2d|2DH]]) |
+| [[en:docs:mvm:api:12]] | Get system date (result same as in int21h AH=[[en:docs:dos:api:int21:2a|2AH]]) |
+| [[en:docs:mvm:api:13]] | Get system time (result same as in int21h AH=[[en:docs:dos:api:int21:2c|2CH]]) |
 | [[en:docs:mvm:api:14]] | |
 | [[en:docs:mvm:api:15]] | |
-| [[en:docs:mvm:api:16]] | Delete directory (params and result same as in int21h AH=[[en:docs:dos:api:int21:3a|3ah]])|
+| [[en:docs:mvm:api:16]] | Delete directory (params and result same as in int21h AH=[[en:docs:dos:api:int21:3a|3aH]])|
 | [[en:docs:mvm:api:17]] | |
-| [[en:docs:mvm:api:18]] | Get current directory (params and result same as in int21h AH=[[en:docs:dos:api:int21:47|47h]])|
-| [[en:docs:mvm:api:19]] | Change directory (params and result same as in int21h AH=[[en:docs:dos:api:int21:3b|3bh]])|
+| [[en:docs:mvm:api:18]] | Get current directory (params and result same as in int21h AH=[[en:docs:dos:api:int21:47|47H]])|
+| [[en:docs:mvm:api:19]] | Change directory (params and result same as in int21h AH=[[en:docs:dos:api:int21:3b|3BH]])|
 | [[en:docs:mvm:api:20]] | |
 | [[en:docs:mvm:api:21]] | |
 | [[en:docs:mvm:api:22]] | |
@@ -52,7 +52,7 @@ Supervisor calls API aimed to call host services from MVM.
 | [[en:docs:mvm:api:46]] | |
 | [[en:docs:mvm:api:47]] | |
 | [[en:docs:mvm:api:48]] | |
-| [[en:docs:mvm:api:49]] | Parse filename to FCB (params and result same as in int21h AH=[[en:docs:dos:api:int21:29|29h]]) |
+| [[en:docs:mvm:api:49]] | Parse filename to FCB (params and result same as in int21h AH=[[en:docs:dos:api:int21:29|29H]]) |
 | [[en:docs:mvm:api:50]] | |
 | [[en:docs:mvm:api:51]] | |
 | [[en:docs:mvm:api:52]] | |
