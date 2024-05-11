@@ -10,11 +10,15 @@ Format of File Control Block:
 | 0Ch | WORD | current block number |
 | 0Eh | WORD | logical record size |
 | 10h | DWORD | file size |
-| 14h | WORD | date of last write (see #01666 at AX=5700h) |
+| 14h | WORD | date of last write (see [[en:docs:mvm:api:FILEDATE]]) |
 | 16h | WORD | time of last write (see [[en:docs:mvm:api:FILETIME]]) |
-| 18h | 8 BYTEs | reserved (see #01347,#01348,#01349,#01350,#01351) |
+| 18h | 8 BYTEs | reserved |
 | 20h | BYTE | record within current block |
 | 21h | DWORD | random access record number (if record size is > 64 bytes, high byte is omitted) |
+
+===== Notes =====
+
+reserved field have different meaning in different DOSes. Not known is it used by OS/2 MVM.
 
 ===== SeeAlso =====
 
