@@ -2,14 +2,25 @@
 
 ===== Brief =====
 
+Set current directory
+
 ===== Input =====
 
+  * DS:DX -> ASCIZ pathname to become current directory (max 64 bytes)
 
 ===== Return =====
 
+  * CF clear if successful
+    * AX destroyed
+  * CF set on error
+    * AX = error code (03h) (path not found)
 
 ===== Notes =====
 
+if new directory name includes a drive letter, the default drive is not changed, only the current directory on that drive
+          
+changing the current directory also changes the directory in which FCB file calls operate
+          
 
 ===== See also =====
 
