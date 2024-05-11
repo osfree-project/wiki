@@ -2,15 +2,21 @@
 
 ===== Brief =====
 
+Rename file using FCB
+
 ===== Input =====
 
+  * DS:DX -> modified FCB (see also #01345) the old filename ('?' wildcards OK) is in the standard location while the new filename ('?' wildcards OK, no drive) is stored in the 11 bytes beginning at offset 11h
 
 ===== Return =====
 
+  * AL = status
+    * 00h successfully renamed
+    * FFh no matching files,file is read-only, or new name already exists
 
 ===== Notes =====
 
+subdirectories may be renamed using an extended FCB with the appropriate attribute, as may volume labels
 
 ===== See also =====
-
 
