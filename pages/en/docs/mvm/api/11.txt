@@ -2,15 +2,25 @@
 
 ===== Brief =====
 
+Set system time
+
 ===== Input =====
 
+  * CH = hour
+  * CL = minute
+  * DH = second
+  * DL = 1/100 seconds
 
 ===== Return =====
 
+  * AL = result
+    * 00h successful
+    * FFh invalid time, system time unchanged
 
 ===== Notes =====
 
 
 ===== See also =====
+
 
 

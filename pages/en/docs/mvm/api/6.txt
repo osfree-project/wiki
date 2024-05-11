@@ -6,7 +6,6 @@ Set default drive
 
 ===== Input =====
 
-  * AH = 0Eh
   * DL = new default drive (00h = A:, 01h = B:, etc)
 
 ===== Return =====

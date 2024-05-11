@@ -2,15 +2,18 @@
 
 ===== Brief =====
 
+Set Disk Transfer Area address
+
 ===== Input =====
 
+  * DS:DX -> Disk Transfer Area (DTA)
 
 ===== Return =====
 
+none
 
 ===== Notes =====
 
 
 ===== See also =====
-
 

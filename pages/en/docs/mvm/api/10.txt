@@ -2,15 +2,24 @@
 
 ===== Brief =====
 
+Set system date
+
 ===== Input =====
 
+  * CX = year (1980-2099)
+  * DH = month (1-12)
+  * DL = day (1-31)
 
 ===== Return =====
 
+  * AL = status
+    * 00h successful
+    * FFh invalid date, system date unchanged
 
 ===== Notes =====
 
 
 ===== See also =====
+
 
 
