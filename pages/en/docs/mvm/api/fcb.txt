@@ -1,0 +1,23 @@
+====== FCB ======
+
+Format of File Control Block:
+
+^ Offset ^ Size ^ Description ^
+| 00h | BYTE | drive number (0 = default, 1 = A, etc) |
+| ::: | ::: | FFh is not allowed (signals extended FCB, see #01346) |
+| 01h | 8 BYTEs | blank-padded file name |
+| 09h | 3 BYTEs | blank-padded file extension |
+| 0Ch | WORD | current block number |
+| 0Eh | WORD | logical record size |
+| 10h | DWORD | file size |
+| 14h | WORD | date of last write (see #01666 at AX=5700h) |
+| 16h | WORD | time of last write (see #01665 at AX=5700h) (DOS 1.1+) |
+| 18h | 8 BYTEs | reserved (see #01347,#01348,#01349,#01350,#01351) |
+| 20h | BYTE | record within current block |
+| 21h | DWORD | random access record number (if record size is > 64 bytes, high byte is omitted) |
+
+===== SeeAlso =====
+
+
+#01346
+

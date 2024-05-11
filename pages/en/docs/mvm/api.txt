@@ -2,7 +2,9 @@
 
 Supervisor calls API aimed to call host services from MVM.
 
-^ Ordinal ^ Description ^
+===== Functions =====
+
+^ Function ^ Description ^
 | [[en:docs:mvm:api:0]] | |
 | [[en:docs:mvm:api:1]] | Terminate MVM with error message (top of stack - far pointer to message ASCIIZ) |
 | [[en:docs:mvm:api:2]] | Terminate MVM and return code to parent process from AX |
@@ -90,7 +92,8 @@ Supervisor calls API aimed to call host services from MVM.
 | [[en:docs:mvm:api:84]] | |
 | [[en:docs:mvm:api:85]] | |
 
+===== Structures =====
 
-
+  * [[en:docs:mvm:api:FCB]]
 
 
