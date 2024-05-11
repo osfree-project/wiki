@@ -1,0 +1,9 @@
+====== FILETIME ======
+
+Bitfields for file time:
+
+^ Bit(s) ^ Description ^
+| 15-11 | hours (0-23) |
+| 10-5 | minutes |
+| 4-0 | seconds/2 |
+

@@ -1,0 +1,14 @@
+====== XFCB ======
+
+Format of Extended File Control Block (XFCB):
+
+^ Offset ^ Size ^ Description ^
+| 00h | BYTE | FFh signature for extended FCB |
+| 01h | 5 BYTEs | reserved |
+| 06h | BYTE | file attribute if extended FCB |
+| 07h | 36 BYTEs | standard FCB (all offsets are shifted by seven bytes) |
+
+===== SeeAlso =====
+
+#01246
+

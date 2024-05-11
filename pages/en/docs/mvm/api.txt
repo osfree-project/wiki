@@ -95,5 +95,6 @@ Supervisor calls API aimed to call host services from MVM.
 ===== Structures =====
 
   * [[en:docs:mvm:api:FCB]]
-
+  * [[en:docs:mvm:api:XFCB]]
+  * [[en:docs:mvm:api:FILETIME]]
 
