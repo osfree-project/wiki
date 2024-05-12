@@ -10,6 +10,8 @@ Set default drive
 
 ===== Return =====
 
+  * CF clear if successful 
+  * CF set on error
   * AL = number of potentially valid drive letters
 
 ===== Notes =====
