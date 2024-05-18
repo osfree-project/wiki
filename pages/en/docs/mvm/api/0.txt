@@ -11,7 +11,7 @@
   * CF clear if successful
     * AX = new handle
   * CF set on error
-    * AX = error code (04h,06h) (see #01680 at AH=59h/BX=0000h)
+    * AX = error code (04h,06h) (too many open files (no handles available), invalid handle)
 
 ===== Notes =====
 

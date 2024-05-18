@@ -15,15 +15,15 @@
 
 ===== Input =====
 
-	AH = 45h
-	BX = file handle
+  * AH = 45h
+  * BX = file handle
 
 ===== Return =====
 
- CF clear if successful
-	    AX = new handle
-	CF set on error
-	    AX = error code (04h,06h) (see #01680 at AH=59h/BX=0000h)
+  * CF clear if successful
+    * AX = new handle
+  * CF set on error
+    * AX = error code (04h,06h) (too many open files (no handles available), invalid handle)
 
 ===== Notes =====
 
