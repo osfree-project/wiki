@@ -17,6 +17,4 @@
 
 moving file pointer for either handle will also move it for the other, because both will refer to the same system file table
 
-for DOS versions prior to 3.3, file writes may be forced to disk by duplicating the file handle and closing the duplicate
-          
 ===== See also =====
