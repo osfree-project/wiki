@@ -15,15 +15,15 @@
 
 ===== Input =====
 
-        AH = 3Eh
-        BX = file handle
+  * AH = 3Eh
+  * BX = file handle
 
 ===== Return =====
 
- CF clear if successful
-            AX destroyed
-        CF set on error
-            AX = error code (06h) (see #01680 at AH=59h/BX=0000h)
+  * CF clear if successful
+    * AX destroyed
+  * CF set on error
+    * AX = error code (06h) (invalid handle)
 
 ===== Notes =====
 
