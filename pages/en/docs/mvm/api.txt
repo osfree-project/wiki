@@ -22,7 +22,7 @@ Supervisor calls API aimed to call host services from MVM.
 | [[en:docs:mvm:api:14]] | Read file handle  (interface not investigated yet) |
 | [[en:docs:mvm:api:15]] | Set file handle position (interface not investigated yet) |
 | [[en:docs:mvm:api:16]] | Delete directory (params and result same as in INT 21H AH=[[en:docs:dos:api:int21:3a|3AH]])|
-| [[en:docs:mvm:api:17]] | |
+| [[en:docs:mvm:api:17]] | Create directory (interface not investigated yet) |
 | [[en:docs:mvm:api:18]] | Get current directory (params and result same as in INT 21H AH=[[en:docs:dos:api:int21:47|47H]]) |
 | [[en:docs:mvm:api:19]] | Change directory (params and result same as in INT 21H AH=[[en:docs:dos:api:int21:3b|3BH]]) |
 | [[en:docs:mvm:api:20]] | |
