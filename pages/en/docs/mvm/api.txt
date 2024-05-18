@@ -36,7 +36,7 @@ Supervisor calls API aimed to call host services from MVM.
 | [[en:docs:mvm:api:28]] | |
 | [[en:docs:mvm:api:29]] | Delete file using FCB DS:DX -> unopened FCB ES -> environment segment |
 | [[en:docs:mvm:api:30]] | Rename file using FCB (params and result same as in INT 21H AH=[[en:docs:dos:api:int21:17|17H]]) |
-| [[en:docs:mvm:api:31]] | |
+| [[en:docs:mvm:api:31]] | Delete file (interface not investigated yet) |
 | [[en:docs:mvm:api:32]] | |
 | [[en:docs:mvm:api:33]] | |
 | [[en:docs:mvm:api:34]] | |
