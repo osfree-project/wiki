@@ -5,7 +5,7 @@ Supervisor calls API aimed to call host services from MVM.
 ===== Functions =====
 
 ^ Function ^ Description ^
-| [[en:docs:mvm:api:0]] | |
+| [[en:docs:mvm:api:0]] | Duplicate handle (params and result same as in INT 21H AH=[[en:docs:dos:api:int21:45|45H]])|
 | [[en:docs:mvm:api:1]] | Terminate MVM with error message (top of stack - far pointer to message ASCIIZ) |
 | [[en:docs:mvm:api:2]] | Terminate MVM and return code to parent process from AX |
 | [[en:docs:mvm:api:3]] | |
