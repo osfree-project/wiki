@@ -188,5 +188,6 @@
 | [[en:docs:dos:api:int21:6d|6DH]] | Extended Make directory | OS/2 1.0+ |
 | [[en:docs:dos:api:int21:6e|6EH]] | DosEnumAttrib | OS/2 1.0+ |
 | [[en:docs:dos:api:int21:6f|6FH]] | DosQMaxEASize | OS/2 1.0+ |
+| [[en:docs:dos:api:int21:73|73H]] | FAT32 functions | 7.0+ (Win95) |
 
 {{page>en:templates:int}}
