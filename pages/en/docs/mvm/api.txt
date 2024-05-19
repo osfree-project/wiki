@@ -66,8 +66,8 @@ Supervisor calls API aimed to call host services from MVM.
 | [[en:docs:mvm:api:58]] | |
 | [[en:docs:mvm:api:59]] | |
 | [[en:docs:mvm:api:60]] | |
-| [[en:docs:mvm:api:61]] | |
-| [[en:docs:mvm:api:62]] | |
+| [[en:docs:mvm:api:61]] | Absolute disk read (interface not investigated yet) |
+| [[en:docs:mvm:api:62]] | Absolute disk write (interface not investigated yet) |
 | [[en:docs:mvm:api:63]] | |
 | [[en:docs:mvm:api:64]] | |
 | [[en:docs:mvm:api:65]] | |
