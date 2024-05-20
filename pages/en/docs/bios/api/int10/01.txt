@@ -20,9 +20,9 @@ Set Cursor Size
 
 ===== Parameters =====
 
-  AH = 01h
-  CH = Start line
-  CL = End line
+  * AH = 01h
+  * CH = Start line
+  * CL = End line
 
 ===== Return =====
 

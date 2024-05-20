@@ -20,8 +20,8 @@ Family API supports only one page
 
 ===== Parameters =====
 
-  AH = 05h
-  AL = new page number (00h to number of pages - 1) (see #00010)
+  * AH = 05h
+  * AL = new page number (00h to number of pages - 1) (see #00010)
 
 ===== Return =====
 

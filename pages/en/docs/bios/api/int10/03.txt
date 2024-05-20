@@ -20,16 +20,15 @@ Get Cursor Position and Size
 
 ===== Parameters =====
 
-  AH = 03h
-  BH = page
-
+  * AH = 03h
+  * BH = page
 
 ===== Return =====
 
-  CH = start scan line
-  CL = end scan line
-  DH = row (00h is top)
-  DL = column (00h is left)
+  * CH = start scan line
+  * CL = end scan line
+  * DH = row (00h is top)
+  * DL = column (00h is left)
 
 ===== Macro =====
 

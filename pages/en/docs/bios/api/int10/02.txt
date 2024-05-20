@@ -20,10 +20,10 @@ Set Cursor Position
 
 ===== Parameters =====
 
-  AH = 02h
-  BH = page
-  DH = row (0 is top)
-  DL = column (0 is left)
+  * AH = 02h
+  * BH = page
+  * DH = row (0 is top)
+  * DL = column (0 is left)
 
 ===== Return =====
 
