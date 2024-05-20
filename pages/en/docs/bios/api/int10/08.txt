@@ -20,13 +20,13 @@ Get character and attribute undr cursor
 
 ===== Parameters =====
 
-  AH = 08h
-  BH = page number
+  * AH = 08h
+  * BH = page number
 
 ===== Return =====
 
-  AH - attribute
-  AL - character
+  * AH - attribute
+  * AL - character
   
 ===== Macro =====
 
