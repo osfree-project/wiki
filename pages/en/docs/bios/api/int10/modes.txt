@@ -1,7 +1,6 @@
 ====== Values for video mode ======
 
-^   ^ text/ ^ text ^ pixel ^ pixel ^ colors ^ disply ^ scrn ^ system ^
-^ ::: ^ grph ^ resol ^ box ^ resolution ^  :::  ^ pages  ^ addr ^   :::   ^
+^   ^ text/grph ^ text resol ^ pixel box ^ pixel resolution ^ colors ^ disply pages ^ scrn addr ^ system ^
 | 00h | T | 40x25 | 8x8 | 320x200 | 16gray | 8 | B800 | CGA,PCjr,Tandy |
 | ::: | T | 40x25 | 8x14 | 320x350 | 16gray | 8 | B800 | EGA |
 | ::: | T | 40x25 | 8x16 | 320x400 | 16 | 8 | B800 | MCGA |
