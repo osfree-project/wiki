@@ -50,9 +50,9 @@ Supervisor calls API aimed to call host services from MVM.
 | [[en:docs:mvm:api:42]] | |
 | [[en:docs:mvm:api:43]] | |
 | [[en:docs:mvm:api:44]] | Set VERIFY flag from AL |
-| [[en:docs:mvm:api:45]] | Find next file (interface not investigated yet)|
-| [[en:docs:mvm:api:46]] | |
-| [[en:docs:mvm:api:47]] | |
+| [[en:docs:mvm:api:45]] | Find next file (interface not investigated yet) |
+| [[en:docs:mvm:api:46]] | Create new file (interface not investigated yet) |
+| [[en:docs:mvm:api:47]] | Create temp file (interface not investigated yet)|
 | [[en:docs:mvm:api:48]] | |
 | [[en:docs:mvm:api:49]] | Parse filename to FCB (params and result same as in INT 21H AH=[[en:docs:dos:api:int21:29|29H]]) |
 | [[en:docs:mvm:api:50]] | |
