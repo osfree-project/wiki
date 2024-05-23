@@ -23,13 +23,15 @@ Build message file from message source file
 | | |!| | | |!|
 | | |)|/V|(|
 | | |!| | | |!|
+| | |)|/Q|(|
+| | |!| | | |!|
 | | |)|/D <DBCS range or country>|(|
 | | |!| | | |!|
-| | |)|/P <code page>|(|
+| | |)|/P codepage|(|
 | | |!| | | |!|
 | | |)|/L <language id,sub id>|(|
 | | |!| | | |!|
-| | |)|/I <path>|(|
+| | |)|/I path|(|
 | | |!| | | |!|
 | | |)|/A|(|
 | | |!| | | |!|
