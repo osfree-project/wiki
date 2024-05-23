@@ -195,7 +195,7 @@ Here is each small component status:
 |::: |SOME.DLL   | None | | | |
 |DSOM	|SOMD.DLL	|None	| | | |
 |Object REXX	| |None	| | | |
-|DOSKRNL | DOSKRNL | None | GPL2.0+ | FreeDOS team | |
+|DOS kernel | [[en:docs:kernel:DOSKRNL]] | None | GPL2.0+ | FreeDOS team | |
 |FSFILTER | FSFILTER.SYSL | None | | | |
 |MDOS CLI tools	|[[en:docs:dos:cmd:APPEND]] | **Done** | GPL2.0+ | FreeDOS team \\ Yuri Prokushev | |
 |::: |[[en:docs:dos:cmd:ASSIGN]]    | **Done** | GPL2.0+ | FreeDOS team \\ Yuri Prokushev | |
