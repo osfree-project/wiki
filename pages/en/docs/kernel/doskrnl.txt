@@ -30,17 +30,18 @@ DOSKRNL init structure:
 | 22     | 4    | Far pointer to linked list of VDD |
 | 26     | 1    | Current drive (1-A, 2-B, 3-C, ...)|
 | 27     | 1    | Boot drive (1-A, 2-B, 3-C, ...) |
-| ????   | ???  | ???? |
+| 28     | 1    | Last drive (1-A, 2-B, 3-C, ...) |
+| ???    | ???  | ??? |
 
 DEVICES is ASCIIZ string with list of DOS devices to be loaded divided by 0AH
 
 SHELL is ASCIIZ string.
 
-SHELL arguments is ASCIIZ string (first byte is as string length, string ends with 0dh)
+SHELL arguments is ASCIIZ string (first byte is a string length, string ends with 0dh)
 
 VDD is linked list of structures:
 
-VDDs linked list in standard DOS Device drivers format. Entry can be placed in HMA, so need to be sure A20 enabled for such entries.
+VDDs linked list in standard DOS Device drivers format. Entry can be placed in HMA, so need to be sure A20 enabled for such entries. Named ad DOSDDTYPE in DDK
 
 ^ offset ^ Size ^ Description ^
 |  0     |  4  | Pointer to next device (Must be set to -1 for last device)  |
