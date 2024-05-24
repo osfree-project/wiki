@@ -2,17 +2,19 @@
 
 ====== DOSKRNL ======
 
-DOSKRNL is a specialized FreeDOS kernel changed to support DOS in MVM. Mostly all FAT code removed as well as CONFIG.SYS parser. So it smaller in compare with original FreeDOS kernel. Also image format changed because different load logic.
+DOSKRNL is a specialized FreeDOS kernel changed to support DOS in MVM. Mostly all FAT code removed as well as CONFIG.SYS parser. So it smaller in compare with original FreeDOS kernel. Also image format changed from exe to raw binary because slightly different load logic.
 
 ===== Initialization =====
 
-DOSKRNL loaded at address differ from standard DOS 0060:0000 address. osFree DOSKRNL expect unknown load address, but in low address of conventional memory.
+DOSKRNL loaded at address differ from standard DOS 0060:0000 address, but at 0070:0000. osFree DOSKRNL expects unknown load address, but in low address of conventional memory. Refer [[https://archive.org/download/IBMOS2TechnicalDocumentation/KGUIDE20.PDF|OS/2 v 2.0 Kernel Design Guide]] for memory map and initialization information.
 
 On DOSKRNL startup registers are following:
 
   * CS:IP - starting point
-  * SS:BP - pointer to the DOSKRNL init structure
+  * SS:BP - pointer to the DOSKRNL init structure (also refered as VDOS init in IBM documents)
   * SS:SP - stack pointer (size around 800 bytes)
+
+Interrupts disabled.
 
 DOSKRNL init structure:
 
