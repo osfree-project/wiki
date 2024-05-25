@@ -6,12 +6,12 @@ DOSKRNL is a specialized FreeDOS kernel changed to support DOS in MVM. Mostly al
 
 ===== Initialization =====
 
-DOSKRNL loaded at address differ from standard DOS 0060:0000 address, but at 0070:0000. osFree DOSKRNL expects unknown load address, but in low address of conventional memory. Refer [[https://archive.org/download/IBMOS2TechnicalDocumentation/KGUIDE20.PDF|OS/2 v 2.0 Kernel Design Guide]] for memory map and initialization information.
+DOSKRNL loaded at address differ from standard DOS 0060:0000 address. On test environment it was loaded to 0280:00, but [[https://archive.org/download/IBMOS2TechnicalDocumentation/KGUIDE20.PDF|OS/2 v 2.0 Kernel Design Guide]] says it is at 0070:0000. Later documentation says nothing about loading address. osFree DOSKRNL expects unknown load address, but in low address of conventional memory. Refer [[https://archive.org/download/IBMOS2TechnicalDocumentation/KGUIDE20.PDF|OS/2 v 2.0 Kernel Design Guide]] for memory map and initialization information.
 
 On DOSKRNL startup registers are following:
 
   * CS:IP - starting point
-  * SS:BP - pointer to the DOSKRNL init structure (also refered as VDOS init in IBM documents)
+  * SS:BP - pointer to the DOSKRNL init structure (also referenced as VDOS init in IBM documents)
   * SS:SP - stack pointer (size around 800 bytes)
 
 Interrupts disabled.
@@ -41,7 +41,7 @@ SHELL arguments is ASCIIZ string (first byte is a string length, string ends wit
 
 VDD is linked list of structures:
 
-VDDs linked list in standard DOS Device drivers format. Entry can be placed in HMA, so need to be sure A20 enabled for such entries. Named ad DOSDDTYPE in DDK
+VDDs linked list in standard DOS Device drivers format. Entry can be placed in HMA, so need to be sure A20 enabled for such entries. Named as DOSDDTYPE in DDK
 
 ^ offset ^ Size ^ Description ^
 |  0     |  4  | Pointer to next device (Must be set to -1 for last device)  |
@@ -81,6 +81,8 @@ CONFIG.SYS device information and some other settings not parsed by DOSKRNL, but
   * SHELL
   * DOS
   * BREAK
+  * FCBS
+  * LASTDRIVE
 
 todo add more info here
 
