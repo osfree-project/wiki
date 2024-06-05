@@ -2,20 +2,20 @@
 
 ====== INT 21H ======
 
-^ AH ^ Description ^ Version ^ IMplemented in DOSKRNL ^
+^ AH ^ Description ^ Version ^ Implemented in DOSKRNL ^
 | [[en:docs:dos:api:int21:00|00H]] | Program terminate | 1.0+ |
-| [[en:docs:dos:api:int21:01|01H]] | Character input | 1.0+ |
-| [[en:docs:dos:api:int21:02|02H]] | Character output | 1.0+ |
-| [[en:docs:dos:api:int21:03|03H]] | Auxiliary input | 1.0+ |
-| [[en:docs:dos:api:int21:04|04H]] | Auxiliary output | 1.0+ |
-| [[en:docs:dos:api:int21:05|05H]] | Printer output | 1.0+ |
-| [[en:docs:dos:api:int21:06|06H]] | Direct console I/O | 1.0+ |
-| [[en:docs:dos:api:int21:07|07H]] | Direct console input without echo | 1.0+ |
-| [[en:docs:dos:api:int21:08|08H]] | Console input without echo | 1.0+ |
-| [[en:docs:dos:api:int21:09|09H]] | Display string | 1.0+ |
-| [[en:docs:dos:api:int21:0a|0AH]] | Buffered keyboard input | 1.0+ |
-| [[en:docs:dos:api:int21:0b|0BH]] | Get input status | 1.0+ |
-| [[en:docs:dos:api:int21:0c|0CH]] | Flush input buffer and input | 1.0+ |
+| [[en:docs:dos:api:int21:01|01H]] | Character input | 1.0+ | Yes |
+| [[en:docs:dos:api:int21:02|02H]] | Character output | 1.0+ | Yes |
+| [[en:docs:dos:api:int21:03|03H]] | Auxiliary input | 1.0+ | Yes |
+| [[en:docs:dos:api:int21:04|04H]] | Auxiliary output | 1.0+ | Yes |
+| [[en:docs:dos:api:int21:05|05H]] | Printer output | 1.0+ | Yes |
+| [[en:docs:dos:api:int21:06|06H]] | Direct console I/O | 1.0+ | Yes |
+| [[en:docs:dos:api:int21:07|07H]] | Direct console input without echo | 1.0+ | Yes |
+| [[en:docs:dos:api:int21:08|08H]] | Console input without echo | 1.0+ | Yes |
+| [[en:docs:dos:api:int21:09|09H]] | Display string | 1.0+ | Yes |
+| [[en:docs:dos:api:int21:0a|0AH]] | Buffered keyboard input | 1.0+ | Yes |
+| [[en:docs:dos:api:int21:0b|0BH]] | Get input status | 1.0+ | Yes |
+| [[en:docs:dos:api:int21:0c|0CH]] | Flush input buffer and input | 1.0+ | Yes |
 | [[en:docs:dos:api:int21:0d|0DH]] | Disk reset | 1.0+ |
 | [[en:docs:dos:api:int21:0e|0EH]] | Set default drive | 1.0+ |
 | [[en:docs:dos:api:int21:0f|0FH]] | Open file (FCB) | 1.0+ |
@@ -112,8 +112,8 @@
 | [[en:docs:dos:api:int21:4d|4DH]] | Get program return code | 2.0+ |
 | [[en:docs:dos:api:int21:4e|4EH]] | Find first file | 2.0+ |
 | [[en:docs:dos:api:int21:4f|4FH]] | Find next file | 2.0+ |
-| [[en:docs:dos:api:int21:50|50H]] | Set current PSP | 2.0+ |
-| [[en:docs:dos:api:int21:51|51H]] | Get current PSP | 2.0+ |
+| [[en:docs:dos:api:int21:50|50H]] | Set current PSP | 2.0+ | Yes |
+| [[en:docs:dos:api:int21:51|51H]] | Get current PSP | 2.0+ | Yes |
 | [[en:docs:dos:api:int21:52|52H]] | Get DOS internal pointers (SYSVARS) | 2.0+ |
 | [[en:docs:dos:api:int21:53|53H]] | Create disk parameter block | 2.0+ |
 | [[en:docs:dos:api:int21:54|54H]] | Get verify flag | 2.0+ |
@@ -156,7 +156,7 @@
 | [[en:docs:dos:api:int21:5f:08|5F08H]] | Disable drive                                     | 5+    |
 | [[en:docs:dos:api:int21:60|60H]] | Qualify filename | 3.0+ |
 | [[en:docs:dos:api:int21:61|61H]] | OS/2 File System Join/Subst | OS/2 1.0+ |
-| [[en:docs:dos:api:int21:62|62H]] | Get current PSP | 3.0+ |
+| [[en:docs:dos:api:int21:62|62H]] | Get current PSP | 3.0+ | Yes |
 | [[en:docs:dos:api:int21:63|63H]] | Get DBCS lead byte table pointer | 3.0+ |
 | [[en:docs:dos:api:int21:64|64H]] | Set wait for external event flag / OS/2 VDM API | 3.2+ / OS/2 2.0+ |
 | [[en:docs:dos:api:int21:65|65H]] | Get extended country info | 3.3+ |
