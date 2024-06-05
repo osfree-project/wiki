@@ -2,7 +2,7 @@
 
 ====== INT 21H ======
 
-^ AH ^ Description ^ Version ^
+^ AH ^ Description ^ Version ^ IMplemented in DOSKRNL ^
 | [[en:docs:dos:api:int21:00|00H]] | Program terminate | 1.0+ |
 | [[en:docs:dos:api:int21:01|01H]] | Character input | 1.0+ |
 | [[en:docs:dos:api:int21:02|02H]] | Character output | 1.0+ |
@@ -50,14 +50,14 @@
 | [[en:docs:dos:api:int21:30|30H]] | Get DOS version | 2.0+ |
 | [[en:docs:dos:api:int21:31|31H]] | Terminate and stay resident | 2.0+ |
 | [[en:docs:dos:api:int21:32|32H]] | Get disk parameter block for specified drive | 2.0+ |
-| [[en:docs:dos:api:int21:33|33H]] | Extended functions | 2.0+ |
-| [[en:docs:dos:api:int21:33:00|3300H]] | Get current extended break state                  | 2.0+    |
-| [[en:docs:dos:api:int21:33:01|3301H]] | Set state of extended Ctrl+C/Ctrl+Break checking  | 2.0+    |
-| [[en:docs:dos:api:int21:33:02|3302H]] | Get and set extended Control-Break checking state | 3.0+    |
-| [[en:docs:dos:api:int21:33:03|3303H]] | Get current CPSW state                            | 3.4/4.0 |
-| [[en:docs:dos:api:int21:33:04|3304H]] | Set CPSW state                                    | 3.4/4.0 |
-| [[en:docs:dos:api:int21:33:05|3305H]] | Get boot drive                                    | 4.0+    |
-| [[en:docs:dos:api:int21:33:06|3306H]] | Get true version number                           | 5.0+    |
+| [[en:docs:dos:api:int21:33|33H]] | Extended functions | 2.0+ | Yes |
+| [[en:docs:dos:api:int21:33:00|3300H]] | Get current extended break state                  | 2.0+    | Yes |
+| [[en:docs:dos:api:int21:33:01|3301H]] | Set state of extended Ctrl+C/Ctrl+Break checking  | 2.0+    | Yes |
+| [[en:docs:dos:api:int21:33:02|3302H]] | Get and set extended Control-Break checking state | 3.0+    | Yes |
+| [[en:docs:dos:api:int21:33:03|3303H]] | Get current CPSW state                            | 3.4/4.0 | No |
+| [[en:docs:dos:api:int21:33:04|3304H]] | Set CPSW state                                    | 3.4/4.0 | No |
+| [[en:docs:dos:api:int21:33:05|3305H]] | Get boot drive                                    | 4.0+    | Yes |
+| [[en:docs:dos:api:int21:33:06|3306H]] | Get true version number                           | 5.0+    | Yes |
 | [[en:docs:dos:api:int21:34|34H]] | Get InDOS flag pointer | 2.0+ |
 | [[en:docs:dos:api:int21:35|35H]] | Get interrupt vector | 2.0+ |
 | [[en:docs:dos:api:int21:36|36H]] | Get free disk space | 2.0+ |
