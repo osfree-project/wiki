@@ -186,4 +186,4 @@ In plans:
 | [[en:docs:dos:cmd:basic:WAIT]] | |
 | [[en:docs:dos:cmd:basic:WIDTH]] | **Done** |
 
-{{page>en:templates:doscmd}}
+{{page>en:templates:basickeywords}}
