@@ -28,7 +28,7 @@ In plans:
 ^ Name ^ Status ^
 | [[en:docs:dos:cmd:basic:AUTO]] | **Done** |
 | [[en:docs:dos:cmd:basic:BEEP]] | **Done** |
-| [[en:docs:dos:cmd:basic:BLOAD]] | |
+| [[en:docs:dos:cmd:basic:BLOAD]] | **Done** |
 | [[en:docs:dos:cmd:basic:BSAVE]] | |
 | [[en:docs:dos:cmd:basic:CHAIN]] (Dsk+) | **Done** |
 | [[en:docs:dos:cmd:basic:CLEAR]] | **Done** |
@@ -36,7 +36,7 @@ In plans:
 | [[en:docs:dos:cmd:basic:CONT]] | **Done** |
 | [[en:docs:dos:cmd:basic:DATA]] | **Done** |
 | [[en:docs:dos:cmd:basic:DEF FN]] | **Done** |
-| [[en:docs:dos:cmd:basic:DEF SEG]] | |
+| [[en:docs:dos:cmd:basic:DEF SEG]] | **Done** |
 | [[en:docs:dos:cmd:basic:DEFDBL]] | **Done** |
 | [[en:docs:dos:cmd:basic:DEFINT]] | **Done** |
 | [[en:docs:dos:cmd:basic:DEFSNG]] | **Done** |
