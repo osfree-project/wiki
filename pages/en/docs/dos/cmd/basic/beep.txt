@@ -1,0 +1,11 @@
+====== BEEP ======
+
+===== Syntax =====
+
+<code basic>
+BEEP
+</code>
+
+===== Description =====
+
+Sound the speaker at 800 Hz (800 cycles per second) for one-quarter of a second

@@ -27,7 +27,7 @@ In plans:
 
 ^ Name ^ Status ^
 | [[en:docs:dos:cmd:basic:AUTO]] | **Done** |
-| [[en:docs:dos:cmd:basic:BEEP]] | |
+| [[en:docs:dos:cmd:basic:BEEP]] | **Done** |
 | [[en:docs:dos:cmd:basic:BLOAD]] | |
 | [[en:docs:dos:cmd:basic:BSAVE]] | |
 | [[en:docs:dos:cmd:basic:CHAIN]] (Dsk+) | **Done** |
