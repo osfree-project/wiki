@@ -1,0 +1,11 @@
+====== BSAVE ======
+
+===== Syntax =====
+
+<code basic>
+BSAVE filename,offset,length
+</code>
+
+===== Description =====
+
+Save memory area size of "length" starting from address "offset" to file "filename". Segment address defined by [[en:docs:dos:cmd:basic:DEF SEG]]
