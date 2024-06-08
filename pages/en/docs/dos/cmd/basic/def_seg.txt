@@ -1,0 +1,11 @@
+====== DEF SEG ======
+
+===== Syntax =====
+
+<code basic>
+DEF SEG [=address]
+</code>
+
+===== Description =====
+
+Assign segment address for statements and functions which operates with memory.
