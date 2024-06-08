@@ -1,0 +1,11 @@
+====== BLOAD ======
+
+===== Syntax =====
+
+<code basic>
+BLOAD filename[,offset]
+</code>
+
+===== Description =====
+
+Load binary file "filename" at offset "offset" address at segment, pointed by [[en:docs:dos:cmd:basic:DEF SEG]]

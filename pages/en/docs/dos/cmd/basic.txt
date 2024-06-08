@@ -29,7 +29,7 @@ In plans:
 | [[en:docs:dos:cmd:basic:AUTO]] | **Done** |
 | [[en:docs:dos:cmd:basic:BEEP]] | **Done** |
 | [[en:docs:dos:cmd:basic:BLOAD]] | **Done** |
-| [[en:docs:dos:cmd:basic:BSAVE]] | |
+| [[en:docs:dos:cmd:basic:BSAVE]] | **Done** |
 | [[en:docs:dos:cmd:basic:CHAIN]] (Dsk+) | **Done** |
 | [[en:docs:dos:cmd:basic:CLEAR]] | **Done** |
 | [[en:docs:dos:cmd:basic:COMMON]] (Dsk+) | **Done** |
