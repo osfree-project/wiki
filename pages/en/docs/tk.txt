@@ -5,3 +5,4 @@ osFree toolkit is a set of tools, header files and documentation to produce osFr
   * [[en:docs:tk:install|Toolkit installation]]
   * [[en:docs:tk:tools|Tools reference]]
   * [[en:docs:tk:formats|File formats]]
+  * [[en:docs:tk:som|SOM]]
