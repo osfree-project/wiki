@@ -1,4 +1,5 @@
-somFree Compiler and Emitter Framework
+====== somFree Compiler and Emitter Framework ======
+
 Оглавление
 I. User's Guide	9
 1. Introduction	9
@@ -308,10 +309,13 @@ IV. Appendixes	44
 1. Appendix 1. SOM ABI	44
 Список литературы	44
 
-I. User's Guide
-1. Introduction
+====== I. User's Guide ======
+
+===== 1. Introduction =====
+
 somFree Compiler and Emitter Framework is a free open source binary compatible reimplementation of IBM SOM Compiler and Emitter Framework. It is tries to be as compatible as possible on API and ABI level.
-2. Changes
+===== 2. Changes =====
+
 Most of internal structures now also present as in old IBM SOM 2.1 NT Toolkit.
 New emitters:
 •	LNK - Open Watcom WLink support.
@@ -326,10 +330,13 @@ somtShowEntry function outputs more info.
 Undocumented SOMTTypes now documented.
 SOMIPC now supports IDL 4.2 specification.
 CORBA C Language Mapping Specification 1.0 now supported by default instead of SOM C Language mapping.
-II. Programmer's Guide
-1. Introduction
+====== II. Programmer's Guide ======
+
+===== 1. Introduction =====
+
 somFree compiler is a tool to convert various interface definition languages to another one or language bindings. somFree compiler frontend is a sc or somc command which control workflow. Because somFree compiler and Emitter Framework modeled after IBM SOM Compiler from here SOM Compiler term will be used. Most of somFree Compiler and Emitter Framework and SOM Compiler and Emitter Framework are same and binary compatible at the documented level. Internal structures of somFree and IBM versions are different.
-2. Structure of SOM Compiler and Emitter Framwork
+===== 2. Structure of SOM Compiler and Emitter Framwork =====
+
 SOM Compiler at file level consist of:
 •	SOM Compiler frontend
 sc [Linux]
@@ -411,7 +418,8 @@ gen_mknt.efx
 gen_nid.efw
 gen_temp.efw
 imod.efw
-3. Interaction of SOM Compiler components
+===== 3. Interaction of SOM Compiler components =====
+
  
 Drawing here!!
 
@@ -422,7 +430,8 @@ SOM Compiler		IDL SOM Preprocessor		IDL SOM Compiler	Emitter	 Template
 SOM Compiler sc or somc is a frontend which controls basic workflow. Depending on source file extension it call or IDL or OIDL pre-processor and, after preprocessing, IDL or OIDL compiler. IDL or OIDL compiler builds abstract syntax graph using Entry structure. Entry structure contains information about entry type, pointer to object wrapper and all information about object specific attributes.
 Note! Entry structure is not documented and differs in somFree and IBM SOM versions.
 IDL or OIDL calls required emitters with root Entry structure on emitter entry. Emitter requests root object wrapper and, using or not using template faculty, process all graph using Object Syntax Graph. Object Syntax Graph generates required Entry objects on demand.
-4. Template faculty
+===== 4. Template faculty =====
+
 Emitters uses template faculty to produce output file. Template file has structure divided by sections. Each section begins from section name ended by colon. Each emitter can use its own section names. Refer to corresponding emitter and Entry classes description for section names information. Here is template file example:
 :copyrightS
 This is example template
@@ -479,31 +488,39 @@ overriddenMethodsSN		overriddenMethodsS
 inheritedMethodsSN		inheritedMethodsS
 methodsEpilogSN		methodsEpilogS
 epilogSN			epilogS
-5. Generic Emitter
+===== 5. Generic Emitter =====
+
 Generic emitter is a generic template based emitter. It uses simplest template with only one section "template". Main goal of Generic Emitter is to produce Generic framework emitter files. It is used by newemit tool to produce full set of files required to build new emitter.
 Добавить описание символов шаблона и описание, какой шаблон за что отвечает.
-6. DEF Emitter
+===== 6. DEF Emitter =====
+
 DEF emitter used to generate definition file for DLL creation using MS LINK. somFree version of emitter uses template file to generate DEF file. Original IBM SOM DEF Emitter uses hard coded generation.
 Добавить описание символов шаблона.
-7.LNK Emitter
+===== 7.LNK Emitter =====
+
 LNK emitter used to generate linking file for DLL creation using Watcom WLINK. somFree version of emitter uses template file to generate LNK file. Original IBM SOM DEF Emitter doesn't have such emitter.
 Добавить описание символов шаблона.
-8. CSC, PSC, SC Emitters
+===== 8. CSC, PSC, SC Emitters =====
+
 CSC emitter used to generate OIDL class definition file (CSC) used in IBM SOM 1.0. somFree version of emitter uses template file to generate CSC file. Original IBM SOM CSC Emitter uses hard coded generation.
 Добавить описание символов шаблона.
-9. IDL, PDL Emitters
+===== 9. IDL, PDL Emitters =====
+
 IDL emitter used to generate IDL class definition file used in IBM SOM 2.0 and higher. somFree version of emitter uses template file to generate IDL file. Original IBM SOM IDL Emitter uses hard coded generation.
 Добавить описание символов шаблона.
-10. Developing new emitter
+===== 10. Developing new emitter =====
+
 somFree Emitter Framework provides templates and libraries for developing emitters compatible with both IBM SOM 2.1 and IBM SOM 3.0 compilers. Because of different ABI (refer Appendix 1 for more information) somFree emitters automatically configures for corresponding API.
-11. SOM Interface Definition Language
+===== 11. SOM Interface Definition Language =====
+
 Latest IBM SOM 3.0 supports CORBA IDL mostly at level of CORBA 1.1. somFree supports CORBA IDL 4.2 with all extensions found in SOM IDL.
 Include Directives (optional)
 Type and Constant Declarations (optional)
 Exception Declarations (optional)
 Interface Declarations (optional)
 Module declaration (optional)
-12. SOM Object Interface Definition Language
+===== 12. SOM Object Interface Definition Language =====
+
 SOM Object Interface Definition Language is a pre-IDL object definition language used before IBM SOM 2.1. Since IBM SOM 2.1 uses CORBA IDL as defined in OMG CORBA 1.1. SOM Object Interface Definition Language (OIDL) is a simple definition language and not recommended to use. SOM Compiler support is only for compatibility with old source code. OIDL support implementation mostly based on [1] and various OIDL source files found on the Web.
 OIDL consist of sections set:
 •	Include section (optional)
@@ -514,17 +531,22 @@ OIDL consist of sections set:
 •	Data section (optional)
 •	Methods section (optional)
 
-13. CORBA C Language mapping
+===== 13. CORBA C Language mapping =====
+
 somFree Compiler support CORBA C Language Mapping Specification 1.0 [1]. CORBA C Language mapping slightly differ from SOM C Language mapping, used by original IBM SOM 2.1. CORBA C Language mapping is default for somFree Compiler. This chapter provides short description of mapping. For full description refer to [1].
-14. SOM C Language mapping
+===== 14. SOM C Language mapping =====
+
 SOM C Language mapping is a IBM SOM mapping variant. For some reason (most probably because variable arguments support) IBM SOM not exactly implements C Language Mapping Specification.
-III. Programmer's reference
-1. SOM Runtime C library
+====== III. Programmer's reference ======
+
+===== 1. SOM Runtime C library =====
+
 SOM Runtime C library somwm35i is a subset of C runtime library functions found to be used by IBM SOM 3.0 for NT emitters. SOM Runtime C library provided only for support of IBM SOM 3.0 for NT emitters. This is not full featured C library but compatibility layer and must not be used for development. Functions utilize IBM Optlink calling convention. This library required only under Windows NT systems.
 List of emulated function and variables.
 _CRT_init, _CRT_term, _abort_in_progress, _exception_dllinit, _matherr, fclose, _fprintfieee, strlen, _sprintfieee, strcmp, strstr, _ctype, feof, fgetc, fgets, fputs, fread, fseek, fwrite, memmove, memset, remove, rename, rewind, strchr, strcpy, strlen, strncmp, strncpy, strrchr, strtok, tolower, memcpy, strcat, getenv, _printfieee, _sscanfieee, exit, stderr, _putenv, _terminate, _PrintErrMsg, _SysFindFirst, _SysFindNext, _SysFindClose, malloc, free, strdup, strpbrk
 
-2. SOM Compiler library
+===== 2. SOM Compiler library =====
+
 SOM Compiler library somc is a set of helper functions for compiler tasks. Used by IBM SOM emitters. Library provided solely to provide support of IBM emitters. Must not be used to write new code.
 somtfexists, somtfexistsSL function
 SOMEXTERN BOOL somtfexists(char *file);
@@ -1353,8 +1375,10 @@ SOMTUnionSE	SOMTUnionEntryC
 SOMTEmitterBeginE	Fatal error
 SOMTEmitterEndE	Fatal error
 
-IV. Appendixes
-1. Appendix 1. SOM ABI
+====== IV. Appendixes ======
+
+===== 1. Appendix 1. SOM ABI =====
+
 Due switching from MSVC (IBM SOM 2.1) to VAC (IBM SOM 3.0) some problems was occur:
 First problem is a calling convention. All non SOMLINK calls in IBM SOM 2.1 is a _cdecl calls. But under IBM SOM 3.0 all non SOMLINK calls is a Optlink calls. Read some info here:
 https://github.com/prokushev/SOM-Delphi-Wiki/blob/master/Known%20differences%20between%20SOM%202.1%20and%20SOM%203.0.md
@@ -1363,7 +1387,8 @@ Goal of somFree SOM Compiler and Emitter Framework is to provide a possibility t
 somFree SOMC.DLL provides automatic switching of IBM SOM 2.1 ABI and IBM SOM 3.0 ABI. Switching occurs on somtload call during loading of emitter. For IBM SOM 3.0 all emitter contains entry point emitSL, so, if loading was success, then somFree handles Optlink calling convention for all non SOMLINK calls. If no such entry (found only emit) then IBM SOM 2.1 ABI used.
 2. Support both entry points (emitSL and emit) in emitters.
 somFree emitters automatically switches to IBM SOM 2.1 ABI on emit call and to IBM SOM 3.0 ABI on emitSL call.
-Список литературы
+====== Список литературы ======
+
 
 [1] 	Object Management Group, «C Langue Mapping Specification 1.0,» [В Интернете]. Available: https://www.omg.org/spec/C/. [Дата обращения: 24 Август 2022].
 [2] 	IBM, OS/2 2.0 Technical Library. System Object Model Guide and Reference. First Edition., 1991. 
