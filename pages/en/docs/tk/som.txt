@@ -435,6 +435,93 @@ Some of Emitters uses Templates such as:
   * imod.efw
 
 ===== 3. Interaction of SOM Compiler components =====
+
+''by [[Prokushev]]''
+
+Emitter Framework is a set of classes and [[SOM Compiler]] tool. Emitter Framework is used to produce various file formats from [[the SOM Interface Definition Language]] files. Emitter Framework classes consist of [[SOMTEmitC|Emitter classes]] and [[SOMTEntryC|Entry classes]]. Classes can be shadowed. This means a programmer can replace original classes with his own classes. So the SOM Compiler can be highly customized. The only things hard-coded (and closed source) are the IDL file reader and abstract graph builder.
+
+Before starting description of Emitter Framework let's talk about SOM Compiler. We already [[First steps with the SOM compiler|talked]] briefly about SOM Compiler. But for emitters we need to know internals of SOM Compiler much better.
+
+Let's start from visible parts of SOM Compiler that requires for its work the following files:
+
+# sc.exe, somc.dll and somc.msg - Main part of compiler.
+# somcpp.exe - SOM Preprocessor
+# somipc.exe - Goals not known. Seems just execute different emitters
+# emit*.dll - Emitters
+# *.efw - Emitter templates
+
+''sc.exe'' is general part of compiler. Let's try to investigate some internals of sc.exe. First of all we can switch on verbose output and look on it:
+
+  Running shell command:
+  somcpp -D__OS2__  -I. -IC:\os2tk45\h -IC:\os2tk45\idl -IC:\os2tk45\som\include \
+        -D__SOMIDL_VERSION_1__ -D__SOMIDL__ -C somobj.idl > C:\var\temp\0a500000.CTN
+  somipc -mppfile=C:\var\temp\0a500000.CTN -v -e emith -e emitih -e emitctm -e emitc \
+        -o somobj somobj.idl
+  Loading  emith.
+  "SOMObject"
+  Unloading  emith.
+  Loading  emitih.
+  "SOMObject"
+  Unloading  emitih.
+  Loading  emitctm.
+  "SOMObject"
+  Unloading  emitctm.
+  Loading  emitc.
+  "SOMObject"
+  Unloading  emitc.
+  Removed "C:\var\temp\0a500000.CTN".
+
+Not so many info, but some information here. If we look at SMINCLUDE environment variable:
+
+  SMINCLUDE=.;C:\os2tk45\h;C:\os2tk45\idl;C:\os2tk45\som\include;
+
+then we will see all paths in -I option. 
+
+Considering -D is same as for CPP we can see three symbols defined:
+* __OS2__
+* __SOMIDL_VERSION_1__  
+* __SOMIDL__
+somobj.idl it is file we emitted and CTN file is output from preprocessor. The only unknown switch is -C. After small playing we can see it means "leave comments".
+
+So, we can try to replace somcpp with some preprocessor. In [http://www.osfree.org osFree] project we tried to use [http://mcpp.sourceforge.net MCPP] preprocessor. Results is well.
+
+sc.exe reads SMINCLUDE variable and puts its content to -I options of somcpp.exe and redirect output to temporary file.
+
+Ok. Now we can try to detect what is somipc.exe. If we try to execute it with command line pointed above, then we will see:
+ Loading  emith.
+ "SOMObject"
+ Unloading  emith.
+ Loading  emitih.
+ "SOMObject"
+ Unloading  emitih.
+ Loading  emitctm.
+ "SOMObject"
+ Unloading  emitctm.
+ Loading  emitc.
+ "SOMObject"
+ Unloading  emitc.
+Heh. Actually, somipc.exe is a real SOM Compiler. Not sc.exe. sc.exe only prepares the input file for the compiler and handles command line and environment variables.
+
+After some playing we can see, somipc returns 0 if all ok and -1 if error.
+
+So, somipc.exe parses preprocessed IDL file and builds Abstract graph. From Abstract graph Object Graph are build. After this somipc.exe calls one by one all emit*.dll files according to -e switches. emit*.dll are set of DLLs with SOM classes.
+
+Emitter is a subclass of '''[[SOMTEmitC]]''' class. Emitter used to produce output file using template file from object graph of [[the SOM Interface Definition Language]] file. Physically emitter represented as DLL with name EMIT<identificator>.DLL. For C headers emith.dll emitter DLL is used. For C++ headers emitxh.dll emitter DLL is used. Emitter DLL contains only one entry with ordinal 1 and name '''emit'''.
+ SOMEXTERN FILE * SOMLINK emit(char *file, Entry * cls, Stab * stab);
+
+'''emit''' function creates emitter object (from emitter class, which based on '''[[SOMTEmitC]]''') and calls '''somtGenerateSections''' method.
+
+Usually an emitter file can be generated using '''newemit.cmd''' script (can be found at Hobbes in SOMObjects toolkit).
+ newemit -C <className> <file_stem>
+
+To emitter passed Entry object which is root of Object Graph. The root object can be an interface or module class. Processing of such classes slightly different.
+
+Last part of Emitter Framework is template files. Template files allow you to make some control of emitting process. Templates are usual text files with extension *.efw. Here you can modify output for your wish. Not all emitters support templates.
+
+So, now you have some imagination about that Emitter Framework is and how it works.
+
+Good coding!
+
  
 Drawing here!!
 
@@ -442,8 +529,11 @@ SOM Compiler		IDL SOM Preprocessor		IDL SOM Compiler	Emitter	 Template
 			OIDL SOM Preprocessor	OIDL SOM Compiler
 
 Разрисовать по аналогии с со структурой, что в патентах и документации по SOM, но с учетом наличия OIDL и SOMC.
+
 SOM Compiler sc or somc is a frontend which controls basic workflow. Depending on source file extension it call or IDL or OIDL pre-processor and, after preprocessing, IDL or OIDL compiler. IDL or OIDL compiler builds abstract syntax graph using Entry structure. Entry structure contains information about entry type, pointer to object wrapper and all information about object specific attributes.
+
 Note! Entry structure is not documented and differs in somFree and IBM SOM versions.
+
 IDL or OIDL calls required emitters with root Entry structure on emitter entry. Emitter requests root object wrapper and, using or not using template faculty, process all graph using Object Syntax Graph. Object Syntax Graph generates required Entry objects on demand.
 
 ===== 4. Template faculty =====
