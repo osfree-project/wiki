@@ -36,9 +36,8 @@ SOM Compiler actually is a client program which uses Emitter Framework classes. 
 
 Let's look at SOM Compiler command line syntax to understand how to produce corresponding skeleton code from SOM Compiler template (below is SOM Compiler help screen):
 
-<pre>
- sc [-C:D:E:I:S:VU:cd:hi:m:prsvw] f1 f2 ...
- Where:
+  sc [-C:D:E:I:S:VU:cd:hi:m:prsvw] f1 f2 ...
+  Where:
         -C <n>            - size of comment buffer (default: 200000)
         -D <DEFINE>       - same as -D option for cpp.
         -E <var>=<value>  - set environment variable.
@@ -57,8 +56,8 @@ Let's look at SOM Compiler command line syntax to understand how to produce corr
         -u                - update interface repository.
         -v                - verbose debugging mode (default: FALSE).
         -w                - don't display warnings (default: FALSE).
- 
- Modifiers:
+  
+  Modifiers:
         addprefixes : adds `functionprefix' to method names in template file
         [no]addstar : [no]add `*' to C bindings for interface references.
               corba : check the source for CORBA compliance.
@@ -72,11 +71,11 @@ Let's look at SOM Compiler command line syntax to understand how to produce corr
          nouseshort : don't generate short names for types.
           pp=<path> : specify a local pre-processor to use.
            tcconsts : generate CORBA TypeCode constants.
- 
- Note: All command-line modifiers can be set in the environment
- by changing them to UPPERCASE and preappending "SM" to them.
- 
- Environment Variables:
+  
+  Note: All command-line modifiers can be set in the environment
+  by changing them to UPPERCASE and preappending "SM" to them.
+  
+  Environment Variables:
         SMEMIT=[h;ih;c;xh;xih;xc;def;ir;pdl]
         	: emitters to run (default : h;ih).
         SMINCLUDE=<dir1>[;<dir2>]+
@@ -87,12 +86,12 @@ Let's look at SOM Compiler command line syntax to understand how to produce corr
         	: directory to hold intermediate files.
         SOMIR=<path>[;<path>]+
         	: list of IRs to search.
- 
- Pragmas:
+  
+  Pragmas:
         #pragma somemittypes on          : turn on emission of global types.
         #pragma somemittypes off         : turn off emission of global types.
         #pragma modifier <modifier stm>; : instead of modifier statement.
-</pre>
+
 Now let's explain some command line switches deeper.
 
 First of the most interesting switch is -s. By default SOM Compiler uses SMEMIT environment variable to determine which [[emitter]] to use. Look at emit*.dll files for corresponding [[emitter]]. Using switch -s you can change default logic and select one-time emitter instead of global emitters. In easy situation you need only one emitter (say, C emitter). In complex situations you need use more emitters (say, C, H, DEF and IH emitters). You can create your own emitter to produces, for example, some sort of documentation and other stuff.
@@ -1031,233 +1030,414 @@ somtfreeStab, somtfreeStabSL function
 Note: somtfreeStab version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink.
 ===== 3. SOM Emitter Framework =====
 
-SOMTAttributeEntryC Class
+==== SOMTAttributeEntryC Class ====
 
-somtGetFirst<Item> Methods
 
-somtGetNext<Item> Methods
+=== somtGetFirst<Item> Methods ===
 
-SOMTBaseClassEntryC Class
 
-SOMTClassEntryC Class
+=== somtGetNext<Item> Methods ===
 
-somtFilterNew Method
 
-somtFilterOverridden Method
+==== SOMTBaseClassEntryC Class ====
 
-somtGetFirst<Item> Methods
 
-somtGetNext<Item> Methods
+==== SOMTClassEntryC Class ====
 
-somtGetReleaseNameList Method
 
-SOMTCommonEntryC Class
+=== somtFilterNew Method ===
 
-somtGetFirstArrayDimension Method
 
-somtGetNextArrayDimension Method
+=== somtFilterOverridden Method ===
 
-somtIsArray Method
 
-somtIsPointer Method
+=== somtGetFirst<Item> Methods ===
 
-SOMTConstEntryC Class
 
-SOMTDataEntryC Class
+=== somtGetNext<Item> Methods ===
 
-SOMTEmitC Class
 
-somtAll Method
+=== somtGetReleaseNameList Method ===
 
-somtEmit<Section> Methods
 
-somtEmitFullPassthru Method
+==== SOMTCommonEntryC Class ====
 
-somtFileSymbols Method
 
-somtGenerateSections Method
+=== somtGetFirstArrayDimension Method ===
 
-somtGetFirstGlobalDefinition Method
 
-somtGetGlobalModifierValue Method
+=== somtGetNextArrayDimension Method ===
 
-somtGetNextGlobalDefinition Method
 
-somtImplemented Method
+=== somtIsArray Method ===
 
-somtInherited Method
 
-somtNew Method
+=== somtIsPointer Method ===
 
-somtNewNoProc Method
 
-somtNewProc Method
+==== SOMTConstEntryC Class ====
 
-somtOpenSymbolsFile Method
 
-somtOverridden Method
+==== SOMTDataEntryC Class ====
 
-somtScan<Section> Methods
 
-somtSetPredefinedSymbols Method
+==== SOMTEmitC Class ====
 
-somtVA Method
 
-SOMTEntryC Class
+=== somtAll Method ===
 
-somtFormatModifier Method
 
-somtGetFirstModifier Method
+=== somtEmit<Section> Methods ===
 
-somtGetModifierList Method
 
-somtGetModifierValue Method
+=== somtEmitFullPassthru Method ===
 
-somtGetNextModifier Method
 
-somtSetSymbolsOnEntry Method
+=== somtFileSymbols Method ===
 
-SOMTEnumEntryC Class
 
-somtGetFirstEnumName Method
+=== somtGenerateSections Method ===
 
-somtGetNextEnumName Method
 
-SOMTEnumNameEntryC Class
+=== somtGetFirstGlobalDefinition Method ===
 
-SOMTMetaClassEntryC Class
 
-SOMTMethodEntryC Class
+=== somtGetGlobalModifierValue Method ===
 
-somtGetFirst<Item> Methods
 
-somtGetFullCParamList Method
+=== somtGetNextGlobalDefinition Method ===
 
-somtGetFullParamNameList Method
 
-somtGetIDLParamList Method
+=== somtImplemented Method ===
 
-somtGetNext<Item> Methods
 
-somtGetNthParameter Method
+=== somtInherited Method ===
 
-somtGetShortCParamList Method
 
-somtGetShortParamNameList Method
+=== somtNew Method ===
 
-SOMTModuleEntryC Class
 
-somtGetFirst<Item> Methods
+=== somtNewNoProc Method ===
 
-somtGetNext<Item> Methods
 
-SOMTParameterEntryC Class
+=== somtNewProc Method ===
 
-SOMTPassthruEntryC Class
 
-somtIsBeforePassthru Method
+=== somtOpenSymbolsFile Method ===
 
-SOMTSequenceEntryC Class
 
-SOMTStringEntryC Class
+=== somtOverridden Method ===
 
-SOMTStructEntryC Class
 
-somtGetFirstMember Method
+=== somtScan<Section> Methods ===
 
-somtGetNextMember Method
 
-SOMTTemplateOutputC Class
+=== somtSetPredefinedSymbols Method ===
 
-somtAddSectionDefinitions Method
+
+=== somtVA Method ===
+
+
+==== SOMTEntryC Class ====
+
+
+=== somtFormatModifier Method ===
+
+
+=== somtGetFirstModifier Method ===
+
+
+=== somtGetModifierList Method ===
+
+
+=== somtGetModifierValue Method ===
+
+
+=== somtGetNextModifier Method ===
+
+
+=== somtSetSymbolsOnEntry Method ===
+
+
+==== SOMTEnumEntryC Class ====
+
+
+=== somtGetFirstEnumName Method ===
+
+
+=== somtGetNextEnumName Method ===
+
+
+==== SOMTEnumNameEntryC Class ====
+
+==== SOMTMetaClassEntryC Class ====
+
+
+==== SOMTMethodEntryC Class ====
+
+
+=== somtGetFirst<Item> Methods ===
+
+
+=== somtGetFullCParamList Method ===
+
+
+=== somtGetFullParamNameList Method ===
+
+
+=== somtGetIDLParamList Method ===
+
+
+=== somtGetNext<Item> Methods ===
+
+
+=== somtGetNthParameter Method ===
+
+
+=== somtGetShortCParamList Method ===
+
+
+=== somtGetShortParamNameList Method ===
+
+
+==== SOMTModuleEntryC Class ====
+
+
+=== somtGetFirst<Item> Methods ===
+
+
+=== somtGetNext<Item> Methods ===
+
+
+==== SOMTParameterEntryC Class ====
+
+
+==== SOMTPassthruEntryC Class ====
+
+
+=== somtIsBeforePassthru Method ===
+
+
+==== SOMTSequenceEntryC Class ====
+
+
+==== SOMTStringEntryC Class ====
+
+
+==== SOMTStructEntryC Class ====
+
+
+=== somtGetFirstMember Method ===
+
+
+=== somtGetNextMember Method ===
+
+
+==== SOMTTemplateOutputC Class ====
+
+
+=== somtAddSectionDefinitions Method ===
+
+<code>
 void somtAddSectionDefinitions(in string defString);
+</code>
+
 Add section definitions from <defString> buffer to Symbol table.
-somtCommentStyle attribute
+
+=== somtCommentStyle attribute ===
+
+<code>
 attribute somtCommentStyleT somtCommentStyle;
+</code>
+
 Set style of output comment. Supported styles are:
-•	somtDashesE: "--" at the start of each line
-•	somtCPPE: C++ style, "//" at the start of each line
-•	somtCSimpleE: simple C style, each line wrapped in / * and * /
-•	somtCBlockE: block C style, block style, ie leading / * then a * on each line and then a final * /
-•	somtPSimpleE: simple Pascal style, each line wrapped in (* and *)
-•	somtPBlockE: block Pascal style, block style, ie leading (* then a * on each line and then a final *)
-•	somtPBorlandE: block Borland Pascal style, block style, ie leading { and then a final }
-somtLineLength attribute
+
+  * somtDashesE: "--" at the start of each line
+  * somtCPPE: C++ style, "//" at the start of each line
+  * somtCSimpleE: simple C style, each line wrapped in / * and * /
+  * somtCBlockE: block C style, block style, ie leading / * then a * on each line and then a final * /
+  * somtPSimpleE: simple Pascal style, each line wrapped in (* and *)
+  * somtPBlockE: block Pascal style, block style, ie leading (* then a * on each line and then a final *)
+  * somtPBorlandE: block Borland Pascal style, block style, ie leading { and then a final }
+
+=== somtLineLength attribute ===
+
+<code>
 attribute long somtLineLength;
+</code>
+
 Line length limit. At least on list item will be output.
-somtCommentNewline attribute
+
+=== somtCommentNewline attribute ===
+
+<code>
 attribute boolean somtCommentNewline;
+</code>
+
 Output comment block from new line flag.
-somtCheckSymbol Method
+=== somtCheckSymbol Method ===
+
+<code>
 boolean somtCheckSymbol(in string name);
+</code>
+
 Return TRUE id symbol <name> exists in Symbol Table.
-somtExpandSymbol Method
+
+=== somtExpandSymbol Method ===
+
+<code>
 string somtExpandSymbol(in string s, in string buf);
-somtGetSymbol Method
+</code>
+
+=== somtGetSymbol Method ===
+
+<code>
 string somtGetSymbol(in string name);
+</code>
+
 Return symbol value for <name> from Symbol table.
-somto Method
+
+=== somto Method ===
+
+<code>
 void somto(in string tmplt);
+</code>
+
 Outputs a template, <tmplt>, after substitution for any symbols that occur in it. Five substitutions are supported: simple, list, comment, tab, and conditional.
+
 Substitutable items in the template are bracketed with angle brackets. (Backslash can be used to escape an angle bracket.)
+
 Simple substitutions just replace a symbol with its value. If the symbol has no value in this template object then the symbol is replaced error string but no error is raised.
+
 List substitution assumes that the symbol has a value in output template list form. This is a newline separated string of values. The list substitution specification consists of four parts, a prefix, a symbol, a separator, and a list indicator. prefixes and separators can only be composed of blanks, comma, colons, and semi-colons.  The list indicator is "..." (three periods).  For example, the list substitution specification "<, name, ...> has a prefix of ", ", a symbol of "name" and a separator of ", ".  The prefix will be used whenever there is at least one item in the list and the separator will be used between any two list items.  After the first items of a list is placed each additional item is evaluated to see if it would begin after the line length limit (set by _set_somtLineLength), if it would then a new line is begun and the value is placed directly under the first item.
 Comment substitution assumes that the symbol has a value in output template list form.  A comment specification consists of a comment indicator followed by a symbol name. The comment indicator is "--".  Eg, <-- classComment> is a valid comment substitution specification.  The lines of the comment are output according to the current comment style (see <somtCommentStyle>) and aligned with the starting column of the comment specification.
 Tab substitution is specified by <@dd> where "dd" is a valid positive integer. Blanks will be inserted into the output stream if necessary to position the next character of output at the column indicated by "dd".
+
 Conditional substitution is specified by putting a question mark, "?", in column one of the template line.  The line will not be output at all unless at least one valid, non-blank,  symbol substitution  occurs on the line.
+
 Note: Due design error in IBM SOM 3.0 this method can't be fully replaced. You can do some preprocessing of <templ> and call parent method. This is due direct usage of FILE structure in somto method. This means you can't write to file using standard C file functions because FILE structure is a compiler depended. But you don't know which compiler was used for. Header files contains compiler-independed file functions (somtok*), but no any of this functions, except two ones, exported in SOM DLLs. So, if you want to fully replace this method then you need also replace lot of other methods and functions of Emitter Framework and SOM Compiler library. For IBM SOM 2.1 all seems to be ok, but you must use somtok* functions from SOMC.DLL, not standard C runtime for file operations.
-somtOutputComment Method
+
+=== somtOutputComment Method ===
+
+<code>
 void somtOutputComment(in string comment);
+</code>
+
 Outputs comment using comment style settings.
+
 Note: Due design error in IBM SOM 3.0 this method can't be fully replaced. You can do some preprocessing of <comment> and call parent or somto method. This is due direct usage of FILE structure in somto method. This means you can't write to file using standard C file functions because FILE structure is a compiler depended. But you don't know which compiler was used for. Header files contains compiler-independed file functions (somtok*), but no any of this functions, except two ones, exported in SOM DLLs. So, if you want to fully replace this method then you need also replace lot of other methods and functions of Emitter Framework and SOM Compiler library. For IBM SOM 2.1 all seems to be ok, but you must use somtok* functions from SOMC.DLL, not standard C runtime for file operations.
-somtOutputSection Method
+
+=== somtOutputSection Method ===
+
+<code>
 void somtOutputSection(in string sectionName);
+</code>
+
 Same as somto method, but template read from Symbol table with key equal to sectionName. Uses somto method for actual output.
-somtReadSectionDefinitions Method
+
+=== somtReadSectionDefinitions Method ===
+
+<code>
 void somtReadSectionDefinitions(inout FILE fp);
+</code>
+
 This method reads sections from template file and stores them in Symbol table. fp is a value returned by somtOpenSymbolsFile method of SOMTEmitC class.
+
 Note: Due design error in IBM SOM 3.0 this method can't be replaced. This is due unknown structure of FILE type. This means you can't read file using standard C file functions because FILE structure is a compiler depended. But you don't know which compiler was used for. Header files contains compiler-independed file functions (somtok*), but no any of this functions, except two ones, exported in SOM DLLs. So, if you want to fully replace this method then you need also replace lot of other methods and functions of Emitter Framework and SOM Compiler library. For IBM SOM 2.1 all seems to be ok, but you must use somtok* functions from SOMC.DLL, not standard C runtime for file operations.
-somtSetOutputFile Method
+
+=== somtSetOutputFile Method ===
+
+<code>
 void somtSetOutputFile(inout FILE fp);
+</code>
+
 Pass FILE structure to object to use for file I/O. fp is a value returned by somtOpenEmitFile or somtOpenEmitFileSL.
+
 Note: FILE structure must be same as in other I/O methods and functions.
-somtSetSymbol Method
+
+=== somtSetSymbol Method ===
+
+<code>
 void somtSetSymbol(in string name, in string value);
+</code>
+
 Set symbol name in Symbol table to value. name and value must be allocated using SOMMaloc function. It will be deallocated using SOMFree on object destroying.
-somtSetSymbolCopyBoth Method
+
+=== somtSetSymbolCopyBoth Method ===
+
+<code>
 void somtSetSymbolCopyBoth(in string name, in string value);
+</code>
+
 Same as somtSetSymbol but name and value will be copied to internally allocated buffer.
-somtSetSymbolCopyName Method
+
+=== somtSetSymbolCopyName Method ===
+
+<code>
 void somtSetSymbolCopyName(in string name, in string value);
+</code>
+
 Same as somtSetSymbol but name will be copied to internally allocated buffer.
-somtSetSymbolCopyValue Method
+
+=== somtSetSymbolCopyValue Method ===
+
+<code>
 void somtSetSymbolCopyValue(in string name, in string value);
+</code>
+
 Same as somtSetSymbol but value will be copied to internally allocated buffer.
-SOMTTypedefEntryC Class
 
-somtGetFirstDeclarator Method
+==== SOMTTypedefEntryC Class ====
 
-somtGetNextDeclarator Method
 
-SOMTUnionEntryC Class
+=== somtGetFirstDeclarator Method ===
 
-somtGetFirstCaseEntry Method
 
-somtGetNextCaseEntry Method
+=== somtGetNextDeclarator Method ===
 
-SOMTUserDefinedTypeEntryC Class
 
-SOMStringTableC Class
+==== SOMTUnionEntryC Class ====
+
+
+=== somtGetFirstCaseEntry Method ===
+
+
+=== somtGetNextCaseEntry Method ===
+
+
+==== SOMTUserDefinedTypeEntryC Class ====
+
+
+==== SOMStringTableC Class ====
+
+<code>
 interface SOMStringTableC : SOMObject
+</code>
+
 Объектами класса SOMStringTableC являются символьные таблицы, которые отображают строки на строки (ключ-значение, ассоциативные массивы). Любой экземпляр класса  может хранить неограниченное число элементов. При увеличении количества строк время поиска строки увеличивается. В отличие от IBM SOM в данной реализации не используются хэш-таблицы.
-somstTargetCapacity attribute
+
+=== somstTargetCapacity attribute ===
+
+<code>
 attribute unsigned long somstTargetCapacity;
+</code>
+
 Емкость ассоциативного массива. Значение не влияет на работу и сохранено для совместимости. В IBM SOM данный атрибут определял размер хэш-таблицы. Данный атрибут должен выставляться до вызова любого из методов данного класса
-somstAssociationsCount attribute
+
+=== somstAssociationsCount attribute ===
+
+<code>
 readonly attribute unsigned long somstAssociationsCount;
+</code>
+
 Текущее число ассоциаций в массиве
-somstAssociate method
+
+=== somstAssociate method ===
+
+<code>
 short somstAssociate(in string key, in string value);
+</code>
+
 Устанавливает связь <key> и <value>. Возвращает 0, если связь не может быть установлена (<key> нулевой или недостаточно памяти); -1 - ассоциация успешна выполнена, но <key> уже имел значение до вызова метода, 1 - ассоциация успешно выполнена и <key> не существовал. Замечание: массив сохраняет ссылки на <key> и <value>, передаваемые в аргументах. Копия значений <key> и <value> не создается. При уничтожении объекта память, занимаемая <key> и <value> освобождается с помощью SOMFree, т.е. память под <key> и <value> должна быть выделена с помощью SOMMalloc и аналогичных функций. Замечание: При замене <value> при имеющемся <key> старое <value> заменаяется, память не освобождается
 somstAssociateCopyKey method
 short somstAssociateCopyKey(in string key, in string value);
