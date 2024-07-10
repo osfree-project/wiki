@@ -26,6 +26,111 @@ Changes from original somFree compiler:
   * CORBA C Language Mapping Specification 1.0 now supported by default instead of SOM C Language mapping.
   * Added support of OIDL files
 
+===== SOM Compiler =====
+
+The SOM Compiler is a tool to produce various file formats from Interface Definition Language (IDL) files of Object Interface Definition Language (OIDL) files. SOM Compiler reads IDL or OIDL file and produces an abstract graph tree. Using abstract tree, SOM Compiler generates an object graph tree using classes like SOMTEntryC. After the object graph is ready, SOM Compiler uses classes like SOMTEmitC to produce an output template. Output file generated with help of '''SOMTTemplateOutputC''' class.
+
+The SOM Compiler uses DLL-name based loading of classes libraries (other programs can user another approach, like WPS does. WPS uses an Interface Repository to find corresponding class). Most of the SOM Compiler classes libraries it is implementation of corresponding emitter. Emitters can be created with help of Emitter Framework.
+
+SOM Compiler actually is a client program which uses Emitter Framework classes. SOM Compiler is closed-source, but with an open architecture. The only things that couldn't be easily extended are parser, abstract graph builder and object graph builder. Other things can be ''shadowed'' and replaced by our own.
+
+Let's look at SOM Compiler command line syntax to understand how to produce corresponding skeleton code from SOM Compiler template (below is SOM Compiler help screen):
+
+<pre>
+ sc [-C:D:E:I:S:VU:cd:hi:m:prsvw] f1 f2 ...
+ Where:
+        -C <n>            - size of comment buffer (default: 200000)
+        -D <DEFINE>       - same as -D option for cpp.
+        -E <var>=<value>  - set environment variable.
+        -I <INCLUDE>      - same as -I option for cpp.
+        -S <n>            - size of string buffer (default: 200000)
+        -U <UNDEFINE>     - same as -U option for cpp.
+        -V                - show version number of compiler.
+        -c                - ignore all comments.
+        -d <dir>          - output directory for each emitted file.
+        -h                - this message.
+        -i <file>         - use this file name as supplied.
+        -m <name[=value]> - add global modifier.
+        -p                - shorthand for -D__PRIVATE__.
+        -r                - check releaseorder entries exist (default: FALSE).
+        -s <string>       - replace SMEMIT variable with <string>
+        -u                - update interface repository.
+        -v                - verbose debugging mode (default: FALSE).
+        -w                - don't display warnings (default: FALSE).
+ 
+ Modifiers:
+        addprefixes : adds `functionprefix' to method names in template file
+        [no]addstar : [no]add `*' to C bindings for interface references.
+              corba : check the source for CORBA compliance.
+                csc : force running of OIDL compiler.
+         emitappend : append the emitted files at the end of the existing file.
+           noheader : don't add a header to the emitted file.
+              noint : don't warn about "int" causing portability problems.
+             nolock : don't lock the IR during update.
+               nopp : don't run the source through the pre-processor.
+               notc : don't use typecodes for emit information.
+         nouseshort : don't generate short names for types.
+          pp=<path> : specify a local pre-processor to use.
+           tcconsts : generate CORBA TypeCode constants.
+ 
+ Note: All command-line modifiers can be set in the environment
+ by changing them to UPPERCASE and preappending "SM" to them.
+ 
+ Environment Variables:
+        SMEMIT=[h;ih;c;xh;xih;xc;def;ir;pdl]
+        	: emitters to run (default : h;ih).
+        SMINCLUDE=<dir1>[;<dir2>]+
+        	: where to search for .idl and .efw files.
+        SMKNOWNEXTS=ext[;ext]+
+        	: add headers to user written emitters.
+        SMTMP=<dir>
+        	: directory to hold intermediate files.
+        SOMIR=<path>[;<path>]+
+        	: list of IRs to search.
+ 
+ Pragmas:
+        #pragma somemittypes on          : turn on emission of global types.
+        #pragma somemittypes off         : turn off emission of global types.
+        #pragma modifier <modifier stm>; : instead of modifier statement.
+</pre>
+Now let's explain some command line switches deeper.
+
+First of the most interesting switch is -s. By default SOM Compiler uses SMEMIT environment variable to determine which [[emitter]] to use. Look at emit*.dll files for corresponding [[emitter]]. Using switch -s you can change default logic and select one-time emitter instead of global emitters. In easy situation you need only one emitter (say, C emitter). In complex situations you need use more emitters (say, C, H, DEF and IH emitters). You can create your own emitter to produces, for example, some sort of documentation and other stuff.
+
+Another interesting switch is -m. Using -m you can set and/or unset so named modifiers. Modifiers allow you to change default behaviour of emitter and compiler. As example, by default compiler adds new methods or modifies existent. You can tell compiler just add new text to end of file. Modifiers can control emitters. addstart and noaddstar controls C emitter to add or not add pointer sign (*) to references of objects.
+
+Switch -u adds or updates Interface Repository with new information about class interface. Interface repository filename controlled by SOMIR environment variable. This thing useful to add info for [[Object REXX]] access and other things which uses Interface Repository.
+
+Other switches are like for standard C/C++ preprocessor and not described here.
+
+Now let's play with SOM Compiler. Most often, you need to create interface files for C/C++ client programs. Usually you need to call the SOM Compiler as following:
+ sc -sdef somobj.idl
+ sc -sh somobj.idl
+In case of C++ you need to call:
+ sc -sdef somobj.idl
+ sc -sxh somobj.idl
+Of course, not very nice to call SOM Compiler so often. And SOM Compiler provides such functionality:
+ sc -sdef;h;xh somobj.idl
+The above command will do exactly as all recent commands.
+
+The above emitters were designed for IBM toolset. Nowadays, developers also use GCC or Open Watcom Compilers. The problem here is that Watcom Linker doesn't support .DEF files, but has its own .LNK linker files. In case of one or two classes no many problems to convert .DEF files to .LNK files manually. But such approach just ugly for MUCH classes. So, one of good solution is write REXX script for DEF→LNK conversion. But SOM Compilers allow extending it by new emitters. So, Open Watcom Linker Emitter was created for such approaches.
+
+At the present time, you can ask article author for current version of Open Watcom Linker Emitter. Open Watcom Emitter source code can be obtained via [http://osfree.svn.sourceforge.net/viewvc/osfree/trunk/OS2/SOM/Frameworks/Emitter/Emitters/Lnk/ osFree repository]. Also, DEF emitter clone [http://osfree.svn.sourceforge.net/viewvc/osfree/trunk/OS2/SOM/Frameworks/Emitter/Emitters/Def/ available] also.
+
+Now let's talk about internals of SOM Compiler. SOM Compiler designed in the way as most of C compilers implemented. It is exists of following parts:
+# SOM Preprocessor
+# IDL Parser
+# Emitter Framework
+SOM Compiler first calls SOM Preprocessor. Output of SOM Preprocessor goes to IDL Parser. IDL Parser creates Object tree from IDL source. Object tree, using templates and emitters, stored to file. 
+
+As you see, most of the parts can be extended or replaced by its own implementation. For example, we can reuse CPP instead of SPP. Why not? Just support required command-line switches for compatibility. Also, default emitters can be rewritten. For C and C++ emitter it is not so hard. For other, more structured languages, like Pascal, Modula, etc. emitter creation is more hard work, but it is also possible ([http://osfree.svn.sourceforge.net/viewvc/osfree/trunk/OS2/SOM/Frameworks/Emitter/Emitters/Pas/ btw, author provides development version of Pascal Emitter]).
+
+Actually, we can extend and rewrite SOM Compiler as we want. 
+
+Hope, usage of SOM Compiler will not be problem for most of you. But understanding some details about compiler internals makes life easer.
+
+Good luck with SOM experiments.
+
 ===== SOM Interface Definition Language =====
 
 Latest IBM SOM 3.0 supports CORBA IDL mostly at level of CORBA 1.1. somFree supports CORBA IDL 4.2 with all extensions found in SOM IDL.
@@ -88,59 +193,59 @@ SOM Compiler at file level consist of:
 
 Currently SOM Compiler provides following emitters:
 
-IDL	- IDL Emitter
-CSC	- OIDL Emitter
-SC	- OIDL public emitter
-GEN	- Generic Emitter
-IR	- Interface Repository Emitter
-H	- C Binding public header files
-C	- C Binding implementation template file
-IH	- C Binding implementation header files
-XH	- C++ Binding public header files
-XIH	- C++ Binding implementation header files
-DEF	- DEF Module Definition file
-LNK	- LNK Module Linking file
-HC
-IMOD - SOM Module initialization emitter
-MODS	- List of class modifiers
-PDL	- Private IDL emitter
-PH
-PSC	- OIDL private emitter
-UC
-UXC
-XPH
-XTM
-PAS	- Pascal client library for use of SOM
-IPAS	- Pascal implementation library to write SOM classes.
+  * IDL	- IDL Emitter
+  * CSC	- OIDL Emitter
+  * SC	- OIDL public emitter
+  * GEN	- Generic Emitter
+  * IR	- Interface Repository Emitter
+  * H	- C Binding public header files
+  * C	- C Binding implementation template file
+  * IH	- C Binding implementation header files
+  * XH	- C++ Binding public header files
+  * XIH	- C++ Binding implementation header files
+  * DEF	- DEF Module Definition file
+  * LNK	- LNK Module Linking file
+  * HC
+  * IMOD - SOM Module initialization emitter
+  * MODS - List of class modifiers
+  * PDL	- Private IDL emitter
+  * PH
+  * PSC	- OIDL private emitter
+  * UC
+  * UXC
+  * XPH
+  * XTM
+  * PAS	- Pascal client library for use of SOM
+  * IPAS	- Pascal implementation library to write SOM classes.
 
 Some of Emitters uses Templates such as:
 
-cpp.efw
-ctm.efw
-gen_c.efc
-gen_c.efs
-gen_c.efw
-gen_cpp.efw
-gen_def.efw
-gen_emit.efc
-gen_emit.efs
-gen_emit.efw
-gen_emit.efx
-gen_idl.efw
-gen_make.efc
-gen_make.efs
-gen_make.efw
-gen_make.efx
-gen_mk32.efc
-gen_mk32.efs
-gen_mk32.efw
-gen_mk32.efx
-gen_mknt.efs
-gen_mknt.efw
-gen_mknt.efx
-gen_nid.efw
-gen_temp.efw
-imod.efw
+  * cpp.efw
+  * ctm.efw
+  * gen_c.efc
+  * gen_c.efs
+  * gen_c.efw
+  * gen_cpp.efw
+  * gen_def.efw
+  * gen_emit.efc
+  * gen_emit.efs
+  * gen_emit.efw
+  * gen_emit.efx
+  * gen_idl.efw
+  * gen_make.efc
+  * gen_make.efs
+  * gen_make.efw
+  * gen_make.efx
+  * gen_mk32.efc
+  * gen_mk32.efs
+  * gen_mk32.efw
+  * gen_mk32.efx
+  * gen_mknt.efs
+  * gen_mknt.efw
+  * gen_mknt.efx
+  * gen_nid.efw
+  * gen_temp.efw
+  * imod.efw
 
 ===== 3. Interaction of SOM Compiler components =====
  
