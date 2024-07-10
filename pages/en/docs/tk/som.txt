@@ -140,19 +140,6 @@ Latest IBM SOM 3.0 supports CORBA IDL mostly at level of CORBA 1.1. somFree supp
   * Interface Declarations (optional)
   * Module declaration (optional)
 
-===== SOM Object Interface Definition Language =====
-
-SOM Object Interface Definition Language is a pre-IDL object definition language used before IBM SOM 2.1. Since IBM SOM 2.1 uses CORBA IDL as defined in OMG CORBA 1.1. SOM Object Interface Definition Language (OIDL) is a simple definition language and not recommended to use. SOM Compiler support is only for compatibility with old source code. OIDL support implementation mostly based on [1] and various OIDL source files found on the Web.
-OIDL consist of sections set:
-
-  * Include section (optional)
-  * Class section (required)
-  * Release order section (optional)
-  * Parent class section (required)
-  * Metaclass section (optional)
-  * Data section (optional)
-  * Methods section (optional)
-
 In a [[Introduction to SOM|previous]] article we briefly looked at [[System Object Model|SOM]].
 Now we'll try to define our class interface.
 
@@ -341,6 +328,18 @@ As result, you'll have following:
 
 Using such approach you can easily make SOM wrappers for all Java classes. Using [[Java_JNI_API]] you can create Java classes and using SOM wrappers you integrate Java code to SOM-based applications. Because SOM API more generic then Java API you can use any available language bindings for development. Also, you can start to extend Java classes by native code with help of SOM engine.
 
+===== SOM Object Interface Definition Language =====
+
+SOM Object Interface Definition Language is a pre-IDL object definition language used before IBM SOM 2.1. Since IBM SOM 2.1 uses CORBA IDL as defined in OMG CORBA 1.1. SOM Object Interface Definition Language (OIDL) is a simple definition language and not recommended to use. SOM Compiler support is only for compatibility with old source code. OIDL support implementation mostly based on [1] and various OIDL source files found on the Web.
+OIDL consist of sections set:
+
+  * Include section (optional)
+  * Class section (required)
+  * Release order section (optional)
+  * Parent class section (required)
+  * Metaclass section (optional)
+  * Data section (optional)
+  * Methods section (optional)
 
 ====== Programmer's Guide ======
 
