@@ -103,13 +103,19 @@ Switch -u adds or updates Interface Repository with new information about class 
 Other switches are like for standard C/C++ preprocessor and not described here.
 
 Now let's play with SOM Compiler. Most often, you need to create interface files for C/C++ client programs. Usually you need to call the SOM Compiler as following:
- sc -sdef somobj.idl
- sc -sh somobj.idl
+
+  sc -sdef somobj.idl
+  sc -sh somobj.idl
+  
 In case of C++ you need to call:
- sc -sdef somobj.idl
- sc -sxh somobj.idl
+
+  sc -sdef somobj.idl
+  sc -sxh somobj.idl
+  
 Of course, not very nice to call SOM Compiler so often. And SOM Compiler provides such functionality:
- sc -sdef;h;xh somobj.idl
+
+  sc -sdef;h;xh somobj.idl
+  
 The above command will do exactly as all recent commands.
 
 The above emitters were designed for IBM toolset. Nowadays, developers also use GCC or Open Watcom Compilers. The problem here is that Watcom Linker doesn't support .DEF files, but has its own .LNK linker files. In case of one or two classes no many problems to convert .DEF files to .LNK files manually. But such approach just ugly for MUCH classes. So, one of good solution is write REXX script for DEF→LNK conversion. But SOM Compilers allow extending it by new emitters. So, Open Watcom Linker Emitter was created for such approaches.
@@ -117,9 +123,11 @@ The above emitters were designed for IBM toolset. Nowadays, developers also use 
 At the present time, you can ask article author for current version of Open Watcom Linker Emitter. Open Watcom Emitter source code can be obtained via [http://osfree.svn.sourceforge.net/viewvc/osfree/trunk/OS2/SOM/Frameworks/Emitter/Emitters/Lnk/ osFree repository]. Also, DEF emitter clone [http://osfree.svn.sourceforge.net/viewvc/osfree/trunk/OS2/SOM/Frameworks/Emitter/Emitters/Def/ available] also.
 
 Now let's talk about internals of SOM Compiler. SOM Compiler designed in the way as most of C compilers implemented. It is exists of following parts:
-# SOM Preprocessor
-# IDL Parser
-# Emitter Framework
+
+  * SOM Preprocessor
+  * IDL Parser
+  * Emitter Framework
+
 SOM Compiler first calls SOM Preprocessor. Output of SOM Preprocessor goes to IDL Parser. IDL Parser creates Object tree from IDL source. Object tree, using templates and emitters, stored to file. 
 
 As you see, most of the parts can be extended or replaced by its own implementation. For example, we can reuse CPP instead of SPP. Why not? Just support required command-line switches for compatibility. Also, default emitters can be rewritten. For C and C++ emitter it is not so hard. For other, more structured languages, like Pascal, Modula, etc. emitter creation is more hard work, but it is also possible ([http://osfree.svn.sourceforge.net/viewvc/osfree/trunk/OS2/SOM/Frameworks/Emitter/Emitters/Pas/ btw, author provides development version of Pascal Emitter]).
@@ -127,8 +135,6 @@ As you see, most of the parts can be extended or replaced by its own implementat
 Actually, we can extend and rewrite SOM Compiler as we want. 
 
 Hope, usage of SOM Compiler will not be problem for most of you. But understanding some details about compiler internals makes life easer.
-
-Good luck with SOM experiments.
 
 ===== SOM Interface Definition Language =====
 
@@ -346,6 +352,7 @@ OIDL consist of sections set:
 ===== Introduction =====
 
 somFree compiler is a tool to convert various interface definition languages to another one or language bindings. somFree compiler frontend is a sc or somc command which control workflow. Because somFree compiler and Emitter Framework modeled after IBM SOM Compiler from here SOM Compiler term will be used. Most of somFree Compiler and Emitter Framework and SOM Compiler and Emitter Framework are same and binary compatible at the documented level. Internal structures of somFree and IBM versions are different.
+
 ===== Structure of SOM Compiler and Emitter Framwork =====
 
 SOM Compiler at file level consist of:
@@ -434,21 +441,19 @@ Some of Emitters uses Templates such as:
   * gen_temp.efw
   * imod.efw
 
-===== 3. Interaction of SOM Compiler components =====
+===== Interaction of SOM Compiler components =====
 
-''by [[Prokushev]]''
+Emitter Framework is a set of classes and SOM Compiler tool. Emitter Framework is used to produce various file formats from the SOM Interface Definition Language files. Emitter Framework classes consist of Emitter classes and Entry classes. Classes can be shadowed. This means a programmer can replace original classes with his own classes. So the SOM Compiler can be highly customized. The only things hard-coded (and closed source) are the IDL file reader and abstract graph builder.
 
-Emitter Framework is a set of classes and [[SOM Compiler]] tool. Emitter Framework is used to produce various file formats from [[the SOM Interface Definition Language]] files. Emitter Framework classes consist of [[SOMTEmitC|Emitter classes]] and [[SOMTEntryC|Entry classes]]. Classes can be shadowed. This means a programmer can replace original classes with his own classes. So the SOM Compiler can be highly customized. The only things hard-coded (and closed source) are the IDL file reader and abstract graph builder.
-
-Before starting description of Emitter Framework let's talk about SOM Compiler. We already [[First steps with the SOM compiler|talked]] briefly about SOM Compiler. But for emitters we need to know internals of SOM Compiler much better.
+Before starting description of Emitter Framework let's talk about SOM Compiler. We already talked briefly about SOM Compiler. But for emitters we need to know internals of SOM Compiler much better.
 
 Let's start from visible parts of SOM Compiler that requires for its work the following files:
 
-# sc.exe, somc.dll and somc.msg - Main part of compiler.
-# somcpp.exe - SOM Preprocessor
-# somipc.exe - Goals not known. Seems just execute different emitters
-# emit*.dll - Emitters
-# *.efw - Emitter templates
+  * sc.exe, somc.dll and somc.msg - Main part of compiler.
+  * somcpp.exe - SOM Preprocessor
+  * somipc.exe - Goals not known. Seems just execute different emitters
+  * emit*.dll - Emitters
+  * *.efw - Emitter templates
 
 ''sc.exe'' is general part of compiler. Let's try to investigate some internals of sc.exe. First of all we can switch on verbose output and look on it:
 
@@ -500,29 +505,13 @@ Ok. Now we can try to detect what is somipc.exe. If we try to execute it with co
  Loading  emitc.
  "SOMObject"
  Unloading  emitc.
+
 Heh. Actually, somipc.exe is a real SOM Compiler. Not sc.exe. sc.exe only prepares the input file for the compiler and handles command line and environment variables.
 
 After some playing we can see, somipc returns 0 if all ok and -1 if error.
 
 So, somipc.exe parses preprocessed IDL file and builds Abstract graph. From Abstract graph Object Graph are build. After this somipc.exe calls one by one all emit*.dll files according to -e switches. emit*.dll are set of DLLs with SOM classes.
 
-Emitter is a subclass of '''[[SOMTEmitC]]''' class. Emitter used to produce output file using template file from object graph of [[the SOM Interface Definition Language]] file. Physically emitter represented as DLL with name EMIT<identificator>.DLL. For C headers emith.dll emitter DLL is used. For C++ headers emitxh.dll emitter DLL is used. Emitter DLL contains only one entry with ordinal 1 and name '''emit'''.
- SOMEXTERN FILE * SOMLINK emit(char *file, Entry * cls, Stab * stab);
-
-'''emit''' function creates emitter object (from emitter class, which based on '''[[SOMTEmitC]]''') and calls '''somtGenerateSections''' method.
-
-Usually an emitter file can be generated using '''newemit.cmd''' script (can be found at Hobbes in SOMObjects toolkit).
- newemit -C <className> <file_stem>
-
-To emitter passed Entry object which is root of Object Graph. The root object can be an interface or module class. Processing of such classes slightly different.
-
-Last part of Emitter Framework is template files. Template files allow you to make some control of emitting process. Templates are usual text files with extension *.efw. Here you can modify output for your wish. Not all emitters support templates.
-
-So, now you have some imagination about that Emitter Framework is and how it works.
-
-Good coding!
-
- 
 Drawing here!!
 
 SOM Compiler		IDL SOM Preprocessor		IDL SOM Compiler	Emitter	 Template
@@ -535,6 +524,26 @@ SOM Compiler sc or somc is a frontend which controls basic workflow. Depending o
 Note! Entry structure is not documented and differs in somFree and IBM SOM versions.
 
 IDL or OIDL calls required emitters with root Entry structure on emitter entry. Emitter requests root object wrapper and, using or not using template faculty, process all graph using Object Syntax Graph. Object Syntax Graph generates required Entry objects on demand.
+
+Emitter is a subclass of '''[[SOMTEmitC]]''' class. Emitter used to produce output file using template file from object graph of [[the SOM Interface Definition Language]] file. Physically emitter represented as DLL with name EMIT<identificator>.DLL. For C headers emith.dll emitter DLL is used. For C++ headers emitxh.dll emitter DLL is used. Emitter DLL contains only one entry with ordinal 1 and name '''emit'''.
+
+<code>
+SOMEXTERN FILE * SOMLINK emit(char *file, Entry * cls, Stab * stab);
+</code>
+
+'''emit''' function creates emitter object (from emitter class, which based on '''[[SOMTEmitC]]''') and calls '''somtGenerateSections''' method.
+
+Usually an emitter file can be generated using '''newemit.cmd''' script (can be found at Hobbes in SOMObjects toolkit).
+
+<code>
+newemit -C <className> <file_stem>
+</code>
+
+To emitter passed Entry object which is root of Object Graph. The root object can be an interface or module class. Processing of such classes slightly different.
+
+Last part of Emitter Framework is template files. Template files allow you to make some control of emitting process. Templates are usual text files with extension *.efw. Here you can modify output for your wish. Not all emitters support templates.
+
+So, now you have some imagination about that Emitter Framework is and how it works.
 
 ===== 4. Template faculty =====
 
@@ -1363,12 +1372,13 @@ Output oidl-<style> <comment> to file <fp> from colon <min> up to colon <max>.
 Note: Seems IBM SOM ignores <max> value.
 
 Style is one of following:
-•	'/' - each line started from "//#";
-•	'#' - each line started from "#";
-•	'c' - C-style comment started from '/*' and ended with '*/'. each line started from "*";
-•	's' -each line started from "--";
-•	'd' - each line started from ";";
-•	'+' - each line started from "//";
+
+  * %%'/'%% - each line started from %%"//#"%%;
+  * '#' - each line started from "#";
+  * 'c' - C-style comment started from %%'/*'%% and ended with %%'*/'%%. each line started from %%"*"%%;
+  * 's' -each line started from %%"--"%%;
+  * 'd' - each line started from ";";
+  * '+' - each line started from %%"//"%%;
 
 Other values forced to 'c' style.
 
@@ -1448,59 +1458,90 @@ Note: somtallocBuf version uses default compiler calling convention. For IBM SOM
 
 ===== somtuniqString, somtuniqStringSL function =====
 
+<code>
 SOMEXTERN char * somtuniqString(MemBuf *membuf, char *s);
 SOMEXTERN char * SOMLINK somtuniqStringSL(MemBuf *membuf, char *s);
+</code>
+
 Check is string unique and return NULL if not, or string itself if unique;
+
 Note: somtuniqString version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink.
 
 ===== somtkeyword, somtkeywordSL function =====
 
+<code>
 SOMEXTERN long somtkeyword(KeytabEntry *keytab, char *kword, long keytabsize);
 SOMEXTERN long SOMLINK somtkeywordSL(KeytabEntry *keytab, char *kword, long keytabsize);
+</code>
+
 Return token for keyword <kword> from keytaable <keytab> of <keytabsize> size.
+
 Note: somtkeyword version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink.
 
 ===== somtaddEntry, somtaddEntrySL function =====
 
+<code>
 SOMEXTERN void * somtaddEntry(Stab *stab, char *name, void *ep);
 SOMEXTERN void * SOMLINK somtaddEntrySL(Stab *stab, char *name, void *ep);
+</code>
+
 Add entry <ep> with name <name> to symbol table <stab>. Buffer for entry allocated by function.
+
 Note: somtaddEntry version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink.
 
 ===== somtgetEntry, somtgetEntrySL function =====
 
+<code>
 SOMEXTERN void * somtgetEntry(Stab *stab, char *name);
 SOMEXTERN void * SOMLINK somtgetEntrySL(Stab *stab, char *name);
+</code>
+
 Return pointer to entry structure with name equal to <name> from symbol table <stab>
+
 Note: somtgetEntry version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink.
 
 ===== somtstabFirst, somtstabFirstSL function =====
 
+<code>
 SOMEXTERN void * somtstabFirst(Stab *stab, Sep **sepp);
 SOMEXTERN void * SOMLINK somtstabFirstSL(Stab *stab, Sep **sepp);
+</code>
+
 Return first entry from symbol table <stab> and, optionally, returns sep entry in <sepp>.
+
 Note: somtstabFirst version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink.
 
 ===== somtstabNext, somtstabNextSL function =====
 
+<code>
 SOMEXTERN void * somtstabNext(Stab *stab, Sep **sepp);
 SOMEXTERN void * SOMLINK somtstabNextSL(Stab *stab, Sep **sepp);
+</code>
+
 Return next after last search entry from symbol table <stab> and, optionally, returns sep entry in <sepp>.
+
 Note: somtstabNext version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink.
 
 ===== somtstabFirstName, somtstabFirstNameSL function =====
 
+<code>
 SOMEXTERN void * somtstabFirstName(Stab *stab, char *name, Sep **sepp);
 SOMEXTERN void * SOMLINK somtstabFirstNameSL(Stab *stab, char *name, Sep **sepp);
+</code>
+
 Return first entry with <name> from symbol table <stab> and, optionally, returns sep entry in <sepp>.
+
 Note: somtstabFirstName version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink.
 
 ===== somtstabNextName, somtstabNextNameSL function =====
 
+<code>
 SOMEXTERN void * somtstabNextName(Stab *stab, Sep **sepp);
 SOMEXTERN void * SOMLINK somtstabNextNameSL(Stab *stab, Sep **sepp);
+</code>
 
 Return next after last search entry from symbol table <stab> and, optionally, returns sep entry in <sepp>.
+
 Note: somtstabNextName version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink.
 
 ===== somtcreateMemBuf, somtcreateMemBufSL function =====
@@ -1509,28 +1550,41 @@ Note: somtcreateMemBuf version uses default compiler calling convention. For IBM
 
 ===== somtcreateStab, somtcreateStabSL function =====
 
+<code>
 SOMEXTERN void somtcreateStab(Stab *stab, long stabsize, long entrysize);
 SOMEXTERN void SOMLINK somtcreateStabSL(Stab *stab, long stabsize, long entrysize);
+</code>
+
 Initialize symbol table structure <stab> using hash index size <stabsize> and entry size <entrysize>.
+
 Note: somtcreateStab version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink.
 
 ===== somticstrcmp, somticstrcmpSL function =====
 
+<code>
 SOMEXTERN int somticstrcmp(char *s, char *t)
 SOMEXTERN int SOMLINK somticstrcmpSL(char *s, char *t);
+</code>
+
 Alias of C stricmp.
+
 Note: somticstrcmp version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink.
 
 ===== somtaddEntryBuf, somtaddEntryBufSL function =====
 
+<code>
 SOMEXTERN void * somtaddEntryBuf(Stab *stab, char *name, void *ep, void *buf, size_t len);
 SOMEXTERN void * SOMLINK somtaddEntryBufSL(Stab *stab, char *name, void *ep, void *buf, size_t len);
+</code>
+
 Add entry <ep> with name <name> to symbol table <stab> to buffer <buf> with size <len>
+
 Note: somtaddEntryBuf version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink.
 
 ===== somtfreeStab, somtfreeStabSL function =====
 
 Note: somtfreeStab version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink.
+
 ===== 3. SOM Emitter Framework =====
 
 ==== SOMTAttributeEntryC Class ====
