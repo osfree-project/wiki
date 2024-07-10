@@ -1,383 +1,93 @@
 ====== somFree Compiler and Emitter Framework ======
 
-Оглавление
-I. User's Guide	9
-1. Introduction	9
-2. Changes	10
-II. Programmer's Guide	10
-1. Introduction	10
-2. Structure of SOM Compiler and Emitter Framwork	10
-3. Interaction of SOM Compiler components	13
-4. Template faculty	13
-5. Generic Emitter	15
-6. DEF Emitter	16
-7.LNK Emitter	16
-8. CSC, PSC, SC Emitters	16
-9. IDL, PDL Emitters	16
-10. Developing new emitter	16
-11. SOM Interface Definition Language	16
-12. SOM Object Interface Definition Language	16
-13. CORBA C Language mapping	17
-14. SOM C Language mapping	17
-III. Programmer's reference	17
-1. SOM Runtime C library	17
-2. SOM Compiler library	17
-somtfexists, somtfexistsSL function	17
-somtsearchFile, somtsearchFileSL function	18
-somttraverseParents, somttraverseParentsSL function	18
-somtloadSL function	18
-somtfindBaseEp, somtfindBaseEpSL function	18
-somtgetType, somtgetTypeSL function	18
-somtokfopen, somtokfopenSL function	18
-somtokrename, somtokrenameSL function	18
-somtopenEmitFile, somtopenEmitFileSL function	18
-somtisDbcs, somtisDbcsSL function	18
-somtremoveExt, somtremoveExtSL function	19
-somtaddExt, somtaddExtSL function	19
-somtarrayToPtr, somtarrayToPtrSL function	19
-somtattNormalise, somtattNormaliseSL function	19
-somtbasename, somtbasenameSL function	19
-somtctos, somtctosSL function	19
-somtdbcsPostincr, somtdbcsPostincrSL function	19
-somtdbcsPreincr, somtdbcsPreincrSL function	19
-somtdbcsStrchr, somtdbcsStrchrSL function	19
-somtdbcsStrrchr, somtdbcsStrrchrsL function	19
-somtdbcsStrstr, somtdbcsStrstrSL function	19
-somteptotype, somteptotypeSL function	20
-somtgetDesc, somtgetDescSL function	20
-somtgetVersion, somtgetVersionSL function	20
-somtgetgatt, somtgetgattSL function	20
-somtnextword, somtnextwordSL function	20
-somtnormaliseDesc, somtnormaliseDescSL function	20
-somtsatos, somtsatosSL function	20
-somtsearchFile, somtsearchFileSL function	20
-somtskipws, somtskipwsSL function	20
-somtstringFmt, somtstringFmtSL function	20
-somttype, somttypeSL function	20
-somtuniqFmt, somtuniqFmtSL function	20
-somtargFlag, somtargFlagSL function	21
-somtattjoin, somtattjoinSL function	21
-somtdbcsLastChar, somtdbcsLastCharSL function	21
-somtdbcsScan, somtdbcsScanSL function	21
-somtdiskFull, somtdiskFullSL function	21
-somtfclose, somtfcloseSL function	21
-somtisparent, somtisparentSL function	21
-somtmget, somtmgetSL function	21
-somtmopen, somtmopenSL function	21
-somtmprintf, somtmprintfSL function	21
-somtokremove, somtokremoveSL function	21
-somtunload, somtunloadSL function	21
-somtwriteaccess, somtwriteaccessSL function	22
-somtsmalloc, somtsmallocSL function	22
-somtaddGAtt, somtaddGAttSL function	22
-somtcalcFileName, somtcalcFileNameSL function	22
-somtcleanFilesFatal, somtcleanFilesFatalSL function	22
-somtemitTypes, somtemitTypesSL function	22
-somterror, somterrorSL function	22
-somtfatal, somtfatalSL function	22
-somtinternal, somtinternalSL function	22
-somtmclose, somtmcloseSL function	22
-somtmsg, somtmsgSL function	22
-somtreadDescFile, somtreadDescFileSL function	22
-somtsetDefaultDesc, somtsetDefaultDescSL function	22
-somtsetEmitSignals, somtsetEmitSignalsSL function	23
-somtsetTypeDefn, somtsetTypeDefnSL function	23
-somtshowVersion, somtshowVersionSL function	23
-somtsmfree, somtsmfreeSL function	23
-somtunsetEmitSignals, somtunsetEmitSignalsSL function	23
-somtwarn, somtwarnSL function	23
-somtuppercase, somtuppercaseSL function	23
-somtlowercase, somtlowercaseSL function	23
-somtdbcsuppercase, somtdbcsuppercaseSL function	23
-somtdbcslowercase, somtdbcslowercaseSL function	23
-somtresetEmitSignals, somtresetEmitSignalsSL function	23
-somtsizeofEntry, somtsizeofEntrySL function	23
-somtepname, somtepnameSL function	24
-somtgenSeqName, somtgenSeqNameSL function	24
-somtmrifatal, somtmrifatalSL function	24
-somtmriinternal, somtmriinternalSL function	24
-somtmrierror, somtmrierrorSL function	24
-somtmrimsg, somtmrimsgSL function	24
-somtmriwarn, somtmriwarnSL function	24
-somtsetInternalMessages, somtsetInternalMessagesSL function	25
-somtisvoid, somtisvoidSL function	25
-somtreturnsStruct, somtreturnsStructSL function	25
-somtreturnsPtr, somtreturnsPtrSL function	25
-somtsimpleName, somtsimpleNameSL function	25
-somtqualifyNames, somtqualifyNamesSL function	25
-somtfindBaseEpNonPtr, somtfindBaseEpNonPtrSL function	25
-somtprocessTraps, somtprocessTrapsSL function	25
-somtallocMlist, somtallocMlistSL function	25
-somtmlistend, somtmlistendSL function	25
-somtisMutRef, somtisMutRefSL function	25
-somtfreeMlist, somtfreeMlistSL function	25
-somtdupMlist, somtdupMlistSL function	25
-somtfreeWorld, somtfreeWorldSL function	25
-somtinitMalloc, somtinitMallocSL function	25
-somtInitialiseEmitlib. somtInitialiseEmitlibSL function	26
-somtInitialiseSmmeta, somtInitialiseSmmetaSL function	26
-somtInitialiseCreatetc, somtInitialiseCreatetcSL function	26
-somtInitialiseSmtypes, somtInitialiseSmtypesSL function	26
-somtInitialiseSomc, somtInitialiseSomcSL function	26
-somtInitialiseSmsmall, somtInitialiseSmsmallSL function	26
-somtattMap, somtattMapSL function	26
-somtexit, somtexitSL function	26
-somtdymain, somtdymainSL function	26
-somtaddHeader, somtaddHeaderSL function	26
-somtnthArg, somtnthArgSL function	26
-somtemitModule, somtemitModuleSL function	26
-somtallocDataList, somtallocDataListSL function	26
-somtallocMethodList, somtallocMethodListSL function	26
-somtclsfilename, somtclsfilenameSL function	27
-somtclsname, somtclsnameSL function	27
-somtfindMethodName, somtfindMethodNameSL function	27
-somtfullPrototype, somtfullPrototypeSL function	27
-somtfullTypedef, somtfullTypedefSL function	27
-somtgetNonRepeatedParent, somtgetNonRepeatedParentSL function	27
-somtgetatt, somtgetattSL function	27
-somtgetdatt, somtgetdattSL function	27
-somtgetAbistyle, somtgetAbistyleSL function	27
-somtimplicit, somtimplicitSL function	27
-somtimplicitArgs, somtimplicitArgsSL function	27
-somtincludeOnce, somtincludeOnceSL function	27
-somtpclsfilename, somtpclsfilenameSL function	28
-somtpclsname, somtpclsnameSL function	28
-somtprefixedPrototype, somtprefixedPrototypeSL function	28
-somtreplaceDataName, somtreplaceDataNameSL function	28
-somtrmSelf, somtrmSelfSL function	28
-somtshortArgList, somtshortArgListSL function	28
-somtimplicitMeta, somtimplicitMetaSL function	28
-somtlistAttribute, somtlistAttributeSL function	28
-somtnewMethodsCount, somtnewMethodsCountSL function	28
-somtprivateMethodsCount, somtprivateMethodsCountSL function	28
-somtaddHeader, somtaddHeaderSL function	28
-somtcleanFiles, somtcleanFilesSL function	28
-somtdeclareIdlVarargs, somtdeclareIdlVarargsSL function	28
-somtdymain. somtdymainSL function	28
-somtemitModuleTypes, somtemitModuleTypesSL function	28
-somtemitPassthru, somtemitPassthruSL function	29
-somtfreeDataList, somtfreeDataListSL function	29
-somtfreeMethodList, somtfreeMethodListSL function	29
-somtfullComment, somtfullCommentSL function	29
-somthandleDiskFull, somthandleDiskFullSL function	29
-somtinitialiseMeta, somtinitialiseMetaSL function	29
-somtoidlComment, somtoidlCommentSL function	29
-somtscmsg, somtscmsgSL function	30
-somtshortDefine, somtshortDefineSL function	30
-somtuninitialiseMeta, somtuninitialiseMetaSL function	30
-somtobseleteHeaderFile, somtobseleteHeaderFileSL function	30
-somtwidenType, somtwidenTypeSL function	30
-somtgenAttStubs, somtgenAttStubsSL function	30
-somtstrictidl, somtstrictidlSL function	30
-somtcreateTypeCodes, somtcreateTypeCodesSL function	30
-somtemitTcConstant, somtemitTcConstantSL function	30
-somtemitPredefinedTcConstants, somtemitPredefinedTcConstantsSL function	30
-somtAncestorClass, somtAncestorClassSL function	30
-somttcAlignment, somttcAlignmentSL function	30
-somttcSize, somttcSizeSL function	30
-somttcKind, somttcKindSL function	31
-somttcSeqFromListString, somttcSeqFromListStringSL function	31
-somtGetReintroducedMethods, somtGetReintroducedMethodsSL function	31
-Symbol table support functions	31
-somtallocBuf, somtallocBufSL function	31
-somtuniqString, somtuniqStringSL function	31
-somtkeyword, somtkeywordSL function	31
-somtaddEntry, somtaddEntrySL function	31
-somtgetEntry, somtgetEntrySL function	31
-somtstabFirst, somtstabFirstSL function	32
-somtstabNext, somtstabNextSL function	32
-somtstabFirstName, somtstabFirstNameSL function	32
-somtstabNextName, somtstabNextNameSL function	32
-somtcreateMemBuf, somtcreateMemBufSL function	32
-somtcreateStab, somtcreateStabSL function	32
-somticstrcmp, somticstrcmpSL function	33
-somtaddEntryBuf, somtaddEntryBufSL function	33
-somtfreeStab, somtfreeStabSL function	33
-3. SOM Emitter Framework	33
-SOMTAttributeEntryC Class	33
-somtGetFirst<Item> Methods	33
-somtGetNext<Item> Methods	33
-SOMTBaseClassEntryC Class	33
-SOMTClassEntryC Class	33
-somtFilterNew Method	33
-somtFilterOverridden Method	33
-somtGetFirst<Item> Methods	33
-somtGetNext<Item> Methods	34
-somtGetReleaseNameList Method	34
-SOMTCommonEntryC Class	34
-somtGetFirstArrayDimension Method	34
-somtGetNextArrayDimension Method	34
-somtIsArray Method	34
-somtIsPointer Method	34
-SOMTConstEntryC Class	34
-SOMTDataEntryC Class	34
-SOMTEmitC Class	34
-somtAll Method	34
-somtEmit<Section> Methods	34
-somtEmitFullPassthru Method	34
-somtFileSymbols Method	34
-somtGenerateSections Method	34
-somtGetFirstGlobalDefinition Method	34
-somtGetGlobalModifierValue Method	34
-somtGetNextGlobalDefinition Method	34
-somtImplemented Method	35
-somtInherited Method	35
-somtNew Method	35
-somtNewNoProc Method	35
-somtNewProc Method	35
-somtOpenSymbolsFile Method	35
-somtOverridden Method	35
-somtScan<Section> Methods	35
-somtSetPredefinedSymbols Method	35
-somtVA Method	35
-SOMTEntryC Class	35
-somtFormatModifier Method	35
-somtGetFirstModifier Method	35
-somtGetModifierList Method	35
-somtGetModifierValue Method	35
-somtGetNextModifier Method	35
-somtSetSymbolsOnEntry Method	35
-SOMTEnumEntryC Class	35
-somtGetFirstEnumName Method	36
-somtGetNextEnumName Method	36
-SOMTEnumNameEntryC Class	36
-SOMTMetaClassEntryC Class	36
-SOMTMethodEntryC Class	36
-somtGetFirst<Item> Methods	36
-somtGetFullCParamList Method	36
-somtGetFullParamNameList Method	36
-somtGetIDLParamList Method	36
-somtGetNext<Item> Methods	36
-somtGetNthParameter Method	36
-somtGetShortCParamList Method	36
-somtGetShortParamNameList Method	36
-SOMTModuleEntryC Class	36
-somtGetFirst<Item> Methods	36
-somtGetNext<Item> Methods	36
-SOMTParameterEntryC Class	36
-SOMTPassthruEntryC Class	36
-somtIsBeforePassthru Method	37
-SOMTSequenceEntryC Class	37
-SOMTStringEntryC Class	37
-SOMTStructEntryC Class	37
-somtGetFirstMember Method	37
-somtGetNextMember Method	37
-SOMTTemplateOutputC Class	37
-somtAddSectionDefinitions Method	37
-somtCommentStyle attribute	37
-somtLineLength attribute	37
-somtCommentNewline attribute	37
-somtCheckSymbol Method	37
-somtExpandSymbol Method	38
-somtGetSymbol Method	38
-somto Method	38
-somtOutputComment Method	39
-somtOutputSection Method	39
-somtReadSectionDefinitions Method	39
-somtSetOutputFile Method	39
-somtSetSymbol Method	39
-somtSetSymbolCopyBoth Method	39
-somtSetSymbolCopyName Method	40
-somtSetSymbolCopyValue Method	40
-SOMTTypedefEntryC Class	40
-somtGetFirstDeclarator Method	40
-somtGetNextDeclarator Method	40
-SOMTUnionEntryC Class	40
-somtGetFirstCaseEntry Method	40
-somtGetNextCaseEntry Method	40
-SOMTUserDefinedTypeEntryC Class	40
-SOMStringTableC Class	40
-somstTargetCapacity attribute	40
-somstAssociationsCount attribute	40
-somstAssociate method	41
-somstAssociateCopyKey method	41
-somstAssociateCopyValue method	41
-somstAssociateCopyBoth method	41
-somstGetAssociation method	41
-somstClearAssociation method	41
-somstGetIthKey method	41
-somstGetIthValue method	41
-somtStrDup function	42
-somtEntryTypeName function	42
-somtShowEntry function	42
-somtStrCat function	42
-somtMakeIncludeStr function	42
-somtNewSymbol function	42
-somtGetFileStem function	42
-somtGetObjectWrapper function	42
-IV. Appendixes	44
-1. Appendix 1. SOM ABI	44
-Список литературы	44
+====== User's Guide ======
 
-====== I. User's Guide ======
-
-===== 1. Introduction =====
+===== Introduction =====
 
 somFree Compiler and Emitter Framework is a free open source binary compatible reimplementation of IBM SOM Compiler and Emitter Framework. It is tries to be as compatible as possible on API and ABI level.
-===== 2. Changes =====
 
-Most of internal structures now also present as in old IBM SOM 2.1 NT Toolkit.
+===== Changes =====
 
-New emitters:
-  * LNK - Open Watcom WLink support.
-  * DUMP - displays structures, available to emitter.
-  * PAS - Pascal client support.
-  * IPAS - Pascal implementation classes support.
+Changes from original somFree compiler:
 
-SOM Compiler library now mostly documented.
+  * Most of internal structures now also present as in old IBM SOM 2.1 NT Toolkit.
+  * New emitters:
+    * LNK - Open Watcom WLink support.
+    * DUMP - displays structures, available to emitter.
+    * PAS - Pascal client support.
+    * IPAS - Pascal implementation classes support.
+  * SOM Compiler library now mostly documented.
+  * SOMLINK style functions for most of SOM Compiler library added.
+  * Emitters now IBM SOM 2.1 and IBM SOM 3.0 compatible without recompilation.
+  * somFree Compiler supports IBM SOM 2.1, IBM SOM 3.0, and somFree 1.0 emitters.
+  * somtShowEntry function outputs more info.
+  * Undocumented SOMTTypes now documented.
+  * SOMIPC now supports IDL 4.2 specification.
+  * CORBA C Language Mapping Specification 1.0 now supported by default instead of SOM C Language mapping.
+  * Added support of OIDL files
 
-SOMLINK style functions for most of SOM Compiler library added.
+===== SOM Interface Definition Language =====
 
-Emitters now IBM SOM 2.1 and IBM SOM 3.0 compatible without recompilation.
+Latest IBM SOM 3.0 supports CORBA IDL mostly at level of CORBA 1.1. somFree supports CORBA IDL 4.2 with all extensions found in SOM IDL.
 
-somFree Compiler supports IBM SOM 2.1, IBM SOM 3.0, and somFree 1.0 emitters.
+  * Include Directives (optional)
+  * Type and Constant Declarations (optional)
+  * Exception Declarations (optional)
+  * Interface Declarations (optional)
+  * Module declaration (optional)
 
-somtShowEntry function outputs more info.
+===== SOM Object Interface Definition Language =====
 
-Undocumented SOMTTypes now documented.
+SOM Object Interface Definition Language is a pre-IDL object definition language used before IBM SOM 2.1. Since IBM SOM 2.1 uses CORBA IDL as defined in OMG CORBA 1.1. SOM Object Interface Definition Language (OIDL) is a simple definition language and not recommended to use. SOM Compiler support is only for compatibility with old source code. OIDL support implementation mostly based on [1] and various OIDL source files found on the Web.
+OIDL consist of sections set:
 
-SOMIPC now supports IDL 4.2 specification.
+  * Include section (optional)
+  * Class section (required)
+  * Release order section (optional)
+  * Parent class section (required)
+  * Metaclass section (optional)
+  * Data section (optional)
+  * Methods section (optional)
 
-CORBA C Language Mapping Specification 1.0 now supported by default instead of SOM C Language mapping.
+====== Programmer's Guide ======
 
-====== II. Programmer's Guide ======
-
-===== 1. Introduction =====
+===== Introduction =====
 
 somFree compiler is a tool to convert various interface definition languages to another one or language bindings. somFree compiler frontend is a sc or somc command which control workflow. Because somFree compiler and Emitter Framework modeled after IBM SOM Compiler from here SOM Compiler term will be used. Most of somFree Compiler and Emitter Framework and SOM Compiler and Emitter Framework are same and binary compatible at the documented level. Internal structures of somFree and IBM versions are different.
-===== 2. Structure of SOM Compiler and Emitter Framwork =====
+===== Structure of SOM Compiler and Emitter Framwork =====
 
 SOM Compiler at file level consist of:
   * SOM Compiler frontend
-sc [Linux]
-sc.exe [OS/2, Windows]
-somc.exe [Windows]
+    * sc [Linux]
+    * sc.exe [OS/2, Windows]
+    *somc.exe [Windows]
   * IDL SOM Pre-processor
-somcpp [Linux]
-somcpp.exe [OS/2, Windows]
+    * somcpp [Linux]
+    * somcpp.exe [OS/2, Windows]
   * IDL SOM Compiler
-somipc [Linux]
-somipc.exe [OS/2, Windows]
+    * somipc [Linux]
+    * somipc.exe [OS/2, Windows]
   * OIDL SOM Pre-processor
-spp [Linux]
-spp.exe [OS/2, Windows]
+    * spp [Linux]
+    * spp.exe [OS/2, Windows]
   * OIDL SOM Compiler
-somopc [Linux]
-somopc.exe [OS/2, Windows]
+    * somopc [Linux]
+    * somopc.exe [OS/2, Windows]
   * SOM Compiler Library
-somc.so [Linux]
-somc.dll [OS/2, Windows]
+    * somc.so [Linux]
+    * somc.dll [OS/2, Windows]
   * SOM Emitter Framework
-some.so [Linux]
-some.dll [OS/2, Windows]
+    * some.so [Linux]
+    * some.dll [OS/2, Windows]
   * Emitters
-emit*.so [Linux]
-emit*.dll [OS/2, Windows]
+    * emit*.so [Linux]
+    * emit*.dll [OS/2, Windows]
   * Public IDL files generator
-pdl [Linux]
-pdl.exe [OS/2, Windows]
+    * pdl [Linux]
+    * pdl.exe [OS/2, Windows]
 
 Currently SOM Compiler provides following emitters:
+
 IDL	- IDL Emitter
 CSC	- OIDL Emitter
 SC	- OIDL public emitter
@@ -402,7 +112,9 @@ XPH
 XTM
 PAS	- Pascal client library for use of SOM
 IPAS	- Pascal implementation library to write SOM classes.
+
 Some of Emitters uses Templates such as:
+
 cpp.efw
 ctm.efw
 gen_c.efc
@@ -536,28 +248,6 @@ IDL emitter used to generate IDL class definition file used in IBM SOM 2.0 and h
 
 somFree Emitter Framework provides templates and libraries for developing emitters compatible with both IBM SOM 2.1 and IBM SOM 3.0 compilers. Because of different ABI (refer Appendix 1 for more information) somFree emitters automatically configures for corresponding API.
 
-===== 11. SOM Interface Definition Language =====
-
-Latest IBM SOM 3.0 supports CORBA IDL mostly at level of CORBA 1.1. somFree supports CORBA IDL 4.2 with all extensions found in SOM IDL.
-Include Directives (optional)
-Type and Constant Declarations (optional)
-Exception Declarations (optional)
-Interface Declarations (optional)
-Module declaration (optional)
-
-===== 12. SOM Object Interface Definition Language =====
-
-SOM Object Interface Definition Language is a pre-IDL object definition language used before IBM SOM 2.1. Since IBM SOM 2.1 uses CORBA IDL as defined in OMG CORBA 1.1. SOM Object Interface Definition Language (OIDL) is a simple definition language and not recommended to use. SOM Compiler support is only for compatibility with old source code. OIDL support implementation mostly based on [1] and various OIDL source files found on the Web.
-OIDL consist of sections set:
-
-  * Include section (optional)
-  * Class section (required)
-  * Release order section (optional)
-  * Parent class section (required)
-  * Metaclass section (optional)
-  * Data section (optional)
-  * Methods section (optional)
-
 ===== 13. CORBA C Language mapping =====
 
 somFree Compiler support CORBA C Language Mapping Specification 1.0 [1]. CORBA C Language mapping slightly differ from SOM C Language mapping, used by original IBM SOM 2.1. CORBA C Language mapping is default for somFree Compiler. This chapter provides short description of mapping. For full description refer to [1].
@@ -565,6 +255,7 @@ somFree Compiler support CORBA C Language Mapping Specification 1.0 [1]. CORBA C
 ===== 14. SOM C Language mapping =====
 
 SOM C Language mapping is a IBM SOM mapping variant. For some reason (most probably because variable arguments support) IBM SOM not exactly implements C Language Mapping Specification.
+
 ====== III. Programmer's reference ======
 
 ===== 1. SOM Runtime C library =====
