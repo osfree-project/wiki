@@ -28,7 +28,7 @@ Changes from original somFree compiler:
 
 ===== SOM Compiler =====
 
-The SOM Compiler is a tool to produce various file formats from Interface Definition Language (IDL) files of Object Interface Definition Language (OIDL) files. SOM Compiler reads IDL or OIDL file and produces an abstract graph tree. Using abstract tree, SOM Compiler generates an object graph tree using classes like SOMTEntryC. After the object graph is ready, SOM Compiler uses classes like SOMTEmitC to produce an output template. Output file generated with help of '''SOMTTemplateOutputC''' class.
+The SOM Compiler is a tool to produce various file formats from Interface Definition Language (IDL) files of Object Interface Definition Language (OIDL) files. SOM Compiler reads IDL or OIDL file and produces an abstract graph tree. Using abstract tree, SOM Compiler generates an object graph tree using classes like SOMTEntryC. After the object graph is ready, SOM Compiler uses classes like SOMTEmitC to produce an output template. Output file generated with help of SOMTTemplateOutputC class.
 
 The SOM Compiler uses DLL-name based loading of classes libraries (other programs can user another approach, like WPS does. WPS uses an Interface Repository to find corresponding class). Most of the SOM Compiler classes libraries it is implementation of corresponding emitter. Emitters can be created with help of Emitter Framework.
 
@@ -1253,9 +1253,9 @@ attribute somtCommentStyleT somtCommentStyle;
 Set style of output comment. Supported styles are:
 
   * somtDashesE: "--" at the start of each line
-  * somtCPPE: C++ style, "//" at the start of each line
-  * somtCSimpleE: simple C style, each line wrapped in / * and * /
-  * somtCBlockE: block C style, block style, ie leading / * then a * on each line and then a final * /
+  * somtCPPE: C++ style, %%"//"%% at the start of each line
+  * somtCSimpleE: simple C style, each line wrapped in %%/*%% and %%*/%%
+  * somtCBlockE: block C style, block style, ie leading %%/*%% then a * on each line and then a final %%*/%%
   * somtPSimpleE: simple Pascal style, each line wrapped in (* and *)
   * somtPBlockE: block Pascal style, block style, ie leading (* then a * on each line and then a final *)
   * somtPBorlandE: block Borland Pascal style, block style, ie leading { and then a final }
@@ -1310,7 +1310,7 @@ Substitutable items in the template are bracketed with angle brackets. (Backslas
 Simple substitutions just replace a symbol with its value. If the symbol has no value in this template object then the symbol is replaced error string but no error is raised.
 
 List substitution assumes that the symbol has a value in output template list form. This is a newline separated string of values. The list substitution specification consists of four parts, a prefix, a symbol, a separator, and a list indicator. prefixes and separators can only be composed of blanks, comma, colons, and semi-colons.  The list indicator is "..." (three periods).  For example, the list substitution specification "<, name, ...> has a prefix of ", ", a symbol of "name" and a separator of ", ".  The prefix will be used whenever there is at least one item in the list and the separator will be used between any two list items.  After the first items of a list is placed each additional item is evaluated to see if it would begin after the line length limit (set by _set_somtLineLength), if it would then a new line is begun and the value is placed directly under the first item.
-Comment substitution assumes that the symbol has a value in output template list form.  A comment specification consists of a comment indicator followed by a symbol name. The comment indicator is "--".  Eg, <-- classComment> is a valid comment substitution specification.  The lines of the comment are output according to the current comment style (see <somtCommentStyle>) and aligned with the starting column of the comment specification.
+Comment substitution assumes that the symbol has a value in output template list form.  A comment specification consists of a comment indicator followed by a symbol name. The comment indicator is "--".  Eg, %%<--%% classComment> is a valid comment substitution specification.  The lines of the comment are output according to the current comment style (see <somtCommentStyle>) and aligned with the starting column of the comment specification.
 Tab substitution is specified by <@dd> where "dd" is a valid positive integer. Blanks will be inserted into the output stream if necessary to position the next character of output at the column indicated by "dd".
 
 Conditional substitution is specified by putting a question mark, "?", in column one of the template line.  The line will not be output at all unless at least one valid, non-blank,  symbol substitution  occurs on the line.
@@ -1439,113 +1439,191 @@ short somstAssociate(in string key, in string value);
 </code>
 
 Устанавливает связь <key> и <value>. Возвращает 0, если связь не может быть установлена (<key> нулевой или недостаточно памяти); -1 - ассоциация успешна выполнена, но <key> уже имел значение до вызова метода, 1 - ассоциация успешно выполнена и <key> не существовал. Замечание: массив сохраняет ссылки на <key> и <value>, передаваемые в аргументах. Копия значений <key> и <value> не создается. При уничтожении объекта память, занимаемая <key> и <value> освобождается с помощью SOMFree, т.е. память под <key> и <value> должна быть выделена с помощью SOMMalloc и аналогичных функций. Замечание: При замене <value> при имеющемся <key> старое <value> заменаяется, память не освобождается
-somstAssociateCopyKey method
+
+=== somstAssociateCopyKey method ===
+
+<code>
 short somstAssociateCopyKey(in string key, in string value);
+</code>
+
 То же, что и <somstAssociate>, но массив содержит копии значений <key>. Значение <key> копируется в выделяемую с помощью SOMMalloc память.
-somstAssociateCopyValue method
+
+=== somstAssociateCopyValue method ===
+
+<code>
 short somstAssociateCopyValue(in string key, in string value);
+</code>
+
 То же, что и <somstAssociate>, но массив содержит копии значений <value>. Значение <value> копируется в выделяемую с помощью SOMMalloc память.
-somstAssociateCopyBoth method
+
+=== somstAssociateCopyBoth method ===
+
+<code>
 short somstAssociateCopyBoth(in string key, in string value);
+</code>
+
 То же, что и <somstAssociate>, но массив содержит копии значений <key> и <value>. Значения <key> и <value> копируются в выделяемую с помощью SOMMalloc память.
-somstGetAssociation method
+
+=== somstGetAssociation method ===
+
+<code>
 string somstGetAssociation(in string key);
+</code>
+
 Возвращается строка, ассоциированная с <key>, или NULL, если нет ассоциации. Массив продолжает хранить указатель на значение.
-somstClearAssociation method
+
+=== somstClearAssociation method ===
+
+<code>
 boolean somstClearAssociation(in string key);
+</code>
+
 The association for <key>, if any, is removed.1 is returned if <key> had an association, and 0 is returned if it did not.
-somstGetIthKey method
+
+=== somstGetIthKey method ===
+
+<code>
 string somstGetIthKey(in unsigned long i);
+</code>
+
 Возвращает ключевую часть <i>-й по счету ассоциации. Если нет ассоциации, то возвращает NULL. Порядок ассоциации в массиве не определен, но остается постоянным до следующей модификации.
-somstGetIthValue method
+
+=== somstGetIthValue method ===
+
+<code>
 string somstGetIthValue(in unsigned long i);
+</code>
+
 Возвращает значимую часть <i>-й по счету ассоциации. Если нет ассоциации, то возвращает NULL. Порядок ассоциации в массиве не определен, но остается постоянным до следующей модификации.
-somtStrDup function
+
+==== somtStrDup function ====
+
+<code>
 SOMEXTERN char * SOMLINK somtStrDup(char *str);
+</code>
+
 Allocate memory and duplicate string str
-somtEntryTypeName function
+
+==== somtEntryTypeName function ====
+
+<code>
 SOMEXTERN char * SOMLINK somtEntryTypeName(SOMTTypes type);
+</code>
+
 Return string representation of type of Entry structure except special case SOMTEmitterBeginE and SOMTEmitterEndE types.
-somtShowEntry function
+
+==== somtShowEntry function ====
+
+<code>
 SOMEXTERN void SOMLINK somtShowEntry(Entry * ep);
+</code>
+
 Output using somPrintf information about Entry structure.
-somtStrCat function
+
+==== somtStrCat function ====
+
+<code>
 SOMEXTERN char * SOMLINK somtStrCat(int count,...);
+</code>
+
 Concatenate count of strings.
-somtMakeIncludeStr function
+
+==== somtMakeIncludeStr function ====
+
+<code>
 SOMEXTERN char * SOMLINK somtMakeIncludeStr(boolean local, char *stem, char *suffix);
+</code>
+
 Produce include string for local (include "") or global (include <>) using file stem as file name and suffix as file extension.
-somtNewSymbol function
+
+==== somtNewSymbol function ====
+
+<code>
 SOMEXTERN char * SOMLINK somtNewSymbol(char *prefix, char *stem);
+</code>
+
 Allocate memory and produce string from prefix and stem.
-somtGetFileStem function
+
+==== somtGetFileStem function ====
+
+<code>
 SOMEXTERN char * SOMLINK somtGetFileStem(char *fullName);
+</code>
+
 Allocate memory and return file stem from file name.
-somtGetObjectWrapper function
+
+==== somtGetObjectWrapper function ====
+
+<code>
 SOMEXTERN SOMTEntryC * SOMLINK somtGetObjectWrapper(Entry * ep);
+</code>
+
 Return SOMT*EntryC object for ep Entry structure.
+
 Mapping of Entry types to SOMT*EntryC classes:
-Entry type	Emitter Framework Class
-SOMTArgumentE	SOMTParameterEntryC
-SOMTAttE	SOMTAttributeEntryC
-SOMTBadEntryE	Fatal error
-SOMTBaseE	SOMTBaseClassEntryC
-SOMTClassE	SOMTClassEntryC
-SOMTConstE	SOMTConstEntryC
-SOMTDataE	SOMTDataEntryC
-SOMTEnumBE	SOMTEnumNameEntryC
-SOMTEnumE	SOMTEnumEntryC
-SOMTEnumPE	SOMTEnumEntryC
-SOMTFloatBE	SOMTEntryC
-SOMTAnyBE	SOMTEntryC
-SOMTGroupE	SOMTEntryC
-SOMTCopyrightE	SOMTEntryC
-SOMTLongBE	SOMTEntryC
-SOMTNegativeBE	SOMTEntryC
-SOMTOctetBE	SOMTEntryC
-SOMTTypeCodeBE	SOMTEntryC
-SOMTBooleanBE	SOMTEntryC
-SOMTCaseEntryE	SOMTEntryC
-SOMTCaseListE	SOMTEntryC
-SOMTCaseSTME	SOMTEntryC
-SOMTCharBE	SOMTEntryC
-SOMTDclListE	SOMTEntryC
-SOMTDefaultE	SOMTEntryC
-SOMTDoubleBE	SOMTEntryC
-SOMTEBaseE	SOMTEntryC
-SOMTEEnumE	SOMTEntryC
-SOMTShortBE	SOMTEntryC
-SOMTStringBE	SOMTEntryC
-SOMTUnsignedLongBE	SOMTEntryC
-SOMTUnsignedShortBE	SOMTEntryC
-SOMTVoidBE	SOMTEntryC
-SOMTVoidPtrBE	SOMTEntryC
-SOMTMetaE	SOMTMetaClassEntryC
-SOMTModuleE	SOMTModuleEntryC
-SOMTNewMethodE	SOMTMethodEntryC
-SOMTOverriddenMethodE	SOMTMethodEntryC
-SOMTOverrideMethodE	SOMTMethodEntryC
-SOMTPassthruE	SOMTPassthruEntryC
-SOMTSequenceE	SOMTSequenceEntryC
-SOMTSequenceTDE	SOMTSequenceEntryC
-SOMTStringE	SOMTStringEntryC
-SOMTStructE	SOMTStructEntryC
-SOMTStructPE	SOMTStructEntryC
-SOMTStructSE	SOMTStructEntryC
-SOMTTyDclE	SOMTTypedefEntryC
-SOMTTypedefE	SOMTTypedefEntryC
-SOMTTypedefBE	SOMTUserDefinedTypeEntryC
-SOMTUnionE	SOMTUnionEntryC
-SOMTUnionPE	SOMTUnionEntryC
-SOMTUnionSE	SOMTUnionEntryC
-SOMTEmitterBeginE	Fatal error
-SOMTEmitterEndE	Fatal error
+
+^ Entry type  ^ Emitter Framework Class ^
+| SOMTArgumentE | SOMTParameterEntryC |
+| SOMTAttE | SOMTAttributeEntryC |
+| SOMTBadEntryE | Fatal error |
+| SOMTBaseE | SOMTBaseClassEntryC |
+| SOMTClassE | SOMTClassEntryC |
+| SOMTConstE | SOMTConstEntryC |
+| SOMTDataE | SOMTDataEntryC |
+| SOMTEnumBE | SOMTEnumNameEntryC |
+| SOMTEnumE | SOMTEnumEntryC |
+| SOMTEnumPE | SOMTEnumEntryC |
+| SOMTFloatBE | SOMTEntryC |
+| SOMTAnyBE | SOMTEntryC |
+| SOMTGroupE | SOMTEntryC |
+| SOMTCopyrightE | SOMTEntryC |
+| SOMTLongBE | SOMTEntryC |
+| SOMTNegativeBE | SOMTEntryC |
+| SOMTOctetBE | SOMTEntryC |
+| SOMTTypeCodeBE | SOMTEntryC |
+| SOMTBooleanBE | SOMTEntryC |
+| SOMTCaseEntryE | SOMTEntryC |
+| SOMTCaseListE | SOMTEntryC |
+| SOMTCaseSTME | SOMTEntryC |
+| SOMTCharBE | SOMTEntryC |
+| SOMTDclListE | SOMTEntryC |
+| SOMTDefaultE | SOMTEntryC |
+| SOMTDoubleBE | SOMTEntryC |
+| SOMTEBaseE | SOMTEntryC |
+| SOMTEEnumE | SOMTEntryC |
+| SOMTShortBE | SOMTEntryC |
+| SOMTStringBE | SOMTEntryC |
+| SOMTUnsignedLongBE | SOMTEntryC |
+| SOMTUnsignedShortBE | SOMTEntryC |
+| SOMTVoidBE | SOMTEntryC |
+| SOMTVoidPtrBE | SOMTEntryC |
+| SOMTMetaE | SOMTMetaClassEntryC |
+| SOMTModuleE | SOMTModuleEntryC |
+| SOMTNewMethodE | SOMTMethodEntryC |
+| SOMTOverriddenMethodE | SOMTMethodEntryC |
+| SOMTOverrideMethodE | SOMTMethodEntryC |
+| SOMTPassthruE | SOMTPassthruEntryC |
+| SOMTSequenceE | SOMTSequenceEntryC |
+| SOMTSequenceTDE | SOMTSequenceEntryC |
+| SOMTStringE | SOMTStringEntryC |
+| SOMTStructE | SOMTStructEntryC |
+| SOMTStructPE | SOMTStructEntryC |
+| SOMTStructSE | SOMTStructEntryC |
+| SOMTTyDclE | SOMTTypedefEntryC |
+| SOMTTypedefE | SOMTTypedefEntryC |
+| SOMTTypedefBE | SOMTUserDefinedTypeEntryC |
+| SOMTUnionE | SOMTUnionEntryC |
+| SOMTUnionPE | SOMTUnionEntryC |
+| SOMTUnionSE | SOMTUnionEntryC |
+| SOMTEmitterBeginE | Fatal error |
+| SOMTEmitterEndE | Fatal error |
 
 ====== IV. Appendixes ======
 
 ===== 1. Appendix 1. SOM ABI =====
 
 Due switching from MSVC (IBM SOM 2.1) to VAC (IBM SOM 3.0) some problems was occur:
+
 First problem is a calling convention. All non SOMLINK calls in IBM SOM 2.1 is a _cdecl calls. But under IBM SOM 3.0 all non SOMLINK calls is a Optlink calls. Read some info here:
 https://github.com/prokushev/SOM-Delphi-Wiki/blob/master/Known%20differences%20between%20SOM%202.1%20and%20SOM%203.0.md
 Goal of somFree SOM Compiler and Emitter Framework is to provide a possibility to use original IBM SOM emitters as from  IBM SOM 2.1 as from IBM SOM 3.0. Another goal is a development of somFree emitters, which can be used on both IBM SOM 2.1 and IBM SOM 3.0 compilers.To achieve above goals somFree provides some solutions:
