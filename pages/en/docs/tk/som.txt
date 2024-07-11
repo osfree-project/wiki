@@ -1646,13 +1646,28 @@ Note: somtemitModule version uses default compiler calling convention. For IBM S
 
 ==== somtallocDataList, somtallocDataListSL function ====
 
+<code c>
+SOMEXTERN Mlist * somtallocDataList(Entry *cls);
+SOMEXTERN Mlist * SOMLINK somtallocDataListSL(Entry *cls);
+</code>
 
+Note: somtallocDataList version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtallocMethodList, somtallocMethodListSL function ====
 
+<code c>
+SOMEXTERN Mlist * somtallocMethodList(Entry *cls, boolean all);
+SOMEXTERN Mlist * SOMLINK somtallocMethodListSL(Entry *cls, boolean all);
+</code>
 
+Note: somtallocMethodList version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtclsfilename, somtclsfilenameSL function ====
 
+<code c>
+SOMEXTERN char * somtclsfilename(Entry * cls);
+SOMEXTERN char * SOMLINK somtclsfilenameSL(Entry * cls);
+</code>
 
+Note: somtclsfilename version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtclsname, somtclsnameSL function ====
 
 <code>
