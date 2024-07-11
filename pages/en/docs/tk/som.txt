@@ -1078,15 +1078,32 @@ Note: somtfclose version uses default compiler calling convention. For IBM SOM 3
 SOMEXTERN int somtisparent(Entry *cls, Entry *parent);
 SOMEXTERN int SOMLINK somtisparentSL(Entry *cls, Entry *parent);
 </code>
+
+Note: somtisparent version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtmget, somtmgetSL function ====
 
+<code c>
+SOMEXTERN int somtmget(int setnum, int msgnum, char *msgbuf);
+SOMEXTERN int SOMLINK somtmgetSL(int setnum, int msgnum, char *msgbuf);
+</code>
 
+Note: somtmget version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtmopen, somtmopenSL function ====
 
+<code c>
+SOMEXTERN int somtmopen(char *filename);
+SOMEXTERN int SOMLINK somtmopenSL(char *filename);
+</code>
 
+Note: somtmopen version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtmprintf, somtmprintfSL function ====
 
+<code c>
+SOMEXTERN int somtmprintf(int setnum, int msgnum, ...);
+SOMEXTERN int SOMLINK somtmprintfSL(int setnum, int msgnum, ...);
+</code>
 
+Note: somtmprintf version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtokremove, somtokremoveSL function ====
 
 <code>
@@ -1100,7 +1117,12 @@ Note: somtokremove version uses default compiler calling convention. For IBM SOM
 
 ==== somtunload, somtunloadSL function ====
 
+<code c>
+SOMEXTERN int somtunload(void *modHandle);
+SOMEXTERN int SOMLINK somtunloadSL(void *modHandle);
+</code>
 
+Note: somtunload version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtwriteaccess, somtwriteaccessSL function ====
 
 
