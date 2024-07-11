@@ -1392,18 +1392,44 @@ SOMEXTERN void SOMLINK somtmrifatalSL(char *file, long lineno, int msgnum,...);
 Note: somtmrifatal version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtmriinternal, somtmriinternalSL function ====
 
+<code c>
+SOMEXTERN void somtmriinternal(char *file, long lineno, int msgnum,...);
+SOMEXTERN void SOMLINK somtmriinternalSL(char *file, long lineno, int msgnum,...);
+</code>
 
+Note: somtmriinternal version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtmrierror, somtmrierrorSL function ====
 
+<code c>
+SOMEXTERN void somtmrierror(char *file, long lineno, int msgnum,...);
+SOMEXTERN void SOMLINK somtmrierrorSL(char *file, long lineno, int msgnum,...);
+</code>
 
+Note: somtmrierror version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtmrimsg, somtmrimsgSL function ====
 
+<code c>
+SOMEXTERN void somtmrimsg(char *file, long lineno, int msgnum,...);
+SOMEXTERN void SOMLINK somtmrimsgSL(char *file, long lineno, int msgnum,...);
+</code>
 
+Note: somtmrimsg version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtmriwarn, somtmriwarnSL function ====
 
+<code c>
+SOMEXTERN void somtmriwarn(char *file, long lineno, int msgnum,...);
+SOMEXTERN void SOMLINK somtmriwarnSL(char *file, long lineno, int msgnum,...);
+</code>
 
+Note: somtmriwarn version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtsetInternalMessages, somtsetInternalMessagesSL function ====
 
+<code c>
+SOMEXTERN void somtsetInternalMessages(char *too_long, char *cant_continue, char *segv, char *bus);
+SOMEXTERN void SOMLINK somtsetInternalMessagesSL(char *too_long, char *cant_continue, char *segv, char *bus);
+</code>
+
+Note: somtsetInternalMessages version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 
 ==== somtisvoid, somtisvoidSL function ====
 
@@ -1418,7 +1444,12 @@ Note: somtisvoid version uses default compiler calling convention. For IBM SOM 3
 
 ==== somtreturnsStruct, somtreturnsStructSL function ====
 
+<code c>
+SOMEXTERN BOOL somtreturnsStruct(Entry *ep);
+SOMEXTERN BOOL SOMLINK somtreturnsStructSL(Entry *ep);
+</code>
 
+Note: somtreturnsStruct version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtreturnsPtr, somtreturnsPtrSL function ====
 
 
