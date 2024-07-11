@@ -1584,25 +1584,55 @@ SOMEXTERN void SOMLINK somtInitialiseSmtypesSL(void);
 Note: somtInitialiseSmtypes version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtInitialiseSomc, somtInitialiseSomcSL function ====
 
+<code c>
+SOMEXTERN void somtInitialiseSomc(void);
+SOMEXTERN void SOMLINK somtInitialiseSomcSL(void);
+</code>
 
+Note: somtInitialiseSomc version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtInitialiseSmsmall, somtInitialiseSmsmallSL function ====
 
+<code c>
+SOMEXTERN void somtInitialiseSmsmall(void);
+SOMEXTERN void SOMLINK somtInitialiseSmsmallSL(void);
+</code>
 
+Note: somtInitialiseSmsmall version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtattMap, somtattMapSL function ====
 
 
 ==== somtexit, somtexitSL function ====
 
+<code c>
+SOMEXTERN void somtexit(SOMTExitBuf *ebuf, int status);
+SOMEXTERN void SOMLINK somtexitSL(SOMTExitBuf *ebuf, int status);
+</code>
 
+Note: somtexit version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtdymain, somtdymainSL function ====
 
+<code c>
+SOMEXTERN void somtdymain(char *file, Entry *cls, EmitFn emitfn, char *emitter, int first, char *version, Stab *stab);
+SOMEXTERN void SOMLINK somtdymainSL(char *file, Entry *cls, EmitFn emitfn, char *emitter, int first, char *version, Stab *stab);
+</code>
 
+Note: somtdymain version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtaddHeader, somtaddHeaderSL function ====
 
+<code c>
+SOMEXTERN void somtaddHeader(char *file, FILE *fp, char *ext);
+SOMEXTERN void SOMLINK somtaddHeaderSL(char *file, FILE *fp, char *ext);
+</code>
 
+Note: somtaddHeader version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtnthArg, somtnthArgSL function ====
 
+<code c>
+SOMEXTERN Entry * somtnthArg(Entry * method, int n);
+SOMEXTERN Entry * SOMLINK somtnthArgSL(Entry * method, int n);
+</code>
 
+Note: somtnthArg version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtemitModule, somtemitModuleSL function ====
 
 <code>
