@@ -731,7 +731,7 @@ Note: somtsearchFile version uses default compiler calling convention. For IBM S
 ==== somttraverseParents, somttraverseParentsSL function ====
 
 <code>
-SOMEXTERN int OPTLINK_DECL somttraverseParents(FILE *fp, Entry * cls, Entry *arg, int (*fn)(FILE*,Entry*,Entry*), SMTraverse flg);
+SOMEXTERN int somttraverseParents(FILE *fp, Entry * cls, Entry *arg, int (*fn)(FILE*,Entry*,Entry*), SMTraverse flg);
 SOMEXTERN int SOMLINK somttraverseParentsSL(FILE *fp, Entry * cls, Entry *arg, int (*fn)(FILE*,Entry*,Entry*), SMTraverse flg);
 </code>
 
@@ -747,6 +747,11 @@ Load emitter <fileName> and return pointer <EmitFn> to emit or emitSL function <
 This function switches somc to IBM SOM 3.0 ABI if emitSL function found or to IBM SOM 2.1 ABI if emit function found.
 
 ==== somtfindBaseEp, somtfindBaseEpSL function ====
+
+<code>
+SOMEXTERN Entry * somtfindBaseEp(Entry *ep);
+SOMEXTERN Entry * SOMLINK somtfindBaseEpSL(Entry *ep);
+</code>
 
 Note: somtfindBaseEp version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink.
 
