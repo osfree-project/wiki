@@ -1125,7 +1125,12 @@ SOMEXTERN int SOMLINK somtunloadSL(void *modHandle);
 Note: somtunload version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtwriteaccess, somtwriteaccessSL function ====
 
+<code c>
+SOMEXTERN int somtwriteaccess(char *file);
+SOMEXTERN int SOMLINK somtwriteaccessSL(char *file);
+</code>
 
+Note: somtwriteaccess version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtsmalloc, somtsmallocSL function ====
 
 <code>
@@ -1139,10 +1144,20 @@ Note: somtsmalloc version uses default compiler calling convention. For IBM SOM 
 
 ==== somtaddGAtt, somtaddGAttSL function ====
 
+<code c>
+SOMEXTERN void somtaddGAtt(MemBuf **membuf, AttList **ap, char *buf);
+SOMEXTERN void SOMLINK somtaddGAttSL(MemBuf **membuf, AttList **ap, char *buf);
+</code>
 
+Note: somtaddGAtt version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtcalcFileName, somtcalcFileNameSL function ====
 
+<code c>
+SOMEXTERN void somtcalcFileName(char *def, char *over, char *ext);
+SOMEXTERN void SOMLINK somtcalcFileNameSL(char *def, char *over, char *ext);
+</code>
 
+Note: somtcalcFileName version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtcleanFilesFatal, somtcleanFilesFatalSL function ====
 
 <code>
@@ -1156,10 +1171,20 @@ Note: somtcleanFilesFatal version uses default compiler calling convention. For 
 
 ==== somtemitTypes, somtemitTypesSL function ====
 
+<code c>
+SOMEXTERN void somtemitTypes(FILE *fp, Mlist *mp, Stab *stab);
+SOMEXTERN void SOMLINK somtemitTypesSL(FILE *fp, Mlist *mp, Stab *stab);
+</code>
 
+Note: somtemitTypes version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somterror, somterrorSL function ====
 
+<code c>
+SOMEXTERN void somterror(char *file, long lineno, char *fmt, ...);
+SOMEXTERN void SOMLINK somterrorSL(char *file, long lineno, char *fmt, ...);
+</code>
 
+Note: somterror version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtfatal, somtfatalSL function ====
 
 
