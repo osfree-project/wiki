@@ -1376,10 +1376,20 @@ Note: somtepname version uses default compiler calling convention. For IBM SOM 3
 
 ==== somtgenSeqName, somtgenSeqNameSL function ====
 
+<code c>
+SOMEXTERN char * somtgenSeqName(long n, Entry *base, char *buf, BOOL fullname);
+SOMEXTERN char * SOMLINK somtgenSeqNameSL(long n, Entry *base, char *buf, BOOL fullname);
+</code>
 
+Note: somtgenSeqName version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtmrifatal, somtmrifatalSL function ====
 
+<code c>
+SOMEXTERN void somtmrifatal(char *file, long lineno, int msgnum,...);
+SOMEXTERN void SOMLINK somtmrifatalSL(char *file, long lineno, int msgnum,...);
+</code>
 
+Note: somtmrifatal version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtmriinternal, somtmriinternalSL function ====
 
 
