@@ -786,9 +786,19 @@ Note: somtokrename version uses default compiler calling convention. For IBM SOM
 
 ==== somtopenEmitFile, somtopenEmitFileSL function ====
 
+<code>
+SOMEXTERN FILE * somtopenEmitFile(char *file, char *ext);
+SOMEXTERN FILE * SOMLINK somtopenEmitFileSL(char *file, char *ext);
+</code>
+
 Note: somtopenEmitFile version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink.
 
 ==== somtisDbcs, somtisDbcsSL function ====
+
+<code>
+SOMEXTERN BOOL somtisDbcs(int c);
+SOMEXTERN BOOL SOMLINK somtisDbcsSL(int c);
+</code>
 
 Note: somtisDbcs version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink.
 
@@ -816,11 +826,21 @@ Note: somtaddExt version uses default compiler calling convention. For IBM SOM 3
 
 ==== somtarrayToPtr, somtarrayToPtrSL function ====
 
+<code>
+SOMEXTERN char * somtarrayToPtr(Entry *ep, char *stars, char *buf);
+SOMEXTERN char * SOMLINK somtarrayToPtrSL(Entry *ep, char *stars, char *buf);
+</code>
+
 Note: somtarrayToPtr version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink.
 
 ==== somtattNormalise, somtattNormaliseSL function ====
 
+<code>
+SOMEXTERN char * somtattNormalise(char *name, char *buf);
+SOMEXTERN char * SOMLINK somtattNormaliseSL(char *name, char *buf);
+</code>
 
+Note: somtattNormalise version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtbasename, somtbasenameSL function ====
 
 <code>
@@ -834,15 +854,37 @@ Note: somtbasename version uses default compiler calling convention. For IBM SOM
 
 ==== somtctos, somtctosSL function ====
 
+<code>
+SOMEXTERN char * somtctos(Const *con, char *buf);
+SOMEXTERN char * SOMLINK somtctosSL(Const *con, char *buf);
+</code>
+
+Note: somtctos version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink.
 
 ==== somtdbcsPostincr, somtdbcsPostincrSL function ====
 
+<code>
+SOMEXTERN char * somtdbcsPostincr(char **p);
+SOMEXTERN char * SOMLINK somtdbcsPostincrSL(char **p);
+</code>
+
+Note: somtdbcsPostincr version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink.
 
 ==== somtdbcsPreincr, somtdbcsPreincrSL function ====
 
+<code>
+SOMEXTERN char * somtdbcsPreincr(char **p);
+SOMEXTERN char * SOMLINK somtdbcsPreincrSL(char **p);
+</code>
+
+Note: somtdbcsPreincr version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink.
 
 ==== somtdbcsStrchr, somtdbcsStrchrSL function ====
 
+<code>
+SOMEXTERN char * somtdbcsStrchr(char *s, int c);
+SOMEXTERN char * SOMLINK somtdbcsStrchrSL(char *s, int c);
+</code>
 
 ==== somtdbcsStrrchr, somtdbcsStrrchrsL function ====
 
