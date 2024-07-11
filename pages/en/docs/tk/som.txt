@@ -777,6 +777,11 @@ Note: somtokfopen version uses default compiler calling convention. For IBM SOM 
 
 ==== somtokrename, somtokrenameSL function ====
 
+<code>
+SOMEXTERN int somtokrename(const char*, const char *);
+SOMEXTERN int SOMLINK somtokrenameSL(const char*, const char *);
+</code>
+
 Note: somtokrename version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink.
 
 ==== somtopenEmitFile, somtopenEmitFileSL function ====
