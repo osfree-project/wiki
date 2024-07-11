@@ -1022,19 +1022,45 @@ Return unique formatted string.
 Note: somtuniqFmt version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink.
 ==== somtargFlag, somtargFlagSL function ====
 
+<code c>
+SOMEXTERN int somtargFlag(int *argc, char ***argv);
+SOMEXTERN int SOMLINK somtargFlagSL(int *argc, char ***argv);
+</code>
+
+Note: somtargFlag version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 
 ==== somtattjoin, somtattjoinSL function ====
 
+<code c>
+SOMEXTERN int somtattjoin(register AttList *ap1, AttList *ap2);
+SOMEXTERN int SOMLINK somtattjoinSL(register AttList *ap1, AttList *ap2);
+</code>
 
+Note: somtattjoin version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtdbcsLastChar, somtdbcsLastCharSL function ====
 
+<code c>
+SOMEXTERN int somtdbcsLastChar(char *buf);
+SOMEXTERN int SOMLINK somtdbcsLastCharSL(char *buf);
+</code>
 
+Note: somtdbcsLastChar version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtdbcsScan, somtdbcsScanSL function ====
 
+<code c>
+SOMEXTERN int somtdbcsScan(char **buf);
+SOMEXTERN int SOMLINK somtdbcsScanSL(char **buf);
+</code>
 
+Note: somtdbcsScan version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtdiskFull, somtdiskFullSL function ====
 
+<code c>
+SOMEXTERN int somtdiskFull(FILE *fp);
+SOMEXTERN int SOMLINK somtdiskFullSL(FILE *fp);
+</code>
 
+Note: somtdiskFull version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtfclose, somtfcloseSL function ====
 
 <code>
@@ -1048,7 +1074,10 @@ Note: somtfclose version uses default compiler calling convention. For IBM SOM 3
 
 ==== somtisparent, somtisparentSL function ====
 
-
+<code c>
+SOMEXTERN int somtisparent(Entry *cls, Entry *parent);
+SOMEXTERN int SOMLINK somtisparentSL(Entry *cls, Entry *parent);
+</code>
 ==== somtmget, somtmgetSL function ====
 
 
