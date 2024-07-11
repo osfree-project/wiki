@@ -730,6 +730,11 @@ Note: somtsearchFile version uses default compiler calling convention. For IBM S
 
 ==== somttraverseParents, somttraverseParentsSL function ====
 
+<code>
+SOMEXTERN int OPTLINK_DECL somttraverseParents(FILE *fp, Entry * cls, Entry *arg, int (*fn)(FILE*,Entry*,Entry*), SMTraverse flg);
+SOMEXTERN int SOMLINK somttraverseParentsSL(FILE *fp, Entry * cls, Entry *arg, int (*fn)(FILE*,Entry*,Entry*), SMTraverse flg);
+</code>
+
 Note: somttraverseParents version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink.
 
 ==== somtloadSL function ====
