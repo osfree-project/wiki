@@ -1460,24 +1460,60 @@ SOMEXTERN BOOL SOMLINK somtreturnsPtrSL(Entry *ep);
 Note: somtreturnsPtr version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtsimpleName, somtsimpleNameSL function ====
 
+<code c>
+SOMEXTERN char * somtsimpleName(Entry *ep);
+SOMEXTERN char * SOMLINK somtsimpleNameSL(Entry *ep);
+</code>
 
+Note: somtsimpleName version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtqualifyNames, somtqualifyNamesSL function ====
 
+<code c>
+SOMEXTERN void somtqualifyNames(Stab * stab, BOOL fully);
+SOMEXTERN void SOMLINK somtqualifyNamesSL(Stab * stab, BOOL fully);
+</code>
 
+Note: somtqualifyNames version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtfindBaseEpNonPtr, somtfindBaseEpNonPtrSL function ====
 
+<code c>
+SOMEXTERN Entry * somtfindBaseEpNonPtr(Entry *ep);
+SOMEXTERN Entry * SOMLINK somtfindBaseEpNonPtrSL(Entry *ep);
+</code>
 
+Note: somtfindBaseEpNonPtr version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtprocessTraps, somtprocessTrapsSL function ====
 
+<code c>
+SOMEXTERN BOOL somtprocessTraps(void);
+SOMEXTERN BOOL SOMLINK somtprocessTrapsSL(void);
+</code>
 
+Note: somtprocessTraps version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtallocMlist, somtallocMlistSL function ====
 
+<code c>
+SOMEXTERN Mlist * somtallocMlist(Entry * ep);
+SOMEXTERN Mlist * SOMLINK somtallocMlistSL(Entry * ep);
+</code>
 
+Note: somtallocMlist version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtmlistend, somtmlistendSL function ====
 
+<code c>
+SOMEXTERN Mlist * somtmlistend(Mlist * mp, char *name);
+SOMEXTERN Mlist * SOMLINK somtmlistendSL(Mlist * mp, char *name);
+</code>
 
+Note: somtmlistend version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtisMutRef, somtisMutRefSL function ====
 
+<code c>
+SOMEXTERN BOOL somtisMutRef(Entry *ep, Mlist *seen, BOOL isself, long level);
+SOMEXTERN BOOL SOMLINK somtisMutRefSL(Entry *ep, Mlist *seen, BOOL isself, long level);
+</code>
+
+Note: somtisMutRef version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 
 ==== somtfreeMlist, somtfreeMlistSL function ====
 
