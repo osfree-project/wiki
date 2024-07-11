@@ -927,26 +927,66 @@ Note: somtgetDesc version uses default compiler calling convention. For IBM SOM 
 
 ==== somtgetVersion, somtgetVersionSL function ====
 
+<code>
+SOMEXTERN char * somtgetVersion(char *sccsid, char *version);
+SOMEXTERN char * SOMLINK somtgetVersionSL(char *sccsid, char *version);
+</code>
+
+Note: somtgetVersion version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink.
 
 ==== somtgetgatt, somtgetgattSL function ====
 
+<code>
+SOMEXTERN char * somtgetgatt(char *s);
+SOMEXTERN char * SOMLINK somtgetgattSL(char *s);
+</code>
+
+Note: somtgetgatt version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink.
 
 ==== somtnextword, somtnextwordSL function ====
 
+<code>
+SOMEXTERN char * somtnextword(const char *s, char *buf);
+SOMEXTERN char * SOMLINK somtnextwordSL(const char *s, char *buf);
+</code>
+
+Note: somtnextword version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink.
 
 ==== somtnormaliseDesc, somtnormaliseDescSL function ====
 
+<code c>
+SOMEXTERN char * somtnormaliseDesc(char *desc, char *normal);
+SOMEXTERN char * SOMLINK somtnormaliseDescSL(char *desc, char *normal);
+</code>
+
+Note: somtnormaliseDesc version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink.
 
 ==== somtsatos, somtsatosSL function ====
 
+<code c>
+SOMEXTERN char * somtsatos(char **sa, char *sep, char *buf);
+SOMEXTERN char * SOMLINK somtsatosSL(char **sa, char *sep, char *buf);
+</code>
+
+Note: somtsatos version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink.
 
 ==== somtsearchFile, somtsearchFileSL function ====
+
+<code c>
+SOMEXTERN char * somtsearchFile(char *file, char *path, char *envvar);
+SOMEXTERN char * SOMLINK somtsearchFileSL(char *file, char *path, char *envvar);
+</code>
 
 Note: somtsearchFile version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink.
 
 ==== somtskipws, somtskipwsSL function ====
 
+<code c>
+SOMEXTERN char * somtskipws(const char *s);
+SOMEXTERN char * SOMLINK somtskipwsSL(const char *s);
+</code>
 
+Note: somtskipws version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtstringFmt, somtstringFmtSL function ====
 
 <code>
@@ -974,7 +1014,7 @@ Warning: Depricated. Use somtEntryTypeName instead.
 
 <code>
 SOMEXTERN char * somtuniqFmt(MemBuf *membuf, char *fmt, ...)
-SOMEXTERN char * SOMLINKL somtuniqFmtSL(MemBuf *membuf, char *fmt, ...)
+SOMEXTERN char * SOMLINK somtuniqFmtSL(MemBuf *membuf, char *fmt, ...)
 </code>
 
 Return unique formatted string.
