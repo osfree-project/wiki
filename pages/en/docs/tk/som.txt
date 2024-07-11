@@ -1452,7 +1452,12 @@ SOMEXTERN BOOL SOMLINK somtreturnsStructSL(Entry *ep);
 Note: somtreturnsStruct version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtreturnsPtr, somtreturnsPtrSL function ====
 
+<code c>
+SOMEXTERN BOOL somtreturnsPtr(Entry *ep);
+SOMEXTERN BOOL SOMLINK somtreturnsPtrSL(Entry *ep);
+</code>
 
+Note: somtreturnsPtr version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtsimpleName, somtsimpleNameSL function ====
 
 
