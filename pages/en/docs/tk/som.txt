@@ -1235,22 +1235,52 @@ SOMEXTERN void SOMLINK somtsetDefaultDescSL(Stab *stab);
 Note: somtsetDefaultDesc version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtsetEmitSignals, somtsetEmitSignalsSL function ====
 
+<code c>
+SOMEXTERN void somtsetEmitSignals(void(*cleanup) (int), void (*internal) (int));
+SOMEXTERN void SOMLINK somtsetEmitSignalsSL(void(*cleanup) (int), void (*internal) (int));
+</code>
 
+Note: somtsetEmitSignals version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtsetTypeDefn, somtsetTypeDefnSL function ====
 
+<code c>
+SOMEXTERN void somtsetTypeDefn(Entry *type, Entry *ep, char *ptrs, Entry *ret, BOOL array);
+SOMEXTERN void SOMLINK somtsetTypeDefnSL(Entry *type, Entry *ep, char *ptrs, Entry *ret, BOOL array);
+</code>
 
+Note: somtsetTypeDefn version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtshowVersion, somtshowVersionSL function ====
 
+<code c>
+SOMEXTERN void somtshowVersion(char *s, char *progname, char *sccsid);
+SOMEXTERN void SOMLINK somtshowVersionSL(char *s, char *progname, char *sccsid);
+</code>
 
+Note: somtshowVersion version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtsmfree, somtsmfreeSL function ====
 
+<code c>
+SOMEXTERN void somtsmfree(void *first, ...);
+SOMEXTERN void SOMLINK somtsmfreeSL(void *first, ...);
+</code>
 
+Note: somtsmfree version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtunsetEmitSignals, somtunsetEmitSignalsSL function ====
 
+<code c>
+SOMEXTERN void somtunsetEmitSignals(void);
+SOMEXTERN void SOMLINK somtunsetEmitSignalsSL(void);
+</code>
 
+Note: somtunsetEmitSignals version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtwarn, somtwarnSL function ====
 
+<code c>
+SOMEXTERN void somtwarn(char *file, long lineno, char *fmt, ...);
+SOMEXTERN void SOMLINK somtwarnSL(char *file, long lineno, char *fmt, ...);
+</code>
 
+Note: somtwarn version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtuppercase, somtuppercaseSL function ====
 
 <code>
@@ -1275,13 +1305,28 @@ Note: somtlowercase version uses default compiler calling convention. For IBM SO
 
 ==== somtdbcsuppercase, somtdbcsuppercaseSL function ====
 
+<code c>
+SOMEXTERN char * somtdbcsuppercase(char *s, char *buf);
+SOMEXTERN char * SOMLINK somtdbcsuppercaseSL(char *s, char *buf);
+</code>
 
+Note: somtdbcsuppercase version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtdbcslowercase, somtdbcslowercaseSL function ====
 
+<code c>
+SOMEXTERN char * somtdbcslowercase(char *s, char *buf);
+SOMEXTERN char * SOMLINK somtdbcslowercaseSL(char *s, char *buf);
+</code>
 
+Note: somtdbcslowercase version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtresetEmitSignals, somtresetEmitSignalsSL function ====
 
+<code c>
+SOMEXTERN void somtresetEmitSignals(void);
+SOMEXTERN void SOMLINK somtresetEmitSignalsSL(void);
+</code>
 
+Note: somtresetEmitSignals version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtsizeofEntry, somtsizeofEntrySL function ====
 
 <code>
@@ -1323,7 +1368,11 @@ Mapping of type to Entry.u type and nameis following:
 
 ==== somtepname, somtepnameSL function ====
 
-Note: somtgetenname version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink.
+<code c>
+SOMEXTERN char * somtepname(Entry *ep, char *buf, BOOL suppressImpctxCheck);
+SOMEXTERN char * SOMLINK somtepnameSL(Entry *ep, char *buf, BOOL suppressImpctxCheck);
+</code>
+Note: somtepname version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink.
 
 ==== somtgenSeqName, somtgenSeqNameSL function ====
 
