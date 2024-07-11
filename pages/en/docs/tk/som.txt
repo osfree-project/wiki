@@ -1517,13 +1517,26 @@ Note: somtisMutRef version uses default compiler calling convention. For IBM SOM
 
 ==== somtfreeMlist, somtfreeMlistSL function ====
 
+<code c>
+SOMEXTERN Mlist * somtfreeMlist(Mlist *mp);
+SOMEXTERN Mlist * SOMLINK somtfreeMlistSL(Mlist *mp);
+</code>
 
+Note: somtfreeMlist version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtdupMlist, somtdupMlistSL function ====
 
+<code c>
+SOMEXTERN Mlist * somtdupMlist(Mlist *mp, Entry *ep);
+SOMEXTERN Mlist * SOMLINK somtdupMlistSL(Mlist *mp, Entry *ep);
+</code>
 
+Note: somtdupMlist version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtfreeWorld, somtfreeWorldSL function ====
 
-
+<code c>
+SOMEXTERN void somtfreeWorld();
+SOMEXTERN void SOMLINK somtfreeWorldSL();
+</code>
 ==== somtinitMalloc, somtinitMallocSL function ====
 
 <code>
@@ -1539,7 +1552,12 @@ Note: somtinitMalloc version uses default compiler calling convention. For IBM S
 
 ==== somtInitialiseEmitlib. somtInitialiseEmitlibSL function ====
 
+<code c>
+SOMEXTERN void somtInitialiseEmitlib(void);
+SOMEXTERN void SOMLINK somtInitialiseEmitlibSL(void);
+</code>
 
+Note: somtInitialiseEmitlib version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtInitialiseSmmeta, somtInitialiseSmmetaSL function ====
 
 
