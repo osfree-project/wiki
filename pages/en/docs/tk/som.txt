@@ -1187,10 +1187,20 @@ SOMEXTERN void SOMLINK somterrorSL(char *file, long lineno, char *fmt, ...);
 Note: somterror version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtfatal, somtfatalSL function ====
 
+<code c>
+SOMEXTERN void somtfatal(char *file, long lineno, char *fmt, ...);
+SOMEXTERN void SOMLINK somtfatalSL(char *file, long lineno, char *fmt, ...);
+</code>
 
+Note: somtfatal version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtinternal, somtinternalSL function ====
 
+<code c>
+SOMEXTERN void somtinternal(char *file, long lineno, char *fmt, ...);
+SOMEXTERN void SOMLINK somtinternalSL(char *file, long lineno, char *fmt, ...);
+</code>
 
+Note: somtinternal version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtmclose, somtmcloseSL function ====
 
 
