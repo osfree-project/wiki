@@ -1133,7 +1133,7 @@ SOMEXTERN boolean somtisvoidSL(Entry *type, char *defn)
 SOMEXTERN BOOL SOMLINK somtisvoidSL(Entry *type, char *defn)
 </code>
 
-Return TRUE if type->type is SOMTVoidBE it defn equal to "void", "VOID", "PMVOID".
+Return TRUE if type%%->%%type is SOMTVoidBE it defn equal to "void", "VOID", "PMVOID".
 
 Note: somtisvoid version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink.
 
