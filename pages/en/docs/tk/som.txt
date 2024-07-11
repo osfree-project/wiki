@@ -890,15 +890,40 @@ Note: somtdbcsStrchr version uses default compiler calling convention. For IBM S
 
 ==== somtdbcsStrrchr, somtdbcsStrrchrsL function ====
 
+<code>
+SOMEXTERN char * somtdbcsStrrchr(char *s, int c);
+SOMEXTERN char * SOMLINK somtdbcsStrrchrSL(char *s, int c);
+</code>
 
+Note: somtdbcsStrrchr version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtdbcsStrstr, somtdbcsStrstrSL function ====
 
+<code>
+SOMEXTERN char * somtdbcsStrstr(char *s1, char *s2);
+SOMEXTERN char * SOMLINK somtdbcsStrstrSL(char *s1, char *s2);
+</code>
+
+
+
+Note: somtdbcsStrstr version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink.
 
 ==== somteptotype, somteptotypeSL function ====
 
+<code>
+SOMEXTERN char * somteptotype(Entry *ep, char *ptrs, char *buf);
+SOMEXTERN char * SOMLINK somteptotypeSL(Entry *ep, char *ptrs, char *buf);
+</code>
+
+Note: somteptotype version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink.
 
 ==== somtgetDesc, somtgetDescSL function ====
 
+<code>
+SOMEXTERN char * somtgetDesc(Stab *stab, Entry *cls, Entry *method, char *desc, BOOL addQuotes, BOOL use, BOOL versflg);
+SOMEXTERN char * SOMLINK somtgetDescSL(Stab *stab, Entry *cls, Entry *method, char *desc, BOOL addQuotes, BOOL use, BOOL versflg);
+</code>
+
+Note: somtgetDesc version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink.
 
 ==== somtgetVersion, somtgetVersionSL function ====
 
