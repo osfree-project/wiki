@@ -1203,16 +1203,36 @@ SOMEXTERN void SOMLINK somtinternalSL(char *file, long lineno, char *fmt, ...);
 Note: somtinternal version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtmclose, somtmcloseSL function ====
 
+<code c>
+SOMEXTERN void somtmclose(void);
+SOMEXTERN void SOMLINK somtmcloseSL(void);
+</code>
 
+Note: somtmclose version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtmsg, somtmsgSL function ====
 
+<code c>
+SOMEXTERN void somtmsg(char *file, long lineno, char *fmt, ...);
+SOMEXTERN void SOMLINK somtmsgSL(char *file, long lineno, char *fmt, ...);
+</code>
 
+Note: somtmsg version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtreadDescFile, somtreadDescFileSL function ====
 
+<code c>
+SOMEXTERN void somtreadDescFile(Stab *stab, char *file);
+SOMEXTERN void SOMLINK somtreadDescFileSL(Stab *stab, char *file);
+</code>
 
+Note: somtreadDescFile version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtsetDefaultDesc, somtsetDefaultDescSL function ====
 
+<code c>
+SOMEXTERN void somtsetDefaultDesc(Stab *stab);
+SOMEXTERN void SOMLINK somtsetDefaultDescSL(Stab *stab);
+</code>
 
+Note: somtsetDefaultDesc version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtsetEmitSignals, somtsetEmitSignalsSL function ====
 
 
