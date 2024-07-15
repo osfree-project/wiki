@@ -2034,28 +2034,75 @@ Note: somtcreateTypeCodes  version uses default compiler calling convention. For
 
 ==== somtemitTcConstant, somtemitTcConstantSL function ====
 
+<code c>
+SOMEXTERN TypeCode * somtemitTcConstant(TypeCode t, FILE *f, char *name, TypeCode *alreadyDone);
+SOMEXTERN TypeCode * SOMLINK somtemitTcConstantSL(TypeCode t, FILE *f, char *name, TypeCode *alreadyDone);
+</code>
+
+
+Note: somtemitTcConstant version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink.
 
 ==== somtemitPredefinedTcConstants, somtemitPredefinedTcConstantsSL function ====
 
+<code c>
+SOMEXTERN void somtemitPredefinedTcConstants (FILE *f);
+SOMEXTERN void SOMLINK somtemitPredefinedTcConstantsSL(FILE *f);
+</code>
+
+Note: somtemitPredefinedTcConstants  version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink.
 
 ==== somtAncestorClass, somtAncestorClassSL function ====
 
+<code c>
+SOMEXTERN Entry * somtAncestorClass(Entry *cls, char *name);
+SOMEXTERN Entry * SOMLINK somtAncestorClassSL(Entry *cls, char *name);
+</code>
+
+Note: somtAncestorClass version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink.
 
 ==== somttcAlignment, somttcAlignmentSL function ====
 
+<code c>
+SOMEXTERN short somttcAlignment (TypeCode t, Environment *ev);
+SOMEXTERN short SOMLINK somttcAlignmentSL(TypeCode t, Environment *ev);
+</code>
+
+Note: somttcAlignment  version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink.
 
 ==== somttcSize, somttcSizeSL function ====
 
+<code c>
+SOMEXTERN long somttcSize (TypeCode t, Environment *ev);
+SOMEXTERN long SOMLINK somttcSizeSL(TypeCode t, Environment *ev);
+</code>
 
+Note: somttcSize version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somttcKind, somttcKindSL function ====
 
+<code c>
+SOMEXTERN TCKind somttcKind (TypeCode t, Environment *ev);
+SOMEXTERN TCKind SOMLINK somttcKindSL(TypeCode t, Environment *ev);
+</code>
+
+Note: somttcKind version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink.
 
 ==== somttcSeqFromListString, somttcSeqFromListStringSL function ====
 
+<code c>
+SOMEXTERN sequence(string) somttcSeqFromListString (string s);
+SOMEXTERN sequence(string) SOMLINK somttcSeqFromListStringSL(string s);
+</code>
+
+Note: somttcSeqFromListString version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink.
 
 ==== somtGetReintroducedMethods, somtGetReintroducedMethodsSL function ====
 
+<code c>
+SOMEXTERN _IDL_SEQUENCE_EntryPtr somtGetReintroducedMethods(Entry *cls);
+SOMEXTERN _IDL_SEQUENCE_EntryPtr SOMLINK somtGetReintroducedMethodsSL(Entry *cls);
+</code>
 
+Note: somtGetReintroducedMethods version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ===== Symbol table support functions =====
 
 ===== somtallocBuf, somtallocBufSL function =====
