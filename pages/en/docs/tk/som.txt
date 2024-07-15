@@ -1824,15 +1824,31 @@ SOMEXTERN int  somtlistAttribute(FILE * fp, int n, AttList * ap, char *s, boolea
 SOMEXTERN int  SOMLINK somtlistAttributeSL(FILE * fp, int n, AttList * ap, char *s, boolean value, boolean breakLine, boolean firstComma);
 </code>
 
+Note: somtlistAttribute version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtnewMethodsCount, somtnewMethodsCountSL function ====
 
+<code c>
+SOMEXTERN int  somtnewMethodsCount(Entry * cls, int meta, boolean procflg);
+SOMEXTERN int  SOMLINK somtnewMethodsCountSL(Entry * cls, int meta, boolean procflg);
+</code>
 
+Note: somtnewMethodsCount version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtprivateMethodsCount, somtprivateMethodsCountSL function ====
 
+<code c>
+SOMEXTERN int somtprivateMethodsCount(Entry * cls, int meta);
+SOMEXTERN int SOMLINK somtprivateMethodsCountSL(Entry * cls, int meta);
+</code>
 
+Note: somtprivateMethodsCount version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtaddHeader, somtaddHeaderSL function ====
 
+<code c>
+SOMEXTERN void somtaddHeader(char *file, FILE *fp, char *ext);
+SOMEXTERN void SOMLINK somtaddHeaderSL(char *file, FILE *fp, char *ext);
+</code>
 
+Note: somtaddHeader version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtcleanFiles, somtcleanFilesSL function ====
 
 <code>
@@ -1846,16 +1862,34 @@ Note: somtcleanFiles version uses default compiler calling convention. For IBM S
 
 ==== somtdeclareIdlVarargs, somtdeclareIdlVarargsSL function ====
 
+<code c>
+SOMEXTERN void somtdeclareIdlVarargs(FILE *fp, Entry *ep);
+SOMEXTERN void SOMLINK somtdeclareIdlVarargsSL(FILE *fp, Entry *ep);
+</code>
 
+Note: somtdeclareIdlVarargs version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtdymain. somtdymainSL function ====
 
+<code c>
+SOMEXTERN void somtdymain(char *file, Entry *cls, EmitFn emitfn, char *emitter, int first, char *version, Stab *stab);
+SOMEXTERN void SOMLINK somtdymainSL(char *file, Entry *cls, EmitFn emitfn, char *emitter, int first, char *version, Stab *stab);
+</code>
 
+Note: somtdymain version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtemitModuleTypes, somtemitModuleTypesSL function ====
 
+<code c>
+SOMEXTERN void somtemitModuleTypes(FILE *fp, Entry *ep, Stab *stab);
+SOMEXTERN void SOMLINK somtemitModuleTypesSL(FILE *fp, Entry *ep, Stab *stab);
+</code>
 
+Note: somtemitModuleTypes version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtemitPassthru, somtemitPassthruSL function ====
 
-
+<code c>
+SOMEXTERN long somtemitPassthru(FILE * fp, Entry * cls, char *name, int mode, char *att);
+SOMEXTERN long SOMLINK somtemitPassthruSL(FILE * fp, Entry * cls, char *name, int mode, char *att);
+</code>
 ==== somtfreeDataList, somtfreeDataListSL function ====
 
 
