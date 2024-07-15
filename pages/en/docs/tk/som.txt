@@ -1803,12 +1803,26 @@ SOMEXTERN char * SOMLINK somtrmSelfSL(char *str);
 Note: somtrmSelf version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtshortArgList, somtshortArgListSL function ====
 
+<code c>
+SOMEXTERN char * somtshortArgList(char *buf, Entry * method, char *sep, boolean varargs, boolean addself);
+SOMEXTERN char * SOMLINK somtshortArgListSL(char *buf, Entry * method, char *sep, boolean varargs, boolean addself);
+</code>
 
+Note: somtshortArgList version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtimplicitMeta, somtimplicitMetaSL function ====
 
+<code c>
+SOMEXTERN int  somtimplicitMeta(Entry *cls);
+SOMEXTERN int  SOMLINK somtimplicitMetaSL(Entry *cls);
+</code>
 
+Note: somtimplicitMeta version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtlistAttribute, somtlistAttributeSL function ====
 
+<code c>
+SOMEXTERN int  somtlistAttribute(FILE * fp, int n, AttList * ap, char *s, boolean value, boolean breakLine, boolean firstComma);
+SOMEXTERN int  SOMLINK somtlistAttributeSL(FILE * fp, int n, AttList * ap, char *s, boolean value, boolean breakLine, boolean firstComma);
+</code>
 
 ==== somtnewMethodsCount, somtnewMethodsCountSL function ====
 
