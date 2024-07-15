@@ -1890,12 +1890,24 @@ Note: somtemitModuleTypes version uses default compiler calling convention. For 
 SOMEXTERN long somtemitPassthru(FILE * fp, Entry * cls, char *name, int mode, char *att);
 SOMEXTERN long SOMLINK somtemitPassthruSL(FILE * fp, Entry * cls, char *name, int mode, char *att);
 </code>
+
+Note: somtemitPassthru version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtfreeDataList, somtfreeDataListSL function ====
 
+<code c>
+SOMEXTERN void somtfreeDataList(Mlist *mlist);
+SOMEXTERN void SOMLINK somtfreeDataListSL(Mlist *mlist);
+</code>
 
+Note: somtfreeDataList version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtfreeMethodList, somtfreeMethodListSL function ====
 
+<code c>
+SOMEXTERN void somtfreeMethodList(Mlist *mlist);
+SOMEXTERN void SOMLINK somtfreeMethodListSL(Mlist *mlist);
+</code>
 
+Note: somtfreeMethodList version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtfullComment, somtfullCommentSL function ====
 
 <code>
@@ -1909,10 +1921,20 @@ Note: somtfullComment version uses default compiler calling convention. For IBM 
 
 ==== somthandleDiskFull, somthandleDiskFullSL function ====
 
+<code c>
+SOMEXTERN void somthandleDiskFull(FILE *fp);
+SOMEXTERN void SOMLINK somthandleDiskFullSL(FILE *fp);
+</code>
 
+Note: somthandleDiskFull version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtinitialiseMeta, somtinitialiseMetaSL function ====
 
+<code c>
+SOMEXTERN void somtinitialiseMeta(Entry * cls, Stab * stab, boolean meta, int imp);
+SOMEXTERN void SOMLINK somtinitialiseMetaSL(Entry * cls, Stab * stab, boolean meta, int imp);
+</code>
 
+Note: somtinitialiseMeta version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtoidlComment, somtoidlCommentSL function ====
 
 <code>
