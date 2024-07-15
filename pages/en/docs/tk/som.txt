@@ -1963,13 +1963,28 @@ Note: somtoidlComment version uses default compiler calling convention. For IBM 
 
 ==== somtscmsg, somtscmsgSL function ====
 
+<code c>
+SOMEXTERN void somtscmsg(Entry *cls, Entry *ep, char *fmt, ...);
+SOMEXTERN void SOMLINK somtscmsgSL(Entry *cls, Entry *ep, char *fmt, ...);
+</code>
 
+Note: somtscmsg version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtshortDefine, somtshortDefineSL function ====
 
+<code c>
+SOMEXTERN void somtshortDefine(FILE *fp, Entry *ep, char *fmt, ...);
+SOMEXTERN void SOMLINK somtshortDefineSL(FILE *fp, Entry *ep, char *fmt, ...);
+</code>
 
+Note: somtshortDefine version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtuninitialiseMeta, somtuninitialiseMetaSL function ====
 
+<code c>
+SOMEXTERN void  somtuninitialiseMeta(Entry * cls);
+SOMEXTERN void SOMLINK somtuninitialiseMetaSL(Entry * cls);
+</code>
 
+Note: somtuninitialiseMeta version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtobseleteHeaderFile, somtobseleteHeaderFileSL function ====
 
 <code>
@@ -1983,10 +1998,20 @@ Note: somtoboleteHeaderFile version uses default compiler calling convention. Fo
 
 ==== somtwidenType, somtwidenTypeSL function ====
 
+<code c>
+SOMEXTERN char * somtwidenType(Entry *ep, char *args, char *type);
+SOMEXTERN char * SOMLINK somtwidenTypeSL(Entry *ep, char *args, char *type);
+</code>
 
+Note: somtwidenType version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtgenAttStubs, somtgenAttStubsSL function ====
 
+<code c>
+SOMEXTERN void somtgenAttStubs(FILE *fp, Entry *cls, char *prefix, char *classprefix);
+SOMEXTERN void SOMLINK somtgenAttStubsSL(FILE *fp, Entry *cls, char *prefix, char *classprefix);
+</code>
 
+Note: somtgenAttStubs version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtstrictidl, somtstrictidlSL function ====
 
 <code>
@@ -2000,6 +2025,12 @@ Note: somtstrictidl version uses default compiler calling convention. For IBM SO
 
 ==== somtcreateTypeCodes, somtcreateTypeCodesSL function ====
 
+<code c>
+SOMEXTERN void somtcreateTypeCodes (Stab *stab);
+SOMEXTERN void SOMLINK somtcreateTypeCodesSL(Stab *stab);
+</code>
+
+Note: somtcreateTypeCodes  version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink.
 
 ==== somtemitTcConstant, somtemitTcConstantSL function ====
 
