@@ -1795,7 +1795,12 @@ SOMEXTERN char * SOMLINK somtreplaceDataNameSL(char *buf, Entry * data, char *re
 Note: somtreplaceDataName version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtrmSelf, somtrmSelfSL function ====
 
+<code c>
+SOMEXTERN char * somtrmSelf(char *str);
+SOMEXTERN char * SOMLINK somtrmSelfSL(char *str);
+</code>
 
+Note: somtrmSelf version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtshortArgList, somtshortArgListSL function ====
 
 
