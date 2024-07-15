@@ -1705,7 +1705,12 @@ SOMEXTERN char * SOMLINK somtfullTypedefSL(char *buf, Entry * cls, Entry * metho
 Note: somtfullTypedef version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtgetNonRepeatedParent, somtgetNonRepeatedParentSL function ====
 
+<code c>
+SOMEXTERN char * somtgetNonRepeatedParent(Entry *cls, int i);
+SOMEXTERN char * SOMLINK somtgetNonRepeatedParentSL(Entry *cls, int i);
+</code>
 
+Note: somtgetNonRepeatedParent version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtgetatt, somtgetattSL function ====
 
 
