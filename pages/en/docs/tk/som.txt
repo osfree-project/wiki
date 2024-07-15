@@ -1763,16 +1763,36 @@ Note: somtincludeOnce version uses default compiler calling convention. For IBM 
 
 ==== somtpclsfilename, somtpclsfilenameSL function ====
 
+<code c>
+SOMEXTERN char * somtpclsfilename(Entry *parent);
+SOMEXTERN char * SOMLINK somtpclsfilenameSL(Entry *parent);
+</code>
 
+Note: somtpclsfilename version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtpclsname, somtpclsnameSL function ====
 
+<code c>
+SOMEXTERN char * somtpclsname(Entry *parent);
+SOMEXTERN char * SOMLINK somtpclsnameSL(Entry *parent);
+</code>
 
+Note: somtpclsname version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtprefixedPrototype, somtprefixedPrototypeSL function ====
 
+<code c>
+SOMEXTERN char * somtprefixedPrototype(char *buf, Entry * method, char *sep, int varargs, char *prefix);
+SOMEXTERN char * SOMLINK somtprefixedPrototypeSL(char *buf, Entry * method, char *sep, int varargs, char *prefix);
+</code>
 
+Note: somtprefixedPrototype version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtreplaceDataName, somtreplaceDataNameSL function ====
 
+<code c>
+SOMEXTERN char * somtreplaceDataName(char *buf, Entry * data, char *replace);
+SOMEXTERN char * SOMLINK somtreplaceDataNameSL(char *buf, Entry * data, char *replace);
+</code>
 
+Note: somtreplaceDataName version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtrmSelf, somtrmSelfSL function ====
 
 
