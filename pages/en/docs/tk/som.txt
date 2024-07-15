@@ -1681,13 +1681,28 @@ Note: somclsname version uses default compiler calling convention. For IBM SOM 3
 
 ==== somtfindMethodName, somtfindMethodNameSL function ====
 
+<code c>
+SOMEXTERN char * somtfindMethodName(const char *bp, char *name);
+SOMEXTERN char * SOMLINK somtfindMethodNameSL(const char *bp, char *name);
+</code>
 
+Note: somtfindMethodName version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtfullPrototype, somtfullPrototypeSL function ====
 
+<code c>
+SOMEXTERN char * somtfullPrototype(char *buf, Entry * method, char *sep, int varargs);
+SOMEXTERN char * SOMLINK somtfullPrototypeSL(char *buf, Entry * method, char *sep, int varargs);
+</code>
 
+Note: somtfullPrototype version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtfullTypedef, somtfullTypedefSL function ====
 
+<code c>
+SOMEXTERN char * somtfullTypedef(char *buf, Entry * cls, Entry * method);
+SOMEXTERN char * SOMLINK somtfullTypedefSL(char *buf, Entry * cls, Entry * method);
+</code>
 
+Note: somtfullTypedef version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtgetNonRepeatedParent, somtgetNonRepeatedParentSL function ====
 
 
