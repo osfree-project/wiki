@@ -1713,10 +1713,16 @@ SOMEXTERN char * SOMLINK somtgetNonRepeatedParentSL(Entry *cls, int i);
 Note: somtgetNonRepeatedParent version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtgetatt, somtgetattSL function ====
 
-
+<code c>
+SOMEXTERN char * somtgetatt(Entry * ep, char *s);
+SOMEXTERN char * SOMLINK somtgetattSL(Entry * ep, char *s);
+</code>
 ==== somtgetdatt, somtgetdattSL function ====
 
-
+<code c>
+SOMEXTERN char * somtgetdatt(Entry * ep, char *s);
+SOMEXTERN char * SOMLINK somtgetdattSL(Entry * ep, char *s);
+</code>
 ==== somtgetAbistyle, somtgetAbistyleSL function ====
 
 <code>
@@ -1730,10 +1736,20 @@ Note: somtgetABIStyle version uses default compiler calling convention. For IBM 
 
 ==== somtimplicit, somtimplicitSL function ====
 
+<code c>
+SOMEXTERN char * somtimplicit(Entry *ep, boolean shortform, char *buf);
+SOMEXTERN char * SOMLINK somtimplicitSL(Entry *ep, boolean shortform, char *buf);
+</code>
 
+Note: somtimplicit version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtimplicitArgs, somtimplicitArgsSL function ====
 
+<code c>
+SOMEXTERN char * somtimplicitArgs(Entry *ep);
+SOMEXTERN char * SOMLINK somtimplicitArgsSL(Entry *ep);
+</code>
 
+Note: somtimplicitArgs version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtincludeOnce, somtincludeOnceSL function ====
 
 <code>
