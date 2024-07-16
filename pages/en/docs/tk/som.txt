@@ -2248,14 +2248,14 @@ SOMEXTERN void SOMLINK somtfreeStabSL(Stab *stab, BOOL freeEp);
 
 Note: somtfreeStab version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink.
 
-===== 3. SOM Emitter Framework =====
+===== 3. somFree Emitter Framework =====
 
 ==== SOMTAttributeEntryC Class ====
 
 === somtIsReadonly attribute ===
 
 <code>
-readonly attribute boolean somtIsReadonly
+readonly attribute boolean somtIsReadonly;
 </code>
 
 Whether the attribute is readonly.
@@ -2263,19 +2263,69 @@ Whether the attribute is readonly.
 === somtAttribType attribute ===
 
 <code>
-readonly attribute SOMTEntryC somtAttribType
+readonly attribute SOMTEntryC somtAttribType;
 </code>
 
 The type of the attribute.  This does not include pointer stars or array declarators.  To get the "full" type, get each attribute declarator and get the somtType attribute.
 
-=== somtGetFirst<Item> Methods ===
+=== somtGetFirstAttributeDeclarator method ===
 
+<code>
+SOMTDataEntryC somtGetFirstAttributeDeclarator();
+</code>
 
-=== somtGetNext<Item> Methods ===
+The first attribute declarator for this attribute declaration.
+
+=== somtGetNextAttributeDeclarator method ===
+
+<code>
+SOMTDataEntryC somtGetNextAttributeDeclarator();
+</code>
+
+The next attribute declarator for this attribute declaration, relative to the previous call to this method or somtGetFirstAttributeDeclarator.
+
+=== somtGetFirstGetMethod method ===
+
+<code>
+SOMTMethodEntryC somtGetFirstGetMethod();
+</code>
+
+The first get method for this attribute declaration.
+
+=== somtGetNextGetMethod method ===
+
+<code>
+SOMTMethodEntryC somtGetNextGetMethod();
+</code>
+
+The next get method for this attribute declaration, relative to the previous call to this method or  somtGetFirstGetMethod.
+
+=== somtGetFirstSetMethod method ===
+
+<code>
+SOMTMethodEntryC somtGetFirstSetMethod();
+</code>
+
+The first set method for this attribute declaration.
+
+=== somtGetNextSetMethod method ===
+
+<code>
+SOMTMethodEntryC somtGetNextSetMethod();
+</code>
+
+The next set method for this attribute declaration, relative to the previous call to this method or  somtGetFirstSetMethod.
 
 
 ==== SOMTBaseClassEntryC Class ====
 
+=== somtBaseClassDef attribute ===
+
+<code>
+readonly attribute SOMTClassEntryC somtBaseClassDef;
+</code>
+
+Returns the class definition entry for the Base class named in this entry.
 
 ==== SOMTClassEntryC Class ====
 
