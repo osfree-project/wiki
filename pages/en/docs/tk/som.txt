@@ -3681,6 +3681,21 @@ The value of the enumeration.
 
 ==== SOMTMetaClassEntryC Class ====
 
+=== somtMetaFile attribute ===
+
+<code>
+readonly attribute string somtMetaFile;
+</code>
+
+Returns the name of the file containing the definition of the meta class named in this entry.
+
+=== somtMetaClassDef attribute ===
+
+<code>
+readonly attribute SOMTClassEntryC somtMetaClassDef;
+</code>
+
+Returns the class definition entry for the meta class named in this entry.
 
 ==== SOMTMethodEntryC Class ====
 
