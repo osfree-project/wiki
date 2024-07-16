@@ -3647,14 +3647,37 @@ Note, when overridding this method, it is important to call the parent version o
 
 ==== SOMTEnumEntryC Class ====
 
+=== somtGetFirstEnumName method ===
 
-=== somtGetFirstEnumName Method ===
+<code>
+SOMTEnumNameEntryC somtGetFirstEnumName();
+</code>
 
+=== somtGetNextEnumName method ===
 
-=== somtGetNextEnumName Method ===
+<code>
+SOMTEnumNameEntryC somtGetNextEnumName();
+</code>
+
 
 
 ==== SOMTEnumNameEntryC Class ====
+
+=== somtEnumPtr attribute ===
+
+<code>
+readonly attribute SOMTEnumEntryC somtEnumPtr;
+</code>
+
+A pointer to the enumerator.
+
+=== somtEnumVal attribute ===
+
+<code>
+readonly attribute unsigned long somtEnumVal;
+</code>
+
+The value of the enumeration.
 
 ==== SOMTMetaClassEntryC Class ====
 
