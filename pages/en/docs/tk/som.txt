@@ -2329,6 +2329,139 @@ Returns the class definition entry for the Base class named in this entry.
 
 ==== SOMTClassEntryC Class ====
 
+=== somtSourceFileName attribute ===
+
+<code>
+readonly attribute string somtSourceFileName;
+</code>
+  
+Returns the name of file containing the definition of this class.
+
+=== somtMetaClassEntry attribute ===
+
+<code>
+readonly attribute SOMTMetaClassEntryC somtMetaClassEntry;
+</code>
+  
+Returns the entry for the meta class statement in class definition or NULL if there is no meta class statement.
+
+Note: the SOM architecture requires that all classes have a meta class, however <SOMClass> is its own metaclass. Thus, any attempt to walk up the metaclass chain must terminate when it finds a class that is its own meta class, otherwise an infinite loop is possible.
+
+=== somtClassModule attribute ===
+
+<code>
+readonly attribute SOMTModuleEntryC somtClassModule;
+</code>
+
+The module that contains this class, or NULL if there is not one.
+
+
+=== somtNewMethodCount attribute ===
+
+<code>
+readonly attribute long somtNewMethodCount;
+</code>
+  
+Returns the number of new methods introduced in this class definition.
+
+=== somtLocalInclude attribute ===
+
+<code>
+readonly attribute boolean somtLocalInclude;
+</code>
+  
+Returns true if the header files associated with this class definition should be included using local search, eg, "name.h" instead of <name.h>
+
+=== somtPrivateMethodCount attribute ===
+
+<code>
+readonly attribute long somtPrivateMethodCount;
+</code>
+  
+Returns number of new private methods in class.
+
+=== somtStaticMethodCount attribute ===
+
+<code>
+readonly attribute long somtStaticMethodCount;
+</code>
+  
+Returns number of new static methods in class.
+
+=== somtOverrideMethodCount attribute ===
+
+<code>
+readonly attribute long somtOverrideMethodCount;
+</code>
+  
+Returns number of new override methods in class.
+
+
+=== somtProcMethodCount attribute ===
+
+<code>
+readonly attribute long somtProcMethodCount;
+</code>
+
+Returns number of procedure methods for class.
+
+=== somtVAMethodCount attribute ===
+
+<code>
+readonly attribute long somtVAMethodCount;
+</code>
+  
+Returns number of VarArg methods for class.
+
+=== somtBaseCount attribute ===
+
+<code>
+readonly attribute long somtBaseCount;
+</code>
+
+Returns number of base classes for class.
+
+=== somtExternalDataCount attribute ===
+
+<code>
+readonly attribute long somtExternalDataCount;
+</code>
+
+Returns number of external (public or private) data members for class.
+
+
+=== somtPublicDataCount attribute ===
+
+<code>
+readonly attribute long somtPublicDataCount;
+</code>
+  
+Returns number of public data members for class.
+
+=== somtPrivateDataCount attribute ===
+
+<code>
+readonly attribute long somtPrivateDataCount;
+</code>
+
+Returns number of private data members for class.
+
+=== somtMetaclassFor attribute ===
+
+<code>
+readonly attribute SOMTClassEntryC somtMetaclassFor;
+</code>
+
+If this is a metaclass, the class for which it is a metaclass, else NULL.
+
+
+=== somtForwardRef attribute ===
+
+<code>
+readonly attribute boolean somtForwardRef;
+</code>
+
+Whether this is a forward reference or not.
 
 === somtFilterNew Method ===
 
