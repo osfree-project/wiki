@@ -3288,151 +3288,225 @@ boolean somtImplemented(in SOMTMethodEntryC entry);
 
 Returns 1 (true) if <entry> is a method introduced or overridden by the target class and its visibility matches <somtTargetType> (somtImplementationE matches both private and public)
 
-  boolean somtOverridden(in SOMTMethodEntryC entry);
-  // Returns 1 (true) if <entry> is an overridding method of the target class 
-  // and its visibility matches <somtTargetType> (somtImplementationE
-  // matches both private and public)
+=== somtOverridden method ===
 
-  boolean somtInherited(in SOMTMethodEntryC entry);
-  // Returns 1 (true) if <entry> is inherited 
-  // by the target class and its visibility matches <somtTargetType>
-  // (somtImplementationE matches both private and public)
+<code>
+boolean somtOverridden(in SOMTMethodEntryC entry);
+</code>
 
-  boolean somtAllVisible(in SOMTMethodEntryC entry);
-  // Returns 1 (true) if <entry> is supported by the target class and
-  // its visibility matches <somtTargetType> (somtImplementationE
-  // matches both private and public)
+Returns 1 (true) if <entry> is an overridding method of the target class and its visibility matches <somtTargetType> (somtImplementationE matches both private and public)
 
-  boolean somtAll(in SOMTMethodEntryC entry);
-  // Returns 1 (true) if <entry> is supported by the target class.
+=== somtInherited method ===
 
-  boolean somtNewNoProc(in SOMTEntryC entry);
-  // Returns 1 (true) if somtNew does and the method
-  // IS NOT a direct call Procedure.
+<code>
+boolean somtInherited(in SOMTMethodEntryC entry);
+</code>
 
-  boolean somtPrivOrPub(in SOMTEntryC entry);
-  // Returns 1 (true) if entry is Private or Public.
+Returns 1 (true) if <entry> is inherited by the target class and its visibility matches <somtTargetType> (somtImplementationE matches both private and public)
 
-  boolean somtNewProc(in SOMTEntryC entry);
-  // Returns 1 (true) if somtNew does and the method
-  // IS a direct call Procedure.
+=== somtAllVisible method ===
 
-  boolean somtLink(in SOMTEntryC entry);
-  // Returns 1 (true) if "nolink" is not set.
+<code>
+boolean somtAllVisible(in SOMTMethodEntryC entry);
+</code>
 
-  boolean somtVA(in SOMTEntryC entry);
-  // Returns 1 (true) if entry is a VarArgs method.
+Returns 1 (true) if <entry> is supported by the target class and its visibility matches <somtTargetType> (somtImplementationE matches both private and public)
 
-  boolean somtScanMethods(in string filter, 
-                     in string prolog, 
-                     in string each, 
-                     in string epilog, 
-                     in boolean forceProlog);
+=== somtAll method ===
+
+<code>
+boolean somtAll(in SOMTMethodEntryC entry);
+</code>
+
+Returns 1 (true) if <entry> is supported by the target class.
+
+=== somtNewNoProc method ===
+
+<code>
+boolean somtNewNoProc(in SOMTEntryC entry);
+</code>
+
+Returns 1 (true) if somtNew does and the method IS NOT a direct call Procedure.
+
+=== somtPrivOrPub method ===
+
+<code>
+boolean somtPrivOrPub(in SOMTEntryC entry);
+</code>
+
+Returns 1 (true) if entry is Private or Public.
+
+=== somtNewProc method ===
+
+<code>
+boolean somtNewProc(in SOMTEntryC entry);
+</code>
+
+Returns 1 (true) if somtNew does and the method IS a direct call Procedure.
+
+=== somtLink method ===
+
+<code>
+boolean somtLink(in SOMTEntryC entry);
+</code>
+
+Returns 1 (true) if "nolink" is not set.
+
+=== somtVA method ===
+
+<code>
+boolean somtVA(in SOMTEntryC entry);
+</code>
+
+Returns 1 (true) if entry is a VarArgs method.
+
+=== somtScanMethods method ===
+
+<code>
+boolean somtScanMethods(in string filter, in string prolog, in string each, in string epilog, in boolean forceProlog);
+</code>
   
-  // Will only call <each> on methods accepted by <filter>.
-  // If <forceProlog> is not true then the prolog and epilog emiters
-  // will be called only if there is at least one method that passes
-  // the filter.
+Will only call <each> on methods accepted by <filter>. If <forceProlog> is not true then the prolog and epilog emiters will be called only if there is at least one method that passes the filter.
 
-  boolean somtScanConstants(in string prolog, 
-                  in string each, 
-                  in string epilog);
+=== somtScanConstants method ===
 
-  boolean somtScanTypedefs(in string prolog, 
-                  in string each, 
-                  in string epilog);
+<code>
+boolean somtScanConstants(in string prolog, in string each, in string epilog);
+</code>
 
-  boolean somtScanStructs(in string prolog, 
-                  in string each, 
-                  in string epilog);
+=== somtScanTypedefs method ===
 
-  boolean somtScanUnions(in string prolog, 
-                  in string each, 
-                  in string epilog);
+<code>
+boolean somtScanTypedefs(in string prolog, in string each, in string epilog);
+</code>
 
-  boolean somtScanEnums(in string prolog, 
-                  in string each, 
-                  in string epilog);
+=== somtScanStructs method ==
 
-  boolean somtScanData(in string prolog, 
-                  in string each, 
-                  in string epilog);
+<code>
+boolean somtScanStructs(in string prolog, in string each, in string epilog);
+</code>
 
-  boolean somtScanAttributes(in string prolog, 
-                  in string each, 
-                  in string epilog);
+=== somtScanUnions method ===
 
-  boolean somtScanInterfaces(in string prolog, 
-                  in string each, 
-                  in string epilog);
+<code>
+boolean somtScanUnions(in string prolog, in string each, in string epilog);
+</code>
 
-  boolean somtScanModules(in string prolog, 
-                  in string each, 
-                  in string epilog);
+=== somtScanEnums method ===
 
-  boolean somtScanPassthru(in boolean before, 
-                      in string prolog, 
-                      in string each, 
-                      in string epilog);
+<code>
+boolean somtScanEnums(in string prolog, in string each, in string epilog);
+</code>
 
-  void somtEmitFullPassthru(in boolean before, in string language);
+=== somtScanData method ===
+
+<code>
+boolean somtScanData(in string prolog, in string each, in string epilog);
+</code>
+
+=== somtScanAttributes method ===
+
+<code>
+boolean somtScanAttributes(in string prolog, in string each, in string epilog);
+</code>
+
+=== somtScanInterfaces method ===
+
+<code>
+boolean somtScanInterfaces(in string prolog, in string each, in string epilog);
+</code>
+
+=== somtScanModules method ===
+
+<code>
+boolean somtScanModules(in string prolog, in string each, in string epilog);
+</code>
+
+=== somtScanPassthru method ===
+
+<code>
+boolean somtScanPassthru(in boolean before, in string prolog, in string each, in string epilog);
+</code>
+
+=== somtEmitFullPassthru method ===
+
+<code>
+void somtEmitFullPassthru(in boolean before, in string language);
+</code>
+
+Emits each passthru section defined for the language and targetType, and the result of the somtIsBeforePassthru method is equal to the before parameter.  (before = 1(true), or before = 0(false), i.e. after.)
+
+=== somtScanDataF method ===
+
+<code>
+boolean somtScanDataF(in string filter, in string prolog, in string each, in string epilog, in boolean forceProlog);
+</code>
   
-  // Emits each passthru section defined for the language and targetType,
-  // and the result of the somtIsBeforePassthru method is equal to the
-  // before parameter.  (before = 1(true), or before = 0(false), i.e. after.)
+This method is like somtScanData but it also provides a paramater for a filter method.
 
-  boolean somtScanDataF(in string filter, 
-                   in string prolog, 
-                   in string each, 
-                   in string epilog, 
-                   in boolean forceProlog);
+=== somtScanBasesF method ===
+
+<code>
+boolean somtScanBasesF(in string filter, in string prolog, in string each, in string epilog, in boolean forceProlog);
+</code>
   
-  // This method is like somtScanData but it also provides a paramater
-  // for a filter method.
+This method is like somtScanBases but it also provides a paramater for a filter method.
 
-  boolean somtScanBasesF(in string filter, 
-                    in string prolog, 
-                    in string each, 
-                    in string epilog, 
-                    in boolean forceProlog);
+=== somtGetGlobalModifierValue method ===
+
+<code>
+string somtGetGlobalModifierValue(in string modifierName);
+</code>
+
+Returns the value of the specified global modifier.
+
+Global modifiers are specified when the SOM Compiler is invoked, via the "-m" option.  For example, 
+
+  sc -m"foo=bar"  file.idl
+
+specifies to the SOM Compiler and the emitters being run that the global modifier "foo" has the value "bar."
+
+Values of global modifiers are transient; they last only for the duration of the compile for which they were specified.
+
+If a modifier is specified in the "sc" command with no value, as in 
+
+  sc -mfoo file.idl
   
-  // This method is like somtScanBases but it also provides a paramater
-  // for a filter method.
+then the result of this method will be non-NULL.
 
-  string somtGetGlobalModifierValue(in string modifierName);
-  // Returns the value of the specified global modifier.
-  // Global modifiers are specified when the SOM Compiler is invoked,
-  // via the "-m" option.  For example, 
-  //                       sc -m"foo=bar"  file.idl
-  // specifies to the SOM Compiler and the emitters being run that
-  // the global modifier "foo" has the value "bar."
-  // Values of global modifiers are transient; they last only for the
-  // duration of the compile for which they were specified.
-  // If a modifier is specified in the "sc" command with no value,
-  // as in 
-  //                       sc -mfoo file.idl
-  // then the result of this method will be non-NULL.
-  // If no such modifier is specified, then the result is NULL.
-  // Older SOM compiler version uses "-a" option which is same as "-m" option.
+If no such modifier is specified, then the result is NULL.
 
-  SOMTEntryC somtGetFirstGlobalDefinition();
-  // Returns the first type or constant definition that is not
-  // associated with any interface or module.
-  // These global definitions must be surrounded by the somemittypes
-  // pragmas for them to be visible via this method.
-  // E.g., #pragma somemittypes on
-  //       ....
-  //       #pragma someemittypes off
-  // The list of global definitions returned by this method and
-  // the somtGetNextGlobalDefinition method may include entries
-  // for forward declarations as well as typedefs and constants.
-  // Global structs and unions are also included in the list.
+Older SOM compiler version uses "-a" option which is same as "-m" option.
 
-  SOMTEntryC somtGetNextGlobalDefinition();
-  // Returns the next type or constant definition that is not
-  // associated with any interface or module, relative to a
-  // previous call to somtGetFirstGlobalDefinition or
-  // somtGetNextGlobalDefinition.
+=== somtGetFirstGlobalDefinition method ===
+
+<code>
+SOMTEntryC somtGetFirstGlobalDefinition();
+</code>
+
+Returns the first type or constant definition that is not associated with any interface or module.
+
+These global definitions must be surrounded by the somemittypes pragmas for them to be visible via this method.
+E.g.,
+
+<code c>
+#pragma somemittypes on
+....
+#pragma someemittypes off
+</code>
+
+The list of global definitions returned by this method and the somtGetNextGlobalDefinition method may include entries for forward declarations as well as typedefs and constants.
+
+Global structs and unions are also included in the list.
+
+=== somtGetNextGlobalDefinition method ===
+
+<code>
+SOMTEntryC somtGetNextGlobalDefinition();
+</code>
+
+Returns the next type or constant definition that is not associated with any interface or module, relative to a previous call to somtGetFirstGlobalDefinition or somtGetNextGlobalDefinition.
+
 
 ==== SOMTEntryC Class ====
 
