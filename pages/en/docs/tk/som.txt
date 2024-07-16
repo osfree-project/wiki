@@ -3699,30 +3699,179 @@ Returns the class definition entry for the meta class named in this entry.
 
 ==== SOMTMethodEntryC Class ====
 
+=== somtIsVarargs attribute ===
 
-=== somtGetFirst<Item> Methods ===
+<code>
+readonly attribute boolean somtIsVarargs;
+</code>
+
+Returns 1 (true) if this method definition has a variable length parameter list.
+
+=== somtOriginalMethod attribute ===
+
+<code>
+readonly attribute SOMTMethodEntryC somtOriginalMethod;
+</code>
+
+If this is an override method definition (<SOMTOverrideMethodE>) then this is the method definition entry that orginially introduced the method.
+
+=== somtOriginalClass attribute ===
+
+<code>
+readonly attribute SOMTClassEntryC somtOriginalClass;
+</code>
+
+If this is an override method definition (<SOMTOverrideMethodE>) then this is the class definition entry that orginially introduced the method.
+
+=== somtMethodGroup attribute ===
+
+<code>
+readonly attribute SOMTEntryC somtMethodGroup;
+</code>
+
+The group this method is defined in within a class definition.
+
+=== somtIsPrivateMethod attribute ===
+
+<code>
+readonly attribute boolean somtIsPrivateMethod;
+</code>
+
+Whether or not the method is private.
+
+=== somtIsOneway attribute ===
+
+<code>
+readonly attribute boolean somtIsOneway;
+</code>
+
+Whether or not the method is oneway.
+
+=== somtArgCount attribute ===
+
+<code>
+readonly attribute short somtArgCount;
+</code>
+
+The number of arguments for the method.
+
+=== somtGetFirstParameter method ===
+
+<code>
+SOMTParameterEntryC somtGetFirstParameter();
+</code>
+  
+Returns the first formal parameter entry for this method if it has one and NULL otherwise.  Note: the target object parameter is not included, therefore the first parameter is really the second parameter from a SOM runtime perspective.
+
+=== somtGetNextParameter method ===
+
+<code>
+SOMTParameterEntryC somtGetNextParameter();
+</code>
+  
+Returns the next formal parameter entry for this method if it has one and NULL otherwise.
 
 
-=== somtGetFullCParamList Method ===
+=== somtGetIDLParamList method ===
+
+<code>
+string somtGetIDLParamList(in string buffer);
+</code>
+
+Returns the formal parameter list (in IDL syntax) for this method. The parameter list is built in <buffer> and the address of <buffer> is returned.
+
+Parameters are delimited with newlines.
+
+The method receiver and any implicit method arguments are NOT included.
+
+=== somtGetShortCParamList method ===
+
+<code>
+string somtGetShortCParamList(in string buffer, in string selfParm, in string varargsParm);
+</code>
+
+Returns the formal parameter list (in ANSI C function prototype form, with types) for this method. The parameter list is built in  <buffer> and the address of <buffer> is returned.
+
+Parameters are delimited with newlines.
+
+If this method takes a variable number of arguments then the final parameter substring is replaced by <varargsParm>, unless <varargsParm> is NULL in which case the final parameter is removed.
+
+If <selfParm> is not null then it is added as an initial parameter. (The <selfParm> string may actually contain multiple parameters, delimited by newline characters.)
+
+The method receiver and any implicit method arguments are NOT included.
+
+The types of the method parameters are given in C form (with pointer stars, where needed) rather than in the IDL form.
+
+=== somtGetFullCParamList method ===
+
+<code>
+string somtGetFullCParamList(in string buffer, in string varargsParm);
+</code>
+
+Same as somtGetShortCParamList except that the method receiver and any implicit method arguments (Environment and Context) are included. The types of the method parameters are given in C form (with pointer stars, where needed) rather than in the IDL form.
 
 
-=== somtGetFullParamNameList Method ===
+=== somtGetShortParamNameList mwthod ===
 
+<code>
+string somtGetShortParamNameList(in string buffer, in string selfParm, in string varargsParm);
+</code>
+  
+Returns the parameter list for this method in call form (without types). The argument list is built in <buffer> and the address of  <buffer> is returned. Parameters are delimited with newlines.
 
-=== somtGetIDLParamList Method ===
+If this method takes a variable number of arguments then the final parameter is replaced by <varargsParm>, unless <varargsParm> is NULL in which case the final parameter is removed.
 
+If <selfParm> is not null then it is added as an initial parameter. (The <selfParm> string may actually contain multiple parameters, delimited by newline characters.)
 
-=== somtGetNext<Item> Methods ===
+The method receiver and any implicit method arguments are NOT included.
 
+=== somtGetFullParamNameList method ===
 
-=== somtGetNthParameter Method ===
+<code>
+string somtGetFullParamNameList(in string buffer, in string varargsParm);
+</code>
 
+Same as somtGetParamNameList except that the method receiver and any implicit method arguments (Environment and Context) are included.
 
-=== somtGetShortCParamList Method ===
+=== somtGetNthParameter mwthod ===
 
+<code>
+SOMTParameterEntryC somtGetNthParameter(in short n);
+</code>
 
-=== somtGetShortParamNameList Method ===
+Returns the object representing the nth explicit method parameter.
 
+=== somtGetFirstException method ===
+
+<code>
+SOMTStructEntryC somtGetFirstException();
+</code>
+
+The first exception this method raises.
+
+=== somtGetNextException method ===
+
+<code>
+SOMTStructEntryC somtGetNextException();
+</code>
+
+The next exception this method raises, relative to the previous call to this method or to somtGetFirstException.
+
+=== somtContextArray attribute ===
+
+<code>
+readonly attribute string *somtContextArray;
+</code>
+
+An array of the context string-literals for the method.
+
+=== somtCReturnType attribute ===
+
+<code>
+readonly attribute string somtCReturnType;
+</code>
+
+The C datatype the method returns. This may not correspond to the IDL data type (in particular, pointer stars may be added).
 
 ==== SOMTModuleEntryC Class ====
 
