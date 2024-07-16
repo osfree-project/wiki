@@ -3875,12 +3875,129 @@ The C datatype the method returns. This may not correspond to the IDL data type 
 
 ==== SOMTModuleEntryC Class ====
 
+=== somtOuterModule attribute ===
 
-=== somtGetFirst<Item> Methods ===
+<code>
+readonly attribute SOMTModuleEntryC somtOuterModule;
+</code>
 
+The module enclosing this module, or NULL if there is none.
 
-=== somtGetNext<Item> Methods ===
+=== somtModuleFile attribute ===
 
+<code>
+readonly attribute string somtModuleFile;
+</code>
+
+The name of the file in which the module appears.
+
+=== somtGetFirstModuleStruct method ===
+
+<code>
+SOMTStructEntryC somtGetFirstModuleStruct();
+</code>
+
+=== somtGetNextModuleStruct method ===
+
+<code>
+SOMTStructEntryC somtGetNextModuleStruct();
+</code>
+
+=== somtGetFirstModuleTypedef method ===
+
+<code>
+SOMTTypedefEntryC somtGetFirstModuleTypedef();
+</code>
+
+=== somtGetNextModuleTypedef method ===
+
+<code>
+SOMTTypedefEntryC somtGetNextModuleTypedef();
+</code>
+
+=== somtGetFirstModuleUnion method ===
+
+<code>
+SOMTUnionEntryC somtGetFirstModuleUnion();
+</code>
+
+=== somtGetNextModuleUnion method ===
+
+<code>
+SOMTUnionEntryC somtGetNextModuleUnion();
+</code>
+
+=== somtGetFirstModuleEnum method ===
+
+<code>
+SOMTEnumEntryC somtGetFirstModuleEnum();
+</code>
+
+=== somtGetNextModuleEnum method ===
+
+<code>
+SOMTEnumEntryC somtGetNextModuleEnum();
+</code>
+
+=== somtGetFirstModuleConstant mwthod ===
+
+<code>
+SOMTConstEntryC somtGetFirstModuleConstant();
+</code>
+
+=== somtGetNextModuleConstant mwthod ===
+
+<code>
+SOMTConstEntryC somtGetNextModuleConstant();
+</code>
+
+=== somtGetFirstModuleSequence method ===
+
+<code>
+SOMTSequenceEntryC somtGetFirstModuleSequence();
+</code>
+
+=== somtGetNextModuleSequence method ===
+
+<code>
+SOMTSequenceEntryC somtGetNextModuleSequence();
+</code>
+
+=== somtGetFirstInterface method ===
+
+<code>
+SOMTClassEntryC somtGetFirstInterface();
+</code>
+
+=== somtGetNextInterface method ===
+
+<code>
+SOMTClassEntryC somtGetNextInterface();
+</code>
+
+=== somtGetFirstModule method ===
+
+<code>
+SOMTModuleEntryC somtGetFirstModule();
+</code>
+
+=== somtGetNextModule method ===
+
+<code>
+SOMTModuleEntryC somtGetNextModule();
+</code>
+
+=== somtGetFirstModuleDef method ===
+
+<code>
+SOMTEntryC somtGetFirstModuleDef();
+</code>
+
+=== somtGetNextModuleDef method ===
+
+<code>
+SOMTEntryC somtGetNextModuleDef();
+</code>
 
 ==== SOMTParameterEntryC Class ====
 
