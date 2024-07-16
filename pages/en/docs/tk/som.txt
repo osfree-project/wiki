@@ -2862,60 +2862,577 @@ Whether a declarator of a struct is self-referential.
 
 ==== SOMTEmitC Class ====
 
+=== somtTemplate attribute ===
 
-=== somtAll Method ===
+<code>
+attribute SOMTTemplateOutputC somtTemplate;
+</code>
 
+The template is to provide template output and maintains a symbol table that provides a sort of global context for the emitter.
 
-=== somtEmit<Section> Methods ===
+=== somtTargetFile attribute ===
 
+<code>
+attribute FILE *somtTargetFile;
+</code>
 
-=== somtEmitFullPassthru Method ===
+The target file is the one to which all emitter output is to be directed.
 
+=== somtTargetClass attribute ===
 
-=== somtFileSymbols Method ===
+<code>
+attribute SOMTClassEntryC somtTargetClass;
+</code>
 
+The target class is the class definition for which code is to be emitted.
 
-=== somtGenerateSections Method ===
+=== somtTargetModule attribute ===
 
+<code>
+attribute SOMTModuleEntryC somtTargetModule;
+</code>
 
-=== somtGetFirstGlobalDefinition Method ===
-
-
-=== somtGetGlobalModifierValue Method ===
-
-
-=== somtGetNextGlobalDefinition Method ===
-
-
-=== somtImplemented Method ===
-
-
-=== somtInherited Method ===
-
-
-=== somtNew Method ===
-
-
-=== somtNewNoProc Method ===
+The target module is the module definition for which code is to be emitted.
 
 
-=== somtNewProc Method ===
+=== somtTargetType attribute ===
+
+<code>
+attribute SOMTTargetTypeT somtTargetType;
+</code>
+
+The target type indicates what type of output file is being produced, public, private, or implementation.  This allows the same emitter subclass to produce several different output files that generally differ only in how much of the class definition they cover. Eg, .csc, .sc, and .psc. This is attribute is for OIDL compatibility only.
 
 
-=== somtOpenSymbolsFile Method ===
+=== somtEmitterName attribute ===
+
+<code>
+attribute string somtEmitterName;
+</code>
+
+The short name of the emitter (the name used to invoke it via the SOM Compiler.  Typically this is the file stem of the subclass of SOMTEmitC. This attribute should be set in the driver program that runs the emitter.  It is used to filter passthrus so that only passthrus directed to a particular emitter are seen by it.
+
+=== somtGenerateSections method ===
+
+<code>
+boolean somtGenerateSections();
+</code>
+
+Calls each of the section methods in order.  The order is:
+
+     somtEmitProlog
+     when emitting a class:
+     	  somtEmitClass
+     	  somtEmitBase
+     	  somtEmitMeta
+     somtEmitConstant
+     somtEmitTypedef
+     somtEmitStruct
+     somtEmitUnion
+     somtEmitEnum
+     when emitting a class:
+        somtEmitAttribute
+        somtEmitMethod
+        somtEmitRelease
+        somtEmitPassthru
+        somtEmitData
+     when emitting a module:
+         somtEmitInterface
+         somtEmitModule
+     somtEmitEpilog
+  
+This method will need to be overridden by many emitters in order to rearange the order of the sections and to add or delete sections.
+
+Note: repeating sections such as methods, data, and passthru, have a prolog and epilog method as well. The prolog method is called before the first sections is processed and the epilog method is called after the last section is processed.
+
+=== somtOpenSymbolsFile method ===
+
+<code>
+FILE* somtOpenSymbolsFile(in string file, in string mode);
+</code>
+  
+This method attempts to open the symbols file. If file doesn't exist then it will attempt to find it in the directories specified in the SMINCLUDE environment variable. If the file can be found a FILE * pointer is returned, otherwise NULL is returned.
+
+=== somtSetPredefinedSymbols method ===
+
+<code>
+void somtSetPredefinedSymbols();
+</code>
+  
+Set predefined symbols that are used for such things as section names etc.
+
+=== somtFileSymbols method ===
+
+<code>
+void somtFileSymbols();
+</code>
+  
+Symbols that are common to the file.  This includes the target class symbols, and the metaclass symbols, and special symbols like <timeStamp>.  IE, all symbols that have a single definition.
 
 
-=== somtOverridden Method ===
+=== somtEmitProlog method ===
+
+<code>
+void somtEmitProlog();
+</code>
+
+=== somtEmitBaseIncludesProlog method ===
+
+<code>
+void somtEmitBaseIncludesProlog();
+</code>
+
+=== somtEmitBaseIncludes method ===
+
+<code>
+void somtEmitBaseIncludes(in SOMTBaseClassEntryC base);
+</code>
+
+=== somtEmitBaseIncludesEpilog method ===
+
+<code>
+void somtEmitBaseIncludesEpilog();
+</code>
+
+=== somtEmitMetaInclude method ===
+
+<code>
+void somtEmitMetaInclude();
+</code>
+
+=== somtEmitClass method ===
+
+<code>
+void somtEmitClass();
+</code>
+
+=== somtEmitMeta method ===
+
+<code>
+void somtEmitMeta();
+</code>
+
+=== somtEmitBaseProlog method ===
+
+<code>
+void somtEmitBaseProlog();
+</code>
+
+=== somtEmitBase method ===
+
+<code>
+void somtEmitBase(in SOMTBaseClassEntryC base);
+</code>
+
+=== somtEmitBaseEpilog method ===
+
+<code>
+void somtEmitBaseEpilog();
+</code>
+
+=== somtEmitPassthruProlog method ===
+
+<code>
+void somtEmitPassthruProlog();
+</code>
+
+=== somtEmitPassthru method ===
+
+<code>
+void somtEmitPassthru(in SOMTPassthruEntryC entry);
+</code>
+
+=== somtEmitPassthruEpilog method ===
+
+<code>
+void somtEmitPassthruEpilog();
+</code>
+
+=== somtEmitRelease method ===
+
+<code>
+void somtEmitRelease();
+</code>
+
+=== somtEmitDataProlog method ===
+
+<code>
+void somtEmitDataProlog();
+</code>
+
+=== somtEmitData method ===
+
+<code>
+void somtEmitData(in SOMTDataEntryC entry);
+</code>
+
+=== somtEmitDataEpilog method ===
+
+<code>
+void somtEmitDataEpilog();
+</code>
+
+=== somtEmitAttributeProlog method ===
+
+<code>
+void somtEmitAttributeProlog();
+</code>
+
+=== somtEmitAttribute method ===
+
+<code>
+void somtEmitAttribute(in SOMTAttributeEntryC att);
+</code>
+
+=== somtEmitAttributeEpilog method ===
+
+<code>
+void somtEmitAttributeEpilog();
+</code>
+
+=== somtEmitConstantProlog method ===
+
+<code>
+void somtEmitConstantProlog();
+</code>
+
+=== somtEmitConstant method ===
+
+<code>
+void somtEmitConstant(in SOMTConstEntryC con);
+</code>
 
 
-=== somtScan<Section> Methods ===
+=== somtEmitConstantEpilog method ===
 
+<code>
+void somtEmitConstantEpilog();
+</code>
 
-=== somtSetPredefinedSymbols Method ===
+=== somtEmitTypedefProlog method ===
 
+<code>
+void somtEmitTypedefProlog();
+</code>
 
-=== somtVA Method ===
+=== somtEmitTypedef method ===
 
+<code>
+void somtEmitTypedef(in SOMTTypedefEntryC td);
+</code>
+
+=== somtEmitTypedefEpilog method ===
+
+<code>
+void somtEmitTypedefEpilog();
+</code>
+
+=== somtEmitStructProlog method ===
+
+<code>
+void somtEmitStructProlog();
+</code>
+
+=== somtEmitStruct method ===
+
+<code>
+void somtEmitStruct(in SOMTStructEntryC struc);
+</code>
+
+=== somtEmitStructEpilog method ===
+
+<code>
+void somtEmitStructEpilog();
+</code>
+
+=== somtEmitUnionProlog method ===
+
+<code>
+void somtEmitUnionProlog();
+</code>
+
+=== somtEmitUnion method ===
+
+<code>
+void somtEmitUnion(in SOMTUnionEntryC un);
+</code>
+
+=== somtEmitUnionEpilog method ===
+
+<code>
+void somtEmitUnionEpilog();
+</code>
+
+=== somtEmitEnumProlog method ===
+
+<code>
+void somtEmitEnumProlog();
+</code>
+
+=== somtEmitEnum method ===
+
+<code>
+void somtEmitEnum(in SOMTEnumEntryC en);
+</code>
+
+=== somtEmitEnumEpilog method ===
+
+<code>
+void somtEmitEnumEpilog();
+</code>
+
+=== somtEmitInterfaceProlog method ===
+
+<code>
+void somtEmitInterfaceProlog();
+</code>
+
+=== somtEmitInterface method ===
+
+<code>
+void somtEmitInterface(in SOMTClassEntryC intfc);
+</code>
+
+=== somtEmitInterfaceEpilog method ===
+
+<code>
+void somtEmitInterfaceEpilog();
+</code>
+
+=== somtEmitModuleProlog method ===
+
+<code>
+void somtEmitModuleProlog();
+</code>
+
+=== somtEmitModule method ===
+
+<code>
+void somtEmitModule(in SOMTModuleEntryC mod);
+</code>
+
+=== somtEmitModuleEpilog method ===
+
+<code>
+void somtEmitModuleEpilog();
+</code>
+
+=== somtEmitMethodsProlog method ===
+
+<code>
+void somtEmitMethodsProlog();
+</code>
+
+=== somtEmitMethods method ===
+
+<code>
+void somtEmitMethods(in SOMTMethodEntryC method);
+</code>
+
+=== somtEmitMethodsEpilog method ===
+
+<code>
+void somtEmitMethodsEpilog();
+</code>
+
+=== somtEmitMethod method ===
+
+<code>
+void somtEmitMethod(in SOMTMethodEntryC entry);
+</code>
+
+=== somtEmitEpilog method ===
+
+<code>
+void somtEmitEpilog();
+</code>
+
+=== somtScanBases method ===
+
+<code>
+boolean somtScanBases(in string prolog, in string each, in string epilog);
+</code>
+
+=== somtScanBaseIncludes method ===
+
+<code>
+boolean somtScanBaseIncludes(in string prolog, in string each, in string epilog);
+</code>
+
+=== somtCheckVisibility method ===
+
+<code>
+boolean somtCheckVisibility(in SOMTMethodEntryC entry);
+</code>
+
+Return 1 (true) if <entry> should be visible in the current target file.  This method is used by each of the following filter methods that are concerned with visibility.
+
+The default rule for visibility is:
+  * only private methods are visible in private target files,
+  * only public methods are visibile in public target files,
+  * all methods are visibile in implementation or <somtAllE> target files.
+
+=== somtNew method ===
+
+<code>
+boolean somtNew(in SOMTMethodEntryC entry);
+</code>
+
+Returns 1 (true) if <entry> is a method introduced by the target class and its visibility matches <somtTargetType> (somtImplementationE matches both private and public)
+
+=== somtImplemented method ===
+
+<code>
+boolean somtImplemented(in SOMTMethodEntryC entry);
+</code>
+
+Returns 1 (true) if <entry> is a method introduced or overridden by the target class and its visibility matches <somtTargetType> (somtImplementationE matches both private and public)
+
+  boolean somtOverridden(in SOMTMethodEntryC entry);
+  // Returns 1 (true) if <entry> is an overridding method of the target class 
+  // and its visibility matches <somtTargetType> (somtImplementationE
+  // matches both private and public)
+
+  boolean somtInherited(in SOMTMethodEntryC entry);
+  // Returns 1 (true) if <entry> is inherited 
+  // by the target class and its visibility matches <somtTargetType>
+  // (somtImplementationE matches both private and public)
+
+  boolean somtAllVisible(in SOMTMethodEntryC entry);
+  // Returns 1 (true) if <entry> is supported by the target class and
+  // its visibility matches <somtTargetType> (somtImplementationE
+  // matches both private and public)
+
+  boolean somtAll(in SOMTMethodEntryC entry);
+  // Returns 1 (true) if <entry> is supported by the target class.
+
+  boolean somtNewNoProc(in SOMTEntryC entry);
+  // Returns 1 (true) if somtNew does and the method
+  // IS NOT a direct call Procedure.
+
+  boolean somtPrivOrPub(in SOMTEntryC entry);
+  // Returns 1 (true) if entry is Private or Public.
+
+  boolean somtNewProc(in SOMTEntryC entry);
+  // Returns 1 (true) if somtNew does and the method
+  // IS a direct call Procedure.
+
+  boolean somtLink(in SOMTEntryC entry);
+  // Returns 1 (true) if "nolink" is not set.
+
+  boolean somtVA(in SOMTEntryC entry);
+  // Returns 1 (true) if entry is a VarArgs method.
+
+  boolean somtScanMethods(in string filter, 
+                     in string prolog, 
+                     in string each, 
+                     in string epilog, 
+                     in boolean forceProlog);
+  
+  // Will only call <each> on methods accepted by <filter>.
+  // If <forceProlog> is not true then the prolog and epilog emiters
+  // will be called only if there is at least one method that passes
+  // the filter.
+
+  boolean somtScanConstants(in string prolog, 
+                  in string each, 
+                  in string epilog);
+
+  boolean somtScanTypedefs(in string prolog, 
+                  in string each, 
+                  in string epilog);
+
+  boolean somtScanStructs(in string prolog, 
+                  in string each, 
+                  in string epilog);
+
+  boolean somtScanUnions(in string prolog, 
+                  in string each, 
+                  in string epilog);
+
+  boolean somtScanEnums(in string prolog, 
+                  in string each, 
+                  in string epilog);
+
+  boolean somtScanData(in string prolog, 
+                  in string each, 
+                  in string epilog);
+
+  boolean somtScanAttributes(in string prolog, 
+                  in string each, 
+                  in string epilog);
+
+  boolean somtScanInterfaces(in string prolog, 
+                  in string each, 
+                  in string epilog);
+
+  boolean somtScanModules(in string prolog, 
+                  in string each, 
+                  in string epilog);
+
+  boolean somtScanPassthru(in boolean before, 
+                      in string prolog, 
+                      in string each, 
+                      in string epilog);
+
+  void somtEmitFullPassthru(in boolean before, in string language);
+  
+  // Emits each passthru section defined for the language and targetType,
+  // and the result of the somtIsBeforePassthru method is equal to the
+  // before parameter.  (before = 1(true), or before = 0(false), i.e. after.)
+
+  boolean somtScanDataF(in string filter, 
+                   in string prolog, 
+                   in string each, 
+                   in string epilog, 
+                   in boolean forceProlog);
+  
+  // This method is like somtScanData but it also provides a paramater
+  // for a filter method.
+
+  boolean somtScanBasesF(in string filter, 
+                    in string prolog, 
+                    in string each, 
+                    in string epilog, 
+                    in boolean forceProlog);
+  
+  // This method is like somtScanBases but it also provides a paramater
+  // for a filter method.
+
+  string somtGetGlobalModifierValue(in string modifierName);
+  // Returns the value of the specified global modifier.
+  // Global modifiers are specified when the SOM Compiler is invoked,
+  // via the "-m" option.  For example, 
+  //                       sc -m"foo=bar"  file.idl
+  // specifies to the SOM Compiler and the emitters being run that
+  // the global modifier "foo" has the value "bar."
+  // Values of global modifiers are transient; they last only for the
+  // duration of the compile for which they were specified.
+  // If a modifier is specified in the "sc" command with no value,
+  // as in 
+  //                       sc -mfoo file.idl
+  // then the result of this method will be non-NULL.
+  // If no such modifier is specified, then the result is NULL.
+  // Older SOM compiler version uses "-a" option which is same as "-m" option.
+
+  SOMTEntryC somtGetFirstGlobalDefinition();
+  // Returns the first type or constant definition that is not
+  // associated with any interface or module.
+  // These global definitions must be surrounded by the somemittypes
+  // pragmas for them to be visible via this method.
+  // E.g., #pragma somemittypes on
+  //       ....
+  //       #pragma someemittypes off
+  // The list of global definitions returned by this method and
+  // the somtGetNextGlobalDefinition method may include entries
+  // for forward declarations as well as typedefs and constants.
+  // Global structs and unions are also included in the list.
+
+  SOMTEntryC somtGetNextGlobalDefinition();
+  // Returns the next type or constant definition that is not
+  // associated with any interface or module, relative to a
+  // previous call to somtGetFirstGlobalDefinition or
+  // somtGetNextGlobalDefinition.
 
 ==== SOMTEntryC Class ====
 
