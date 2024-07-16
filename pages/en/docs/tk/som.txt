@@ -2708,18 +2708,86 @@ Returns TRUE if entry is Private or Public.
 
 ==== SOMTCommonEntryC Class ====
 
+=== somtTypeObj attribute ===
 
-=== somtGetFirstArrayDimension Method ===
+<code>
+readonly attribute SOMTEntryC somtTypeObj;
+</code>
+
+The object representing the base type of the entry. This does not include pointer stars or array declarators.
+
+=== somtPtrs attribute ===
+
+<code>
+readonly attribute string somtPtrs;
+</code>
+
+The string of stars associated with the entry's type. For example, an object of type "foo" would have somtPtrs = NULL, type "foo *" would have somtPtrs = "*", type "foo **" would have somtPtrs = "**", etc.
+
+=== somtArrayDimsString attribute ===
+
+<code>
+readonly attribute string somtArrayDimsString;
+</code>
+
+Array dimensions in string form.
+
+=== somtGetFirstArrayDimension method ===
+
+<code>
+unsigned long somtGetFirstArrayDimension();
+</code>
+
+The first array dimension, for items of type array. Zero indicates that the item is not an array.
+
+=== somtGetNextArrayDimension method ===
+
+<code>
+unsigned long somtGetNextArrayDimension();
+</code>
+
+The next array dimension, for items of type array, relative to the previous call to this method or to somtGetFirstArrayDimension.  Zero indicates no more dimensions.
+
+=== somtSourceText attribute ===
+
+<code>
+readonly attribute string somtSourceText;
+</code>
+  
+The un-parsed source text for this entry, with leading and trailing white space removed.  For attribute/typedef declarators and for user-defined types, this attribute only provides the source text for the entry's name.  For methods, arguments,  and instance variables, however, this attribute provides the  full definition.
+
+=== somtType attribute ===
+
+<code>
+readonly attribute string somtType;
+</code>
+  
+The IDL type for this entry in string form. For methods this is the return type.  For data or parameters this is the type of the data item or parameter. For user-defined types, this is the type specification. It is of the form:   <typename><pointer-stars> <array-declarators>
+
+=== somtVisibility attribute ===
+
+<code>
+readonly attribute somtVisibilityT somtVisibility;
+</code>
+  
+The visibility of this entry.  Note: the visibility of parameter entries will always be public, and methods can never be internal.
 
 
-=== somtGetNextArrayDimension Method ===
+=== somtIsArray method ===
 
+<code>
+boolean somtIsArray(out long size);
+</code>
+  
+Returns 1 (true) if the type involves an array.  When the type involves an array then <size> is set to be the size of the array.
 
-=== somtIsArray Method ===
+=== somtIsPointer method ===
 
+<code>
+boolean somtIsPointer();
+</code>
 
-=== somtIsPointer Method ===
-
+Returns 1 (true) if the type involves a pointer, and 0 (false) otherwise
 
 ==== SOMTConstEntryC Class ====
 
