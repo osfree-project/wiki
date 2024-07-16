@@ -703,9 +703,9 @@ List of emulated function and variables.
   * strdup
   * strpbrk
 
-===== 2. SOM Compiler library =====
+===== 2. somFree Compiler library =====
 
-SOM Compiler library somc is a set of helper functions for compiler tasks. Used by IBM SOM emitters. Library provided solely to provide support of IBM emitters. Must not be used to write new code.
+somFree Compiler library somc is a set of helper functions for compiler tasks. Used by IBM SOM emitters. Library provided solely to provide support of IBM emitters. Must not be used to write new code.
 ==== somtfexists, somtfexistsSL function ====
 
 <code>
@@ -2722,7 +2722,7 @@ The object representing the base type of the entry. This does not include pointe
 readonly attribute string somtPtrs;
 </code>
 
-The string of stars associated with the entry's type. For example, an object of type "foo" would have somtPtrs = NULL, type "foo *" would have somtPtrs = "*", type "foo **" would have somtPtrs = "**", etc.
+The string of stars associated with the entry's type. For example, an object of type "foo" would have somtPtrs = NULL, type "foo %%*%%" would have somtPtrs = "%%*%%", type "foo %%**%%" would have somtPtrs = "%%**%%", etc.
 
 === somtArrayDimsString attribute ===
 
@@ -2791,9 +2791,74 @@ Returns 1 (true) if the type involves a pointer, and 0 (false) otherwise
 
 ==== SOMTConstEntryC Class ====
 
+=== somtConstTypeObj attribute ===
+
+<code>
+readonly attribute SOMTEntryC somtConstTypeObj;
+</code>
+
+A pointer to an object representing the type of the const.
+
+=== somtConstType attribute ===
+
+<code>
+readonly attribute string somtConstType;
+</code>
+
+The type of the constant's value.
+
+
+=== somtConstStringVal attribute ===
+
+<code>
+readonly attribute string somtConstStringVal;
+</code>
+
+The string value of the constant (unevaluated).
+
+=== somtConstNumVal attribute ===
+
+<code>
+readonly attribute unsigned long somtConstNumVal;
+</code>
+
+The number value of the constant. This attribute is not valid if the value cannot be stored in an unsigned long (string, float, double, negative). The somtConstIsNegative attribute can be used to determine if the value is negative.  The somtConstType attribute can be used to determine whether the value is a float or double.
+
+
+=== somtConstNumNegVal attribute ===
+
+<code>
+readonly attribute long somtConstNumNegVal;
+</code>
+
+The number value of the constant, if negative.
+
+=== somtConstIsNegative attribute ===
+
+<code>
+readonly attribute boolean somtConstIsNegative;
+</code>
+
+Whether the constant's value is a negative integer and must be obtained using somtConstNumNegVal rather than somtConstNumVal.
+
+
+=== somtConstVal attribute ===
+
+<code>
+readonly attribute string somtConstVal;
+</code>
+
+The string value of the constant (evaluated). The "get" method for this attribute returns a string whose ownership is transferred to the caller.
 
 ==== SOMTDataEntryC Class ====
 
+=== somtIsSelfRef attribute ===
+
+<code>
+readonly attribute boolean somtIsSelfRef;
+</code>
+
+Whether a declarator of a struct is self-referential.
 
 ==== SOMTEmitC Class ====
 
