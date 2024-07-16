@@ -2199,6 +2199,11 @@ Note: somtstabNextName version uses default compiler calling convention. For IBM
 
 ===== somtcreateMemBuf, somtcreateMemBufSL function =====
 
+<code c>
+SOMEXTERN void somtcreateMemBuf(MemBuf **membufp, size_t bufsize, long stabsize);
+SOMEXTERN void SOMLINK somtcreateMemBufSL(MemBuf **membufp, size_t bufsize, long stabsize);
+</code>
+
 Note: somtcreateMemBuf version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink.
 
 ===== somtcreateStab, somtcreateStabSL function =====
@@ -2236,12 +2241,32 @@ Note: somtaddEntryBuf version uses default compiler calling convention. For IBM 
 
 ===== somtfreeStab, somtfreeStabSL function =====
 
+<code c>
+SOMEXTERN void somtfreeStab(Stab *stab, BOOL freeEp);
+SOMEXTERN void SOMLINK somtfreeStabSL(Stab *stab, BOOL freeEp);
+</code>
+
 Note: somtfreeStab version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink.
 
 ===== 3. SOM Emitter Framework =====
 
 ==== SOMTAttributeEntryC Class ====
 
+=== somtIsReadonly attribute ===
+
+<code>
+readonly attribute boolean somtIsReadonly
+</code>
+
+Whether the attribute is readonly.
+
+=== somtAttribType attribute ===
+
+<code>
+readonly attribute SOMTEntryC somtAttribType
+</code>
+
+The type of the attribute.  This does not include pointer stars or array declarators.  To get the "full" type, get each attribute declarator and get the somtType attribute.
 
 === somtGetFirst<Item> Methods ===
 
