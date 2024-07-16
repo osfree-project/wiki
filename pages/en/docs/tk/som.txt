@@ -2463,20 +2463,248 @@ readonly attribute boolean somtForwardRef;
 
 Whether this is a forward reference or not.
 
-=== somtFilterNew Method ===
+=== somtGetFirstBaseClass method ===
+
+<code>
+SOMTBaseClassEntryC somtGetFirstBaseClass();
+</code>
+  
+Returns the entry for the "left most" direct base class form for this class, if it has one and NULL otherwise.
+
+Note: <SOMObject> does not have any base classes and therefore will terminate an attempt to walk up the base class chain.
 
 
-=== somtFilterOverridden Method ===
+=== somtGetNextBaseClass method ===
 
+<code>
+SOMTBaseClassEntryC somtGetNextBaseClass();
+</code>
+  
+Returns the entry for the next direct base class form of this class, if it has one and NULL otherwise.  The direct base classes of a derived class are ordered from "left to right".
 
-=== somtGetFirst<Item> Methods ===
+=== somtGetFirstReleaseName method ===
 
+<code>
+string somtGetFirstReleaseName();
+</code>
 
-=== somtGetNext<Item> Methods ===
+Returns the first name in the release order statement for this entry if it has one and NULL otherwise.
 
+=== somtGetNextReleaseName method ===
 
-=== somtGetReleaseNameList Method ===
+<code>
+string somtGetNextReleaseName();
+</code>
+  
+Returns the next name in the release order statement for this entry if it has one and NULL otherwise.
 
+=== somtGetReleaseNameList method ===
+
+<code>
+long somtGetReleaseNameList(in string buffer);
+</code>
+  
+Puts all the release names in <buffer> in template output form, buffer must be large enough, no tests are made.  The number of release names is returned.
+
+=== somtGetFirstPassthru method ===
+
+<code>
+SOMTPassthruEntryC somtGetFirstPassthru();
+</code>
+
+Returns the first passthru entry for this class definition if it has one and NULL otherwise.
+
+=== somtGetNextPassthru method ===
+
+<code>
+SOMTPassthruEntryC somtGetNextPassthru();
+</code>
+
+Returns the next passthru entry for this class definition if it has one and NULL otherwise.  The passthru entry will be returned in an order based on the appearence of passthru statements in the class definition.
+
+=== somtGetFirstData method ===
+
+<code>
+SOMTDataEntryC somtGetFirstData();
+</code>
+
+Returns the first data entry for this class definition if it has one and NULL otherwise.
+
+=== somtGetNextData method ===
+
+<code>
+SOMTDataEntryC somtGetNextData();
+</code>
+  
+Returns the next data entry for this class definition if it has one and NULL otherwise.  The data entries will be returned in an order based on the appearence data member declarations in the class definition.
+
+=== somtGetFirstStaticData method ===
+
+<code>
+SOMTDataEntryC somtGetFirstStaticData();
+</code>
+
+Returns the first static data entry for this class definition if it has one and NULL otherwise. Static data is handled specialy in SOM so a different accessor method is provided.
+
+=== somtGetNextStaticData method ===
+
+<code>
+SOMTDataEntryC somtGetNextStaticData();
+</code>
+
+Returns the next static data entry for this class definition if it has one and NULL otherwise.  The data entries will be returned in an order based on the release order
+
+=== somtGetFirstMethod method ===
+
+<code>
+SOMTMethodEntryC somtGetFirstMethod();
+</code>
+
+Returns the first method entry for this class definition if it has one and NULL otherwise.  Method entries may be for new or overridden methods.
+
+=== somtGetNextMethod method ===
+
+<code>
+SOMTMethodEntryC somtGetNextMethod();
+</code>
+
+Returns the next method entry for this class definition if it has one and NULL otherwise.  The method entries will be returned in an order based on the appearence method declarations in the class definition.  Method entries may be for new or overridden methods.
+
+=== somtGetFirstInheritedMethod method ===
+
+<code>
+SOMTMethodEntryC somtGetFirstInheritedMethod();
+</code>
+
+Returns the first inherited and not overridden method entry for this class definition if it has one and NULL otherwise.
+
+=== somtGetNextInheritedMethod method ===
+
+<code>
+SOMTMethodEntryC somtGetNextInheritedMethod();
+</code>
+
+Returns the next inherited and not overridden method entry for this class definition if it has one and NULL otherwise.  The method entries will be returned in an unspecified, but constant order.
+
+=== somtGetFirstAttribute method ===
+
+<code>
+SOMTAttributeEntryC somtGetFirstAttribute();
+</code>
+
+=== somtGetNextAttribute method ===
+
+<code>
+SOMTAttributeEntryC somtGetNextAttribute();
+</code>
+
+=== somtGetFirstStruct method ===
+
+<code>
+SOMTStructEntryC somtGetFirstStruct();
+</code>
+
+=== somtGetNextStruct method ===
+
+<code>
+SOMTStructEntryC somtGetNextStruct();
+</code>
+
+=== somtGetFirstTypedef method ===
+
+<code>
+SOMTTypedefEntryC somtGetFirstTypedef();
+</code>
+
+=== somtGetNextTypedef method ===
+
+<code>
+SOMTTypedefEntryC somtGetNextTypedef();
+</code>
+
+=== somtGetFirstUnion method ===
+
+<code>
+SOMTUnionEntryC somtGetFirstUnion();
+</code>
+
+=== somtGetNextUnion method ===
+
+<code>
+SOMTUnionEntryC somtGetNextUnion();
+</code>
+
+=== somtGetFirstEnum method ===
+
+<code>
+SOMTEnumEntryC somtGetFirstEnum();
+</code>
+
+=== somtGetNextEnum method ===
+
+<code>
+SOMTEnumEntryC somtGetNextEnum();
+</code>
+
+=== somtGetFirstConstant method ===
+
+<code>
+SOMTConstEntryC somtGetFirstConstant();
+</code>
+
+=== somtGetNextConstant method ===
+
+<code>
+SOMTConstEntryC somtGetNextConstant();
+</code>
+
+=== somtGetFirstSequence method ===
+
+<code>
+SOMTSequenceEntryC somtGetFirstSequence();
+</code>
+
+=== somtGetNextSequence method ===
+
+<code>
+SOMTSequenceEntryC somtGetNextSequence();
+</code>
+
+=== somtGetFirstPubdef method ===
+
+<code>
+SOMTEntryC somtGetFirstPubdef();
+</code>
+
+=== somtGetNextPubdef method ===
+
+<code>
+SOMTEntryC somtGetNextPubdef();
+</code>
+
+=== somtFilterNew method ===
+
+<code>
+boolean somtFilterNew(in SOMTMethodEntryC entry);
+</code>
+  
+Returns 1 if entry is new in the class.
+
+=== somtFilterOverridden method ===
+
+<code>
+boolean somtFilterOverridden(in SOMTMethodEntryC entry);
+</code>
+  
+Returns 1 if entry is an overriding method of the class.
+
+=== somtFilterPrivOrPub method ===
+
+<code>
+boolean somtFilterPrivOrPub(in SOMTCommonEntryC entry);
+</code>
+  
+Returns TRUE if entry is Private or Public.
 
 ==== SOMTCommonEntryC Class ====
 
