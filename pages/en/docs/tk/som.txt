@@ -4313,14 +4313,49 @@ The next declarator for this typedef, relative to the previous call to this meth
 
 ==== SOMTUnionEntryC Class ====
 
+=== somtSwitchType attribute ===
 
-=== somtGetFirstCaseEntry Method ===
+<code>
+readonly attribute SOMTEntryC somtSwitchType;
+</code>
 
+The switch type of the union.
 
-=== somtGetNextCaseEntry Method ===
+=== somtGetFirstCaseEntry method ===
+
+<code>
+somtCaseEntry *somtGetFirstCaseEntry();
+</code>
+
+The first case for the union.
+
+=== somtGetNextCaseEntry method ===
+
+<code>
+somtCaseEntry *somtGetNextCaseEntry();
+</code>
+
+The next case for the union, relative to the previous call to this method or to somtGetFirstCaseEntry.
 
 
 ==== SOMTUserDefinedTypeEntryC Class ====
+
+
+=== somtOriginalTypedef attribute ===
+
+<code>
+readonly attribute SOMTTypedefEntryC somtOriginalTypedef;
+</code>
+
+The typedef that defined the user-defined type.
+
+=== somtBaseTypeObj attribute ===
+
+<code>
+readonly attribute SOMTEntryC somtBaseTypeObj;
+</code>
+
+The object representing the base type (eg. short, float, unsigned long) of a user-defined type,  skipping over any intermediate user-defined types.
 
 
 ==== SOMStringTableC Class ====
