@@ -4287,12 +4287,29 @@ Same as somtSetSymbol but value will be copied to internally allocated buffer.
 
 ==== SOMTTypedefEntryC Class ====
 
+=== somtTypedefType attribute ===
 
-=== somtGetFirstDeclarator Method ===
+<code>
+readonly attribute SOMTEntryC somtTypedefType;
+</code>
 
+The type of the typedef. This does not include pointer stars or array declarators.   These must be obtained by examining each of the declarators.
 
-=== somtGetNextDeclarator Method ===
+=== somtGetFirstDeclarator method ===
 
+<code>
+SOMTCommonEntryC somtGetFirstDeclarator();
+</code>
+
+The first declarator for this typedef. Declarators of struct members will be instances of SOMTDataEntryC, while declarators of typedefs will be instances of SOMTUserDefinedTypeEntryC.
+
+=== somtGetNextDeclarator method ===
+
+<code>
+SOMTCommonEntryC somtGetNextDeclarator();
+</code>
+
+The next declarator for this typedef, relative to the previous call to this method or somtGetFirstDeclarator. Declarators of struct members will be instances of SOMTDataEntryC, while declarators of typedefs will be instances of SOMTUserDefinedTypeEntryC.
 
 ==== SOMTUnionEntryC Class ====
 
