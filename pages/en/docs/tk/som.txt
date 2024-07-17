@@ -4001,6 +4001,37 @@ SOMTEntryC somtGetNextModuleDef();
 
 ==== SOMTParameterEntryC Class ====
 
+=== somtParameterDirection attribute ===
+
+<code>
+readonly attribute somtParameterDirectionT somtParameterDirection;
+</code>
+
+The direction for this parameter. (somtInE, somtOutE, or somtInOutE).
+
+=== somtIDLParameterDeclaration attribute ===
+
+<code>
+readonly attribute string somtIDLParameterDeclaration;
+</code>
+
+The IDL declaration of the parameter, including the type and name.
+
+=== somtCParameterDeclaration attribute ===
+
+<code>
+readonly attribute string somtCParameterDeclaration;
+</code>
+
+The declaration for the parameter within a C method procedure prototype. It includes the parameter's type and name. This may differ from the parameter's IDL declaration. In particular, pointer stars may be added.
+
+=== somtPascalParameterDeclaration attribute ===
+
+<code>
+readonly attribute string somtPascalParameterDeclaration;
+</code>
+
+The declaration for the parameter within a Pascal method procedure prototype. It includes the parameter's type and name. This may differ from the parameter's IDL declaration. In particular, pointer stars may be added.
 
 ==== SOMTPassthruEntryC Class ====
 
