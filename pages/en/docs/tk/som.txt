@@ -4088,15 +4088,48 @@ The type of the sequence.
 
 ==== SOMTStringEntryC Class ====
 
+=== somtStringLength attribute ===
+
+<code>
+readonly attribute long somtStringLength;
+</code>
+
+The length of the string.
 
 ==== SOMTStructEntryC Class ====
 
 
 === somtGetFirstMember Method ===
 
+<code>
+SOMTTypedefEntryC somtGetFirstMember();
+</code>
+
+The first member of the struct.
 
 === somtGetNextMember Method ===
 
+<code>
+SOMTTypedefEntryC somtGetNextMember();
+</code>
+
+The next member of the struct, relative to the previous call to this method or somtGetFirstMember.
+
+=== somtStructClass method ===
+
+<code>
+readonly attribute SOMTClassEntryC somtStructClass;
+</code>
+
+The class in which the structure was defined.
+
+=== somtIsException method ===
+
+<code>
+readonly attribute boolean somtIsException;
+</code>
+
+Whether the structure is really an exception.
 
 ==== SOMTTemplateOutputC Class ====
 
