@@ -4035,12 +4035,56 @@ The declaration for the parameter within a Pascal method procedure prototype. It
 
 ==== SOMTPassthruEntryC Class ====
 
+=== somtPassthruBody attribute ===
 
-=== somtIsBeforePassthru Method ===
+<code>
+readonly attribute string somtPassthruBody;
+</code>
 
+The source content text of this passthru entry without any modification. Newlines that were present in the source will still be present.
+
+=== somtPassthruLanguage attribute ===
+
+<code>
+readonly attribute string somtPassthruLanguage;
+</code>
+
+Returns the name of the language for which this passthru entry is intended. Language names are always all upper case.
+
+=== somtPassthruTarget attribute ===
+
+<code>
+readonly attribute string somtPassthruTarget;
+</code>
+
+Returns the target for this passthru entry.
+
+=== somtIsBeforePassthru method ===
+
+<code>
+boolean somtIsBeforePassthru();
+</code>
+
+Returns 1 (true) if this passthru entry is to be put at the beginning of the file or 0 (false) if this passthru entry is to go later in the file.
 
 ==== SOMTSequenceEntryC Class ====
 
+=== somtSeqLength attribute ===
+
+<code>
+readonly attribute long somtSeqLength;
+</code>
+
+The length of the sequence.
+
+
+=== somtSeqType attribute ===
+
+<code>
+readonly attribute SOMTEntryC somtSeqType;
+</code>
+
+The type of the sequence.
 
 ==== SOMTStringEntryC Class ====
 
