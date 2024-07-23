@@ -4601,8 +4601,8 @@ somFree emitters automatically switches to IBM SOM 2.1 ABI on emit call and to I
 ====== Список литературы ======
 
 
-[1] 	Object Management Group, «C Langue Mapping Specification 1.0,» [В Интернете]. Available: https://www.omg.org/spec/C/. [Дата обращения: 24 Август 2022].
-[2] 	IBM, OS/2 2.0 Technical Library. System Object Model Guide and Reference. First Edition., 1991. 
+  - Object Management Group, «C Language Mapping Specification 1.0,» [В Интернете]. Available: https://www.omg.org/spec/C/. [Дата обращения: 24 Август 2022].
+  - IBM, OS/2 2.0 Technical Library. System Object Model Guide and Reference. First Edition., 1991. https://www.os2museum.com/files/docs/os220tl/os2-2.0-som-1991.pdf
 
 
 
