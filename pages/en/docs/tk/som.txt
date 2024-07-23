@@ -26,15 +26,15 @@ Changes from original somFree compiler:
   * CORBA C Language Mapping Specification 1.0 now supported by default instead of SOM C Language mapping.
   * Added support of OIDL files
 
-===== SOM Compiler =====
+===== somFree Compiler =====
 
-The SOM Compiler is a tool to produce various file formats from Interface Definition Language (IDL) files of Object Interface Definition Language (OIDL) files. SOM Compiler reads IDL or OIDL file and produces an abstract graph tree. Using abstract tree, SOM Compiler generates an object graph tree using classes like SOMTEntryC. After the object graph is ready, SOM Compiler uses classes like SOMTEmitC to produce an output template. Output file generated with help of SOMTTemplateOutputC class.
+The somFree Compiler is a tool to produce various file formats from Interface Definition Language (IDL) files or Object Interface Definition Language (OIDL) files. somFree Compiler reads IDL or OIDL file and produces an abstract graph tree. Using abstract tree, somFree Compiler generates an object graph tree. After the object graph is ready, somFree Compiler produces an output using template.
 
-The SOM Compiler uses DLL-name based loading of classes libraries (other programs can user another approach, like WPS does. WPS uses an Interface Repository to find corresponding class). Most of the SOM Compiler classes libraries it is implementation of corresponding emitter. Emitters can be created with help of Emitter Framework.
+The somFree Compiler uses DLL-name based loading of classes libraries (other programs can user another approach, like WPS does. WPS uses an Interface Repository to find corresponding class). Most of the somFree Compiler classes libraries it is implementation of corresponding emitter. Emitters can be created with help of Emitter Framework.
 
-SOM Compiler actually is a client program which uses Emitter Framework classes. SOM Compiler is closed-source, but with an open architecture. The only things that couldn't be easily extended are parser, abstract graph builder and object graph builder. Other things can be ''shadowed'' and replaced by our own.
+somFree Compiler actually is a client program which uses Emitter Framework classes. somFree Compiler is open source program with an open architecture. The only things that couldn't be easily extended are parser, abstract graph builder and object graph builder. Other things can be ''shadowed'' and replaced by our own.
 
-Let's look at SOM Compiler command line syntax to understand how to produce corresponding skeleton code from SOM Compiler template (below is SOM Compiler help screen):
+Let's look at somFree Compiler command line syntax to understand how to produce corresponding skeleton code from somFree Compiler template (below is somFree Compiler help screen):
 
   sc [-C:D:E:I:S:VU:cd:hi:m:prsvw] f1 f2 ...
   Where:
@@ -94,15 +94,15 @@ Let's look at SOM Compiler command line syntax to understand how to produce corr
 
 Now let's explain some command line switches deeper.
 
-First of the most interesting switch is -s. By default SOM Compiler uses SMEMIT environment variable to determine which [[emitter]] to use. Look at emit*.dll files for corresponding [[emitter]]. Using switch -s you can change default logic and select one-time emitter instead of global emitters. In easy situation you need only one emitter (say, C emitter). In complex situations you need use more emitters (say, C, H, DEF and IH emitters). You can create your own emitter to produces, for example, some sort of documentation and other stuff.
+First of the most interesting switch is -s. By default somFree Compiler uses SMEMIT environment variable to determine which emitter to use. Look at emit*.dll files for corresponding emitter. Using switch -s you can change default logic and select one-time emitter instead of global emitters. In easy situation you need only one emitter (say, C emitter). In complex situations you need use more emitters (say, C, H, DEF and IH emitters). You can create your own emitter to produces, for example, some sort of documentation and other stuff.
 
-Another interesting switch is -m. Using -m you can set and/or unset so named modifiers. Modifiers allow you to change default behaviour of emitter and compiler. As example, by default compiler adds new methods or modifies existent. You can tell compiler just add new text to end of file. Modifiers can control emitters. addstart and noaddstar controls C emitter to add or not add pointer sign (*) to references of objects.
+Another interesting switch is -m. Using -m you can set and/or unset so named modifiers. Modifiers allow you to change default behaviour of emitter and compiler. As example, by default compiler adds new methods or modifies existent. You can tell compiler just add new text to end of file. Modifiers can control emitters. addstart and noaddstar controls C emitter to add or not add pointer sign (%%*%%) to references of objects.
 
-Switch -u adds or updates Interface Repository with new information about class interface. Interface repository filename controlled by SOMIR environment variable. This thing useful to add info for [[Object REXX]] access and other things which uses Interface Repository.
+Switch -u adds or updates Interface Repository with new information about class interface. Interface repository filename controlled by SOMIR environment variable. This thing useful to add info for Object REXX access and other things which uses Interface Repository.
 
 Other switches are like for standard C/C++ preprocessor and not described here.
 
-Now let's play with SOM Compiler. Most often, you need to create interface files for C/C++ client programs. Usually you need to call the SOM Compiler as following:
+Now let's play with somFree Compiler. Most often, you need to create interface files for C/C++ client programs. Usually you need to call the SOM Compiler as following:
 
   sc -sdef somobj.idl
   sc -sh somobj.idl
@@ -112,29 +112,29 @@ In case of C++ you need to call:
   sc -sdef somobj.idl
   sc -sxh somobj.idl
   
-Of course, not very nice to call SOM Compiler so often. And SOM Compiler provides such functionality:
+Of course, not very nice to call somFree Compiler so often. And somFree Compiler provides such functionality:
 
   sc -sdef;h;xh somobj.idl
   
 The above command will do exactly as all recent commands.
 
-The above emitters were designed for IBM toolset. Nowadays, developers also use GCC or Open Watcom Compilers. The problem here is that Watcom Linker doesn't support .DEF files, but has its own .LNK linker files. In case of one or two classes no many problems to convert .DEF files to .LNK files manually. But such approach just ugly for MUCH classes. So, one of good solution is write REXX script for DEF→LNK conversion. But SOM Compilers allow extending it by new emitters. So, Open Watcom Linker Emitter was created for such approaches.
+The above emitters were designed for IBM toolset. Nowadays, developers also use GCC or Open Watcom Compilers. The problem here is that Watcom Linker doesn't support .DEF files, but has its own .LNK linker files. In case of one or two classes no many problems to convert .DEF files to .LNK files manually. But such approach just ugly for MUCH classes. So, one of good solution is write REXX script for DEF→LNK conversion. But somFree Compilers contains Open Watcom Linker Emitter for such approaches.
 
-At the present time, you can ask article author for current version of Open Watcom Linker Emitter. Open Watcom Emitter source code can be obtained via [http://osfree.svn.sourceforge.net/viewvc/osfree/trunk/OS2/SOM/Frameworks/Emitter/Emitters/Lnk/ osFree repository]. Also, DEF emitter clone [http://osfree.svn.sourceforge.net/viewvc/osfree/trunk/OS2/SOM/Frameworks/Emitter/Emitters/Def/ available] also.
+Now let's talk about internals of somFree Compiler. somFree Compiler designed in the way as most of C compilers implemented. It is exists of following parts:
 
-Now let's talk about internals of SOM Compiler. SOM Compiler designed in the way as most of C compilers implemented. It is exists of following parts:
-
-  * SOM Preprocessor
+  * IDL Preprocessor
   * IDL Parser
+  * OIDL Preprocessor
+  * OIDL Parser
   * Emitter Framework
 
-SOM Compiler first calls SOM Preprocessor. Output of SOM Preprocessor goes to IDL Parser. IDL Parser creates Object tree from IDL source. Object tree, using templates and emitters, stored to file. 
+somFree Compiler first calls IDL or OIDL Preprocessor. Output of IDL/OIDL Preprocessor goes to IDL/OIDL Parser. IDL/OIDL Parser creates Object tree from IDL/OIDL source. Object tree, using templates and emitters, stored to file. 
 
-As you see, most of the parts can be extended or replaced by its own implementation. For example, we can reuse CPP instead of SPP. Why not? Just support required command-line switches for compatibility. Also, default emitters can be rewritten. For C and C++ emitter it is not so hard. For other, more structured languages, like Pascal, Modula, etc. emitter creation is more hard work, but it is also possible ([http://osfree.svn.sourceforge.net/viewvc/osfree/trunk/OS2/SOM/Frameworks/Emitter/Emitters/Pas/ btw, author provides development version of Pascal Emitter]).
+As you see, most of the parts can be extended or replaced by its own implementation. For example, we can reuse CPP instead of SPP. Why not? Just support required command-line switches for compatibility. Also, default emitters can be rewritten. For C and C++ emitter it is not so hard. For other, more structured languages, like Pascal, Modula, etc. emitter creation is more hard work, but it is also possible.
 
-Actually, we can extend and rewrite SOM Compiler as we want. 
+Actually, we can extend and rewrite somFree Compiler as we want. 
 
-Hope, usage of SOM Compiler will not be problem for most of you. But understanding some details about compiler internals makes life easer.
+Usage of somFree Compiler will not be problem for most of you. But understanding some details about compiler internals makes life easer.
 
 ===== SOM Interface Definition Language =====
 
