@@ -364,6 +364,17 @@ OIDL consist of sections set:
   * Data section (optional)
   * Methods section (optional)
 
+==== Include section ====
+
+Include section is optional and contains names of OIDL files with definition of parent class, metaclasses and private interfaces of ancestor classes.
+
+<code>
+[#include ( <ancestor> | "ancestor" ) ] *
+#include ( <parent> | "parent")
+[#include ( <metaclass> | "metaclass" ) ]
+</code>
+
+
 ====== Programmer's Guide ======
 
 ===== Introduction =====
@@ -662,7 +673,7 @@ somFree Compiler support CORBA C Language Mapping Specification 1.0 [1]. CORBA C
 
 SOM C Language mapping is a IBM SOM mapping variant. For some reason (most probably because variable arguments support) IBM SOM not exactly implements C Language Mapping Specification.
 
-====== III. Programmer's reference ======
+====== Programmer's reference ======
 
 ===== 1. SOM Runtime C library =====
 
@@ -4585,7 +4596,7 @@ Mapping of Entry types to SOMT*EntryC classes:
 | SOMTEmitterBeginE | Fatal error |
 | SOMTEmitterEndE | Fatal error |
 
-====== IV. Appendixes ======
+====== Appendixes ======
 
 ===== 1. Appendix 1. SOM ABI =====
 
