@@ -374,6 +374,18 @@ Include section is optional and contains names of OIDL files with definition of 
 [#include ( <metaclass> | "metaclass" ) ]
 </code>
 
+==== Class section ====
+
+==== Release order section ====
+
+==== Parent class section ====
+
+==== Metaclass section ====
+
+==== Data section ====
+
+==== Methods section ====
+
 
 ====== Programmer's Guide ======
 
