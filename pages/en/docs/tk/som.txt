@@ -647,7 +647,7 @@ Last part of Emitter Framework is template files. Template files allow you to ma
 
 So, now you have some imagination about that Emitter Framework is and how it works.
 
-===== 4. Template faculty =====
+===== Template faculty =====
 
 Emitters uses template faculty to produce output file. Template file has structure divided by sections. Each section begins from section name ended by colon. Each emitter can use its own section names. Refer to corresponding emitter and Entry classes description for section names information. Here is template file example:
 
