@@ -360,6 +360,7 @@ OIDL consist of sections set:
   * Class section (required)
   * Release order section (optional)
   * Parent class section (required)
+  * Passthru section (optionsl)
   * Metaclass section (optional)
   * Data section (optional)
   * Methods section (optional)
@@ -376,16 +377,77 @@ Include section is optional and contains names of OIDL files with definition of 
 
 ==== Class section ====
 
+<code>
+class: name
+  [, file stem = stem]
+  [, external stem = stem]
+  [, function prefix = prefix |
+  , external prefix = prefix |
+  , classprefix = prefix]
+  [, major version = number]
+  [, minor version = number]
+  [, global | local];
+  [, classInit = function];
+[description]
+</code>
 ==== Release order section ====
 
+<code>
+release order: name [, name ]* ;
+</code>
 ==== Parent class section ====
+
+<code>
+parent [class]: name;
+description
+</code>
+
+==== Passthru section ====
+
+<code>
+[passthru: language.suffix, [ before | after ];
+line 1
+line 2
+endpassthru; [description]]*
+</code>
 
 ==== Metaclass section ====
 
+<code>
+metaclass: name;
+[description]
+</code>
 ==== Data section ====
+
+<code>
+data:
+[description1 ]
+[declaration [ , private | , public | , internal] [, class];
+[ description2]]*
+</code>
 
 ==== Methods section ====
 
+<code>
+methods:
+[description1 ]
+[[group: name;
+[ description2]]
+[method prototype
+[, public | , private]
+[, method | , procedure]
+[, class]
+[, offset | , name lookup]
+[, local | , external]
+[, use = name];
+[descriptionS]]*
+[override: method name
+[, public | , private]
+[, class]
+[, local | , external]
+[, use = name];
+[description4]] *
+</code>
 
 ====== Programmer's Guide ======
 
