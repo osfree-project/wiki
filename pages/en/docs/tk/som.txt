@@ -2116,7 +2116,7 @@ SOMEXTERN void SOMLINK somtgenAttStubsSL(FILE *fp, Entry *cls, char *prefix, cha
 Note: somtgenAttStubs version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtstrictidl, somtstrictidlSL function ====
 
-<code>
+<code c>
 SOMEXTERN void somtstrictidl(FILE *fp);
 SOMEXTERN void SOMLINK somtstrictidlSL(FILE *fp);
 </code>
@@ -2213,7 +2213,7 @@ Note: somtallocBuf version uses default compiler calling convention. For IBM SOM
 
 ===== somtuniqString, somtuniqStringSL function =====
 
-<code>
+<code c>
 SOMEXTERN char * somtuniqString(MemBuf *membuf, char *s);
 SOMEXTERN char * SOMLINK somtuniqStringSL(MemBuf *membuf, char *s);
 </code>
