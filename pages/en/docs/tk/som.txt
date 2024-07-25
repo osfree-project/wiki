@@ -710,46 +710,46 @@ Core of Template faculty is a Key-Value strings collection represented by SOMStr
 | methodsEpilogSN | methodsEpilogS |
 | epilogSN | epilogS |
 
-===== 5. Generic Emitter =====
+===== Generic Emitter =====
 
 Generic emitter is a generic template based emitter. It uses simplest template with only one section "template". Main goal of Generic Emitter is to produce Generic framework emitter files. It is used by newemit tool to produce full set of files required to build new emitter.
 Добавить описание символов шаблона и описание, какой шаблон за что отвечает.
 
-===== 6. DEF Emitter =====
+===== DEF Emitter =====
 
 DEF emitter used to generate definition file for DLL creation using MS LINK. somFree version of emitter uses template file to generate DEF file. Original IBM SOM DEF Emitter uses hard coded generation.
 Добавить описание символов шаблона.
 
-===== 7.LNK Emitter =====
+===== LNK Emitter =====
 
 LNK emitter used to generate linking file for DLL creation using Watcom WLINK. somFree version of emitter uses template file to generate LNK file. Original IBM SOM DEF Emitter doesn't have such emitter.
 Добавить описание символов шаблона.
 
-===== 8. CSC, PSC, SC Emitters =====
+===== CSC, PSC, SC Emitters =====
 
 CSC emitter used to generate OIDL class definition file (CSC) used in IBM SOM 1.0. somFree version of emitter uses template file to generate CSC file. Original IBM SOM CSC Emitter uses hard coded generation.
 Добавить описание символов шаблона.
 
-===== 9. IDL, PDL Emitters =====
+===== IDL, PDL Emitters =====
 
 IDL emitter used to generate IDL class definition file used in IBM SOM 2.0 and higher. somFree version of emitter uses template file to generate IDL file. Original IBM SOM IDL Emitter uses hard coded generation.
 Добавить описание символов шаблона.
 
-===== 10. Developing new emitter =====
+===== Developing new emitter =====
 
 somFree Emitter Framework provides templates and libraries for developing emitters compatible with both IBM SOM 2.1 and IBM SOM 3.0 compilers. Because of different ABI (refer Appendix 1 for more information) somFree emitters automatically configures for corresponding API.
 
-===== 13. CORBA C Language mapping =====
+===== CORBA C Language mapping =====
 
 somFree Compiler support CORBA C Language Mapping Specification 1.0 [1]. CORBA C Language mapping slightly differ from SOM C Language mapping, used by original IBM SOM 2.1. CORBA C Language mapping is default for somFree Compiler. This chapter provides short description of mapping. For full description refer to [1].
 
-===== 14. SOM C Language mapping =====
+===== SOM C Language mapping =====
 
 SOM C Language mapping is a IBM SOM mapping variant. For some reason (most probably because variable arguments support) IBM SOM not exactly implements C Language Mapping Specification.
 
 ====== Programmer's reference ======
 
-===== 1. SOM Runtime C library =====
+===== SOM Runtime C library =====
 
 SOM Runtime C library somwm35i is a subset of C runtime library functions found to be used by IBM SOM 3.0 for NT emitters. SOM Runtime C library provided only for support of IBM SOM 3.0 for NT emitters. This is not full featured C library but compatibility layer and must not be used for development. Functions utilize IBM Optlink calling convention. This library required only under Windows NT systems.
 
@@ -805,7 +805,7 @@ List of emulated function and variables.
   * strdup
   * strpbrk
 
-===== 2. somFree Compiler library =====
+===== somFree Compiler library =====
 
 somFree Compiler library somc is a set of helper functions for compiler tasks. Used by IBM SOM emitters. Library provided solely to provide support of IBM emitters. Must not be used to write new code.
 ==== somtfexists, somtfexistsSL function ====
@@ -1641,7 +1641,7 @@ SOMEXTERN void SOMLINK somtfreeWorldSL();
 </code>
 ==== somtinitMalloc, somtinitMallocSL function ====
 
-<code>
+<code c>
 SOMEXTERN void somtinitMalloc(BOOL dynamic)
 SOMEXTERN void SOMLINK somtinitMallocSL(BOOL dynamic)
 </code>
@@ -1772,7 +1772,7 @@ SOMEXTERN char * SOMLINK somtclsfilenameSL(Entry * cls);
 Note: somtclsfilename version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtclsname, somtclsnameSL function ====
 
-<code>
+<code c>
 SOMEXTERN char * somtclsname(Entry * cls);
 SOMEXTERN char * SOMLINK somtclsnameSL(Entry * cls);
 </code>
@@ -1827,7 +1827,7 @@ SOMEXTERN char * SOMLINK somtgetdattSL(Entry * ep, char *s);
 </code>
 ==== somtgetAbistyle, somtgetAbistyleSL function ====
 
-<code>
+<code c>
 SOMEXTERN enum SOMTABIStyle  somtgetAbistyle( Entry * ep );
 SOMEXTERN enum SOMTABIStyle  SOMLINK somtgetAbistyleSL( Entry * ep );
 </code>
@@ -1854,7 +1854,7 @@ SOMEXTERN char * SOMLINK somtimplicitArgsSL(Entry *ep);
 Note: somtimplicitArgs version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtincludeOnce, somtincludeOnceSL function ====
 
-<code>
+<code c>
 SOMEXTERN char * somtincludeOnceSL(Entry *cls, char *ext, char *buf);
 SOMEXTERN char * SOMLINK somtincludeOnceSL(Entry *cls, char *ext, char *buf);
 </code>
@@ -1953,7 +1953,7 @@ SOMEXTERN void SOMLINK somtaddHeaderSL(char *file, FILE *fp, char *ext);
 Note: somtaddHeader version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtcleanFiles, somtcleanFilesSL function ====
 
-<code>
+<code c>
 SOMEXTERN void somtcleanFiles(int status);
 SOMEXTERN void  SOMLINK somtcleanFilesSL(int status);
 </code>
@@ -2012,7 +2012,7 @@ SOMEXTERN void SOMLINK somtfreeMethodListSL(Mlist *mlist);
 Note: somtfreeMethodList version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtfullComment, somtfullCommentSL function ====
 
-<code>
+<code c>
 SOMEXTERN void somtfullCommentSL(FILE * fp, char *fmt,...);
 SOMEXTERN void SOMLINK somtfullCommentSL(FILE * fp, char *fmt,...);
 </code>
@@ -2039,7 +2039,7 @@ SOMEXTERN void SOMLINK somtinitialiseMetaSL(Entry * cls, Stab * stab, boolean me
 Note: somtinitialiseMeta version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtoidlComment, somtoidlCommentSL function ====
 
-<code>
+<code c>
 SOMEXTERN void somtoidlComment(FILE * fp, int min, int max, char style, char *comment);
 SOMEXTERN void  SOMLINK somtoidlCommentSL(FILE * fp, int min, int max, char style, char *comment);
 </code>
@@ -2089,7 +2089,7 @@ SOMEXTERN void SOMLINK somtuninitialiseMetaSL(Entry * cls);
 Note: somtuninitialiseMeta version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtobseleteHeaderFile, somtobseleteHeaderFileSL function ====
 
-<code>
+<code c>
 SOMEXTERN FILE * somtobseleteHeaderFile(char *file, Entry *cls, char *ext, char *newext);
 SOMEXTERN FILE * SOMLINK somtobseleteHeaderFileSL(char *file, Entry *cls, char *ext, char *newext);
 </code>
