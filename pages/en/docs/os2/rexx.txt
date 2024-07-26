@@ -15,20 +15,6 @@ A copy of the license is included in the section entitled "GNU Free Documentatio
 
 Table of Contents
 
-    Introduction to Regina 11
-
-        Purpose of this document 11
-
-        Implementation 11
-
-        Ports of Regina 12
-
-        Executing Rexx programs with Regina 12
-
-            Switches 13
-
-            External Rexx programs 15
-
     Rexx Language Constructs 17
 
         Definitions 17
@@ -785,513 +771,161 @@ The library containing Regina is available either as a static library or as a dy
 The osFree Classic REXX distribution also includes a front end to the osFree Classic REXX library, to enable the execution of Rexx programs directly from the command line. The command line referred to here relates to the a OS/2 command window.
 
 
-==== Ports of Regina ====
 
+==== Executing Rexx programs with osFree Classic REXX ====
 
-Regina has been ported to many operating systems. The following table provides implementation details of each of the ports of Regina.
 
-        Operating System
-        	
+Rexx programs are generally executed by Regina from the command line in the following manner:
 
-        Static Library
-        	
+  rexx [switches] [program] [program parameters]
 
-        Dynamic Library
-        	
+where:
 
-        Dynamic Library ThreadSafe
-        	
+  * rexx is the name of the osFree Classic REXX executable
+  * switches are optional switches. See the section below for an explanation of the switches currently supported by osFree Classic REXX
+  * program the name of the Rexx program to be executed. See the section External Rexx Programs, below, for details on how osFree Classic REXX interprets this argument. If no program name is specified, Regina waits for Rexx commands to be typed in and will execute those commands when the appropriate end-of-file character is typed.
+  * program parameters any optional parameters to be passed to the Rexx program.
 
-        Dynamic Executable
-        	
-
-        Static Executable
-
-        Linux
-        	
-
-        libregina.a
-        	
-
-        libregina.so
-        	
-
-        Yes
-        	
-
-        regina
-        	
-
-        rexx
-
-        HP-UX
-        	
-
-        libregina.a
-        	
-
-        libregina.sl
-        	
-
-        No
-        	
-
-        regina
-        	
-
-        rexx
-
-        AIX
-        	
-
-        libregina.a
-        	
-
-        libregina.a
-        	
-
-        Yes
-        	
-
-        regina
-        	
-
-        rexx
-
-        Other Unix
-        	
-
-        libregina.a
-        	
-
-        libregina.so
-        	
-
-        Maybe
-        	
-
-        regina
-        	
-
-        rexx
-
-        32-bit DOS (DJGPP)
-
-        (Uses DPMI memory manager)
-        	
-
-        libregina.a
-        	
-
-        N/A
-        	
-
-        No
-        	
-
-        N/A
-        	
-
-        rexx.exe
-
-        32-bit DOS (EMX)
-
-        (Uses VCPI memory manager)
-        	
-
-        regina.a
-        	
-
-        N/A
-        	
-
-        No
-        	
-
-        N/A
-        	
-
-        rexx.exe
-
-        OS/2 (EMX)
-        	
-
-        regina.a
-        	
-
-        regina.dll (regina.lib)
-        	
-
-        Yes
-        	
-
-        regina.exe
-        	
-
-        rexx.exe
-
-        OS/2
-
-        (OpenWatcom)
-        	
-
-        rexx.lib
-        	
-
-        regina.dll (regina.lib)
-        	
-
-        No
-        	
-
-        regina.exe
-        	
-
-        rexx.exe
-
-        Windows 32bit Windows 64bit
-        	
-
-        rexx.lib
-        	
-
-        regina.dll (regina.lib)
-        	
-
-        Yes
-        	
-
-        regina.exe
-        	
-
-        rexx.exe
-
-        BeOS
-        	
-
-        libregina.a
-        	
-
-        libregina.so
-        	
-
-        No
-        	
-
-        regina
-        	
-
-        rexx
-
-        AmigaOS
-        	
-
-        libregina.a
-        	
-
-        N/A
-        	
-
-        No
-        	
-
-        N/A
-        	
-
-        rexx
-
-        EPOC32
-        	
-
-        N/A
-        	
-
-        N/A
-        	
-
-        No
-        	
-
-        N/A
-        	
-
-        rexx.exe
-
-        AtheOS/Syllable
-        	
-
-        libregina.a
-        	
-
-        libregina.so
-        	
-
-        No
-        	
-
-        regina
-        	
-
-        rexx
-
-        QNX 4.2x
-        	
-
-        rexx.lib
-        	
-
-        N/A
-        	
-
-        No
-        	
-
-        N/A
-        	
-
-        rexx
-
-        QNX 6.x
-        	
-
-        libregina.a
-        	
-
-        libregina.so
-        	
-
-        Yes
-        	
-
-        regina
-        	
-
-        rexx
-
-        MacOS X
-        	
-
-        libregina.a
-        	
-
-        libregina.dylib
-        	
-
-        No
-        	
-
-        regina
-        	
-
-        rexx
-
-        SkyOS
-        	
-
-        libregina.a
-        	
-
-        libregina.dll
-        	
-
-        No
-        	
-
-        regina.app
-        	
-
-        rexx.app
-
-
-==== Executing Rexx programs with Regina ====
-
-
-        Rexx programs are generally executed by Regina from the command line in the following manner:
-
-
-        regina [switches] [program] [program parameters]
-
-        where:
-
-        regina is the name of the Regina executable (see table above)
-
-        switches are optional switches. See the section below for an explanation of the switches currently supported by Regina
-
-        program the name of the Rexx program to be executed. See the section External Rexx Programs, below, for details on how Regina interprets this argument. If no program name is specified, Regina waits for Rexx commands to be typed in and will execute those commands when the appropriate end-of-file character (^D on Unix and ^Z on DOS, OS/2 and Windows) is typed.
-
-        program parameters any optional parameters to be passed to the Rexx program.
-
-
-        Rexx programs to be executed by Regina on Unix platforms can take advantage of a feature of Unix shell programs called magic numbers. By having the first line of a Rexx program consist of the special sequence of #! followed by the full file name of the Regina executable, you can invoke this program simply by typing the name of the Rexx program on the command line followed by any parameters you wish to pass to the Rexx program. The file name must also have the appropriate execute bit set for this to work. As an example suppose your Rexx program, myprog, contained:
-
-
-        #!/usr/local/bin/regina Parse Version ver
-
-        Say ver
-
-
-        When executing this program from the command line by typing myprog, the Unix shell program would execute the program /usr/local/bin/regina and pass the remainder of the lines in the file to this program via stdin.
-
-
-        The special processing done by Regina to find the file name in REGINA_MACROS and the file extension searching is ignored for the program to be run when using the magic number method of invocation, but is still done inside the program when using CALL.
+The special processing done by osFree Classic REXX to find the file name in REGINA_MACROS and the file extension searching is ignored for the program to be run when using the magic number method of invocation, but is still done inside the program when using CALL.
 
 
 === Switches ===
 
 
-            The following switches allow the user to control how Regina executes the supplied Rexx program. Switches are recognised by either a leading hyphen character; '-', followed immediately by a single alphabetic character, or the full switch name preceded by two hyphen characters. Some switches allow for optional parameters. These, too must follow the switch without any intervening spaces. All switches and their optional parameters are case-sensitive. Single character switches that take no option can be combined. e.g. “-arp”
+The following switches allow the user to control how Regina executes the supplied Rexx program. Switches are recognised by either a leading hyphen character; '-', followed immediately by a single alphabetic character, or the full switch name preceded by two hyphen characters. Some switches allow for optional parameters. These, too must follow the switch without any intervening spaces. All switches and their optional parameters are case-sensitive. Single character switches that take no option can be combined. e.g. “-arp”
 
+<code>
+  -t[trace char]
+  --trace[=trace char]
+</code>
 
-            -t[trace char]
+Turn on the specified tracing level. The optional trace char indicates the tracing level to be used. See the TRACE command later in this document for an explanation of each trace level. Use of this switch will result in any TRACE commands in the program to be ignored. Default trace char is A.
 
-            --trace[=trace char]
+<code>
+  -i[trace char]
+  --interactive[=trace char]
+</code>
 
+Same as –trace switch above but sets tracing to be interactive
 
-            -i[trace char]
+<code>
+  -a
+  --args
+</code>
 
-            --interactive[=trace char]
+Without this switch, all command line parameters are passed to osFree Classic REXX as a single argument. Specifying -a, ensures that the Rexx program invoked has access to the command line parameters as separate arguments, as passed from the command line interpreter. i.e. The BIF ARG() can return a value of other than 1 or 0. Also PARSE SOURCE will return SUBROUTINE instead of the normal COMMAND value.
 
-            Turn on the specified tracing level. The optional trace char indicates the tracing level to be used. See the TRACE command later in this document for an explanation of each trace level. Use of this switch will result in any TRACE commands in the program to be ignored. Default trace char is A.
+<code>
+  -r
+  --restricted
+</code>
 
-            Same as –trace switch above but sets tracing to be interactive
+Run Regina in restricted mode. See the section on Regina Restricted Mode for more details.
 
-            -a
+<code>
+  -v[a|b|v|]
+  --version[=a|b|v]
+</code>
 
-            --args
+Displays the version information for the executable run. The string displayed is the same that is returned by PARSE SOURCE followed by the processor architecture bits. The version string provides an indicator as to whether the Regina library is thread-safe or not. If the first word ends in“(MT)”, then the library is thread-safe. This switch, executed by the static executable, will always result in no“(MT)”indicator.
 
+Options:
+  * a – displays location of Regina's ADDONS directory
+  * b – number of bits Regina is complied with; eg 32 or 64 v – numeric version; eg 3.9.3
 
-            -r
+<code>
+  -l[locale]
+  --locale[=locale]
+</code>
 
-            --restricted
+Indicates which national locale that Regina is to use for BIFs like TRANSLATE, LOWER, or UPPER. No validation is done on the specified locale. The affected behaviour is defined in Section 2; “Native Language Support”.
 
-            -v[a|b|v|]
+The locale is passed to the underlying C library, which resolves the describer in a system specific way. An omitted locale lets the system choose the current pre-selected locale for the user. This is the usual option a user would choose. "-l" without a locale , works best for most users who decided to use locale support. Error messages can be selected by another scheme using an environment variable, see Section 10.2;Native Language Support; this variable can be used to select a locale, too.
 
-            --version[=a|b|v]
+The text of the locale is equivalent to those of the environment variables LANG or LC_CTYPE or the value used in registries, etc. Examples are en_US.ISO-8859-1 or English_USA.1252 for some systems.
 
+<code>
+  -oOPTIONS
+  --options=OPTIONS
+</code>
 
-            -l[locale]
+This switch specifies the values of OPTIONS to set. This is a string of words in the same format as the OPTIONS instruction. This switch overwrites REGINA_OPTIONS Environment variable.
 
-            --locale[=locale]
+<code>
+  -p
+  --pause
+</code>
 
+This switch causes Regina to pause on exit. This switch is useful if you run Rexx programs from a GUI file manager and want to see the output from that program before the console window closes.
 
-            -oOPTIONS
+<code>
+  -c 
+  --compile
+</code>
 
-            --options=OPTIONS
+Compile the specified program into a tokenised format. The only program parameters when using this switch is the filename for the tokenised program. i.e. regina -c program filename
 
+<code>
+  -e
+  --execute
+</code>
 
-            -p
-
-            --pause
-
-            Without this switch, all command line parameters are passed to Regina as a single argument. Specifying -a, ensures that the Rexx program invoked has access to the command line parameters as separate arguments, as passed from the command line interpreter. i.e. The BIF ARG() can return a value of other than 1 or 0. Also PARSE SOURCE will return SUBROUTINE instead of the normal COMMAND value.
-
-            Run Regina in restricted mode. See the section on Regina Restricted Mode for more details.
-
-            Displays the version information for the executable run. The string displayed is the same that is returned by PARSE SOURCE followed by the processor architecture bits. The version string provides an indicator as to whether the Regina library is thread-safe or not. If the first word ends in“(MT)”, then the library is thread-safe. This switch, executed by the static executable, will always result in no“(MT)”indicator.
-
-            Options:
-
-            a – displays location of Regina's ADDONS directory
-
-            b – number of bits Regina is complied with; eg 32 or 64 v – numeric version; eg 3.9.3
-
-            Indicates which national locale that Regina is to use for BIFs like TRANSLATE, LOWER, or UPPER. No validation is done on the specified locale. The affected behaviour is defined in Section 2; “Native Language Support”.
-
-            The locale is passed to the underlying C library, which resolves the describer in a system specific way. An omitted locale lets the system choose the current pre-selected locale for the user. This is the usual option a user would choose. "-l" without a locale , works best for most users who decided to use locale support. Error messages can be selected by another scheme using an environment variable, see Section 10.2;Native Language Support; this variable can be used to select a locale, too.
-
-            The text of the locale is equivalent to those of the environment variables LANG or LC_CTYPE or the value used in registries, etc. Examples are en_US.ISO-8859-1 or English_USA.1252 for some systems.
-
-            This switch specifies the values of OPTIONS to set. This is a string of words in the same format as the OPTIONS instruction. This switch overwrites REGINA_OPTIONS Environment variable.
-
-            This switch causes Regina to pause on exit. This switch is useful if you run Rexx programs from a GUI file manager and want to see the output from that program before the console window closes.
-
-
-            -c Compile the specified program into a tokenised format. The only
-
-            --compile program parameters when using this switch is the filename for the tokenised program. i.e. regina -c program filename
-
-
-            -e
-
-            --execute
-
-            Execute the specified program from a tokenised format. program must be a file created by the -c switch. All other switches and program parameters are allowed except -c.
-
+Execute the specified program from a tokenised format. program must be a file created by the -c switch. All other switches and program parameters are allowed except -c.
 
 === External Rexx programs ===
 
-
-            Regina searches for Rexx programs, using a combination of the REGINA_MACROS environment variable, the PATH environment variable, the REGINA_SUFFIXES environment variable and the addition of filename extensions. This rule applies to both external function calls within a Rexx program and the program specified on the command line.
-
-
-            First of all we process the environment variable REGINA_MACROS. If no file is found we proceed with the current directory and then with the environment variable PATH. The semantics of the use of REGINA_MACROS and PATH are the same, and the search in the current directory is omitted for the superuser on Unix systems for security reasons. The current directory must be specified explicitly by the superuser.
+Regina searches for Rexx programs, using a combination of the REGINA_MACROS environment variable, the PATH environment variable, the REGINA_SUFFIXES environment variable and the addition of filename extensions. This rule applies to both external function calls within a Rexx program and the program specified on the command line.
 
 
-            When processing an environment variable, the content is split into the different paths and each path is processed separately. Note that the search algorithm to this point is ignored if the program name contains a file path specification. eg. if "CALL .\MYPROG" is called, then no searching of REGINA_MACROS or PATH is done; only the concatenation of suffixes is carried out.
+First of all we process the environment variable REGINA_MACROS. If no file is found we proceed with the current directory and then with the environment variable PATH. The semantics of the use of REGINA_MACROS and PATH are the same, and the search in the current directory is omitted for the superuser on Unix systems for security reasons. The current directory must be specified explicitly by the superuser.
 
 
-            For each file name and path element, a concatenated file name is created. If a known file extension is part of the file name only this file is searched, otherwise the file name is extended by the extensions "" (empty string), ".rexx", ".rex", ".cmd", and ".rx" in this order. The file name case is ignored on systems that ignore the character case for normal file operations like DOS, Windows, and OS/2.
+When processing an environment variable, the content is split into the different paths and each path is processed separately. Note that the search algorithm to this point is ignored if the program name contains a file path specification. eg. if "CALL .\MYPROG" is called, then no searching of REGINA_MACROS or PATH is done; only the concatenation of suffixes is carried out.
 
 
-            The first matching file terminates the whole algorithm and the found file is returned.
+For each file name and path element, a concatenated file name is created. If a known file extension is part of the file name only this file is searched, otherwise the file name is extended by the extensions "" (empty string), ".rexx", ".rex", ".cmd", and ".rx" in this order. The file name case is ignored on systems that ignore the character case for normal file operations like DOS, Windows, and OS/2.
 
+The first matching file terminates the whole algorithm and the found file is returned.
 
-            The environment variable REGINA_SUFFIXES extends the list of known suffixes as specified above, and is inserted after the empty extension in the process. REGINA_SUFFIXES has to contain a space or comma separated list of extensions, a dot in front of each entry is allowed,
+The environment variable REGINA_SUFFIXES extends the list of known suffixes as specified above, and is inserted after the empty extension in the process. REGINA_SUFFIXES has to contain a space or comma separated list of extensions, a dot in front of each entry is allowed,
 
-            e.g. ".macro,.mac,.regina" or "macro mac regina"
+e.g. ".macro,.mac,.regina" or "macro mac regina"
 
-            Note that it is planned to extend the list of known suffixes by ".rxc" in version 3.4 to allow for seamless integration of pre-compiled macros.
+Note that it is planned to extend the list of known suffixes by ".rxc" in version 3.4 to allow for seamless integration of pre-compiled macros.
 
+Example: Locating an external Rexx program for execution
 
-            Example: Locating an external Rexx program for execution
+Assume you have a call to an external function, and it is coded as follows:
 
+<code rexx>
+Call myextfunc arg1, arg2
+</code>
 
-            Assume you have a call to an external function, and it is coded as follows:
+Assume also that the file myextfunc.cmd exists in the directory /opt/rexx/, and that
 
+  PATH=/usr/bin:/opt/rexx, REGINA_MACROS is not set, and REGINA_SUFFIXES=.macro.
 
-            Call myextfunc arg1, arg2
-
-
-            Assume also that the file myextfunc.cmd exists in the directory /opt/rexx/, and that
-
-            PATH=/usr/bin:/opt/rexx, REGINA_MACROS is not set, and REGINA_SUFFIXES=.macro.
-
-            The files that Regina will search for in order are:
+The files that Regina will search for in order are:
 
             ./myextfunc
-
             ./myextfunc.macro
-
             ./myextfunc.rexx
-
             ./myextfunc.rex
-
             ./myextfunc.cmd
-
             ./myextfunc.rx
 
-
             /usr/bin/myextfunc
-
             /usr/bin/myextfunc.macro
-
             /usr/bin/myextfunc.rexx
-
             /usr/bin/myextfunc.rex
-
             /usr/bin/myextfunc.cmd
-
             /usr/bin/myextfunc.rx
 
 
             /opt/rexx/myextfunc
-
             /opt/rexx/myextfunc.macro
-
             /opt/rexx/myextfunc.rexx
-
             /opt/rexx/myextfunc.rex
-
             /opt/rexx/myextfunc.cmd /* found!! terminate search*/
 
 ===== Rexx Language Constructs =====
