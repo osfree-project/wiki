@@ -10988,7 +10988,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
 
 
         To avoid this, be very careful about using the correct mode when opening files. Failure to do so will almost certainly give strange effects.
-    Extensions
+
+===== Extensions =====
 
     This chapter describes how extensions to Regina are implemented. The whole contents of this chapter is specific for Regina.
 
@@ -14729,8 +14730,9 @@ TODO: static library, dynamic library and rxfuncadd().
 Cannot use rxfuncadd() in a static library to load an external function package as the dynamic library that is loaded with the external function package uses the RexxRegisterFunctionDll that the shared library is linked with; this is the one in libregina.so and it updates the internal table of external functions in its address space, so the internal table of external functions in libregina.a (or rexx binary) will not contain the pointers.
 
 
+===== Appendixes =====
         Definitions
-        1 Appendixes
+
 
         In order to make the definitions more readable, but still have a rigid definition of the terms, some extra comments have been added to some of the definitions. These comments are enclosed in square brackets.
 
