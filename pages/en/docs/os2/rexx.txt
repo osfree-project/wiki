@@ -769,22 +769,21 @@ Table of Contents
 
 ===== Introduction to REXX =====
 
-This chapter provides an introduction to Regina, an Open Source Rexx Interpreter distributed under the GNU General Library License.
+This chapter provides an introduction to osFree Classic REXX, an Open Source Rexx Interpreter distributed under the GNU General Library License.
 
 ==== Purpose of this document ====
 
-The purpose of this document is to provide an overview of the Rexx Language and the Regina implementation of the Rexx Language. It is not intended as a definitive reference to Rexx; you should really have a copy of the Rexx "bible"; The Rexx Language, by Mike Cowlishaw [TRL2].
+The purpose of this document is to provide an overview of the Rexx Language and the osFree Classic REXX implementation of the Rexx Language. It is not intended as a definitive reference to Rexx; you should really have a copy of the Rexx "bible"; The Rexx Language, by Mike Cowlishaw [TRL2].
 
 ==== Implementation ====
 
 
-The Regina Rexx Interpreter is implemented as a library suitable for linking into third-party applications. Access to Regina from third-party applications is via the Regina API, which is consistent with the IBM's Rexx SAA API. This API is implemented on most other Rexx interpreters.
+The osFree Classic REXX Interpreter is implemented as a library suitable for linking into third-party applications. Access to osFree Classic REXX from third-party applications is via the REXX API, which is consistent with the IBM's Rexx SAA API. This API is implemented on most other Rexx interpreters.
 
 The library containing Regina is available either as a static library or as a dynamically loadable library. The only functional difference between the two libraries is that the ability to dynamically load Rexx external function packages via the built-in function; RxFuncAdd, is only available with the dynamically loadable library.
 
-The Regina distribution also includes a front end to the Regina library, to enable the execution of Rexx programs directly from the command line. The command line referred to here relates to the a Unix shell, an OS/2 or DOS command window or a Windows NT/9x command prompt.
+The osFree Classic REXX distribution also includes a front end to the osFree Classic REXX library, to enable the execution of Rexx programs directly from the command line. The command line referred to here relates to the a OS/2 command window.
 
-On platforms where both a static and a dynamic executable exist, it should be noted that the ability to load and execute external functions via the RxFuncAdd function, is only available by running the dynamic executable.
 
 ==== Ports of Regina ====
 
