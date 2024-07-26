@@ -1051,101 +1051,80 @@ These considerations may seem like nit-picking, but they will matter if you drop
 ===== Instructions =====
 
 
-        In this section, all instructions in standard Rexx are described. Extensions are listed later in this chapter.
+In this section, all instructions in standard Rexx are described. Extensions are listed later in this chapter.
 
-        First some notes on the terminology. What is called an instruction in this document is equivalent to a "unit" of clauses. That is, each instruction can consist of one or more clauses. For instance, the SAY instruction is always a single instruction, but the IF instruction is a multi-clause instruction. Consider the following script, where each clause has been boxed:
+First some notes on the terminology. What is called an instruction in this document is equivalent to a "unit" of clauses. That is, each instruction can consist of one or more clauses. For instance, the SAY instruction is always a single instruction, but the IF instruction is a multi-clause instruction. Consider the following script, where each clause has been boxed:
 
+<code rexx>
+if a=b then
+say 'hello' else
+say 'bye'
+</code>
 
-        if a=b then
+Further, the THEN or ELSE parts of this instruction might consist of a DO/END pair, in which case the IF instruction might consists of an virtually unlimited number of clauses.
 
-        say 'hello' else
+Then, some notes on the syntax diagrams used in the following descriptions of the instructions. The rules applying to these diagrams can be listed as:
 
-        say 'bye'
+Anything written in courier font in the syntax diagrams indicates that it should occur as-is in the Rexx program. Whenever something is written in italic font, it means that the term should be substituted for another value, expression, or terms.
 
+Anything contained within matching pairs of square brackets ([...]) are optional, and may be left out.
 
-        Further, the THEN or ELSE parts of this instruction might consist of a DO/END pair, in which case the IF instruction might consists of an virtually unlimited number of clauses.
+Whenever a pair of curly braces is used, it contains two or more subclauses that are separated by the vertical bar (|). It means that the curly braces will be substituted for one of the subclauses it contains.
 
+Whenever the ellipsis (...) is used, it indicates that the immediately preceding subclauses may be repeated zero or more times. The scope of the ellipsis is limited to the contents of a set of square brackets or curly braces, if it occurs there.
 
-        Then, some notes on the syntax diagrams used in the following descriptions of the instructions. The rules applying to these diagrams can be listed as:
+Whenever the vertical bar | is used in any of the syntax diagrams, it means that either the term to the left, or the term to the right can be used, but not both, and at least one of the must be used. This "operator" is associative (can be used in sequence), and it has lower priority than the square brackets (the scope of the vertical bar located within a pair of square brackets or curly braces is limited to the text within those square brackets or curly braces.
 
+Whenever a semicolon (;) is used in the syntax diagram, it indicates that a clause separator must be present at the point. It may either be a semicolon character, or an end-of-line.
 
-            Anything written in courier font in the syntax diagrams indicates that it should occur as-is in the Rexx program. Whenever something is written in italic font, it means that the term should be substituted for another value, expression, or terms.
+Whenever the syntax diagram is spread out over more lines, it means that any of the lines can be used, but that the individual lines are mutually exclusive. Consider the syntax:
 
-            Anything contained within matching pairs of square brackets ([...]) are optional, and may be left out.
+<code>
+SAY symbol
+    string
+</code>
 
-            Whenever a pair of curly braces is used, it contains two or more subclauses that are separated by the vertical bar (|). It means that the curly braces will be substituted for one of the subclauses it contains.
+This is equivalent to the syntax:
 
-            Whenever the ellipsis (...) is used, it indicates that the immediately preceding subclauses may be repeated zero or more times. The scope of the ellipsis is limited to the contents of a set of square brackets or curly braces, if it occurs there.
+  SAY [symbol | string ]
 
-            Whenever the vertical bar | is used in any of the syntax diagrams, it means that either the term to the left, or the term to the right can be used, but not both, and at least one of the must be used. This "operator" is associative (can be used in sequence), and it has lower priority than the square brackets (the scope of the vertical bar located within a pair of square brackets or curly braces is
+Because in the first of these two syntaxes, the SAY part may be continued at either line.
 
-            limited to the text within those square brackets or curly braces.
+Sometimes the syntax of an instruction is so complex that parts of the syntax has been extracted, and is shown below in its expanded state. The following is an example of how this looks:
 
-            Whenever a semicolon (;) is used in the syntax diagram, it indicates that a clause separator must be present at the point. It may either be a semicolon character, or an end-of-line.
+  SAY something TO someone something : = HI
+  HELLO BYE
+  someone : = THE BOSS YOUR NEIGHBOR
 
-            Whenever the syntax diagram is spread out over more lines, it means that any of the lines can be used, but that the individual lines are mutually exclusive. Consider the syntax:
+You can generally identify these situations by the fact that they comes a bit below the real syntax diagram, and that they contains a colon character after the name of the term to be expanded.
 
+In the syntax diagrams, some generic names have been used for the various parts, in order to indicate common attributes for the term. For instance, whenever a term in the syntax diagrams is called expr, it means that any valid Rexx expression may occur instead of that term. The most common such names are:
 
-            SAY symbol
+  condition
 
-            string
+Indicates that the subclause can be any of the names of the conditions, e.g. SYNTAX, NOVALUE, HALT, etc.
 
+  expr
 
-            This is equivalent to the syntax:
+Indicates that the subclause can be any valid Rexx expression, and will in general be evaluated as normal during execution.
 
+  statement
 
-            SAY [symbol | string ]
+Indicates that extra clauses may be inserted into the instruction, and that exactly one of them must be a true statement.
 
+  string
 
-            Because in the first of these two syntaxes, the SAY part may be continued at either line.
+Indicates that the subclause is a constant string, i.e. either enclosed by single quotes ('...') or double quotes ("...").
 
-            Sometimes the syntax of an instruction is so complex that parts of the syntax has been extracted, and is shown below in its expanded state. The following is an example of how this looks:
+  symbol
 
-        SAY something TO someone something : = HI
+Indicates that the subclause is a single symbol. In general, whenever symbol is used as the name for a subclause, it means that the symbol will not automatically be expanded to the value of the symbol. But instead, some operation is performed on the name of the symbol.
 
-        HELLO BYE
+  template
 
+Indicates that the subclause is a parsing template. The exact syntax of this is explained in a chapter on tracing, to be written later.
 
-        someone : = THE BOSS YOUR NEIGHBOR
-
-
-        You can generally identify these situations by the fact that they comes a bit below the real syntax diagram, and that they contains a colon character after the name of the term to be expanded.
-
-
-        In the syntax diagrams, some generic names have been used for the various parts, in order to indicate common attributes for the term. For instance, whenever a term in the syntax diagrams is called expr, it means that any valid Rexx expression may occur instead of that term. The most common such names are:
-
-
-        condition
-
-        Indicates that the subclause can be any of the names of the conditions, e.g. SYNTAX, NOVALUE, HALT, etc.
-
-        expr
-
-
-        Indicates that the subclause can be any valid Rexx expression, and will in general be evaluated as normal during execution.
-
-
-        statement
-
-        Indicates that extra clauses may be inserted into the instruction, and that exactly one of them must be a true statement.
-
-
-        string
-
-
-        Indicates that the subclause is a constant string, i.e. either enclosed by single quotes ('...') or double quotes ("...").
-
-        symbol
-
-
-        Indicates that the subclause is a single symbol. In general, whenever symbol is used as the name for a subclause, it means that the symbol will not automatically be expanded to the value of the symbol. But instead, some operation is performed on the name of the symbol.
-
-        template
-
-        Indicates that the subclause is a parsing template. The exact syntax of this is explained in a chapter on tracing, to be written later.
-
-
-        In addition to this, variants may also exist. These variants will have an extra letter or number appended to the name of the subclause, and is used for differing between two or more subclauses having the same "type" in one syntax diagram. In the case of other names for the subclauses, these are explained in the description of the instruction.
+In addition to this, variants may also exist. These variants will have an extra letter or number appended to the name of the subclause, and is used for differing between two or more subclauses having the same "type" in one syntax diagram. In the case of other names for the subclauses, these are explained in the description of the instruction.
 
 ==== The ADDRESS Instruction ====
 
