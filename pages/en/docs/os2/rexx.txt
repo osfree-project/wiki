@@ -753,15 +753,15 @@ Table of Contents
 
         GNU Free Documentation License 263
 
-===== Introduction to REXX =====
+====== Introduction to REXX ======
 
 This chapter provides an introduction to osFree Classic REXX, an Open Source Rexx Interpreter distributed under the GNU General Library License.
 
-==== Purpose of this document ====
+===== Purpose of this document =====
 
 The purpose of this document is to provide an overview of the Rexx Language and the osFree Classic REXX implementation of the Rexx Language. It is not intended as a definitive reference to Rexx; you should really have a copy of the Rexx "bible"; The Rexx Language, by Mike Cowlishaw [TRL2].
 
-==== Implementation ====
+===== Implementation =====
 
 
 The osFree Classic REXX Interpreter is implemented as a library suitable for linking into third-party applications. Access to osFree Classic REXX from third-party applications is via the REXX API, which is consistent with the IBM's Rexx SAA API. This API is implemented on most other Rexx interpreters.
@@ -772,7 +772,7 @@ The osFree Classic REXX distribution also includes a front end to the osFree Cla
 
 
 
-==== Executing Rexx programs with osFree Classic REXX ====
+===== Executing Rexx programs with osFree Classic REXX =====
 
 
 Rexx programs are generally executed by Regina from the command line in the following manner:
@@ -789,7 +789,7 @@ where:
 The special processing done by osFree Classic REXX to find the file name in REGINA_MACROS and the file extension searching is ignored for the program to be run when using the magic number method of invocation, but is still done inside the program when using CALL.
 
 
-=== Switches ===
+==== Switches ====
 
 
 The following switches allow the user to control how Regina executes the supplied Rexx program. Switches are recognised by either a leading hyphen character; '-', followed immediately by a single alphabetic character, or the full switch name preceded by two hyphen characters. Some switches allow for optional parameters. These, too must follow the switch without any intervening spaces. All switches and their optional parameters are case-sensitive. Single character switches that take no option can be combined. e.g. “-arp”
@@ -872,7 +872,7 @@ Compile the specified program into a tokenised format. The only program paramete
 
 Execute the specified program from a tokenised format. program must be a file created by the -c switch. All other switches and program parameters are allowed except -c.
 
-=== External Rexx programs ===
+==== External Rexx programs ====
 
 Regina searches for Rexx programs, using a combination of the REGINA_MACROS environment variable, the PATH environment variable, the REGINA_SUFFIXES environment variable and the addition of filename extensions. This rule applies to both external function calls within a Rexx program and the program specified on the command line.
 
