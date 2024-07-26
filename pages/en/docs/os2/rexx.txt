@@ -955,83 +955,71 @@ This will probably raise SYNTAX condition {13}.
 
 ==== Tokens ====
 
+The fundamental building block of a Rexx clause is a token. Tokens can be split into a number of different types; Literal Strings, Hexadecimal Strings, Binary Strings, Symbols, Operators and Special Characters.
 
-            The fundamental building block of a Rexx clause is a token. Tokens can be split into a number of different types; Literal Strings, Hexadecimal Strings, Binary Strings, Symbols, Operators and Special Characters.
+=== Literal String ===
 
+Any characters enclosed in single or double quotes is treated as a literal string; no interpretation of the contents is done. A literal string with no characters (ie two adjacent single or double quotes) is the null string. To include a single or double quote inside a literal string, either use the other quote character as the string delimiter or specify two adjacent quote characters to indicate a single, embedded quote.
 
-            Literal String
+Examples: Literal String
 
-            Any characters enclosed in single or double quotes is treated as a literal string; no interpretation of the contents is done. A literal string with no characters (ie two adjacent single or double quotes) is the null string. To include a single or double quote inside a literal string, either use the other quote character as the string delimiter or specify two adjacent quote characters to indicate a single, embedded quote.
+<code rexx>
+'def'
+"Mary"
+"I'm a string"
+'I''m a "valid" string'
+'' → null string
+</code>
 
+=== Hexadecimal String ===
 
-            Examples: Literal String
+Any hexadecimal (0-9, a-f, A-F) characters, grouped in pairs, enclosed in single or double quotes and immediately followed by 'x' or 'X' is interpreted as a hexadecimal string. (The "X" is outside of the quotes). If the first group has an odd number of characters, a zero is prepended.
 
-            'def'
+Examples: Hexadecimal String
 
-            "Mary"
+<code rexx>
+'0def'x "01 02 03"X
+'123 45'x → same as '01 23 45'x
+</code>
 
-            "I'm a string"
+=== Binary String ===
 
-            'I''m a "valid" string'
+Any binary (0 or 1) characters, grouped in fours, enclosed in single or double quotes and immediately followed by 'b' or 'B' is interpreted as a binary string. (The "B" is outside of the quotes). If the first group has an odd number of characters, a zero is prepended. If the number of groups is an odd number, a group of 4 zeros (0000) is prepended.
 
-            '' → null string
+Examples: Binary String
 
+<code rexx>
+'11011101'b
+"1111 0101 0001 1000"B
+'111 0101 1010'b → same as '0000 0111 0101 1010'b
+</code>
+       
+=== Symbol ===
 
-            Hexadecimal String
+A symbol contains a number of characters in the set of A-Z, a-z, 0-9 and other special characters; "._!?$#@". Lower case characters are converted to upper case before being used by the interpreter.
 
-            Any hexadecimal (0-9, a-f, A-F) characters, grouped in pairs, enclosed in single or double quotes and immediately followed by 'x' or 'X' is interpreted as a hexadecimal string. (The "X" is outside of the quotes). If the first group has an odd number of characters, a zero is prepended.
+Examples: Symbol
 
-
-            Examples: Hexadecimal String
-
-            '0def'x "01 02 03"X
-
-            '123 45'x → same as '01 23 45'x
-
-
-            Binary String
-
-            Any binary (0 or 1) characters, grouped in fours, enclosed in single or double quotes and immediately followed by 'b' or 'B' is interpreted as a binary string. (The "B" is outside of the quotes). If the first group has an odd number of characters, a zero is prepended. If the number of groups is an odd number, a group of 4 zeros (0000) is prepended.
-
-
-            Examples: Binary String
-
-            '11011101'b
-
-            "1111 0101 0001 1000"B
-
-            '111 0101 1010'b → same as '0000 0111 0101 1010'b
-
-            Symbol
-
-            A symbol contains a number of characters in the set of A-Z, a-z, 0-9 and other special characters; "._!?$#@". Lower case characters are converted to upper case before being used by the interpreter.
+<code rexx>
+joe a.Br.3 @xyz!
+</code>
 
 
-            Examples: Symbol
+=== Operators ===
 
-            joe a.Br.3 @xyz!
+The full list and definition of Operators are specified in section 2.5 Operators.
 
-
-==== Operators ====
-
-
-            The full list and definition of Operators are specified in section 2.5 Operators.
+=== Special Characters ===
 
 
-            Special Characters
-
-            The characters in the table below have special significance in Rexx's syntax. They also delimit tokens.
+The characters in the table below have special significance in Rexx's syntax. They also delimit tokens.
 
 
-            : Identifies the termination of a label
-
-            ; Indicates the end of a clause
-
-            ( Opening character for precedence grouping. Also used to specify the start of a group of arguments to a function call.
-
-            ) Closing character for precedence grouping. Also used to specify the end of a group of arguments to a function call.
-
-            , Line continuation character
+  : Identifies the termination of a label
+  ; Indicates the end of a clause
+  ( Opening character for precedence grouping. Also used to specify the start of a group of arguments to a function call.
+  ) Closing character for precedence grouping. Also used to specify the end of a group of arguments to a function call.
+  , Line continuation character
 
 
 ===== Null clauses =====
@@ -1606,7 +1594,7 @@ This will probably raise SYNTAX condition {13}.
 
             The redirection of commands is a mystery to many people and it will continue be. You can thank all the people who designed stacks, queues, pipelines and all the little helper utilities of a witch's kitchen of process management.
 
-            The ARG Instruction
+==== The ARG Instruction ====
 
             ARG [ template ] [, [ template ] ... ];
 
@@ -1631,7 +1619,8 @@ This will probably raise SYNTAX condition {13}.
 
             This is not equivalent to an ARG instruction, because ARG instruction would become an assignment. A simple trick to avoid this problem is just to prepend a placeholder period (.) to the pattern, thus the equal sign (=) is no longer the second token in the new ARG instruction. Also, unless the absolute positional pattern is indirect, the equal sign can be removed without changing the meaning of the statement.
 
-            The CALL Instruction
+==== The CALL Instruction ====
+
 
             CALL routine [ parameter ] [, [ parameter ] ... ] ;
 
@@ -1751,7 +1740,8 @@ This will probably raise SYNTAX condition {13}.
 
             Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. Thus, they are not likely to be present on older interpreters. More information about conditions and condition traps are given in a chapter Conditions.
 
-            The DO/END Instruction
+==== The DO/END Instruction ====
+
 
             DO [ repetitor ] [ conditional ] ; [ clauses ]
 
@@ -1920,7 +1910,8 @@ This will probably raise SYNTAX condition {13}.
 
             Further, the order of the first four statements should be identical to the order in the corresponding subclauses in the repetitor. The code has also ignored that the WHILE and the UNTIL subclauses can not be used in the same DO instruction. And in addition, all variables starting with the at sign (@), are assumed to be internal variables, private to this particular loop. Within instructions, a LEAVE instruction is equivalent to signal after_loop, while a ITERATE instruction is equivalent to signal end_of_loop.
 
-            The DROP Instruction
+==== The DROP Instruction ====
+
 
             DROP symbol [ symbol ... ] ;
 
@@ -1977,7 +1968,8 @@ This will probably raise SYNTAX condition {13}.
 
             Dropping a variable which does not have a value is not an error. There is no upper limit on the number of variables that can be dropped in one DROP clause, other than restrictions on the clause length. If an exposed variable is dropped, the variable in the caller is dropped, but the variable remains exposed. If it reassigned a value, the value is assigned to a variable in the caller routine.
 
-            The EXIT Instruction
+==== The EXIT Instruction ====
+
 
             EXIT [ expr ] ;
 
@@ -2034,7 +2026,8 @@ This will probably raise SYNTAX condition {13}.
 
             If terminating an external routine (i.e. returning to the calling Rexx script) any legal Rexx string value is allowed as a return value. Also, no return value can be returned, and in both cases, this information is successfully transmitted back to the calling routine. In the case of a function call (as opposed to a subroutine call), returning no value will raise SYNTAX condition {44}. The table above describes the actions taken by the EXIT and RETURN instruction in various situations.
 
-            The IF/THEN/ELSE Instruction
+==== The IF/THEN/ELSE Instruction ====
+
 
             IF expr [;] THEN [;] statement
 
@@ -2071,7 +2064,8 @@ This will probably raise SYNTAX condition {13}.
 
             In this code, the ELSE instruction is nested to the innermost IF, i.e. to IF BAR THEN.
 
-            The INTERPRET Instruction
+==== The INTERPRET Instruction ====
+
 
             INTERPRET expr ;
 
@@ -2145,7 +2139,8 @@ This will probably raise SYNTAX condition {13}.
 
             Only semicolon (;) is allowed as a clause delimiter in the string interpreted by an INTERPRET instruction. The colon of labels can not be used, since labels are not allowed. Nor does specific end-of-line character sequences have any defined meaning there. However, most interpreters probably allow the end-of-line character sequence of the host operating system as alternative clause delimiters. It is interesting to note that in the context of the INTERPRET instruction, an implicit, trailing clause delimiter is always appended to the string to be interpreted.
 
-            The ITERATE Instruction
+==== The ITERATE Instruction ====
+
 
             ITERATE [ symbol ] ;
 
@@ -2163,7 +2158,8 @@ This will probably raise SYNTAX condition {13}.
 
             Two types of errors can occur. Either symbol does not refer to any loop active at the current procedural level; or (if symbol is not specified) there does not exist any active loops at the current procedural level. Both errors are reported as SYNTAX condition {28}.
 
-            The LEAVE Instruction
+==== The LEAVE Instruction ====
+
 
             LEAVE [ symbol ] ;
 
@@ -2188,7 +2184,8 @@ This will probably raise SYNTAX condition {13}.
 
             This shows how ITERATE has been used to terminate what for all practical purposes is a simple DO/END group. Either ITERATE or LEAVE can be used for this purpose, although LEAVE is perhaps marginally faster.
 
-            The NOP Instruction
+==== The NOP Instruction ====
+
 
             NOP ;
 
@@ -2201,7 +2198,8 @@ This will probably raise SYNTAX condition {13}.
 
                 I have seen it used as "trace-bait". That is, when you start interactive trace, the statement immediately after the TRACE instruction will be executed before you receive interactive control. If you don't want that to happen (or maybe the TRACE instruction was the last in the program), you need to add an extra dummy statement. However, in this context, labels and comments can be used, too.
 
-            The NUMERIC Instruction
+==== The NUMERIC Instruction ====
+
 
             NUMERIC DIGITS [ expr ] ;
 
@@ -2270,7 +2268,8 @@ This will probably raise SYNTAX condition {13}.
 
             To retrieve the values set for NUMERIC, you can use the built-in functions DIGITS(), FORM(), and FUZZ(). These values are saved across subroutine calls and restored upon return.
 
-            The OPTIONS Instruction
+==== The OPTIONS Instruction ====
+
 
             OPTIONS expr ;
 
@@ -2305,7 +2304,7 @@ This will probably raise SYNTAX condition {13}.
 
             If this code fragment is run on an interpreter that does not support the cms_bifs option setting, then the OPTIONS instruction may still seem to have been executed correctly. However, the second clause will generally crash, since the FIND() function is still not available. Even though the real problem is in the first line, the error message is reported for the second line.
 
-            The PARSE Instruction
+==== The PARSE Instruction ====
 
             PARSE [ option ] [ CASELESS ] type [ template ] ;
 
@@ -2404,7 +2403,8 @@ This will probably raise SYNTAX condition {13}.
 
             After the source string has been selected by the type subclause in the PARSE instruction, this string is parsed into the template. The functionality of templates is common for the PARSE, ARG and PULL instructions, and is further explained in chapter [not yet written].
 
-            The PROCEDURE Instruction
+==== The PROCEDURE Instruction ====
+
 
             PROCEDURE [ EXPOSE [ varref [ varref ... ] ] ] ;
 
@@ -2529,7 +2529,8 @@ This will probably raise SYNTAX condition {13}.
 
             Another important drawback with PROCEDURE is that it only works for internal subroutines; for external subroutines it either do not work, or PROCEDURE may not even be allowed on the main level of the external subroutine. However, in internal subroutines inside the external subroutines, PROCEDURE is allowed, and works like usual.
 
-            The PULL Instruction
+==== The PULL Instruction ====
+
 
             PULL [ template ] ;
 
@@ -2539,7 +2540,8 @@ This will probably raise SYNTAX condition {13}.
 
             This statement is equivalent to PARSE UPPER PULL [ template ] with the same exception as explained for the ARG instruction. See chapter [not yet written] for a description of parsing and chapter Stack for a discussion of the stack.
 
-            The PUSH Instruction
+==== The PUSH Instruction ====
+
 
             PUSH [ expr ] ;
 
@@ -2551,7 +2553,8 @@ This will probably raise SYNTAX condition {13}.
 
             The string will be added to the top of the stack (LIFO), i.e. it will be the first line normally extracted from the stack. For a thorough discussion of the stack and the methods of manipulating it, see chapter Stack for a discussion of the stack.
 
-            The QUEUE Instruction
+==== The QUEUE Instruction ====
+
 
             QUEUE [ expr ] ;
 
@@ -2561,7 +2564,8 @@ This will probably raise SYNTAX condition {13}.
 
             For further information, refer to documentation for the PUSH instruction, and see chapter Stack for general information about the stack.
 
-            The RETURN Instruction
+==== The RETURN Instruction ====
+
 
             RETURN [ expr ] ;
 
@@ -2615,7 +2619,8 @@ This will probably raise SYNTAX condition {13}.
             EXIT instructions depending on the context in which they occur.
 
 
-            The SAY Instruction
+==== The SAY Instruction ====
+
 
             SAY [ expr ] ;
 
@@ -2631,7 +2636,8 @@ This will probably raise SYNTAX condition {13}.
 
             The differences are that there is no way of determining whether the printing was successfully completed if SAY is used, and the special variable RESULT is never set when executing a SAY instruction. Besides, the effect of omitting expr is different. In SAA API, the RXSIOSAY subfunction of the RXSIO exit handler is able to trap a SAY instruction, but not a call to the LINEOUT() built-in function. Further, the NOTREADY condition is never raised for a SAY instruction.
 
-            The SELECT/WHEN/OTHERWISE Instruction
+==== The SELECT/WHEN/OTHERWISE Instruction ====
+
 
             SELECT ; whenpart [ whenpart ... ] [ OTHERWISE [;] [ statement ... ] ] END ;
 
@@ -2695,7 +2701,8 @@ This will probably raise SYNTAX condition {13}.
 
             end
 
-            The SIGNAL Instruction
+==== The SIGNAL Instruction ====
+
 
             SIGNAL { string | symbol } ; [ VALUE ] expr ;
 
@@ -2798,7 +2805,8 @@ This will probably raise SYNTAX condition {13}.
 
             Further information about conditions and condition traps are given in chapter Conditions.
 
-            The TRACE Instruction
+==== The TRACE Instruction ====
+
 
             TRACE [ setting | [ VALUE ] expr ] ;
 
@@ -2889,7 +2897,8 @@ This will probably raise SYNTAX condition {13}.
 
             Scan is not part of this diagram, since it provides a completely different tracing functionality. Note that Scan is part of TRL1, but was removed in TRL2. It is not likely to be part of newer Rexx interpreters.
 
-            The UPPER Instruction
+==== The UPPER Instruction ====
+
 
             UPPER symbol [ symbol [ symbol [...] ] ] ;
 
@@ -2911,7 +2920,8 @@ This will probably raise SYNTAX condition {13}.
 
         An operator represents an operation to be carried out between two terms, such as division. There are 5 groups of operators in the Rexx Language: Arithmetic, Assignment, Comparative, Concatenation, and Logical Operators. The groups are shown below in descending order of precedence with further details for group. The defined precedence of operators can be overridden by the use of matching pairs of parentheses: ().
 
-            Arithmetic Operators
+==== Arithmetic Operators ====
+
 
             Arithmetic operators can be applied to numeric constants and Rexx variables that evaluate to valid
 
@@ -2937,17 +2947,20 @@ This will probably raise SYNTAX condition {13}.
             – Subtract
 
 
-            Assignment Operators
+==== Assignment Operators ====
+
 
             Assignment operators are a means to change the value of a variable on the left of the operator.
 
 
-                Basic Assignment Operators
+=== Basic Assignment Operators ===
+
 
 
                 = Assign the value on the right side of the "=" to the variable on the left.
 
-                Shortcut Assignment Operators
+=== Shortcut Assignment Operators ===
+
 
 
                 Shortcut assignments are an alternate syntax for an operation followed by an assignment. i.e.:
@@ -2998,7 +3011,8 @@ This will probably raise SYNTAX condition {13}.
 
                 ||= Append the string on the right of the "||=" to the value of the variable on the left with no intervening space.
 
-            Concatenation Operators
+==== Concatenation Operators ====
+
 
             The concatenation operators combine two strings to form one, by appending the second string to the right side of the first. The Rexx concatenation operators are:
 
@@ -3020,7 +3034,8 @@ This will probably raise SYNTAX condition {13}.
 
             → results in 'abcxyz'
 
-            Comparative Operators
+==== Comparative Operators ====
+
 
             The Rexx comparative operators compare two terms and return the logical value 1 if the result of the comparison is true, or 0 if the result of the comparison is false. The non-strict comparative operators will ignore leading or trailing blanks for string comparisons, and leading zeros for numeric comparisons. Numeric comparisons are made if both terms to be compared are valid Rexx numbers, otherwise string comparison is done. String comparisons are case sensitive, and the shorter of the two strings is padded with blanks.
 
@@ -3055,7 +3070,8 @@ This will probably raise SYNTAX condition {13}.
             <<= Strictly less than or equal.
 
 
-                Negators
+=== Negators ===
+
 
                 Some of the above comparisons can be negated by prefixing a negator character. Regina supports the following characters as negators:
 
@@ -3082,7 +3098,8 @@ This will probably raise SYNTAX condition {13}.
 
                 \<< Not strictly less than
 
-            Logical Operators
+==== Logical Operators ====
+
 
             Logical operators work with the Rexx strings 1 and 0, usually as a result of a comparative operator. These operators also only result in logical TRUE; 1 or logical FALSE; 0. The logical operators are shown in decreasing order of precedence.
 
