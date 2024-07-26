@@ -15,120 +15,6 @@ A copy of the license is included in the section entitled "GNU Free Documentatio
 
 Table of Contents
 
-    Rexx Language Constructs 17
-
-        Definitions 17
-
-            Tokens 18
-
-        Null clauses 19
-
-        Commands 21
-
-            Assignments 21
-
-        Instructions 23
-
-            The ADDRESS Instruction 25
-
-            The ARG Instruction 32
-
-            The CALL Instruction 32
-
-            The DO/END Instruction 36
-
-            The DROP Instruction 39
-
-            The EXIT Instruction 41
-
-            The IF/THEN/ELSE Instruction 42
-
-            The INTERPRET Instruction 42
-
-            The ITERATE Instruction 44
-
-            The LEAVE Instruction 45
-
-            The NOP Instruction 45
-
-            The NUMERIC Instruction 46
-
-            The OPTIONS Instruction 47
-
-            The PARSE Instruction 48
-
-            The PROCEDURE Instruction 51
-
-            The PULL Instruction 54
-
-            The PUSH Instruction 54
-
-            The QUEUE Instruction 54
-
-            The RETURN Instruction 54
-
-            The SAY Instruction 56
-
-            The SELECT/WHEN/OTHERWISE Instruction 56
-
-            The SIGNAL Instruction 57
-
-            The TRACE Instruction 60
-
-            The UPPER Instruction 62
-
-        Operators 62
-
-            Arithmetic Operators 62
-
-            Assignment Operators 62
-
-                Basic Assignment Operators 62
-
-                Shortcut Assignment Operators 63
-
-            Concatenation Operators 64
-
-            Comparative Operators 64
-
-                Negators 64
-
-            Logical Operators 65
-
-        Special Variables 65
-
-            Local Scope – User Writeable 65
-
-            RC - (ANSI) 65
-
-            RESULT - (ANSI) 65
-
-            SIGL - (ANSI) 65
-
-            Global Scope – Read-Only 65
-
-            .MN - (ANSI) 66
-
-            .RC - (ANSI) 66
-
-            .RS - (ANSI) 66
-
-            .RESULT - (ANSI) 66
-
-            .LINE - (Regina) 66
-
-            .FILE - (Regina) 66
-
-            .ENDOFLINE - (Regina) 66
-
-            .DIRSEP - (Regina) 66
-
-        Implementation-Specific Information 66
-
-            Miscellaneous 66
-
-            Implementation of the ADDRESS environment 67
-
     Rexx Built-in Functions 70
 
         General Information 70
@@ -3142,76 +3028,88 @@ The characters in the table below have special significance in Rexx's syntax. Th
 
         The Rexx Language defines a number of special variables which are set by the interpreter during the execution of a program. There are two types of special variables. The first are special variables that are local in scope and can be changed by the programmer. The second are global in scope and cannot be changed by the programmer.
 
-            Local Scope – User Writeable
+==== Local Scope – User Writeable ====
+
 
             These varaibles are local in scope and can be changed by the user at any time. The values of these variables will however be set by the interpreter during the execution of the program.
 
 
+=== RC - (ANSI) ===
 
-            RC - (ANSI)
 
             This variable is set by any executed command including those executed via ADDRESS. Note that
 
             RC is not set for commands executed manually while training interactively.
 
 
-            RESULT - (ANSI)
+=== RESULT - (ANSI) ===
+
 
             This variable is set by the RETURN instruction in a subroutine that has been CALLed provided that
 
             the RETURN instruction contains an expression. RESULT is dropped if the RETURN instruction contains no expression.
 
 
-            SIGL - (ANSI)
+=== SIGL - (ANSI) ===
+
 
             Contains the line number of instruction executed that caused a jump to a label.
 
-            Global Scope – Read-Only
+==== Global Scope – Read-Only ====
+
 
             As these variables begin with a period, they cannot be changed by the programmer. These varaibles are global in scope.
 
-            .MN - (ANSI)
+=== .MN - (ANSI) ===
+
 
             When a SYNTAX condition has been raised, this variable is set to the error message number
 
             (including sub-error number) that caused the SYNTAX condition.
 
 
-            .RC - (ANSI)
+=== .RC - (ANSI) ===
+
 
             Contains the same values as the special variable; RC.
 
 
-            .RS - (ANSI)
+=== .RS - (ANSI) ===
+
 
             This variable is an indicator as to whether the last command executed gave rise to a FAILURE or
 
             ERROR condition.
 
 
-            .RESULT - (ANSI)
+=== .RESULT - (ANSI) ===
+
 
             Contains the same values as the special variable; RESULT.
 
 
-            .LINE - (Regina)
+=== .LINE - (Regina) ===
+
 
             This special variable contains the line number of the Rexx program.
 
 
-            .FILE - (Regina)
+=== .FILE - (Regina) ===
+
 
             This special variable contains the fully qualified file name of the Rexx program.
 
 
-            .ENDOFLINE - (Regina)
+=== .ENDOFLINE - (Regina) ===
+
 
             This special variable contains the default end of line character sequence for the platform on which
 
             Regina is currently running. In general this will be LF (x0d) on Unix/Linux/Posix platforms CR (x0a) on Mac platforms, and CRLF (x0a0d) on all others.
 
 
-            .DIRSEP - (Regina)
+=== .DIRSEP - (Regina) ===
+
 
             This special variable contains the character that is used by the platform to separate directories in a
 
@@ -3221,7 +3119,8 @@ The characters in the table below have special significance in Rexx's syntax. Th
 ===== Implementation-Specific Information =====
 
 
-            Miscellaneous
+==== Miscellaneous ====
+
 
             OPTIONS settings
 
@@ -3263,7 +3162,8 @@ The characters in the table below have special significance in Rexx's syntax. Th
 
             Is handled by Regina in the following way: A label can occur inside an INTERPRET string, but it is ignored, and can never be jumped to in a SIGNAL or CALL instruction.
 
-            Implementation of the ADDRESS environment
+==== Implementation of the ADDRESS environment ====
+
 
             Most people have problems invoking external programs. This section shows the basic rules, and some tricks to let you use Regina and other Rexx interpreters successfully.
 
