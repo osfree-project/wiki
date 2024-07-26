@@ -921,50 +921,39 @@ The files that osFree Classic REXX will search for in order are:
             C:\OS2\myextfunc.rex
             C:\OS2\myextfunc.cmd /* found!! terminate search*/
 
-===== Rexx Language Constructs =====
+====== Rexx Language Constructs ======
+
+In this chapter, the concept and syntax of Rexx clauses are explained. At the end of the chapter there is a section describing how osFree Classic REXX differs from standard Rexx as described in the first part of the chapter.
 
 
+===== Definitions =====
 
-    In this chapter, the concept and syntax of Rexx clauses are explained. At the end of the chapter there is a section describing how Regina differs from standard Rexx as described in the first part of the chapter.
+A program in the Rexx language consists of clauses, which are divided into four groups: null clauses, commands, assignments, and instructions. The three latter groups (commands, assignments, and instructions) are collectively referred to as statements. This does not match the terminology in [TRL2], where "instruction" is equivalent to what is known here as "statement", and "keyword instruction" is equivalent to what is known here as "instruction". However, I find the terminology used here simpler and less confusing.
 
+Incidentally, the terminology used here matches [DANEY].
 
-==== Definitions ====
+A clause is defined as all non-clause-delimiters (i.e. blanks and tokens) up to and including a clause delimiter. A token delimiter can be:
 
+An end-of-line, unless it lies within a comment, or the last token on a line is the line continuation character; comma. An end-of-line within a constant string is considered a syntax error {6}.
 
-        A program in the Rexx language consists of clauses, which are divided into four groups: null clauses, commands, assignments, and instructions. The three latter groups (commands, assignments, and instructions) are collectively referred to as statements. This does not match the terminology in [TRL2], where "instruction" is equivalent to what is known here as "statement", and "keyword instruction" is equivalent to what is known here as "instruction". However, I find the terminology used here simpler and less confusing.
+A semicolon character that is not within a comment or constant string.
 
+A colon character, provided that the sequence of tokens leading up to it consists of a single symbol and whitespace. If a sequence of two symbol tokens is followed by a colon, then this implies SYNTAX condition {20}.
 
-        Incidentally, the terminology used here matches [DANEY].
+Some systems have the ability to store a text file having a last line unterminated by an end-of-line character sequence. In general, this applies to systems that use an explicit end-of-line character sequence to denote end-of-lines, e.g. Unix and MS-DOS systems. Under these systems, if the last line is unterminated, it will strictly speaking not be a clause, since a clause must include its terminating clause delimiter. However, some interpreters are likely to regard the end-of-file as a clause delimiter too. The functionality of INTERPRET gives some weight to this interpretation. But other systems may ignore that last, unterminated line, or maybe issue a syntax error. (However, there is no SYNTAX condition number adequately covering this situation.
 
+Example: Binary transferring files
 
-        A clause is defined as all non-clause-delimiters (i.e. blanks and tokens) up to and including a clause delimiter. A token delimiter can be:
+Suppose a Rexx program is stored on an MS-DOS machine. Then, an end-of-line sequence is marked in the file as the two characters carriage return and newline. If this file is transferred to a Unix system, then only newline marks the end-of-line. For this to work, the file must be transferred as a text file. If it is (incorrectly) transferred as a binary file, the result is that on the Unix system, each line seems to contain a trailing carriage return character. In an editor, it might look like this:
 
+<code rexx>
+say 'hello world'^M say 'that"s it'^M
+</code>
 
-            An end-of-line, unless it lies within a comment, or the last token on a line is the line continuation character; comma. An end-of-line within a constant string is considered a syntax error {6}.
-
-            A semicolon character that is not within a comment or constant string.
-
-            A colon character, provided that the sequence of tokens leading up to it consists of a single symbol and whitespace. If a sequence of two symbol tokens is followed by a colon, then this implies SYNTAX condition {20}.
-
-
-        Some systems have the ability to store a text file having a last line unterminated by an end-of-line character sequence. In general, this applies to systems that use an explicit end-of-line character sequence to denote end-of-lines, e.g. Unix and MS-DOS systems. Under these systems, if the last line is unterminated, it will strictly speaking not be a clause, since a clause must include its terminating clause delimiter. However, some interpreters are likely to regard the end-of-file as a clause delimiter too. The functionality of INTERPRET gives some weight to this interpretation. But other systems may ignore that last, unterminated line, or maybe issue a syntax error. (However, there is no SYNTAX condition number adequately covering this situation.
-
-
-        Example: Binary transferring files
+This will probably raise SYNTAX condition {13}.
 
 
-        Suppose a Rexx program is stored on an MS-DOS machine. Then, an end-of-line sequence is marked in the file as the two characters carriage return and newline. If this file is transferred to a Unix system, then only newline marks the end-of-line. For this to work, the file must be transferred as a text file. If it is (incorrectly) transferred as a binary file, the result is that on the Unix system,
-
-        each line seems to contain a trailing carriage return character. In an editor, it might look like this:
-
-
-        say 'hello world'^M say 'that"s it'^M
-
-
-        This will probably raise SYNTAX condition {13}.
-
-
-=== Tokens ===
+==== Tokens ====
 
 
             The fundamental building block of a Rexx clause is a token. Tokens can be split into a number of different types; Literal Strings, Hexadecimal Strings, Binary Strings, Symbols, Operators and Special Characters.
@@ -1045,7 +1034,7 @@ The files that osFree Classic REXX will search for in order are:
             , Line continuation character
 
 
-==== Null clauses ====
+===== Null clauses =====
 
 
         Null clauses are clauses that consist of only whitespace, or comments, or both; in addition to the terminating clause delimiter. These clauses are ignored when interpreting the code, except for one situation: null clauses containing at least one comment is traced when appropriate. Null clauses not containing any comments are ignored in every respect.
@@ -1135,9 +1124,9 @@ The files that osFree Classic REXX will search for in order are:
         In the first loop, there are two clauses, while the second loop contains only one clause, because the comment is appended to an already existing clause. During execution, the interpreter has to spend time ignoring the null clause in the first loop, while the second loop avoids this problem (assuming tracing is not enabled). Thus, the second loop is faster; although only insignificantly faster for small loops. Of course, the comment could have been taken out of the loop, which would be equally fast to the second version above.
 
 
-==== Commands ====
+===== Commands =====
 
-=== Assignments ===
+==== Assignments ====
 
 
             Assignments are clauses where the first token is a symbol and the second token is the equal sign (=). This definition opens for some curious effects, consider the following clauses:
@@ -1220,7 +1209,7 @@ The files that osFree Classic REXX will search for in order are:
             These considerations may seem like nit-picking, but they will matter if you drop lots of compound variables for a stem which has previously received a value. Some programming idioms do this, so be aware. If you can do without assigning to the stem variable, then it is possible for the interpreter to regain all memory used for that stem's compound variables.
 
 
-==== Instructions ====
+===== Instructions =====
 
 
         In this section, all instructions in standard Rexx are described. Extensions are listed later in this chapter.
@@ -1319,7 +1308,7 @@ The files that osFree Classic REXX will search for in order are:
 
         In addition to this, variants may also exist. These variants will have an extra letter or number appended to the name of the subclause, and is used for differing between two or more subclauses having the same "type" in one syntax diagram. In the case of other names for the subclauses, these are explained in the description of the instruction.
 
-=== The ADDRESS Instruction ===
+==== The ADDRESS Instruction ====
 
 
             ADDRESS [ environment [ command ] [ redirection ] ] ; [ [ VALUE ] expr [ redirection ] ] ;
@@ -2917,7 +2906,8 @@ The files that osFree Classic REXX will search for in order are:
             Only simple and compound symbols can be specified. Specification of a stem variable results in an error.
 
 
-        Operators ‌
+===== Operators ‌ =====
+
 
         An operator represents an operation to be carried out between two terms, such as division. There are 5 groups of operators in the Rexx Language: Arithmetic, Assignment, Comparative, Concatenation, and Logical Operators. The groups are shown below in descending order of precedence with further details for group. The defined precedence of operators can be overridden by the use of matching pairs of parentheses: ().
 
@@ -3130,7 +3120,8 @@ The files that osFree Classic REXX will search for in order are:
             (Any negators listed above can be used in place of backslash)
 
 
-        Special Variables
+===== Special Variables =====
+
 
         The Rexx Language defines a number of special variables which are set by the interpreter during the execution of a program. There are two types of special variables. The first are special variables that are local in scope and can be changed by the programmer. The second are global in scope and cannot be changed by the programmer.
 
@@ -3210,7 +3201,8 @@ The files that osFree Classic REXX will search for in order are:
             fully qualified filename or directory name. In general this will be / (x2F) on Unix/Linux/Posix/Mac platforms and \ (x5C) on all others.
 
 
-        Implementation-Specific Information
+===== Implementation-Specific Information =====
+
 
             Miscellaneous
 
@@ -3350,7 +3342,7 @@ The files that osFree Classic REXX will search for in order are:
                     in your program if you don't know the consequences! Unpredictable behaviour is likely to occur; use at your own peril!
 
 
-===== Rexx Built-in Functions =====
+====== Rexx Built-in Functions ======
 
 
     This chapter describes the Rexx library of built-in functions. It is divided into three parts:
@@ -8091,7 +8083,9 @@ The files that osFree Classic REXX will search for in order are:
             RexxUtil for Regina
 
     Regina 3.5 and above provides Patrick McPhee's Regutil external function package as part of the Regina distribution. The documentation for Regutil is supplied in a separate document.
-    Conditions
+
+====== Conditions ======
+
 
 
 In this chapter, the Rexx concept of "conditions" is described. Conditions allow the programmer to handle abnormal control flow, and enable him to assign special pieces of Rexx code to be executed in case of certain incidences.
@@ -8879,7 +8873,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
 
                 It should be possible to set the state for a trap to DELAY, so that any new instances of the condition is handles by the delay-action. As a special case, the SYNTAX condition trap might not be set in state DELAY
 
-    Stream Input and Output
+====== Stream Input and Output ======
+
 
     And the streams thereof shall be turned into pitch
 
