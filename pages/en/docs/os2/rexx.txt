@@ -911,91 +911,66 @@ The characters in the table below have special significance in Rexx's syntax. Th
 ===== Null clauses =====
 
 
-        Null clauses are clauses that consist of only whitespace, or comments, or both; in addition to the terminating clause delimiter. These clauses are ignored when interpreting the code, except for one situation: null clauses containing at least one comment is traced when appropriate. Null clauses not containing any comments are ignored in every respect.
+Null clauses are clauses that consist of only whitespace, or comments, or both; in addition to the terminating clause delimiter. These clauses are ignored when interpreting the code, except for one situation: null clauses containing at least one comment is traced when appropriate. Null clauses not containing any comments are ignored in every respect.
 
+Example: Tracing comments
 
-        Example: Tracing comments
+The tracing of comments may be a major problem, depending on the context. There are basically two strategies for large comments: either box multiple lines as a single comment, or make the text on each line an independent comment, as shown below:
 
+<code rexx>
+trace all
 
-        The tracing of comments may be a major problem, depending on the context. There are basically two strategies for large comments: either box multiple lines as a single comment, or make the text on each line an independent comment, as shown below:
+/*
+This is a single, large comment, which spans multiple lines.
+Such comments are often used at the start of a subroutine or similar, in order to describe both the interface to and the functionality of the function.
+*/
 
-        trace all
+/* This is also a large comment, but it is written as */
+/* multiple comments, each on its own line. Thus, these */
+/* are several clauses while the comment above is a */
+/* single comment. */
 
+-- These lines also consist of multiple comments, and thus
+-- multiple clauses. This form of comment was introduced
+-- in Regina 3.4
+</code>
 
-        /*
+During tracing, the first of these will be displayed as one large comment, and during interactive tracing, it will only pause once. The second will be displayed as multiple lines, and will make several pauses during interactive tracing. An interpreter may solve this situation in several ways, the main objective must be to display the comments nicely the to programmer debugging the code.
 
-        This is a single, large comment, which spans multiple lines.
+Preferably, the code is shown in a fashion that resembles how it is entered in the file.
 
-        Such comments are often used at the start of a subroutine or similar, in order to describe both the interface to and the functionality of the function.
+If a label is multiple defined, the first definition is used and the rest are ignored. Multiple defined labels is not an SYNTAX condition.
 
-        */
+A null clause is not a statement. In some situations, like after the THEN subclause, only a statement is expected. If a null clause is provided, then it is ignored, and the next statement is used instead.
 
+Consider the following code:
 
-        /* This is also a large comment, but it is written as */
+<code rexx>
+parse pull foo if foo=2 then
+say 'foo is not 2'
+else
+/* do nothing */ say 'that"s it'
+</code>
 
-        /* multiple comments, each on its own line. Thus, these */
+This will not work the way indentation indicates, since the comment in this example is not a statement. Thus, the ELSE reads beyond the comment, and connects to the SAY instruction which becomes the ELSE part. (That what probably not what the programmer intended.) This code will say that's it, only when foo is different from 2. A separate instruction, NOP has been provided in order to fill the need that was inadequately attempted filled by the comment in the code fragment above.
 
-        /* are several clauses while the comment above is a */
+Example: Trailing comments
 
-        /* single comment. */
+The effect that comments are not statements can be exploited when documenting the program, and simultaneously making the program faster. Consider the following two loops:
 
+<code rexx>
+sum = 0
+do i=1 to 10
+/* sum 1 2 3 ... 8 9 10 */ sum = sum + i
+end
 
-        -- These lines also consist of multiple comments, and thus
+sum = 0
+do i=1 to 10
+sum = sum + i /* sum 1 2 3 ... 8 9 10 */
+end
+</code>
 
-        -- multiple clauses. This form of comment was introduced
-
-        -- in Regina 3.4
-
-
-        During tracing, the first of these will be displayed as one large comment, and during interactive tracing, it will only pause once. The second will be displayed as multiple lines, and will make several pauses during interactive tracing. An interpreter may solve this situation in several ways, the main objective must be to display the comments nicely the to programmer debugging the code.
-
-        Preferably, the code is shown in a fashion that resembles how it is entered in the file.
-
-
-        If a label is multiple defined, the first definition is used and the rest are ignored. Multiple defined labels is not an SYNTAX condition.
-
-
-        A null clause is not a statement. In some situations, like after the THEN subclause, only a statement is expected. If a null clause is provided, then it is ignored, and the next statement is used instead.
-
-
-        Consider the following code:
-
-        parse pull foo if foo=2 then
-
-        say 'foo is not 2'
-
-        else
-
-        /* do nothing */ say 'that"s it'
-
-
-        This will not work the way indentation indicates, since the comment in this example is not a statement. Thus, the ELSE reads beyond the comment, and connects to the SAY instruction which becomes the ELSE part. (That what probably not what the programmer intended.) This code will say that's it, only when foo is different from 2. A separate instruction, NOP has been provided in order to fill the need that was inadequately attempted filled by the comment in the code fragment above.
-
-        Example: Trailing comments
-
-
-        The effect that comments are not statements can be exploited when documenting the program, and simultaneously making the program faster. Consider the following two loops:
-
-
-        sum = 0
-
-        do i=1 to 10
-
-        /* sum 1 2 3 ... 8 9 10 */ sum = sum + i
-
-        end
-
-
-        sum = 0
-
-        do i=1 to 10
-
-        sum = sum + i /* sum 1 2 3 ... 8 9 10 */
-
-        end
-
-
-        In the first loop, there are two clauses, while the second loop contains only one clause, because the comment is appended to an already existing clause. During execution, the interpreter has to spend time ignoring the null clause in the first loop, while the second loop avoids this problem (assuming tracing is not enabled). Thus, the second loop is faster; although only insignificantly faster for small loops. Of course, the comment could have been taken out of the loop, which would be equally fast to the second version above.
+In the first loop, there are two clauses, while the second loop contains only one clause, because the comment is appended to an already existing clause. During execution, the interpreter has to spend time ignoring the null clause in the first loop, while the second loop avoids this problem (assuming tracing is not enabled). Thus, the second loop is faster; although only insignificantly faster for small loops. Of course, the comment could have been taken out of the loop, which would be equally fast to the second version above.
 
 
 ===== Commands =====
@@ -1003,84 +978,74 @@ The characters in the table below have special significance in Rexx's syntax. Th
 ==== Assignments ====
 
 
-            Assignments are clauses where the first token is a symbol and the second token is the equal sign (=). This definition opens for some curious effects, consider the following clauses:
+Assignments are clauses where the first token is a symbol and the second token is the equal sign (=). This definition opens for some curious effects, consider the following clauses:
 
+<code rexx>
+a == b
+</code>
 
-            a == b
+This is not a command, but an assignment of the expression = b to the variable a. Of course, the expression is illegal (=b) and will trigger a SYNTAX condition for syntax error
 
-            This is not a command, but an assignment of the expression = b to the variable a. Of course, the expression is illegal (=b) and will trigger a SYNTAX condition for syntax error
+{35}. TRL2 defines the operator == as consisting of two tokens. Thus, in the first of these examples, the second token is =, the third token is also =, while the fourth token is b.
 
-            {35}. TRL2 defines the operator == as consisting of two tokens. Thus, in the first of these examples, the second token is =, the third token is also =, while the fourth token is b.
+<code rexx>
+3 = 5
+</code>
 
+This is an assignment of the value 5 to the symbol 3, but since this is not a variable symbol, this is an illegal assignment, and will trigger the SYNTAX condition for syntax error {31}.
 
-            3 = 5
+<code rexx>
+"hello" = foo
+</code>
 
-            This is an assignment of the value 5 to the symbol 3, but since this is not a variable symbol, this is an illegal assignment, and will trigger the SYNTAX condition for syntax error {31}.
+This is not an invalid assignment, since the first token in the clause is not a symbol. Instead, this becomes a command.
 
+<code rexx>
+arg =(foo) bar
+</code>
 
-            "hello" = foo
+The fourth statement is a valid assignment, which will space-concatenate the two variable symbols foo and bar, and assign the result to the variable symbol arg. It is specifically not an ARG instruction, even though it might look like one. If you need an ARG instruction which template starts with an absolute indirect positional pattern, use the PARSE UPPER ARG instruction instead, or prepend a dot in front of the template.
 
-            This is not an invalid assignment, since the first token in the clause is not a symbol. Instead, this becomes a command.
+An assignment can assign a value to a simple variable, a stem variable or a compound variable. When assigning to a stem variable, all possible variable symbols having that stem are assigned the value. Note specifically that this is not like setting a default, it is a one time multiple assignment.
 
+Example: Multiple assignment
 
-            arg =(foo) bar
+The difference between Rexx's multiple assignment and a default value can be seen from the following code:
 
-            The fourth statement is a valid assignment, which will space-concatenate the two variable symbols foo and bar, and assign the result to the variable symbol arg. It is specifically
+<code rexx>
+foo. = 'bar' foo.1 = 'baz' drop foo.1
+say foo.1 /* says "FOO.1" */
+</code>
 
-            not an ARG instruction, even though it might look like one. If you need an ARG instruction which template starts with an absolute indirect positional pattern, use the PARSE UPPER ARG instruction instead, or prepend a dot in front of the template.
+Here, the SAY instruction writes out FOO.1, not bar. During the DROP instruction, the variable FOO.1 regains its original, uninitialized value FOO.1, not the value of its stem variable FOO., i.e. bar, because stem assignments does not set up a default.
 
+Example: Emulating a default value
 
-            An assignment can assign a value to a simple variable, a stem variable or a compound variable. When assigning to a stem variable, all possible variable symbols having that stem are assigned the value. Note specifically that this is not like setting a default, it is a one time multiple assignment.
+If you want to set the compound variable to the value of its stem variable, if the stem is initialized, then you may use the following code:
 
+<code rexx>
+if (symbol('foo.')) then foo.1 = foo.
+else
+drop foo.1
+</code>
 
-            Example: Multiple assignment
+In this example, the FOO.1 variable is set to the value of its stem if the stem currently is assigned a value. Else, the FOO.1 variable is dropped.
 
+However, this is probably not exactly the same, since the internal storage of the computer is likely to store variables like FOO.2 and FOO.3 only implicitly (after all, it can not explicitly store every compound having FOO. as stem). After the assignment of the value of FOO. to FOO.1, the FOO.1 compound variable is likely to be explicitly stored in the interpreter.
 
-            The difference between Rexx's multiple assignment and a default value can be seen from the following code:
+There is no way you can discover the difference, but the effects are often that more memory is used, and some functionality that dumps all variables may dump FOO.1 but not FOO.2 (which is inconsistent). See section RexxVariablePool.
 
+Example: Space considerations
 
-            foo. = 'bar' foo.1 = 'baz' drop foo.1
+Even more strange are the effects of the following short example:
 
-            say foo.1 /* says "FOO.1" */
+<code rexx>
+foo. = 'bar' drop foo.1
+</code>
 
+Although apparently very simple, there is no way that an interpreter can release all memory referring to FOO.1. After all, FOO.1 has a different value than FOO.2, FOO.3, etc., so the interpreter must store information that tells it that FOO.1 has the uninitialized value.
 
-            Here, the SAY instruction writes out FOO.1, not bar. During the DROP instruction, the variable FOO.1 regains its original, uninitialized value FOO.1, not the value of its stem variable FOO., i.e. bar, because stem assignments does not set up a default.
-
-
-            Example: Emulating a default value
-
-
-            If you want to set the compound variable to the value of its stem variable, if the stem is initialized, then you may use the following code:
-
-
-            if (symbol('foo.')) then foo.1 = foo.
-
-            else
-
-            drop foo.1
-
-
-            In this example, the FOO.1 variable is set to the value of its stem if the stem currently is assigned a value. Else, the FOO.1 variable is dropped.
-
-
-            However, this is probably not exactly the same, since the internal storage of the computer is likely to store variables like FOO.2 and FOO.3 only implicitly (after all, it can not explicitly store every compound having FOO. as stem). After the assignment of the value of FOO. to FOO.1, the FOO.1 compound variable is likely to be explicitly stored in the interpreter.
-
-
-            There is no way you can discover the difference, but the effects are often that more memory is used, and some functionality that dumps all variables may dump FOO.1 but not FOO.2 (which is inconsistent). See section RexxVariablePool.
-
-
-            Example: Space considerations
-
-
-            Even more strange are the effects of the following short example:
-
-            foo. = 'bar' drop foo.1
-
-
-            Although apparently very simple, there is no way that an interpreter can release all memory referring to FOO.1. After all, FOO.1 has a different value than FOO.2, FOO.3, etc., so the interpreter must store information that tells it that FOO.1 has the uninitialized value.
-
-
-            These considerations may seem like nit-picking, but they will matter if you drop lots of compound variables for a stem which has previously received a value. Some programming idioms do this, so be aware. If you can do without assigning to the stem variable, then it is possible for the interpreter to regain all memory used for that stem's compound variables.
+These considerations may seem like nit-picking, but they will matter if you drop lots of compound variables for a stem which has previously received a value. Some programming idioms do this, so be aware. If you can do without assigning to the stem variable, then it is possible for the interpreter to regain all memory used for that stem's compound variables.
 
 
 ===== Instructions =====
