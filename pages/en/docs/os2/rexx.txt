@@ -766,8 +766,6 @@ The purpose of this document is to provide an overview of the Rexx Language and 
 
 The osFree Classic REXX Interpreter is implemented as a library suitable for linking into third-party applications. Access to osFree Classic REXX from third-party applications is via the REXX API, which is consistent with the IBM's Rexx SAA API. This API is implemented on most other Rexx interpreters.
 
-The library containing Regina is available either as a static library or as a dynamically loadable library. The only functional difference between the two libraries is that the ability to dynamically load Rexx external function packages via the built-in function; RxFuncAdd, is only available with the dynamically loadable library.
-
 The osFree Classic REXX distribution also includes a front end to the osFree Classic REXX library, to enable the execution of Rexx programs directly from the command line. The command line referred to here relates to the a OS/2 command window.
 
 
@@ -783,7 +781,7 @@ where:
 
   * rexx is the name of the osFree Classic REXX executable
   * switches are optional switches. See the section below for an explanation of the switches currently supported by osFree Classic REXX
-  * program the name of the Rexx program to be executed. See the section External Rexx Programs, below, for details on how osFree Classic REXX interprets this argument. If no program name is specified, Regina waits for Rexx commands to be typed in and will execute those commands when the appropriate end-of-file character is typed.
+  * program the name of the Rexx program to be executed. See the section External Rexx Programs, below, for details on how osFree Classic REXX interprets this argument. If no program name is specified, osFree Classic REXX waits for Rexx commands to be typed in and will execute those commands when the appropriate end-of-file character is typed.
   * program parameters any optional parameters to be passed to the Rexx program.
 
 The special processing done by osFree Classic REXX to find the file name in REGINA_MACROS and the file extension searching is ignored for the program to be run when using the magic number method of invocation, but is still done inside the program when using CALL.
@@ -792,7 +790,7 @@ The special processing done by osFree Classic REXX to find the file name in REGI
 ==== Switches ====
 
 
-The following switches allow the user to control how Regina executes the supplied Rexx program. Switches are recognised by either a leading hyphen character; '-', followed immediately by a single alphabetic character, or the full switch name preceded by two hyphen characters. Some switches allow for optional parameters. These, too must follow the switch without any intervening spaces. All switches and their optional parameters are case-sensitive. Single character switches that take no option can be combined. e.g. “-arp”
+The following switches allow the user to control how osFree Classic REXX executes the supplied Rexx program. Switches are recognised by either a leading hyphen character; '-', followed immediately by a single alphabetic character, or the full switch name preceded by two hyphen characters. Some switches allow for optional parameters. These, too must follow the switch without any intervening spaces. All switches and their optional parameters are case-sensitive. Single character switches that take no option can be combined. e.g. “-arp”
 
 <code>
   -t[trace char]
@@ -820,25 +818,25 @@ Without this switch, all command line parameters are passed to osFree Classic RE
   --restricted
 </code>
 
-Run Regina in restricted mode. See the section on Regina Restricted Mode for more details.
+Run osFree Classic REXX in restricted mode. See the section on osFree Classic REXX Restricted Mode for more details.
 
 <code>
   -v[a|b|v|]
   --version[=a|b|v]
 </code>
 
-Displays the version information for the executable run. The string displayed is the same that is returned by PARSE SOURCE followed by the processor architecture bits. The version string provides an indicator as to whether the Regina library is thread-safe or not. If the first word ends in“(MT)”, then the library is thread-safe. This switch, executed by the static executable, will always result in no“(MT)”indicator.
+Displays the version information for the executable run. The string displayed is the same that is returned by PARSE SOURCE followed by the processor architecture bits. The version string provides an indicator as to whether the osFree Classic REXX library is thread-safe or not. If the first word ends in“(MT)”, then the library is thread-safe. This switch, executed by the static executable, will always result in no“(MT)”indicator.
 
 Options:
-  * a – displays location of Regina's ADDONS directory
-  * b – number of bits Regina is complied with; eg 32 or 64 v – numeric version; eg 3.9.3
+  * a – displays location of osFree Classic REXX's ADDONS directory
+  * b – number of bits osFree Classic REXX is complied with; eg 32 or 64 v – numeric version; eg 3.9.3
 
 <code>
   -l[locale]
   --locale[=locale]
 </code>
 
-Indicates which national locale that Regina is to use for BIFs like TRANSLATE, LOWER, or UPPER. No validation is done on the specified locale. The affected behaviour is defined in Section 2; “Native Language Support”.
+Indicates which national locale that osFree Classic REXX is to use for BIFs like TRANSLATE, LOWER, or UPPER. No validation is done on the specified locale. The affected behaviour is defined in Section 2; “Native Language Support”.
 
 The locale is passed to the underlying C library, which resolves the describer in a system specific way. An omitted locale lets the system choose the current pre-selected locale for the user. This is the usual option a user would choose. "-l" without a locale , works best for most users who decided to use locale support. Error messages can be selected by another scheme using an environment variable, see Section 10.2;Native Language Support; this variable can be used to select a locale, too.
 
@@ -856,14 +854,14 @@ This switch specifies the values of OPTIONS to set. This is a string of words in
   --pause
 </code>
 
-This switch causes Regina to pause on exit. This switch is useful if you run Rexx programs from a GUI file manager and want to see the output from that program before the console window closes.
+This switch causes osFree Classic REXX to pause on exit. This switch is useful if you run Rexx programs from a GUI file manager and want to see the output from that program before the console window closes.
 
 <code>
   -c 
   --compile
 </code>
 
-Compile the specified program into a tokenised format. The only program parameters when using this switch is the filename for the tokenised program. i.e. regina -c program filename
+Compile the specified program into a tokenised format. The only program parameters when using this switch is the filename for the tokenised program. i.e. rexx -c program filename
 
 <code>
   -e
@@ -874,16 +872,13 @@ Execute the specified program from a tokenised format. program must be a file cr
 
 ==== External Rexx programs ====
 
-Regina searches for Rexx programs, using a combination of the REGINA_MACROS environment variable, the PATH environment variable, the REGINA_SUFFIXES environment variable and the addition of filename extensions. This rule applies to both external function calls within a Rexx program and the program specified on the command line.
-
+osFree Classic REXX searches for Rexx programs, using a combination of the REGINA_MACROS environment variable, the PATH environment variable, the REGINA_SUFFIXES environment variable and the addition of filename extensions. This rule applies to both external function calls within a Rexx program and the program specified on the command line.
 
 First of all we process the environment variable REGINA_MACROS. If no file is found we proceed with the current directory and then with the environment variable PATH. The semantics of the use of REGINA_MACROS and PATH are the same, and the search in the current directory is omitted for the superuser on Unix systems for security reasons. The current directory must be specified explicitly by the superuser.
 
-
 When processing an environment variable, the content is split into the different paths and each path is processed separately. Note that the search algorithm to this point is ignored if the program name contains a file path specification. eg. if "CALL .\MYPROG" is called, then no searching of REGINA_MACROS or PATH is done; only the concatenation of suffixes is carried out.
 
-
-For each file name and path element, a concatenated file name is created. If a known file extension is part of the file name only this file is searched, otherwise the file name is extended by the extensions "" (empty string), ".rexx", ".rex", ".cmd", and ".rx" in this order. The file name case is ignored on systems that ignore the character case for normal file operations like DOS, Windows, and OS/2.
+For each file name and path element, a concatenated file name is created. If a known file extension is part of the file name only this file is searched, otherwise the file name is extended by the extensions "" (empty string), ".rexx", ".rex", ".cmd", and ".rx" in this order. The file name case is ignored.
 
 The first matching file terminates the whole algorithm and the found file is returned.
 
@@ -901,32 +896,30 @@ Assume you have a call to an external function, and it is coded as follows:
 Call myextfunc arg1, arg2
 </code>
 
-Assume also that the file myextfunc.cmd exists in the directory /opt/rexx/, and that
+Assume also that the file myextfunc.cmd exists in the directory \os2\, and that PATH=C:\OS2\APPS;C:\OS2, REGINA_MACROS is not set, and REGINA_SUFFIXES=.macro.
 
-  PATH=/usr/bin:/opt/rexx, REGINA_MACROS is not set, and REGINA_SUFFIXES=.macro.
+The files that osFree Classic REXX will search for in order are:
 
-The files that Regina will search for in order are:
+            .\myextfunc
+            .\myextfunc.macro
+            .\myextfunc.rexx
+            .\myextfunc.rex
+            .\myextfunc.cmd
+            .\myextfunc.rx
 
-            ./myextfunc
-            ./myextfunc.macro
-            ./myextfunc.rexx
-            ./myextfunc.rex
-            ./myextfunc.cmd
-            ./myextfunc.rx
-
-            /usr/bin/myextfunc
-            /usr/bin/myextfunc.macro
-            /usr/bin/myextfunc.rexx
-            /usr/bin/myextfunc.rex
-            /usr/bin/myextfunc.cmd
-            /usr/bin/myextfunc.rx
+            C:\OS2\APPS\myextfunc
+            C:\OS2\APPS\myextfunc.macro
+            C:\OS2\APPS\myextfunc.rexx
+            C:\OS2\APPS\myextfunc.rex
+            C:\OS2\APPS\myextfunc.cmd
+            C:\OS2\APPS\myextfunc.rx
 
 
-            /opt/rexx/myextfunc
-            /opt/rexx/myextfunc.macro
-            /opt/rexx/myextfunc.rexx
-            /opt/rexx/myextfunc.rex
-            /opt/rexx/myextfunc.cmd /* found!! terminate search*/
+            C:\OS2\myextfunc
+            C:\OS2\myextfunc.macro
+            C:\OS2\myextfunc.rexx
+            C:\OS2\myextfunc.rex
+            C:\OS2\myextfunc.cmd /* found!! terminate search*/
 
 ===== Rexx Language Constructs =====
 
