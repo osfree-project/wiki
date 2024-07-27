@@ -1318,28 +1318,27 @@ The redirection of commands is a mystery to many people and it will continue be.
 
 ==== The ARG Instruction ====
 
-            ARG [ template ] [, [ template ] ... ];
+<code>
+ARG [ template ] [, [ template ] ... ];
+</code>
 
+The ARG instruction will parse the argument strings at the current procedural level into the template. Parsing will be performed in upper case mode. This clause is equivalent to:
 
-            The ARG instruction will parse the argument strings at the current procedural level into the template. Parsing will be performed in upper case mode. This clause is equivalent to:
+<code>
+PARSE UPPER ARG [ template ] ;
+</code>
 
+For more information, see the PARSE instruction. Note that this is the only situation where a multistring template is relevant.
 
-            PARSE UPPER ARG [ template ] ;
+Example: Beware assignments
 
+The similarity between ARG and PARSE UPPER ARG has one exception. Suppose the PARSE UPPER ARG has an absolute positional pattern as the first element in the template, like:
 
-            For more information, see the PARSE instruction. Note that this is the only situation where a multistring template is relevant.
+<code rexx>
+parse upper arg =(foo) bar
+</code>
 
-
-            Example: Beware assignments
-
-
-            The similarity between ARG and PARSE UPPER ARG has one exception. Suppose the PARSE UPPER ARG has an absolute positional pattern as the first element in the template, like:
-
-
-            parse upper arg =(foo) bar
-
-
-            This is not equivalent to an ARG instruction, because ARG instruction would become an assignment. A simple trick to avoid this problem is just to prepend a placeholder period (.) to the pattern, thus the equal sign (=) is no longer the second token in the new ARG instruction. Also, unless the absolute positional pattern is indirect, the equal sign can be removed without changing the meaning of the statement.
+This is not equivalent to an ARG instruction, because ARG instruction would become an assignment. A simple trick to avoid this problem is just to prepend a placeholder period (.) to the pattern, thus the equal sign (=) is no longer the second token in the new ARG instruction. Also, unless the absolute positional pattern is indirect, the equal sign can be removed without changing the meaning of the statement.
 
 ==== The CALL Instruction ====
 
