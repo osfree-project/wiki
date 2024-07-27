@@ -1342,125 +1342,104 @@ This is not equivalent to an ARG instruction, because ARG instruction would beco
 
 ==== The CALL Instruction ====
 
+<code>
+CALL routine [ parameter ] [, [ parameter ] ... ] ;
+{ ON | OFF } condition [ NAME label ] ;
+</code>
 
-            CALL routine [ parameter ] [, [ parameter ] ... ] ;
+The CALL instruction invokes a subroutine, named by routine, which can be internal, built-in, or external; and the three repositories of functions are searched for routine in that order. The token routine must be either a literal string or a symbol (which is taken literally). However, if routine is a literal string, the pool of internal subroutines is not searched. Note that some interpreters may have additional repositories of labels to search.
 
-            { ON | OFF } condition [ NAME label ] ;
+In a CALL instruction, each parameter is evaluated, strictly in order from left to right, and passed as an argument to the subroutine. A parameter might be left out (i.e. an empty argument), which is not the same as passing the nullstring as argument.
 
+Users often confuse a parameter which is the nullstring with leaving out the parameter. However, this is two very different situations. Consider the following calls to the built-in function TRANSLATE():
 
-            The CALL instruction invokes a subroutine, named by routine, which can be internal, built-in, or external; and the three repositories of functions are searched for routine in that order. The token routine must be either a literal string or a symbol (which is taken literally). However, if routine is a literal string, the pool of internal subroutines is not searched. Note that some interpreters may have additional repositories of labels to search.
+<code rexx>
+say translate('abcDEF' ) /* says ABCDEF */
+say translate('abcDEF',"") /* says abcDEF */
+say translate('abcDEF',,"") /* says ' ' */
+</code>
 
 
-            In a CALL instruction, each parameter is evaluated, strictly in order from left to right, and passed as an argument to the subroutine. A parameter might be left out (i.e. an empty argument), which is not the same as passing the nullstring as argument.
+The TRANSLATE() function is able to differ between receiving the nullstring (i.e. a defined string having zero length), from the situation where a parameter was not specified (i.e. the undefined string). Since TRANSLATE() is one of the few functions where the parameters' default values are very different from the nullstring, the distinction becomes very visible.
 
+Breakage Alert!! - Start
 
-            Users often confuse a parameter which is the nullstring with leaving out the parameter. However, this is two very different situations. Consider the following calls to the built-in function TRANSLATE():
+Prior to Version 3.1 of Regina , the following syntactical use of the CALL instruction was valid: CALL routine '(' [ parameter ] [, [ parameter ] ... ] ')' ; e.g.
 
-            say translate('abcDEF' ) /* says ABCDEF */ say translate('abcDEF',"") /* says abcDEF */ say translate('abcDEF',,"") /* says ' ' */
+<code rexx>
+call myfunc('abcDEF',,"")
+</code>
 
-            The TRANSLATE() function is able to differ between receiving the nullstring (i.e. a defined string having zero length), from the situation where a parameter was not specified (i.e. the undefined string). Since TRANSLATE() is one of the few functions where the parameters' default values are very different from the nullstring, the distinction becomes very visible.
+This syntax is not allowed by ANSI and use of this syntax will now result in Error 37.1. There exists an option introduced in Regina 3.3 which re-enables a similar behaviour, although parameters with individual parentheses are allowed since 3.1. The option is called CALLS_AS_FUNCS and should be enabled using the environment variable called REGINA_OPTIONS. See the description of the instruction OPTIONS for further details.
 
+Breakage Alert!! - End
 
-            Breakage Alert!! - Start
+For the CALL instruction, watch out for interference with line continuation. If there are trailing commas, it might be interpreted as line continuation. Appending a semicolon where appropriate is a common solution to make the desired behaviour obvious. If a CALL instruction uses line continuation between two parameters, two commas are needed: one to separate the parameters, and one to denote line continuation.
 
-            Prior to Version 3.1 of Regina , the following syntactical use of the CALL instruction was valid: CALL routine '(' [ parameter ] [, [ parameter ] ... ] ')' ; e.g.
+A number of settings are stored across internal subroutine calls. An internal subroutine will inherit the values in effect when the call is made, and the settings are restored on exit from the subroutine. These settings are:
 
-            call myfunc('abcDEF',,"")
+  * Conditions traps, see chapter Conditions.
+  * Current trapped condition, see section CTS.
+  * NUMERIC settings, see section Numeric.
+  * ADDRESS environments, see section Address.
+  * TRACE mode, see section Trace and chapter [not yet written].
+  * The elapse time clock, see section Time.
 
+Also, the OPTIONS settings may or may not be restored, depending on the implementation;
 
-            This syntax is not allowed by ANSI and use of this syntax will now result in Error 37.1. There exists an option introduced in Regina 3.3 which re-enables a similar behaviour, although parameters with individual parentheses are allowed since 3.1. The option is called CALLS_AS_FUNCS and should
+Regina restores the current OPTIONS. Note that external subroutines don't inherit the current
 
-            be enabled using the environment variable called REGINA_OPTIONS. See the description of the instruction OPTIONS for further details.
+OPTIONS as internal subroutines do. See the section OPTIONS for a detailed explanation. Further, a number of other things may be saved across internal subroutines. The effect on variables are controlled by the PROCEDURE instruction in the subroutine itself. The state of all DO-loops will be preserved during subroutine calls.
 
-            Breakage Alert!! - End
+Example: Subroutines and trace settings
 
+Subroutines can not be used to set various settings like trace settings, NUMERIC settings, etc. Thus, the following code will not work as intended:
 
-            For the CALL instruction, watch out for interference with line continuation. If there are trailing commas, it might be interpreted as line continuation. Appending a semicolon where appropriate is a common solution to make the desired behaviour obvious. If a CALL instruction uses line continuation between two parameters, two commas are needed: one to separate the parameters, and one to denote line continuation.
+<code rexx>
+say digits() /* says 9, maybe */
+call inc_digits
+say digits() /* still says 9 */
+exit
 
+inc_digits:
+numeric digits digits() + 1 return
+</code>
 
-            A number of settings are stored across internal subroutine calls. An internal subroutine will inherit the values in effect when the call is made, and the settings are restored on exit from the subroutine. These settings are:
+The programmer probably wanted to call a routine which incremented the precision of arithmetic operations. However, since the setting of NUMERIC DIGITS is saved across subroutine calls, the new value set in inc_digits is lost at return from that routine. Thus, in order to work correctly, the NUMERIC instruction must be located in the main routine itself.
 
+Built-in subroutines will have no effect on the settings, except for explicitly defined side effects. Nor will external subroutines change the settings. For all practical purposes, an external subroutine is conceptually equivalent to re-invoking the interpreter in a totally separated process.
 
-                Conditions traps, see chapter Conditions.
+If the name of the subroutine is specified by a literal string, then the name will be used as-is; it will not be converted to upper case. This is important because a routine which contains lower case letters can only be invoked by using a literal string as the routine name in the CALL instruction.
 
-                Current trapped condition, see section CTS.
+Example: Labels are literals
 
-                NUMERIC settings, see section Numeric.
+Labels are literal, which means that they are neither tail-substituted nor substituted for the value of the variable. Further, this also means that the setting of NUMERIC DIGITS has no influence on the section of labels, even when the labels are numeric symbols. Consider the following code:
 
-                ADDRESS environments, see section Address.
+<code rexx>
+call 654.32 
+exit
 
-                TRACE mode, see section Trace and chapter [not yet written].
+654.321:
+say here
+return
 
-                The elapse time clock, see section Time.
+654.32:
+say there
+return
+</code>
 
+In this example, the second of the two subroutines are always chosen, independent of the setting of NUMERIC DIGITS. Assuming that NUMERIC DIGITS are set to 5, then the number 654.321 is converted to 654.32, but that does not affect labels. Nor would a statement CALL 6.5432E2 call the second label, even though the numeric value of that symbol is equal to that of one of the labels.
 
-            Also, the OPTIONS settings may or may not be restored, depending on the implementation;
+The called subroutines may or may not return data to the caller. In the calling routine, the special variable RESULT will be set to the return value or dropped, depending on whether any data was returned or not. Thus, the CALL instruction is equivalent to calling the routine as a function, and assigning the return value to RESULT, except when the routine does not return data.
 
-            Regina restores the current OPTIONS. Note that external subroutines don't inherit the current
+In Rexx, recursive routines are allowed. A minimum number of 100 nested internal and external subroutine invocations, and support for a minimum of 10 parameters for each call are required by Rexx. See chapter Limits for more information concerning implementation limits.
 
-            OPTIONS as internal subroutines do. See the section OPTIONS for a detailed explanation. Further, a number of other things may be saved across internal subroutines. The effect on variables are controlled by the PROCEDURE instruction in the subroutine itself. The state of all DO-loops will be preserved during subroutine calls.
+When the token following CALL is either ON or OFF, the CALL instruction is not used for calling a subroutine, but for setting up condition traps. In this case, the third token of the clause must be the name of a condition, which setup is to be changed.
 
+If the second token was ON, then there can be either three or five tokens. If the five token version is used, then the fourth token must be NAME and the fifth token is taken to be the symbolic name of a label, which is the condition handler. This name can be either a constant string, or a symbol, which is taken literally. When OFF is used, the named condition trap is turned off.
 
-            Example: Subroutines and trace settings
-
-
-            Subroutines can not be used to set various settings like trace settings, NUMERIC settings, etc. Thus, the following code will not work as intended:
-
-
-            say digits() /* says 9, maybe */ call inc_digits
-
-            say digits() /* still says 9 */ exit
-
-
-            inc_digits:
-
-            numeric digits digits() + 1 return
-
-
-            The programmer probably wanted to call a routine which incremented the precision of arithmetic operations. However, since the setting of NUMERIC DIGITS is saved across subroutine calls, the new value set in inc_digits is lost at return from that routine. Thus, in order to work correctly, the NUMERIC instruction must be located in the main routine itself.
-
-
-            Built-in subroutines will have no effect on the settings, except for explicitly defined side effects. Nor will external subroutines change the settings. For all practical purposes, an external subroutine is conceptually equivalent to re-invoking the interpreter in a totally separated process.
-
-
-            If the name of the subroutine is specified by a literal string, then the name will be used as-is; it will not be converted to upper case. This is important because a routine which contains lower case letters can only be invoked by using a literal string as the routine name in the CALL instruction.
-
-
-            Example: Labels are literals
-
-
-            Labels are literal, which means that they are neither tail-substituted nor substituted for the value of the variable. Further, this also means that the setting of NUMERIC DIGITS has no influence on the section of labels, even when the labels are numeric symbols. Consider the following code:
-
-            call 654.32 exit
-
-
-            654.321:
-
-            say here return
-
-
-            654.32:
-
-            say there return
-
-
-            In this example, the second of the two subroutines are always chosen, independent of the setting of NUMERIC DIGITS. Assuming that NUMERIC DIGITS are set to 5, then the number 654.321 is converted to 654.32, but that does not affect labels. Nor would a statement CALL 6.5432E2 call the second label, even though the numeric value of that symbol is equal to that of one of the labels.
-
-
-            The called subroutines may or may not return data to the caller. In the calling routine, the special variable RESULT will be set to the return value or dropped, depending on whether any data was returned or not. Thus, the CALL instruction is equivalent to calling the routine as a function, and assigning the return value to RESULT, except when the routine does not return data.
-
-
-            In Rexx, recursive routines are allowed. A minimum number of 100 nested internal and external subroutine invocations, and support for a minimum of 10 parameters for each call are required by Rexx. See chapter Limits for more information concerning implementation limits.
-
-
-            When the token following CALL is either ON or OFF, the CALL instruction is not used for calling a subroutine, but for setting up condition traps. In this case, the third token of the clause must be the name of a condition, which setup is to be changed.
-
-
-            If the second token was ON, then there can be either three or five tokens. If the five token version is used, then the fourth token must be NAME and the fifth token is taken to be the symbolic name of a label, which is the condition handler. This name can be either a constant string, or a symbol, which is taken literally. When OFF is used, the named condition trap is turned off.
-
-
-            Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. Thus, they are not likely to be present on older interpreters. More information about conditions and condition traps are given in a chapter Conditions.
-
+Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. Thus, they are not likely to be present on older interpreters. More information about conditions and condition traps are given in a chapter Conditions.
+</code>
 ==== The DO/END Instruction ====
 
 
