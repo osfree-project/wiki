@@ -1128,301 +1128,193 @@ In addition to this, variants may also exist. These variants will have an extra 
 
 ==== The ADDRESS Instruction ====
 
+<code>
+ADDRESS [ environment [ command ] [ redirection ] ] ; [ [ VALUE ] expr [ redirection ] ] ;
+redirection : = WITH input_redir [output_redir] [error_redir] WITH input_redir [error_redir] [output_redir]
+WITH output_redir [input_redir] [error_redir] WITH output_redir [error_redir] [input_redir] WITH error_redir [input_redir] [output_redir] WITH error_redir [output_redir] [input_redir]
+input_redir : = INPUT NORMAL INPUT [ NOEOL ] io
+output_redir : = OUTPUT NORMAL OUTPUT [ APPEND | REPLACE ] io
+error_redir : = ERROR NORMAL
+ERROR [ APPEND | REPLACE ] io
+io : = { STREAM | STEM | LIFO | FIFO } symbol
+{ STREAM | LIFO | FIFO } string
+</code>
 
-            ADDRESS [ environment [ command ] [ redirection ] ] ; [ [ VALUE ] expr [ redirection ] ] ;
+We will discuss redirection later.
 
-            redirection : = WITH input_redir [output_redir] [error_redir] WITH input_redir [error_redir] [output_redir]
+The ADDRESS instruction controls where commands to an external environment are sent. If both environment and command are specified, the given command will be executed in the given environment. The effect is the same as issuing an expression to be executed as a command (see section Commands), except that the environment in which it is to be executed can be explicitly specified in the ADDRESS clause. In this case, the special variable RC will be set as usual, and the ERROR or FAILURE conditions might be raised, as for normal commands. Starting with Regina 3.0 the special variables .RC and .RS are set too, according to the ANSI standard.
 
-            WITH output_redir [input_redir] [error_redir] WITH output_redir [error_redir] [input_redir] WITH error_redir [input_redir] [output_redir] WITH error_redir [output_redir] [input_redir]
+In other words: All normal commands are ADDRESS statements with a suppressed keyword and environment.
 
+The environment term must be a symbol or a literal string. If it is a symbol, its "name" is used, i.e. it is not tail substituted or swapped for a variable value. The command and expression terms can be any Rexx expression. eg.
 
-            input_redir : = INPUT NORMAL INPUT [ NOEOL ] io
+<code rexx>
+SYSTEM='PATH'
+ADDRESS SYSTEM "echo Hello"
+</code>
 
+is equivalent to a plain
 
-            output_redir : = OUTPUT NORMAL OUTPUT [ APPEND | REPLACE ] io
+<code rexx>
+ADDRESS SYSTEM "echo Hello"
+</code>
 
+or
 
-            error_redir : = ERROR NORMAL
+<code rexx>
+ADDRESS "SYSTEM" "echo Hello"
+</code>
 
-            ERROR [ APPEND | REPLACE ] io
+for the external echo command.
 
+A symbol specified as an environment name isn't case-sensitive, whereas a string must match the case. Built-in environments are always uppercased.
 
-            io : = { STREAM | STEM | LIFO | FIFO } symbol
 
-            { STREAM | LIFO | FIFO } string
+Rexx maintains a list of environments, the size of this list is at least two. If you select a new environment, it will be put in the front of this list. Note that if command is specified, the contents of the environment stack is not changed. If you omit command, environment will always be put in the front of the list of environments. Regina has an infinite list and never pushes out any entry.
 
-            We will discuss redirection later.
+Possible values are listed below. If you supply a command with the ADDRESS statement, the environment is interpreted as a temporary change for just this command.
 
+What happens if you specify an environment that is already in the list, is not completely defined. Strictly speaking, you should end up with both entries in the list pointing to the same environment, but some implementations will probably handle this by reordering the list, leaving the selected environment in the front. This is Regina's behavior. Every environment exists only once. The redirection command below always changes the behavior of one -- the given -- environment. You can imagine a set of playing cards in your hand. The operation is to draw one card by name and put it to the front.
 
-            The ADDRESS instruction controls where commands to an external environment are sent. If both environment and command are specified, the given command will be executed in the given environment. The effect is the same as issuing an expression to be executed as a command (see section Commands), except that the environment in which it is to be executed can be explicitly specified in the ADDRESS clause. In this case, the special variable RC will be set as usual, and the ERROR or FAILURE conditions might be raised, as for normal commands. Starting with Regina 3.0 the special variables .RC and .RS are set too, according to the ANSI standard.
+If you do not specify any subkeywords or parameters to ADDRESS, the effect is to swap the two first entries in the list of environments. Consequently, executing ADDRESS multiple times will toggle between two environments.
 
+The second syntax form of ADDRESS is a special case of the first form with command omitted. If the first token after ADDRESS is VALUE, then the rest of the clause is taken to be an expression, naming the environment which is to be made the current environment. Using VALUE makes it possible to circumvent the restriction that the name of the new environment must be a symbol or literal string. However, you can not combine both VALUE and command in a single clause.
 
-            In other words: All normal commands are ADDRESS statements with a suppressed keyword and environment.
+Example: Examples of the ADDRESS instruction
 
-            The environment term must be a symbol or a literal string. If it is a symbol, its "name" is used, i.e. it is not tail substituted or swapped for a variable value. The command and expression terms can be any Rexx expression. eg.
+Let's look at some examples, they can sometimes be combined with a redirection:
 
-            SYSTEM='PATH'
+<code rexx>
+ADDRESS COMMAND
+ADDRESS SYSTEM 'copy' fromfile tofile ADDRESS system
+ADDRESS VALUE newenv ADDRESS
+ADDRESS (oldenv)
+</code>
 
-            ADDRESS SYSTEM "echo Hello"
+The first of these sets the environment COMMAND as the current environment.
 
-            is equivalent to a plain
+The second performs the command 'copy' in the environment SYSTEM, using the values of the symbols fromfile and tofile as parameters. Note that this will not set SYSTEM as the current environment.
 
-            ADDRESS SYSTEM "echo Hello"
+The third example sets SYSTEM as the current environment (it will be automatically converted to upper case).
 
-            or
+The fourth example sets as the current environment the contents of the symbol newenv, pushing SYSTEM down one level in the stack.
 
-            ADDRESS "SYSTEM" "echo Hello"
+The fifth clause swaps the two uppermost entries on the stack; and SYSTEM ends up at the top pushing the environment specfied in newenv below it.
 
+The sixth clause is equivalent to the fourth example, but is not allowed by ANSI. Since Regina 3.0 this style is deprecated and can't be used if OPTIONS STRICT_ANSI is in effect. Again, avoid this kind of ADDRESS statement style, and use the VALUE version instead.
 
-            for the external echo command.
+Example: The VALUE subkeyword
 
-            A symbol specified as an environment name isn't case-sensitive, whereas a string must match the case. Built-in environments are always uppercased.
+Let us look a bit closer at the last example. Note the differences between the two clauses:
 
+<code rexx>
+ADDRESS ENV
+ADDRESS VALUE ENV
+</code>
 
-            Rexx maintains a list of environments, the size of this list is at least two. If you select a new environment, it will be put in the front of this list. Note that if command is specified, the contents of the environment stack is not changed. If you omit command, environment will always be put in the front of the list of environments. Regina has an infinite list and never pushes out any entry.
+The first of these sets the current default environment to ENV, while the second sets it to the value of the symbol ENV.
 
-            Possible values are listed below. If you supply a command with the ADDRESS statement, the
+If you are still confused, don't Panic; the syntax of ADDRESS is somewhat bizarre, and you should not put too much effort into learning all aspects of it. Just make sure that you understand how to use it in simple situations. Chances are that you will not have use for its more complicated variants for quite some time.
 
-            environment is interpreted as a temporary change for just this command.
+Then, what names are legal as environments? Well, that is implementation-specific, but some names seems to be in common use. The name COMMAND is sometimes used to refer to an environment that sends the command to the operating system. Likewise, the name of the operating system is often used for this (CMS, UNIX, etc.). You have to consult the implementation specific documentation for more information about this. Actually, there is not really any restrictions on what constitutes a legal environment name (even the nullstring is legal). Some interpreters will allow you to select anything as the current environment; and if it is an illegal name, the interpreter will complain only when the environment is actually used. Other implementations may not allow you to select an invalid environment name at all.
 
+Regina allows every name as an environment name. Regina gives an error message about wrong names only when the name is used. The error string looks somewhat strange if Regina is used as a separate program, since the extension of the environment name space is only useful when running as part of a program which extends the standard names.
 
-            What happens if you specify an environment that is already in the list, is not completely defined. Strictly speaking, you should end up with both entries in the list pointing to the same environment, but some implementations will probably handle this by reordering the list, leaving the selected environment in the front. This is Regina's behavior. Every environment exists only once. The redirection command below always changes the behavior of one -- the given -- environment. You can imagine a set of playing cards in your hand. The operation is to draw one card by name and put it to the front.
+Regina uses three kinds of environments. Some have alias names. The environment names are:
 
+<code>
+SYSTEM
+alias OS2ENVIRONMENT
+alias ENVIRONMENT
+</code>
 
-            If you do not specify any subkeywords or parameters to ADDRESS, the effect is to swap the two first entries in the list of environments. Consequently, executing ADDRESS multiple times will toggle between two environments.
+This is the default environment which is selected at startup. The standard operating system command line interpreter will be loaded to execute the commands. You can use the built-in commands of the command line interpreter, often called shell, or any other program which the command line interpreter can find and load.
 
+<code>
+COMMAND
+alias CMD
+alias PATH
+</code>
 
-            The second syntax form of ADDRESS is a special case of the first form with command omitted. If the first token after ADDRESS is VALUE, then the rest of the clause is taken to be an expression, naming the environment which is to be made the current environment. Using VALUE makes it possible to circumvent the restriction that the name of the new environment must be a symbol or literal string. However, you can not combine both VALUE and command in a single clause.
+This environment loads the named program directly. You may supply a path if this is needed for the current operating system to load the program, otherwise Regina uses the standard operating system search rules for programs. This is done by searching through the items of the PATH system-environment variable in most operation systems. You can't use built-in shell functionality like system redirections like you can with SYSTEM. Regina's redirections are more powerful and work in either environment.
 
+<code>
+REXX
+alias REGINA
+</code>
 
-            Example: Examples of the ADDRESS instruction
+This environment uses a new instance of the Regina interpreter program to execute a program. The program has to be a Rexx script. This environment has several advantages. The output of a script can be redirected, the process is independent and a risk of a crash is minimized when playing with external libraries, finally, Regina itself tries to find the correct Rexx interpreter by itself and does everything to create a new incarnation of Regina.
 
-            Let's look at some examples, they can sometimes be combined with a redirection:
+The definition of Rexx says nothing about which environment is preselected when you invoke the interpreter, although TRL defines that one environment is automatically preselected when starting up a Rexx script. Note that there is no NONE environment in standard Rexx, i.e. an environment that ignores commands, but some interpreters implement the TRACE setting ??? to accomplish this. Regina uses the environment SYSTEM as the preselected environment as mentioned above. More implementation specific details can be found in the section implementation specific documentation for Regina.
 
+The list of environments will be saved across subroutine calls; so the effect of any ADDRESS clauses in a subroutine will cease upon return from the subroutine.
 
-            ADDRESS COMMAND
+=== ADDRESS Redirections ===
 
+ANSI defines redirections for the ADDRESS statement. This feature has been missing from Regina until version 3.0; although you have had the chance to redirect input and output by using LIFO> and >FIFO modifiers on command strings.
 
-            ADDRESS SYSTEM 'copy' fromfile tofile ADDRESS system
+These command modifiers still exist and have a higher precedence than the ANSI defined redirections. Note, that LIFO and FIFO can be used by the newer redirection system. But, first of all, some examples show the usage of ADDRESS redirections.
 
-            ADDRESS VALUE newenv ADDRESS
+<code rexx>
+ADDRESS SYSTEM "sort" WITH INPUT STEM names. OUTPUT STEM names.
+ADDRESS SYSTEM "myprog" WITH INPUT STEM somefood. OUTPUT STREAM Tprg.outT ERROR STEM oops.
+ADDRESS PATH WITH INPUT FIFO TT OUTPUT NORMAL
+ADDRESS SYSTEM WITH INPUT FIFO TT OUTPUT FIFO TT ERROR NORMAL
+ADDRESS SYSTEM "fgrep TbongoT" WITH INPUT STREAM TfeederT
+ADDRESS SYSTEM "sha256sum" WITH INPUT NOEOL FIFO TT
+</code>
 
-            ADDRESS (oldenv)
+The first command instructs the default command line interpreter to call the program called sort. The input for the command is read from the stem names. (note the trailing period) and the output is sent back to the same stem variable after the command terminates. Thus, bothering about the implementation of a fast sort algorithm for a stem is as simple as calling a program which can actually do the sort.
 
+A program called myprog is called in the second case. The input is fetched from the stem somefood. (again note the trailing period), and the standard output of the program is redirected to the stream called prg.out. Any generated error messages via the standard error stream are redirected to the stem called oops.
 
-            The first of these sets the environment COMMAND as the current environment.
+In the third example, the redirection behavior of the environment PATH is changed for all future uses. The input for all commands addressed to this environment is fetched from the standard stack in FIFO order. After each call the stack will be flushed. The output is sent to the default output stream, which is the current console in most cases. The behavior for error messages is not changed.
 
+The fourth example allows pipes between commands in the environment; SYSTEM for all future uses. The input is fetched from the default stack and sent to the default stack after each command. The stack itself is flushed in between. Each executed program will write to something which is the input to the next called command. The error redirection is set or set back to the initial behavior of writing to the standard error stream.
 
-            The second performs the command 'copy' in the environment SYSTEM, using the values of the symbols fromfile and tofile as parameters. Note that this will not set SYSTEM as the current environment.
+The fifth example relates to the fourth. The default stack has to be filled with something initially. This is done by the redirection to the stream “feeder” while writing the output of the fgrep command to the default FIFO as declared in example four. After this, a single line with a simple sort command will sort the output of fgrep and place it in the default stack. You can fetch the final output of your pipe cascade by reading the stack contents. This statement overwrites some of the rules of the fourth example temporarily.
 
+The sixth example highlights the fact that when the INPUT comes from the stack or a stem, Regina by default appends an End-Of-Line (EOL) to each item in the stack or stem before passing it to the command. This default behaviour is fine when the input data is to be treated as lines, but not when the data passed to the command must be unmodified. When INPUT comes from a stream, or when the NOEOL flag is set, the INPUT is not modified.
 
-            The third example sets SYSTEM as the current environment (it will be automatically converted to upper case).
+You can see the powerful possibilities of the redirection command. The disadvantage is the loss of a direct overview of what happens after a permanent redirection command has executed.
 
+Its now the time to show you all rules and semantics of the redirection.
 
-            The fourth example sets as the current environment the contents of the symbol newenv, pushing
+Rules for the redirection by the keyword WITH of the ADDRESS statement:
 
-            SYSTEM down one level in the stack.
+  * Every environment has its own default redirection set.
+  * Every redirection set consists of three independent redirection elements; standard input (INPUT), standard output (OUTPUT) and standard error (ERROR). Users with some experiences with Unix, DOS & Windows or OS/2 may remember the redirection commands of the command line interpreter which can redirect each of the streams, too. This is nearly the same.
+  * Each redirection element starts with the program-startup streams given to Rexx when invoking the interpreter. These can be reset to the startup default by specifying the argument NORMAL for each redirection element.
+  * The sequence of the redirection elements is irrelevant.
+  * You can specify each redirection element only once per statement.
+  * Redirections can be intermixed. This means you can let both the OUTPUT and the ERROR redirection point to the same "thing". The data from the different channels will be put to the assigned "thing" as they arrive. ANSI's point of view isn't very clear at this point. They state to keep the output different for files and put them together after the called program finished while the data shall be mixed at once when using stems.
+  * Regina always mixes the fetched data at once if possible.
+  * Redirections from and to the same source/destination try to keep the data consistent. If the INPUT/OUTPUT pair or the INPUT/ERROR pair points to the same destination, the content of the input or output channel is buffered so that writing to the output won't overwrite the input.
+  * A redirection element is entered by its name (e.g. INPUT), a redirection processor (e.g. STREAM) and a destination symbol (e.g. OUT_FN) following the rules to the redirection processor. This means that you have to enter a dot after a symbol name for a stem, or any symbol for the rest of the processors, in which case the content of the symbol is used as for normal variables.
+  * Both OUTPUT and ERROR streams can replace or append the data to the destination. Simply append either APPEND or REPLACE immediately after the OUTPUT or ERROR keywords.
+  * REPLACE is the default.
+  * The destination is checked or cleared prior to the execution of the command.
+  * ANSI defines two redirection processors: STEM and STREAM. The processors LIFO and FIFO are allowed extensions to the standard.
 
+The processor STEM uses the content of the symbol destination.0 to access the count of the currently accessible lines. destination is the given destination name, of course. destination.0 must be filled with a whole, non-negative number in terms of the DATATYPE built-in function. Each of n lines can be addressed by appending the whole numbers one to n to the stem. Example: STEM foo. is given, FOO.0 contains 3. This indicates three content lines. They are the contents of the symbols FOO.1 and FOO.2 and FOO.3 .
 
-            The fifth clause swaps the two uppermost entries on the stack; and SYSTEM ends up at the top pushing the environment specfied in newenv below it.
+The processor STREAM uses the content of the symbol destination to use a stream as known in the STREAM built-in function. The usage is nearly equivalent to the commands LINEIN destination or LINEOUT destination for accessing the contents of the file. An empty variable (content set to the empty string) as the content of the destination is allowed and indicates the default input, output or error streams given to the Rexx program. This is equivalent to the NORMAL keyword.
 
+The processor LIFO uses the content of the symbol destination as a queue name. New lines are pushed in last-in, first-out order to the queue. An empty destination string is allowed and describes the default queue. Lines are fetched from the queue if this processor is used for the INPUT stream.
 
-            The sixth clause is equivalent to the fourth example, but is not allowed by ANSI. Since Regina 3.0 this style is deprecated and can't be used if OPTIONS STRICT_ANSI is in effect. Again, avoid this kind of ADDRESS statement style, and use the VALUE version instead.
+The processor FIFO uses the content of the symbol destination as a queue name. New lines are pushed in first-in, first-out order to the queue. An empty destination string is allowed and describes the default queue. Lines are fetched from the queue if this processor is used for the INPUT stream.
 
+On INPUT, all the data in the input stream is read up to either the end of the input data or until the called process terminates. The latter one may be determined after feeding up the input stream of the called process with unused data. Thus, there is no way to say if data is used or not. This isn't a problem with STEMs. But all file related sequential access objects including LIFOs and FIFOs may have lost data between two calls. Imagine an input file (STREAM) with three lines:
 
-            Example: The VALUE subkeyword
+One line DELIMITER
 
+Second line and furthermore two processes p1 and p2 called WITH INPUT STREAM f with f containing the three lines above. p1 reads lines up until a line containing DELIMITER and p2 processes the rest. It is very likely that the second process won't fetch any line because the stream may be processed by Rexx, and Rexx may has put one or more lines ahead into the feeder pipe to the process. This might or might not happen. It is implementation dependent and Regina shows this behavior. The input object is checked for existence and if it is properly set up before the command is started.
 
-            Let us look a bit closer at the last example. Note the differences between the two clauses:
+In short: INPUT may or may not use the entire input.
 
+Both OUTPUT and ERROR objects are checked for being properly set up just before the command starts. REPLACE is implemented as a deletion just before the command starts. Note that ANSI doesn't force STEM lines to be dropped in case of a replacement. A big stem with thousands of lines will still exist after a replacement operation if the called command doesn't produce any output. Just destination.0 is set to 0.
 
-            ADDRESS ENV ADDRESS VALUE ENV
-
-            The first of these sets the current default environment to ENV, while the second sets it to the value of the symbol ENV.
-
-
-            If you are still confused, don't Panic; the syntax of ADDRESS is somewhat bizarre, and you should not put too much effort into learning all aspects of it. Just make sure that you understand how to use it in simple situations. Chances are that you will not have use for its more complicated variants for quite some time.
-
-            Then, what names are legal as environments? Well, that is implementation-specific, but some names seems to be in common use. The name COMMAND is sometimes used to refer to an environment that sends the command to the operating system. Likewise, the name of the operating system is often used for this (CMS, UNIX, etc.). You have to consult the implementation specific documentation for more information about this. Actually, there is not really any restrictions on what constitutes a legal environment name (even the nullstring is legal). Some interpreters will allow you to select anything as the current environment; and if it is an illegal name, the interpreter will complain only when the environment is actually used. Other implementations may not allow you to select an invalid environment name at all.
-
-
-            Regina allows every name as an environment name. Regina gives an error message about wrong names only when the name is used. The error string looks somewhat strange if Regina is used as a separate program, since the extension of the environment name space is only useful when running as part of a program which extends the standard names.
-
-
-            Regina uses three kinds of environments. Some have alias names. The environment names are:
-
-
-            SYSTEM
-
-            alias OS2ENVIRONMENT
-
-            alias ENVIRONMENT
-
-
-            This is the default environment which is selected at startup. The standard operating system command line interpreter will be loaded to execute the commands. You can use the built-in commands of the command line interpreter, often called shell, or any other program which the command line interpreter can find and load.
-
-
-            COMMAND
-
-            alias CMD
-
-            alias PATH
-
-
-            This environment loads the named program directly. You may supply a path if this is needed for the current operating system to load the program, otherwise Regina uses the standard operating system search rules for programs. This is done by searching through the items of the PATH system-environment variable in most operation systems. You can't use built-in shell functionality like system redirections like you can with SYSTEM. Regina's redirections are more powerful and work in either environment.
-
-
-            REXX
-
-            alias REGINA
-
-
-            This environment uses a new instance of the Regina interpreter program to execute a program. The program has to be a Rexx script. This environment has several advantages. The output of a script can be redirected, the process is independent and a risk of a crash is minimized when playing with external libraries, finally, Regina itself tries to find the correct Rexx interpreter by itself and does everything to create a new incarnation of Regina.
-
-
-            The definition of Rexx says nothing about which environment is preselected when you invoke the interpreter, although TRL defines that one environment is automatically preselected when starting up a Rexx script. Note that there is no NONE environment in standard Rexx, i.e. an environment
-
-            that ignores commands, but some interpreters implement the TRACE setting ??? to accomplish this. Regina uses the environment SYSTEM as the preselected environment as mentioned above. More implementation specific details can be found in the section implementation specific documentation for Regina.
-
-
-            The list of environments will be saved across subroutine calls; so the effect of any ADDRESS
-
-            clauses in a subroutine will cease upon return from the subroutine.
-
-
-            ADDRESS Redirections
-
-
-            ANSI defines redirections for the ADDRESS statement. This feature has been missing from Regina until version 3.0; although you have had the chance to redirect input and output by using LIFO> and >FIFO modifiers on command strings.
-
-
-            These command modifiers still exist and have a higher precedence than the ANSI defined redirections. Note, that LIFO and FIFO can be used by the newer redirection system. But, first of all, some examples show the usage of ADDRESS redirections.
-
-
-            ADDRESS SYSTEM "sort" WITH INPUT STEM names. OUTPUT STEM
-
-            names.
-
-
-            ADDRESS SYSTEM "myprog" WITH INPUT STEM somefood. OUTPUT
-
-            STREAM Tprg.outT ERROR STEM oops.
-
-
-            ADDRESS
-            	
-
-            PATH WITH INPUT FIFO TT OUTPUT NORMAL
-            	
-
-
-            ADDRESS
-            	
-
-            SYSTEM WITH INPUT FIFO TT OUTPUT FIFO TT
-            	
-
-            ERROR NORMAL
-
-            ADDRESS
-            	
-
-            SYSTEM "fgrep TbongoT" WITH INPUT STREAM
-            	
-
-            TfeederT
-
-            ADDRESS
-            	
-
-            SYSTEM "sha256sum" WITH INPUT NOEOL FIFO
-            	
-
-            TT
-
-
-            The first command instructs the default command line interpreter to call the program called sort. The input for the command is read from the stem names. (note the trailing period) and the output is sent back to the same stem variable after the command terminates. Thus, bothering about the implementation of a fast sort algorithm for a stem is as simple as calling a program which can actually do the sort.
-
-
-            A program called myprog is called in the second case. The input is fetched from the stem somefood. (again note the trailing period), and the standard output of the program is redirected to the stream called prg.out. Any generated error messages via the standard error stream are redirected to the stem called oops.
-
-
-            In the third example, the redirection behavior of the environment PATH is changed for all future uses. The input for all commands addressed to this environment is fetched from the standard stack in FIFO order. After each call the stack will be flushed. The output is sent to the default output stream, which is the current console in most cases. The behavior for error messages is not changed.
-
-            The fourth example allows pipes between commands in the environment; SYSTEM for all future uses. The input is fetched from the default stack and sent to the default stack after each command. The stack itself is flushed in between. Each executed program will write to something which is the input to the next called command. The error redirection is set or set back to the initial behavior of writing to the standard error stream.
-
-
-            The fifth example relates to the fourth. The default stack has to be filled with something initially. This is done by the redirection to the stream “feeder” while writing the output of the fgrep command to the default FIFO as declared in example four. After this, a single line with a simple sort command will sort the output of fgrep and place it in the default stack. You can fetch the final output of your pipe cascade by reading the stack contents. This statement overwrites some of the rules of the fourth example temporarily.
-
-
-            The sixth example highlights the fact that when the INPUT comes from the stack or a stem, Regina by default appends an End-Of-Line (EOL) to each item in the stack or stem before passing it to the command. This default behaviour is fine when the input data is to be treated as lines, but not when the data passed to the command must be unmodified. When INPUT comes from a stream, or when the NOEOL flag is set, the INPUT is not modified.
-
-
-            You can see the powerful possibilities of the redirection command. The disadvantage is the loss of a direct overview of what happens after a permanent redirection command has executed.
-
-
-            Its now the time to show you all rules and semantics of the redirection.
-
-            Rules for the redirection by the keyword WITH of the ADDRESS statement:
-
-                Every environment has its own default redirection set.
-
-                Every redirection set consists of three independent redirection elements; standard input (INPUT), standard output (OUTPUT) and standard error (ERROR). Users with some experiences with Unix, DOS & Windows or OS/2 may remember the redirection commands of the command line interpreter which can redirect each of the streams, too. This is nearly the same.
-
-                Each redirection element starts with the program-startup streams given to Rexx when invoking the interpreter. These can be reset to the startup default by specifying the argument NORMAL for each redirection element.
-
-                The sequence of the redirection elements is irrelevant.
-
-                You can specify each redirection element only once per statement.
-
-                Redirections can be intermixed. This means you can let both the OUTPUT and the ERROR redirection point to the same "thing". The data from the different channels will be put to the assigned "thing" as they arrive. ANSI's point of view isn't very clear at this point. They state to keep the output different for files and put them together after the called program finished while the data shall be mixed at once when using stems.
-
-                Regina always mixes the fetched data at once if possible.
-
-                Redirections from and to the same source/destination try to keep the data consistent. If the INPUT/OUTPUT pair or the INPUT/ERROR pair points to the same destination, the content of the input or output channel is buffered so that writing to the output won't overwrite the input.
-
-                A redirection element is entered by its name (e.g. INPUT), a redirection processor (e.g. STREAM) and a destination symbol (e.g. OUT_FN) following the rules to the redirection processor. This means that you have to enter a dot after a symbol name for a stem, or any symbol for the rest of the processors, in which case the content of the symbol is used as for normal variables.
-
-                Both OUTPUT and ERROR streams can replace or append the data to the destination. Simply
-
-                append either APPEND or REPLACE immediately after the OUTPUT or ERROR keywords.
-
-                REPLACE is the default.
-
-                The destination is checked or cleared prior to the execution of the command.
-
-                ANSI defines two redirection processors: STEM and STREAM. The processors LIFO and FIFO
-
-                are allowed extensions to the standard.
-
-                The processor STEM uses the content of the symbol destination.0 to access the count of the currently accessible lines. destination is the given destination name, of course. destination.0 must be filled with a whole, non-negative number in terms of the DATATYPE built-in function. Each of n lines can be addressed by appending the whole numbers one to n to the stem. Example: STEM foo. is given, FOO.0 contains 3. This indicates three content lines. They are the contents of the symbols FOO.1 and FOO.2 and FOO.3 .
-
-                The processor STREAM uses the content of the symbol destination to use a stream as known in the STREAM built-in function. The usage is nearly equivalent to the commands LINEIN destination or LINEOUT destination for accessing the contents of the file. An empty variable (content set to the empty string) as the content of the destination is allowed and indicates the default input, output or error streams given to the Rexx program. This is equivalent to the NORMAL keyword.
-
-                The processor LIFO uses the content of the symbol destination as a queue name. New lines are pushed in last-in, first-out order to the queue. An empty destination string is allowed and describes the default queue. Lines are fetched from the queue if this processor is used for the INPUT stream.
-
-                The processor FIFO uses the content of the symbol destination as a queue name. New lines are pushed in first-in, first-out order to the queue. An empty destination string is allowed and
-
-                describes the default queue. Lines are fetched from the queue if this processor is used for the
-
-                INPUT stream.
-
-                On INPUT, all the data in the input stream is read up to either the end of the input data or until the called process terminates. The latter one may be determined after feeding up the input stream of the called process with unused data. Thus, there is no way to say if data is used or not. This isn't a problem with STEMs. But all file related sequential access objects including LIFOs and FIFOs may have lost data between two calls. Imagine an input file (STREAM) with three lines:
-
-                One line DELIMITER
-
-                Second line
-
-
-                and furthermore two processes p1 and p2 called WITH INPUT STREAM f with f containing the three lines above. p1 reads lines up until a line containing DELIMITER and p2 processes the rest. It is very likely that the second process won't fetch any line because the stream may be processed by Rexx, and Rexx may has put one or more lines ahead into the feeder pipe to the
-
-                process. This might or might not happen. It is implementation dependent and Regina shows this behavior. The input object is checked for existence and if it is properly set up before the command is started.
-
-                In short: INPUT may or may not use the entire input.
-
-                Both OUTPUT and ERROR objects are checked for being properly set up just before the command starts. REPLACE is implemented as a deletion just before the command starts. Note that ANSI doesn't force STEM lines to be dropped in case of a replacement. A big stem with thousands of lines will still exist after a replacement operation if the called command doesn't produce any output. Just destination.0 is set to 0.
-
-            The redirection of commands is a mystery to many people and it will continue be. You can thank all the people who designed stacks, queues, pipelines and all the little helper utilities of a witch's kitchen of process management.
+The redirection of commands is a mystery to many people and it will continue be. You can thank all the people who designed stacks, queues, pipelines and all the little helper utilities of a witch's kitchen of process management.
 
 ==== The ARG Instruction ====
 
