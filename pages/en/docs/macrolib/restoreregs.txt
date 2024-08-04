@@ -1,4 +1,4 @@
-{{page>en:templates:biosint}}
+{{page>en:templates:macroint}}
 
 
 ====== @RestoreRegs ======
