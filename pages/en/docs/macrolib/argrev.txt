@@ -1,0 +1,33 @@
+{{page>en:templates:biosint}}
+
+
+====== @ArgRev ======
+
+===== Version =====
+
+
+===== Brief =====
+
+
+===== BIOS Interrupt =====
+
+none
+
+===== Family API =====
+
+none
+
+===== Syntax =====
+
+<code asm>
+</code>
+
+===== Parameters =====
+
+
+===== Return =====
+
+
+
+===== Notes =====
+

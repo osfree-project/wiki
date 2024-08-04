@@ -1,0 +1,34 @@
+{{page>en:templates:biosint}}
+
+
+====== @ArgCount ======
+
+===== Version =====
+
+
+===== Brief =====
+
+
+===== BIOS Interrupt =====
+
+none
+
+===== Family API =====
+
+none
+
+===== Syntax =====
+
+<code asm>
+@ArgCount
+</code>
+
+===== Parameters =====
+
+
+===== Return =====
+
+
+
+===== Notes =====
+

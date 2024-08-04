@@ -37,6 +37,19 @@ DOS.INC contains macros for DOS interrupts.
 MOUSE.INC contains macros for MOUSE interrupts.
 DPMI.INC contains macros for DPMI interrupts.
 
+==== MACROS.INC ====
+
+^ Macro ^ Description ^
+| [[en:docs:macrolib:@ArgCount]] |  |
+| [[en:docs:macrolib:@ArgI]] |  |
+| [[en:docs:macrolib:@ArgRev]] |  |
+| [[en:docs:macrolib:@PopAll]] |  |
+| [[en:docs:macrolib:@PushAll]] |  |
+| [[en:docs:macrolib:@RestoreRegs]] |  |
+| [[en:docs:macrolib:@SaveRegs]] |  |
+| [[en:docs:macrolib:echof]] |  |
+| [[en:docs:macrolib:pushc]] |  |
+
 ==== BIOS.INC ====
 
 ^ Macro ^ Description ^
