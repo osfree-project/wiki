@@ -29,7 +29,9 @@ osFree Macro Library provides four include files:
   * DOS.INC
   * MOUSE.INC
   * DPMI.INC
+  * MACROS.INC
 
+MACROS.INC contains generic macros.
 BIOS.INC contains macros for BIOS interrupts. 
 DOS.INC contains macros for DOS interrupts.
 MOUSE.INC contains macros for MOUSE interrupts.
