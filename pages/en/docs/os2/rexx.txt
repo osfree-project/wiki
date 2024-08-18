@@ -18,60 +18,6 @@ A copy of the license is included in the section entitled "GNU Free Documentatio
 
 Table of Contents
 
-    Conditions 132
-
-        What are Conditions 132
-
-            What Do We Need Conditions for? 132
-
-            Terminology 132
-
-        The Mythical Standard Condition 133
-
-            Information Regarding Conditions (data structures) 133
-
-            How to Set up a Condition Trap 134
-
-            How to Raise a Condition 135
-
-            How to Trigger a Condition Trap 137
-
-            Trapping by Method SIGNAL 137
-
-            Trapping by Method CALL 138
-
-            The Current Trapped Condition 139
-
-        The Real Conditions 140
-
-            The SYNTAX condition 140
-
-            The HALT condition 140
-
-            The ERROR condition 141
-
-            The FAILURE condition 142
-
-            The NOVALUE condition 142
-
-            The NOTREADY condition 143
-
-            The LOSTDIGITS condition 143
-
-        Further Notes on Conditions 144
-
-            Conditions under Language Level 3.50 144
-
-            Pitfalls when Using Condition Traps 144
-
-            The Correctness of this Description 144
-
-        Conditions in Regina 145
-
-            How to Raise the HALT condition 145
-
-        Possible Future extensions 146
-
     Stream Input and Output 147
 
         Background and Historical Remarks 147
