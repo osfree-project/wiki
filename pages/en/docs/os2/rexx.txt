@@ -3076,230 +3076,159 @@ Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. 
 ====== Rexx Built-in Functions ======
 
 
-    This chapter describes the Rexx library of built-in functions. It is divided into three parts:
+This chapter describes the Rexx library of built-in functions. It is divided into three parts:
 
 
-        First a general introduction to built-in functions, pointing out concepts, pitfalls, parameter conventions, peculiarities, and possible system dependencies.
+First a general introduction to built-in functions, pointing out concepts, pitfalls, parameter conventions, peculiarities, and possible system dependencies.
 
 
-        Then there is the reference section, which describes in detail each function in the built-in library.
+Then there is the reference section, which describes in detail each function in the built-in library.
 
 
-        At the end, there is documentation that describes where and how Regina differs from standard Rexx, as described in the two other sections. It also lists Regina's extensions to the built-in library.
+At the end, there is documentation that describes where and how Regina differs from standard Rexx, as described in the two other sections. It also lists Regina's extensions to the built-in library.
 
 
-    It is recommended that you read the first part on first on first reading of this documentation, and that you use the second part as reference. The third part is only relevant if you are going to use Regina.
+It is recommended that you read the first part on first on first reading of this documentation, and that you use the second part as reference. The third part is only relevant if you are going to use Regina.
 
 
-            General Information
+===== General Information =====
 
-            This section is an introduction to the built-in functions. It describes common behavior, parameter conventions, concepts and list possible system-dependent parts.
 
-                The Syntax Format
+This section is an introduction to the built-in functions. It describes common behavior, parameter conventions, concepts and list possible system-dependent parts.
 
-                In the description of the built-in functions, the syntax of each one is listed. For each of the syntax diagrams, the parts written in italic font names the parameters. Terms enclosed in [square brackets] denote optional elements. And the courier font is used to denote that something should be written as is, and it is also used to mark output from the computer. At the right of each function syntax is an indication of where the function is defined.
+==== The Syntax Format ====
 
+In the description of the built-in functions, the syntax of each one is listed. For each of the syntax diagrams, the parts written in italic font names the parameters. Terms enclosed in [square brackets] denote optional elements. And the courier font is used to denote that something should be written as is, and it is also used to mark output from the computer. At the right of each function syntax is an indication of where the function is defined.
 
-                (ANSI) ANSI Standard for Rexx 1996
+  * (ANSI) ANSI Standard for Rexx 1996
+  * (EXT-ANSI) Extended Rexx
+  * (SAA) System Application Architecture - IBM
+  * (OS/2) IBM OS/2 Rexx
+  * (CMS) Rexx on CMS
+  * (AREXX) AREXX on Amiga
+  * (REGINA) Additional function provided by Regina
 
-                (EXT-ANSI) Extended Rexx
+Definitions of the AREXX built-in functions were taken verbatim in 2003 from http://dfduck.homeip.net/dfd/ados/arexx/main.shtml
 
-                (SAA) System Application Architecture - IBM
+Note that in standard Rexx it is not really allowed to let the last possible parameter be empty if all commas are included, although some implementations allow it. In the following calls:
 
-                (OS/2) IBM OS/2 Rexx
+<code rexx>
+say D2C( 65 )
+say D2C( 65, 1 )
+say D2C( 65, )
+</code>
 
-                (CMS) Rexx on CMS
+The two first return the string consisting of a single character A, while the last should return error. If the last argument of a function call is omitted, you can not safely include the immediately preceding comma.
 
-                (AREXX) AREXX on Amiga
+==== Precision and Normalization ====
 
-                (REGINA) Additional function provided by Regina
+The built-in library uses its own internal precision for whole numbers, which may be the range from -999999999 to +999999999. That is probably far more than you will ever need in the built-in functions. For most functions, neither parameters nor return values will be affected by any setting of NUMERIC DIGITS. In the few cases where this does not hold, it is explicitly stated in the description of the function.
 
+In general, only parameters that are required to be whole numbers are used in the internal precision, while numbers not required to be whole numbers are normalized according to the setting of NUMERIC DIGITS before use. But of course, if a parameter is a numeric expression, that expression will be calculated and normalized under the settings of NUMERIC DIGITS before it is given to the function as a parameter.
 
-                Definitions of the AREXX built-in functions were taken verbatim in 2003 from
+==== Standard Parameter Names ====
 
-                http://dfduck.homeip.net/dfd/ados/arexx/main.shtml
+In the descriptions of the built-in functions, several generic names are used for parameters, to indicate something about the type and use of that parameter, e.g. valid range. To avoid repeating the same information for the majority of the functions, some common "rules" for the standard parameter names are stated here. These rules implicitly apply for the rest of this chapter.
 
+Note that the following list does not try to classify any general Rexx "datatypes", but provides a binding between the sub-datatypes of strings and the methodology used when naming parameters.
 
-                Note that in standard Rexx it is not really allowed to let the last possible parameter be empty if all commas are included, although some implementations allow it. In the following calls:
+Length is a non-negative whole number within the internal precision of the built-in functions. Whether it denotes a length in characters or in words, depends on the context.
 
-                say D2C( 65 ) say D2C( 65, 1 ) say D2C( 65, )
+String can be any normal character string, including the nullstring. There are no further requirements for this parameter. Sometimes a string is called a "packed string" to explicitly show that it usually contains more than the normal printable characters.
 
+Option is used in some of the functions to choose a particular action, e.g. in DATE() to set the format in which the date is returned. Everything except the first character will be ignored, and case does not matter. note that the string should consequently not have any leading space.
 
-                The two first return the string consisting of a single character A, while the last should return error. If the last argument of a function call is omitted, you can not safely include the immediately preceding comma.
+Start is a positive whole number, and denotes a start position in e.g. a string. Whether it refers to characters or words depends on the context. The first position is always numbered 1, unless explicitly stated otherwise in the documentation. Note that when return values denotes positions, the number 0 is generally used to denote a nonexistent position.
 
-                Precision and Normalization
+Padchar must be a string, exactly one character long. That character is used for padding.
 
-                The built-in library uses its own internal precision for whole numbers, which may be the range from
+Streamid is a string that identifies a Rexx stream. The actual contents and format of such a string is implementation dependent.
 
-                -999999999 to +999999999. That is probably far more than you will ever need in the built-in functions. For most functions, neither parameters nor return values will be affected by any setting of NUMERIC DIGITS. In the few cases where this does not hold, it is explicitly stated in the description of the function.
+Number is any valid Rexx number, and will be normalized according to NUMERIC settings before it is used by the function.
 
+If you see one of these names having a number appended, that is only to separate several parameters of the same type, e.g. string1, string2 etc. They still follow the rules listed above. There are several parameters in the built-in functions that do not easily fall into the categories above. These are given other names, and their type and functionality will be described together with the functions in which they occur.
 
-                In general, only parameters that are required to be whole numbers are used in the internal precision, while numbers not required to be whole numbers are normalized according to the setting of NUMERIC DIGITS before use. But of course, if a parameter is a numeric expression, that expression will be calculated and normalized under the settings of NUMERIC DIGITS before it is given to the function as a parameter.
+==== Error Messages ====
 
-                Standard Parameter Names
+There are several errors that might occur in the built-in functions. Just one error message is only relevant for all the built-in functions, that is number 40 (Incorrect call to routine). In fact, an implementation of Rexx can choose to use that for any problem it encounters in the built-in functions. Regina also provides further information in errors in built-in functions, as defined by the ANSI standard. This additional information is provided as sub-error messages and usually provide a more detailed explanation of the error.
 
-                In the descriptions of the built-in functions, several generic names are used for parameters, to indicate something about the type and use of that parameter, e.g. valid range. To avoid repeating the same information for the majority of the functions, some common "rules" for the standard parameter names are stated here. These rules implicitly apply for the rest of this chapter.
+Depending on the implementation, other error messages might be used as well. Error message number 26 (Invalid whole number) might be used for any case where a parameter should have been a whole number, or where a whole number is out of range. It is implied that this error message can be used in these situations, and it is not explicitly mentioned in the description of the functions.
 
+Other general error messages that might be used in the built-in functions are error number 41 (Bad arithmetic conversion) for any parameter that should have been a valid Rexx number. The error message 15 (Invalid binary or hexadecimal string) might occur in any of the conversion routines that converts from binary or hexadecimal format (B2X(), X2B(), X2C(), X2D()). And of course the more general error messages like error message 5 (Machine resources exhausted) can occur.
 
-                Note that the following list does not try to classify any general Rexx "datatypes", but provides a binding between the sub-datatypes of strings and the methodology used when naming parameters.
+Generally, it is taken as granted that these error messages might occur for any relevant built-in function, and this will not be restated for each function. When other error messages than these are relevant, it will be mentioned in the text.
 
+In Rexx, it is in general not an error to specify a start position that is larger than the length of the string, or a length that refers to parts of a string that is beyond the end of that string. The meaning of such instances will depend on the context, and are described for each function.
 
-                    Length is a non-negative whole number within the internal precision of the built-in functions. Whether it denotes a length in characters or in words, depends on the context.
+==== Possible System Dependencies ====
 
+Some of the functions in the built-in library are more or less system or implementation dependent. The functionality of these may vary, so you should use defensive programming and be prepared for any side-effects that they might have. These functions include:
 
-                    String can be any normal character string, including the nullstring. There are no further requirements for this parameter. Sometimes a string is called a "packed string" to explicitly show that it usually contains more than the normal printable characters.
+ADDRESS() is dependent on your operating system and the implementation of Rexx, since there is no standard for naming environments.
 
+ARG() at the main level (not in subroutines and functions) is dependent on how your implementation handles and parses the parameters it got from the operating system. It is also dependent on whether the user specifies the -a command line switch.
 
-                    Option is used in some of the functions to choose a particular action, e.g. in DATE() to set the format in which the date is returned. Everything except the first character will be ignored, and case does not matter. note that the string should consequently not have any leading space.
+BITAND(), BITOR() and BITXOR() are dependent on the character set of your machine. Seemingly identical parameters will in general return very different results on ASCII and EBCDIC machines. Results will be identical if the parameter was given to these functions as a binary or hexadecimal literal.
 
+C2X(), C2D(), D2C() and X2C() will be affected by the character set of your computer since they convert to or from characters. Note that if C2X() and C2D() get their first parameter as a binary or hexadecimal literal, the result will be unaffected by the machine type. Also note that the functions B2X(), X2B(), X2D() and D2X() are not affected by the character set, since they do not use character representation.
 
-                    Start is a positive whole number, and denotes a start position in e.g. a string. Whether it refers to characters or words depends on the context. The first position is always numbered 1, unless explicitly stated otherwise in the documentation. Note that when return values denotes positions, the number 0 is generally used to denote a nonexistent position.
+CHARIN(), CHAROUT(), CHARS(), LINEIN(), LINEOUT(), LINES() and STREAM() are the interface to the file system. They might have system dependent peculiarities in several ways. Firstly, the naming of streams is very dependent on the operating system. Secondly, the operation of stream is very dependent on both the operating system and the implementation. You can safely assume very little about how streams behave, so carefully read the documentation for your particular implementation.
 
+CONDITION() is dependent on the condition system, which in turn depends on such implementation dependent things as file I/O and execution of commands. Although the general operation of this function will be fairly equal among systems, the details may differ.
 
-                    Padchar must be a string, exactly one character long. That character is used for padding.
+DATATYPE() and TRANSLATE() know how to recognize upper and lower case letters, and how to transform letters to upper case. If your Rexx implementation supports national character sets, the operation of these two functions will depend on the language chosen.
 
-                    Streamid is a string that identifies a Rexx stream. The actual contents and format of such a string is implementation dependent.
+DATE() has the options Month, Weekday and Normal, which produce the name of the day or month in text. Depending on how your implementation handles national character sets, the result from these functions might use the correct spelling of the currently chosen language.
 
+DELWORD(), SUBWORD(), WORD(), WORDINDEX(), WORDLENGTH(), WORDPOS() and WORDS() requires the concept of a "word", which is defined as a non-blank characters separated by blanks. However, the interpretation of what is a blank character depends upon the implementation.
 
-                    Number is any valid Rexx number, and will be normalized according to NUMERIC settings before it is used by the function.
+ERRORTEXT() might have slightly different wordings, depending on the implementation, but the meaning and numbering should be the same. However, note that some implementations may have additional error messages, and some might not follow the standard numbering. Error messages may also be returned in the user's native language.
 
+QUEUED() refers to the system specific concept of a "stack", which is either internal or external to the implementation. The result of this function may therefore be dependent on how the stack is implemented on your system.
 
-                    If you see one of these names having a number appended, that is only to separate several parameters of the same type, e.g. string1, string2 etc. They still follow the rules listed above. There are several parameters in the built-in functions that do not easily fall into the categories above. These are given other names, and their type and functionality will be described together with the functions in which they occur.
+RANDOM() will differ from machine to machine, since the algorithm is implementation dependent. If you set the seed, you can safely assume that the same interpreter under the same operating system and on the same hardware platform will return a reproducible sequence. But if you change to another interpreter, another machine or even just another version of the operating system, the same seed might not give the same pseudo-random sequence.
 
-                Error Messages
+SOURCELINE() has been changed between Rexx language level 3.50 and 4.00. In 4.00 it can return 0 if the Rexx implementation finds it necessary, and any request for a particular line may get a nullstring as result. Before assuming that this function will return anything useful, consult the documentation.
 
-                There are several errors that might occur in the built-in functions. Just one error message is only relevant for all the built-in functions, that is number 40 (Incorrect call to routine). In fact, an implementation of Rexx can choose to use that for any problem it encounters in the built-in functions. Regina also provides further information in errors in built-in functions, as defined by the ANSI standard. This additional information is provided as sub-error messages and usually provide a more detailed explanation of the error.
+TIME() will differ somewhat on different machines, since it is dependent on the underlying operating system to produce the timing information. In particular, the granularity and accuracy of this information may vary.
 
+VALUE() will be dependent on implementation and operating system if it is called with its third parameter specified. Consult the implementation specific documentation for more information about how each implementation handles this situation.
 
-                Depending on the implementation, other error messages might be used as well. Error message number 26 (Invalid whole number) might be used for any case where a parameter should have been a whole number, or where a whole number is out of range. It is implied that this error message can be used in these situations, and it is not explicitly mentioned in the description of the functions.
+XRANGE() will return a string, which contents will be dependent on the character set used by your computer. You can safely make very few assumptions about the visual representation, the length, or the character order of the string returned by this function.
 
+The built-in functions marked as AREXX are available by default on Amiga and AROS systems, but the AREXX_BIFS OPTION is required on other system to make these functions available.
 
-                Other general error messages that might be used in the built-in functions are error number 41 (Bad arithmetic conversion) for any parameter that should have been a valid Rexx number. The error message 15 (Invalid binary or hexadecimal string) might occur in any of the conversion routines that converts from binary or hexadecimal format (B2X(), X2B(), X2C(), X2D()). And of course the more general error messages like error message 5 (Machine resources exhausted) can occur.
+As you can see, even Rexx interpreters that are within the standard can differ quite a lot in the builtin functions. Although the points listed above seldom are any problem, you should never assume anything about them before you have read the implementation specific documentation. Failure to do so will give you surprises sooner or later.
 
+And, by the way, many implementations (probably the majority) do not follow the standard completely. So, in fact, you should never assume anything at all. Sorry ...
 
-                Generally, it is taken as granted that these error messages might occur for any relevant built-in function, and this will not be restated for each function. When other error messages than these are relevant, it will be mentioned in the text.
+==== Blanks vs. Spaces ====
+ ‌
+Note that the description differs between "blanks" and the <space> character. A blank is any character that might be used as "whitespace" to separate text into groups of characters. The <space> character is only one of several possible blanks. When this text says "blank" it means any one from a set of characters that are used to separate visual characters into words. When this text says <space>, it means one particular blank, that which is generally bound to the space bar on a normal computer keyboard.
 
+All implementation can be trusted to treat the <space> character as blank. Additional characters that might be interpreted as blanks (and are treated as such by Regina) are <tab> (horizontal tabulator), <ff> (formfeed), <vt> (vertical tabulator), <nl> (newline) and <cr> (carriage return). The interpretation of what is blank will vary between machines, operating systems and interpreters. If you are using support for national character sets, it will even depend on the language selected. So be sure to check the documentation before you assume anything about blank characters.
 
-                In Rexx, it is in general not an error to specify a start position that is larger than the length of the string, or a length that refers to parts of a string that is beyond the end of that string. The meaning of such instances will depend on the context, and are described for each function.
+Some implementations use only one blank character, and perceives the set of blank characters as equivalent to the <space> character. This will depend on the implementation, the character set, the customs of the operating system and various other reasons.
 
-                Possible System Dependencies
+===== Regina Built-in Functions =====
 
-                Some of the functions in the built-in library are more or less system or implementation dependent. The functionality of these may vary, so you should use defensive programming and be prepared for any side-effects that they might have. These functions include:
 
+Below follows an in depth description of all the functions in the library of built-in functions. Note that all functions in this section are available on all ports of Regina. Each function is designated as being part of the ANSI standard, or from other implementations. Following sections describe those built-in functions that are available on specific ports of Regina, or when Regina is built with certain switches.
 
-                    ADDRESS() is dependent on your operating system and the implementation of Rexx, since there is no standard for naming environments.
+==== ABBREV(long, short [,length]) - (ANSI) ====
 
+Returns 1 if the string short is strictly equal to the leading charcaters of the string long , and returns 0 (zero) otherwise. The minimum length which short must have, can be specified as length . If length is unspecified, length is set to the length of short. The nullstring is an abbreviation of any string.
 
-                    ARG() at the main level (not in subroutines and functions) is dependent on how your implementation handles and parses the parameters it got from the operating system. It is also
+Note that this function is case sensitive, and that leading and trailing spaces are not stripped off before the two strings are compared.
 
-                    dependent on whether the user specifies the -a command line switch.
+| ABBREV('Foobar','Foo') | 1 |
+| ABBREV('Foobar','Foo',4) | 0 /*Too short */ |
+| ABBREV('Foobar','foo') | 0 /*Different case */ |
+| ABBREV('Foobar','',0) | 1 /* '' matches any string */ |
+| ABBREV('','anything',0) | 0 /* nothing matches '' */ |
 
-
-                    BITAND(), BITOR() and BITXOR() are dependent on the character set of your machine. Seemingly identical parameters will in general return very different results on ASCII and EBCDIC machines. Results will be identical if the parameter was given to these functions as a binary or hexadecimal literal.
-
-
-                    C2X(), C2D(), D2C() and X2C() will be affected by the character set of your computer since they convert to or from characters. Note that if C2X() and C2D() get their first parameter as a binary or hexadecimal literal, the result will be unaffected by the machine type. Also note that the functions B2X(), X2B(), X2D() and D2X() are not affected by the character set, since they do not use character representation.
-
-
-                    CHARIN(), CHAROUT(), CHARS(), LINEIN(), LINEOUT(), LINES() and STREAM()
-
-                    are the interface to the file system. They might have system dependent peculiarities in several ways. Firstly, the naming of streams is very dependent on the operating system. Secondly, the operation of stream is very dependent on both the operating system and the implementation. You can safely assume very little about how streams behave, so carefully read the documentation for your particular implementation.
-
-
-                    CONDITION() is dependent on the condition system, which in turn depends on such implementation dependent things as file I/O and execution of commands. Although the general operation of this function will be fairly equal among systems, the details may differ.
-
-
-                    DATATYPE() and TRANSLATE() know how to recognize upper and lower case letters, and how to transform letters to upper case. If your Rexx implementation supports national character sets, the operation of these two functions will depend on the language chosen.
-
-
-                    DATE() has the options Month, Weekday and Normal, which produce the name of the day or month in text. Depending on how your implementation handles national character sets, the result from these functions might use the correct spelling of the currently chosen language.
-
-
-                    DELWORD(), SUBWORD(), WORD(), WORDINDEX(), WORDLENGTH(), WORDPOS() and
-
-                    WORDS() requires the concept of a "word", which is defined as a non-blank characters separated by blanks. However, the interpretation of what is a blank character depends upon the implementation.
-
-
-                    ERRORTEXT() might have slightly different wordings, depending on the implementation, but the meaning and numbering should be the same. However, note that some implementations may have additional error messages, and some might not follow the standard numbering. Error messages may also be returned in the user's native language.
-
-
-                    QUEUED() refers to the system specific concept of a "stack", which is either internal or external to the implementation. The result of this function may therefore be dependent on how the stack is implemented on your system.
-
-
-                    RANDOM() will differ from machine to machine, since the algorithm is implementation dependent. If you set the seed, you can safely assume that the same interpreter under the same operating system and on the same hardware platform will return a reproducible sequence. But if
-
-                    you change to another interpreter, another machine or even just another version of the operating system, the same seed might not give the same pseudo-random sequence.
-
-
-                    SOURCELINE() has been changed between Rexx language level 3.50 and 4.00. In 4.00 it can return 0 if the Rexx implementation finds it necessary, and any request for a particular line may get a nullstring as result. Before assuming that this function will return anything useful, consult the documentation.
-
-
-                    TIME() will differ somewhat on different machines, since it is dependent on the underlying operating system to produce the timing information. In particular, the granularity and accuracy of this information may vary.
-
-
-                    VALUE() will be dependent on implementation and operating system if it is called with its third parameter specified. Consult the implementation specific documentation for more information about how each implementation handles this situation.
-
-
-                    XRANGE() will return a string, which contents will be dependent on the character set used by your computer. You can safely make very few assumptions about the visual representation, the length, or the character order of the string returned by this function.
-
-
-                    The built-in functions marked as AREXX are available by default on Amiga and AROS systems, but the AREXX_BIFS OPTION is required on other system to make these functions available.
-
-
-                    As you can see, even Rexx interpreters that are within the standard can differ quite a lot in the builtin functions. Although the points listed above seldom are any problem, you should never assume anything about them before you have read the implementation specific documentation. Failure to do so will give you surprises sooner or later.
-
-
-                    And, by the way, many implementations (probably the majority) do not follow the standard completely. So, in fact, you should never assume anything at all. Sorry ...
-
-                Blanks vs. Spaces ‌
-
-                Note that the description differs between "blanks" and the <space> character. A blank is any character that might be used as "whitespace" to separate text into groups of characters. The <space> character is only one of several possible blanks. When this text says "blank" it means any one from a set of characters that are used to separate visual characters into words. When this text says
-
-                <space>, it means one particular blank, that which is generally bound to the space bar on a normal computer keyboard.
-
-
-                All implementation can be trusted to treat the <space> character as blank. Additional characters that might be interpreted as blanks (and are treated as such by Regina) are <tab> (horizontal tabulator), <ff> (formfeed), <vt> (vertical tabulator), <nl> (newline) and <cr> (carriage return). The interpretation of what is blank will vary between machines, operating systems and interpreters. If you are using support for national character sets, it will even depend on the language selected. So be sure to check the documentation before you assume anything about blank characters.
-
-
-                Some implementations use only one blank character, and perceives the set of blank characters as equivalent to the <space> character. This will depend on the implementation, the character set, the customs of the operating system and various other reasons.
-            Regina Built-in Functions
-
-            Below follows an in depth description of all the functions in the library of built-in functions. Note that all functions in this section are available on all ports of Regina. Each function is designated as being part of the ANSI standard, or from other implementations. Following sections describe those built-in functions that are available on specific ports of Regina, or when Regina is built with certain switches.
-
-
-            ABBREV(long, short [,length]) - (ANSI) Returns 1 if the string short is strictly equal to the leading charcaters of the string long , and returns 0 (zero) otherwise. The minimum length which short must have, can be specified as length . If length is unspecified, length is set to the length of short. The nullstring is an abbreviation of any string.
-
-
-            Note that this function is case sensitive, and that leading and trailing spaces are not stripped off before the two strings are compared.
-
-
-            ABBREV('Foobar','Foo')
-            	
-
-            1
-
-            ABBREV('Foobar','Foo',4)
-            	
-
-            0 /*Too short */
-
-            ABBREV('Foobar','foo')
-            	
-
-            0 /*Different case */
-
-            ABBREV('Foobar','',0)
-            	
-
-            1 /* '' matches any string */
-
-            ABBREV('','anything',0)
-            	
-
-            0 /* nothing matches '' */
-
-
-            ABS(number) - (ANSI) Returns the absolute value of the number , which can be any valid Rexx number. Note that the result will be normalized according to the current NUMERIC settings.
+==== ABS(number) - (ANSI) ====
+ Returns the absolute value of the number , which can be any valid Rexx number. Note that the result will be normalized according to the current NUMERIC settings.
 
 
             ABS(-42)
@@ -3313,7 +3242,8 @@ Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. 
             100
 
 
-            ADDRESS([option]) - (ANSI)
+==== ADDRESS([option]) - (ANSI) ====
+
 
             Returns the current default environment to which commands are sent or optionally specific details about the targets of command input/output and errors. The value is set with the ADDRESS clause, for more information, see documentation on that clause.
 
@@ -3387,7 +3317,8 @@ Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. 
             APPEND STREAM my.err
 
 
-            ARG([argno [,option]]) - (ANSI) Returns information about the arguments of the current procedure level. For subroutines and functions it will refer to the arguments with which they were called. For the "main" program it will refer to the arguments used when the Rexx interpreter was called.
+==== ARG([argno [,option]]) - (ANSI) ====
+ Returns information about the arguments of the current procedure level. For subroutines and functions it will refer to the arguments with which they were called. For the "main" program it will refer to the arguments used when the Rexx interpreter was called.
 
 
             Note that under some operating systems, Rexx scripts are run by starting the Rexx interpreter as a program, giving it the name of the script to be executed as parameter. Then the Rexx interpreter might process the command line and "eat" some or all of the arguments and options. Therefore, the result of this function at the main level is implementation dependent. The parts of the command line which are not available to the Rexx script might for instance be the options and arguments meaningful only to the interpreter itself.
@@ -3468,7 +3399,8 @@ Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. 
             1
 
 
-            B2C(binstring) - (AREXX) Converts a string of binary digits(0,1)into the corresponding(packed)character representation. The conversion is the same as though the argument string had been specified as a literal binary string(e.g. '1010'B). Blanks are permitted in the string,but only at byte boundaries. This function is particularly useful for creating strings that are to be used as bit masks.
+==== B2C(binstring) - (AREXX) ====
+ Converts a string of binary digits(0,1)into the corresponding(packed)character representation. The conversion is the same as though the argument string had been specified as a literal binary string(e.g. '1010'B). Blanks are permitted in the string,but only at byte boundaries. This function is particularly useful for creating strings that are to be used as bit masks.
 
 
             B2C('00110011')
@@ -3482,7 +3414,8 @@ Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. 
             'A'
 
 
-            B2X(binstring) - (ANSI) Takes a parameter which is interpreted as a binary string, and returns a hexadecimal string which represent the same information. Binstring can only contain the binary digits 0 and 1 . To increase readability, blanks may be included in binstring to group the digits into groups. Each such group must have a multiple of four binary digits, except from the first group. If the number of binary digits in the first group is not a multiple of four, that group is padded at the left with up to three leading zeros, to make it a multiple of four. Blanks can only occur between binary digits, not as leading or trailing characters.
+==== B2X(binstring) - (ANSI) ====
+ Takes a parameter which is interpreted as a binary string, and returns a hexadecimal string which represent the same information. Binstring can only contain the binary digits 0 and 1 . To increase readability, blanks may be included in binstring to group the digits into groups. Each such group must have a multiple of four binary digits, except from the first group. If the number of binary digits in the first group is not a multiple of four, that group is padded at the left with up to three leading zeros, to make it a multiple of four. Blanks can only occur between binary digits, not as leading or trailing characters.
 
 
             Each group of four binary digits is translated into on hexadecimal digit in the output string. There will be no extra blanks in the result, and the upper six hexadecimal digits are in upper case.
@@ -3503,7 +3436,9 @@ Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. 
             '243'
 
 
-            BEEP(frequency [,duration]) - (OS/2) Sounds the machine's bell. The frequency and duration (in milliseconds) of the tone are specified. If no duration value is specified, it defaults to 1. Not all operating systems can sound their bells with the given specifications.
+==== BEEP(frequency [,duration]) - (OS/2) ====
+
+ Sounds the machine's bell. The frequency and duration (in milliseconds) of the tone are specified. If no duration value is specified, it defaults to 1. Not all operating systems can sound their bells with the given specifications.
 
 
             BEEP(50,1000)
@@ -3511,7 +3446,8 @@ Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. 
 
 
 
-            BITAND(string1 [,[string2] [,padchar]]) - (ANSI) Returns the result from bytewise applying the operator AND to the characters in the two strings string1 and string2 . Note that this is not the logical AND operation, but the bitwise AND operation. String2 defaults to a nullstring. The two strings are left-justified; the first characters in both strings will be AND'ed, then the second characters and so forth.
+==== BITAND(string1 [,[string2] [,padchar]]) - (ANSI) ====
+ Returns the result from bytewise applying the operator AND to the characters in the two strings string1 and string2 . Note that this is not the logical AND operation, but the bitwise AND operation. String2 defaults to a nullstring. The two strings are left-justified; the first characters in both strings will be AND'ed, then the second characters and so forth.
 
 
             The behavior of this function when the two strings do not have equal length is defined by the padchar character. If it is undefined, the remaining part of the longer string is appended to the result after all characters in the shorter string have been processed. If padchar is defined, each char in the remaining part of the longer string is logically AND'ed with the padchar (or rather, the shorter string is padded on the right length, using padchar).
@@ -3535,7 +3471,8 @@ Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. 
             '101450'x
 
 
-            BITCHG(string, bit) - (AREXX) Changes the state of the specified bit in the argument string . Bit numbers are defined such that bit 0 is the low-order bit of the rightmost byte of the string.
+==== BITCHG(string, bit) - (AREXX) ====
+ Changes the state of the specified bit in the argument string . Bit numbers are defined such that bit 0 is the low-order bit of the rightmost byte of the string.
 
 
             BITCHG('0313'x,4)
@@ -3544,7 +3481,8 @@ Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. 
             '0303'x
 
 
-            BITCLR(string, bit) - (AREXX) Clears (sets to zero) the specified bit in the argument string . Bit numbers are defined such that bit 0 is the low-order bit of the rightmost byte of the string.
+==== BITCLR(string, bit) - (AREXX) ====
+ Clears (sets to zero) the specified bit in the argument string . Bit numbers are defined such that bit 0 is the low-order bit of the rightmost byte of the string.
 
 
             BITCLR('0313'x,4)
@@ -3553,7 +3491,8 @@ Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. 
             '0303'x
 
 
-            BITCOMP(string1, string2, bit [,pad]) - (AREXX) Compares the argument strings bit-by-bit,starting at bit number 0. The returned value is the bit number of the first bit in which the strings differ,or -1 if the strings are identical.
+==== BITCOMP(string1, string2, bit [,pad]) - (AREXX) ====
+ Compares the argument strings bit-by-bit,starting at bit number 0. The returned value is the bit number of the first bit in which the strings differ,or -1 if the strings are identical.
 
             BITCOMP('7F'x,'FF'x)
             	
@@ -3566,7 +3505,8 @@ Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. 
             '-1'
 
 
-            BITOR(string1 [, [string2] [,padchar]]) - (ANSI) Returns the result from bytewise applying the operator OR to the characters in the two strings string1 and string2 . Note that this is not the logical OR operation, but the bitwise OR operation.
+==== BITOR(string1 [, [string2] [,padchar]]) - (ANSI) ====
+ Returns the result from bytewise applying the operator OR to the characters in the two strings string1 and string2 . Note that this is not the logical OR operation, but the bitwise OR operation.
 
             String2 defaults to a nullstring. The two strings are left-justified; the first characters in both strings will be OR'ed, then the second characters and so forth.
 
@@ -3607,7 +3547,8 @@ Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. 
             'pqrs' /* ASCII */
 
 
-            BITSET(string, bit) - (AREXX) Sets the specified bit in the argument string to 1. Bit numbers are defined such that bit 0 is the low-order bit of the rightmost byte of the string.
+==== BITSET(string, bit) - (AREXX) ====
+ Sets the specified bit in the argument string to 1. Bit numbers are defined such that bit 0 is the low-order bit of the rightmost byte of the string.
 
 
             BITSET('0313'x,2)
@@ -3629,7 +3570,8 @@ Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. 
             '1'
 
 
-            BITXOR(string1[, [string2] [,padchar]]) - (ANSI) Works like BITAND() , except that the logical function XOR (exclusive OR) is used instead of AND. For more information see BITAND() .
+==== BITXOR(string1[, [string2] [,padchar]]) - (ANSI) ====
+ Works like BITAND() , except that the logical function XOR (exclusive OR) is used instead of AND. For more information see BITAND() .
 
 
             BITXOR('123456'x,'3456'x)
@@ -3647,7 +3589,8 @@ Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. 
 
             '2662A6'x
 
-            BUFTYPE() - (CMS)
+==== BUFTYPE() - (CMS) ====
+
 
             This function is used for displaying the contents of the stack. It will display both the string and
 
@@ -3676,7 +3619,8 @@ Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. 
             ==> End of Stack
 
 
-            C2B(string) - (AREXX)
+==== C2B(string) - (AREXX) ====
+
 
             Converts the supplied string into the equivalent string of binary digits.
 
@@ -3687,7 +3631,8 @@ Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. 
             '011000010110001001100011'
 
 
-            C2D(string [,length]) - (ANSI)
+==== C2D(string [,length]) - (ANSI) ====
+
 
             Returns a whole number, which is the decimal representation of the packed string string, interpreted as a binary number. If length (which must be a non-negative whole number) is specified, it denotes the number of characters in string to be converted, and string is interpreted as a two's complement representation of a binary number, consisting of the length rightmost characters in string. If length is not specified, string is interpreted as an unsigned number.
 
@@ -3754,7 +3699,8 @@ Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. 
             '-128'
 
 
-            C2X(string) - (ANSI) Returns a string of hexadecimal digits that represents the character string string . Converting is done bytewise, the six highest hexadecimal digits are in uppercase, and there are no blank characters in the result Leading zeros are not stripped off in the result. Note that the behavior of this function is dependent on the character set that your computer is running (e.g. ASCII or EBCDIC).
+==== C2X(string) - (ANSI) ====
+ Returns a string of hexadecimal digits that represents the character string string . Converting is done bytewise, the six highest hexadecimal digits are in uppercase, and there are no blank characters in the result Leading zeros are not stripped off in the result. Note that the behavior of this function is dependent on the character set that your computer is running (e.g. ASCII or EBCDIC).
 
 
             C2X('ffff'x)
@@ -3781,7 +3727,8 @@ Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. 
             CD(directory) - (REGINA)
 
 
-            CHDIR(directory) - (REGINA)
+==== CHDIR(directory) - (REGINA) ====
+
 
             Changes the current process's directory to the directory specified. A more portable, though non-standard alternative is to use the DIRECTORY BIF.
 
@@ -3792,10 +3739,12 @@ Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. 
             /* new directory now /tmp/aa */
 
 
-            CENTER(string, length [, padchar ] ) - (ANSI)
+==== CENTER(string, length [, padchar ] ) - (ANSI) ====
 
 
-            CENTRE(string, length [, padchar ] ) - (ANSI)
+
+==== CENTRE(string, length [, padchar ] ) - (ANSI) ====
+
 
             This function has two names, to support both American and British spelling. It will center string in a string total of length length characters. If length (which must be a non-negative whole number) is greater than the length of string, string is padded with padchar or <space> if padchar is unspecified. If length is smaller than the length of string character will be removed.
 
@@ -3828,7 +3777,8 @@ Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. 
             '**Foobar**'
 
 
-            CHANGESTR(needle, haystack, newneedle ) - (ANSI) The purpose of this function is to replace all occurrences of needle in the string haystack with newneedle . The function returns the changed string.
+==== CHANGESTR(needle, haystack, newneedle ) - (ANSI) ====
+ The purpose of this function is to replace all occurrences of needle in the string haystack with newneedle . The function returns the changed string.
 
 
             If haystack does not contain needle, then the original haystack is returned.
@@ -3885,7 +3835,8 @@ Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. 
             'zdefzcdzd'
 
 
-            CHARIN([streamid] [,[start] [,length]]) - (ANSI) This function will in general read characters from a stream, and return a string containing the characters read. The streamid parameter names a particular stream to read from. If it is unspecified, the default input stream is used.
+==== CHARIN([streamid] [,[start] [,length]]) - (ANSI) ====
+ This function will in general read characters from a stream, and return a string containing the characters read. The streamid parameter names a particular stream to read from. If it is unspecified, the default input stream is used.
 
 
             The start parameter specifies a character in the stream, on which to start reading. Before anything is read, the current read position is set to that character, and it will be the first character read. If start is unspecified, no repositioning will be done. Independent of any conventions of the operating system, the first character in a stream is always numbered 1. Note that transient streams do not allow repositioning, and an error is reported if the start parameter is specified for a transient stream.
@@ -3923,7 +3874,8 @@ Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. 
             's is t'
 
 
-            CHAROUT([streamid] [,[string] [,start]]) - (ANSI) In general this function will write string to a streamid . If streamid is not specified the default output stream will be used.
+==== CHAROUT([streamid] [,[string] [,start]]) - (ANSI) ====
+ In general this function will write string to a streamid . If streamid is not specified the default output stream will be used.
 
 
             If start is specified, the current write position will be set to the startth character in streamid, before any writing is done. Note that the current write position can not be set for transient streams, and attempts to do so will report an error. Independent of any conventions that the operating system might have, the first character in the stream is numbered 1. If start is not specified, the current write position will not be changed before writing.
@@ -3954,7 +3906,8 @@ Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. 
             '0'
 
 
-            CHARS([streamid]) - (ANSI) Returns the number of characters left in the named streamid , or the default input stream if streamid is unspecified. For transient streams this will always be either 1 if more characters are available, or 0 if the End-Of-File condition has been met. For persistent streams the number of remaining bytes in the file will be possible to calculate and the true number of remaining bytes will be returned.
+==== CHARS([streamid]) - (ANSI) ====
+ Returns the number of characters left in the named streamid , or the default input stream if streamid is unspecified. For transient streams this will always be either 1 if more characters are available, or 0 if the End-Of-File condition has been met. For persistent streams the number of remaining bytes in the file will be possible to calculate and the true number of remaining bytes will be returned.
 
 
             However, on some systems, it is difficult to calculate the number of characters left in a persistent
@@ -3978,7 +3931,8 @@ Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. 
             '94' /* maybe */
 
 
-            CLOSE(file) - (AREXX)
+==== CLOSE(file) - (AREXX) ====
+
 
             Closes the file specified by the given logical name. The returned value is a boolean success flag, and will be 1 unless the specified file was not open. Use OPTIONS AREXX_SEMANTICS for the AREXX behaviour to be executed.
 
@@ -3989,7 +3943,8 @@ Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. 
             '1'
 
 
-            COMPARE(string1, string2 [,padchar]) - (ANSI) This function will compare string1 to string2 , and return a whole number which will be 0 if they are equal, otherwise the position of the first character at which the two strings differ is returned. The comparison is case-sensitive, and leading and trailing space do matter.
+==== COMPARE(string1, string2 [,padchar]) - (ANSI) ====
+ This function will compare string1 to string2 , and return a whole number which will be 0 if they are equal, otherwise the position of the first character at which the two strings differ is returned. The comparison is case-sensitive, and leading and trailing space do matter.
 
 
             If the strings are of unequal length, the shorter string will be padded at the right hand end with the padchar character to the length of the longer string before the comparison. If a padchar is not specified, <space> is used.
@@ -4016,7 +3971,8 @@ Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. 
             '0'
 
 
-            COMPRESS(string [,list]) - (AREXX) If the list argument is omitted,the function removes leading,trailing,or embedded blank characters from the string argument. If the optional list is supplied, it specifies the characters to be removed from the string .
+==== COMPRESS(string [,list]) - (AREXX) ====
+ If the list argument is omitted,the function removes leading,trailing,or embedded blank characters from the string argument. If the optional list is supplied, it specifies the characters to be removed from the string .
 
 
             COMPRESS(' why not ')
@@ -4030,7 +3986,8 @@ Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. 
             '1234'
 
 
-            CONDITION([option]) - (ANSI)
+==== CONDITION([option]) - (ANSI) ====
+
 
             Returns information about the current trapped condition. A condition becomes the current trapped condition when a condition handler is called (by CALL or SIGNAL) to handle the condition. The parameter option specifies what sort of information to return:
 
@@ -4066,7 +4023,8 @@ Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. 
             For more information on conditions, consult the chapter Conditions. Note that condition may in several ways be dependent on the implementation and system, so read system and implementation dependent information too.
 
 
-            COPIES(string, copies) - (ANSI) Returns a string with copies concatenated copies of string . Copies must be a non-negative whole number. No extra space is added between the copies.
+==== COPIES(string, copies) - (ANSI) ====
+ Returns a string with copies concatenated copies of string . Copies must be a non-negative whole number. No extra space is added between the copies.
 
 
             COPIES('Foo',3)
@@ -4090,7 +4048,8 @@ Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. 
             ''
 
 
-            COUNTSTR(needle, haystack) - (ANSI)
+==== COUNTSTR(needle, haystack) - (ANSI) ====
+
 
             Returns a count of the number of occurrences of needle in haystack that do not overlap.
 
@@ -4141,7 +4100,8 @@ Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. 
             3
 
 
-            CRYPT(string, salt) - (REGINA) Encrypts the given string using the supplied salt and returns the encrypted string. Only the first two characters of salt are used. Not all operating systems support encryption, and on these platforms, the string is returned unchanged. It is also important to note that the encrypted string is not portable
+==== CRYPT(string, salt) - (REGINA) ====
+ Encrypts the given string using the supplied salt and returns the encrypted string. Only the first two characters of salt are used. Not all operating systems support encryption, and on these platforms, the string is returned unchanged. It is also important to note that the encrypted string is not portable
 
             between platforms.
 
@@ -4152,7 +4112,8 @@ Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. 
             '1xYwPPWI1zRJs' /* maybe */
 
 
-            DATATYPE(string [,option]) - (ANSI) With only one parameter, this function identifies the "datatype" of string . The value returned will be " NUM " if string is a valid Rexx number. Otherwise, " CHAR " is returned. Note that the interpretation of whether string is a valid number will depend on the current NUMERIC settings.
+==== DATATYPE(string [,option]) - (ANSI) ====
+ With only one parameter, this function identifies the "datatype" of string . The value returned will be " NUM " if string is a valid Rexx number. Otherwise, " CHAR " is returned. Note that the interpretation of whether string is a valid number will depend on the current NUMERIC settings.
 
 
             If option is specified too, it will check if string is of a particular datatype, and return either "1" or "0" depending on whether string is or is not, respectively, of the specified datatype. The possible values of option are:
@@ -4297,7 +4258,8 @@ Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. 
             '1'
 
 
-            DATE([opt_out [,date [,opt_in[,sep_out[,sep_in]]]]]) - (ANSI+) This function returns information relating to the current local date. If the opt_out character is specified, it will set the format of the return string. The default value for opt_out is " N ".
+==== DATE([opt_out [,date [,opt_in[,sep_out[,sep_in]]]]]) - (ANSI+) ====
+ This function returns information relating to the current local date. If the opt_out character is specified, it will set the format of the return string. The default value for opt_out is " N ".
 
 
             Possible options are:
@@ -4539,7 +4501,8 @@ Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. 
             The sep_out and sep_in options are extensions to the ANSI standard originally provided by Object Rexx.
 
 
-            DELSTR(string, start [,length]) - (ANSI) Returns string , after the substring of length length starting at position start has been removed. The default value for length is the rest of the string. Start must be a positive whole number, while length must be a non-negative whole number. It is not an error if start or length (or a combination of them) refers to more characters than string holds
+==== DELSTR(string, start [,length]) - (ANSI) ====
+ Returns string , after the substring of length length starting at position start has been removed. The default value for length is the rest of the string. Start must be a positive whole number, while length must be a non-negative whole number. It is not an error if start or length (or a combination of them) refers to more characters than string holds
 
 
             DELSTR('Foobar',4)
@@ -4563,7 +4526,8 @@ Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. 
             'Foobar'
 
 
-            DELWORD(string,start[,length]) (ANSI) Removes length words and all blanks between them, from string , starting at word number start . The default value for length is the rest of the string. All consecutive spaces immediately after the last deleted word, but no spaces before the first deleted word is removed. Nothing is removed if length is zero.
+==== DELWORD(string,start[,length]) (ANSI) ====
+ Removes length words and all blanks between them, from string , starting at word number start . The default value for length is the rest of the string. All consecutive spaces immediately after the last deleted word, but no spaces before the first deleted word is removed. Nothing is removed if length is zero.
 
 
             The valid range of start is the positive whole numbers; the first word in string is numbered 1. The valid range of length is the non-negative integers. It is not an error if start or length (or a combination of them) refers to more words than string holds.
@@ -4626,7 +4590,8 @@ Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. 
             'test' /*No leading space*/
 
 
-            DESBUF() - (CMS)
+==== DESBUF() - (CMS) ====
+
 
             This function removes all buffers on the stack, it is really just a way of clearing the whole stack for buffers as well as strings. Functionally, it is equivalent to executing DROPBUF with a parameter of
 
@@ -4638,7 +4603,8 @@ Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. 
 
             0
 
-            DIGITS() - (ANSI)
+==== DIGITS() - (ANSI) ====
+
 
             Returns the current precision of arithmetic operations. This value is set using the NUMERIC DIGITS statement. For more information, refer to the documentation on NUMERIC DIGITS.
 
@@ -4649,7 +4615,8 @@ Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. 
             '9' /* Maybe */
 
 
-            DIRECTORY([new directory]) - (OS/2) Returns the current directory for the running process, and optionally changes directory to the specified new directory . If the new directory exists, and the change to new directory succeeds, the new directory is returned. If the new directory does not exist or an error occurred changing to that new directory , the empty string is returned.
+==== DIRECTORY([new directory]) - (OS/2) ====
+ Returns the current directory for the running process, and optionally changes directory to the specified new directory . If the new directory exists, and the change to new directory succeeds, the new directory is returned. If the new directory does not exist or an error occurred changing to that new directory , the empty string is returned.
 
 
             DIRECTORY()
@@ -4663,7 +4630,8 @@ Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. 
             'c:\temp' /* Maybe */
 
 
-            D2C(integer [,length]) - (ANSI) Returns a (packed) string, that is the character representation of integer , which must be a whole number, and is governed by the settings of NUMERIC DIGITS , not of the internal precision of the built-in functions. If length is specified the string returned will be length bytes long, with sign extension. If length (which must be a non-negative whole number) is not large enough to hold the result, an error is reported.
+==== D2C(integer [,length]) - (ANSI) ====
+ Returns a (packed) string, that is the character representation of integer , which must be a whole number, and is governed by the settings of NUMERIC DIGITS , not of the internal precision of the built-in functions. If length is specified the string returned will be length bytes long, with sign extension. If length (which must be a non-negative whole number) is not large enough to hold the result, an error is reported.
 
 
             If length is not specified, integer will be interpreted as an unsigned number, and the result will have no leading <nul> characters. If integer is negative, it will be interpreted as a two's complement, and length must be specified.
@@ -4705,7 +4673,8 @@ Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. 
             'fffff5'x
 
 
-            D2X(integer [,length]) - (ANSI) Returns a hexadecimal number that is the hexadecimal representation of integer . If integer is not a whole number under the current settings of NUMERIC DIGITS , and STRICT_ANSI option is in effect, Error 40.35 is reported.
+==== D2X(integer [,length]) - (ANSI) ====
+ Returns a hexadecimal number that is the hexadecimal representation of integer . If integer is not a whole number under the current settings of NUMERIC DIGITS , and STRICT_ANSI option is in effect, Error 40.35 is reported.
 
 
             If length is not specified, then integer must be non-negative, and the result will be stripped of any leading zeros.
@@ -4759,7 +4728,8 @@ Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. 
             '038'
 
 
-            DROPBUF([number]) - (CMS)
+==== DROPBUF([number]) - (CMS) ====
+
 
             This function will remove zero or more buffers from the stack. Called without a parameter, it will remove the topmost buffer from the stack, provided that there were at least one buffer in the stack. If there were no buffers in the stack, it will remove all strings in the stack, i.e. remove the zeroth buffer.
 
@@ -4789,7 +4759,8 @@ Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. 
             4 /* if there where 5 buffers */
 
 
-            EOF(file) - (AREXX)
+==== EOF(file) - (AREXX) ====
+
 
             Checks the specified logical file name and returns the boolean value 1(True) if the end-of-file has been reached, and 0(False)otherwise. Use OPTIONS AREXX_SEMANTICS for the AREXX behaviour to be executed.
 
@@ -4799,7 +4770,8 @@ Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. 
 
             '1' /* maybe */
 
-            ERRORTEXT(errorno [, lang]) - (ANSI) Returns the Rexx error message associated with error number errorno . If the lang character is specified, it will determine the native language in which the error message is returned. The default value for lang is " N ".
+==== ERRORTEXT(errorno [, lang]) - (ANSI) ====
+ Returns the Rexx error message associated with error number errorno . If the lang character is specified, it will determine the native language in which the error message is returned. The default value for lang is " N ".
 
 
             Possible options are:
@@ -4888,7 +4860,8 @@ Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. 
             Unknown error /* system errno 677 */
 
 
-            EXISTS(filename) - (AREXX) Tests whether the specified name of the given filename exists. The filename string may include any portion of a full file path specification. Note that the argument is not a logical file name used in other ARexx file functions. A more portable equivalent of this is to use the 'QUERY EXISTS' command of the STREAM BIF.
+==== EXISTS(filename) - (AREXX) ====
+ Tests whether the specified name of the given filename exists. The filename string may include any portion of a full file path specification. Note that the argument is not a logical file name used in other ARexx file functions. A more portable equivalent of this is to use the 'QUERY EXISTS' command of the STREAM BIF.
 
 
             EXISTS('c:\temp\infile.txt')
@@ -4897,7 +4870,8 @@ Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. 
             '1' /* maybe */
 
 
-            EXPORT(address, [string], [length] [,pad]) - (AREXX) Copies data from the (optional) string into a previously-allocated memory area, which must be specified as a 4-byte address . The length parameter specifies the maximum number of characters to be copied; the default is the length of the string. If the specified length is longer than the string, the remaining area is filled with the pad character or nulls('00'x). The returned value is the number
+==== EXPORT(address, [string], [length] [,pad]) - (AREXX) ====
+ Copies data from the (optional) string into a previously-allocated memory area, which must be specified as a 4-byte address . The length parameter specifies the maximum number of characters to be copied; the default is the length of the string. If the specified length is longer than the string, the remaining area is filled with the pad character or nulls('00'x). The returned value is the number
 
             of characters copied.
 
@@ -4914,7 +4888,8 @@ Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. 
             '10'
 
 
-            FILESPEC(option, filespec) - (OS/2)
+==== FILESPEC(option, filespec) - (OS/2) ====
+
 
             Returns the specified portion of a passed filespec, depending on the option passed. Possible options are:
 
@@ -4964,7 +4939,8 @@ Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. 
 
             '/usr/bin/'
 
-            FIND(string, phrase) - (CMS) Searches string for the first occurrence of the sequence of blank-delimited words phrase , and return the word number of the first word of phrase in string . Multiple blanks between words are treated as a single blank for the comparison. Returns 0 if phrase not found. Deprecated: see WORDPOS().
+==== FIND(string, phrase) - (CMS) ====
+ Searches string for the first occurrence of the sequence of blank-delimited words phrase , and return the word number of the first word of phrase in string . Multiple blanks between words are treated as a single blank for the comparison. Returns 0 if phrase not found. Deprecated: see WORDPOS().
 
 
             FIND('now is the time','is the time')
@@ -4995,7 +4971,8 @@ Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. 
             0
 
 
-            FORK() - (REGINA)
+==== FORK() - (REGINA) ====
+
 
             This function spawns a new process as a child of the current process at the current point in the program where FORK is called. The program then continues from this point as two separate processes; the parent and the child. FORK returns 0 to the child process, and the process id of the child process spawned to the parent (always non-zero). A negative return value indicates an error while attempting to create the new process. FORK is not available on all platforms. If FORK is not supported, it will always return '1'. It is safe to assume that a return value of '1' means that FORK is not supported. All platforms AFAIK, will never return '1' as a child process id; that number is usually reserved for the first process that starts on a machine.
 
@@ -5011,7 +4988,8 @@ Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. 
             '3456' /* maybe to parent */
 
 
-            FORM() - (ANSI)
+==== FORM() - (ANSI) ====
+
 
             Returns the current "form", in which numbers are presented when exponential form is used. This might be either SCIENTIFIC (the default) or ENGINEERING. This value is set through the NUMERIC FORM clause. For more information, see the documentation on NUMERIC FORM.
 
@@ -5022,7 +5000,8 @@ Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. 
             'SCIENTIFIC' /* Maybe */
 
 
-            FORMAT(number [,[before] [,[after] [,[expp] [,[expt]]]]]) - (ANSI) This function is used to control the format of numbers, and you may request the size and format in which the number is written. The parameter number is the number to be formatted, and it must be a valid Rexx number. note that before any conversion or formatting is done, this number will be normalized according to the current NUMERIC settings.
+==== FORMAT(number [,[before] [,[after] [,[expp] [,[expt]]]]]) - (ANSI) ====
+ This function is used to control the format of numbers, and you may request the size and format in which the number is written. The parameter number is the number to be formatted, and it must be a valid Rexx number. note that before any conversion or formatting is done, this number will be normalized according to the current NUMERIC settings.
 
 
             The before and after parameters determines how many characters that are used before and after the decimal point, respectively. Note that before does not specify the number of digits in the integer part, it specifies the size of the field in which the integer part of the number is written. Remember to allocate space in this field for a minus too, if that is relevant. If the field is not long enough to hold the integer part (including a minus if relevant), an error is reported.
@@ -5102,7 +5081,8 @@ Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. 
             '12.34'
 
 
-            FREESPACE(address, length) - (AREXX) Returns a block of memory of the given length to the interpreter's internal pool. The address argument must be a 4-byte string obtained by a prior call to GETSPACE(),the internal allocator. It is not always necessary to release internally-allocated memory,since it will be released to the system when the program terminates. However,if a very large block has been allocated,returning it to the pool may avoid memory space problems. The return value is a boolean success flag.
+==== FREESPACE(address, length) - (AREXX) ====
+ Returns a block of memory of the given length to the interpreter's internal pool. The address argument must be a 4-byte string obtained by a prior call to GETSPACE(),the internal allocator. It is not always necessary to release internally-allocated memory,since it will be released to the system when the program terminates. However,if a very large block has been allocated,returning it to the pool may avoid memory space problems. The return value is a boolean success flag.
 
             See also GETSPACE()
 
@@ -5113,7 +5093,8 @@ Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. 
             '1'
 
 
-            FUZZ() - (ANSI)
+==== FUZZ() - (ANSI) ====
+
 
             Returns the current number of digits which are ignored when comparing numbers, during operations like = and >. The default value for this is 0. This value is set using the NUMERIC FUZZ statement, for more information see that.
 
@@ -5123,7 +5104,8 @@ Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. 
 
             '0' /* Maybe */
 
-            GETCALLER([level]) - (REGINA)
+==== GETCALLER([level]) - (REGINA) ====
+
 
             Returns the fully qualified file name of the Rexx program that called the current program. The optional argument level specifies the level in Regina's call stack you wish to query. The immediate level is 1, the level above that is 2, etc. If not specified level is 1. Where level exceeds Regina's call stack this function returns the empty string.
 
@@ -5149,7 +5131,8 @@ Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. 
             '' /* (Probably) */
 
 
-            GETCALLSTACK([stem]) - (REGINA)
+==== GETCALLSTACK([stem]) - (REGINA) ====
+
 
             If the optional argument stem is provided, populates that array with the contents of the current call stack. If no stem argument is provided the current call stack is sent to stderr. Each item in the array contains the line number from which the routine was called followed by the routine name.
 
@@ -5160,7 +5143,8 @@ Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. 
             '2' /* stack.0 (Maybe) */
 
 
-            GETENV(environmentvar) - (REGINA) Returns the value of the environment variable from the system. If this variable is not defined, a nullstring is returned. It is not possible to use this function to determine whether the variable was unset, or just set to the nullstring.
+==== GETENV(environmentvar) - (REGINA) ====
+ Returns the value of the environment variable from the system. If this variable is not defined, a nullstring is returned. It is not possible to use this function to determine whether the variable was unset, or just set to the nullstring.
 
 
             This function is now obsolete, instead you should use:
@@ -5169,7 +5153,8 @@ Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. 
             VALUE( environmentvar, ,'SYSTEM' )
 
 
-            GETPID() - (REGINA)
+==== GETPID() - (REGINA) ====
+
 
             Returns the process id of the currently running process.
 
@@ -5180,7 +5165,8 @@ Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. 
             '234' /* Maybe */
 
 
-            GETSPACE(length) - (AREXX)
+==== GETSPACE(length) - (AREXX) ====
+
 
             Allocates a block of memory of the specified length from the interpreter's internal pool. The returned value is the 4-byte address of the allocated block, which is not cleared or otherwise initialized. Internal memory is automatically returned to the system when the Rexx program terminates,so this function
 
@@ -5193,7 +5179,8 @@ Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. 
             '0003BF40' /* maybe */
 
 
-            GETTID() - (REGINA)
+==== GETTID() - (REGINA) ====
+
 
             Returns the thread id of the currently running process.
 
@@ -5203,7 +5190,8 @@ Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. 
 
             '2' /* Maybe */
 
-            HASH(string) - (AREXX) Returns the hash attribute of a string as a decimal number,and updates the internal hash value of the string.
+==== HASH(string) - (AREXX) ====
+ Returns the hash attribute of a string as a decimal number,and updates the internal hash value of the string.
 
 
             HASH('1')
@@ -5212,7 +5200,8 @@ Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. 
             '49'
 
 
-            IMPORT(address [,length]) - (AREXX) Creates a string by copying data from the specified 4-byte address . If the length parameter is not supplied,the copy terminates when a null byte is found.
+==== IMPORT(address [,length]) - (AREXX) ====
+ Creates a string by copying data from the specified 4-byte address . If the length parameter is not supplied,the copy terminates when a null byte is found.
 
             See also EXPORT()
 
@@ -5225,7 +5214,8 @@ Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. 
             'The answer' /* maybe */
 
 
-            INDEX(haystack, needle [,start]) - (CMS) Returns the character position of the string needle in haystack . If needle is not found, 0 is returned. By default the search starts at the first character of haystack ( start is 1). This can be overridden by giving a different start , which must be a positive, whole number. See POS function for an ANSI function that does the same thing.
+==== INDEX(haystack, needle [,start]) - (CMS) ====
+ Returns the character position of the string needle in haystack . If needle is not found, 0 is returned. By default the search starts at the first character of haystack ( start is 1). This can be overridden by giving a different start , which must be a positive, whole number. See POS function for an ANSI function that does the same thing.
 
 
             INDEX('abcdef','cd')
@@ -5254,7 +5244,8 @@ Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. 
             '0'
 
 
-            INSERT(string1, string2 [,position [,length [,padchar]]]) - (ANSI) Returns the result of inserting string1 into a copy of string2 . If position is specified, it marks the character in string2 which string1 it to be inserted after. Position must be a non-negative whole number, and it defaults to 0 , which means that string2 is put in front of the first character in string1 .
+==== INSERT(string1, string2 [,position [,length [,padchar]]]) - (ANSI) ====
+ Returns the result of inserting string1 into a copy of string2 . If position is specified, it marks the character in string2 which string1 it to be inserted after. Position must be a non-negative whole number, and it defaults to 0 , which means that string2 is put in front of the first character in string1 .
 
 
             If length is specified, string1 is truncated or padded on the right side to make it exactly length characters long before it is inserted. If padding occurs, then padchar is used, or <space> if padchar is undefined.
@@ -5291,7 +5282,8 @@ Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. 
             'SECOND first'
 
 
-            JUSTIFY(string, length [,pad]) - (CMS) Formats blank-delimited words in string , by adding pad characters between words to justify to both margins. That is, to width length ( length must be non-negative). The default pad character is a
+==== JUSTIFY(string, length [,pad]) - (CMS) ====
+ Formats blank-delimited words in string , by adding pad characters between words to justify to both margins. That is, to width length ( length must be non-negative). The default pad character is a
 
             blank.
 
@@ -5354,7 +5346,8 @@ Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. 
             'The++blue'
 
 
-            LASTPOS(needle, haystack [,start]) - (ANSI) Searches the string haystack for the string needle , and returns the position in haystack of the first character in the substring that matched needle . The search is started from the right side, so if needle occurs several times, the last occurrence is reported.
+==== LASTPOS(needle, haystack [,start]) - (ANSI) ====
+ Searches the string haystack for the string needle , and returns the position in haystack of the first character in the substring that matched needle . The search is started from the right side, so if needle occurs several times, the last occurrence is reported.
 
 
             If start is specified, the search starts at character number start in haystack. Note that the standard only states that the search starts at the startth character. It is not stated whether a match can partly be to the right of the start position, so some implementations may differ on that point.
@@ -5441,7 +5434,8 @@ Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. 
             0
 
 
-            LEFT(string, length [,padchar]) - (ANSI) Returns the length leftmost characters in string . If length (which must be a non-negative whole number) is greater than the length of string , the result is padded on the right with <space> (or padchar if that is specified) to make it the correct length.
+==== LEFT(string, length [,padchar]) - (ANSI) ====
+ Returns the length leftmost characters in string . If length (which must be a non-negative whole number) is greater than the length of string , the result is padded on the right with <space> (or padchar if that is specified) to make it the correct length.
 
 
             LEFT('Foo
@@ -5505,7 +5499,8 @@ Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. 
 
             '10'
 
-            LINEIN([streamid][,[line][,count]]) - (ANSI) Returns a line read from a file. When only streamid is specified, the reading starts at the current read position and continues to the first End-Of-Line (EOL) mark. Afterward, the current read position is set to the character after the EOL mark which terminated the read-operation. If the operating system uses special characters for EOL marks, these are not returned by as a part of the string read..
+==== LINEIN([streamid][,[line][,count]]) - (ANSI) ====
+ Returns a line read from a file. When only streamid is specified, the reading starts at the current read position and continues to the first End-Of-Line (EOL) mark. Afterward, the current read position is set to the character after the EOL mark which terminated the read-operation. If the operating system uses special characters for EOL marks, these are not returned by as a part of the string read..
 
 
             The default value for streamid is default input stream. The format and range of the string streamid
@@ -5554,7 +5549,8 @@ Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. 
             'Hi, there!' /* maybe */
 
 
-            LINEOUT([streamid] [,[string] [,line]]) - (ANSI) Returns the number of lines remaining after having positioned the stream streamid to the start of line line and written out string as a line of text. If streamid is omitted, the default output stream is used. If line (which must be a positive whole number) is omitted, the stream will not be repositioned before the write. If string is omitted, nothing is written to the stream. If string is specified, a system-specific action is taken after it has been written to stream, to mark a new line.
+==== LINEOUT([streamid] [,[string] [,line]]) - (ANSI) ====
+ Returns the number of lines remaining after having positioned the stream streamid to the start of line line and written out string as a line of text. If streamid is omitted, the default output stream is used. If line (which must be a positive whole number) is omitted, the stream will not be repositioned before the write. If string is omitted, nothing is written to the stream. If string is specified, a system-specific action is taken after it has been written to stream, to mark a new line.
 
 
             The format and contents of the first parameter will depend upon the implementation and how it names streams. Consult implementation-specific documentation for more information.
@@ -5598,7 +5594,8 @@ Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. 
             '0'
 
 
-            LINES([streamid] [,option]) - (ANSI) Returns 1 if there is at least one complete line remaining in the named file stream or 0 if no complete lines remain in the file. A complete line is not really as complete as the name might indicate; a complete line is zero or more characters, followed by an End-Of-Line (EOL) marker. So, if you have read half a line already, you still have a "complete" line left. Note that it is not defined what to do with a half-finished line at the end of a file. Some interpreters might interpret the End-Of-File as an implicit EOL mark too, while others might not.
+==== LINES([streamid] [,option]) - (ANSI) ====
+ Returns 1 if there is at least one complete line remaining in the named file stream or 0 if no complete lines remain in the file. A complete line is not really as complete as the name might indicate; a complete line is zero or more characters, followed by an End-Of-Line (EOL) marker. So, if you have read half a line already, you still have a "complete" line left. Note that it is not defined what to do with a half-finished line at the end of a file. Some interpreters might interpret the End-Of-File as an implicit EOL mark too, while others might not.
 
 
             The format and contents of the stream streamid is system and implementation dependent. If omitted, the default input stream will be used.
@@ -5684,7 +5681,8 @@ Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. 
             */
 
 
-            LOWER(string [,start [,length [,pad]]]) - (REGINA) Translates the substring of string that starts at start , and has the length length to lower case. Length defaults to the rest of the string. Start must be a positive whole number, while length can be any
+==== LOWER(string [,start [,length [,pad]]]) - (REGINA) ====
+ Translates the substring of string that starts at start , and has the length length to lower case. Length defaults to the rest of the string. Start must be a positive whole number, while length can be any
 
             non-negative whole number. The default value for start is 1 and for length is the length of string.
 
@@ -5715,7 +5713,8 @@ Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. 
             'fred******'
 
 
-            MAKEBUF() - (CMS)
+==== MAKEBUF() - (CMS) ====
+
 
             Creates a new buffer on the stack, at the current top of the stack. Each new buffer will be assigned a number; the first buffer being assigned the number 1. A new buffer will be assigned a number which is one higher than the currently highest number of any buffer on the stack. In practice, this means that the buffers are numbered, with the bottom-most having the number 1 and the topmost having a number which value is identical to the number of buffers currently in the stack.
 
@@ -5733,7 +5732,8 @@ Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. 
             6 /* if 5 buffers existed */
 
 
-            MAX(number1 [,number2] ...) - (ANSI) Takes any positive number of parameters, and will return the parameter that had the highest numerical value. The parameters may be any valid Rexx number. The number that is returned, is normalized according to the current NUMERIC settings, so the result need not be strictly equal to any of the parameters.
+==== MAX(number1 [,number2] ...) - (ANSI) ====
+ Takes any positive number of parameters, and will return the parameter that had the highest numerical value. The parameters may be any valid Rexx number. The number that is returned, is normalized according to the current NUMERIC settings, so the result need not be strictly equal to any of the parameters.
 
 
             Actually, the standard says that the value returned is the first number in the parameter list which is equal to the result of adding a positive number or zero to any of the other parameters. Note that this definition opens for "strange" results if you are brave enough to play around with the settings of NUMERIC FUZZ.
@@ -5760,7 +5760,8 @@ Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. 
             '5.0'
 
 
-            MIN(number [,number] ...) - (ANSI)
+==== MIN(number [,number] ...) - (ANSI) ====
+
 
             Like MAX(), except that the lowest numerical value is returned. For more information, see MAX().
 
