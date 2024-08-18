@@ -7575,7 +7575,7 @@ Note that this function is case sensitive, and that leading and trailing spaces 
 
                 F$USER
 
-====== RexxUtil for Regina ======
+===== RexxUtil for Regina =====
 
 
     Regina 3.5 and above provides Patrick McPhee's Regutil external function package as part of the Regina distribution. The documentation for Regutil is supplied in a separate document.
@@ -7602,14 +7602,15 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
     The last section describes differences, extensions and peculiarities in Regina on the of subject conditions, and the lists specific behavior.
 
 
-        What are Conditions
+===== What are Conditions =====
+
 
         In this section, the concept of "conditions" are explained: What they are, how they work, and what they mean in programming.
 
-            What Do We Need Conditions for?
+==== What Do We Need Conditions for? ====
 
+==== Terminology ====
 
-            Terminology
 
             First, let's look at the terminology used in this chapter. If you don't get a thorough understanding of these terms, you will probably not understand much of what is said in the rest of this chapter.
 
@@ -7675,14 +7676,16 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
             [Delay-Action:]
 
             The pre-defined default action taken when a condition is raised, and the trap state is DELAY.
-        The Mythical Standard Condition
+===== The Mythical Standard Condition =====
+
 
         Rexx Language Level 4.00 has six different conditions, and Rexx Language Level 5.00 has seven. However, each of these is a special case of a mythical, non-existing, standard condition. In order to better understand the real conditions, we start by explaining how a standard condition work.
 
 
         In the examples below, we will call our non-existing standard condition MYTH. Note that these examples will not be executable on any Rexx implementation.
 
-            Information Regarding Conditions (data structures)
+==== Information Regarding Conditions (data structures) ====
+
 
             There are mainly five conceptual data structures involved in conditions.
 
@@ -7719,7 +7722,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
 
             The initial value for the event queue is to be empty. The default-action and the delay-action are static information, and will always retain their values during execution. The initial values for the condition traps are that they are all in state OFF. The initial value for the current trapped condition is that all information is set to the nullstring to signalize that no condition is currently being trapped.
 
-            How to Set up a Condition Trap
+==== How to Set up a Condition Trap ====
+
 
             How do you set the information in a condition trap? You do it with a SIGNAL or CALL clause, with the ON or OFF subkeyword. Remember that a condition trap contain three pieces of information?
 
@@ -7758,7 +7762,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
 
                 What happens to this information when you call a subroutine? All information about traps are inherited by the subroutine, provided that it is an internal routine. External routines do not inherit any information about traps, but use the default values. Note that the inheritance is done by copying, so any changes done in the subroutine (internal or external), will only have effect until the routine returns.
 
-            How to Raise a Condition
+==== How to Raise a Condition ====
+
 
             How do you raise a condition? Well, there are really no explicit way in Rexx to do that. The conditions are raised when an incident occurs. What sort of situations that is, depends on the context. There are in general three types of incidents, classified by the origin of the event:
 
@@ -8027,7 +8032,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
 
                 This process has be shown in the figure above. It shows how an incident makes the interpreter raise a condition, and that the state of the condition trap determines what to do next. The possible outcomes of this process are: to take the default-action; to ignore if delay-action is not to queue; to just queue and the continue execution; or to queue and trigger the trap.
 
-            How to Trigger a Condition Trap
+==== How to Trigger a Condition Trap ====
+
 
             What are the situations where a condition trap might be triggered? It depends on the method currently set in the condition trap.
 
@@ -8040,7 +8046,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
 
             Note that the Rexx standard does not require the pending events to be handled in any particular order, although the model shown in this documentation it will be in the order in which the conditions were raised. Consequently, if one clause generates several events that raise conditions before or at the next clause boundary, and these conditions are trapped by method CALL. Then, the order on which the various traps are triggered is implementations-dependent. But the order in which the different instances of the same condition is handled, is the same as the order of the condition indicator queue.
 
-            Trapping by Method SIGNAL
+==== Trapping by Method SIGNAL ====
+
 
             Assume that a condition is being trapped by method SIGNAL, that the state is ON and the handler is
 
@@ -8069,7 +8076,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
 
                 Also note that since the statement being executed is terminated; all active loops on the current procedure level are terminated; and the only indication where the error occurred is the line number (the line may contain several clauses), then it is in general impossible to pick up the normal execution after a condition trapped by SIGNAL. Therefore, this method is best suited for a "graceful death" type of traps. If the trap is triggered, you want to terminate what you were doing, and pick up the execution at an earlier stage, e.g. the previous procedure level.
 
-            Trapping by Method CALL
+==== Trapping by Method CALL ====
+
 
             Assume that the condition MYTH is being trapped by method CALL, that the state is ON and the handler is MYTH_HANDLER.
 
@@ -8110,7 +8118,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
 
                 Since new conditions are generally delayed when an condition handler is executing, new conditions are queued up for execution. If the trap state is changed to ON, the pending event queue will be processed as named at the next clause boundary. If the state is changed to OFF, the default action of the conditions will be taken at the next clause boundary.
 
-            The Current Trapped Condition
+==== The Current Trapped Condition ====
+
 
             The interpreter maintains a data structure called the current trapped condition. It contains information relating the most recent condition trapped on this or higher procedure level. The current trapped condition is normally inherited by subroutines and functions, and restored after return from these.
 
@@ -8134,11 +8143,13 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
                 Note that the State option do not return the state at the time when the condition was raised or the trap was triggered. It returns the current state of the trap, and may change during execution. The other information in the current trapped condition may only change when a new condition is trapped at return from subroutines.
 
 
-        The Real Conditions
+===== The Real Conditions =====
+
 
         We have now described how the standard condition and condition trap works in Rexx. Let's look at the seven conditions defined which do exist. Note that none of these behaves exactly as the standard condition.
 
-            The SYNTAX condition
+==== The SYNTAX condition ====
+
 
             The SYNTAX condition is of internal origin, and is raised when any syntax or runtime error is discovered by the Rexx interpreter. It might be any of the situations that would normally lead to the abortion of the program and the report of a Rexx error message, except error message number 4 (Program interrupted), which is handled by the HALT condition.
 
@@ -8160,7 +8171,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
 
                 The descriptive text returned by CONDITION() when called with the Description option for condition SYNTAX, is implementation dependent, and may also be a nullstring. Consult the implementation-specific documentation for more information.
 
-            The HALT condition
+==== The HALT condition ====
+
 
             The HALT condition of external origin, which is raised as a result of an action from the user, normally a combination of keys which tries to abort the program. Which combination of keys will vary between operating systems. Some systems might also simulate this event by other means than
 
@@ -8177,7 +8189,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
 
                 The descriptive text returned by CONDITION() when called with the Description option for condition HALT, is implementation dependent, and may also be a nullstring. In general, it will describe the way in which the interpreter was attempted halted, in particular if there are more than one way to do raise a HALT condition. Consult the implementation documentation for more information.
 
-            The ERROR condition
+==== The ERROR condition ====
+
 
             The ERROR is a condition of mixed origin, it is raised when a command returns a return value which indicates error during execution. Often, commands return a numeric value, and a particular value is considered to mean success. Then, other values might raise the ERROR condition.
 
@@ -8199,7 +8212,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
 
                 The descriptive text returned by CONDITION() when called with the Description option for condition ERROR, is the command which caused the error. Note that this is the command as the environment saw it, not as it was entered in the Rexx script source code.
 
-            The FAILURE condition
+==== The FAILURE condition ====
+
 
             The FAILURE is a condition of mixed origin, it is raised when a command returns a return value which indicates failure during execution, abnormal termination, or when it was impossible to execute a command. It is a subset of the ERROR condition, and if it is in state OFF, then the ERROR condition will be raised instead. But note that an implementation is free to consider all return codes from commands as ERRORs, and none as FAILURES. In that case, the only situation where a FAILURE would occur, is when it is impossible to execute a command.
 
@@ -8218,7 +8232,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
 
                 The descriptive text returned by CONDITION() when called with the Description option for condition FAILURE, is the command which caused the error. Note that this is the command as the environment saw it, not as it was entered in the Rexx script source code.
 
-            The NOVALUE condition
+==== The NOVALUE condition ====
+
 
             The NOVALUE condition is of internal origin. It is raised in some circumstances if the value of an unset symbol (which is not a constant symbol) is requested. Normally, this would return the default value of the symbol. It is considered bad programming practice not to initialize variables, and setting the NOVALUE condition is one method of finding the parts of your program that uses this programming practice.
 
@@ -8236,7 +8251,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
 
                 The descriptive text returned by calling CONDITION() with the Description option, is the derived (i.e. tail has be substituted if possible) name of the variable that caused the condition to be raised.
 
-            The NOTREADY condition
+==== The NOTREADY condition ====
+
 
             The condition NOTREADY is a condition of mixed origin. It is raised as a result of problems with stream I/O. Exactly what causes it, may vary between implementations, but some of the more probable causes are: waiting for more I/O on transient streams; access to streams not allowed; I/O operation would block if attempted; etc. See the chapter; Stream Input and Output for more information.
 
@@ -8257,7 +8273,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
 
                 NOTREADY within the current clause will be simulated as if operation had succeeded.
 
-            The LOSTDIGITS condition
+==== The LOSTDIGITS condition ====
+
 
             The condition LOSTDIGITS was introduced in Language Level 5.00. It is raised as a result of any arithmetic operation which results in the loss of any digits. i.e. If the number of significant digits in the result of an arithmetic operation would exceed the currently defined number of digits via NUMERIC DIGITS, then the LOSTDIGITS condition is raised.
 
@@ -8272,9 +8289,11 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
 
 
                 The descriptive text returned by CONDITION() when called with the Description option for condition NOTREADY, is the name of the stream which caused the problem. This is probably the same string that you used as the first parameter to the functions that operates on stream I/O. For the default streams (default input and output stream), the string returned by CONDITION() will be the nullstring.
-        Further Notes on Conditions
+===== Further Notes on Conditions =====
 
-            Conditions under Language Level 3.50
+
+==== Conditions under Language Level 3.50 ====
+
 
             The concept of conditions was very much expanded from Rexx language level 3.50 to level 4.00. Many of the central features in conditions are new in level 4.00, these include:
 
@@ -8287,7 +8306,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
 
                 The built-in function CONDITION() has been added, to allow extraction of information about the current trapped condition.
 
-            Pitfalls when Using Condition Traps
+==== Pitfalls when Using Condition Traps ====
+
 
             There are several pitfalls when using conditions:
 
@@ -8300,7 +8320,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
 
                 Also remember that if you use the PROCEDURE clause in a condition handler called by method CALL, remember to EXPOSE the special variable SIGL if you want to use it inside the condition handler. Else it will be shadowed by the PROCEDURE.
 
-            The Correctness of this Description
+==== The Correctness of this Description ====
+
 
             In this description of conditions in Rexx, I have gone further in the description of how conditions work, their internal data structures, the order in which things are executed etc., than the standard does. I have tried to interpret the set of distinct statements that is the documentation on condition, and design a complete and consistent system describing how such conditions work. I have done this to try to clarify an area of Rexx which at first glance is very difficult and sometimes non-intuitive.
 
@@ -8336,11 +8357,13 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
                 I really hope that these changes has made the concept of conditions easier to understand, not harder. Please feel free to flame me for any of these which you don't think is representative for Rexx.
 
 
-        Conditions in Regina
+===== Conditions in Regina =====
+
 
         Here comes documentation that are specific for the Regina implementation of Rexx.
 
-            How to Raise the HALT condition
+==== How to Raise the HALT condition ====
+
 
             The implementation connect the HALT condition to an external event, which might be the pressing of certain key combination. The common conventions of the operating system will dictate what that combination of keystrokes is.
 
@@ -8356,7 +8379,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
                 Under VAX/VMS, the key sequence <ctrl>-<c> is used to raise the HALT condition in the interpreter.
 
 
-        Possible Future extensions
+===== Possible Future extensions =====
+
 
                 Here is a list of possible future extensions to Rexx which has not been implemented into Regina. Some of these exist in other implementations of Rexx, and some of them are just suggestions or ideas thrown around by various people.
 
