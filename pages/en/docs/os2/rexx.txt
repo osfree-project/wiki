@@ -5,315 +5,18 @@ Version 3.9.6
 Original Authors:
   * Mark Hessling < mark@rexx.org>
   * Florian Große-Coosmann < florian@grosse-coosmann.de>
-  * Anders Christensen < Anders.Christensen@idi.ntnu.no> Regina Home Page at: http://regina-rexx.sourceforge.net
+  * Anders Christensen < Anders.Christensen@idi.ntnu.no> 
 
-Copyright © 1992-1998 Anders Christensen Copyright © 1998-2022 Mark Hessling
+Regina Home Page at: http://regina-rexx.sourceforge.net
+
+Copyright © 1992-1998 Anders Christensen
+Copyright © 1998-2022 Mark Hessling
 
 Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation License, Version 1.1 or any later version published by the Free Software Foundation; with no Invariant Sections, with no Front-Cover Texts, and with no Back-Cover Texts.
 
 A copy of the license is included in the section entitled "GNU Free Documentation License".
 
 Table of Contents
-
-    Rexx Built-in Functions 70
-
-        General Information 70
-
-            The Syntax Format 70
-
-            Precision and Normalization 71
-
-            Standard Parameter Names 71
-
-            Error Messages 72
-
-            Possible System Dependencies 72
-
-            Blanks vs. Spaces 74
-
-        Regina Built-in Functions 75
-
-        ABBREV(long, short [,length]) - (ANSI) 75
-
-        ABS(number) - (ANSI) 75
-
-        ADDRESS([option]) - (ANSI) 75
-
-        ARG([argno [,option]]) - (ANSI) 76
-
-        B2C(binstring) - (AREXX) 77
-
-        B2X(binstring) - (ANSI) 77
-
-        BEEP(frequency [,duration]) - (OS/2) 78
-
-        BITAND(string1 [,[string2] [,padchar]]) - (ANSI) 78
-
-        BITCHG(string, bit) - (AREXX) 78
-
-        BITCLR(string, bit) - (AREXX) 78
-
-        BITCOMP(string1, string2, bit [,pad]) - (AREXX) 78
-
-        BITOR(string1 [, [string2] [,padchar]]) - (ANSI) 79
-
-        BITSET(string, bit) - (AREXX) 79
-
-        BITTST(string, bit) - (AREXX) 79
-
-        BITXOR(string1[, [string2] [,padchar]]) - (ANSI) 79
-
-        BUFTYPE() - (CMS) 80
-
-        C2B(string) - (AREXX) 80
-
-        C2D(string [,length]) - (ANSI) 80
-
-        C2X(string) - (ANSI) 81
-
-        CD(directory) - (REGINA) 81
-
-        CHDIR(directory) - (REGINA) 81
-
-        CENTER(string, length [, padchar ] ) - (ANSI) 81
-
-        CENTRE(string, length [, padchar ] ) - (ANSI) 81
-
-        CHANGESTR(needle, haystack, newneedle ) - (ANSI) 82
-
-        CHARIN([streamid] [,[start] [,length]]) - (ANSI) 82
-
-        CHAROUT([streamid] [,[string] [,start]]) - (ANSI) 83
-
-        CHARS([streamid]) - (ANSI) 83
-
-        CLOSE(file) - (AREXX) 84
-
-        COMPARE(string1, string2 [,padchar]) - (ANSI) 84
-
-        COMPRESS(string [,list]) - (AREXX) 84
-
-        CONDITION([option]) - (ANSI) 84
-
-        COPIES(string, copies) - (ANSI) 85
-
-        COUNTSTR(needle, haystack) - (ANSI) 85
-
-        CRYPT(string, salt) - (REGINA) 85
-
-        DATATYPE(string [,option]) - (ANSI) 86
-
-        DATE([opt_out [,date [,opt_in[,sep_out[,sep_in]]]]]) - (ANSI+) 87
-
-        DELSTR(string, start [,length]) - (ANSI) 90
-
-        DELWORD(string,start[,length]) (ANSI) 90
-
-        DESBUF() - (CMS) 90
-
-        DIGITS() - (ANSI) 91
-
-        DIRECTORY([new directory]) - (OS/2) 91
-
-        D2C(integer [,length]) - (ANSI) 91
-
-        D2X(integer [,length]) - (ANSI) 91
-
-        DROPBUF([number]) - (CMS) 92
-
-        EOF(file) - (AREXX) 92
-
-        ERRORTEXT(errorno [, lang]) - (ANSI) 93
-
-        EXISTS(filename) - (AREXX) 94
-
-        EXPORT(address, [string], [length] [,pad]) - (AREXX) 94
-
-        FILESPEC(option, filespec) - (OS/2) 94
-
-        FIND(string, phrase) - (CMS) 95
-
-        FORK() - (REGINA) 95
-
-        FORM() - (ANSI) 95
-
-        FORMAT(number [,[before] [,[after] [,[expp] [,[expt]]]]]) - (ANSI) 95
-
-        FREESPACE(address, length) - (AREXX) 96
-
-        FUZZ() - (ANSI) 96
-
-        GETCALLER([level]) - (REGINA) 97
-
-        GETCALLSTACK([stem]) - (REGINA) 97
-
-        GETENV(environmentvar) - (REGINA) 97
-
-        GETPID() - (REGINA) 97
-
-        GETSPACE(length) - (AREXX) 97
-
-        GETTID() - (REGINA) 97
-
-        HASH(string) - (AREXX) 98
-
-        IMPORT(address [,length]) - (AREXX) 98
-
-        INDEX(haystack, needle [,start]) - (CMS) 98
-
-        INSERT(string1, string2 [,position [,length [,padchar]]]) - (ANSI) 98
-
-        JUSTIFY(string, length [,pad]) - (CMS) 98
-
-        LASTPOS(needle, haystack [,start]) - (ANSI) 99
-
-        LEFT(string, length [,padchar]) - (ANSI) 99
-
-        LENGTH(string) - (ANSI) 99
-
-        LINEIN([streamid][,[line][,count]]) - (ANSI) 100
-
-        LINEOUT([streamid] [,[string] [,line]]) - (ANSI) 100
-
-        LINES([streamid] [,option]) - (ANSI) 101
-
-        LOWER(string [,start [,length [,pad]]]) - (REGINA) 102
-
-        MAKEBUF() - (CMS) 102
-
-        MAX(number1 [,number2] ...) - (ANSI) 103
-
-        MIN(number [,number] ...) - (ANSI) 103
-
-        OPEN(file, filename, ['Append'|'Read'|'Write']) - (AREXX) 103
-
-        OVERLAY(string1, string2 [,[start] [,[length] [,padchar]]]) - (ANSI) 104
-
-        POOLID() - (REGINA) 104
-
-        POPEN(command [,stem.]) - (REGINA) 104
-
-        POS(needle, haystack [,start]) - (ANSI) 104
-
-        PUTENV(environmentvar=[value]) - (REGINA) 105
-
-        QUALIFY([streamid]) - (ANSI) 105
-
-        QUEUED() - (ANSI) 105
-
-        RANDOM(max) - (ANSI) 105
-
-        RANDOM([min] [,[max] [,seed]]) - (ANSI) 105
-
-        RANDU([seed]) - (AREXX) 106
-
-        READCH(file, length) - (AREXX) 107
-
-        READLN(file) - (AREXX) 107
-
-        REVERSE(string) - (ANSI) 107
-
-        RIGHT(string, length[,padchar]) - (ANSI) 107
-
-        RXFUNCADD(externalname, library, internalname) - (SAA) 107
-
-        RXFUNCDROP(externalname) - (SAA) 108
-
-        RXFUNCERRMSG() - (REGINA) 108
-
-        RXFUNCQUERY(externalname) - (SAA) 108
-
-        RXQUEUE(command [,queue|timeout]) - (OS/2) 108
-
-        SEEK(file, offset, ['Begin'|'Current'|'End') - (AREXX) 109
-
-        SHOW(option, [name], [pad]) - (AREXX) 109
-
-        SIGN(number) - (ANSI) 109
-
-        SLEEP(seconds) - (CMS) 109
-
-        SOURCELINE([lineno]) - (ANSI) 110
-
-        SPACE(string[, [length] [,padchar]]) - (ANSI) 110
-
-        STATE(streamid) - (CMS) 110
-
-        STORAGE([address], [string], [length], [pad]) - (AREXX) 110
-
-        STREAM(streamid[,option[,command]]) (ANSI) 111
-
-        STRIP(string [,[option] [,char]]) - (ANSI) 115
-
-        SUBSTR(string, start [,length [,padchar]]) - (ANSI) 116
-
-        SUBWORD(string, start [,length]) - (ANSI) 116
-
-        SYMBOL(string) - (ANSI) 116
-
-        TIME([option_out [,time [,option_in]]]) - (ANSI) 117
-
-        TRACE([setting]) - (ANSI) 118
-
-        TRANSLATE(string [,[tableout] [,[tablein] [,padchar]]]) - (ANSI) 119
-
-        TRIM(string) - (AREXX) 119
-
-        TRUNC(number [,length]) - (ANSI) 119
-
-        UNAME([option]) - (REGINA) 119
-
-        UNIXERROR(errorno) - (REGINA) 120
-
-        UPPER(string [,start [,length [,pad]]]) – (AREXX/REGINA) 120
-
-        USERID() - (REGINA) 121
-
-        VALUE(symbol [,[value], [pool]]) - (ANSI) 121
-
-        VERIFY(string, ref [,[option] [,start]]) - (ANSI) 122
-
-        WORD(string, wordno) - (ANSI) 122
-
-        WORDINDEX(string, wordno) - (ANSI) 123
-
-        WORDLENGTH(string, wordno) - (ANSI) 123
-
-        WORDPOS(phrase, string [,start]) - (ANSI) 123
-
-        WORDS(string) - (ANSI) 123
-
-        WRITECH(file, string) - (AREXX) 124
-
-        WRITELN(file, string) - (AREXX) 124
-
-        XRANGE([start] [,end]) - (ANSI) 124
-
-        X2B(hexstring) - (ANSI) 124
-
-        X2C(hexstring) - (ANSI) 124
-
-        X2D(hexstring [,length]) - (ANSI) 126
-
-        Implementation specific documentation for Regina 127
-
-            Deviations from the Standard 127
-
-            Interpreter Internal Debugging Functions 127
-
-            ALLOCATED([option]) 127
-
-            DUMPTREE() 128
-
-            DUMPVARS() 128
-
-            LISTLEAKED() 128
-
-            TRACEBACK() 128
-
-            Rexx VMS Interface Functions 129
-
-        RexxUtil for Regina 131
 
     Conditions 132
 
@@ -10403,7 +10106,7 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
 
         To avoid this, be very careful about using the correct mode when opening files. Failure to do so will almost certainly give strange effects.
 
-===== Extensions =====
+====== Extensions ======
 
     This chapter describes how extensions to Regina are implemented. The whole contents of this chapter is specific for Regina.
 
@@ -11082,7 +10785,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
         	
 
         no
-    The Stack
+====== The Stack ======
+
 
     In this chapter, the stack and operations manipulating the stack are discussed. Since the stack is external to the Rexx language, there are large differences between implementations with respect to the stack. These differences are attempted described in the latter part of this chapter.
 
@@ -11683,7 +11387,9 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
 
 
             RXQUEUE RXSTACK
-    Interfacing Rexx to other programs
+
+====== Interfacing Rexx to other programs ======
+
 
     This chapter describes an interface between a Rexx interpreter and another program, typically written in C or another high level, compiled language. It is intended for application programmers who are implementing Rexx support in their programs. It describes the interface known as the Rexx SAA API.
 
@@ -13739,7 +13445,9 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
 
 
             During the course of an execution of RexxCallBack(), subcommand handlers and exit handlers might be called. These may call any function in the application interface, including another invocation of RexxCallBack().
-    Implementation Limits
+
+====== Implementation Limits ======
+
 
     This chapter lists the implementation limits required by the Rexx standard. All implementations are supposed to support at least these limits.
 
@@ -13978,7 +13686,9 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
                 change BUFFERSIZE in rexx.h
 
         See the notes in rexx.h that explain that YY_BUF_LEN must be larger than BUFFERSIZE
-    Regina Features and Implementation
+
+====== Regina Features and Implementation ======
+
 
     This chapter lists features of Regina and specific implementation capabilities.
 
