@@ -37,7 +37,16 @@ The osFree Classic REXX distribution also includes a front end to the osFree Cla
 ===== Executing Rexx programs with osFree Classic REXX =====
 
 
-Rexx programs are generally executed by Regina from the command line in the following manner:
+Rexx programs are generally executed by osFree Classic REXX from the command line in the following manner:
+
+  program.cmd [program parameters]
+
+where:
+
+  * program the name of the Rexx program to be executed. Program source code must be started from comment /* */.
+  * program parameters any optional parameters to be passed to the Rexx program.
+
+Another way is following command line:
 
   rexx [switches] [program] [program parameters]
 
