@@ -18,78 +18,6 @@ A copy of the license is included in the section entitled "GNU Free Documentatio
 
 Table of Contents
 
-    Stream Input and Output 147
-
-        Background and Historical Remarks 147
-
-        Rexx's Notion of a Stream 147
-
-        Short Crash-Course 148
-
-        Naming Streams 149
-
-        Persistent and Transient Streams 152
-
-        Opening a Stream 153
-
-        Closing a Stream 154
-
-        Character-wise and Line-wise I/O 154
-
-        Reading and Writing 156
-
-        Determining the Current Position 158
-
-        Positioning Within a File 159
-
-        Errors: Discovery, Handling, and Recovery 162
-
-        Common Differences and Problems with Stream I/O 163
-
-            Where Implementations are Allowed to Differ 163
-
-            Where Implementations might Differ anyway 164
-
-            LINES() and CHARS() are Inaccurate 164
-
-            The Last Line of a Stream 166
-
-            Other Parts of the I/O System 166
-
-            Implementation-Specific Information 167
-
-            Stream I/O in Regina 167
-
-            Functionality to be Implemented Later 170
-
-            Stream I/O in ARexx 1.15 170
-
-            Main Differences from Standard Rexx 174
-
-            Stream I/O in BRexx 1.0b 176
-
-            Problems with Binary and Text Modes 180
-
-    Extensions 182
-
-        Why Have Extensions 182
-
-        Extensions and Standard Rexx 182
-
-        Specifying Extensions in Regina 182
-
-        The Trouble Begins 183
-
-        The Format of the OPTIONS clause 183
-
-        The Fundamental Extensions 184
-
-        Meta-extensions 187
-
-        Semi-standards 188
-
-        Standards 188
-
     The Stack 190
 
         Background and history 190
@@ -8357,7 +8285,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
     This chapter treats the topic of input from and output to streams using the built-in functions. An overview of the other parts of the input/output (I/O) system is also given but not discussed in detail. At the end of the chapter there are sections containing implementation-specific information for this topic.
 
 
-        Background and Historical Remarks
+===== Background and Historical Remarks =====
+
 
         Stream I/O is a problem area for languages like Rexx. They try to maintain compatibility for all platforms (i.e. to be non-system-specific), but the basic I/O capabilities differ between systems, so the simplest way to achieve compatibility is to include only a minimal, common subset of the functionality of all platforms. With respect to the functionality of the interface to their surrounding environment, non-system-specific script languages like Rexx are inherently inferior to system specific script languages which are hardwired to particular operating systems and can benefit from all their features.
 
@@ -8368,7 +8297,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
         Later, the built-in functions for stream I/O gained territory, but lots of implementations still rely on special purpose programs for doing I/O. The general recommendation to Rexx programmers is to use the built-in functions instead of special purpose programs whenever possible; that is the only way to make compatible programs.
 
 
-        Rexx's Notion of a Stream
+===== Rexx's Notion of a Stream =====
+
 
         Rexx regards a stream as a sequence of characters, conceptually equivalent to what a user might type at the keyboard. Note that a stream is not generally equivalent to a file. [MCGH:DICT] defines a file as "a collection of related records treated as a unit," while [OX:CDICT] defines it as "Information held on backing store [...] in order (a) to enable it to persist beyond the time of execution of a single job and/or (b) to overcome space limitations in main memory." A stream is defined by [OX:CDICT] as "a flow of data characterized by relative long duration and constant rate."
 
@@ -8378,7 +8308,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
         In this documentation, the term "file" means "a collection of persistent data on secondary storage, to which random access and multiple retrieval are allowed." The term "stream" means a sequential flow of data from a file or from a sequential device like a terminal, tape, or the output of a program. The term stream is also used in its strict Rexx meaning: a handle to/from which a flow of data can be written/read.
 
 
-        Short Crash-Course
+===== Short Crash-Course =====
+
 
         Rexx I/O is very simple, and this short crash course is probably all you need in a first-time reading of this chapter. But note that that, we need to jump a bit ahead in this section.
 
@@ -8424,7 +8355,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
         These two clauses repositions the current read and write positions of the named files to the 8th and 10th characters, respectively.
 
 
-        Naming Streams
+===== Naming Streams =====
+
 
         Unlike most programming languages, Rexx does not use file handles; the name of the stream is also in general the handle (although some implementations add an extra level of indirection). You must supply the name to all I/O functions operating on a stream. However, internally, the Rexx interpreter is likely to use the native file pointers of the operating system, in order to improve speed. The name specified can generally be the name of an operating system file, a device name, or a special stream name supported by your implementation.
 
@@ -8517,7 +8449,9 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
 
 
         Some implementations allow only this indirect naming scheme, while others may allow a mix between direct and indirect naming. The latter is likely to create some problems, since some strings are likely to be both valid direct and indirect file ids.
-        Persistent and Transient Streams
+
+===== Persistent and Transient Streams =====
+
 
 
         Rexx knows two different types of streams: persistent and transient. They differ conceptually in the way they can be operated, which is dictated by the way they are stored. But there is no difference in the data you can read from or write to them (i.e. both can used for character- or line-wise data), and both are read and written using the same functions.
@@ -8556,7 +8490,9 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
 
 
         The best method is to use a STREAM() function, if one is available. Unfortunately, that is not very compatible, since no standard stream commands are defined.
-        Opening a Stream
+
+===== Opening a Stream =====
+
 
         In most programming languages, opening a file is the process of binding a file (given by a file name) to an internal handle. Rexx is a bit special, since conceptually, it does not use stream handles, just stream names. Therefore, the stream name is itself also the stream handle, and the process of opening streams becomes apparently redundant. However, note that a number of implementations allow explicit opening, and some even require it.
 
@@ -8589,7 +8525,9 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
         Note that if a stream is already open for reading, and you start writing to it, your implementation may have to reopen it in order to open for both reading and writing. There are mainly two strategies for handling this. Either the old file is closed, and then reopened in the new mode, which may leave you with read and write access to another file. Or a new file handle is opened for the new mode, which may leave you with read and write access to two different files.
 
         These are real-world problems which are not treated by the ideal description of TRL. A good implementation should detect these situations and raise NOTREADY.
-        Closing a Stream
+
+===== Closing a Stream =====
+
 
         As already mentioned, Rexx does not have an explicit way of opening a stream. Nor does it have an explicit way of closing a stream. There is one semi-standard method: If you call LINEOUT(), but omit both the data to be written and the new current write position, then the implementation is defined to set the current write position to the end-of-file. Furthermore, it is allowed by TRL to do something "magic" in addition. It is not explicitly defined what this magic is, but TRL suggests that it may be closing the stream, flushing the stream, or committing changes done previously to the stream.
 
@@ -8612,7 +8550,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
         might be used to close the stream myfile.txt in some implementations. However, it is not guaranteed to close the stream, so you cannot depend on this for scripts of maximum portability, but it's better than nothing. However, note that if it closes the stream, then also the current read position is affected. If it merely flushes the stream, then only the current write position is likely to be affected.
 
 
-        Character-wise and Line-wise I/O
+===== Character-wise and Line-wise I/O =====
+
 
         Basically, the built-in Rexx library offers two strategies of reading and writing streams: line-wise and character-wise. When reading line-wise, the underlying storage method of the stream must contain information which describes where each line starts and ends.
 
@@ -8821,7 +8760,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
         Unix). Other systems may put a character signifying end-of-file at the end (or even in the middle) of the file (e.g. <Ctrl-Z> for MS-DOS). These concepts vary between operating systems, interpreters should handle each concept according to the customs of the operating system. Check the implementation-specific documentation for further information. In any case, if the interpreter treats a particular character as end-of-file, then it only gives special treatment to this character during line-wise operations. During character-wise operations, no characters have special meanings.
 
 
-        Reading and Writing
+=====  Reading and Writing =====
+
 
         Four built-in functions provide line- and character-oriented stream reading and writing capabilities:
 
@@ -8864,7 +8804,9 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
 
 
         There are some problems. For instance, the end-of-line characters are not counted, and a last improperly terminated line is not counted either.
-        Determining the Current Position
+
+===== Determining the Current Position =====
+
 
         Standard Rexx does not have any seek call that returns the current position in a stream. Instead, it provides two calls that returns the amount of data remaining on a stream. These two built-in functions are LINES() and CHARS().
 
@@ -8919,7 +8861,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
         The same method can be used for line-oriented I/O too, in order to return the current line number of an input file. However, a potential problem in that case is that the routine leaves the stream repositioned at the start of the current line, even if it was initially positioned to the middle of a line. In addition, the line-oriented version of this ftell routine may prove to be fairly inefficient, since the interpreter may have to scan the whole file twice for end-of-line character sequences.
 
 
-        5. 1 Positioning Within a File
+===== Positioning Within a File =====
+
 
         Rexx supports two strategies for reading and writing streams: character-wise, and line-wise, this section describes how a program can reposition the current positions for each these strategies. Note that positioning is only allowed for persistent streams.
 
@@ -9007,7 +8950,9 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
 
 
         As you can see from the output of this example, the call to LINEOUT() inserts a long line and overwrites the fifth and sixth lines completely, and the seventh line partially. Afterward, the sixth line is the remaining part of the old seventh line, and the new seventh line is the old eighth line, etc.
-                Errors: Discovery, Handling, and Recovery
+
+===== Errors: Discovery, Handling, and Recovery =====
+
 
                 TRL2 contains two important improvements over TRL1 in the area of handling errors in stream I/O: the NOTREADY condition and the STREAM() built-in function. The NOTREADY condition is raised whenever a stream I/O operation did not succeed. The STREAM() function is used to retrieve status information about a particular stream or to execute a particular operation for a stream.
 
@@ -9064,11 +9009,13 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
                 As you can see, there is not really that much information that you can retrieve about what went wrong. Some systems may have additional sources from which you can get information, e.g. special commands for the STREAM() built-in function, but these are non-standard and should be avoided when writing compatible programs.
 
 
-                Common Differences and Problems with Stream I/O
+===== Common Differences and Problems with Stream I/O =====
+
 
                 This section describes some of the common traps and pitfalls of Rexx I/O.
 
-                    Where Implementations are Allowed to Differ
+==== Where Implementations are Allowed to Differ ====
+
 
                     TRL is rather relaxed in its specifications of what an interpreter must implement of the I/O system. It recognizes that operating systems differ, and that some details must be left to the implementor to decide, if Rexx is to be effectively implemented. The parts of the I/O subsystem of Rexx where implementations are allowed to differ, are:
 
@@ -9091,7 +9038,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
 
                         TRL says that because the operating system environments will differ a lot, and an efficient and useful interpreter is the most important goal, implementations are allowed to deviate from the standard in any respect necessary in the domain of I/O [TRL2]. Thus, you should never assume anything about the I/O system, as the "rules" listed in TRL are only advisory.
 
-                    Where Implementations might Differ anyway
+==== Where Implementations might Differ anyway ====
+
 
                     In the section above, some areas where the standard allows implementations to differ are listed. In an ideal world, that ought to be the only traps that you should need to look out for, but unfortunately, the world is not ideal. There are several areas where the requirements set up by the standard is quite high, and where implementations are likely to differ from the standard.
 
@@ -9115,7 +9063,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
 
                         interpreter for reading.
 
-                    LINES() and CHARS() are Inaccurate
+==== LINES() and CHARS() are Inaccurate ====
+
 
                     Because of the large differences between various operating systems, Rexx allows some fuzz in the implementation of the LINES() and CHARS() built-in functions. Sometimes, it is difficult to calculate the number of lines or characters in a stream; generally because the storage format of the file often requires a linear search through the whole stream to determine that number. Thus, Rexx allows an implementation to return the value 1 for any situation where the real number is difficult
 
@@ -9171,7 +9120,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
 
                     less certain that this second solution is more efficient, since using VALUE() built-in function can be inefficient over "normal" variable references.
 
-                    The Last Line of a Stream
+==== The Last Line of a Stream ====
+
 
                     How to handle the last line in a stream is sometimes a problem. If you use a system that stores end-of-lines as special character sequences, and the last part of the data of a stream is an unterminated line, then what is returned when you try to read that part of data?
 
@@ -9187,7 +9137,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
 
                     However, TRL gives some indications that an end-of-file is not an implicit end-of-line. It says that LINES() returns the number of complete lines left, and that LINEIN() returns a complete line. On the other hand, the end-of-line sequence is not rigidly defined by TRL, so an implementor is almost free to define end-of-line in just about any terms that are comfortable. Thus, the last line of a stream may be a source of problem if it is not explicitly terminated by an end-of-line.
 
-                    Other Parts of the I/O System
+==== Other Parts of the I/O System ====
+
 
                     This section lists some of the other parts of Rexx and the environments around Rexx that may be considered a part of the I/O system.
 
@@ -9221,14 +9172,16 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
 
                     And of course, I/O is performed whenever a Rexx program or external function is started.
 
-                    Implementation-Specific Information
+==== Implementation-Specific Information ====
+
 
                     This section describes some implementations of stream I/O in Rexx. Unfortunately, this has become a very large section, reflecting the fact that stream I/O is an area of many system-specific solutions.
 
 
                     In addition, the variations within this topic are rather large. Regina implements a set of functions that are very close to that of TRL2. The other extreme are ARexx and BRexx, which contain a set of functions which is very close to the standard I/O library of the C programming language.
 
-                    Stream I/O in Regina
+==== Stream I/O in Regina ====
+
 
                     Regina implements stream I/O in a fashion that closely resembles how it is described in TRL2. The following list gives the relevant system-specific information.
 
@@ -9372,7 +9325,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
 
                     The return value from this function is either 1 or 0, depending on whether the named stream is in opened state after the operation has been performed.
 
-                    Functionality to be Implemented Later
+==== Functionality to be Implemented Later ====
+
 
                     This section lists the functionality not yet in Regina, but which is intended to be added later. Most of these are fixes to problems, compatibility modes, etc.
 
@@ -9391,7 +9345,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
 
                     Regina will be changed to allow it to generate files with holes for system where this is relevant. Although standard Rexx does not allow this, it is a very common programming idiom for certain systems, and should be allowed. It will, however, be controllable through a extension called SparseFiles.
 
-                    Stream I/O in ARexx 1.15
+==== Stream I/O in ARexx 1.15 ====
+
 
                     ARexx differs considerably from standard Rexx with respect to stream I/O. In fact, none of the standard stream functionality of Rexx is available in ARexx. Instead, a completely distinct set of functions are used. The differences are so big, that it is useless to describe ARexx stream I/O in terms of standard Rexx stream I/O, and everything said so far in this chapter is irrelevant for ARexx. Therefore, we explain the ARexx functionality from scratch.
 
@@ -9707,7 +9662,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
                     always to start of file
 
 
-                    Main Differences from Standard Rexx
+==== Main Differences from Standard Rexx ====
+
 
                     Now, as the functionality has been explained, let me point out the main conceptual differences from standard Rexx; they are:
 
@@ -9785,7 +9741,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
 
                     This routine calls READLN() until it returns a line that is shorter than 1000 characters. Note that end-of-file checking is ignored, since READLN() returns an empty string a the end-of-stream.
 
-                    Stream I/O in BRexx 1.0b
+==== Stream I/O in BRexx 1.0b ====
+
 
                     BRexx contains a set of I/O which shows very close relations with the C programming language I/O library. In fact, you should consider consulting the C library documentation for in-depth documentation on this functionality.
 
@@ -10039,7 +9996,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
 
                     The SEEK() function provides a very important additional feature. Whenever a file opened for both reading and writing has been used in a read operation and is to be used in a write operation next (or vice versa), then a call to SEEK() must be performed between the two I/O calls. In other words, after a read only a seeking and reading may occur; after a write, only seeking and writing may occur; and after a seek, reading, writing, and seeking may occur.
 
-                    Problems with Binary and Text Modes
+==== Problems with Binary and Text Modes ====
+
 
         Under the MS-DOS operating system, the end-of-line character sequence is <CR><LF>, while in C, the end-of-line sequence is only <LF>. This opens for some very strange effects.
 
@@ -10081,7 +10039,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
     This chapter describes how extensions to Regina are implemented. The whole contents of this chapter is specific for Regina.
 
 
-        Why Have Extensions
+===== Why Have Extensions =====
+
 
         Why do we need extensions? Well, there are a number of reasons, although not all of these are very good reasons:
 
@@ -10107,7 +10066,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
             Extensions arise from holes in the functionality. Whether they will survive or not depends on how they are perceived by programmers; if perceived as useful, they will probably be used and thus supported in more interpreters.
 
 
-        Extensions and Standard Rexx
+===== Extensions and Standard Rexx =====
+
 
         In standard Rexx, the OPTIONS instruction provides a "hook" for extensions. It takes any type of parameters, and interprets them in a system-dependent manner.
 
@@ -10115,7 +10075,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
         The format and legal values of the parameters for the OPTIONS instruction is clearly implementation dependent [TRL2, p62].
 
 
-        Specifying Extensions in Regina
+===== Specifying Extensions in Regina =====
+
 
         In Regina there are three level of extensions. Each independent extension has its own name. Exactly what an independent extension is, will depend on the viewer, but a classification has been done, and is listed at the end of this chapter.
 
@@ -10128,7 +10089,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
         At the top is "standards". These are sets of extensions that makes the interpreter behave in a fashion compatible with some standard. Note that "standard" is used very liberally, since it may refer to other implementations of Rexx. However, this description of how the extensions are structured is only followed to some extent. Where practical, the structure has been deviated.
 
 
-        The Trouble Begins
+===== The Trouble Begins =====
+
 
         There is one very big problem with extensions. If you want to be able to turn them on and off during execution, then your program has to be a bit careful.
 
@@ -10149,7 +10111,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
 
             It can be invoked by using a command line option to the interpreter -o; which must be a string of the same format as the parameters to the OPTIONS clause. The command line switch overwrites any option specified in the REGINA_OPTIONS environment variable.
 
-        The Format of the OPTIONS clause
+===== The Format of the OPTIONS clause =====
+
 
         The format of the OPTIONS clause is very simple, it is followed by any Rexx string expression, which is interpreted as a set of space separated words. The words are treated strictly in order from left to right, and each word can change zero or more extension settings.
 
@@ -10175,7 +10138,9 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
 
 
         Regina's frequent usage of extensions may slow down execution. To illustrate how this can happen, consider the OPEN() extra built-in function. As this is an extension, it might be dynamically included and excluded from the scope of currently defined function. Thus, if the function is used in a loop, it might be in the scope during the first iteration, but not the second. Thus, Regina can not cache anything relating to this function, since the cached information may be outdated later. As a consequence, Regina must look up the function in the table of functions for each invocation. To avoid this, you can set the extension CACHEEXT, which tells Regina to cache info whenever possible, without regards to whether this may render useless later executions of OPTIONS.
-        The Fundamental Extensions
+
+===== The Fundamental Extensions =====
+
 
         Here is a description of all "atomic" extensions in Regina:
 
@@ -10314,7 +10279,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
         Note: OPEN_BIF, FIND_BIF, CLOSE_BIF and FILEIO OPTIONs have been removed in Regina 3.1
 
 
-        Meta-extensions
+===== Meta-extensions =====
+
 
         [ANSI]
 
@@ -10323,7 +10289,9 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
         [BUFFERS]
 
         Combination of BUFTYPE_BIF, DESBUF_BIF, DROPBUF_BIF and MAKEBUF_BIF.
-        Semi-standards
+
+===== Semi-standards =====
+
 
         [CMS]
 
@@ -10340,7 +10308,9 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
         A set of interface functionality to the Unix operating system. Basically, this includes some functions that are normally called as commands when programming Unix shell scripts.
 
         Although it is possible to call these as commands in Regina, there are considerable speed improvements in implementing them as built-in functions.
-        Standards
+
+===== Standards =====
+
 
         The following table shows which options are available in different Rexx Language Levels, and the default settings applicable for Regina.
 
