@@ -17,30 +17,6 @@ Permission is granted to copy, distribute and/or modify this document under the 
 
 A copy of the license is included in the section entitled "GNU Free Documentation License".
 
-Table of Contents
-
-    Regina Features and Implementation 254
-
-        Regina Restricted Mode 254
-
-        Native Language Support 254
-
-            Error Messages 254
-
-            Locale Support 255
-
-            Using Native Language Support 255
-
-        Rexx and Regina binaries: Why? 256
-
-    Appendixes 257
-
-        Definitions 257
-
-        Bibliography 261
-
-        GNU Free Documentation License 263
-
 ====== Introduction to REXX ======
 
 This chapter provides an introduction to osFree Classic REXX, an Open Source Rexx Interpreter distributed under the GNU General Library License.
@@ -13555,7 +13531,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
     This chapter lists features of Regina and specific implementation capabilities.
 
 
-        Regina Restricted Mode
+===== Regina Restricted Mode =====
+
 
         Many language interpreters provide a mechanism where code executed within that interpreter is limited to affecting the environment of the interpreter and cannot change the external environment in which the interpreter runs.
 
@@ -13580,7 +13557,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
             To run Regina in restricted mode, you can start the Regina interpreter from the command line with the '-r' switch, or when using the Rexx SAA API, or-ing RXRESTRICTED to the CallType parameter of RexxStart() function.
 
 
-        Native Language Support ‌
+===== Native Language Support ‌ =====
+
 
         Regina provides native language support in the following ways:
 
@@ -13589,7 +13567,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
             Locale support for whitespace and character translations.
 
 
-            Error Messages
+==== Error Messages ====
+
 
             All native language error messages are contained in binary files (*.mtb) that are built with the Regina executables from source files (*.mts).
 
@@ -13604,7 +13583,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
                 used as a fallback position when no native language support is available
 
 
-            Locale Support
+==== Locale Support ====
+
 
             Locale support is very limited in Regina currently. There is no ANSI specification about it and care has been taken to avoid unexpected behaviour for multi-language scripts. The basic intention of the support was the ability to handle special characters in some western locales or on some systems.
 
@@ -13630,7 +13610,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
 
                 file name case translation when searching external procedures or when using the API for loading external libraries.
 
-            Using Native Language Support
+==== Using Native Language Support ====
+
 
             To specify a native language, up to 2 environment variables are used.
 
@@ -13709,15 +13690,17 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
             Any binary distribution that includes an installation routine; RPM, deb, Windows NSIS or EPOC32, will set the location of the .mtb files automatically. Similarly building and installing Regina on Unix-like platforms using configure;make install combination will also set the location automatically. All other platforms will require this environment variable to bet set manually.
 
 
-        Rexx and Regina binaries: Why?
+===== Rexx and Regina binaries: Why? =====
+
 
 TODO: static library, dynamic library and rxfuncadd().
 
 Cannot use rxfuncadd() in a static library to load an external function package as the dynamic library that is loaded with the external function package uses the RexxRegisterFunctionDll that the shared library is linked with; this is the one in libregina.so and it updates the internal table of external functions in its address space, so the internal table of external functions in libregina.a (or rexx binary) will not contain the pointers.
 
 
-===== Appendixes =====
-        Definitions
+====== Appendixes ======
+
+===== Definitions =====
 
 
         In order to make the definitions more readable, but still have a rigid definition of the terms, some extra comments have been added to some of the definitions. These comments are enclosed in square brackets.
@@ -13896,7 +13879,8 @@ Cannot use rxfuncadd() in a static library to load an external function package 
         Character strings is the only type of data available in Rexx, but to some extent there are 'subtypes' of character strings; character strings which contents has certain format. These special formats is discussed below.
 
 
-        Bibliography
+===== Bibliography =====
+
 
 
         [KIESEL]
@@ -13965,7 +13949,9 @@ Cannot use rxfuncadd() in a static library to load an external function package 
 
 
         Programming Languages - REXX. , ANSI X3.274-1996, 11 West 42nd Street, New York, New York 10036
-        GNU Free Documentation License
+
+===== GNU Free Documentation License =====
+
 
 
 GNU Free Documentation License Version 1.1, March 2000
