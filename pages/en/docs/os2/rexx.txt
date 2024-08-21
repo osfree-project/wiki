@@ -18,44 +18,6 @@ A copy of the license is included in the section entitled "GNU Free Documentatio
 
 Table of Contents
 
-    The Stack 190
-
-        Background and history 190
-
-        General functionality of the stack 190
-
-            Basic functionality 190
-
-            LIFO and FIFO stack operations 192
-
-            Using multiple buffers in the stack 193
-
-            The zeroth buffer 194
-
-            Creating new stacks 195
-
-        The interface between Rexx and the stack 196
-
-        Strategies for implementing stacks 196
-
-        Implementations of the stack in Regina 198
-
-            Implementation of the internal stack in Regina 2.2 and above 199
-
-            Implementation of the external stack in Regina 2.2 and above 200
-
-            rxstack 200
-
-            rxqueue 201
-
-            rxqueue Built-in Function 201
-
-            Queue Names 201
-
-            Security of External Queues 202
-
-            Environment Variables 202
-
     Interfacing Rexx to other programs 203
 
         Overview of functions in SAA 203
@@ -10734,7 +10696,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
     Another goal of this chapter is to try to describe both the "real" standards and some of the most commonly used de facto standards related to stack operation. Where something is not a part of any defined standard, this is clearly labelled. Also, some liberties have been taken in order to create a coherent vocabulary on a field where very little standardization has taken place.
 
 
-        Background and history
+===== Background and history =====
+
 
         In the various definitions of Rexx, there are numerous references to the "stack" (often called the "external data queue", or just the "queue"). It is a structure capable of storing information, but it is not a part of the Rexx language itself. Rather, it is a part of the external environment supporting a Rexx implementation.
 
@@ -10748,11 +10711,13 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
         The stack may have "seemed like a good idea at the time", but in hindsight, it was probably a bad move, since it made Rexx more dependent on the host operating system and its interfaces.
 
 
-        General functionality of the stack
+===== General functionality of the stack =====
+
 
         This section describes the functionality generally available in implementations of stacks. The basic functionality described here will be complemented with information on specific implementations later. Unless explicitly labelled otherwise, this functionality is available in all standards treated in this documentation.
 
-            Basic functionality
+==== Basic functionality ====
+
 
             Below is listed the general functionality of the stack, in order of decreasing compatibility. I.e. the functionality listed first is more likely to be a part of all implementations than the ones listed at the end of the list.
 
@@ -10825,7 +10790,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
 
             Another advantage of this idiom; TRL only requires implementations to support 10 parameters for subroutines. Although there are no reasons why an implementation should set a limit for the number of parameters a routine can get, you should use another mechanism than arguments when the number of strings is greater than 10. Using the stack fixes this.
 
-            LIFO and FIFO stack operations
+==== LIFO and FIFO stack operations ====
+
 
             As already mentioned, the stack is a linear list of strings. Obviously, this list has two ends. Strings can only be extracted from one end, while strings can be added to both ends.
 
@@ -10837,7 +10803,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
 
             The FIFO method of stacking is also sometimes referred to as "queueing", while the LIFO method is sometimes referred to as "stacking" or "pushing".
 
-            Using multiple buffers in the stack
+==== Using multiple buffers in the stack ====
+
 
             The concept of buffers and everything directly related to buffers lay without the domain of standard
 
@@ -10879,7 +10846,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
 
             This is to say that a buffer can be destroyed by either a DESBUF command, a DROPBUF command, or a read from the stack (by either the PULL or PARSE PULL instructions).
 
-            The zeroth buffer
+==== The zeroth buffer ====
+
 
             Normally, data pushed on the stack is added to the top of the stack. When a stack contains only one buffer, the strings in that buffer are the strings stored above that buffer-mark. The strings below it are not part of the first buffer; instead, they are said to belong to the zeroth buffer.
 
@@ -10968,7 +10936,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
 
             Thus, the only "safe" way to remove the string and buffers from the stack, without side effects, is to call DESBUF or DROPBUF. On the other hand, if you only want to make sure that there are no strings in the buffer, the method described here is more suitable, since it is far more compatible (although possibly not so efficient). But anyway, buffers are not a compatible construct, so it does not matter so much.
 
-            Creating new stacks
+==== Creating new stacks ====
+
 
             The description of multiple stack operations in this section, is not part of standard Rexx, nor is it implemented in Regina. Thus, this section describes a de facto standard and you may find that few implementations support these operations.
 
@@ -11021,7 +10990,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
             This will store the number of buffers in the stack in the variable buffers. However, just as for the other examples using buffers, this example also suffers from the fact that buffer handling is fairly non-standard. Thus, you will have to adapt the code to whatever system you want to use.
 
 
-        The interface between Rexx and the stack
+===== The interface between Rexx and the stack =====
+
 
         As defined in TRL, the interface to the stack consists of the PARSE PULL, PULL, PUSH, and
 
@@ -11029,7 +10999,9 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
 
 
         There exists a binary interface to the stack in SAA, see the chapter on the SAA API interface. This interface consists of the RXMSQ exit handler and the QUENAME value of the RXSHV_PRIV request of the RexxVariablePool() function of the variable pool interface.
-        Strategies for implementing stacks
+
+===== Strategies for implementing stacks =====
+
 
         As mentioned, stacks are rarely a part of the operating system. Therefore, under most operating systems, Rexx interpreters have to implement their own stacks. There are several strategies for doing this, some which are listed below.
 
@@ -11134,14 +11106,16 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
         Using the stack to "leave behind" command names and input only works for systems where command interpreters and commands reads their input from the stack. This is in general true for IBM mainframe systems, but very few other systems.
 
 
-        Implementations of the stack in Regina
+===== Implementations of the stack in Regina =====
+
 
         In Regina, the stack is implemented as both an integral, private part of the interpreter and as a cross-platform external stack able to be used by multiple clients on multiple machines. Internal stacks provide the obvious advantage of speed at the expense of data sharing. External stacks are considerably slower, but do enable data sharing between instances of Regina and/or other programs.
 
 
         Regina supports the standard TRL (and ANSI) Rexx stack interface functionality, like PARSE PULL, PULL, QUEUE, PUSH, the QUEUED() built-in function, and in future versions, support the SAA API stack interface. These commands and functions operate on both the internal and external stacks.
 
-            Implementation of the internal stack in Regina 2.2 and above
+==== Implementation of the internal stack in Regina 2.2 and above ====
+
 
             Whenever the Rexx programmer wants to execute a command and let that command either flush the output to the internal stack, or read its input from the internal stack, this has to be arranged by the interpreter itself. In Regina this is normally done by pre pending or appending certain terms to the command to be executed.
 
@@ -11184,12 +11158,14 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
 
             In addition to the ANSI standard, there are a few extra built-in functions, which are supposed to provide compatibility with other Rexx implementations, principally CMS Rexx. These are BUFTYPE, DESBUF, DROPBUF and MAKEBUF. See the descriptions of these function in the built-in functions section above.
 
-            Implementation of the external stack in Regina 2.2 and above
+==== Implementation of the external stack in Regina 2.2 and above ====
+
 
             The implementation of the external stack follows the model used by OS/2 Rexx, but is implemented as an operating system daemon. This daemon is rxstack.
 
 
-            rxstack
+=== rxstack ===
+
 
             Under most operating systems, rxstack is started from the operating system's startup process and terminates when the machine is shutdown. Under Windows 2000 and above, it runs as a Service.
 
@@ -11236,7 +11212,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
             To stop rxstack, the process can be killed with a SIGINT or SIGTERM or by running rxstack with the -k or --kill switch.
 
 
-            rxqueue
+=== rxqueue ===
+
 
             To allow non-Rexx program to interface to the rxstack daemon, a companion program; rxqueue, is provided. rxqueue communicates with non-Rexx programs via its stdin and stdout.
 
@@ -11288,12 +11265,14 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
             /list displays list of queues held by rxstack
 
 
-            rxqueue Built-in Function
+=== rxqueue Built-in Function ===
+
 
             Rexx programs communicate with rxstack via the normal queueing mechanisms of QUEUE, PUSH, PULL and QUEUED(). These commands operate on the current queue and have no mechanism for changing the queue to use. This is whereRXQUEUE() is used. Its primary purpose is to control the queue that the remainder of the Rexx program operates on.
 
 
-            Queue Names ‌
+=== Queue Names ‌ ===
+
 
             To enable the use of the Rexx stack as a cross-platform, multi-machine IPC, the naming conventions adopted by OS/2 Rexx has been modified. As OS/2 Rexx queues are local to a single machine, queue names have no structure. To enable identification of queues on different machines, some structure must be built into external queue names on Regina. An external queue name on Regina has the following format:
 
@@ -11316,14 +11295,16 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
             Some examples may make this clearer. TBD
 
 
-            Security of External Queues ‌
+=== Security of External Queues ‌ ===
+
 
 
             (Not implemented yet)
 
             A daemon process like rxstack, waiting on a TCP/IP socket for anyone to connect to and use is open to abuse. To reduce the openness of rxstack, it uses a security mechanism much like the Unix hosts.allow and hosts.deny files is used to control access to rxstack.
 
-            Environment Variables
+=== Environment Variables ===
+
 
 
             RXQUEUE RXSTACK
