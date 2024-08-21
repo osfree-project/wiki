@@ -3,158 +3,21 @@
 Version 3.9.6
 
 Original Authors:
+
   * Mark Hessling < mark@rexx.org>
   * Florian Große-Coosmann < florian@grosse-coosmann.de>
   * Anders Christensen < Anders.Christensen@idi.ntnu.no> 
 
 Regina Home Page at: http://regina-rexx.sourceforge.net
 
-Copyright © 1992-1998 Anders Christensen
-Copyright © 1998-2022 Mark Hessling
+  * Copyright © 1992-1998 Anders Christensen
+  * Copyright © 1998-2022 Mark Hessling
 
 Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation License, Version 1.1 or any later version published by the Free Software Foundation; with no Invariant Sections, with no Front-Cover Texts, and with no Back-Cover Texts.
 
 A copy of the license is included in the section entitled "GNU Free Documentation License".
 
 Table of Contents
-
-    Interfacing Rexx to other programs 203
-
-        Overview of functions in SAA 203
-
-            Include Files and Libraries 203
-
-            Preprocessor Symbols 204
-
-            Data structures and data types 204
-
-                The RXSTRING structured 205
-
-                The RXSYSEXIT structured 206
-
-        The Subcommand Handler Interface 208
-
-            What is a Subcommand Handler 208
-
-            The RexxRegisterSubcomExe() function 209
-
-            The RexxRegisterSubcomDll() function 210
-
-            The RexxDeregisterSubcom() function 211
-
-            The RexxQuerySubcom() function 212
-
-        The External Function Handler Interface 213
-
-            What is an External Function Handler 213
-
-            The RexxRegisterFunctionExe() function 214
-
-            The RexxRegisterFunctionDll() function 214
-
-            The RexxDeregisterFunction() function 215
-
-            The RexxQueryFunction() function 216
-
-        Executing Rexx Code 217
-
-            The RexxStart() function 217
-
-        Variable Pool Interface 221
-
-            Symbolic or Direct 221
-
-            The SHVBLOCK structure 221
-
-            Regina Notes for the Variable Pool 225
-
-            The RexxVariablePool() function 226
-
-        The System Exit Handler Interface 228
-
-            The System Exit Handler 228
-
-            List of System Exit Handlers 229
-
-                RXFNC - The External Function Exit Handler 229
-
-                RXCMD - The Subcommand Exit Handler 230
-
-                RXMSQ - The External Data Queue Exit Handler 231
-
-                RXSIO - The Standard I/O Exit Handler 233
-
-                RXHLT - The Halt Condition Exit Handler 234
-
-                RXTRC - The Trace Status Exit Handler 234
-
-                RXINI - The Initialization Exit Handler 234
-
-                RXTER - The Termination Exit Handler 235
-
-                RXENV - The External Environment Exit Handler 235
-
-            The RexxRegisterExitExe() function 236
-
-            The RexxRegisterExitDll() function 237
-
-            The RexxDeregisterExit() function 238
-
-            The RexxQueryExit() function 239
-
-        The External Queue Interface 240
-
-            The RexxCreateQueue() function 240
-
-            The RexxDeleteQueue() function 241
-
-            The RexxQueryQueue() function 241
-
-            The RexxAddQueue() function 242
-
-            The RexxPullQueue() function 242
-
-        The Macro Space Interface 245
-
-            The RexxAddMacro() function 245
-
-            The RexxDropMacro() function 245
-
-            The RexxSaveMacroSpace() function 245
-
-            The RexxLoadMacroSpace() function 245
-
-            The RexxQueryMacro() function 245
-
-            The RexxReorderMacro() function 245
-
-            The RexxClearMacroSpace() function 245
-
-        Allocating and De-allocating Space 246
-
-            The RexxAllocateMemory() function 246
-
-            The RexxFreeMemory() function 246
-
-        Calling back into running Rexx Code 247
-
-            The RexxCallBack() function 247
-
-    Implementation Limits 249
-
-        Why Use Limits? 249
-
-        What Limits to Choose? 249
-
-        Required Limits 249
-
-        Older (Obsolete) Limits 250
-
-        What the Standard does not Say 251
-
-        What an Implementation is Allowed to "Ignore" 251
-
-        Limits in Regina 252
 
     Regina Features and Implementation 254
 
@@ -11316,7 +11179,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
     This chapter describes an interface between a Rexx interpreter and another program, typically written in C or another high level, compiled language. It is intended for application programmers who are implementing Rexx support in their programs. It describes the interface known as the Rexx SAA API.
 
 
-        Overview of functions in SAA
+===== Overview of functions in SAA =====
+
 
         The functionality of the interface is divided into some main areas:
 
@@ -11367,13 +11231,15 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
 
         ambiguity and incompleteness that often accompany a descriptive prose text are avoided.
 
-            Include Files and Libraries
+==== Include Files and Libraries ====
+
 
             All the C code that uses the Rexx application interface, must include a special header file that contains the necessary definitions. This file is called rexxsaa.h. Where you will find this file, will depend on you system and which compiler you use.
 
             Also, the interface part between the application and the Rexx interpreter may be implemented as a library, which you link with the application using the functions described in this chapter. The name of this library, and its location might differ from system to system. Under Unix, this library is implemented as a static (libregina.a) or dynamic library (libregina.[so|sl]). Under other platforms the Regina library is also implemented as a static or dynamic library.
 
-            Preprocessor Symbols
+==== Preprocessor Symbols ====
+
 
             Including a header file ought to be enough; unfortunately, that is not so. Each of the domains of functionality listed above are defined in separate sections' in the rexxsaa.h header file. In order for these to be made available, certain preprocessor symbols have to be set. For instance, you have to include the following definition:
 
@@ -11406,7 +11272,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
 
             Must be set in order to get the prototypes, symbols and datatype definitions necessary to use the Rexx macrospace interface of the API.
 
-            Data structures and data types
+==== Data structures and data types ====
+
 
             In this section, some data structures and datatypes relevant to the application interface to Rexx are defined and described. The datatypes defined are:
 
@@ -11437,7 +11304,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
                 One other item needs mentioning; APIENTRY. This value is used to specify the linkage type on OS/2 and Win32 platforms. It is assumed that this value #defined by inclusion of compiler-specific header files in rexxsaa.h. Under Unix, this is #defined to nothing.
 
 
-                    The RXSTRING structured
+=== The RXSTRING structured ===
+
 
                     The SAA API interface uses Rexx string which are stored in the structure RXSTRING. There is also a datatype PRXSTRING, which is a pointer to RXSTRING. Their definitions are:
 
@@ -11510,7 +11378,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
             Note that these definitions of strings differ from the normal definition in C programs; where a string is an array of characters, and its length is implicitly given by a terminating ASCII NUL character. In the RXSTRING definition, a string can contain any character, including an ASCII NUL, and the length is explicitly given.
 
 
-                The RXSYSEXIT structured
+=== The RXSYSEXIT structured ===
+
 
                 This structure is used for defining which system exit handlers are to handle which system exits. The two relevant datatypes are defined as:
 
@@ -11530,11 +11399,14 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
                 The sysexit_code field is main function code of a system exit.
 
                 The system exits are divided into main functions and sub-functions. An exit is defined to handle a main function, and must thus handle all the sub-functions for that main function. All the functions and sub-functions are listed in the description of the EXIT structure.
-        The Subcommand Handler Interface
+
+===== The Subcommand Handler Interface =====
+
 
         This sections describes the subcommand handler interface, which enables the application to trap commands in a Rexx script being executed and handle these commands itself.
 
-            What is a Subcommand Handler
+==== What is a Subcommand Handler ====
+
 
             A subcommand handler is a piece of code that is called to handle a command to an external environment in Rexx. It must be either a subroutine in the application that started the interpreter, or a subroutine in a dynamic link library. In any case, when the interpreter needs to execute a command to an external environment, it will call the subcommand handler, passing the command as a parameter.
 
@@ -11575,7 +11447,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
 
             The returnstring string will provide a 256 byte array which the programmer might use if the return data is not longer that that. If that space is not sufficient, the handler can provide another area itself. In that case, the handler should not de-allocate the default area, and the new area should be allocated in a standard fashion.
 
-            The RexxRegisterSubcomExe() function
+==== The RexxRegisterSubcomExe() function ====
+
 
             This function is used to register a subcommand handler with the interface. The subcommand handler must be a procedure located within the code of the application. After registration, the Rexx interpreter can execute subcommands by calling the subcommand handler with parameters describing the subcommand.
 
@@ -11624,7 +11497,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
 
             Indicates that the handler was not registered, due to one or more of the parameters having invalid values. Regina addition.
 
-            The RexxRegisterSubcomDll() function
+==== The RexxRegisterSubcomDll() function ====
+
 
             This function is used to set up a routine that is located in a module in a dynamic link library, as a subcommand handler. After registration, the Rexx interpreter can execute subcommands by calling the subcommand handler with parameters describing the subcommand.
 
@@ -11685,7 +11559,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
 
             Indicates that the handler was not registered, due to one or more of the parameters having invalid values. Regina addition.
 
-            The RexxDeregisterSubcom() function
+==== The RexxDeregisterSubcom() function ====
+
 
             This function is used to remove a particular environment from the list of registered environments. The prototype of the function is:
 
@@ -11721,7 +11596,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
 
             Most systems that do have dynamic linking have no method for reclaiming the space used by dynamically linked routines. So, even if you were able to load a dll, there are no guarantees that you will be able to unload it.
 
-            The RexxQuerySubcom() function
+==== The RexxQuerySubcom() function ====
+
 
             This function retrieves information about a previously registered subcommand handler. The prototype of the function is:
 
@@ -11761,11 +11637,14 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
             [RXSUBCOM_BADTYPE]
 
             One or more of the parameters had illegal values, and the operation was not carried through. Regina addition.
-        The External Function Handler Interface
+
+===== The External Function Handler Interface =====
+
 
         This sections describes the external function handler interface, which extends the language by enabling external functions to be written in a language other than Rexx.
 
-            What is an External Function Handler
+==== What is an External Function Handler ====
+
 
             An external function handler is a piece of code, that is called to handle external functions and subroutine calls in Rexx. It must be either a subroutine in the application that started the interpreter, or a subroutine in a dynamic link library. In any case, when the interpreter needs to execute a function registered as an external function, it will call the external function handler, passing the function name as a parameter.
 
@@ -11821,7 +11700,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
 
             The handler returns zero if the function completed successfully. When the handler returns a non-zero value, the interpreter will raise error 40; Invalid call to routine.
 
-            The RexxRegisterFunctionExe() function
+==== The RexxRegisterFunctionExe() function ====
+
 
             This function is used to register an external function handler with the interface. The external function handler must be a procedure located within the code of the application. After registration, the Rexx interpreter can execute external functions as if they were built-ins.
 
@@ -11862,7 +11742,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
 
             The handler was not registered, due to lack of memory.
 
-            The RexxRegisterFunctionDll() function
+==== The RexxRegisterFunctionDll() function ====
+
 
             This function is used to set up an external function handler that is located in a module in a dynamic link library. Some operating systems don't have dynamic linking, and thus cannot make use of this facility. The prototype of this function is:
 
@@ -11905,7 +11786,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
 
             The handler was not registered, due to lack of memory.
 
-            The RexxDeregisterFunction() function
+==== The RexxDeregisterFunction() function ====
+
 
             This function is used to remove a particular external function handler from the list of registered external function handlers. The prototype of the function is:
 
@@ -11933,7 +11815,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
 
             Most systems that do have dynamic linking have no method for reclaiming the space used by dynamically linked routines. So, even if you were able to load a dll, there are no guarantees that you will be able to unload it.
 
-            The RexxQueryFunction() function
+==== The RexxQueryFunction() function ====
+
 
             This function retrieves the status of an external function handler. The prototype of the function is:
 
@@ -11951,11 +11834,14 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
             The external function handler was found. [RXFUNC_NOTREG]
 
             The handler was not found.
-        Executing Rexx Code
+
+===== Executing Rexx Code =====
+
 
         This sections describes the RexxStart() function, which allows the application to startup the interpreter and make it interpret pieces of Rexx code.
 
-            The RexxStart() function
+==== The RexxStart() function ====
+
 
             This function is used to invoke the Rexx interpreter in order to execute a piece of Rexx code, which may be located on disk, as a pre-tokenized macro, or as ASCII source code in memory.
 
@@ -12195,14 +12081,16 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
             If the initial environment name (EvnName) is NULL, then the initial environment during interpretation will be set equal to the file type of the script to execute. If the script does not have a file
 
             type, it is probably set to some interpreter specific value.
-        Variable Pool Interface
+
+===== Variable Pool Interface =====
 
         This section describes the variable pool part of the application interface, which allows the application programmer to set, retrieve and drop variables in the Rexx interpreter from the application program. It also allows access to other information.
 
 
         The C preprocessor symbol INCL_RXSHV must be defined if the definitions for the variable pool interface are to be made available when rexxsaa.h is included.
 
-            Symbolic or Direct
+==== Symbolic or Direct ====
+
 
             First, let us define two terms, symbolic variable name and direct variable name, which are used in connection with the variable pool.
 
@@ -12221,7 +12109,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
 
             As a remark, what would the direct variable FOO. refer to: the stem FOO. or the compound variable having stem FOO. and a nullstring as tail? Well, I suppose the former, since it is the more useful. Thus, the latter is inaccessible as a direct variable.
 
-            The SHVBLOCK structure
+==== The SHVBLOCK structure ====
+
 
             All requests to manipulate the Rexx variable pool are controlled by a structure which is called
 
@@ -12391,7 +12280,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
 
             The second statement here, might not change the returned values! After the first statement, only the stem foo. would probably have been returned, and so also if all variables were fetched after the second statement.
 
-            Regina Notes for the Variable Pool
+==== Regina Notes for the Variable Pool ====
+
 
             Due to the subtleties described at the end of the previous subsection, some notes on how Regina handles RXSHV_NEXTV requests for compound variables are in order. The following rules applies:
 
@@ -12428,7 +12318,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
 
             When Regina is returning variables with RXSHV_NEXTV, the variables are returned in the order in which they occur in the open hash table in the interpreter. i.e. the order in which variables belonging to different bins are returned is consistent, but the order in which variables hashed to the same bin are returned, is non-deterministic. Note that all compound variables belonging to the same stem are returned in one sequence.
 
-            The RexxVariablePool() function
+==== The RexxVariablePool() function ====
+
 
             This function is used to process a sequence of variable requests, and process them sequentially. The prototype of this function is:
 
@@ -12452,11 +12343,14 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
             [RXSHV_NOAVL]
 
             Means that the interface is not available for this request. This might occur if the interface was not able to start the interpreter, or if an operation requested a variable when the interpreter is not currently executing any script (i.e. idle and waiting for a script to execute).
-        The System Exit Handler Interface
+
+===== The System Exit Handler Interface =====
+
 
         The exit handlers provide a mechanism for governing important aspects of the Rexx interpreter from the application: It can trap situations like the interpreter writing out text, and then handle them itself, e.g. by displaying the text in a special window. You can regard system exits as a sort of hooks.
 
-            The System Exit Handler ‌
+==== The System Exit Handler ‌ ====
+
 
             Just like the subcommand handler, the system exit handler is a routine supplied by the application, and is called by the interpreter when certain situations occur. These situations are described in detail later. For the examples below, we will use the output from SAY as an example.
 
@@ -12496,9 +12390,11 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
 
             It is a good and disciplined practice to let your exit handlers start by verifying the ExitNumber and Subfunction codes, and immediately return RXEXIT_NOT_HANDLED if it does not recognize both of them. That way, your application will be upwards compatible with future interpreters which might have more sub-functions for any given main function.
 
-            List of System Exit Handlers
+==== List of System Exit Handlers ====
 
-                RXFNC - The External Function Exit Handler
+
+=== RXFNC - The External Function Exit Handler ===
+
 
                 The RXFNC system exit handler provides hooks for external functions. It has only one subfunction; RXFNCCAL, which allows an application program to intervene and handle any external function or subroutine.
 
@@ -12563,7 +12459,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
                 Holds an RXSTRING structure suitable for storing the return value of the handler. It is the responsibility of the handler to allocate space for the contents of this string (i.e. the array pointed to by the rxfnc_retc.strptr).
 
 
-                RXCMD - The Subcommand Exit Handler
+=== RXCMD - The Subcommand Exit Handler ===
+
 
                 The main function code for this exit handler is given by the symbolic name RXCMD. It is called whenever the interpreter is about to call a subcommand, i.e. a command to an external environment. It has only one subfunction: RXCMDHST.
 
@@ -12617,7 +12514,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
                 Note that the return fields of the parameter block are only relevant if the value RXEXIT_HANDLED was returned. This applies to the rxcmd_flags and rxcmd_retc fields of the structure.
 
 
-                RXMSQ - The External Data Queue Exit Handler
+=== RXMSQ - The External Data Queue Exit Handler ===
+
 
                 The external data queue exit handler is used as a hook for operations manipulating the external data queue (or the stack). Unfortunately, the stack is a borderline case of what is relevant to the Rexx SAA API. Operations like putting something on, retrieving a string from, obtaining the size, etc. of the stack is not part of the SAA API.
 
@@ -12689,7 +12587,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
                 Note that this area is troublesome. In TRL, external data queues are not defined as part of the language, while in SAA it is. Thus, TRL-compliant interpreters are likely to implement stacks in various ways that may not be compatible with the SAA.
 
 
-                RXSIO - The Standard I/O Exit Handler
+=== RXSIO - The Standard I/O Exit Handler ===
+
 
                 The main code for this exit handler has the symbolic value RXSIO. There are four sub-functions: [RXSIODTR]
 
@@ -12750,7 +12649,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
                 The space used to store the return data for the RXSIODTR and RXSIOTRD sub-functions, must be provided by the exit handler itself, and the space is not de-allocated by the interpreter. The space can be reused by the application at any later time. The space allocated to hold the data given by the RXSIOSAY and RXSIOTRC sub-functions, will be allocated by the interpreter, and must neither be de-allocated by the exit handler, nor used after the exit handler has terminated.
 
 
-                RXHLT - The Halt Condition Exit Handler
+=== RXHLT - The Halt Condition Exit Handler ===
+
 
                 Note: Because the RXHLT exit handler is called after every Rexx instruction, enabling this exit slows Rexx program execution.
 
@@ -12772,12 +12672,14 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
                 Called to acknowledge processing of the HALT condition when the interpreter has recognized and raised a HALT condition.
 
 
-                RXTRC - The Trace Status Exit Handler
+=== RXTRC - The Trace Status Exit Handler ===
+
 
                 Not implemented.
 
 
-                RXINI - The Initialization Exit Handler
+=== RXINI - The Initialization Exit Handler ===
+
 
                 RXTER and this exit handler are a bit different from the others. RXINI provides the application programmer with a method of getting control before the execution of the script starts. Its main purpose is to enable manipulation of the variable pool in order to set up certain variables before the script starts, or set the trace mode.
 
@@ -12790,7 +12692,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
                 As there is no information to be communicated during this exit, the value of ParmBlock is undefined. It makes no difference whether you return RXEXIT_HANDLED or RXEXIT_NOT_HANDLED, since there is no situation to handle.
 
 
-                RXTER - The Termination Exit Handler
+=== RXTER - The Termination Exit Handler ===
+
 
                 This exit resembles RXINI. Its sole subfunction is RXTEREXT, which is called once, just after the last statement of the Rexx script has been interpreted. The state of all variables are intact during this call; so it can be used to retrieve the values of the variables at the exit of a script. (In fact, that is the whole purpose of this exit handler.)
 
@@ -12798,7 +12701,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
                 Like RXINI, there is no information to be communicated during the exit, so ParamBlock is undefined in this call. And also like RXINI, it is more of a hook than an exit handler, so it does not matter whether you return RXEXIT_HANDLED or RXEXIT_NOT_HANDLED.
 
 
-                RXENV - The External Environment Exit Handler
+=== RXENV - The External Environment Exit Handler ===
+
 
                 This System Exit is specific to Regina, so caution should be exercised if you plan on making your code portable to other Rexx interpreters.
 
@@ -12847,7 +12751,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
 
                 The space used to store the return data for the RXSIODTR and RXSIOTRD sub-functions, must be provided by the exit handler itself, and the space is not de-allocated by the interpreter. The space can be reused by the application at any later time. The space allocated to hold the data given by the RXSIOSAY and RXSIOTRC sub-functions, will be allocated by the interpreter, and must neither be de-allocated by the exit handler, nor used after the exit handler has terminated.
 
-            The RexxRegisterExitExe() function
+==== The RexxRegisterExitExe() function ====
+
 
             This function is used to register a system exit handler with the interface. The system exit handler must be a procedure located within the code of the application. After registration, the Rexx interpreter will execute the system exit handler when the approriate event is triggered in the interpreter.
 
@@ -12897,7 +12802,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
 
             One or more of the parameters had illegal values, and the operation was not carried through. Regina addition.
 
-            The RexxRegisterExitDll() function
+==== The RexxRegisterExitDll() function ====
+
 
             This function is used to set up a routine that is located in a module in a dynamic link library, as a system exit handler. After registration, the Rexx interpreter will execute the system exit handler when the approriate event is triggered in the interpreter.
 
@@ -12956,7 +12862,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
 
             Indicates that the handler was not registered, due to one or more of the parameters having invalid values. Regina addition.
 
-            The RexxDeregisterExit() function
+==== The RexxDeregisterExit() function ====
+
 
             This function is used to remove a particular environment from the list of registered environments. The prototype of the function is:
 
@@ -12995,7 +12902,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
 
             dynamically linked routines. So, even if you were able to load a dll, there are no guarantees that you will be able to unload it.
 
-            The RexxQueryExit() function
+==== The RexxQueryExit() function ====
+
 
             This function retrieves information about a previously registered system exit handler. The prototype of the function is:
 
@@ -13037,11 +12945,14 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
             [RXEXIT_BADTYPE]
 
             One or more of the parameters had illegal values, and the operation was not carried through. Regina addition.
-        The External Queue Interface
+
+===== The External Queue Interface =====
+
 
         The external queue interface provide a mechanism for interacting with the interpreter's external queues. This interface is analogous to a Rexx program's use of PUSH, QUEUE, PULL, and RXQUEUE(). Note that this interface only works with the external queues, it cannot interface to the internal named queues that exists within the interpreter.
 
-            The RexxCreateQueue() function
+==== The RexxCreateQueue() function ====
+
 
             This function is used to create a new, named, external queue. The prototype for RexxCreateQueue() is:
 
@@ -13077,7 +12988,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
 
             The queue name is invalid or “SESSION” is specified.
 
-            The RexxDeleteQueue() function
+==== The RexxDeleteQueue() function ====
+
 
             This function is used to delete a named, external queue. The prototype for RexxDeleteQueue() is:
 
@@ -13101,7 +13013,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
 
             The queue name was not specified.
 
-            The RexxQueryQueue() function
+==== The RexxQueryQueue() function ====
+
 
             This function is used to determine the number of items that are available on the named, external queue.
 
@@ -13136,7 +13049,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
 
             The queue name was not specified
 
-            The RexxAddQueue() function
+==== The RexxAddQueue() function ====
+
 
             This function is used to determine add an item to a named, external queue. The prototype for RexxAddQueue() is:
 
@@ -13173,7 +13087,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
 
             The queue name was not specified
 
-            The RexxPullQueue() function
+==== The RexxPullQueue() function ====
+
 
             This function is used to extract an item from the specified named, external queue. When successful, the item from the queue is returned, and that item deleted from the queue.
 
@@ -13225,34 +13140,45 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
             The value of the WaitFlag parameter was not RXQUEUE_WAIT or
 
             RXQUEUE_NOWAIT.
-        The Macro Space Interface
+
+===== The Macro Space Interface =====
+
 
         The macro space interface provide a mechanism for pre-loading external Rexx programs into the current interpreter's macro space, so that the macros can be executed faster than reading them from disk each time they are called. This interface is not available in Regina at this stage.
 
-            The RexxAddMacro() function
+==== The RexxAddMacro() function ====
 
 
-            The RexxDropMacro() function
+
+==== The RexxDropMacro() function ====
 
 
-            The RexxSaveMacroSpace() function
+
+==== The RexxSaveMacroSpace() function ====
 
 
-            The RexxLoadMacroSpace() function
+
+==== The RexxLoadMacroSpace() function ====
 
 
-            The RexxQueryMacro() function
+
+==== The RexxQueryMacro() function ====
 
 
-            The RexxReorderMacro() function
+
+==== The RexxReorderMacro() function ====
 
 
-            The RexxClearMacroSpace() function
-        Allocating and De-allocating Space
+
+==== The RexxClearMacroSpace() function ====
+
+===== Allocating and De-allocating Space =====
+
 
         For several of the functions described in this chapter, the application calling them must allocate or de-allocate dynamic memory. Depending on the operating system, compiler and Rexx interpreter, the method for these allocations and de-allocations vary. Because of this, Regina supplies the API function calls RexxAllocateMemory() and RexxFreeMemory(). These functions are wrappers for the appropriate compiler or operating system memory functions.
 
-            The RexxAllocateMemory() function
+==== The RexxAllocateMemory() function ====
+
 
 
             The prototype for RexxAllocateMemory() is:
@@ -13273,7 +13199,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
 
             RexxAllocateMemory() returns a pointer to the newly allocated block of memory, or NULL if no memory could be allocated.
 
-            The RexxFreeMemory() function
+==== The RexxFreeMemory() function ====
+
 
             The prototype for RexxFreeMemory() is:
 
@@ -13288,7 +13215,9 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
 
 
             RexxFreeMemory() always return 0.
-        Calling back into running Rexx Code
+
+===== Calling back into running Rexx Code =====
+
 
         This section describes the RexxCallBack() function, which allows the application to execute a procedure within the running Rexx program. This function is particularly useful for building a Rexx interface to those library applications that operate using a callback mechanism.
 
@@ -13297,7 +13226,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
 
         This function is specific to Regina, so caution should be exercised if you plan on making your code portable to other Rexx interpreters.
 
-            The RexxCallBack() function
+==== The RexxCallBack() function ====
+
 
             This function is used to execute an internal procedure within the running Rexx script. The procedure is executed with the same context as if the procedure were called from within the Rexx program as a function call.
 
@@ -13374,7 +13304,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
     This chapter lists the implementation limits required by the Rexx standard. All implementations are supposed to support at least these limits.
 
 
-        Why Use Limits?
+===== Why Use Limits? =====
+
 
         Why use implementation limits at all? Often, a program (ab)uses a feature in a language to an extent that the implementor did not foresee. Suppose an implementor decides that variable names can not be longer than 64 bytes. Sooner or later, a programmer gets the idea of using very long variable names to encode special information in the name; maybe as the output of a machine generated program. The result will be a program that works only for some interpreters or only for some problems.
 
@@ -13385,7 +13316,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
         Note that these limited are required minimums for what an implementation must allow. An interpreter is not supposed to enforce these limits unless there is a good reason to.
 
 
-        What Limits to Choose?
+===== What Limits to Choose? =====
+
 
         A limit must not be perceived as an absolute limit, the implementer is free to increase the limit. To some extent, the implementer may also decrease the limit, in which case this must be properly documented as a non-standard feature. Also, the reason for this should be noted in the documentation.
 
@@ -13396,7 +13328,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
         For computers, limit choices are likely to be powers of two, like 256, 1024, 8192, etc. However, the Rexx language takes the side of the user, and defines the limits in units which looks as more "sensible" to computer non-experts: most of the limits in Rexx are numbers like 250, 500, 1000, etc.
 
 
-        Required Limits
+===== Required Limits =====
+
 
         These are the implementation minimums defined by Rexx:
 
@@ -13442,7 +13375,9 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
         [Variable name length]
 
         Of at least 50 characters. This is the name of a variable (which may or may not be set) after tail substitution.
-        Older (Obsolete) Limits
+
+===== Older (Obsolete) Limits =====
+
 
         First edition of TRL1 contained some additional limits, which have been relaxed in the second edition in order to make implementation possible for a large set of computers. These limits are:
 
@@ -13457,7 +13392,8 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
         granularity is advised.
 
 
-        What the Standard does not Say
+===== What the Standard does not Say =====
+
 
         An implementation might enforce a certain limit even though one is not specified in the standard. This section tries to list most of the places where this might be the case:
 
@@ -13492,7 +13428,9 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
         [Stack operations]
 
         Might be limited by several limits; first there is the number of strings in the stack, then there is the maximum length of each string, and at last there might be restrictions on the character set allowed in strings in the stack. Typically, the stack will be able to hold any character. It will either have "memory" as the limit for the number of string and the length of each string, or it might have a fixed amount of memory set aside for stack strings. Some implementations also set a maximum length of stack strings, often 2*8 or 2*16.
-        What an Implementation is Allowed to "Ignore"
+
+===== What an Implementation is Allowed to "Ignore" =====
+
 
         In order to make the Rexx language implementable on as many machines as possible, the Rexx standard allow implementation to ignore certain features. The existence of these features are recommended, but not required. These features are:
 
@@ -13503,7 +13441,9 @@ In this chapter, the Rexx concept of "conditions" is described. Conditions allow
         [File operations]
 
         Are defined in Rexx, but an implementation seems to be allowed to differ in just about any file operation feature.
-        Limits in Regina
+
+===== Limits in Regina =====
+
 
         Regina tries not to enforce any limits. Wherever possible, "memory" is the limit, at the cost of some CPU whenever internal data structures must be expanded if their initial size were too small. Note that Regina will only increase the internal areas, not decrease them afterwards. The rationale is that if you happen to need a large internal area once, you may need it later in the same program too.
 
