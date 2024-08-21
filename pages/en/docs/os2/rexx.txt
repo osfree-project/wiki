@@ -372,7 +372,8 @@ Example: Binary transferring files
 Suppose a Rexx program is stored on an MS-DOS machine. Then, an end-of-line sequence is marked in the file as the two characters carriage return and newline. If this file is transferred to a Unix system, then only newline marks the end-of-line. For this to work, the file must be transferred as a text file. If it is (incorrectly) transferred as a binary file, the result is that on the Unix system, each line seems to contain a trailing carriage return character. In an editor, it might look like this:
 
 <code rexx>
-say 'hello world'^M say 'that"s it'^M
+say 'hello world'^M
+say 'that"s it'^M
 </code>
 
 This will probably raise SYNTAX condition {13}.
