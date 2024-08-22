@@ -830,173 +830,146 @@ Note that the ON and OFF forms of the CALL instruction were introduced in TRL2. 
 </code>
 ==== The DO/END Instruction ====
 
+<code>
+DO [ repetitor ] [ conditional ] ;
+   [ clauses ]
+   END [ symbol ] ;
 
-            DO [ repetitor ] [ conditional ] ; [ clauses ]
+repetitor : = symbol = expri [ TO exprt ]
+   [ BY exprb ] [ FOR exprf ]
+   exprr
+   FOREVER
 
-            END [ symbol ] ;
+conditional : = WHILE exprw
+   UNTIL expru
+</code>
 
+The DO/END instruction is the instruction used for looping and grouping several statements into one block. This is a multi-clause instruction.
 
-            repetitor : = symbol = expri [ TO exprt ] [ BY exprb ] [ FOR exprf ]
+The most simple case is when there is no repetitor or conditional it groups zero or more Rexx clauses into one conceptual statement. This is most often used to execute multiple clauses in an IF instruction.
 
-            exprr
+e.g.
 
-            FOREVER
+<code rexx>
+if x = 1 then do
+   say 'hello'
+   say 'world'
+end
+</code>
 
+The repetitor subclause controls the control variable of the loop, or the number of repetitions. The exprr subclause may specify a certain number of repetitions, or you may use FOREVER to go on looping forever.
 
-            conditional : = WHILE exprw
 
-            UNTIL expru
+If you specify the control variable symbol, it must be a variable symbol, and it will get the initial value expri at the start of the loop. At the start of each iteration, including the first, it will be checked whether it has reached the value specified by exprt. At the end of each iteration the value exprb is added to the control variable. The loop will terminate after at most exprf iterations. Note that all these expressions are evaluated only once, before the loop is entered for the first iteration.
 
+You may also specify UNTIL or WHILE, which take a boolean expression. WHILE is checked before each iteration, immediately after the maximum number of iteration has been performed. UNTIL is checked after each iteration, immediately before the control variable is incremented. It is not possible to specify both UNTIL and WHILE in the same DO instruction.
 
-            The DO/END instruction is the instruction used for looping and grouping several statements into one block. This is a multi-clause instruction.
+The FOREVER keyword is only needed when there is no conditional, and the repetitor would also be empty if FOREVER was not specified. Actually, you could rewrite this as DO WHILE 1. The two forms are equivalent, except for tracing output.
 
+The subclauses TO, BY, and FOR may come in any order, and their expressions are evaluated in the order in which they occur. However, the initial assignment must always come first. Their order may affect your program if these expressions have any side effects. However, this is seldom a problem, since it is quite intuitive.
 
-            The most simple case is when there is no repetitor or conditional it groups zero or more Rexx clauses into one conceptual statement. This is most often used to execute multiple clauses in an IF instruction.
+Example: Evaluation order
 
-            e.g.
+What may prove a real trap, is that although the value to which the control variable is set is evaluated before any other expressions in the repetitor, it is assigned to the control variable after all expressions in the repetitor have been evaluated.
 
-            if x = 1 then do
+The following code illustrates this problem:
 
-            say 'hello' say 'world'
+<code rexx>
+ctrl = 1
+do ctrl=f(2) by f(3) to f(5) 
+   call f 6
+end
+call f 7 exit
 
-            end
+f:
+   say 'ctrl='ctrl 'arg='arg(1)
+   return arg(1)
+</code>
 
+This code produces the following output:
 
-            The repetitor subclause controls the control variable of the loop, or the number of repetitions. The exprr subclause may specify a certain number of repetitions, or you may use FOREVER to go on looping forever.
+<code>
+ctrl=1 arg=2
+ctrl=1 arg=3
+ctrl=1 arg=5
+ctrl=2 arg=6
+ctrl=5 arg=6
+ctrl=8 arg=7
+</code>
 
+Make sure you understand why the program produces this output. Failure to understand this may give you a surprise later, when you happen to write a complex DO-instruction, and do not get the expected result.
 
-            If you specify the control variable symbol, it must be a variable symbol, and it will get the initial value expri at the start of the loop. At the start of each iteration, including the first, it will be checked whether it has reached the value specified by exprt. At the end of each iteration the value exprb is added to the control variable. The loop will terminate after at most exprf iterations. Note that all these expressions are evaluated only once, before the loop is entered for the first iteration.
+If the TO expression is omitted, there is no checking for an upper bound of the expression. If the BY subclause is omitted, then the default increment of 1 is used. If the FOR subclause is omitted, then there is no checking for a maximum number of iterations.
 
+Example: Loop convergence For the reasons just explained, the instruction:
 
-            You may also specify UNTIL or WHILE, which take a boolean expression. WHILE is checked before each iteration, immediately after the maximum number of iteration has been performed. UNTIL is checked after each iteration, immediately before the control variable is incremented. It is not possible to specify both UNTIL and WHILE in the same DO instruction.
+<code rexx>
+do ctrl=1
+  nop /* and other statements */
+end
+</code>
 
+will start with CTRL being 1, and then iterate through 2, 3, 4, ..., and never terminate except by LEAVE, RETURN, SIGNAL, or EXIT.
 
-            The FOREVER keyword is only needed when there is no conditional, and the repetitor would also be empty if FOREVER was not specified. Actually, you could rewrite this as DO WHILE 1. The two forms are equivalent, except for tracing output.
+Although similar constructs in other languages typically provokes an overflow at some point, something "strange" happens in Rexx. Whenever the value of ctrl becomes too large, the incrementation of that variable produces a result that is identical to the old value of ctrl. For NUMERIC DIGITS set to 9, this happens when ctrl becomes 1.00000000E+9. When adding 1 to this number, the result is still 1.00000000E+9. Thus, the loop "converges" at that value.
 
+If the value of NUMERIC DIGITS is 1, then it will "converge" at 10, or 1E+1 which is the "correct" way of writing that number under NUMERIC DIGITS 1. You can in general disregard loop "convergence", because it will only occur in very rare situations.
 
-            The subclauses TO, BY, and FOR may come in any order, and their expressions are evaluated in the order in which they occur. However, the initial assignment must always come first. Their order may affect your program if these expressions have any side effects. However, this is seldom a problem, since it is quite intuitive.
+Example: Difference between UNTIL and WHILE
 
-            Example: Evaluation order
+One frequent misunderstanding is that the WHILE and UNTIL subclauses of the DO/END instruction are equivalent, except that WHILE is checked before the first iteration, while UNTIL is first checked before the second iteration.
 
+This may be so in other languages, but in Rexx. Because of the order in which the parts of the loop are performed, there are other differences. Consider the following code:
 
-            What may prove a real trap, is that although the value to which the control variable is set is evaluated before any other expressions in the repetitor, it is assigned to the control variable after all expressions in the repetitor have been evaluated.
+<code rexx>
+count = 1
+do i=1 while count \= 5
+   count = count + 1
+end
+say i count
 
+count = 1
+do i=1 until count=5
+   count = count + 1
+end
+say i count
+</code>
 
-            The following code illustrates this problem:
+After the first loop, the numbers 5 and 5, while in the second loop, the numbers 4 and 5 are written out. The reason is that a WHILE clause is checked after the control variable of the loop has been incremented, but an UNTIL expression is checked before the incrementation.
 
+A loop can be terminated in several ways. A RETURN or EXIT instruction terminates all active loops in the procedure levels terminated. Further, a SIGNAL instruction transferring control (i.e. neither a SIGNAL ON nor SIGNAL OFF) terminates all loops at the current procedural level. This applies even to "implicit" SIGNAL instructions, i.e. when triggering a condition handler by the method of SIGNAL. A LEAVE instruction terminates one or more loops. Last but not least, a loop can terminate itself, when it has reached its specified stop conditions.
 
-            ctrl = 1
+Note that the SIGNAL instruction terminates also non-repetitive loops (or rather: DO/END pairs), thus after an SIGNAL instruction, you must not execute an END instruction without having executed its corresponding DO first (and after the SIGNAL instruction). However, as long as you stay away from the ENDs, it is all right according to TRL to execute code within a loop without having properly activated the loop itself.
 
-            do ctrl=f(2) by f(3) to f(5) call f 6
+Note that on exit from a loop, the value of the control variable has been incremented once after the last iteration of the loop, if the loop was terminated by the WHILE expression, by exceeding the number of max iterations, or if the control variable exceeded the stop value. However, the control variable has the value of the last iteration if the loop was terminated by the UNTIL expression, or by an instruction inside the loop (e.g. LEAVE, SIGNAL, etc.).
 
-            end
+The following algorithm in Rexx code shows the execution of a DO instruction, assuming that expri, exprt, exprb, exprf, exprw, expru, and symbol have been taken from the syntax diagram of DO.
 
-            call f 7 exit
+<code rexx>
+@expri = expri
+@exprt = exprt
+@exprb = exprb
+@exprf = exprf
+@iters = 0
 
+symbol = @expri
 
-            f:
+start_of_loop:
+   if symbol > @extrt then signal after_loop 
+   if @iters > @exprf then signal after_loop 
+   if \exprw then signal after_loop
+      instructions
+end_of_loop:
+   if expru then signal after_loop
+   symbol = symbol + @exprb
+   signal start_of_loop
 
-            say 'ctrl='ctrl 'arg='arg(1) return arg(1)
+after_loop:
+</code>
 
+Some notes are in order for this algorithm. First, it uses the SIGNAL instruction, which is defined to terminate all active loops. This aspect of the SIGNAL instruction has been ignored for the purpose of illustrating the DO, and consequently, the code shown above is not suitable for nested loops.
 
-            This code produces the following output:
-
-
-            ctrl=1 arg=2 ctrl=1 arg=3 ctrl=1 arg=5 ctrl=2 arg=6 ctrl=5 arg=6 ctrl=8 arg=7
-
-
-            Make sure you understand why the program produces this output. Failure to understand this may give you a surprise later, when you happen to write a complex DO-instruction, and do not get the expected result.
-
-
-            If the TO expression is omitted, there is no checking for an upper bound of the expression. If the BY subclause is omitted, then the default increment of 1 is used. If the FOR subclause is omitted, then there is no checking for a maximum number of iterations.
-
-
-            Example: Loop convergence For the reasons just explained, the instruction:
-
-
-            do ctrl=1
-
-            nop /* and other statements */
-
-            end
-
-
-            will start with CTRL being 1, and then iterate through 2, 3, 4, ..., and never terminate except by
-
-            LEAVE, RETURN, SIGNAL, or EXIT.
-
-
-            Although similar constructs in other languages typically provokes an overflow at some point, something "strange" happens in Rexx. Whenever the value of ctrl becomes too large, the
-
-            incrementation of that variable produces a result that is identical to the old value of ctrl. For NUMERIC DIGITS set to 9, this happens when ctrl becomes 1.00000000E+9. When adding 1 to this number, the result is still 1.00000000E+9. Thus, the loop "converges" at that value.
-
-
-            If the value of NUMERIC DIGITS is 1, then it will "converge" at 10, or 1E+1 which is the "correct" way of writing that number under NUMERIC DIGITS 1. You can in general disregard loop "convergence", because it will only occur in very rare situations.
-
-
-            Example: Difference between UNTIL and WHILE
-
-
-            One frequent misunderstanding is that the WHILE and UNTIL subclauses of the DO/END instruction are equivalent, except that WHILE is checked before the first iteration, while UNTIL is first checked before the second iteration.
-
-
-            This may be so in other languages, but in Rexx. Because of the order in which the parts of the loop are performed, there are other differences. Consider the following code:
-
-
-            count = 1
-
-            do i=1 while count \= 5 count = count + 1
-
-            end
-
-            say i count
-
-
-            count = 1
-
-            do i=1 until count=5 count = count + 1
-
-            end
-
-            say i count
-
-
-            After the first loop, the numbers 5 and 5, while in the second loop, the numbers 4 and 5 are written out. The reason is that a WHILE clause is checked after the control variable of the loop has been incremented, but an UNTIL expression is checked before the incrementation.
-
-
-            A loop can be terminated in several ways. A RETURN or EXIT instruction terminates all active loops in the procedure levels terminated. Further, a SIGNAL instruction transferring control (i.e. neither a SIGNAL ON nor SIGNAL OFF) terminates all loops at the current procedural level. This applies even to "implicit" SIGNAL instructions, i.e. when triggering a condition handler by the method of SIGNAL. A LEAVE instruction terminates one or more loops. Last but not least, a loop can terminate itself, when it has reached its specified stop conditions.
-
-
-            Note that the SIGNAL instruction terminates also non-repetitive loops (or rather: DO/END pairs), thus after an SIGNAL instruction, you must not execute an END instruction without having executed its corresponding DO first (and after the SIGNAL instruction). However, as long as you stay away from the ENDs, it is all right according to TRL to execute code within a loop without having properly activated the loop itself.
-
-
-            Note that on exit from a loop, the value of the control variable has been incremented once after the last iteration of the loop, if the loop was terminated by the WHILE expression, by exceeding the
-
-            number of max iterations, or if the control variable exceeded the stop value. However, the control variable has the value of the last iteration if the loop was terminated by the UNTIL expression, or by an instruction inside the loop (e.g. LEAVE, SIGNAL, etc.).
-
-
-            The following algorithm in Rexx code shows the execution of a DO instruction, assuming that expri, exprt, exprb, exprf, exprw, expru, and symbol have been taken from the syntax diagram of DO.
-
-
-            @expri = expri @exprt = exprt @exprb = exprb @exprf = exprf @iters = 0
-
-            symbol = @expri start_of_loop:
-
-            if symbol > @extrt then signal after_loop if @iters > @exprf then signal after_loop if \exprw then signal after_loop
-
-            instructions
-
-            end_of_loop:
-
-            if expru then signal after_loop symbol = symbol + @exprb signal start_of_loop
-
-
-            after_loop:
-
-
-            Some notes are in order for this algorithm. First, it uses the SIGNAL instruction, which is defined to terminate all active loops. This aspect of the SIGNAL instruction has been ignored for the purpose of illustrating the DO, and consequently, the code shown above is not suitable for nested loops.
-
-            Further, the order of the first four statements should be identical to the order in the corresponding subclauses in the repetitor. The code has also ignored that the WHILE and the UNTIL subclauses can not be used in the same DO instruction. And in addition, all variables starting with the at sign (@), are assumed to be internal variables, private to this particular loop. Within instructions, a LEAVE instruction is equivalent to signal after_loop, while a ITERATE instruction is equivalent to signal end_of_loop.
+Further, the order of the first four statements should be identical to the order in the corresponding subclauses in the repetitor. The code has also ignored that the WHILE and the UNTIL subclauses can not be used in the same DO instruction. And in addition, all variables starting with the at sign (@), are assumed to be internal variables, private to this particular loop. Within instructions, a LEAVE instruction is equivalent to signal after_loop, while a ITERATE instruction is equivalent to signal end_of_loop.
 
 ==== The DROP Instruction ====
 
