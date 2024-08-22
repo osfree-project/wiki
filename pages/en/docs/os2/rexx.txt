@@ -974,60 +974,51 @@ Further, the order of the first four statements should be identical to the order
 ==== The DROP Instruction ====
 
 
-            DROP symbol [ symbol ... ] ;
+<code>
+DROP symbol [ symbol ... ] ;
+</code>
 
+The DROP instruction makes the named variables uninitialized, i.e. the same state that they had at the startup of the program. The list of variable names are processed strictly from left to right and dropped in that order. Consequently, if one of the variables to be dropped is used in a tail of another, then the order might be significant. E.g. the following two DROP instructions are not equivalent:
 
-            The DROP instruction makes the named variables uninitialized, i.e. the same state that they had at the startup of the program. The list of variable names are processed strictly from left to right and dropped in that order. Consequently, if one of the variables to be dropped is used in a tail of another, then the order might be significant. E.g. the following two DROP instructions are not equivalent:
+<code rexx>
+bar = 'a'
+drop bar foo.bar /* drops 'BAR' and 'FOO.BAR' */
+bar = 'a'
+drop foo.bar bar /* drops 'FOO.a' and 'BAR'
+</code>
 
-            bar = 'a'
+The variable terms can be either a variable symbol or a symbol enclosed in parentheses. The former form is first tail-substituted, and then taken as the literal name of the symbol to be dropped. The result names the variable to drop. In the latter form, the value of the variable symbol inside the parentheses is retrieved and taken as a space separated list of symbols. Each of these symbols is tail-substituted (if relevant); and the result is taken as the literal name of a variable to be dropped.
 
-            drop bar foo.bar /* drops 'BAR' and 'FOO.BAR' */ bar = 'a'
+However, this process is not recursive, so that the list of names referred to indirectly can not itself contain parentheses. Note that the second form was introduced in TRL2, mainly in order to make INTERPRET unnecessary.
 
-            drop foo.bar bar /* drops 'FOO.a' and 'BAR'
+In general, things contained in parentheses can be any valid Rexx expression, but this does not apply to the DROP, PARSE, and PROCEDURE instructions.
 
+Example: Dropping compound variables
 
-            The variable terms can be either a variable symbol or a symbol enclosed in parentheses. The former form is first tail-substituted, and then taken as the literal name of the symbol to be dropped. The result names the variable to drop. In the latter form, the value of the variable symbol inside the parentheses is retrieved and taken as a space separated list of symbols. Each of these symbols is tail-substituted (if relevant); and the result is taken as the literal name of a variable to be dropped.
+Note a potential problem for compound variables: when a stem variable is set, it will not set a default value, rather it will assign "all possible variables" in that stem collection at once. So dropping a compound variable in a stem collection for which the stem variable has been set, will set that compound variable to the original uninitialized value; not the value of the stem variable. See section Assign for further notes on assignments. To illustrate consider the code:
 
-            However, this process is not recursive, so that the list of names referred to indirectly can not itself contain parentheses. Note that the second form was introduced in TRL2, mainly in order to make INTERPRET unnecessary.
+<code rexx>
+foo. = 'default'
+drop baz bar foo.bar
+say foo.bar foo.baz /* says 'FOO.BAR default' */
+</code>
 
+ In this example, the SAY instruction writes out the value of the two compound variables FOO.BAR and FOO.BAZ. When performing tail-substitution for these, the interpreter finds that both BAR and BAZ are uninitialized. Further, FOO.BAR has also been made uninitialized, while FOO.BAZ has the value assigned to it in the assignment to the stem variable.
 
-            In general, things contained in parentheses can be any valid Rexx expression, but this does not apply to the DROP, PARSE, and PROCEDURE instructions.
+Example: Tail-substitution in DROP
 
+For instance, suppose that the variable FOO has the value bar. After being dropped, FOO will have its uninitialized value, which is the same as its name: FOO. If the variable to be dropped is a stem variable, then both the stem variable and all compound variables of that stem become uninitialized.
 
-            Example: Dropping compound variables
+<code rexx>
+bar = 123
+drop foo.bar /* drops 'FOO.123' */
+</code>
 
+Technically, it should be noted that some operations involving dropping of compound variables can be very space consuming. Even though the standard does not operate with the term "default value" for the value assigned to a stem variable, that is the way in which it is most likely to be implemented. When a stem is assigned a value, and some of its compound variables are dropped afterwards, then the interpreter must use memory to store references to the variables dropped. This might seem counter-intuitive at first, since dropping ought to release memory, not allocate more.
 
-            Note a potential problem for compound variables: when a stem variable is set, it will not set a default value, rather it will assign "all possible variables" in that stem collection at once. So dropping a compound variable in a stem collection for which the stem variable has been set, will set that compound variable to the original uninitialized value; not the value of the stem variable. See section Assign for further notes on assignments. To illustrate consider the code:
+There is a parallel between DROP and PROCEDURE EXPOSE. However, there is one important difference, although PROCEDURE EXPOSE will expose the name of a variable enclosed in parentheses before starting to expose the symbols that variable refers to, this is not so for DROP. If DROP had mimicked the behaviour of PROCEDURE EXPOSE in this matter, then the whole purpose of indirect specifying of variables in DROP would have been defeated.
 
-
-            foo. = 'default' drop baz bar foo.bar
-
-            say foo.bar foo.baz /* says 'FOO.BAR default' */
-
-
-            In this example, the SAY instruction writes out the value of the two compound variables FOO.BAR and FOO.BAZ. When performing tail-substitution for these, the interpreter finds that both BAR and BAZ are uninitialized. Further, FOO.BAR has also been made uninitialized, while FOO.BAZ has the value assigned to it in the assignment to the stem variable.
-
-
-            Example: Tail-substitution in DROP
-
-
-            For instance, suppose that the variable FOO has the value bar. After being dropped, FOO will have its uninitialized value, which is the same as its name: FOO. If the variable to be dropped is a stem variable, then both the stem variable and all compound variables of that stem become uninitialized.
-
-
-            bar = 123
-
-            drop foo.bar /* drops 'FOO.123' */
-
-
-            Technically, it should be noted that some operations involving dropping of compound variables can be very space consuming. Even though the standard does not operate with the term "default value" for the value assigned to a stem variable, that is the way in which it is most likely to be implemented. When a stem is assigned a value, and some of its compound variables are dropped afterwards, then the interpreter must use memory to store references to the variables dropped. This
-
-            might seem counter-intuitive at first, since dropping ought to release memory, not allocate more.
-
-
-            There is a parallel between DROP and PROCEDURE EXPOSE. However, there is one important difference, although PROCEDURE EXPOSE will expose the name of a variable enclosed in parentheses before starting to expose the symbols that variable refers to, this is not so for DROP. If DROP had mimicked the behaviour of PROCEDURE EXPOSE in this matter, then the whole purpose of indirect specifying of variables in DROP would have been defeated.
-
-
-            Dropping a variable which does not have a value is not an error. There is no upper limit on the number of variables that can be dropped in one DROP clause, other than restrictions on the clause length. If an exposed variable is dropped, the variable in the caller is dropped, but the variable remains exposed. If it reassigned a value, the value is assigned to a variable in the caller routine.
+Dropping a variable which does not have a value is not an error. There is no upper limit on the number of variables that can be dropped in one DROP clause, other than restrictions on the clause length. If an exposed variable is dropped, the variable in the caller is dropped, but the variable remains exposed. If it reassigned a value, the value is assigned to a variable in the caller routine.
 
 ==== The EXIT Instruction ====
 
