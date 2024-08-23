@@ -1184,109 +1184,84 @@ I have seen it used as "trace-bait". That is, when you start interactive trace, 
 
 ==== The NUMERIC Instruction ====
 
+<code>
+NUMERIC DIGITS [ expr ] ;
+   FORM [ SCIENTIFIC | ENGINEERING | [ VALUE ] expr ] ;
+   FUZZ [ expr ] ;
+</code>
 
-            NUMERIC DIGITS [ expr ] ;
+Rexx has an unusual form of arithmetic. Most programming languages use integer and floating point arithmetic, where numbers are coded as bits in the computers native memory words. However, Rexx uses floating point arithmetic of arbitrary precision, that operates on strings representing the numbers. Although much slower, this approach gives lots of interesting functionality. Unless number-crunching is your task, the extra time spent by the interpreter is generally quite acceptable and often almost unnoticeable.
 
-            FORM [ SCIENTIFIC | ENGINEERING | [ VALUE ] expr ] ;
+The NUMERIC statement is used to control most aspects of arithmetic operations. It has three distinct forms: DIGITS, FORM and FUZZ; which to choose is given by the second token in the instruction:
 
-            FUZZ [ expr ] ;
+DIGITS
 
+Is used to set the number of significant digits in arithmetic operations. The initial value is 9, which is also the default value if expr is not specified. Large values for DIGITS tend to slow down some arithmetic operations considerably. If specified, expr must be a positive integer.
 
-            Rexx has an unusual form of arithmetic. Most programming languages use integer and floating point arithmetic, where numbers are coded as bits in the computers native memory words. However, Rexx uses floating point arithmetic of arbitrary precision, that operates on strings representing the numbers. Although much slower, this approach gives lots of interesting functionality. Unless number-crunching is your task, the extra time spent by the interpreter is generally quite acceptable and often almost unnoticeable.
+FUZZ
 
+Is used in numeric comparisons, and its initial value is 0, which is the also the default value if expr is not specified. Normally, two numbers must have identical numeric values for a number of their most significant digits in order to be considered equal. How many digits are considered is determined by DIGITS. If DIGITS is 4, then 12345 and 12346 are equal, but not 12345 and 12356. However, when FUZZ is non-zero, then only the DIGITS minus FUZZ most significant digits are checked. E.g. if DIGITS is 4 and FUZZ are 2, then 1234 and 1245 are equal, but not 1234 and 1345.
 
-            The NUMERIC statement is used to control most aspects of arithmetic operations. It has three distinct forms: DIGITS, FORM and FUZZ; which to choose is given by the second token in the instruction:
+The value for FUZZ must be a non-negative integer, and less than the value of DIGITS. FUZZ is seldom used, but is useful when you want to make comparisons less influenced by inaccuracies. Note that using with values of FUZZ that is close to DIGITS may give highly surprising results.
 
+FORM
 
-            DIGITS
+Is used to set the form in which exponential numbers are written. It can be set to either SCIENTIFIC or ENGINEERING. The former uses a mantissa in the range 1.000... to 9.999..., and an exponent which can be any integer; while the latter uses a mantissa in the range 1.000... to 999.999..., and an exponent which is dividable by 3. The initial setting is SCIENTIFIC which is also the default value if expr is not specified. Following the subkeyword FORM may be the subkeywords SCIENTIFIC and ENGINEERING, or the subkeyword VALUE. In the latter case, the rest of the statement is considered an expression, which will evaluate to either SCIENTIFIC or ENGINEERING. However, if the first token of the expression following VALUE is neither a symbol nor literal string, then the VALUE subkeyword can be omitted.
 
-            Is used to set the number of significant digits in arithmetic operations. The initial value is 9, which is also the default value if expr is not specified. Large values for DIGITS tend to slow down some arithmetic operations considerably. If specified, expr must be a positive integer.
+The setting of FORM never affects the decision about whether to choose exponential form or normal floating point form; it only affects the appearance of the exponential form once that form has been selected.
 
-            FUZZ
+Many things can be said about the usefulness of FUZZ. My impression is that it is seldom used in Rexx programs. One problem is that it only addresses relative inaccuracy: i.e. that the smaller value must be within a certain range, that is determined by a percentage of the larger value. Often one needs absolute inaccuracy, e.g. two measurements are equal if their difference are less than a certain absolute threshold.
 
+Example: Simulating relative accuracy with absolute accuracy
 
-            FORM
+As explained above, Rexx arithmetic has only relative accuracy, in order to obtain absolute accuracy, one can use the following trick:
 
+<code rexx>
+numeric fuzz 3
+if a=b then
+   say 'relative accuracy'
+if abs(a-b)<=500 then
+   say 'absolute accuracy'
+</code>
 
-            Is used in numeric comparisons, and its initial value is 0, which is the also the default value if expr is not specified. Normally, two numbers must have identical numeric values for a number of their most significant digits in order to be considered equal. How many digits are considered is determined by DIGITS. If DIGITS is 4, then 12345 and 12346 are equal, but not 12345 and 12356. However, when FUZZ is non-zero, then only the DIGITS minus FUZZ most significant digits are checked. E.g. if DIGITS is 4 and FUZZ are 2, then 1234 and 1245 are equal, but not 1234 and 1345.
+In the first IF instruction, if A is 100,000, then the range of values for B which makes the expression true is 99,500-100,499, i.e. an inaccuracy of about +-500. If A has the value 10,000,000, then B must be within the range 9,950,000-10,049,999; i.e. an inaccuracy of about +-50,000.
 
+However, in the second IF instruction, assuming A is 100,000, the expression becomes true for values of B in the range 99,500-100,500. Assuming that A is 10,000,000, the expression becomes true for values of B in the range 9,999,500-10,000,500.
 
-            The value for FUZZ must be a non-negative integer, and less than the value of DIGITS. FUZZ is seldom used, but is useful when you want to make comparisons less influenced by inaccuracies. Note that using with values of FUZZ that is close to DIGITS may give highly surprising results.
+The effect is largely to force an absolute accuracy for the second example, no matter what the values of A and B are. This transformation has taken place since an arithmetic subtraction is not affected by the NUMERIC FUZZ, only numeric comparison operations. Thus, the effect of NUMERIC FUZZ on the implicit subtraction in the operation = in the first IF has been removed by making the subtraction explicit.
 
+Note that there are some minor differences in how numbers are rounded, but this can be fixed by transforming the expression into something more complex.
 
-            Is used to set the form in which exponential numbers are written. It can be set to either SCIENTIFIC or ENGINEERING. The former uses a mantissa in the range 1.000... to 9.999..., and an exponent which can be any integer; while the latter uses a mantissa in the range 1.000... to 999.999..., and an exponent which is dividable by 3. The initial setting is SCIENTIFIC which is also the default value if expr is not specified. Following the subkeyword FORM may be the subkeywords SCIENTIFIC and ENGINEERING, or the subkeyword VALUE. In the latter case, the rest of the statement is considered an expression, which will evaluate to either SCIENTIFIC or ENGINEERING. However, if the first token of the expression following VALUE is neither a symbol nor literal string, then the VALUE subkeyword can be omitted.
-
-
-            The setting of FORM never affects the decision about whether to choose exponential form or normal floating point form; it only affects the appearance of the exponential form once that form has been
-
-            selected.
-
-
-            Many things can be said about the usefulness of FUZZ. My impression is that it is seldom used in Rexx programs. One problem is that it only addresses relative inaccuracy: i.e. that the smaller value must be within a certain range, that is determined by a percentage of the larger value. Often one needs absolute inaccuracy, e.g. two measurements are equal if their difference are less than a certain absolute threshold.
-
-
-            Example: Simulating relative accuracy with absolute accuracy
-
-
-            As explained above, Rexx arithmetic has only relative accuracy, in order to obtain absolute accuracy, one can use the following trick:
-
-
-            numeric fuzz 3 if a=b then
-
-            say 'relative accuracy' if abs(a-b)<=500 then
-
-            say 'absolute accuracy'
-
-
-            In the first IF instruction, if A is 100,000, then the range of values for B which makes the expression true is 99,500-100,499, i.e. an inaccuracy of about +-500. If A has the value 10,000,000, then B must be within the range 9,950,000-10,049,999; i.e. an inaccuracy of about +-50,000.
-
-
-            However, in the second IF instruction, assuming A is 100,000, the expression becomes true for values of B in the range 99,500-100,500. Assuming that A is 10,000,000, the expression becomes true for values of B in the range 9,999,500-10,000,500.
-
-
-            The effect is largely to force an absolute accuracy for the second example, no matter what the values of A and B are. This transformation has taken place since an arithmetic subtraction is not affected by the NUMERIC FUZZ, only numeric comparison operations. Thus, the effect of NUMERIC FUZZ on the implicit subtraction in the operation = in the first IF has been removed by making the subtraction explicit.
-
-
-            Note that there are some minor differences in how numbers are rounded, but this can be fixed by transforming the expression into something more complex.
-
-
-            To retrieve the values set for NUMERIC, you can use the built-in functions DIGITS(), FORM(), and FUZZ(). These values are saved across subroutine calls and restored upon return.
+To retrieve the values set for NUMERIC, you can use the built-in functions DIGITS(), FORM(), and FUZZ(). These values are saved across subroutine calls and restored upon return.
 
 ==== The OPTIONS Instruction ====
 
+<code>
+OPTIONS expr ;
+</code>
 
-            OPTIONS expr ;
+The OPTIONS instruction is used to set various interpreter-specific options. Its typical uses are to select certain Rexx dialects, enable optimizations (e.g. time versus memory considerations), etc. No standard dictates what may follow the OPTIONS keyword, except that it should be a valid Rexx expression, which is evaluated. Currently, no specific options are required by any standard.
 
+The contents of expr is supposed to be word based, and it is the intention that more than one option can be specified in one OPTIONS instruction. Rexx interpreters are specifically instructed to ignore OPTIONS words which they do not recognize. That way, a program can use run-time options for one interpreter, without making other interpreters trip when they see those options. An example of OPTION may be:
 
-            The OPTIONS instruction is used to set various interpreter-specific options. Its typical uses are to select certain Rexx dialects, enable optimizations (e.g. time versus memory considerations), etc. No standard dictates what may follow the OPTIONS keyword, except that it should be a valid Rexx expression, which is evaluated. Currently, no specific options are required by any standard.
+<code rexx>
+OPTIONS 4.00 NATIVE_FLOAT
+</code>
 
+The instruction might instruct the interpreter to start enforcing language level 4.00, and to use native floating point numbers in stead of the Rexx arbitrary precision arithmetic. On the other hand, it might also be completely ignored by the interpreter.
 
-            The contents of expr is supposed to be word based, and it is the intention that more than one option
+It is uncertain whether modes selected by OPTIONS will be saved across subroutine calls. Refer to implementation-specific documentation for information about this.
 
-            can be specified in one OPTIONS instruction. Rexx interpreters are specifically instructed to ignore OPTIONS words which they do not recognize. That way, a program can use run-time options for one interpreter, without making other interpreters trip when they see those options. An example of OPTION may be:
+Example: Drawback of OPTIONS
 
+Unfortunately, the processing of the OPTIONS instruction has a drawback. Since an interpreter is instructed to ignore option-settings that it does not understand, it may ignore options which are essential for further processing of the program. Continuing might cause a fatal error later, although the behaviour that would most precisely point out the problem is a complaint about the non-supported OPTION setting. Consider:
 
-            OPTIONS 4.00 NATIVE_FLOAT
+<code rexx>
+options 'cms_bifs'
+pos = find( haystack, needle )
+</code>
 
-
-            The instruction might instruct the interpreter to start enforcing language level 4.00, and to use native floating point numbers in stead of the Rexx arbitrary precision arithmetic. On the other hand, it might also be completely ignored by the interpreter.
-
-
-            It is uncertain whether modes selected by OPTIONS will be saved across subroutine calls. Refer to implementation-specific documentation for information about this.
-
-
-            Example: Drawback of OPTIONS
-
-
-            Unfortunately, the processing of the OPTIONS instruction has a drawback. Since an interpreter is instructed to ignore option-settings that it does not understand, it may ignore options which are essential for further processing of the program. Continuing might cause a fatal error later, although the behaviour that would most precisely point out the problem is a complaint about the non-supported OPTION setting. Consider:
-
-
-            options 'cms_bifs'
-
-            pos = find( haystack, needle )
-
-
-            If this code fragment is run on an interpreter that does not support the cms_bifs option setting, then the OPTIONS instruction may still seem to have been executed correctly. However, the second clause will generally crash, since the FIND() function is still not available. Even though the real problem is in the first line, the error message is reported for the second line.
+If this code fragment is run on an interpreter that does not support the cms_bifs option setting, then the OPTIONS instruction may still seem to have been executed correctly. However, the second clause will generally crash, since the FIND() function is still not available. Even though the real problem is in the first line, the error message is reported for the second line.
 
 ==== The PARSE Instruction ====
 
