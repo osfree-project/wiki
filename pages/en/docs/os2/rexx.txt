@@ -1042,41 +1042,33 @@ If terminating an external routine (i.e. returning to the calling Rexx script) a
 
 ==== The IF/THEN/ELSE Instruction ====
 
-
-            IF expr [;] THEN [;] statement
-
+<code>
+IF expr [;] THEN [;] statement
             [ ELSE [;] statement ]
+</code>
 
+This is a normal if-construct. First the boolean expression expr is evaluated, and its value must be either 0 or 1 (everything else is a syntax error which raises SYNTAX condition number {34}).
 
-            This is a normal if-construct. First the boolean expression expr is evaluated, and its value must be either 0 or 1 (everything else is a syntax error which raises SYNTAX condition number {34}).
+Then, the statement following either THEN or ELSE is executed, depending on whether expr was 1 or 0, respectively.
 
-            Then, the statement following either THEN or ELSE is executed, depending on whether expr was 1
+Note that there must come a statement after THEN and ELSE. It is not allowed to put just a null-clause (i.e. a comment or a label) there. If you want the THEN or ELSE part to be empty, use the NOP instruction. Also note that you can not directly put more than one statement after THEN or ELSE; you have to package them in a DO-END pair to make them a single, conceptual statement.
 
-            or 0, respectively.
+After THEN, after ELSE, and before THEN, you might put one or more clause delimiters (newlines or semicolons), but these are not required. Also, the ELSE part is not required either, in which case no code is executed if expr is false (evaluates to 0). Note that there must also be a statement separator before ELSE, since the that statement must be terminated. This also applies to the statement after ELSE. However, since statement includes a trailing clause delimiter itself, this is not explicitly shown in the syntax diagram.
 
+Example: Dangling ELSE
 
-            Note that there must come a statement after THEN and ELSE. It is not allowed to put just a null-clause (i.e. a comment or a label) there. If you want the THEN or ELSE part to be empty, use the NOP instruction. Also note that you can not directly put more than one statement after THEN or ELSE; you have to package them in a DO-END pair to make them a single, conceptual statement.
+Note the case of the "dangling" ELSE. If an ELSE part can correctly be thought of as belonging to more than one IF/THEN instruction pair, it will be parsed as belonging to the closest (i.e. innermost) IF instruction:
 
+<code rexx>
+parse pull foo bar 
+if foo then
+   if bar then
+       say 'foo and bar are true'
+   else
+       say 'one or both are false'
+</code>
 
-            After THEN, after ELSE, and before THEN, you might put one or more clause delimiters (newlines or semicolons), but these are not required. Also, the ELSE part is not required either, in which case no code is executed if expr is false (evaluates to 0). Note that there must also be a statement separator before ELSE, since the that statement must be terminated. This also applies to the statement after ELSE. However, since statement includes a trailing clause delimiter itself, this is not explicitly shown in the syntax diagram.
-
-
-            Example: Dangling ELSE
-
-
-            Note the case of the "dangling" ELSE. If an ELSE part can correctly be thought of as belonging to more than one IF/THEN instruction pair, it will be parsed as belonging to the closest (i.e. innermost) IF instruction:
-
-
-            parse pull foo bar if foo then
-
-            if bar then
-
-            say 'foo and bar are true' else
-
-            say 'one or both are false'
-
-
-            In this code, the ELSE instruction is nested to the innermost IF, i.e. to IF BAR THEN.
+In this code, the ELSE instruction is nested to the innermost IF, i.e. to IF BAR THEN.
 
 ==== The INTERPRET Instruction ====
 
