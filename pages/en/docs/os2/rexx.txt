@@ -1072,78 +1072,64 @@ In this code, the ELSE instruction is nested to the innermost IF, i.e. to IF BAR
 
 ==== The INTERPRET Instruction ====
 
+<code>
+INTERPRET expr ;
+</code>
 
-            INTERPRET expr ;
+The INTERPRET instruction is used to dynamically build and execute Rexx instructions during run-time. First, it evaluates the expression expr, and then parses and interprets the result as a (possibly empty) list of Rexx instructions to be executed. For instance:
 
-
-            The INTERPRET instruction is used to dynamically build and execute Rexx instructions during run-time. First, it evaluates the expression expr, and then parses and interprets the result as a (possibly empty) list of Rexx instructions to be executed. For instance:
-
-
-            foo = 'hello, world' interpret 'say "'foo'!"'
-
-
-            executes the statement SAY "hello, world!" after having evaluated the expression following
-
-            INTERPRET. This example shows several important aspects of INTERPRET. Firstly, it's very easy to get confused by the levels of quotes, and a bit of caution should be taken to nest the quotes correctly. Secondly, the use of INTERPRET does not exactly improve readability.
+<code rexx>
+foo = 'hello, world'
+interpret 'say "'foo'!"'
+</code>
 
 
-            Also, INTERPRET will probably increase execution time considerably if put inside loops, since the interpreter may be forced to reparse the source code for each iteration. Many optimizing Rexx interpreters (and in particular Rexx compilers) has little or no support for INTERPRET. Since virtually anything can happen inside it, it is hard to optimize, and it often invalidates assumptions in other parts of the script, forcing it to ignore other possible optimizations. Thus, you should avoid INTERPRET when speed is at a premium.
+executes the statement SAY "hello, world!" after having evaluated the expression following INTERPRET. This example shows several important aspects of INTERPRET. Firstly, it's very easy to get confused by the levels of quotes, and a bit of caution should be taken to nest the quotes correctly. Secondly, the use of INTERPRET does not exactly improve readability.
 
+Also, INTERPRET will probably increase execution time considerably if put inside loops, since the interpreter may be forced to reparse the source code for each iteration. Many optimizing Rexx interpreters (and in particular Rexx compilers) has little or no support for INTERPRET. Since virtually anything can happen inside it, it is hard to optimize, and it often invalidates assumptions in other parts of the script, forcing it to ignore other possible optimizations. Thus, you should avoid INTERPRET when speed is at a premium.
 
-            There are some restrictions on which statements can be inside an INTERPRET statement. Firstly, labels cannot occur there. TRL states that they are not allowed, but you may find that in some implementations labels occurring there will not affect the label symbol table of the program being run. Consider the statement:
+There are some restrictions on which statements can be inside an INTERPRET statement. Firstly, labels cannot occur there. TRL states that they are not allowed, but you may find that in some implementations labels occurring there will not affect the label symbol table of the program being run. Consider the statement:
 
+<code rexx>
+interpret 'signal there; there: say hallo'
+there:
+</code>
 
-            interpret 'signal there; there: say hallo' there:
+This statement transfers control to the label THERE in the program, never to the THERE label inside the expression of the INTERPRET instruction. Equivalently, any SIGNAL to a label THERE elsewhere in the program never transfers control to the label inside the INTERPRET instruction.
 
+However, labels are strictly speaking not allowed inside INTERPRET strings.
 
-            This statement transfers control to the label THERE in the program, never to the THERE label inside the expression of the INTERPRET instruction. Equivalently, any SIGNAL to a label THERE elsewhere in the program never transfers control to the label inside the INTERPRET instruction.
+Example: Self-modifying Program
 
-            However, labels are strictly speaking not allowed inside INTERPRET strings.
+There is an idea for a self-modifying program in Rexx which is basically like this:
 
+<code rexx>
+string = ''
+do i=1 to sourceline()
+   string = string ';' sourceline(i)
+end
 
-            Example: Self-modifying Program
+string = transform( string )
+interpret string
+exit
 
+transform: procedure
+   parse arg string
+   /* do some transformation on the argument */
+   return string
+</code>
 
-            There is an idea for a self-modifying program in Rexx which is basically like this:
+Unfortunately, there are several reasons why this program will not work in Rexx, and it may be instructive to investigate why. Firstly, it uses the label TRANSFORM, which is not allowed in the argument to INTERPRET. The interpret will thus refer to the TRANSFORM routine of the "outermost" invocation, not the one "in" the INTERPRET string.
 
+Secondly, the program does not take line continuations into mind. Worse, the SOURCELINE() built-in function refers to the data of the main program, even inside the code executed by the INTERPRET instruction. Thirdly, the program will never end, as it will nest itself up till an implementation-dependent limit for the maximum number of nested INTERPRET instructions.
 
-            string = ''
+In order to make this idea work better, temporary files should be used.
 
-            do i=1 to sourceline()
+On the other hand, loops and other multi-clause instructions, like IF and SELECT occur inside an INTERPRET expression, but only if the whole instruction is there; you can not start a structured instruction inside an INTERPRET instruction and end it outside, or vice-versa. However, the instruction SIGNAL is allowed even if the label is not in the interpreted string. Also, the instructions ITERATE and LEAVE are allowed in an INTERPRET, even when they refer to a loop that is external to the interpreted string.
 
-            string = string ';' sourceline(i)
+Most of the time, INTERPRET is not needed, although it can yield compact and interesting code. If you do not strictly need INTERPRET, you should consider not using it, for reasons of compatibility, speed, and readability. Many of the traditional uses of INTERPRET have been replaced by other mechanisms in order to decrease the necessity of INTERPRET; e.g. indirect specification of variables in EXPOSE and DROP, the improved VALUE() built-in function, and indirect specification of patterns in templates.
 
-            end
-
-
-            string = transform( string ) interpret string
-
-            exit
-
-
-            transform: procedure parse arg string
-
-            /* do some transformation on the argument */ return string
-
-
-            Unfortunately, there are several reasons why this program will not work in Rexx, and it may be instructive to investigate why. Firstly, it uses the label TRANSFORM, which is not allowed in the argument to INTERPRET. The interpret will thus refer to the TRANSFORM routine of the "outermost" invocation, not the one "in" the INTERPRET string.
-
-
-            Secondly, the program does not take line continuations into mind. Worse, the SOURCELINE()
-
-            built-in function refers to the data of the main program, even inside the code executed by the INTERPRET instruction. Thirdly, the program will never end, as it will nest itself up till an implementation-dependent limit for the maximum number of nested INTERPRET instructions.
-
-
-            In order to make this idea work better, temporary files should be used.
-
-
-            On the other hand, loops and other multi-clause instructions, like IF and SELECT occur inside an INTERPRET expression, but only if the whole instruction is there; you can not start a structured instruction inside an INTERPRET instruction and end it outside, or vice-versa. However, the instruction SIGNAL is allowed even if the label is not in the interpreted string. Also, the instructions ITERATE and LEAVE are allowed in an INTERPRET, even when they refer to a loop that is external to the interpreted string.
-
-
-            Most of the time, INTERPRET is not needed, although it can yield compact and interesting code. If you do not strictly need INTERPRET, you should consider not using it, for reasons of compatibility, speed, and readability. Many of the traditional uses of INTERPRET have been replaced by other mechanisms in order to decrease the necessity of INTERPRET; e.g. indirect specification of variables in EXPOSE and DROP, the improved VALUE() built-in function, and indirect specification of patterns in templates.
-
-
-            Only semicolon (;) is allowed as a clause delimiter in the string interpreted by an INTERPRET instruction. The colon of labels can not be used, since labels are not allowed. Nor does specific end-of-line character sequences have any defined meaning there. However, most interpreters probably allow the end-of-line character sequence of the host operating system as alternative clause delimiters. It is interesting to note that in the context of the INTERPRET instruction, an implicit, trailing clause delimiter is always appended to the string to be interpreted.
+Only semicolon (;) is allowed as a clause delimiter in the string interpreted by an INTERPRET instruction. The colon of labels can not be used, since labels are not allowed. Nor does specific end-of-line character sequences have any defined meaning there. However, most interpreters probably allow the end-of-line character sequence of the host operating system as alternative clause delimiters. It is interesting to note that in the context of the INTERPRET instruction, an implicit, trailing clause delimiter is always appended to the string to be interpreted.
 
 ==== The ITERATE Instruction ====
 
