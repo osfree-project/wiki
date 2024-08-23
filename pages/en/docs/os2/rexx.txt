@@ -1022,61 +1022,23 @@ Dropping a variable which does not have a value is not an error. There is no upp
 
 ==== The EXIT Instruction ====
 
+<code>
+EXIT [ expr ] ;
+</code>
 
-            EXIT [ expr ] ;
+Terminates the Rexx program, and optionally returns the expression expr to the caller. If specified, expr can be any string. In some systems, there are restrictions on the range of valid values for the expr. Often the return expression must be an integer, or even a non-negative integer. This is not really a restriction on the Rexx language itself, but a restriction in the environment in which the interpreter operates, check the system dependent documentation for more information.
 
+If expr is omitted, nothing will be returned to the caller. Under some circumstances that is not legal, and might be handled as an error or a default value might be used. The EXIT instruction behaves differently in a "program" than in an external subroutine. In a "program", it returns control to the caller e.g. the operating system command interpreter. While for an external routine, it returns control to the calling Rexx script, independent of the level of nesting inside the external routine being terminated.
 
-            Terminates the Rexx program, and optionally returns the expression expr to the caller. If specified, expr can be any string. In some systems, there are restrictions on the range of valid values for the expr. Often the return expression must be an integer, or even a non-negative integer. This is not really a restriction on the Rexx language itself, but a restriction in the environment in which the interpreter operates, check the system dependent documentation for more information.
+|                                                     | RETURN                                  | EXIT                          |
+| At the main level of the program                    | Exits program                           | Exits program                 |
+| At an internal subroutine level of the program      | Exits subroutine, and returns to caller | Exits program                 |
+| At the main level of an external subroutine         | Exits the external subroutine           | Exits the external subroutine |
+| At a subroutine level within an external subroutine | Exits the subroutine, returning to calling routine within external subroutine script | Exits the external subroutine |
 
+Actions of RETURN and EXIT Instructions
 
-            If expr is omitted, nothing will be returned to the caller. Under some circumstances that is not legal, and might be handled as an error or a default value might be used. The EXIT instruction behaves differently in a "program" than in an external subroutine. In a "program", it returns control to the caller e.g. the operating system command interpreter. While for an external routine, it returns control to the calling Rexx script, independent of the level of nesting inside the external routine being terminated.
-
-
-
-            	
-
-            RETURN
-            	
-
-            EXIT
-
-            At the main level of the program
-            	
-
-            Exits program
-            	
-
-            Exits program
-
-            At an internal subroutine level of the program
-            	
-
-            Exits subroutine, and returns to caller
-            	
-
-            Exits program
-
-            At the main level of an external subroutine
-            	
-
-            Exits the external subroutine
-            	
-
-            Exits the external subroutine
-
-            At a subroutine level within an external subroutine
-            	
-
-            Exits the subroutine, returning to calling routine within external subroutine script
-            	
-
-            Exits the external subroutine
-
-
-            Actions of RETURN and EXIT Instructions
-
-
-            If terminating an external routine (i.e. returning to the calling Rexx script) any legal Rexx string value is allowed as a return value. Also, no return value can be returned, and in both cases, this information is successfully transmitted back to the calling routine. In the case of a function call (as opposed to a subroutine call), returning no value will raise SYNTAX condition {44}. The table above describes the actions taken by the EXIT and RETURN instruction in various situations.
+If terminating an external routine (i.e. returning to the calling Rexx script) any legal Rexx string value is allowed as a return value. Also, no return value can be returned, and in both cases, this information is successfully transmitted back to the calling routine. In the case of a function call (as opposed to a subroutine call), returning no value will raise SYNTAX condition {44}. The table above describes the actions taken by the EXIT and RETURN instruction in various situations.
 
 ==== The IF/THEN/ELSE Instruction ====
 
