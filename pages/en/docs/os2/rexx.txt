@@ -1149,43 +1149,38 @@ Two types of errors can occur. Either symbol does not refer to any loop active a
 
 ==== The LEAVE Instruction ====
 
+<code>
+LEAVE [ symbol ] ;
+</code>
 
-            LEAVE [ symbol ] ;
+This statement terminates the innermost, active loop. If symbol is specified, it terminates the innermost, active loop having symbol as control variable. As for scope, syntax, errors, and functionality, it is identical to ITERATE, except that LEAVE terminates the loop, while ITERATE lets the loop start on the next iteration normal iteration. No actions normally associated with the normal end of an iteration of a loop is performed for a LEAVE instruction.
 
+Example: Iterating a simple DO/END
 
-            This statement terminates the innermost, active loop. If symbol is specified, it terminates the innermost, active loop having symbol as control variable. As for scope, syntax, errors, and functionality, it is identical to ITERATE, except that LEAVE terminates the loop, while ITERATE lets the loop start on the next iteration normal iteration. No actions normally associated with the normal end of an iteration of a loop is performed for a LEAVE instruction.
+In order to circumvent this, a simple DO/END can be rewritten as this:
 
+<code rexx>
+if foo then do until 1
+   say 'This is a simple DO/END group'
+   say 'but it can be terminated by'
+   leave
+   say 'iterate or leave'
+end
+</code>
 
-            Example: Iterating a simple DO/END
-
-
-            In order to circumvent this, a simple DO/END can be rewritten as this:
-
-
-            if foo then do until 1
-
-            say 'This is a simple DO/END group' say 'but it can be terminated by' leave
-
-            say 'iterate or leave'
-
-            end
-
-
-            This shows how ITERATE has been used to terminate what for all practical purposes is a simple DO/END group. Either ITERATE or LEAVE can be used for this purpose, although LEAVE is perhaps marginally faster.
+This shows how ITERATE has been used to terminate what for all practical purposes is a simple DO/END group. Either ITERATE or LEAVE can be used for this purpose, although LEAVE is perhaps marginally faster.
 
 ==== The NOP Instruction ====
 
+<code>
+NOP ;
+</code>
 
-            NOP ;
+The NOP instruction is the "no operation" statement; it does nothing. Actually, that is not totally true, since the NOP instruction is a "real" statement (and a placeholder), as opposed to null clauses. I've only seen this used in two circumstances.
 
+After any THEN or ELSE keyword, where a statement is required, when the programmer wants an empty THEN or ELSE part. By the way, this is the intended use of NOP. Note that you can not use a null clause there (label, comment, or empty lines), since these are not parsed as "independent" statements.
 
-            The NOP instruction is the "no operation" statement; it does nothing. Actually, that is not totally true, since the NOP instruction is a "real" statement (and a placeholder), as opposed to null clauses. I've only seen this used in two circumstances.
-
-
-                After any THEN or ELSE keyword, where a statement is required, when the programmer wants an empty THEN or ELSE part. By the way, this is the intended use of NOP. Note that you can not use a null clause there (label, comment, or empty lines), since these are not parsed as "independent" statements.
-
-
-                I have seen it used as "trace-bait". That is, when you start interactive trace, the statement immediately after the TRACE instruction will be executed before you receive interactive control. If you don't want that to happen (or maybe the TRACE instruction was the last in the program), you need to add an extra dummy statement. However, in this context, labels and comments can be used, too.
+I have seen it used as "trace-bait". That is, when you start interactive trace, the statement immediately after the TRACE instruction will be executed before you receive interactive control. If you don't want that to happen (or maybe the TRACE instruction was the last in the program), you need to add an extra dummy statement. However, in this context, labels and comments can be used, too.
 
 ==== The NUMERIC Instruction ====
 
