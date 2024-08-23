@@ -1133,22 +1133,19 @@ Only semicolon (;) is allowed as a clause delimiter in the string interpreted by
 
 ==== The ITERATE Instruction ====
 
+<code>
+ITERATE [ symbol ] ;
+</code>
 
-            ITERATE [ symbol ] ;
+The ITERATE instruction will iterate the innermost, active loop in which the ITERATE instruction is located. If symbol is specified, it will iterate the innermost, active loop having symbol as control variable. The simple DO/END statement without a repetitor and conditional is not affected by ITERATE. All active multiclause structures (DO, SELECT, and IF) within the loop being iterated are terminated.
 
+The effect of an ITERATE is to immediately transfer control to the END statement of the affected loop, so that the next (if any) iteration of the loop can be started. It only affects loops on the current procedural level. All actions normally associated with the end of an iteration is performed.
 
-            The ITERATE instruction will iterate the innermost, active loop in which the ITERATE instruction is located. If symbol is specified, it will iterate the innermost, active loop having symbol as control variable. The simple DO/END statement without a repetitor and conditional is not affected by ITERATE. All active multiclause structures (DO, SELECT, and IF) within the loop being iterated are terminated.
+Note that symbol must be specified literally; i.e. tail substitution is not performed for compound variables. So if the control variable in the DO instruction is FOO.BAR, then symbol must use FOO.BAR if it is to refer to the control variable, no matter the value of the BAR variable.
 
+Also note that ITERATE (and LEAVE) are means of transferring control in the program, and therefore they are related to SIGNAL, but they do not have the effect of automatically terminating all active loops on the current procedural level, which SIGNAL has.
 
-            The effect of an ITERATE is to immediately transfer control to the END statement of the affected loop, so that the next (if any) iteration of the loop can be started. It only affects loops on the current procedural level. All actions normally associated with the end of an iteration is performed.
-
-
-            Note that symbol must be specified literally; i.e. tail substitution is not performed for compound variables. So if the control variable in the DO instruction is FOO.BAR, then symbol must use FOO.BAR if it is to refer to the control variable, no matter the value of the BAR variable.
-
-
-            Also note that ITERATE (and LEAVE) are means of transferring control in the program, and therefore they are related to SIGNAL, but they do not have the effect of automatically terminating all active loops on the current procedural level, which SIGNAL has.
-
-            Two types of errors can occur. Either symbol does not refer to any loop active at the current procedural level; or (if symbol is not specified) there does not exist any active loops at the current procedural level. Both errors are reported as SYNTAX condition {28}.
+Two types of errors can occur. Either symbol does not refer to any loop active at the current procedural level; or (if symbol is not specified) there does not exist any active loops at the current procedural level. Both errors are reported as SYNTAX condition {28}.
 
 ==== The LEAVE Instruction ====
 
