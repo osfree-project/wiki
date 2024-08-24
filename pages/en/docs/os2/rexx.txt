@@ -1470,75 +1470,68 @@ For further information, refer to documentation for the PUSH instruction, and se
 
 ==== The RETURN Instruction ====
 
+<code>
+RETURN [ expr ] ;
+</code>
 
-            RETURN [ expr ] ;
+The RETURN instruction is used to terminate the current procedure level, and return control to a level above. When RETURN is executed inside one or more nesting construct, i.e. DO, IF, WHEN, or OTHERWISE, then the nesting constructs (in the procedural levels being terminated) are terminated too.
 
+Optionally, an expression can be specified as an argument to the RETURN instruction, and the string resulting from evaluating this expression will be the return value from the procedure level terminated, to the caller procedure level. When RETURN is executed with no argument, no return value is returned to the caller, and then a SYNTAX condition {44} is raised if the subroutine was invoked as a function.
 
-            The RETURN instruction is used to terminate the current procedure level, and return control to a level above. When RETURN is executed inside one or more nesting construct, i.e. DO, IF, WHEN, or OTHERWISE, then the nesting constructs (in the procedural levels being terminated) are terminated too.
+Example: Multiple entry points
 
-
-            Optionally, an expression can be specified as an argument to the RETURN instruction, and the string
-
-            resulting from evaluating this expression will be the return value from the procedure level terminated, to the caller procedure level. When RETURN is executed with no argument, no return value is returned to the caller, and then a SYNTAX condition {44} is raised if the subroutine was invoked as a function.
-
-
-            Example: Multiple entry points
+A routine can have multiple exit points, i.e. a procedure can be terminated by any of several RETURN instructions. A routine can also have multiple entry points, i.e. several routine entry points can be terminated by the same RETURN instruction. However, this is rarer than having multiple exit points, because it is generally perceived that it creates less structured and readable code. Consider the following code:
 
 
-            A routine can have multiple exit points, i.e. a procedure can be terminated by any of several RETURN instructions. A routine can also have multiple entry points, i.e. several routine entry points can be terminated by the same RETURN instruction. However, this is rarer than having multiple exit points, because it is generally perceived that it creates less structured and readable code. Consider the following code:
+<code rexx>
+call foo
+call bar
+call baz
+exit
 
+foo:
+   if datatype(name, 'w') then
+      drop name
+   signal baz
 
-            call foo call bar call baz exit
+bar:
+   name = 'foo'
 
+baz:
+   if symbol('name')== 'VAR' then
+      say 'NAME currently has the value' name 
+   else
+      say 'NAME is currently an unset variable'
+   return
+</code>
 
-            foo:
+Although this is hardly a very practical example, it shows how the main bulk of a routine can be used together with three different entry points. The main part of the routine is the IF statement having two SAY statements. It can be invoked by calling FOO, BAR, or BAZ.
 
-            if datatype(name, 'w') then drop name
+There are several restrictions to this approach. For instance, the PROCEDURE statement becomes cumbersome, but not impossible, to use.
 
-            signal baz bar:
+Also note that when a routine has multiple exit points, it may choose to return a return value only at some of those exit points.
 
-            name = 'foo' baz:
+When a routine is located at the very end of a source file, there is an implicit RETURN instruction after the last explicit clause. However, according to good programming practice, you should avoid taking advantage of this feature, because it can create problems later if you append new routines to the source file and forget to change the implied RETURN to an explicit one.
 
-            if symbol('name')== 'VAR' then
+If the current procedure level is the main level of either the program or an external subroutine, then a RETURN instruction is equivalent to an EXIT instruction, i.e. it will terminate the Rexx program or the external routine. The table in the Exit section shows the actions of both the RETURN and
 
-            say 'NAME currently has the value' name else
-
-            say 'NAME is currently an unset variable' return
-
-
-            Although this is hardly a very practical example, it shows how the main bulk of a routine can be used together with three different entry points. The main part of the routine is the IF statement having two SAY statements. It can be invoked by calling FOO, BAR, or BAZ.
-
-
-            There are several restrictions to this approach. For instance, the PROCEDURE statement becomes cumbersome, but not impossible, to use.
-
-
-            Also note that when a routine has multiple exit points, it may choose to return a return value only at some of those exit points.
-
-
-            When a routine is located at the very end of a source file, there is an implicit RETURN instruction after the last explicit clause. However, according to good programming practice, you should avoid taking advantage of this feature, because it can create problems later if you append new routines to the source file and forget to change the implied RETURN to an explicit one.
-
-
-            If the current procedure level is the main level of either the program or an external subroutine, then a RETURN instruction is equivalent to an EXIT instruction, i.e. it will terminate the Rexx program or the external routine. The table in the Exit section shows the actions of both the RETURN and
-
-            EXIT instructions depending on the context in which they occur.
-
+EXIT instructions depending on the context in which they occur.
 
 ==== The SAY Instruction ====
 
+<code>
+SAY [ expr ] ;
+</code>
 
-            SAY [ expr ] ;
+Evaluates the expression expr, and prints the resulting string on the standard output stream. If expr is not specified, the nullstring is used instead. After the string has been written, an implementation-specific action is taken in order to produce an end-of-line.
 
+The SAY instruction is roughly equivalent to
 
-            Evaluates the expression expr, and prints the resulting string on the standard output stream. If expr is not specified, the nullstring is used instead. After the string has been written, an implementation-specific action is taken in order to produce an end-of-line.
+<code rexx>
+call lineout , expr
+</code>
 
-
-            The SAY instruction is roughly equivalent to
-
-
-            call lineout , expr
-
-
-            The differences are that there is no way of determining whether the printing was successfully completed if SAY is used, and the special variable RESULT is never set when executing a SAY instruction. Besides, the effect of omitting expr is different. In SAA API, the RXSIOSAY subfunction of the RXSIO exit handler is able to trap a SAY instruction, but not a call to the LINEOUT() built-in function. Further, the NOTREADY condition is never raised for a SAY instruction.
+The differences are that there is no way of determining whether the printing was successfully completed if SAY is used, and the special variable RESULT is never set when executing a SAY instruction. Besides, the effect of omitting expr is different. In SAA API, the RXSIOSAY subfunction of the RXSIO exit handler is able to trap a SAY instruction, but not a call to the LINEOUT() built-in function. Further, the NOTREADY condition is never raised for a SAY instruction.
 
 ==== The SELECT/WHEN/OTHERWISE Instruction ====
 
