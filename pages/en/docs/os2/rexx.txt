@@ -1343,140 +1343,110 @@ After the source string has been selected by the type subclause in the PARSE ins
 
 ==== The PROCEDURE Instruction ====
 
+<code>
+PROCEDURE [ EXPOSE [ varref [ varref ... ] ] ] ;
+   varref = { symbol | ( symbol ) }
+</code>
 
-            PROCEDURE [ EXPOSE [ varref [ varref ... ] ] ] ;
+The PROCEDURE instruction is used by Rexx subroutines in order to control how variables are shared among routines. The simplest use is without any parameters; then all future references to variables in that subroutine refer to local variables. If there is no PROCEDURE instruction in a subroutine, then all variable references in that subroutine refer to variables in the calling routine's name space.
 
-            varref = { symbol | ( symbol ) }
+If the EXPOSE subkeyword is specified too, then any references to the variables in the list following EXPOSE refer to local variables, but to variables in the name space of the calling routine.
 
+Example: Dynamic execution of PROCEDURE
 
-            The PROCEDURE instruction is used by Rexx subroutines in order to control how variables are shared among routines. The simplest use is without any parameters; then all future references to variables in that subroutine refer to local variables. If there is no PROCEDURE instruction in a subroutine, then all variable references in that subroutine refer to variables in the calling routine's name space.
+The definition opens for some strange effects, consider the following code:
 
+<code rexx>
+call testing
 
-            If the EXPOSE subkeyword is specified too, then any references to the variables in the list following
+testing:
+   say foo
+   procedure expose bar
+   say foo
+</code>
 
-            EXPOSE refer to local variables, but to variables in the name space of the calling routine.
+Here, the first reference to FOO is to the variable FOO in the caller routine's name space, while the second reference to FOO is to a local variable in the called routine's name space. This is difficult to parse statically, since the names to expose (and even when to expose them) is determined dynamically during run-time. Note that this use of PROCEDURE is allowed in [TRL1], but not in [TRL2].
 
+Several restrictions have been imposed on PROCEDURE in [TRL2] in order to simplify the execution of PROCEDURE (and in particular, to ease the implementation of optimizing interpreters and compilers).
 
-            Example: Dynamic execution of PROCEDURE
+The first restriction, to which all Rexx interpreters adhere as far as I know, is that each invocation of a subroutine (i.e. not the main program) may execute PROCEDURE at most once. Both TRL1 and TRL2 contain this restriction. However, more than one PROCEDURE instruction may exist "in" each routine, as long as at most one is executed at each invocation of the subroutine.
 
+The second restriction is that the PROCEDURE instruction must be the first statement in the subroutine. This restriction was introduced between Rexx language level 3.50 and 4.00, but several level 4.00 interpreters may not enforce it, since there is no breakage when allowing it.
 
-            The definition opens for some strange effects, consider the following code:
+There are several important consequences of this second restriction:
 
-            call testing testing:
+  - it implicitly includes the first restriction listed above, since only one instruction can be the first;
+  - it prohibits selecting one of several possible PROCEDURE instructions; (3) it prohibits using the same variable name twice; first as an exposed and then as a local variable, as indicated in the example above; (4) it prohibits the customary use of PROCEDURE and INTERPRET, where the latter is used to create a level of indirectness for the PROCEDURE instruction. This particular use can be exemplified by:
 
-            say foo
+<code rexx>
+testing:
+   interpret 'procedure expose' bar
+</code>
 
-            procedure expose bar say foo
+where BAR holds a list of variable names which are to be exposed. However, in order to make this functionality available without having to resort to INTERPRET, which is generally considered "bad" programming style, new functionality has been added to PROCEDURE between language levels 3.50 and 4.00. If one of the variables in the list of variables is enclosed in parentheses, that means indirection. Then, the variables exposed are: (1) the variable enclosed in parentheses; (2) the value of that variable is read, and its contents is taken to be a space-separated list of variable names; and (3) all there variable names are exposed strictly in order from left to right.
 
 
-            Here, the first reference to FOO is to the variable FOO in the caller routine's name space, while the second reference to FOO is to a local variable in the called routine's name space. This is difficult to parse statically, since the names to expose (and even when to expose them) is determined dynamically during run-time. Note that this use of PROCEDURE is allowed in [TRL1], but not in [TRL2].
+Example: Indirect exposing
 
+Consider the following example:
 
-            Several restrictions have been imposed on PROCEDURE in [TRL2] in order to simplify the execution of PROCEDURE (and in particular, to ease the implementation of optimizing interpreters and compilers).
+<code rexx>
+testing:
+   procedure expose foo (bar) baz
+</code>
 
+Assuming that the variable BAR holds the value one two, then variables exposed are the following: FOO, BAR, ONE, TWO, BAZ, in that order. In particular, note that the variable FOO is exposed immediately before the variables which it names are exposed.
 
-                The first restriction, to which all Rexx interpreters adhere as far as I know, is that each invocation of a subroutine (i.e. not the main program) may execute PROCEDURE at most once. Both TRL1 and TRL2 contain this restriction. However, more than one PROCEDURE instruction may exist "in" each routine, as long as at most one is executed at each invocation of the subroutine.
+Example: Order of exposing
 
+Then there is another fine point about exposing, the variables are hidden immediately after the EXPOSE subkeyword, so they are not initially available when the variable list is processed. Consider the following code:
 
-                The second restriction is that the PROCEDURE instruction must be the first statement in the subroutine. This restriction was introduced between Rexx language level 3.50 and 4.00, but
+<code rexx>
+testing:
+   procedure expose bar foo.bar foo.baz baz
+</code>
 
-            several level 4.00 interpreters may not enforce it, since there is no breakage when allowing it.
+which exposes variables in the order specified. If the variable BAR holds the value 123, then FOO.123 is exposed as the second item, since BAR is visible after having already been exposed as the first item. On the other hand, the third item will always expose the variable FOO.BAZ, no matter what the value of BAZ is in the caller, since the BAZ variable is visible only after it has been used in the third item. Therefore, the order in which variables are exposed is important. So, if a compound variable is used inside parentheses in an PROCEDURE instruction, then any simple symbols needed for tail substitution must previously to have been explicitly exposed. Compare this to the DROP instruction.
 
+What exactly is exposing? Well, the best description is to say that it makes all future uses (within that procedural level) to a particular variable name refer to the variable in the calling routine rather than in the local subroutine. The implication of this is that even if it is dropped or it has never been set, an exposed variable will still refer to the variable in the calling routine. Another important thing is that it is the tail-substituted variable name that is exposed. So if you expose FOO.BAR, and BAR has the value 123, then only FOO.123 is exposed, and continues to be so, even if BAR later changes its value to e.g. 234.
 
-            There are several important consequences of this second restriction:
+Example: Global variables
 
+A problem lurking on new Rexx users, is the fact that exposing a variable only exposes it to the calling routine. Therefore, it is incorrect to speak of global variables, since the variable might be local to the calling routine. To illustrate, consider the following code:
 
-            (1) it implicitly includes the first restriction listed above, since only one instruction can be the first;
+<code rexx>
+foo = 'bar'
+call sub1
+call sub2
+exit
 
-            (2) it prohibits selecting one of several possible PROCEDURE instructions; (3) it prohibits using the same variable name twice; first as an exposed and then as a local variable, as indicated in the example above; (4) it prohibits the customary use of PROCEDURE and INTERPRET, where the latter is used to create a level of indirectness for the PROCEDURE instruction. This particular use can be exemplified by:
+sub1: procedure expose foo
+   say foo /* first says 'bar', then 'FOO' */ 
+   return
 
+sub2: procedure
+   say foo /* says 'FOO' */
+   call sub1
+   return
+</code>
 
-            testing:
+Here, the first subroutine call in the "main" program writes out bar, since the variable FOO in SUB1 refers to the FOO variable in the main program's (i.e. its caller routine's) name space. During the second call from the main program, SUB2 writes out FOO, since the variable is not exposed.
 
-            interpret 'procedure expose' bar
+However, SUB2 calls SUB1, which exposes FOO, but that subroutine also writes out FOO. The reason for this is that EXPOSE works on the run-time nesting of routines, not on the typographical structure of the code. So the PROCEDURE in SUB1 (on its second invocation) exposes FOO to SUB2, not to the main program as typography might falsely indicate.
 
+The often confusing consequence of the run-time binding of variable names is that an exposed variable of SUB1 can be bound to different global variables, depending on from where it was called. This differs from most compiled languages, which bind their variables independently of from where a subroutine is called. In turn, the consequence of this is that Rexx has severe problems storing a persistent, static variable which is needed by one subroutine only. A subroutine needing such a variable (e.g. a count variable which is incremented each time the subroutine is called), must either use an operating system command, or all subroutines calling that subroutine (and their calling routines, etc.) must expose the variable. The first of these solution is very inelegant and non-standard, while the second is at best troublesome and at worst seriously limits the maximum practical size of a Rexx program. There are hopes that the VALUE() built-in function will fix this in future standards of Rexx.
 
-            where BAR holds a list of variable names which are to be exposed. However, in order to make this functionality available without having to resort to INTERPRET, which is generally considered "bad" programming style, new functionality has been added to PROCEDURE between language levels 3.50 and 4.00. If one of the variables in the list of variables is enclosed in parentheses, that means indirection. Then, the variables exposed are: (1) the variable enclosed in parentheses; (2) the value of that variable is read, and its contents is taken to be a space-separated list of variable names; and (3) all there variable names are exposed strictly in order from left to right.
-
-
-            Example: Indirect exposing
-
-
-            Consider the following example:
-
-
-            testing:
-
-            procedure expose foo (bar) baz
-
-
-            Assuming that the variable BAR holds the value one two, then variables exposed are the following: FOO, BAR, ONE, TWO, BAZ, in that order. In particular, note that the variable FOO is exposed immediately before the variables which it names are exposed.
-
-
-            Example: Order of exposing
-
-
-            Then there is another fine point about exposing, the variables are hidden immediately after the
-
-            EXPOSE subkeyword, so they are not initially available when the variable list is processed. Consider the following code:
-
-
-            testing:
-
-            procedure expose bar foo.bar foo.baz baz
-
-
-            which exposes variables in the order specified. If the variable BAR holds the value 123, then FOO.123 is exposed as the second item, since BAR is visible after having already been exposed as the first item. On the other hand, the third item will always expose the variable FOO.BAZ, no matter what the value of BAZ is in the caller, since the BAZ variable is visible only after it has been used in the third item. Therefore, the order in which variables are exposed is important. So, if a compound variable is used inside parentheses in an PROCEDURE instruction, then any simple
-
-            symbols needed for tail substitution must previously to have been explicitly exposed. Compare this to the DROP instruction.
-
-
-            What exactly is exposing? Well, the best description is to say that it makes all future uses (within that procedural level) to a particular variable name refer to the variable in the calling routine rather than in the local subroutine. The implication of this is that even if it is dropped or it has never been set, an exposed variable will still refer to the variable in the calling routine. Another important thing is that it is the tail-substituted variable name that is exposed. So if you expose FOO.BAR, and BAR has the value 123, then only FOO.123 is exposed, and continues to be so, even if BAR later changes its value to e.g. 234.
-
-
-            Example: Global variables
-
-
-            A problem lurking on new Rexx users, is the fact that exposing a variable only exposes it to the calling routine. Therefore, it is incorrect to speak of global variables, since the variable might be local to the calling routine. To illustrate, consider the following code:
-
-
-            foo = 'bar' call sub1 call sub2 exit
-
-
-            sub1: procedure expose foo
-
-            say foo /* first says 'bar', then 'FOO' */ return
-
-
-            sub2: procedure
-
-            say foo /* says 'FOO' */ call sub1
-
-            return
-
-
-            Here, the first subroutine call in the "main" program writes out bar, since the variable FOO in SUB1 refers to the FOO variable in the main program's (i.e. its caller routine's) name space. During the second call from the main program, SUB2 writes out FOO, since the variable is not exposed.
-
-            However, SUB2 calls SUB1, which exposes FOO, but that subroutine also writes out FOO. The reason for this is that EXPOSE works on the run-time nesting of routines, not on the typographical structure of the code. So the PROCEDURE in SUB1 (on its second invocation) exposes FOO to SUB2, not to the main program as typography might falsely indicate.
-
-
-            The often confusing consequence of the run-time binding of variable names is that an exposed variable of SUB1 can be bound to different global variables, depending on from where it was called. This differs from most compiled languages, which bind their variables independently of from where a subroutine is called. In turn, the consequence of this is that Rexx has severe problems storing a persistent, static variable which is needed by one subroutine only. A subroutine needing such a variable (e.g. a count variable which is incremented each time the subroutine is called), must either use an operating system command, or all subroutines calling that subroutine (and their calling routines, etc.) must expose the variable. The first of these solution is very inelegant and non-standard, while the second is at best troublesome and at worst seriously limits the maximum
-
-            practical size of a Rexx program. There are hopes that the VALUE() built-in function will fix this in future standards of Rexx.
-
-
-            Another important drawback with PROCEDURE is that it only works for internal subroutines; for external subroutines it either do not work, or PROCEDURE may not even be allowed on the main level of the external subroutine. However, in internal subroutines inside the external subroutines, PROCEDURE is allowed, and works like usual.
+Another important drawback with PROCEDURE is that it only works for internal subroutines; for external subroutines it either do not work, or PROCEDURE may not even be allowed on the main level of the external subroutine. However, in internal subroutines inside the external subroutines, PROCEDURE is allowed, and works like usual.
 
 ==== The PULL Instruction ====
 
+<code>
+PULL [ template ] ;
+</code>
 
-            PULL [ template ] ;
+This statement takes a line from the top of the stack and parse it into the variables in the template. It will also translate the contents of the line to uppercase.
 
-
-            This statement takes a line from the top of the stack and parse it into the variables in the template. It will also translate the contents of the line to uppercase.
-
-
-            This statement is equivalent to PARSE UPPER PULL [ template ] with the same exception as explained for the ARG instruction. See chapter [not yet written] for a description of parsing and chapter Stack for a discussion of the stack.
+This statement is equivalent to PARSE UPPER PULL [ template ] with the same exception as explained for the ARG instruction. See chapter [not yet written] for a description of parsing and chapter Stack for a discussion of the stack.
 
 ==== The PUSH Instruction ====
 
