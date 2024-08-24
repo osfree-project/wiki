@@ -1535,68 +1535,54 @@ The differences are that there is no way of determining whether the printing was
 
 ==== The SELECT/WHEN/OTHERWISE Instruction ====
 
+<code>
+SELECT ; whenpart [ whenpart ... ] [ OTHERWISE [;] [ statement ... ] ] END ;
+   whenpart : WHEN expr [;] THEN [;] statement
+</code>
 
-            SELECT ; whenpart [ whenpart ... ] [ OTHERWISE [;] [ statement ... ] ] END ;
+This instruction is used for general purpose, nested IF structures. An example of the general use of the SELECT instruction is:
 
+<code rexx>
+select
+   when expr1 then statement1
+   when expr2 then do
+      statement2a
+      statement2b
+   end
+   when expr3 then statement3
+   otherwise
+      ostatement1
+      ostatement2
+end
+</code>
 
-            whenpart : WHEN expr [;] THEN [;] statement
+When the SELECT instruction is executed, the next statement after the SELECT statement must be a WHEN statement. The expression immediately following the WHEN token is evaluated, and must result in a valid boolean value. If it is true (i.e. 1), the statement following the THEN token matching the WHEN is executed, and afterwards, control is transferred to the instruction following the END token matching the SELECT instruction. This is not completely true, since an instruction may transfer control elsewhere, and thus implicitly terminate the SELECT instruction; e.g. LEAVE, EXIT, ITERATE, SIGNAL, or RETURN or a condition trapped by method SIGNAL.
 
+If the expression of the first WHEN is not true (i.e. 0), then the next statement must be either another WHEN or an OTHERWISE statement. In the former case, the process explained above is iterated. In the latter case, the clauses following the OTHERWISE up to the END statement are interpreted.
 
-            This instruction is used for general purpose, nested IF structures. An example of the general use of the SELECT instruction is:
+It is considered a SYNTAX condition, {7} if no OTHERWISE statement when none of the WHEN-expressions evaluates to true. In general this can only be detected during runtime. However, if one of the WHENs is selected, the absence of an OTHERWISE is not considered an error.
 
+By the nature of the SELECT instruction, the WHENs are tested in the sequence they occur in the source. If more than one WHEN have an expression that evaluates to true, the first one encountered is selected.
 
-            select
+If the programmer wants to associate more than one statement with a WHEN statement, a DO/END pair must be used to enclose the statements, to make them one statement conceptually. However, zero, one, or more statements may be put after the OTHERWISE without having to enclose them in a DO/END pair. The clause delimiter is optional after OTHERWISE, and before and after THEN.
 
-            when expr1 then statement1 when expr2 then do
-
-            statement2a statement2b
-
-            end
-
-            when expr3 then statement3 otherwise
-
-            ostatement1 ostatement2
-
-            end
-
-
-            When the SELECT instruction is executed, the next statement after the SELECT statement must be a WHEN statement. The expression immediately following the WHEN token is evaluated, and must result in a valid boolean value. If it is true (i.e. 1), the statement following the THEN token matching the WHEN is executed, and afterwards, control is transferred to the instruction following the END token matching the SELECT instruction. This is not completely true, since an instruction may transfer control elsewhere, and thus implicitly terminate the SELECT instruction; e.g. LEAVE,
-
-            EXIT, ITERATE, SIGNAL, or RETURN or a condition trapped by method SIGNAL.
-
-
-            If the expression of the first WHEN is not true (i.e. 0), then the next statement must be either another WHEN or an OTHERWISE statement. In the former case, the process explained above is iterated. In the latter case, the clauses following the OTHERWISE up to the END statement are interpreted.
-
-
-            It is considered a SYNTAX condition, {7} if no OTHERWISE statement when none of the WHEN-expressions evaluates to true. In general this can only be detected during runtime. However, if one of the WHENs is selected, the absence of an OTHERWISE is not considered an error.
+Example: Writing SELECT as IF
 
 
-            By the nature of the SELECT instruction, the WHENs are tested in the sequence they occur in the source. If more than one WHEN have an expression that evaluates to true, the first one encountered is selected.
+SELECT in Rexx is just a shorthand notation for nested IF instructions. Thus a SELECT instruction can always be written as set of nested IF statements; but for very large SELECT statements, the corresponding nested IF structure may be too deeply nested for the interpreter to handle.
 
+The following code shows how the SELECT statement shown above can be written as a nested IF structure:
 
-            If the programmer wants to associate more than one statement with a WHEN statement, a DO/END pair must be used to enclose the statements, to make them one statement conceptually. However, zero, one, or more statements may be put after the OTHERWISE without having to enclose them in a DO/END pair. The clause delimiter is optional after OTHERWISE, and before and after THEN.
-
-
-            Example: Writing SELECT as IF
-
-
-            SELECT in Rexx is just a shorthand notation for nested IF instructions. Thus a SELECT instruction can always be written as set of nested IF statements; but for very large SELECT statements, the corresponding nested IF structure may be too deeply nested for the interpreter to handle.
-
-
-            The following code shows how the SELECT statement shown above can be written as a nested IF
-
-            structure:
-
-
-            if expr1 then statement1 else if expr2 then do
-
-            statement2a statement2b
-
-            end else if expr3 then statement3 else
-
-            ostatement1 ostatement2
-
-            end
+<code rexx>
+if expr1 then statement1 
+else if expr2 then do
+   statement2a
+   statement2b
+end else if expr3 then statement3
+else
+   ostatement1 ostatement2
+end
+</code>
 
 ==== The SIGNAL Instruction ====
 
