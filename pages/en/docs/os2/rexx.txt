@@ -1265,102 +1265,81 @@ If this code fragment is run on an interpreter that does not support the cms_bif
 
 ==== The PARSE Instruction ====
 
-            PARSE [ option ] [ CASELESS ] type [ template ] ;
+<code>
+PARSE [ option ] [ CASELESS ] type [ template ] ;
+   option = { UPPER | LOWER }
+   type = { ARG | LINEIN | PULL | SOURCE | VERSION | VALUE [ expr ] WITH | VAR symbol }
+</code>
 
-            option = { UPPER | LOWER }
+The PARSE instruction takes one or more source strings, and then parses them using the template for directions. The process of parsing is one where parts of a source string are extracted and stored in variables. Exactly which parts, is determined by the patterns specified by template. template can be a number of patterns separated by commas. A complete description of parsing is given in chapter [not yet written].
 
-            type = { ARG | LINEIN | PULL | SOURCE | VERSION | VALUE [
+If the option UPPER is specified, the input source strings are uppercased (based on locale) before being split into the variables specified by template.
 
-            expr ] WITH | VAR symbol }
+If the option LOWER is specified, the input source strings are lowercased (based on locale) before being split into the variables specified by template.
 
+If CASELESS is specified, any character strings in template will be matched against the source strings irrespective of case (based on locale).
 
-            The PARSE instruction takes one or more source strings, and then parses them using the template for directions. The process of parsing is one where parts of a source string are extracted and stored in variables. Exactly which parts, is determined by the patterns specified by template. template can be a number of patterns separated by commas. A complete description of parsing is given in chapter [not yet written].
+Which strings are to be the source of the parsing is defined by the type subclause, which can be any of:
 
+ARG.
 
-            If the option UPPER is specified, the input source strings are uppercased (based on locale) before being split into the variables specified by template.
+The data to use as the source during the parsing is the argument strings given at the invocation of this procedure level. Note that this is the only case where the source may consist of multiple strings.
 
+LINEIN.
 
-            If the option LOWER is specified, the input source strings are lowercased (based on locale) before being split into the variables specified by template.
+Makes the PARSE instruction read a line from the standard input stream, as if the LINEIN() built-in function had been called. It uses the contents of that line (after stripping off end-of-line characters, if necessary) as the source for the parsing. This may raise the NOTREADY condition if problems occurred during the read.
 
-            If CASELESS is specified, any character strings in template will be matched against the source strings irrespective of case (based on locale).
+PULL.
 
+Retrieves as the source string for the parsing the topmost line from the stack. If the stack is empty, the default action for reading an empty stack is taken. That is, it will read a whole line from the standard input stream, strip off any end-of-line characters (if necessary), and use that string as the source.
 
-            Which strings are to be the source of the parsing is defined by the type subclause, which can be any of:
+SOURCE.
 
+The source string for the parsing is a string containing information about how this invocation of the Rexx interpreter was started. This information will not change during the execution of a Rexx script. The format of the string is:
 
-            ARG.
+<code>
+system invocation filename
+</code>
 
-            The data to use as the source during the parsing is the argument strings given at the invocation of this procedure level. Note that this is the only case where the source may consist of multiple strings.
+Here, the first space-separated word (system) is a single word describing the platform on which the system is running. Often, this is the name of the operating system. The second word describes how the script was invoked. TRL2 suggests that invocation could be COMMAND, FUNCTION, or SUBROUTINE, but notes that this may be specific to VM/CMS.
 
+Everything after the second word is implementation-dependent. It is indicated that it should refer to the name of the Rexx script, but the format is not specified. In practice, the format will differ because the format of file names differs between various operating systems. Also, the part after the second word might contain other types of information. Refer to the implementation-specific notes for exact information.
 
-            LINEIN.
+VALUE expr WITH.
 
-            Makes the PARSE instruction read a line from the standard input stream, as if the LINEIN() built-in function had been called. It uses the contents of that line (after stripping off end-of-line characters, if necessary) as the source for the parsing. This may raise the NOTREADY condition if problems occurred during the read.
+This form will evaluate expr and use the result of that evaluation as the source string to be parsed. The token WITH may not occur inside expr, since it is a reserved subkeyword in this context.
 
+VAR symbol.
 
-            PULL.
+This form uses the current value of the named variable symbol (after tail-substitution) as the source string to be parsed. The variable may be any variable symbol. If the variable is uninitialized, then a NOTREADY condition will be raised.
 
-            Retrieves as the source string for the parsing the topmost line from the stack. If the stack is empty, the default action for reading an empty stack is taken. That is, it will read a whole line from the standard input stream, strip off any end-of-line characters (if necessary), and use that string as the source.
+VERSION.
 
+This format resembles SOURCE, but it contains information about the version of Rexx that the interpreter supports. The string contains five words, and has the following format:
 
-            SOURCE.
+<code>
+language level date month year
+</code>
 
-            The source string for the parsing is a string containing information about how this invocation of the Rexx interpreter was started. This information will not change during the execution of a Rexx script. The format of the string is:
+Where language is the name of the language supported by the Rexx interpreter. This may seem like overkill, since the language is Rexx, but there may be various different dialects of Rexx. The word can be just about anything, except for two restrictions, the first four letters should be REXX (in upper case), and the word should not contain any periods. [TRL2] indicates that the remainder of the word (after the fourth character) can be used to identify the implementation.
 
+The second word is the Rexx language level supported by the interpreter. Note that this is not the same as the version of the interpreter, although several implementations makes this mistake. Strictly speaking, neither [TRL1] nor [TRL2] define the format of this word, but a numeric format is strongly suggested.
 
-            system invocation filename
+The last three words (date, month, and year) makes up the date part of the string. This is the release date of the interpreter, in the default format of the DATE() built-in function.
 
+Much confusion seems to be related to the second word of PARSE VERSION. It describes the language level, which is not the same as the version number of the interpreter. In fact, most interpreters have a version numbering which is independent of the Rexx language level.
 
-            Here, the first space-separated word (system) is a single word describing the platform on which the system is running. Often, this is the name of the operating system. The second word describes how the script was invoked. TRL2 suggests that invocation could be COMMAND, FUNCTION, or SUBROUTINE, but notes that this may be specific to VM/CMS.
+Unfortunately, several interpreters makes the mistake of using this field as for their own version number. This is very unfortunate for two reasons; first, it is incorrect, and second, it makes it difficult to determine which Rexx language level the interpreter is supposed to support.
 
+Chances are that you can find the interpreter version number in PARSE SOURCE or the first word of PARSE VERSION.
 
-            Everything after the second word is implementation-dependent. It is indicated that it should refer to the name of the Rexx script, but the format is not specified. In practice, the format will differ because the format of file names differs between various operating systems. Also, the part after the second word might contain other types of information. Refer to the implementation-specific notes for exact information.
+The format of the Rexx language level is not rigidly defined, but TRL1 corresponds to the language level 3.50, while TRL2 corresponds to the language level 4.00. Both implicitly indicate the that language level description is a number, and states that an implementation less than a certain number "may be assumed to indicate a subset" of that language level. However, this must not be taken to literally, since language level 3.50 has at least two features which are missing in language level 4.00 (the Scan trace setting, and the PROCEDURE instruction that is not forced to be the first instruction in a subroutine). [TRH:PRICE] gives a very good overview over the varying functionality of different language levels of Rexx up to level 4.00.
 
-            VALUE expr WITH.
+With the release of the ANSI Rexx Standard [ANSI] in 1996, the Rexx language IS now rigidly defined. The language level of ANSI Rexx is 5.00. Regina is now compliant to the ANSI Standard. Thus PARSE VERSION will return 5.00.
 
-            This form will evaluate expr and use the result of that evaluation as the source string to be parsed. The token WITH may not occur inside expr, since it is a reserved subkeyword in this context.
+Note that even though the information of the PARSE SOURCE is constant throughout the execution of a Rexx script, this is not necessarily correct for the PARSE VERSION. If your interpreter supports multiple language levels (e.g. through the OPTIONS instruction), then it will have to change the contents of the PARSE VERSION string in order to comply with different language levels. To some extent, this may also apply to PARSE SOURCE, since it may have to comply with several implementation-specific standards.
 
-            VAR symbol.
-
-            This form uses the current value of the named variable symbol (after tail-substitution) as the source string to be parsed. The variable may be any variable symbol. If the variable is uninitialized, then a NOTREADY condition will be raised.
-
-            VERSION.
-
-            This format resembles SOURCE, but it contains information about the version of Rexx that the interpreter supports. The string contains five words, and has the following format:
-
-
-            language level date month year
-
-
-            Where language is the name of the language supported by the Rexx interpreter. This may seem like overkill, since the language is Rexx, but there may be various different dialects of Rexx. The word can be just about anything, except for two restrictions, the first four letters should be REXX (in upper case), and the word should not contain any periods. [TRL2] indicates that the remainder of the word (after the fourth character) can be used to identify the implementation.
-
-
-            The second word is the Rexx language level supported by the interpreter. Note that this is not the same as the version of the interpreter, although several implementations makes this mistake. Strictly speaking, neither [TRL1] nor [TRL2] define the format of this word, but a numeric format is strongly suggested.
-
-
-            The last three words (date, month, and year) makes up the date part of the string. This is the release date of the interpreter, in the default format of the DATE() built-in function.
-
-
-            Much confusion seems to be related to the second word of PARSE VERSION. It describes the language level, which is not the same as the version number of the interpreter. In fact, most interpreters have a version numbering which is independent of the Rexx language level.
-
-            Unfortunately, several interpreters makes the mistake of using this field as for their own version number. This is very unfortunate for two reasons; first, it is incorrect, and second, it makes it difficult to determine which Rexx language level the interpreter is supposed to support.
-
-
-            Chances are that you can find the interpreter version number in PARSE SOURCE or the first word of PARSE VERSION.
-
-
-            The format of the Rexx language level is not rigidly defined, but TRL1 corresponds to the language level 3.50, while TRL2 corresponds to the language level 4.00. Both implicitly indicate the that language level description is a number, and states that an implementation less than a certain number "may be assumed to indicate a subset" of that language level. However, this must not be taken to literally, since language level 3.50 has at least two features which are missing in language level 4.00 (the Scan trace setting, and the PROCEDURE instruction that is not forced to be the first instruction in a subroutine). [TRH:PRICE] gives a very good overview over the varying functionality of different language levels of Rexx up to level 4.00.
-
-
-            With the release of the ANSI Rexx Standard [ANSI] in 1996, the Rexx language IS now rigidly defined. The language level of ANSI Rexx is 5.00. Regina is now compliant to the ANSI Standard. Thus PARSE VERSION will return 5.00.
-
-
-            Note that even though the information of the PARSE SOURCE is constant throughout the execution of a Rexx script, this is not necessarily correct for the PARSE VERSION. If your interpreter supports multiple language levels (e.g. through the OPTIONS instruction), then it will have to change the contents of the PARSE VERSION string in order to comply with different language levels. To some extent, this may also apply to PARSE SOURCE, since it may have to comply with
-
-            several implementation-specific standards.
-
-
-            After the source string has been selected by the type subclause in the PARSE instruction, this string is parsed into the template. The functionality of templates is common for the PARSE, ARG and PULL instructions, and is further explained in chapter [not yet written].
+After the source string has been selected by the type subclause in the PARSE instruction, this string is parsed into the template. The functionality of templates is common for the PARSE, ARG and PULL instructions, and is further explained in chapter [not yet written].
 
 ==== The PROCEDURE Instruction ====
 
