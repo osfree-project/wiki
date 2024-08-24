@@ -1460,14 +1460,13 @@ The string will be added to the top of the stack (LIFO), i.e. it will be the fir
 
 ==== The QUEUE Instruction ====
 
+<code>
+QUEUE [ expr ] ;
+</code>
 
-            QUEUE [ expr ] ;
+The QUEUE instruction is identical to the PUSH instruction, except for the position in the stack where the new line is inserted. While the PUSH puts the line on the "top" of the stack, the QUEUE instruction inserts it at the bottom of the stack (FIFO), or in the bottom of the topmost buffer, if buffers are used.
 
-
-            The QUEUE instruction is identical to the PUSH instruction, except for the position in the stack where the new line is inserted. While the PUSH puts the line on the "top" of the stack, the QUEUE instruction inserts it at the bottom of the stack (FIFO), or in the bottom of the topmost buffer, if buffers are used.
-
-
-            For further information, refer to documentation for the PUSH instruction, and see chapter Stack for general information about the stack.
+For further information, refer to documentation for the PUSH instruction, and see chapter Stack for general information about the stack.
 
 ==== The RETURN Instruction ====
 
