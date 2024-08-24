@@ -1450,16 +1450,13 @@ This statement is equivalent to PARSE UPPER PULL [ template ] with the same exce
 
 ==== The PUSH Instruction ====
 
+<code>
+PUSH [ expr ] ;
+</code>
 
-            PUSH [ expr ] ;
+The PUSH instruction will add a string to the stack. The string added will either be the result of the expr, or the nullstring if expr is not specified.
 
-
-            The PUSH instruction will add a string to the stack. The string added will either be the result of the
-
-            expr, or the nullstring if expr is not specified.
-
-
-            The string will be added to the top of the stack (LIFO), i.e. it will be the first line normally extracted from the stack. For a thorough discussion of the stack and the methods of manipulating it, see chapter Stack for a discussion of the stack.
+The string will be added to the top of the stack (LIFO), i.e. it will be the first line normally extracted from the stack. For a thorough discussion of the stack and the methods of manipulating it, see chapter Stack for a discussion of the stack.
 
 ==== The QUEUE Instruction ====
 
