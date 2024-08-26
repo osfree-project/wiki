@@ -2776,271 +2776,122 @@ Also note that the behavior of the options A, L, M and U might depend on the set
 
 
 ==== DATE([opt_out [,date [,opt_in[,sep_out[,sep_in]]]]]) - (ANSI+) ====
- This function returns information relating to the current local date. If the opt_out character is specified, it will set the format of the return string. The default value for opt_out is " N ".
 
+This function returns information relating to the current local date. If the opt_out character is specified, it will set the format of the return string. The default value for opt_out is " N ".
 
-            Possible options are:
+Possible options are:
 
+[B]
 
-            [B]
+(Base) The number of complete days from January 1st 0001 until yesterday inclusive, as a whole number. This function uses the Gregorian calendar extended backwards. Therefore Date('B') %%//%% 7 will equal the day of the week where 0 corresponds to Monday and 6 Sunday. (ANSI)
 
+[C]
 
-            [C]
+(Century) The number of days in this century from January 1st -00 until today, inclusive. The return value will be a positive integer. (Regina Extension)
 
+[D]
 
-            [D]
+(Days) The number of days in this year from January 1st until today, inclusive. The return value will be a positive integer. (ANSI)
 
+[E]
 
-            [E]
+(European) The date in European format, i.e. "dd/mm/yy". If any of the numbers is single digit, it will have a leading zero. (ANSI)
 
+[I]
 
-            [I]
+(ISO) Returns the date according the format specified by International Standards Organization Standard ISO 8601:2004. The format will be "yyyy-mm-dd", and each part is padded with leading zero where appropriate. (Regina Extension)
 
-            (Base) The number of complete days from January 1st 0001 until yesterday inclusive, as a whole number. This function uses the Gregorian calendar extended backwards. Therefore Date('B') // 7 will equal the day of the week where 0 corresponds to Monday and 6 Sunday. (ANSI)
+[M]
 
+(Month) The unabbreviated name of the current month, in English. (ANSI)
 
-            (Century) The number of days in this century from January 1st -00 until today, inclusive. The return value will be a positive integer. (Regina Extension)
+[N]
 
+(Normal) Return the date with the name of the month abbreviated to three letters, with only the first letter in upper case. The format will be "dd Mmm yyyy", where Mmm is the month abbreviation (in English) and dd is the day of the month, without leading zeros. (ANSI)
 
-            (Days) The number of days in this year from January 1st until today, inclusive. The return value will be a positive integer. (ANSI)
+[O]
 
+(Ordered) Returns the date in the ordered format, which is "yy/mm/dd". (ANSI)
 
-            (European) The date in European format, i.e. "dd/mm/yy". If any of the numbers is single digit, it will have a leading zero. (ANSI)
+[S]
 
+(Standard/Sorted) Returns the date according the format specified by International Standards Organization Standard ISO 2014-1976 (E). The format will be "yyyymmdd", and each part is padded with leading zero where appropriate. (ANSI)
 
-            (ISO) Returns the date according the format specified by International Standards Organization Standard ISO 8601:2004. The format will be "yyyy-mm-dd", and each part is
+[U]
 
+(USA) Returns the date in the format that is normally used in USA, i.e. "mm/dd/yy", and each part is padded with leading zero where appropriate. (ANSI)
 
-            [M]
+[W]
 
+(Weekday) Returns the English unabbreviated name of the current weekday for today. The first letter of the result is in upper case, the rest is in lower case. (ANSI)
 
-            [N]
+[T]
 
+(time_t) Returns the current UTC date/time in UNIX time_t format. time_t is the number of seconds since January 1st 1970. It always represents the UTC date/time, so any conversion from another date format (which is always assumed to be local time) will result in a time_t value offset by time zone. (Regina Extension)
 
-            [O]
+Note that the "C" option is present in Rexx language level 3.50, but was removed in level 4.00. The new "B" option should be used instead. When porting code that use the "C" option to an interpreter that only have the "B" option, you will can use the conversion that January 1st 1900 is day 693595 in the Gregorian calendar.
 
+Note that none of the formats in which DATE() returns its result are affected by the NUMERIC settings. Also note that if there is more than one call to DATE() (or TIME()) in a single clause of Rexx code, all of them will use the same basis data for calculating the date (or time).
 
-            [S]
+If the Rexx interpreter contains national support, some of these options may return different output for the names of months and weekdays.
 
+Assuming that today is January 6th 1992:
 
-            [U]
+| DATE('B') | '727203' |
+| DATE('C') | '33609' |
+| DATE('D') | '6' |
+| DATE('E') | '06/01/92' |
+| DATE('M') | 'January' |
+| DATE('N') | '6 Jan 1992' |
+| DATE('O') | '92/01/06' |
+| DATE('S') | '19920106' |
+| DATE('U') | '01/06/92' |
+| DATE('W') | 'Monday' |
+| DATE('T') | 694620000 |
+| DATE('I') | '1992-01-06' |
 
+If the date option is specified, the function provides for date conversions. The optional opt_in specifies the format in which date is supplied. The possible values for opt_in are: BDEOUNSTI. The default value for opt_in is N.
 
-            [W]
+When a date is converted to format T, the returned value is the input date with a time of 00:00:00.
 
+| DATE('O','13 Feb 1923') | '23/02/13' |
+| DATE('O','06/01/50','U') | '50/06/01' |
 
-            [T]
+If the date supplied does not include a century in its format, then the result is chosen to make the year within 50 years past or 49 years future of the current year.
 
-            padded with leading zero where appropriate. (Regina Extension)
+The date conversion capability of the DATE BIF was introduced with the ANSI standard.
 
+If the sep_out option is provided, the character used to separate the components of the returned date can be changed. Any non-alphanumeric character can be used as the separator. This option can only be used when opt_out is one of ENOSUI. The default separator for each option is:
 
-            (Month) The unabbreviated name of the current month, in English. (ANSI)
+| E | “/” |
+| N | “ ” (space) |
+| O | “/” |
+| S | “” (empty string) |
+| U | “/” |
+| I | “-” |
 
+Assuming that today is January 6th 1992:
 
-            (Normal) Return the date with the name of the month abbreviated to three letters, with only the first letter in upper case. The format will be "dd Mmm yyyy", where Mmm is the month abbreviation (in English) and dd is the day of the month, without leading zeros. (ANSI)
+| DATE('N',,,'_') | '6_Jan_1992' |
+| DATE('O','06/01/50','U',%%''%%) | '500601' |
+| DATE('S','13 Feb 1996',N','-') | 1996-02-13 |
 
+If the separator of the date components of date are different to the defaults specified above, then the sep_in option needs to be provided to specify what separator is being used.
 
-            (Ordered) Returns the date in the ordered format, which is "yy/mm/dd". (ANSI)
+| DATE('O','06.01.50','U',%%''%%,'.') | '500601' |
+| DATE('S','13-02-96',E','-','-') | 1996-02-13 |
 
-
-            (Standard/Sorted) Returns the date according the format specified by International Standards Organization Standard ISO 2014-1976 (E). The format will be "yyyymmdd", and each part is padded with leading zero where appropriate. (ANSI)
-
-
-            (USA) Returns the date in the format that is normally used in USA, i.e. "mm/dd/yy", and each part is padded with leading zero where appropriate. (ANSI)
-
-
-            (Weekday) Returns the English unabbreviated name of the current weekday for today. The first letter of the result is in upper case, the rest is in lower case. (ANSI)
-
-
-            (time_t) Returns the current UTC date/time in UNIX time_t format. time_t is the number of seconds since January 1st 1970. It always represents the UTC date/time, so any conversion from another date format (which is always assumed to be local time) will result in a time_t value offset by time zone. (Regina Extension)
-
-
-            Note that the "C" option is present in Rexx language level 3.50, but was removed in level 4.00. The new "B" option should be used instead. When porting code that use the "C" option to an interpreter that only have the "B" option, you will can use the conversion that January 1st 1900 is day 693595 in the Gregorian calendar.
-
-
-            Note that none of the formats in which DATE() returns its result are affected by the NUMERIC settings. Also note that if there is more than one call to DATE() (or TIME()) in a single clause of Rexx code, all of them will use the same basis data for calculating the date (or time).
-
-
-            If the Rexx interpreter contains national support, some of these options may return different output for the names of months and weekdays.
-
-            Assuming that today is January 6th 1992:
-
-            DATE('B')
-            	
-
-            '727203'
-
-            DATE('C')
-            	
-
-            '33609'
-
-            DATE('D')
-            	
-
-            '6'
-
-            DATE('E')
-            	
-
-            '06/01/92'
-
-            DATE('M')
-            	
-
-            'January'
-
-            DATE('N')
-            	
-
-            '6 Jan 1992'
-
-            DATE('O')
-            	
-
-            '92/01/06'
-
-            DATE('S')
-            	
-
-            '19920106'
-
-            DATE('U')
-            	
-
-            '01/06/92'
-
-            DATE('W')
-            	
-
-            'Monday'
-
-            DATE('T')
-            	
-
-            694620000
-
-            DATE('I')
-            	
-
-            '1992-01-06'
-
-
-            If the date option is specified, the function provides for date conversions. The optional opt_in specifies the format in which date is supplied. The possible values for opt_in are: BDEOUNSTI. The default value for opt_in is N.
-
-            When a date is converted to format T, the returned value is the input date with a time of 00:00:00.
-
-
-            DATE('O','13 Feb 1923')
-            	
-
-            '23/02/13'
-
-            DATE('O','06/01/50','U')
-            	
-
-            '50/06/01'
-
-
-            If the date supplied does not include a century in its format, then the result is chosen to make the year within 50 years past or 49 years future of the current year.
-
-
-            The date conversion capability of the DATE BIF was introduced with the ANSI standard.
-
-
-            If the sep_out option is provided, the character used to separate the components of the returned date can be changed. Any non-alphanumeric character can be used as the separator. This option can only be used when opt_out is one of ENOSUI. The default separator for each option is:
-
-            E
-            	
-
-            “/”
-
-            N
-            	
-
-            “ ” (space)
-
-            O
-            	
-
-            “/”
-
-            S
-            	
-
-            “” (empty string)
-
-            U
-            	
-
-            “/”
-
-            I
-            	
-
-            “-”
-
-
-            Assuming that today is January 6th 1992:
-
-            DATE('N',,,'_')
-            	
-
-            '6_Jan_1992'
-
-            DATE('O','06/01/50','U','')
-            	
-
-            '500601'
-
-            DATE('S','13 Feb 1996',N','-')
-            	
-
-            1996-02-13
-
-
-            If the separator of the date components of date are different to the defaults specified above, then the
-
-            sep_in option needs to be provided to specify what separator is being used.
-
-
-            DATE('O','06.01.50','U','','.')
-            	
-
-            '500601'
-
-            DATE('S','13-02-96',E','-','-')
-            	
-
-            1996-02-13
-
-
-            The sep_out and sep_in options are extensions to the ANSI standard originally provided by Object Rexx.
+The sep_out and sep_in options are extensions to the ANSI standard originally provided by Object Rexx.
 
 
 ==== DELSTR(string, start [,length]) - (ANSI) ====
- Returns string , after the substring of length length starting at position start has been removed. The default value for length is the rest of the string. Start must be a positive whole number, while length must be a non-negative whole number. It is not an error if start or length (or a combination of them) refers to more characters than string holds
 
+Returns string , after the substring of length length starting at position start has been removed. The default value for length is the rest of the string. Start must be a positive whole number, while length must be a non-negative whole number. It is not an error if start or length (or a combination of them) refers to more characters than string holds
 
-            DELSTR('Foobar',4)
-            	
-
-            'Foo'
-
-            DELSTR('Foobar',4,2)
-            	
-
-            'Foor'
-
-            DELSTR('Foobar',4,4)
-            	
-
-            'Foo'
-
-            DELSTR('Foobar',7)
-            	
-
-            'Foobar'
+| DELSTR('Foobar',4) | 'Foo' |
+| DELSTR('Foobar',4,2) | 'Foor' |
+| DELSTR('Foobar',4,4) | 'Foo' |
+| DELSTR('Foobar',7) | 'Foobar' |
 
 
 ==== DELWORD(string,start[,length]) (ANSI) ====
