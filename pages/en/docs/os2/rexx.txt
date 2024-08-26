@@ -2895,150 +2895,51 @@ Returns string , after the substring of length length starting at position start
 
 
 ==== DELWORD(string,start[,length]) (ANSI) ====
- Removes length words and all blanks between them, from string , starting at word number start . The default value for length is the rest of the string. All consecutive spaces immediately after the last deleted word, but no spaces before the first deleted word is removed. Nothing is removed if length is zero.
 
+Removes length words and all blanks between them, from string , starting at word number start . The default value for length is the rest of the string. All consecutive spaces immediately after the last deleted word, but no spaces before the first deleted word is removed. Nothing is removed if length is zero.
 
-            The valid range of start is the positive whole numbers; the first word in string is numbered 1. The valid range of length is the non-negative integers. It is not an error if start or length (or a combination of them) refers to more words than string holds.
+The valid range of start is the positive whole numbers; the first word in string is numbered 1. The valid range of length is the non-negative integers. It is not an error if start or length (or a combination of them) refers to more words than string holds.
 
-
-            DELWORD('This
-            	
-
-            is
-            	
-
-            a
-            	
-
-            test',3)
-            	
-
-            'This is '
-
-            DELWORD('This
-            	
-
-            is
-            	
-
-            a
-            	
-
-            test',2,1)
-            	
-
-            'This a test'
-
-            DELWORD('This
-            	
-
-            is
-            	
-
-            a
-            	
-
-            test',2,5)
-            	
-
-            'This'
-
-            DELWORD('This
-            	
-
-            is
-            	
-
-            a
-            	
-
-            test',1,3)
-            	
-
-            'test' /*No leading space*/
+| DELWORD('This is a test',3) | 'This is ' |
+| DELWORD('This is a test',2,1) | 'This a test' |
+| DELWORD('This is a test',2,5) | 'This' |
+| DELWORD('This is a test',1,3) | 'test' /*No leading space*/ |
 
 
 ==== DESBUF() - (CMS) ====
 
+This function removes all buffers on the stack, it is really just a way of clearing the whole stack for buffers as well as strings. Functionally, it is equivalent to executing DROPBUF with a parameter of 0. (Actually, this is a lie, since DROPBUF is not able to take zero as a parameter. Rather, it is equivalent to executing DROPBUF with 1 as parameter and then executing DROPBUF without a parameter, but this is a subtle point.) It will return the number of buffers left on the stack after the function has been executed. This should be 0 in all cases.
 
-            This function removes all buffers on the stack, it is really just a way of clearing the whole stack for buffers as well as strings. Functionally, it is equivalent to executing DROPBUF with a parameter of
-
-            0. (Actually, this is a lie, since DROPBUF is not able to take zero as a parameter. Rather, it is equivalent to executing DROPBUF with 1 as parameter and then executing DROPBUF without a parameter, but this is a subtle point.) It will return the number of buffers left on the stack after the function has been executed. This should be 0 in all cases.
-
-
-            DESBUF()
-            	
-
-            0
+| DESBUF() | 0 |
 
 ==== DIGITS() - (ANSI) ====
 
+Returns the current precision of arithmetic operations. This value is set using the NUMERIC DIGITS statement. For more information, refer to the documentation on NUMERIC DIGITS.
 
-            Returns the current precision of arithmetic operations. This value is set using the NUMERIC DIGITS statement. For more information, refer to the documentation on NUMERIC DIGITS.
-
-
-            DIGITS()
-            	
-
-            '9' /* Maybe */
+| DIGITS() | '9' /* Maybe */ |
 
 
 ==== DIRECTORY([new directory]) - (OS/2) ====
- Returns the current directory for the running process, and optionally changes directory to the specified new directory . If the new directory exists, and the change to new directory succeeds, the new directory is returned. If the new directory does not exist or an error occurred changing to that new directory , the empty string is returned.
 
+Returns the current directory for the running process, and optionally changes directory to the specified new directory . If the new directory exists, and the change to new directory succeeds, the new directory is returned. If the new directory does not exist or an error occurred changing to that new directory , the empty string is returned.
 
-            DIRECTORY()
-            	
-
-            '/tmp' /* Maybe */
-
-            DIRECTORY('c:\temp')
-            	
-
-            'c:\temp' /* Maybe */
+| DIRECTORY() | '/tmp' /* Maybe */ |
+| DIRECTORY('c:\temp') | 'c:\temp' /* Maybe */ |
 
 
 ==== D2C(integer [,length]) - (ANSI) ====
- Returns a (packed) string, that is the character representation of integer , which must be a whole number, and is governed by the settings of NUMERIC DIGITS , not of the internal precision of the built-in functions. If length is specified the string returned will be length bytes long, with sign extension. If length (which must be a non-negative whole number) is not large enough to hold the result, an error is reported.
 
+Returns a (packed) string, that is the character representation of integer , which must be a whole number, and is governed by the settings of NUMERIC DIGITS , not of the internal precision of the built-in functions. If length is specified the string returned will be length bytes long, with sign extension. If length (which must be a non-negative whole number) is not large enough to hold the result, an error is reported.
 
-            If length is not specified, integer will be interpreted as an unsigned number, and the result will have no leading <nul> characters. If integer is negative, it will be interpreted as a two's complement, and length must be specified.
+If length is not specified, integer will be interpreted as an unsigned number, and the result will have no leading <nul> characters. If integer is negative, it will be interpreted as a two's complement, and length must be specified.
 
-
-            D2C(0)
-            	
-
-            '00'x
-
-            D2C(65)
-            	
-
-            'A' /* on ASCII machines */
-
-            D2C(127)
-            	
-
-            '7F'x
-
-            D2C(128)
-            	
-
-            '80'x
-
-            D2C(128,3)
-            	
-
-            '000080'x
-
-            D2C(-128)
-            	
-
-            Error 40.13 and SYNTAX condition raised
-
-            D2C(-10,3)
-            	
-
-            'fffff5'x
+| D2C(0) | '00'x |
+| D2C(65) | 'A' /* on ASCII machines */ |
+| D2C(127) | '7F'x |
+| D2C(128) | '80'x |
+| D2C(128,3) | '000080'x |
+| D2C(-128) | Error 40.13 and SYNTAX condition raised |
+| D2C(-10,3) | 'fffff5'x |
 
 
 ==== D2X(integer [,length]) - (ANSI) ====
