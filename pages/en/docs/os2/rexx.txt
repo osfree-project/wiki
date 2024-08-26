@@ -1942,89 +1942,61 @@ The Rexx Language defines a number of special variables which are set by the int
 ==== Local Scope – User Writeable ====
 
 
-            These varaibles are local in scope and can be changed by the user at any time. The values of these variables will however be set by the interpreter during the execution of the program.
+These variables are local in scope and can be changed by the user at any time. The values of these variables will however be set by the interpreter during the execution of the program.
 
 
 === RC - (ANSI) ===
 
+This variable is set by any executed command including those executed via ADDRESS. Note that
 
-            This variable is set by any executed command including those executed via ADDRESS. Note that
-
-            RC is not set for commands executed manually while training interactively.
-
+RC is not set for commands executed manually while training interactively.
 
 === RESULT - (ANSI) ===
 
-
-            This variable is set by the RETURN instruction in a subroutine that has been CALLed provided that
-
-            the RETURN instruction contains an expression. RESULT is dropped if the RETURN instruction contains no expression.
-
+This variable is set by the RETURN instruction in a subroutine that has been CALLed provided that the RETURN instruction contains an expression. RESULT is dropped if the RETURN instruction contains no expression.
 
 === SIGL - (ANSI) ===
 
-
-            Contains the line number of instruction executed that caused a jump to a label.
+Contains the line number of instruction executed that caused a jump to a label.
 
 ==== Global Scope – Read-Only ====
 
-
-            As these variables begin with a period, they cannot be changed by the programmer. These varaibles are global in scope.
+As these variables begin with a period, they cannot be changed by the programmer. These variables are global in scope.
 
 === .MN - (ANSI) ===
 
-
-            When a SYNTAX condition has been raised, this variable is set to the error message number
-
-            (including sub-error number) that caused the SYNTAX condition.
+When a SYNTAX condition has been raised, this variable is set to the error message number (including sub-error number) that caused the SYNTAX condition.
 
 
 === .RC - (ANSI) ===
 
-
-            Contains the same values as the special variable; RC.
+Contains the same values as the special variable; RC.
 
 
 === .RS - (ANSI) ===
 
-
-            This variable is an indicator as to whether the last command executed gave rise to a FAILURE or
-
-            ERROR condition.
+This variable is an indicator as to whether the last command executed gave rise to a FAILURE or ERROR condition.
 
 
 === .RESULT - (ANSI) ===
 
-
-            Contains the same values as the special variable; RESULT.
-
+Contains the same values as the special variable; RESULT.
 
 === .LINE - (Regina) ===
 
-
-            This special variable contains the line number of the Rexx program.
-
+This special variable contains the line number of the Rexx program.
 
 === .FILE - (Regina) ===
 
-
-            This special variable contains the fully qualified file name of the Rexx program.
-
+This special variable contains the fully qualified file name of the Rexx program.
 
 === .ENDOFLINE - (Regina) ===
 
-
-            This special variable contains the default end of line character sequence for the platform on which
-
-            Regina is currently running. In general this will be LF (x0d) on Unix/Linux/Posix platforms CR (x0a) on Mac platforms, and CRLF (x0a0d) on all others.
-
+This special variable contains the default end of line character sequence for the platform on which Regina is currently running. In general this will be LF (x0d) on Unix/Linux/Posix platforms CR (x0a) on Mac platforms, and CRLF (x0a0d) on all others.
 
 === .DIRSEP - (Regina) ===
 
-
-            This special variable contains the character that is used by the platform to separate directories in a
-
-            fully qualified filename or directory name. In general this will be / (x2F) on Unix/Linux/Posix/Mac platforms and \ (x5C) on all others.
+This special variable contains the character that is used by the platform to separate directories in a fully qualified filename or directory name. In general this will be / (x2F) on Unix/Linux/Posix/Mac platforms and \ (x5C) on all others.
 
 
 ===== Implementation-Specific Information =====
@@ -2033,45 +2005,37 @@ The Rexx Language defines a number of special variables which are set by the int
 ==== Miscellaneous ====
 
 
-            OPTIONS settings
+OPTIONS settings
 
-            Are saved across subroutines, just like other pieces of information, like conditions settings,
+Are saved across subroutines, just like other pieces of information, like conditions settings, NUMERIC settings, etc. See chapter Options for more information about OPTIONS settings.
 
-            NUMERIC settings, etc. See chapter Options for more information about OPTIONS settings.
+Return value
 
+To the program that called Regina is limited to being an integer, when this is required by the operating systems. All current implementations are for operating systems that require this.
 
-            Return value
+Default return value
 
-            To the program that called Regina is limited to being an integer, when this is required by the operating systems. All current implementations are for operating systems that require this.
+From a Rexx program is 0 under most systems, specifically Unix, OS/2, MS-DOS. Here, VMS deviates, since it uses 1 as the default return value. Using 0 under VMS tends to make VMS issue a warning saying that no error occurred.
 
+Transferring control into a loop
 
-            Default return value
+Works fine in Regina, as long as no END, THEN, ELSE, WHEN, or OTHERWISE instructions are executed afterwards; unless the normal entry-point for the construct has been executed after the transfer of control.
 
-            From a Rexx program is 0 under most systems, specifically Unix, OS/2, MS-DOS. Here, VMS deviates, since it uses 1 as the default return value. Using 0 under VMS tends to make VMS issue a warning saying that no error occurred.
+PARSE SOURCE information
 
+PARSE VERSION information
 
-            Transferring control into a loop
+Last line of source code
 
-            Works fine in Regina, as long as no END, THEN, ELSE, WHEN, or OTHERWISE instructions
+Is implicitly taken to be terminated by an end-of-line sequence in Regina, even if such a sequence is not present in the source code of the Rexx script. This applies only to source code. Also, the end-of-string in INTERPRET strings is taken to be implicitly terminated by an end-of-line character sequence.
 
-            are executed afterwards; unless the normal entry-point for the construct has been executed after the transfer of control.
+Moving code MS-DOS to Unix
 
+Is simplified by Regina, since it will accept the MS-DOS type end of line sequences as valid. i.e. any Ctrl-M in front of a Ctrl-J in the source file is ignored on Unix systems by Regina. This applies only to source code.
 
-            PARSE SOURCE information PARSE VERSION information Last line of source code
+Labels in INTERPRET
 
-            Is implicitly taken to be terminated by an end-of-line sequence in Regina, even if such a
-
-            sequence is not present in the source code of the Rexx script. This applies only to source code. Also, the end-of-string in INTERPRET strings is taken to be implicitly terminated by an end-of-line character sequence.
-
-
-            Moving code MS-DOS to Unix
-
-            Is simplified by Regina, since it will accept the MS-DOS type end of line sequences as valid. i.e. any Ctrl-M in front of a Ctrl-J in the source file is ignored on Unix systems by Regina. This applies only to source code.
-
-
-            Labels in INTERPRET
-
-            Is handled by Regina in the following way: A label can occur inside an INTERPRET string, but it is ignored, and can never be jumped to in a SIGNAL or CALL instruction.
+Is handled by Regina in the following way: A label can occur inside an INTERPRET string, but it is ignored, and can never be jumped to in a SIGNAL or CALL instruction.
 
 ==== Implementation of the ADDRESS environment ====
 
