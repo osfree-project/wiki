@@ -1587,215 +1587,174 @@ end
 ==== The SIGNAL Instruction ====
 
 
-            SIGNAL { string | symbol } ; [ VALUE ] expr ;
+<code>
+SIGNAL { string | symbol } ;
+   [ VALUE ] expr ;
+   { ON | OFF } condition [ NAME { string | symbol } ] ;
+</code>
 
-            { ON | OFF } condition [ NAME
+The SIGNAL instruction is used for two purposes: (a) to transfer control to a named label in the program, and (b) to set up a named condition trap.
 
-            { string | symbol } ] ;
+The first form in the syntax definition transfers control to the named label, which must exist somewhere in the program; if it does not exist, a SYNTAX condition {16} is raised. If the label is multiple defined, the first definition is used. The parameter can be either a symbol (which is taken literally) or a string. If it is a string, then be sure that the case of the string matches the case of the label where it is defined. In practice, labels are in upper case, so the string should contain only uppercase letters too, and no space characters.
 
+The second form of the syntax is used if the second token of the instruction is VALUE. Then, the rest of the instruction is taken as a general Rexx expression, which result after evaluation is taken to be the name of the label to transfer control to. This form is really just a special case of the first form, where the programmer is allowed to specify the label as an expression. Note that if the start of expr is such that it can not be misinterpreted as the first form (i.e. the first token of expr is neither a string nor a symbol), then the VALUE subkeyword can be omitted.
 
-            The SIGNAL instruction is used for two purposes: (a) to transfer control to a named label in the program, and (b) to set up a named condition trap.
+Example: Transferring control to inside a loop
 
-            The first form in the syntax definition transfers control to the named label, which must exist somewhere in the program; if it does not exist, a SYNTAX condition {16} is raised. If the label is multiple defined, the first definition is used. The parameter can be either a symbol (which is taken literally) or a string. If it is a string, then be sure that the case of the string matches the case of the label where it is defined. In practice, labels are in upper case, so the string should contain only uppercase letters too, and no space characters.
+When the control of execution is transferred by a SIGNAL instruction, all active loops at the current procedural level are terminated, i.e. they can not continued later, although they can of course be reentered from the normal start. The consequence of this is that the following code is illegal:
 
+<code rexx>
+do forever
+   signal there
+there:
+   nop 
+end
+</code>
 
-            The second form of the syntax is used if the second token of the instruction is VALUE. Then, the rest of the instruction is taken as a general Rexx expression, which result after evaluation is taken to be the name of the label to transfer control to. This form is really just a special case of the first form, where the programmer is allowed to specify the label as an expression. Note that if the start of expr is such that it can not be misinterpreted as the first form (i.e. the first token of expr is neither a string nor a symbol), then the VALUE subkeyword can be omitted.
+The fact that the jump is altogether within the loop does not prevent the loop from being terminated. Thus, after the jump to the loop, the END instruction is attempted executed, which will result in a SYNTAX condition {10}. However, if control is transferred out of the loop after the label, but before the END, then it would be legal, i.e. the following is legal:
 
+<code rexx>
+do forever
+   signal there
+there:
+   nop
+   signal after
+end
 
-            Example: Transferring control to inside a loop
+after:
+</code>
 
+This is legal, simply because the END instruction is never seen during this script. Although both TRL1 and TRL2 allow this construct, it will probably be disallowed in ANSI.
 
-            When the control of execution is transferred by a SIGNAL instruction, all active loops at the current procedural level are terminated, i.e. they can not continued later, although they can of course be reentered from the normal start. The consequence of this is that the following code is illegal:
+Just as loops are terminated by a SIGNAL instruction, SELECT and IF instructions are also terminated. Thus, it is illegal to jump to a location within a block of statements contained in a WHEN, OTHERWISE, or IF instruction, unless the control is transferred out of the block before the execution reaches the end of the block.
 
+Whenever execution is transferred during a SIGNAL instruction, the special variable SIGL is set to the line number of the line containing the SIGNAL instruction, before the control is transferred. If this instruction extends over several lines, it refers to the first of this. Note that even blanks are part of a clause, so if the instruction starts with a line continuation, the real line of the instruction is different from that line where the instruction keyword is located.
 
-            do forever
+The third form of syntax is used when the second token in the instruction is either ON or OFF. In both cases must the third token in the instruction be then name of a condition (as a constant string or a symbol, which is taken literally), and the setup of that condition trap is changed. If the second token is OFF, then the trap of the named condition is disabled.
 
-            signal there there:
+If the second token is ON, then the trap of the named condition is enabled. Further, in this situation two more tokens may be allowed in the instruction: the first must be NAME and the second must be the name of a label (either as a constant string or a symbol, which is taken literally). If the five token form is used, then the label of the condition handler is set to the named label, else the name of the condition handler is set to the default, which is identical to the name of the condition itself.
 
-            nop end
+Note that the NAME subclause of the SIGNAL instruction was a new construct in TRL2, and is not a part of TRL1. Thus, older interpreters may not support it.
 
+Example: Naming condition traps
 
-            The fact that the jump is altogether within the loop does not prevent the loop from being terminated. Thus, after the jump to the loop, the END instruction is attempted executed, which will result in a SYNTAX condition {10}. However, if control is transferred out of the loop after the label, but before the END, then it would be legal, i.e. the following is legal:
+Note that the default value for the condition handler (if the NAME subclause is not specified) is the name of the condition, not the condition handler from the previous time the condition was enabled. Thus, after the following code, the name of the condition handler for the condition SYNTAX is SYNTAX, not FOOBAR:
 
+<code rexx>
+signal on syntax name foobar 
+signal on syntax
+</code>
 
-            do forever
+Example: Named condition traps in TRL1
 
-            signal there there:
+A common problem when trying to port Rexx code from a TRL2 interpreter to a TRL1 interpreter, is that explicitly named condition traps are not supported. There exist ways to circumvent this, like:
 
-            nop
+<code rexx>
+syntax_name = 'SYNTAX_HANDLER'
+signal on syntax
+if 1 + 2 then /* will generate SYNTAX condition */ 
+  nop
 
-            signal after end
+syntax:
+  oldsigl = sigl
+  signal value translate(syntax_name)
 
+syntax_handler:
+  say 'condition at line' oldsigl 'is being handled...'
+  exit
+</code>
 
-            after:
+Here, a "global" variable is used to store the name of the real condition handler, in the absence of a field for this in the interpreter. This works fine, but there are some problems: the variable SYNTAX_NAME must be exposed to everywhere, in order to be available at all times. It would be far better if this value could be stored somewhere from which it could be retrieved from any part of the script, no matter the current state of the call-stack. This can be fixed with programs like GLOBALV under VM/CMS and putenv under Unix.
 
+Another problem is that this destroys the possibility of setting up the condition handler with the default handler name. However, to circumvent this, add a new DEFAULT_SYNTAX_HANDLER label which becomes the new name for the old SYNTAX label.
 
-            This is legal, simply because the END instruction is never seen during this script. Although both TRL1 and TRL2 allow this construct, it will probably be disallowed in ANSI.
-
-
-            Just as loops are terminated by a SIGNAL instruction, SELECT and IF instructions are also terminated. Thus, it is illegal to jump to a location within a block of statements contained in a WHEN, OTHERWISE, or IF instruction, unless the control is transferred out of the block before the execution reaches the end of the block.
-
-            Whenever execution is transferred during a SIGNAL instruction, the special variable SIGL is set to the line number of the line containing the SIGNAL instruction, before the control is transferred. If this instruction extends over several lines, it refers to the first of this. Note that even blanks are part of a clause, so if the instruction starts with a line continuation, the real line of the instruction is different from that line where the instruction keyword is located.
-
-
-            The third form of syntax is used when the second token in the instruction is either ON or OFF. In both cases must the third token in the instruction be then name of a condition (as a constant string or a symbol, which is taken literally), and the setup of that condition trap is changed. If the second token is OFF, then the trap of the named condition is disabled.
-
-
-            If the second token is ON, then the trap of the named condition is enabled. Further, in this situation two more tokens may be allowed in the instruction: the first must be NAME and the second must be the name of a label (either as a constant string or a symbol, which is taken literally). If the five token form is used, then the label of the condition handler is set to the named label, else the name of the condition handler is set to the default, which is identical to the name of the condition itself.
-
-
-            Note that the NAME subclause of the SIGNAL instruction was a new construct in TRL2, and is not a part of TRL1. Thus, older interpreters may not support it.
-
-
-            Example: Naming condition traps
-
-
-            Note that the default value for the condition handler (if the NAME subclause is not specified) is the name of the condition, not the condition handler from the previous time the condition was enabled. Thus, after the following code, the name of the condition handler for the condition SYNTAX is SYNTAX, not FOOBAR:
-
-
-            signal on syntax name foobar signal on syntax
-
-
-            Example: Named condition traps in TRL1
-
-
-            A common problem when trying to port Rexx code from a TRL2 interpreter to a TRL1 interpreter, is that explicitly named condition traps are not supported. There exist ways to circumvent this, like:
-
-
-            syntax_name = 'SYNTAX_HANDLER' signal on syntax
-
-            if 1 + 2 then /* will generate SYNTAX condition */ nop
-
-            syntax:
-
-            oldsigl = sigl
-
-            signal value translate(syntax_name)
-
-
-            syntax_handler:
-
-            say 'condition at line' oldsigl 'is being handled...' exit
-
-
-            Here, a "global" variable is used to store the name of the real condition handler, in the absence of a
-
-            field for this in the interpreter. This works fine, but there are some problems: the variable SYNTAX_NAME must be exposed to everywhere, in order to be available at all times. It would be far better if this value could be stored somewhere from which it could be retrieved from any part of the script, no matter the current state of the call-stack. This can be fixed with programs like GLOBALV under VM/CMS and putenv under Unix.
-
-
-            Another problem is that this destroys the possibility of setting up the condition handler with the default handler name. However, to circumvent this, add a new DEFAULT_SYNTAX_HANDLER label which becomes the new name for the old SYNTAX label.
-
-
-            Further information about conditions and condition traps are given in chapter Conditions.
+Further information about conditions and condition traps are given in chapter Conditions.
 
 ==== The TRACE Instruction ====
 
+<code>
+TRACE [ setting | [ VALUE ] expr ] ;
+</code>
 
-            TRACE [ setting | [ VALUE ] expr ] ;
+The TRACE instruction is used to set a tracing mode. Depending on the current mode, various levels of debugging information is displayed for the programmer. Also interactive tracing is allowed, where the user can re-execute clauses, change values of variables, or in general, execute Rexx code interactively between the statements of the Rexx script.
 
+If no parameters are specified, then the default value N is assumed.
 
-            The TRACE instruction is used to set a tracing mode. Depending on the current mode, various levels of debugging information is displayed for the programmer. Also interactive tracing is allowed, where the user can re-execute clauses, change values of variables, or in general, execute Rexx code interactively between the statements of the Rexx script.
+If a parameter is given to the TRACE instruction, and the first token in the parameters is not VALUE, then there must only be one token after TRACE, and it must be either a constant string or a symbol (which is taken literally). The value of this token can be either a whole number or a trace setting.
 
+If the first token after TRACE is VALUE, then the remaining parts of the clause is interpreted as an expression, the result of which is used as the trace setting.
 
-            If no parameters are specified, then the default value N is assumed.
+If setting is a whole number and the number is positive, then the number specifies how many interactive pauses to skip if interactive tracing is enabled. If interactive tracing is not enabled, this TRACE instruction is ignored.
 
+If setting is a whole, negative number, then tracing is turned off temporarily for a number of clauses determined by the absolute value of number.
 
-            If a parameter is given to the TRACE instruction, and the first token in the parameters is not VALUE, then there must only be one token after TRACE, and it must be either a constant string or a symbol (which is taken literally). The value of this token can be either a whole number or a trace setting.
+If setting is a symbol or string, but not a whole number, then the first character (following any optional question mark (?) characters) is translated to upper case and must be one of the values specified below. The question mark character toggles interactive tracing on or off.
 
+[A]
 
-            If the first token after TRACE is VALUE, then the remaining parts of the clause is interpreted as an expression, the result of which is used as the trace setting.
+(All) Traces all clauses before execution.
 
+[C]
 
-            If setting is a whole number and the number is positive, then the number specifies how many interactive pauses to skip if interactive tracing is enabled. If interactive tracing is not enabled, this TRACE instruction is ignored.
+(Commands) Traces all command clauses before execution.
 
+[E]
 
-            If setting is a whole, negative number, then tracing is turned off temporarily for a number of clauses determined by the absolute value of number.
+(Errors) Traces any command that would raise the ERROR condition (whether enabled or not) after execution. Both the command clause and the return value is traced.
 
+[F]
 
-            If setting is a symbol or string, but not a whole number, then the first character (following any optional question mark (?) characters) is translated to upper case and must be one of the values specified below. The question mark character toggles interactive tracing on or off.
+(Failures) Trances any command that would raise the FAILURE condition (whether enabled or not) after execution. Both the command clause and the return value is traced.
 
+[I]
 
-            [A]
+(Intermediate) Traces not only all clauses, but also traces all evaluation of expressions; even intermediate results. This is the most detailed level of tracing.
 
-            (All) Traces all clauses before execution.
+[L]
 
+(Labels) Traces the name of any label clause executed; whether the label was jumped to or not.
 
-            [C]
+[N]
 
-            (Commands) Traces all command clauses before execution.
+(Normal or Negative) This is the same as the Failure setting.
 
+[O]
 
-            [E]
+(Off) Turns off all tracing.
 
-            (Errors) Traces any command that would raise the ERROR condition (whether enabled or not) after execution. Both the command clause and the return value is traced.
+[R]
 
-            [F]
+(Results) Traces all clauses and the results of evaluating expressions. However, intermediate expressions are not traced.
 
+The Errors and Failures settings are not influenced by whether the ERROR or FAILURE conditions are enabled or not. These TRACE settings will trace the command and return value after the command have been executed, but before the respective condition is raised.
 
-            [I]
+The levels of tracing might be set up graphically, as in the figure below. An arrow indicates that the setting pointed to is a superset of the setting pointed from.
 
+<code>
+/-> Failures -> Errors -> Commands
+Off                              \
+\-----> Labels --------> All -> Results -> Intermediate
+</code>
 
-            [L]
+=== Hierarchy of TRACE settings ===
 
+According to this figure, Intermediate is a superset of Result, which is a superset of All. Further, All is a superset of both Commands and Labels. Commands is a superset of Errors, which is a superset of Failures. Both Failure and Labels are supersets of Off. Actually, Command is strictly speaking not a superset of Errors, since Errors traces after the command, while Command traces before the command.
 
-            [N]
-
-
-            [O]
-
-
-            [R]
-
-
-            (Failures) Trances any command that would raise the FAILURE condition (whether enabled or not) after execution. Both the command clause and the return value is traced.
-
-
-            (Intermediate) Traces not only all clauses, but also traces all evaluation of expressions; even intermediate results. This is the most detailed level of tracing.
-
-
-            (Labels) Traces the name of any label clause executed; whether the label was jumped to or not.
-
-
-            (Normal or Negative) This is the same as the Failure setting. (Off) Turns off all tracing.
-
-            (Results) Traces all clauses and the results of evaluating expressions. However, intermediate expressions are not traced.
-
-
-            The Errors and Failures settings are not influenced by whether the ERROR or FAILURE conditions are enabled or not. These TRACE settings will trace the command and return value after the command have been executed, but before the respective condition is raised.
-
-
-            The levels of tracing might be set up graphically, as in the figure below. An arrow indicates that the setting pointed to is a superset of the setting pointed from.
-
-
-            /-> Failures -> Errors -> Commands Off \
-
-            \-----> Labels --------> All -> Results -> Intermediate
-
-
-            Hierarchy of TRACE settings
-
-
-            According to this figure, Intermediate is a superset of Result, which is a superset of All. Further, All is a superset of both Commands and Labels. Commands is a superset of Errors, which is a superset of Failures. Both Failure and Labels are supersets of Off. Actually, Command is strictly speaking not a superset of Errors, since Errors traces after the command, while Command traces before the command.
-
-
-            Scan is not part of this diagram, since it provides a completely different tracing functionality. Note that Scan is part of TRL1, but was removed in TRL2. It is not likely to be part of newer Rexx interpreters.
+Scan is not part of this diagram, since it provides a completely different tracing functionality. Note that Scan is part of TRL1, but was removed in TRL2. It is not likely to be part of newer Rexx interpreters.
 
 ==== The UPPER Instruction ====
 
+<code>
+UPPER symbol [ symbol [ symbol [...] ] ] ;
+</code>
 
-            UPPER symbol [ symbol [ symbol [...] ] ] ;
+The UPPER instruction is used to translate the contents of one or more variables to uppercase. The variables are translated in sequence from left to right.
 
+Each symbol is separated by one or more blanks.
 
-            The UPPER instruction is used to translate the contents of one or more variables to uppercase. The variables are translated in sequence from left to right.
+While it is more convenient and probably faster than individual calls to TRANSLATE, UPPER is not part of the ANSI standard and is not common in other interpreters so should be avoided. It is provided to ease porting of programs from CMS.
 
-
-            Each symbol is separated by one or more blanks.
-
-
-            While it is more convenient and probably faster than individual calls to TRANSLATE, UPPER is not part of the ANSI standard and is not common in other interpreters so should be avoided. It is provided to ease porting of programs from CMS.
-
-
-            Only simple and compound symbols can be specified. Specification of a stem variable results in an error.
+Only simple and compound symbols can be specified. Specification of a stem variable results in an error.
 
 
 ===== Operators ‌ =====
