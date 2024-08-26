@@ -3048,114 +3048,51 @@ Note that the address specified is subject to a machine's endianess.
 
 ==== FILESPEC(option, filespec) - (OS/2) ====
 
+Returns the specified portion of a passed filespec, depending on the option passed. Possible options are:
 
-            Returns the specified portion of a passed filespec, depending on the option passed. Possible options are:
+[Drive]
 
+The file's drive. On platforms that don't have the concept of a drive letter, returns blank.
 
-            [Drive]
+[Name]
 
-            The file's drive. On platforms that don't have the concept of a drive letter, returns blank.
+The file's name. This is the string following the last path delimiter (if there is one).
 
-            [Name]
+[Path]
 
-            The file's name. This is the string following the last path delimiter (if there is one).
+The file's path. This is the string up to, and including the last path delimiter.
 
-            [Path]
+Only the first letter of option is required.
 
-            The file's path. This is the string up to, and including the last path delimiter.
-
-            Only the first letter of option is required.
-
-
-            FILESPEC('Drive','C:\config.sys')
-            	
-
-            'C'
-
-            FILESPEC('Name','C:\config.sys')
-            	
-
-            'config.sys'
-
-            FILESPEC('Path','C:\config.sys')
-            	
-
-            '\'
-
-            FILESPEC('Drive','/usr/bin/regina')
-            	
-
-            ''
-
-            FILESPEC('Name','/usr/bin/regina')
-            	
-
-            'regina'
-
-            FILESPEC('Path','/usr/bin/regina')
-            	
-
-            '/usr/bin/'
+| FILESPEC('Drive','C:\config.sys') | 'C' |
+| FILESPEC('Name','C:\config.sys') | 'config.sys' |
+| FILESPEC('Path','C:\config.sys') | '\' |
+| FILESPEC('Drive','/usr/bin/regina') | %%''%% |
+| FILESPEC('Name','/usr/bin/regina') | 'regina' |
+| FILESPEC('Path','/usr/bin/regina') | '/usr/bin/' |
 
 ==== FIND(string, phrase) - (CMS) ====
- Searches string for the first occurrence of the sequence of blank-delimited words phrase , and return the word number of the first word of phrase in string . Multiple blanks between words are treated as a single blank for the comparison. Returns 0 if phrase not found. Deprecated: see WORDPOS().
 
+Searches string for the first occurrence of the sequence of blank-delimited words phrase , and return the word number of the first word of phrase in string. Multiple blanks between words are treated as a single blank for the comparison. Returns 0 if phrase not found. Deprecated: see WORDPOS().
 
-            FIND('now is the time','is the time')
-            	
-
-            2
-
-            FIND('now is
-            	
-
-            the time','is
-            	
-
-            the')
-            	
-
-            2
-
-            FIND('now is
-            	
-
-            the time','is
-            	
-
-            time')
-            	
-
-            0
+| FIND('now is the time','is the time') | 2 |
+| FIND('now is the time','is the') | 2 |
+| FIND('now is the time','is time') | 0 |
 
 
 ==== FORK() - (REGINA) ====
 
+This function spawns a new process as a child of the current process at the current point in the program where FORK is called. The program then continues from this point as two separate processes; the parent and the child. FORK returns 0 to the child process, and the process id of the child process spawned to the parent (always non-zero). A negative return value indicates an error while attempting to create the new process. FORK is not available on all platforms. If FORK is not supported, it will always return '1'. It is safe to assume that a return value of '1' means that FORK is not supported. All platforms AFAIK, will never return '1' as a child process id; that number is usually reserved for the first process that starts on a machine.
 
-            This function spawns a new process as a child of the current process at the current point in the program where FORK is called. The program then continues from this point as two separate processes; the parent and the child. FORK returns 0 to the child process, and the process id of the child process spawned to the parent (always non-zero). A negative return value indicates an error while attempting to create the new process. FORK is not available on all platforms. If FORK is not supported, it will always return '1'. It is safe to assume that a return value of '1' means that FORK is not supported. All platforms AFAIK, will never return '1' as a child process id; that number is usually reserved for the first process that starts on a machine.
-
-
-            FORK()
-            	
-
-            '0' /* To child */
-
-
-            	
-
-            '3456' /* maybe to parent */
+| FORK() | '0' /* To child */ |
+| | '3456' /* maybe to parent */ |
 
 
 ==== FORM() - (ANSI) ====
 
+Returns the current "form", in which numbers are presented when exponential form is used. This might be either SCIENTIFIC (the default) or ENGINEERING. This value is set through the NUMERIC FORM clause. For more information, see the documentation on NUMERIC FORM.
 
-            Returns the current "form", in which numbers are presented when exponential form is used. This might be either SCIENTIFIC (the default) or ENGINEERING. This value is set through the NUMERIC FORM clause. For more information, see the documentation on NUMERIC FORM.
-
-
-            FORM()
-            	
-
-            'SCIENTIFIC' /* Maybe */
+| FORM() | 'SCIENTIFIC' /* Maybe */ |
 
 
 ==== FORMAT(number [,[before] [,[after] [,[expp] [,[expt]]]]]) - (ANSI) ====
