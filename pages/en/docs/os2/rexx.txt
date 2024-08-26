@@ -2373,92 +2373,58 @@ CALL FUNCTION 'This' 'is', 'a',, 'test',,
 ==== B2X(binstring) - (ANSI) ====
  Takes a parameter which is interpreted as a binary string, and returns a hexadecimal string which represent the same information. Binstring can only contain the binary digits 0 and 1 . To increase readability, blanks may be included in binstring to group the digits into groups. Each such group must have a multiple of four binary digits, except from the first group. If the number of binary digits in the first group is not a multiple of four, that group is padded at the left with up to three leading zeros, to make it a multiple of four. Blanks can only occur between binary digits, not as leading or trailing characters.
 
+Each group of four binary digits is translated into on hexadecimal digit in the output string. There will be no extra blanks in the result, and the upper six hexadecimal digits are in upper case.
 
-            Each group of four binary digits is translated into on hexadecimal digit in the output string. There will be no extra blanks in the result, and the upper six hexadecimal digits are in upper case.
-
-            B2X('0010 01011100 0011')
-            	
-
-            '26C3'
-
-            B2X('10 0101 11111111')
-            	
-
-            '26FF'
-
-            B2X('0100100 0011')
-            	
-
-            '243'
+| B2X('0010 01011100 0011') | '26C3' |
+| B2X('10 0101 11111111') | '26FF' |
+| B2X('0100100 0011') | '243' |
 
 
 ==== BEEP(frequency [,duration]) - (OS/2) ====
 
- Sounds the machine's bell. The frequency and duration (in milliseconds) of the tone are specified. If no duration value is specified, it defaults to 1. Not all operating systems can sound their bells with the given specifications.
+Sounds the machine's bell. The frequency and duration (in milliseconds) of the tone are specified. If no duration value is specified, it defaults to 1. Not all operating systems can sound their bells with the given specifications.
 
+<code rexx>
+BEEP(50,1000)
+</code>
 
-            BEEP(50,1000)
             	
 
 
 
 ==== BITAND(string1 [,[string2] [,padchar]]) - (ANSI) ====
- Returns the result from bytewise applying the operator AND to the characters in the two strings string1 and string2 . Note that this is not the logical AND operation, but the bitwise AND operation. String2 defaults to a nullstring. The two strings are left-justified; the first characters in both strings will be AND'ed, then the second characters and so forth.
 
+Returns the result from bytewise applying the operator AND to the characters in the two strings string1 and string2 . Note that this is not the logical AND operation, but the bitwise AND operation. String2 defaults to a nullstring. The two strings are left-justified; the first characters in both strings will be AND'ed, then the second characters and so forth.
 
-            The behavior of this function when the two strings do not have equal length is defined by the padchar character. If it is undefined, the remaining part of the longer string is appended to the result after all characters in the shorter string have been processed. If padchar is defined, each char in the remaining part of the longer string is logically AND'ed with the padchar (or rather, the shorter string is padded on the right length, using padchar).
+The behavior of this function when the two strings do not have equal length is defined by the padchar character. If it is undefined, the remaining part of the longer string is appended to the result after all characters in the shorter string have been processed. If padchar is defined, each char in the remaining part of the longer string is logically AND'ed with the padchar (or rather, the shorter string is padded on the right length, using padchar).
 
+When using this function on character strings, e.g. to uppercase or lowercase a string, the result will be dependent on the character set used. To lowercase a string in EBCDIC, use BITAND() with a padchar value of 'bf'x. To do the same in ASCII, use BITOR() with a padchar value of '20'x.
 
-            When using this function on character strings, e.g. to uppercase or lowercase a string, the result will be dependent on the character set used. To lowercase a string in EBCDIC, use BITAND() with a padchar value of 'bf'x. To do the same in ASCII, use BITOR() with a padchar value of '20'x.
-
-            BITAND('123456'x,'3456'x)
-            	
-
-            '101456'x
-
-            BITAND('foobar',,'df'x)
-            	
-
-            'FOOBAR' /*For ASCII*/
-
-            BITAND('123456'x,'3456'x,'f0'x)
-            	
-
-            '101450'x
+| BITAND('123456'x,'3456'x) | '101456'x |
+| BITAND('foobar',,'df'x) | 'FOOBAR' /*For ASCII*/ |
+| BITAND('123456'x,'3456'x,'f0'x) | '101450'x |
 
 
 ==== BITCHG(string, bit) - (AREXX) ====
- Changes the state of the specified bit in the argument string . Bit numbers are defined such that bit 0 is the low-order bit of the rightmost byte of the string.
 
+Changes the state of the specified bit in the argument string . Bit numbers are defined such that bit 0 is the low-order bit of the rightmost byte of the string.
 
-            BITCHG('0313'x,4)
-            	
-
-            '0303'x
+| BITCHG('0313'x,4) | '0303'x |
 
 
 ==== BITCLR(string, bit) - (AREXX) ====
- Clears (sets to zero) the specified bit in the argument string . Bit numbers are defined such that bit 0 is the low-order bit of the rightmost byte of the string.
 
+Clears (sets to zero) the specified bit in the argument string . Bit numbers are defined such that bit 0 is the low-order bit of the rightmost byte of the string.
 
-            BITCLR('0313'x,4)
-            	
-
-            '0303'x
+| BITCLR('0313'x,4) | '0303'x |
 
 
 ==== BITCOMP(string1, string2, bit [,pad]) - (AREXX) ====
- Compares the argument strings bit-by-bit,starting at bit number 0. The returned value is the bit number of the first bit in which the strings differ,or -1 if the strings are identical.
 
-            BITCOMP('7F'x,'FF'x)
-            	
+Compares the argument strings bit-by-bit,starting at bit number 0. The returned value is the bit number of the first bit in which the strings differ,or -1 if the strings are identical.
 
-            '7'
-
-            BITCOMP('FF'x,'FF'x)
-            	
-
-            '-1'
+| BITCOMP('7F'x,'FF'x) | '7' |
+| BITCOMP('FF'x,'FF'x) | '-1' |
 
 
 ==== BITOR(string1 [, [string2] [,padchar]]) - (ANSI) ====
