@@ -3240,221 +3240,46 @@ If length is specified, string1 is truncated or padded on the right side to make
 
 
 ==== JUSTIFY(string, length [,pad]) - (CMS) ====
- Formats blank-delimited words in string , by adding pad characters between words to justify to both margins. That is, to width length ( length must be non-negative). The default pad character is a
 
-            blank.
+Formats blank-delimited words in string , by adding pad characters between words to justify to both margins. That is, to width length ( length must be non-negative). The default pad character is a blank.
 
-            string is first normalized as though SPACE(string) had been executed (that is, multiple blanks are converted to single blanks, and leading and trailing blanks are removed). If length is less than the width of the normalized string, the string is then truncated on the right and any trailing blank is removed. Extra pad characters are then added evenly from the left to right to provide the required length, and the blanks between words are replaced with the pad character.
+string is first normalized as though SPACE(string) had been executed (that is, multiple blanks are converted to single blanks, and leading and trailing blanks are removed). If length is less than the width of the normalized string, the string is then truncated on the right and any trailing blank is removed. Extra pad characters are then added evenly from the left to right to provide the required length, and the blanks between words are replaced with the pad character.
 
-
-            JUSTIFY('The
-            	
-
-            blue
-            	
-
-            sky',14)
-            	
-
-            'The
-            	
-
-            blue
-            	
-
-            sky'
-
-            JUSTIFY('The
-            	
-
-            blue
-            	
-
-            sky',8)
-            	
-
-            'The blue'
-
-            JUSTIFY('The
-            	
-
-            blue
-            	
-
-            sky',9)
-            	
-
-            'The
-            	
-
-            blue'
-            	
-
-
-            JUSTIFY('The
-            	
-
-            blue
-            	
-
-            sky',9,'+')
-            	
-
-            'The++blue'
+| JUSTIFY('The blue sky',14) | 'The  blue  sky' |
+| JUSTIFY('The blue sky',8) | 'The blue' |
+| JUSTIFY('The blue sky',9) | 'The  blue' |
+| JUSTIFY('The blue sky',9,'+') | 'The++blue' |
 
 
 ==== LASTPOS(needle, haystack [,start]) - (ANSI) ====
- Searches the string haystack for the string needle , and returns the position in haystack of the first character in the substring that matched needle . The search is started from the right side, so if needle occurs several times, the last occurrence is reported.
 
+Searches the string haystack for the string needle , and returns the position in haystack of the first character in the substring that matched needle . The search is started from the right side, so if needle occurs several times, the last occurrence is reported.
 
-            If start is specified, the search starts at character number start in haystack. Note that the standard only states that the search starts at the startth character. It is not stated whether a match can partly be to the right of the start position, so some implementations may differ on that point.
+If start is specified, the search starts at character number start in haystack. Note that the standard only states that the search starts at the startth character. It is not stated whether a match can partly be to the right of the start position, so some implementations may differ on that point.
 
-
-            LASTPOS('be',To
-            	
-
-            be
-            	
-
-            or
-            	
-
-            not
-            	
-
-            to
-            	
-
-            be')
-            	
-
-            17
-
-            LASTPOS('to',to
-            	
-
-            be
-            	
-
-            or
-            	
-
-            not
-            	
-
-            to
-            	
-
-            be',10)
-            	
-
-            3
-
-            LASTPOS('is',to
-            	
-
-            be
-            	
-
-            or
-            	
-
-            not
-            	
-
-            to
-            	
-
-            be')
-            	
-
-            0
-
-            LASTPOS('to',to
-            	
-
-            be
-            	
-
-            or
-            	
-
-            not
-            	
-
-            to
-            	
-
-            be',0)
-            	
-
-            0
+| LASTPOS('be', 'To be or not to be') | 17 |
+| LASTPOS('to', 'to be or not to be',10) | 3 |
+| LASTPOS('is', 'to be or not to be') | 0 |
+| LASTPOS('to', 'to be or not to be',0) | 0 |
 
 
 ==== LEFT(string, length [,padchar]) - (ANSI) ====
- Returns the length leftmost characters in string . If length (which must be a non-negative whole number) is greater than the length of string , the result is padded on the right with <space> (or padchar if that is specified) to make it the correct length.
 
+Returns the length leftmost characters in string . If length (which must be a non-negative whole number) is greater than the length of string , the result is padded on the right with <space> (or padchar if that is specified) to make it the correct length.
 
-            LEFT('Foo
-            	
+| LEFT('Foo bar',5) | 'Foo b' |
+| LEFT('Foo bar',3) | 'Foo' |
+| LEFT('Foo bar',10) | 'Foo bar   '|
+| LEFT('Foo bar',10,'*') | %%'Foo bar***'%% |
 
-            bar',5)
-            	
+==== LENGTH(string) - (ANSI) ====
 
-            'Foo b'
+Returns the number of characters in string.
 
-            LEFT('Foo
-            	
-
-            bar',3)
-            	
-
-            'Foo'
-
-            LEFT('Foo
-            	
-
-            bar',10)
-            	
-
-            'Foo bar
-            	
-
-            '
-
-            LEFT('Foo
-            	
-
-            bar',10,'*')
-            	
-
-            'Foo bar***'
-
-
-            LENGTH(string) - (ANSI)
-
-            Returns the number of characters in string.
-
-
-            LENGTH('')
-            	
-
-            '0'
-
-            LENGTH('Foo')
-            	
-
-            '3'
-
-            LENGTH('Foo bar')
-            	
-
-            '7'
-
-            LENGTH(' foo bar ')
-            	
-
-            '10'
+| LENGTH(%%''%%) | '0' |
+| LENGTH('Foo') | '3' |
+| LENGTH('Foo bar') | '7' |
+| LENGTH(' foo bar ') | '10' |
 
 ==== LINEIN([streamid][,[line][,count]]) - (ANSI) ====
  Returns a line read from a file. When only streamid is specified, the reading starts at the current read position and continues to the first End-Of-Line (EOL) mark. Afterward, the current read position is set to the character after the EOL mark which terminated the read-operation. If the operating system uses special characters for EOL marks, these are not returned by as a part of the string read..
