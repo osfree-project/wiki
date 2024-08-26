@@ -2943,218 +2943,107 @@ If length is not specified, integer will be interpreted as an unsigned number, a
 
 
 ==== D2X(integer [,length]) - (ANSI) ====
- Returns a hexadecimal number that is the hexadecimal representation of integer . If integer is not a whole number under the current settings of NUMERIC DIGITS , and STRICT_ANSI option is in effect, Error 40.35 is reported.
 
+Returns a hexadecimal number that is the hexadecimal representation of integer . If integer is not a whole number under the current settings of NUMERIC DIGITS , and STRICT_ANSI option is in effect, Error 40.35 is reported.
 
-            If length is not specified, then integer must be non-negative, and the result will be stripped of any leading zeros.
+If length is not specified, then integer must be non-negative, and the result will be stripped of any leading zeros.
 
+If length is specified, then the resulting string will be sign-extended to length, truncating leading characters if necessary.
 
-            If length is specified, then the resulting string will be sign-extended to length, truncating leading characters if necessary.
-
-            D2X(0)
-            	
-
-            '0'
-
-            D2X(65)
-            	
-
-            '41'
-
-            D2X(127)
-            	
-
-            '7F'
-
-            D2X(128)
-            	
-
-            '80'
-
-            D2X(128,5)
-            	
-
-            '00080'
-
-            D2X(-128)
-            	
-
-            Error 40.13 and SYNTAX condition raised
-
-            D2X(-128,5)
-            	
-
-            'FFF80'
-
-            D2X(888888)
-            	
-
-            'D9038'
-
-            D2X(888888,3)
-            	
-
-            '038'
+| D2X(0) | '0' |
+| D2X(65) | '41' |
+| D2X(127) | '7F' |
+| D2X(128) | '80' |
+| D2X(128,5) | '00080' |
+| D2X(-128) | Error 40.13 and SYNTAX condition raised |
+| D2X(-128,5) | 'FFF80' |
+| D2X(888888) | 'D9038' |
+| D2X(888888,3) | '038' |
 
 
 ==== DROPBUF([number]) - (CMS) ====
 
+This function will remove zero or more buffers from the stack. Called without a parameter, it will remove the topmost buffer from the stack, provided that there were at least one buffer in the stack. If there were no buffers in the stack, it will remove all strings in the stack, i.e. remove the zeroth buffer.
 
-            This function will remove zero or more buffers from the stack. Called without a parameter, it will remove the topmost buffer from the stack, provided that there were at least one buffer in the stack. If there were no buffers in the stack, it will remove all strings in the stack, i.e. remove the zeroth buffer.
+If the parameter number was specified, and the stack contains a buffer with an assigned number equal to number, then that buffer itself, and all strings and buffers above it on the stack will be removed; but no strings or buffers below the numbered buffer will be touched. If number refers to a buffer that does not exist in the stack; no strings or buffers in the stack is touched.
 
+As an extra extension, in Regina the DROPBUF() built-in function can be given a non-positive integer as parameter. If the name is negative then it will convert that number to its absolute value, and remove that many buffers, counted from the top. This is functionally equivalent to repeating DROPBUF() without parameters for so many times as the absolute value of the negative number specifies. Note that using -0 as parameter is equivalent to removing all strings and buffers in the stack, since -0 is equivalent to normal 0. The number is converted during evaluation of parameters prior to the call to the DROPBUF() routine, so the sign is lost.
 
-            If the parameter number was specified, and the stack contains a buffer with an assigned number equal to number, then that buffer itself, and all strings and buffers above it on the stack will be removed; but no strings or buffers below the numbered buffer will be touched. If number refers to a buffer that does not exist in the stack; no strings or buffers in the stack is touched.
+The value returned from this function is the number of buffers left on the stack after the buffers to be deleted have been removed. Obviously, this will be a non-negative integer. This too, deviates from the behavior of the DROPBUF command under CMS, where zero is always returned.
 
-
-            As an extra extension, in Regina the DROPBUF() built-in function can be given a non-positive integer as parameter. If the name is negative then it will convert that number to its absolute value, and remove that many buffers, counted from the top. This is functionally equivalent to repeating DROPBUF() without parameters for so many times as the absolute value of the negative number specifies. Note that using -0 as parameter is equivalent to removing all strings and buffers in the stack, since -0 is equivalent to normal 0. The number is converted during evaluation of parameters prior to the call to the DROPBUF() routine, so the sign is lost.
-
-
-            The value returned from this function is the number of buffers left on the stack after the buffers to be deleted have been removed. Obviously, this will be a non-negative integer. This too, deviates from the behavior of the DROPBUF command under CMS, where zero is always returned.
-
-
-            DROPBUF(3)
-            	
-
-            2 /* remove buffer 3 and 4 */
-
-            DROPBUF(4)
-            	
-
-            0 /* no buffers on the stack */
-
-            DROPBUF()
-            	
-
-            4 /* if there where 5 buffers */
-
+| DROPBUF(3) | 2 /* remove buffer 3 and 4 */ |
+| DROPBUF(4) | 0 /* no buffers on the stack */ |
+| DROPBUF() | 4 /* if there where 5 buffers */ |
 
 ==== EOF(file) - (AREXX) ====
 
+Checks the specified logical file name and returns the boolean value 1(True) if the end-of-file has been reached, and 0(False)otherwise. Use OPTIONS AREXX_SEMANTICS for the AREXX behaviour to be executed.
 
-            Checks the specified logical file name and returns the boolean value 1(True) if the end-of-file has been reached, and 0(False)otherwise. Use OPTIONS AREXX_SEMANTICS for the AREXX behaviour to be executed.
-
-
-            EOF('infile')
-            	
-
-            '1' /* maybe */
+| EOF('infile') | '1' /* maybe */ |
 
 ==== ERRORTEXT(errorno [, lang]) - (ANSI) ====
- Returns the Rexx error message associated with error number errorno . If the lang character is specified, it will determine the native language in which the error message is returned. The default value for lang is " N ".
+
+Returns the Rexx error message associated with error number errorno . If the lang character is specified, it will determine the native language in which the error message is returned. The default value for lang is " N ".
+
+Possible options are:
+
+[N]
+
+(Normal) The error text is returned in the default native language.
+
+[S]
+
+(Standard English) The error text is returned in English.
 
 
-            Possible options are:
+For more information on how Regina supports different native languages, see Native Language Support.
+
+If the error message is not defined, a nullstring is returned.
+
+| ERRORTEXT(20) | 'Symbol expected' |
+| ERRORTEXT(30) | 'Name or string too long' |
+| ERRORTEXT(40) | 'Incorrect call to routine' |
+
+errorno can also be specified as an errorno followed by a sub error number, with a period between. The resulting string will be the text of the sub-error number with place-markers indicating where substitution values would normally be placed.
 
 
-            [N]
+| ERRORTEXT(40.24) | <bif> argument 1 must be a binary string; found "<value>" |
 
-            (Normal) The error text is returned in the default native language.
+Regina also supports messages in several native languages. See the section on Native Language Support for details on how this is configured. With DE as the native language in effect:
 
-            [S]
+| ERRORTEXT(40.24) | Routine <bif>, Argument 1 muß eine Binätzeichenkette sein; "<value>" |
+| ERRORTEXT(40.24,'S') | <bif> argument 1 must be a binary string; found "<value>" |
 
-            (Standard English) The error text is returned in English.
+The error messages in Rexx might be slightly different between the various implementations. The ANSI standard says that errno must be in the range 0-90, but in some implementations it might be within a less restricted range which gives room for system specific messages. You should in general not assume that the wordings and ordering of the error messages are constant between implementations and systems.
 
+With OPTIONS STRICT_ANSI, Regina will return an error if errorno is larger than 90:
 
-            For more information on how Regina supports different native languages, see Native Language Support.
+| ERRORTEXT(200) | ERRORTEXT argument 1, must have an integer part in the range 0:90 and a decimal part no larger than .9; found 200 |
 
-            If the error message is not defined, a nullstring is returned.
+With OPTIONS NOSTRICT_ANSI (the default) Regina treats any errorno larger than 100 as an operating system error. Regina first subtracts 100 from errorno and then obtains the text for errorno from the operating system. This facility is used to replace the now deprecated UNIXERROR BIF.
 
-
-            ERRORTEXT(20)
-            	
-
-            'Symbol expected'
-
-            ERRORTEXT(30)
-            	
-
-            'Name or string too long'
-
-            ERRORTEXT(40)
-            	
-
-            'Incorrect call to routine'
-
-
-            errorno can also be specified as an errorno followed by a sub error number, with a period between. The resulting string will be the text of the sub-error number with place-markers indicating where substitution values would normally be placed.
-
-
-            ERRORTEXT(40.24)
-            	
-
-            <bif> argument 1 must be a binary string; found "<value>"
-
-
-            Regina also supports messages in several native languages. See the section on Native Language Support for details on how this is configured. With DE as the native language in effect:
-
-
-            ERRORTEXT(40.24)
-            	
-
-            Routine <bif>, Argument 1 muß eine Binätzeichenkette sein; "<value>"
-
-            ERRORTEXT(40.24,'S')
-            	
-
-            <bif> argument 1 must be a binary string; found "<value>"
-
-
-            The error messages in Rexx might be slightly different between the various implementations. The ANSI standard says that errno must be in the range 0-90, but in some implementations it might be within a less restricted range which gives room for system specific messages. You should in general not assume that the wordings and ordering of the error messages are constant between implementations and systems.
-
-
-            With OPTIONS STRICT_ANSI, Regina will return an error if errorno is larger than 90:
-
-
-            ERRORTEXT(200)
-            	
-
-            ERRORTEXT argument 1, must have an integer part in the range 0:90 and a decimal part no larger than .9; found 200
-
-
-            With OPTIONS NOSTRICT_ANSI (the default) Regina treats any errorno larger than 100 as an
-
-            operating system error. Regina first subtracts 100 from errorno and then obtains the text for errorno
-
-            from the operating system. This facility is used to replace the now deprecated UNIXERROR BIF.
-
-
-            ERRORTEXT(200)
-            	
-
-            Network is down /* system errno 100 */
-
-            ERRORTEXT(777)
-            	
-
-            Unknown error /* system errno 677 */
+| ERRORTEXT(200) | Network is down /* system errno 100 */ |
+| ERRORTEXT(777) | Unknown error /* system errno 677 */ |
 
 
 ==== EXISTS(filename) - (AREXX) ====
- Tests whether the specified name of the given filename exists. The filename string may include any portion of a full file path specification. Note that the argument is not a logical file name used in other ARexx file functions. A more portable equivalent of this is to use the 'QUERY EXISTS' command of the STREAM BIF.
 
+Tests whether the specified name of the given filename exists. The filename string may include any portion of a full file path specification. Note that the argument is not a logical file name used in other ARexx file functions. A more portable equivalent of this is to use the 'QUERY EXISTS' command of the STREAM BIF.
 
-            EXISTS('c:\temp\infile.txt')
-            	
-
-            '1' /* maybe */
+| EXISTS('c:\temp\infile.txt') | '1' /* maybe */ |
 
 
 ==== EXPORT(address, [string], [length] [,pad]) - (AREXX) ====
- Copies data from the (optional) string into a previously-allocated memory area, which must be specified as a 4-byte address . The length parameter specifies the maximum number of characters to be copied; the default is the length of the string. If the specified length is longer than the string, the remaining area is filled with the pad character or nulls('00'x). The returned value is the number
 
-            of characters copied.
+Copies data from the (optional) string into a previously-allocated memory area, which must be specified as a 4-byte address . The length parameter specifies the maximum number of characters to be copied; the default is the length of the string. If the specified length is longer than the string, the remaining area is filled with the pad character or nulls('00'x). The returned value is the number of characters copied.
 
-            Caution is advised in using this function. Any area of memory can be overwritten,possibly causing a system crash.
+Caution is advised in using this function. Any area of memory can be overwritten,possibly causing a system crash.
 
-            See also STORAGE() and IMPORT().
+See also STORAGE() and IMPORT().
 
-            Note that the address specified is subject to a machine's endianess.
+Note that the address specified is subject to a machine's endianess.
 
-
-            EXPORT('0004 0000'x,'The answer')
-            	
-
-            '10'
+| EXPORT('0004 0000'x,'The answer') | '10' |
 
 
 ==== FILESPEC(option, filespec) - (OS/2) ====
