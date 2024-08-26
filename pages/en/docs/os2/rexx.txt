@@ -2460,23 +2460,12 @@ Bit numbers are defined such that bit 0 is the low-order bit of the rightmost by
 | BITTST('0313'x,4) | '1' |
 
 ==== BITXOR(string1[, [string2] [,padchar]]) - (ANSI) ====
- Works like BITAND() , except that the logical function XOR (exclusive OR) is used instead of AND. For more information see BITAND() .
 
+Works like BITAND() , except that the logical function XOR (exclusive OR) is used instead of AND. For more information see BITAND() .
 
-            BITXOR('123456'x,'3456'x)
-            	
-
-            '266256'x
-
-            BITXOR('FooBar',,'20'x)
-            	
-
-            'fOObAR' /*For ASCII */
-
-            BITXOR('123456'x,'3456'x,'f0'x)
-            	
-
-            '2662A6'x
+| BITXOR('123456'x,'3456'x) | '266256'x |
+| BITXOR('FooBar',,'20'x) | 'fOObAR' /*For ASCII */ |
+| BITXOR('123456'x,'3456'x,'f0'x) | '2662A6'x |
 
 ==== BUFTYPE() - (CMS) ====
 
