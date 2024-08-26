@@ -2469,152 +2469,73 @@ Works like BITAND() , except that the logical function XOR (exclusive OR) is use
 
 ==== BUFTYPE() - (CMS) ====
 
+This function is used for displaying the contents of the stack. It will display both the string and notify where the buffers are displayed. It is meant for debugging, especially interactive, when you need to obtain information about the contents of the stack. It always returns the nullstring, and takes no parameters.
 
-            This function is used for displaying the contents of the stack. It will display both the string and
+Here is an example of the output from calling BUFTYPE (note that the second and fourth buffers are empty):
 
-            notify where the buffers are displayed. It is meant for debugging, especially interactive, when you need to obtain information about the contents of the stack. It always returns the nullstring, and takes no parameters.
-
-
-            Here is an example of the output from calling BUFTYPE (note that the second and fourth buffers are empty):
-
-
-            ==> Lines: 4
-
-            ==> Buffer: 3
-
-            "fourth line pushed, in third buffer"
-
-            ==> Buffer: 2
-
-            ==> Buffer: 1
-
-            "third line pushed, in first buffer"
-
-            ==> Buffer: 0
-
-            "second line pushed, in 'zeroth' buffer" "first line pushed, in 'zeroth' buffer"
-
-            ==> End of Stack
-
+<code>
+==> Lines: 4
+==> Buffer: 3
+"fourth line pushed, in third buffer"
+==> Buffer: 2
+==> Buffer: 1
+"third line pushed, in first buffer"
+==> Buffer: 0
+"second line pushed, in 'zeroth' buffer" "first line pushed, in 'zeroth' buffer"
+==> End of Stack
+</code>
 
 ==== C2B(string) - (AREXX) ====
 
+Converts the supplied string into the equivalent string of binary digits.
 
-            Converts the supplied string into the equivalent string of binary digits.
+| C2B('abc') | '011000010110001001100011' |
 
-
-            C2B('abc')
-            	
-
-            '011000010110001001100011'
 
 
 ==== C2D(string [,length]) - (ANSI) ====
 
+Returns a whole number, which is the decimal representation of the packed string string, interpreted as a binary number. If length (which must be a non-negative whole number) is specified, it denotes the number of characters in string to be converted, and string is interpreted as a two's complement representation of a binary number, consisting of the length rightmost characters in string. If length is not specified, string is interpreted as an unsigned number.
 
-            Returns a whole number, which is the decimal representation of the packed string string, interpreted as a binary number. If length (which must be a non-negative whole number) is specified, it denotes the number of characters in string to be converted, and string is interpreted as a two's complement representation of a binary number, consisting of the length rightmost characters in string. If length is not specified, string is interpreted as an unsigned number.
+If length is larger than the length of string, string is sign-extended on the left. i.e. if the most significant bit of the leftmost char of string is set, string is padded with 'ff'x chars at the left side. If the bit is not set, '00'x chars are used for padding.
 
+If length is too short, only the length rightmost characters in string are considered. Note that this will not only in general change the value of the number, but it might even change the sign.
 
-            If length is larger than the length of string, string is sign-extended on the left. i.e. if the most significant bit of the leftmost char of string is set, string is padded with 'ff'x chars at the left side. If the bit is not set, '00'x chars are used for padding.
+Note that this function is very dependent on the character set that your computer is using.
 
+If it is not possible to express the final result as a whole number under the current settings of NUMERIC DIGITS, and STRICT_ANSI option is in effect, an error is reported. The number to be returned will not be stored in the internal representation of the built-in library, so size restrictions on whole numbers that generally applies for built-in functions, do not apply in this case.
 
-            If length is too short, only the length rightmost characters in string are considered. Note that this will not only in general change the value of the number, but it might even change the sign.
-
-
-            Note that this function is very dependent on the character set that your computer is using.
-
-
-            If it is not possible to express the final result as a whole number under the current settings of NUMERIC DIGITS, and STRICT_ANSI option is in effect, an error is reported. The number to be returned will not be stored in the internal representation of the built-in library, so size restrictions on whole numbers that generally applies for built-in functions, do not apply in this case.
-
-            C2D('foo')
-            	
-
-            '6713199' /*For ASCII machines */
-
-            C2D('103'x)
-            	
-
-            '259'
-
-            C2D('103'x,1)
-            	
-
-            '3'
-
-            C2D('103'x,2)
-            	
-
-            '259'
-
-            C2D('0103'x,3)
-            	
-
-            '259'
-
-            C2D('ffff'x,2)
-            	
-
-            '-1'
-
-            C2D('ffff'x)
-            	
-
-            '65535'
-
-            C2D('ffff'x,3)
-            	
-
-            '65535'
-
-            C2D('fff9'x,2)
-            	
-
-            '-6'
-
-            C2D('ff80'x,2)
-            	
-
-            '-128'
+| C2D('foo') | '6713199' /*For ASCII machines */ |
+| C2D('103'x) | '259' |
+| C2D('103'x,1) | '3' |
+| C2D('103'x,2) | '259' |
+| C2D('0103'x,3) | '259' |
+| C2D('ffff'x,2) | '-1' |
+| C2D('ffff'x) | '65535' |
+| C2D('ffff'x,3) | '65535' |
+| C2D('fff9'x,2) | '-6' |
+| C2D('ff80'x,2) | '-128' |
 
 
 ==== C2X(string) - (ANSI) ====
- Returns a string of hexadecimal digits that represents the character string string . Converting is done bytewise, the six highest hexadecimal digits are in uppercase, and there are no blank characters in the result Leading zeros are not stripped off in the result. Note that the behavior of this function is dependent on the character set that your computer is running (e.g. ASCII or EBCDIC).
 
+Returns a string of hexadecimal digits that represents the character string string . Converting is done bytewise, the six highest hexadecimal digits are in uppercase, and there are no blank characters in the result Leading zeros are not stripped off in the result. Note that the behavior of this function is dependent on the character set that your computer is running (e.g. ASCII or EBCDIC).
 
-            C2X('ffff'x)
-            	
+| C2X('ffff'x) | 'FFFF' |
+| C2X('Abc') | '416263' /*For ASCII Machines */ |
+| C2X('1234'x) | '1234' |
+| C2X('011 0011 1101'b) | '033D' |
 
-            'FFFF'
+==== CD(directory) - (REGINA) ====
 
-            C2X('Abc')
-            	
-
-            '416263' /*For ASCII Machines */
-
-            C2X('1234'x)
-            	
-
-            '1234'
-
-            C2X('011 0011 1101'b)
-            	
-
-            '033D'
-
-
-            CD(directory) - (REGINA)
 
 
 ==== CHDIR(directory) - (REGINA) ====
 
+Changes the current process's directory to the directory specified. A more portable, though non-standard alternative is to use the DIRECTORY BIF.
 
-            Changes the current process's directory to the directory specified. A more portable, though non-standard alternative is to use the DIRECTORY BIF.
+| CHDIR('/tmp/aa') | /* new directory now /tmp/aa */ |
 
-
-            CHDIR('/tmp/aa')
-            	
-
-            /* new directory now /tmp/aa */
 
 
 ==== CENTER(string, length [, padchar ] ) - (ANSI) ====
@@ -2623,94 +2544,34 @@ Works like BITAND() , except that the logical function XOR (exclusive OR) is use
 
 ==== CENTRE(string, length [, padchar ] ) - (ANSI) ====
 
+This function has two names, to support both American and British spelling. It will center string in a string total of length length characters. If length (which must be a non-negative whole number) is greater than the length of string, string is padded with padchar or <space> if padchar is unspecified. If length is smaller than the length of string character will be removed.
 
-            This function has two names, to support both American and British spelling. It will center string in a string total of length length characters. If length (which must be a non-negative whole number) is greater than the length of string, string is padded with padchar or <space> if padchar is unspecified. If length is smaller than the length of string character will be removed.
+If possible, both ends of string receives (or loses) the same number of characters. If an odd number of characters are to be added (or removed), one character more is added to (or removed from) the right end than the left end of string.
 
-
-            If possible, both ends of string receives (or loses) the same number of characters. If an odd number of characters are to be added (or removed), one character more is added to (or removed from) the right end than the left end of string.
-
-            CENTER('Foobar',10)
-            	
-
-            ' Foobar '
-
-            CENTER('Foobar',11)
-            	
-
-            ' Foobar '
-
-            CENTRE('Foobar',3)
-            	
-
-            'oob'
-
-            CENTER('Foobar',4)
-            	
-
-            'ooba'
-
-            CENTER('Foobar',10,'*')
-            	
-
-            '**Foobar**'
+| CENTER('Foobar',10) | ' Foobar ' |
+| CENTER('Foobar',11) | ' Foobar ' |
+| CENTRE('Foobar',3) | 'oob' |
+| CENTER('Foobar',4) | 'ooba' |
+| CENTER('Foobar',10,'*') | %%'**Foobar**'%% |
 
 
 ==== CHANGESTR(needle, haystack, newneedle ) - (ANSI) ====
- The purpose of this function is to replace all occurrences of needle in the string haystack with newneedle . The function returns the changed string.
 
+The purpose of this function is to replace all occurrences of needle in the string haystack with newneedle . The function returns the changed string.
 
-            If haystack does not contain needle, then the original haystack is returned.
+If haystack does not contain needle, then the original haystack is returned.
 
+| CHANGESTR('a','fred','c') | 'fred' |
+| CHANGESTR(%%'',''%%,'x') | %%''%% |
+| CHANGESTR('a','abcdef','x') | 'xbcdef' |
+| CHANGESTR('0','0','1') | '1' |
+| CHANGESTR('a','def','xyz') | 'def' |
+| CHANGESTR('a',%%''%%,'x') | %%''%% |
+| CHANGESTR('','def','xyz') | 'def' |
+| CHANGESTR('abc','abcdef','xyz') | 'xyzdef' |
+| CHANGESTR('abcdefg','abcdef','xyz') | 'abcdef' |
+| CHANGESTR('abc','abcdefabccdabcd','z') | 'zdefzcdzd' |
 
-            CHANGESTR('a','fred','c')
-            	
-
-            'fred'
-
-            CHANGESTR('','','x')
-            	
-
-            ''
-
-            CHANGESTR('a','abcdef','x')
-            	
-
-            'xbcdef'
-
-            CHANGESTR('0','0','1')
-            	
-
-            '1'
-
-            CHANGESTR('a','def','xyz')
-            	
-
-            'def'
-
-            CHANGESTR('a','','x')
-            	
-
-            ''
-
-            CHANGESTR('','def','xyz')
-            	
-
-            'def'
-
-            CHANGESTR('abc','abcdef','xyz')
-            	
-
-            'xyzdef'
-
-            CHANGESTR('abcdefg','abcdef','xyz')
-            	
-
-            'abcdef'
-
-            CHANGESTR('abc','abcdefabccdabcd','z')
-            	
-
-            'zdefzcdzd'
 
 
 ==== CHARIN([streamid] [,[start] [,length]]) - (ANSI) ====
