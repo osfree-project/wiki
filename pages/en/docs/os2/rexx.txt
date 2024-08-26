@@ -2276,188 +2276,98 @@ Note that this function is case sensitive, and that leading and trailing spaces 
 ==== ABS(number) - (ANSI) ====
  Returns the absolute value of the number , which can be any valid Rexx number. Note that the result will be normalized according to the current NUMERIC settings.
 
+| ABS(-42) | 42 |
+| ABS(100) | 100 |
 
-            ABS(-42)
-            	
-
-            42
-
-            ABS(100)
-            	
-
-            100
 
 
 ==== ADDRESS([option]) - (ANSI) ====
 
+Returns the current default environment to which commands are sent or optionally specific details about the targets of command input/output and errors. The value is set with the ADDRESS clause, for more information, see documentation on that clause.
 
-            Returns the current default environment to which commands are sent or optionally specific details about the targets of command input/output and errors. The value is set with the ADDRESS clause, for more information, see documentation on that clause.
+If option is not specified the default option is “N”. Option can be:
 
+[N]
 
-            If option is not specified the default option is “N”. Option can be:
+(Normal) Returns the current default environment.
 
+[I]
 
-            [N]
+(Input) Returns the target details for input as three words: position type resource.
 
+[O]
 
-            [I]
+(Output) Returns the target details for output as three words: position type resource.
 
+[E]
 
-            [O]
+(Error) Returns the target details for errors as three words: position type resource.
 
+position will be one of: INPUT (for option “I”), APPEND or REPLACE 
 
-            [E]
+type will be one of: STEM, STREAM, FIFO, LIFO, NORMAL 
 
-            (Normal) Returns the current default environment.
+resource will be the name of the stem, stream or queue or blank
 
-
-            (Input) Returns the target details for input as three words: position type resource. (Output) Returns the target details for output as three words: position type resource. (Error) Returns the target details for errors as three words: position type resource.
-
-            position will be one of: INPUT (for option “I”), APPEND or REPLACE type will be one of: STEM, STREAM, FIFO, LIFO, NORMAL resource will be the name of the stem, stream or queue or blank
-
-
-            ADDRESS()
-            	
-
-            SYSTEM /* Maybe */
-
-            ADDRESS('N')
-            	
-
-            SYSTEM /* Maybe */
-
-            Defaults:
-
-            ADDRESS('I')
-            	
-
-            INPUT NORMAL
-
-            ADDRESS('O')
-            	
-
-            REPLACE NORMAL
-
-            ADDRESS('E')
-            	
-
-            REPLACE NORMAL
-
-            After: ADDRESS SYSTEM WITH INPUT FIFO 'MYQUEUE' OUTPUT STEM
-
-            mystem. ERROR APPEND STREAM 'my.err'
-
-            ADDRESS('I')
-            	
-
-            INPUT FIFO MYQUEUE
-
-            ADDRESS('O')
-            	
-
-            REPLACE STEM MYSTEM.
-
-            ADDRESS('E')
-            	
-
-            APPEND STREAM my.err
+| ADDRESS() | SYSTEM /* Maybe */ |
+| ADDRESS('N') | SYSTEM /* Maybe */ |
+| Defaults: ||
+| ADDRESS('I') | INPUT NORMAL |
+| ADDRESS('O') | REPLACE NORMAL |
+| ADDRESS('E') | REPLACE NORMAL |
+| After: ADDRESS SYSTEM WITH INPUT FIFO 'MYQUEUE' OUTPUT STEM mystem. ERROR APPEND STREAM 'my.err' ||
+| ADDRESS('I') | INPUT FIFO MYQUEUE |
+| ADDRESS('O') | REPLACE STEM MYSTEM. |
+| ADDRESS('E') | APPEND STREAM my.err |
 
 
 ==== ARG([argno [,option]]) - (ANSI) ====
- Returns information about the arguments of the current procedure level. For subroutines and functions it will refer to the arguments with which they were called. For the "main" program it will refer to the arguments used when the Rexx interpreter was called.
 
+Returns information about the arguments of the current procedure level. For subroutines and functions it will refer to the arguments with which they were called. For the "main" program it will refer to the arguments used when the Rexx interpreter was called.
 
-            Note that under some operating systems, Rexx scripts are run by starting the Rexx interpreter as a program, giving it the name of the script to be executed as parameter. Then the Rexx interpreter might process the command line and "eat" some or all of the arguments and options. Therefore, the result of this function at the main level is implementation dependent. The parts of the command line which are not available to the Rexx script might for instance be the options and arguments meaningful only to the interpreter itself.
+Note that under some operating systems, Rexx scripts are run by starting the Rexx interpreter as a program, giving it the name of the script to be executed as parameter. Then the Rexx interpreter might process the command line and "eat" some or all of the arguments and options. Therefore, the result of this function at the main level is implementation dependent. The parts of the command line which are not available to the Rexx script might for instance be the options and arguments meaningful only to the interpreter itself.
 
+Also note that how the interpreter on the main level divides the parameter line into individual arguments, is implementation dependent. The standard seems to define that the main procedure level can only get one parameter string, but don't count on it. On all platforms, Regina will receive one parameter string at the main procedural level, unless Regina is started with the -a switch, when multiple parameter strings are passed in.
 
-            Also note that how the interpreter on the main level divides the parameter line into individual arguments, is implementation dependent. The standard seems to define that the main procedure level can only get one parameter string, but don't count on it. On all platforms, Regina will receive one parameter string at the main procedural level, unless Regina is started with the -a switch, when multiple parameter strings are passed in.
+For more information on how the interpreter processes arguments when called from the operating system, see the documentation on how to run a Rexx script.
 
+When called without any parameters, ARG() will return the number of comma-delimited arguments. Unspecified (omitted) arguments at the end of the call are not counted. Note the difference between using comma and using space to separate strings. Only comma-separated arguments will be interpreted by Rexx as different arguments. Space-separated strings are interpreted as different parts of the same argument.
 
-            For more information on how the interpreter processes arguments when called from the operating system, see the documentation on how to run a Rexx script.
+Argno must be a positive whole number. If only argno is specified, the argument specified will be returned. The first argument is numbered 1. If argno refers to an unspecified argument (either omitted or argno is greater than the number of arguments), a nullstring is returned.
 
+If option is also specified, the return value will be 1 or 0, depending on the value of option and on whether the numbered parameter was specified or not. Option can be:
 
-            When called without any parameters, ARG() will return the number of comma-delimited arguments. Unspecified (omitted) arguments at the end of the call are not counted. Note the difference between using comma and using space to separate strings. Only comma-separated arguments will be interpreted by Rexx as different arguments. Space-separated strings are interpreted as different parts of the same argument.
+[O]
 
+(Omitted) Returns 1 if the numbered argument was omitted or unspecified. Otherwise, 0 is returned.
 
-            Argno must be a positive whole number. If only argno is specified, the argument specified will be returned. The first argument is numbered 1. If argno refers to an unspecified argument (either omitted or argno is greater than the number of arguments), a nullstring is returned.
+[E]
 
-            If option is also specified, the return value will be 1 or 0, depending on the value of option and on whether the numbered parameter was specified or not. Option can be:
+(Existing) Returns 1 if the numbered argument was specified, and 0 otherwise.
 
+If called as:
 
-            [O]
+<code rexx>
+CALL FUNCTION 'This' 'is', 'a',, 'test',,
+</code>
 
-            (Omitted) Returns 1 if the numbered argument was omitted or unspecified. Otherwise, 0 is returned.
-
-            [E]
-
-            (Existing) Returns 1 if the numbered argument was specified, and 0 otherwise.
-
-
-            If called as:
-
-
-            CALL FUNCTION 'This' 'is', 'a',, 'test',,
-
-
-            ARG()
-            	
-
-            4 /*Last parameter omitted */
-
-            ARG(1)
-            	
-
-            'This is'
-
-            ARG(2)
-            	
-
-            'a'
-
-            ARG(3)
-            	
-
-            ''
-
-            ARG(9)
-            	
-
-            '' /*Ninth parameter doesn't exist*/
-
-            ARG(2,'E')
-            	
-
-            1
-
-            ARG(2,'O')
-            	
-
-            0
-
-            ARG(3,'E')
-            	
-
-            0 /*Third parameter omitted */
-
-            ARG(9,'O')
-            	
-
-            1
+| ARG() | 4 /*Last parameter omitted */ |
+| ARG(1) | 'This is' |
+| ARG(2) | 'a' |
+| ARG(3) | %%''%% |
+| ARG(9) | %%''%% /*Ninth parameter doesn't exist*/ |
+| ARG(2,'E') | 1 |
+| ARG(2,'O') | 0 |
+| ARG(3,'E') | 0 /*Third parameter omitted */ |
+| ARG(9,'O') | 1 |
 
 
 ==== B2C(binstring) - (AREXX) ====
  Converts a string of binary digits(0,1)into the corresponding(packed)character representation. The conversion is the same as though the argument string had been specified as a literal binary string(e.g. '1010'B). Blanks are permitted in the string,but only at byte boundaries. This function is particularly useful for creating strings that are to be used as bit masks.
 
+| B2C('00110011') | '3' |
+| B2C('01100001') | 'A' |
 
-            B2C('00110011')
-            	
-
-            '3'
-
-            B2C('01100001')
-            	
-
-            'A'
 
 
 ==== B2X(binstring) - (ANSI) ====
