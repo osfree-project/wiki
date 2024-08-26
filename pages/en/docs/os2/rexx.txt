@@ -2567,7 +2567,7 @@ If haystack does not contain needle, then the original haystack is returned.
 | CHANGESTR('0','0','1') | '1' |
 | CHANGESTR('a','def','xyz') | 'def' |
 | CHANGESTR('a',%%''%%,'x') | %%''%% |
-| CHANGESTR('','def','xyz') | 'def' |
+| CHANGESTR(%%''%%,'def','xyz') | 'def' |
 | CHANGESTR('abc','abcdef','xyz') | 'xyzdef' |
 | CHANGESTR('abcdefg','abcdef','xyz') | 'abcdef' |
 | CHANGESTR('abc','abcdefabccdabcd','z') | 'zdefzcdzd' |
