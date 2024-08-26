@@ -366,7 +366,7 @@ In the first loop, there are two clauses, while the second loop contains only on
 ==== Assignments ====
 
 
-Assignments are clauses where the first token is a symbol and the second token is the equal sign (=). This definition opens for some curious effects, consider the following clauses:
+Assignments are clauses where the first token is a symbol and the second token is the equal sign (%%=%%). This definition opens for some curious effects, consider the following clauses:
 
 <code rexx>
 a == b
@@ -574,8 +574,10 @@ Let's look at some examples, they can sometimes be combined with a redirection:
 
 <code rexx>
 ADDRESS COMMAND
-ADDRESS SYSTEM 'copy' fromfile tofile ADDRESS system
-ADDRESS VALUE newenv ADDRESS
+ADDRESS SYSTEM 'copy' fromfile tofile 
+ADDRESS system
+ADDRESS VALUE newenv 
+ADDRESS
 ADDRESS (oldenv)
 </code>
 
