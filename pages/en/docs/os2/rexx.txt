@@ -1868,16 +1868,15 @@ The Rexx comparative operators compare two terms and return the logical value 1 
 
 The following lists the non-strict comparative operators.
 
-
 = Equal
 
-> Greater than.
+%%>%% Greater than.
 
 < Less than.
 
->= Greater than or equal.
+%%>%%= Greater than or equal.
 
-<= Less than or equal
+%%<=%% Less than or equal
 
 <>, >< Greater than or less than. Same as Not equal.
 
@@ -1885,13 +1884,13 @@ The following lists the strict comparative operators. For two strings to be cons
 
 == Strictly equal
 
->> Strictly greater than.
+%%>>%% Strictly greater than.
 
-<< Strictly less than.
+%%<<%% Strictly less than.
 
->>= Strictly greater than or equal.
+%%>>=%% Strictly greater than or equal.
 
-<<= Strictly less than or equal.
+%%<<=%% Strictly less than or equal.
 
 === Negators ===
 
@@ -1899,7 +1898,7 @@ Some of the above comparisons can be negated by prefixing a negator character. R
 
 \ Backslash (ANSI Standard)
 
-^ Caret
+%%^%% Caret
 
 ~ Tilde
 
@@ -1909,59 +1908,36 @@ Valid negated comparative operators are (any negator character can be used in pl
 
 \= Not equal
 
-\== Not strictly equal
+%%\==%% Not strictly equal
 
 \> Not greater than
 
-\>> Not strictly greater than
+%%\>>%% Not strictly greater than
 
 \< Not less than
 
-\<< Not strictly less than
+%%\<<%% Not strictly less than
 
 ==== Logical Operators ====
 
 
-            Logical operators work with the Rexx strings 1 and 0, usually as a result of a comparative operator. These operators also only result in logical TRUE; 1 or logical FALSE; 0. The logical operators are shown in decreasing order of precedence.
+Logical operators work with the Rexx strings 1 and 0, usually as a result of a comparative operator. These operators also only result in logical TRUE; 1 or logical FALSE; 0. The logical operators are shown in decreasing order of precedence.
 
 
-            &
+&            And            Returns 1 if both terms are 1, otherwise returns 0.
 
-            |
+%%|%%        Inclusive or   Returns 1 if either term is 1, otherwise returns 0.
             	
+&&           Exclusive or   Returns 1 if either term is 1 but not if both terms are 1, otherwise returns 0.
 
-            And
+%%\%%        Logical not    Reverses the result; 0 becomes 1 and 1 becomes 0.
 
-            Inclusive or
-            	
-
-            Returns 1 if both terms are 1, otherwise returns 0.
-
-            Returns 1 if either term is 1, otherwise returns 0.
-
-            &&
-            	
-
-            Exclusive or
-            	
-
-            Returns 1 if either term is 1 but not if both terms are 1, otherwise returns 0.
-
-            \
-            	
-
-            Logical not
-            	
-
-            Reverses the result; 0 becomes 1 and 1 becomes 0.
-
-            (Any negators listed above can be used in place of backslash)
+(Any negators listed above can be used in place of backslash)
 
 
 ===== Special Variables =====
 
-
-        The Rexx Language defines a number of special variables which are set by the interpreter during the execution of a program. There are two types of special variables. The first are special variables that are local in scope and can be changed by the programmer. The second are global in scope and cannot be changed by the programmer.
+The Rexx Language defines a number of special variables which are set by the interpreter during the execution of a program. There are two types of special variables. The first are special variables that are local in scope and can be changed by the programmer. The second are global in scope and cannot be changed by the programmer.
 
 ==== Local Scope – User Writeable ====
 
