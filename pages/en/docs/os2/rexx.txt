@@ -1761,59 +1761,51 @@ Only simple and compound symbols can be specified. Specification of a stem varia
 
 ===== Operators ‌ =====
 
-
-        An operator represents an operation to be carried out between two terms, such as division. There are 5 groups of operators in the Rexx Language: Arithmetic, Assignment, Comparative, Concatenation, and Logical Operators. The groups are shown below in descending order of precedence with further details for group. The defined precedence of operators can be overridden by the use of matching pairs of parentheses: ().
+An operator represents an operation to be carried out between two terms, such as division. There are 5 groups of operators in the Rexx Language: Arithmetic, Assignment, Comparative, Concatenation, and Logical Operators. The groups are shown below in descending order of precedence with further details for group. The defined precedence of operators can be overridden by the use of matching pairs of parentheses: ().
 
 ==== Arithmetic Operators ====
 
 
-            Arithmetic operators can be applied to numeric constants and Rexx variables that evaluate to valid
+Arithmetic operators can be applied to numeric constants and Rexx variables that evaluate to valid Rexx numbers. The following operators are grouped in decreasing order of precedence:
 
-            Rexx numbers. The following operators are grouped in decreasing order of precedence:
+%%-%% Unary prefix. Same as 0 – number.
 
+%%+%% Unary prefix. Same as 0 + number.
+----
+%%**%% Power.
+----
+%%*%% Multiply.
 
-            - Unary prefix. Same as 0 – number.
+%%/%% Divide.
 
-            + Unary prefix. Same as 0 + number.
+% Integer divide. Divide and return the integer part of the division.
 
-            ** Power.
+%%//%% Remainder divide. Divide and return the remainder of the division.
+----
+%%+%% Add.
 
-            * Multiply.
-
-            / Divide.
-
-            % Integer divide. Divide and return the integer part of the division.
-
-            // Remainder divide. Divide and return the remainder of the division.
-
-            + Add.
-
-            – Subtract
+%%–%% Subtract
 
 
 ==== Assignment Operators ====
 
 
-            Assignment operators are a means to change the value of a variable on the left of the operator.
+Assignment operators are a means to change the value of a variable on the left of the operator.
 
 
 === Basic Assignment Operators ===
 
-
-
-                = Assign the value on the right side of the "=" to the variable on the left.
+%%=%% Assign the value on the right side of the "=" to the variable on the left.
 
 === Shortcut Assignment Operators ===
 
+Shortcut assignments are an alternate syntax for an operation followed by an assignment. i.e.:
 
-
-                Shortcut assignments are an alternate syntax for an operation followed by an assignment. i.e.:
-
-                a = 1; b = 2
-
-                a += b → equivalent to a = a + b
-
-                These operators are invalid with the STRICT_ANSI option. Introduced in v3.9.1.
+<code rexx>
+a = 1; b = 2
+a += b → equivalent to a = a + b
+</code>
+These operators are invalid with the STRICT_ANSI option. Introduced in v3.9.1.
 
 
                 Arithmetic Assignment
