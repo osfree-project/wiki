@@ -2575,139 +2575,71 @@ If haystack does not contain needle, then the original haystack is returned.
 
 
 ==== CHARIN([streamid] [,[start] [,length]]) - (ANSI) ====
- This function will in general read characters from a stream, and return a string containing the characters read. The streamid parameter names a particular stream to read from. If it is unspecified, the default input stream is used.
+ 
+This function will in general read characters from a stream, and return a string containing the characters read. The streamid parameter names a particular stream to read from. If it is unspecified, the default input stream is used.
 
+The start parameter specifies a character in the stream, on which to start reading. Before anything is read, the current read position is set to that character, and it will be the first character read. If start is unspecified, no repositioning will be done. Independent of any conventions of the operating system, the first character in a stream is always numbered 1. Note that transient streams do not allow repositioning, and an error is reported if the start parameter is specified for a transient stream.
 
-            The start parameter specifies a character in the stream, on which to start reading. Before anything is read, the current read position is set to that character, and it will be the first character read. If start is unspecified, no repositioning will be done. Independent of any conventions of the operating system, the first character in a stream is always numbered 1. Note that transient streams do not allow repositioning, and an error is reported if the start parameter is specified for a transient stream.
+The length parameter specifies the number of characters to read. If the reading did work, the return string will be of length length. There are no other ways to know many characters were read other than checking the length of the return value. After the read, the current read position is moved forward as many characters as was read. If length is unspecified, it defaults to 1. If length is 0, nothing is read, but the file might still be repositioned if start was specified.
 
+Note that this function reads the stream raw. Some operating systems use special characters to differentiate between separate lines in text files. On these systems these special characters will be returned as well. Therefore, never assume that this function will behave identically for text streams on different systems.
 
-            The length parameter specifies the number of characters to read. If the reading did work, the return string will be of length length. There are no other ways to know many characters were read other than checking the length of the return value. After the read, the current read position is moved forward as many characters as was read. If length is unspecified, it defaults to 1. If length is 0, nothing is read, but the file might still be repositioned if start was specified.
+What happens when an error occurs or the End-Of-File (EOF) is seen during reading, is implementation dependent. The implementation may choose to set the NOTREADY condition (does not exist in Rexx language level 3.50). For more information, see chapter on Stream Input and Output.
 
+(Assuming that the file "/tmp/file" contains the first line: "This is the first line"):
 
-            Note that this function reads the stream raw. Some operating systems use special characters to differentiate between separate lines in text files. On these systems these special characters will be returned as well. Therefore, never assume that this function will behave identically for text streams on different systems.
-
-            What happens when an error occurs or the End-Of-File (EOF) is seen during reading, is implementation dependent. The implementation may choose to set the NOTREADY condition (does not exist in Rexx language level 3.50). For more information, see chapter on Stream Input and Output.
-
-
-            (Assuming that the file "/tmp/file" contains the first line: "This is the first line"):
-
-
-            CHARIN()
-            	
-
-            'F' /*Maybe*/
-
-            CHARIN(,,6)
-            	
-
-            'Foobar' /*Maybe*/
-
-            CHARIN('/tmp/file',,6)
-            	
-
-            'This i'
-
-            CHARIN('/tmp/file',4,6)
-            	
-
-            's is t'
+| CHARIN() | 'F' /*Maybe*/ |
+| CHARIN(,,6) | 'Foobar' /*Maybe*/ |
+| CHARIN('/tmp/file',,6) | 'This i' |
+| CHARIN('/tmp/file',4,6) | 's is t' |
 
 
 ==== CHAROUT([streamid] [,[string] [,start]]) - (ANSI) ====
- In general this function will write string to a streamid . If streamid is not specified the default output stream will be used.
 
 
-            If start is specified, the current write position will be set to the startth character in streamid, before any writing is done. Note that the current write position can not be set for transient streams, and attempts to do so will report an error. Independent of any conventions that the operating system might have, the first character in the stream is numbered 1. If start is not specified, the current write position will not be changed before writing.
+In general this function will write string to a streamid . If streamid is not specified the default output stream will be used.
 
+If start is specified, the current write position will be set to the startth character in streamid, before any writing is done. Note that the current write position can not be set for transient streams, and attempts to do so will report an error. Independent of any conventions that the operating system might have, the first character in the stream is numbered 1. If start is not specified, the current write position will not be changed before writing.
 
-            If string is omitted, nothing is written, and the effect is to set the current write position if start is specified. If neither string nor start is specified, the implementation can really do whatever it likes, and many implementations use this operation to close the file, or flush any changes. Check implementation specific documentation for more information.
+If string is omitted, nothing is written, and the effect is to set the current write position if start is specified. If neither string nor start is specified, the implementation can really do whatever it likes, and many implementations use this operation to close the file, or flush any changes. Check implementation specific documentation for more information.
 
+The return value is the number of characters in string that was not successfully written, so 0 denotes a successful write. Note that in many Rexx implementations there is no need to open a stream; it will be implicitly opened when it is first used in a read or write operation.
 
-            The return value is the number of characters in string that was not successfully written, so 0 denotes a successful write. Note that in many Rexx implementations there is no need to open a stream; it will be implicitly opened when it is first used in a read or write operation.
+(Assuming the file referred to by outdata was empty, it will contain the string FoobWow afterwards. Note that there might will not be an End-Of-Line marker after this string, it depends on the implementation.)
 
-
-            (Assuming the file referred to by outdata was empty, it will contain the string FoobWow afterwards. Note that there might will not be an End-Of-Line marker after this string, it depends on the implementation.)
-
-
-            CHAROUT(,'Foobar')
-            	
-
-            '0'
-
-            CHAROUT(outdata,'Foobar')
-            	
-
-            '0'
-
-            CHAROUT(outdata,'Wow',5)
-            	
-
-            '0'
+| CHAROUT(,'Foobar') | '0' |
+| CHAROUT(outdata,'Foobar') | '0' |
+| CHAROUT(outdata,'Wow',5) | '0' |
 
 
 ==== CHARS([streamid]) - (ANSI) ====
- Returns the number of characters left in the named streamid , or the default input stream if streamid is unspecified. For transient streams this will always be either 1 if more characters are available, or 0 if the End-Of-File condition has been met. For persistent streams the number of remaining bytes in the file will be possible to calculate and the true number of remaining bytes will be returned.
 
+Returns the number of characters left in the named streamid , or the default input stream if streamid is unspecified. For transient streams this will always be either 1 if more characters are available, or 0 if the End-Of-File condition has been met. For persistent streams the number of remaining bytes in the file will be possible to calculate and the true number of remaining bytes will be returned.
 
-            However, on some systems, it is difficult to calculate the number of characters left in a persistent
+However, on some systems, it is difficult to calculate the number of characters left in a persistent stream; the requirements to CHARS() has therefore been relaxed, so it can return 1 instead of any number other than 0. If it returns 1, you can therefore not assume anything more than that there is at least one more character left in the input stream.
 
-            stream; the requirements to CHARS() has therefore been relaxed, so it can return 1 instead of any number other than 0. If it returns 1, you can therefore not assume anything more than that there is at least one more character left in the input stream.
-
-
-            CHARS()
-            	
-
-            '1' /* more data on def. input stream */
-
-            CHARS()
-            	
-
-            '0' /* EOF for def. input stream */
-
-            CHARS('outdata')
-            	
-
-            '94' /* maybe */
+| CHARS() | '1' /* more data on def. input stream */ |
+| CHARS() | '0' /* EOF for def. input stream */ |
+| CHARS('outdata') | '94' /* maybe */ |
 
 
 ==== CLOSE(file) - (AREXX) ====
 
+Closes the file specified by the given logical name. The returned value is a boolean success flag, and will be 1 unless the specified file was not open. Use OPTIONS AREXX_SEMANTICS for the AREXX behaviour to be executed.
 
-            Closes the file specified by the given logical name. The returned value is a boolean success flag, and will be 1 unless the specified file was not open. Use OPTIONS AREXX_SEMANTICS for the AREXX behaviour to be executed.
-
-
-            CLOSE('input')
-            	
-
-            '1'
+| CLOSE('input') | '1' |
 
 
 ==== COMPARE(string1, string2 [,padchar]) - (ANSI) ====
- This function will compare string1 to string2 , and return a whole number which will be 0 if they are equal, otherwise the position of the first character at which the two strings differ is returned. The comparison is case-sensitive, and leading and trailing space do matter.
 
+This function will compare string1 to string2 , and return a whole number which will be 0 if they are equal, otherwise the position of the first character at which the two strings differ is returned. The comparison is case-sensitive, and leading and trailing space do matter.
 
-            If the strings are of unequal length, the shorter string will be padded at the right hand end with the padchar character to the length of the longer string before the comparison. If a padchar is not specified, <space> is used.
+If the strings are of unequal length, the shorter string will be padded at the right hand end with the padchar character to the length of the longer string before the comparison. If a padchar is not specified, <space> is used.
 
-
-            COMPARE('FooBar','Foobar')
-            	
-
-            '4'
-
-            COMPARE('Foobar','Foobar')
-            	
-
-            '0'
-
-            COMPARE('Foobarrr','Fooba')
-            	
-
-            '6'
-
-            COMPARE('Foobarrr','Fooba','r' )
-            	
-
-            '0'
+| COMPARE('FooBar','Foobar') | '4' |
+| COMPARE('Foobar','Foobar') | '0' |
+| COMPARE('Foobarrr','Fooba') | '6' |
+| COMPARE('Foobarrr','Fooba','r' ) | '0' |
 
 
 ==== COMPRESS(string [,list]) - (AREXX) ====
