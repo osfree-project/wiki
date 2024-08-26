@@ -2428,69 +2428,36 @@ Compares the argument strings bit-by-bit,starting at bit number 0. The returned 
 
 
 ==== BITOR(string1 [, [string2] [,padchar]]) - (ANSI) ====
- Returns the result from bytewise applying the operator OR to the characters in the two strings string1 and string2 . Note that this is not the logical OR operation, but the bitwise OR operation.
 
-            String2 defaults to a nullstring. The two strings are left-justified; the first characters in both strings will be OR'ed, then the second characters and so forth.
+Returns the result from bytewise applying the operator OR to the characters in the two strings string1 and string2 . Note that this is not the logical OR operation, but the bitwise OR operation.
 
+String2 defaults to a nullstring. The two strings are left-justified; the first characters in both strings will be OR'ed, then the second characters and so forth.
 
-            The behavior of this function when the two strings do not have equal length is defined by the padchar character. If it is undefined, the remaining part of the longer string is appended to the result after all characters in the shorter string have been processed. If padchar is defined, each char in the remaining part of the longer string is logically OR'ed with the padchar (or rather, the shorter string is padded on the right length, using padchar).
+The behavior of this function when the two strings do not have equal length is defined by the padchar character. If it is undefined, the remaining part of the longer string is appended to the result after all characters in the shorter string have been processed. If padchar is defined, each char in the remaining part of the longer string is logically OR'ed with the padchar (or rather, the shorter string is padded on the right length, using padchar).
 
+When using this function on character strings, e.g. to uppercase or lowercase a string, the result will be dependent on the character set used.
 
-            When using this function on character strings, e.g. to uppercase or lowercase a string, the result will be dependent on the character set used.
-
-            BITOR('12'x)
-            	
-
-            '12'x
-
-            BITOR('15'x,'24'x)
-            	
-
-            '35'x
-
-            BITOR('15'x,'2456'x)
-            	
-
-            '3556'x
-
-            BITOR('15'x,'2456'x,'F0'x)
-            	
-
-            '35F6'x
-
-            BITOR('1111'x,,'4D'x)
-            	
-
-            '5D5D'x
-
-            BITOR('pQrS',,'20'x)
-            	
-
-            'pqrs' /* ASCII */
+| BITOR('12'x) | '12'x |
+| BITOR('15'x,'24'x) | '35'x |
+| BITOR('15'x,'2456'x) | '3556'x |
+| BITOR('15'x,'2456'x,'F0'x) | '35F6'x |
+| BITOR('1111'x,,'4D'x) | '5D5D'x |
+| BITOR('pQrS',,'20'x) | 'pqrs' /* ASCII */ |
 
 
 ==== BITSET(string, bit) - (AREXX) ====
- Sets the specified bit in the argument string to 1. Bit numbers are defined such that bit 0 is the low-order bit of the rightmost byte of the string.
 
+Sets the specified bit in the argument string to 1. Bit numbers are defined such that bit 0 is the low-order bit of the rightmost byte of the string.
 
-            BITSET('0313'x,2)
-            	
+| BITSET('0313'x,2) | '0317'x |
 
-            '0317'x
+==== BITTST(string, bit) - (AREXX) ====
 
+The boolean return indicates the state of the specified bit in the argument string.
 
-            BITTST(string, bit) - (AREXX)
+Bit numbers are defined such that bit 0 is the low-order bit of the rightmost byte to the string.
 
-            The boolean return indicates the state of the specified bit in the argument string.
-
-            Bit numbers are defined such that bit 0 is the low-order bit of the rightmost byte to the string.
-
-
-            BITTST('0313'x,4)
-            	
-
-            '1'
-
+| BITTST('0313'x,4) | '1' |
 
 ==== BITXOR(string1[, [string2] [,padchar]]) - (ANSI) ====
  Works like BITAND() , except that the logical function XOR (exclusive OR) is used instead of AND. For more information see BITAND() .
