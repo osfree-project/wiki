@@ -3215,71 +3215,28 @@ Note that the address specified is subject to a machine's endianess.
 
 
 ==== INDEX(haystack, needle [,start]) - (CMS) ====
- Returns the character position of the string needle in haystack . If needle is not found, 0 is returned. By default the search starts at the first character of haystack ( start is 1). This can be overridden by giving a different start , which must be a positive, whole number. See POS function for an ANSI function that does the same thing.
 
+Returns the character position of the string needle in haystack . If needle is not found, 0 is returned. By default the search starts at the first character of haystack ( start is 1). This can be overridden by giving a different start , which must be a positive, whole number. See POS function for an ANSI function that does the same thing.
 
-            INDEX('abcdef','cd')
-            	
-
-            '3'
-
-            INDEX('abcdef','xd')
-            	
-
-            '0'
-
-            INDEX('abcdef','bc',3)
-            	
-
-            '0'
-
-            INDEX('abcabc','bc',3)
-            	
-
-            '5'
-
-            INDEX('abcabc','bc',6)
-            	
-
-            '0'
+| INDEX('abcdef','cd') | '3' |
+| INDEX('abcdef','xd') | '0' |
+| INDEX('abcdef','bc',3) | '0' |
+| INDEX('abcabc','bc',3) | '5' |
+| INDEX('abcabc','bc',6) | '0' |
 
 
 ==== INSERT(string1, string2 [,position [,length [,padchar]]]) - (ANSI) ====
- Returns the result of inserting string1 into a copy of string2 . If position is specified, it marks the character in string2 which string1 it to be inserted after. Position must be a non-negative whole number, and it defaults to 0 , which means that string2 is put in front of the first character in string1 .
 
+Returns the result of inserting string1 into a copy of string2 . If position is specified, it marks the character in string2 which string1 it to be inserted after. Position must be a non-negative whole number, and it defaults to 0 , which means that string2 is put in front of the first character in string1 .
 
-            If length is specified, string1 is truncated or padded on the right side to make it exactly length characters long before it is inserted. If padding occurs, then padchar is used, or <space> if padchar is undefined.
+If length is specified, string1 is truncated or padded on the right side to make it exactly length characters long before it is inserted. If padding occurs, then padchar is used, or <space> if padchar is undefined.
 
-
-            INSERT('first','SECOND')
-            	
-
-            'firstSECOND'
-
-            INSERT('first','SECOND',3)
-            	
-
-            'SECfirstOND '
-
-            INSERT('first','SECOND',3,10)
-            	
-
-            'SECfirst OND '
-
-            INSERT('first','SECOND',3,10,'*')
-            	
-
-            'SECfirst*****OND '
-
-            INSERT('first','SECOND',3,4)
-            	
-
-            'SECfirsOND '
-
-            INSERT('first','SECOND',8)
-            	
-
-            'SECOND first'
+| INSERT('first','SECOND') | 'firstSECOND' |
+| INSERT('first','SECOND',3) | 'SECfirstOND ' |
+| INSERT('first','SECOND',3,10) | 'SECfirst OND ' |
+| INSERT('first','SECOND',3,10,'*') | 'SECfirst*****OND ' |
+| INSERT('first','SECOND',3,4) | 'SECfirsOND ' |
+| INSERT('first','SECOND',8) | 'SECOND first' |
 
 
 ==== JUSTIFY(string, length [,pad]) - (CMS) ====
