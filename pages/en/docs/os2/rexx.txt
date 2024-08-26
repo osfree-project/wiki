@@ -2711,149 +2711,68 @@ Encrypts the given string using the supplied salt and returns the encrypted stri
 
 
 ==== DATATYPE(string [,option]) - (ANSI) ====
- With only one parameter, this function identifies the "datatype" of string . The value returned will be " NUM " if string is a valid Rexx number. Otherwise, " CHAR " is returned. Note that the interpretation of whether string is a valid number will depend on the current NUMERIC settings.
 
+With only one parameter, this function identifies the "datatype" of string . The value returned will be " NUM " if string is a valid Rexx number. Otherwise, " CHAR " is returned. Note that the interpretation of whether string is a valid number will depend on the current NUMERIC settings.
 
-            If option is specified too, it will check if string is of a particular datatype, and return either "1" or "0" depending on whether string is or is not, respectively, of the specified datatype. The possible values of option are:
+If option is specified too, it will check if string is of a particular datatype, and return either "1" or "0" depending on whether string is or is not, respectively, of the specified datatype. The possible values of option are:
 
+[A]
 
-            [A]
+(Alphanumeric) Consisting of only alphabetic characters (in upper, lower or mixed case) and decimal digits.
 
+[B]
 
-            [B]
+(Binary) Consisting of only the two binary digits 0 and 1. Note that blanks are not allowed within string, as would have been allowed within a binary string. The nullstring is also considered a valid binary value.
 
+[L]
 
-            [L]
+(Lower) Consisting of only alphabetic characters in lower case.
 
+[M]
 
-            [M]
+(Mixed) Consisting of only alphabetic characters, but the case does not matter (i.e. upper, lower or mixed.)
 
+[N]
 
-            [N]
+(Numeric) If string is a valid Rexx number, i.e. DATATYPE( string ) would return NUM.
 
+[S]
 
-            [S]
+(Symbolic) Consists of characters that are legal in Rexx symbols. Note that this test will pass several strings that are not legal symbols. The characters includes plus, minus and the decimal point.
 
+[U]
 
-            [U]
+(Upper) Consists of only upper case alphabetic characters.
 
+[W]
 
-            [W]
+(Whole) If string is a valid Rexx whole number under the current NUMERIC setting. Note that 13.0 is a whole number since the decimal part is zero.
 
+[X]
 
-            [X]
+(Hexadecimal) Consists of hexadecimal digits, i.e. the decimal digits 0-9 and the alphabetic characters A-F in either case (or mixed). Blanks are allowed within string, as long as they appear between pairs of hexadecimal digits. The nullstring is also considered a valid hexadecimal value.
 
-            (Alphanumeric) Consisting of only alphabetic characters (in upper, lower or mixed case) and decimal digits.
 
+If you want to check whether a string is suitable as a variable name, you should consider using the SYMBOL() function instead, since the Symbolic option only verifies which characters string contains, not the order. You should also take care to watch out for lower case alphabetic characters, which are allowed in the tail of a compound symbol, but not in a simple or stem symbol or in the head of compound symbol.
 
-            (Binary) Consisting of only the two binary digits 0 and 1. Note that blanks are not allowed within string, as would have been allowed within a binary string. The nullstring is also considered a valid binary value.
+Also note that the behavior of the options A, L, M and U might depend on the setting of language, if you are using an interpreter that supports national character sets.
 
-
-            (Lower) Consisting of only alphabetic characters in lower case.
-
-
-            (Mixed) Consisting of only alphabetic characters, but the case does not matter (i.e. upper, lower or mixed.)
-
-
-            (Numeric) If string is a valid Rexx number, i.e. DATATYPE( string ) would return NUM.
-
-
-            (Symbolic) Consists of characters that are legal in Rexx symbols. Note that this test will pass several strings that are not legal symbols. The characters includes plus, minus and the decimal point.
-
-
-            (Upper) Consists of only upper case alphabetic characters.
-
-
-            (Whole) If string is a valid Rexx whole number under the current NUMERIC setting. Note that 13.0 is a whole number since the decimal part is zero.
-
-
-            (Hexadecimal) Consists of hexadecimal digits, i.e. the decimal digits 0-9 and the alphabetic characters A-F in either case (or mixed). Blanks are allowed within string, as long as they appear between pairs of hexadecimal digits. The nullstring is also considered a valid hexadecimal value.
-
-
-            If you want to check whether a string is suitable as a variable name, you should consider using the SYMBOL() function instead, since the Symbolic option only verifies which characters string contains, not the order. You should also take care to watch out for lower case alphabetic characters, which are allowed in the tail of a compound symbol, but not in a simple or stem symbol or in the head of compound symbol.
-
-            Also note that the behavior of the options A, L, M and U might depend on the setting of language, if you are using an interpreter that supports national character sets.
-
-
-            DATATYPE(' - 1.35E-5 ')
-            	
-
-            'NUM'
-
-            DATATYPE('1E999999999')
-            	
-
-            'CHAR'
-
-            DATATYPE('1E9999999999')
-            	
-
-            'CHAR'
-
-            DATATYPE('!@#&#$(&*%`')
-            	
-
-            'CHAR'
-
-            DATATYPE('FooBar','A')
-            	
-
-            '1'
-
-            DATATYPE('Foo Bar','A')
-            	
-
-            '0'
-
-            DATATYPE('010010111101','B')
-            	
-
-            '1'
-
-            DATATYPE('0100 1011 1101','B')
-            	
-
-            '0'
-
-            DATATYPE('foobar','L')
-            	
-
-            '1'
-
-            DATATYPE('FooBar','M')
-            	
-
-            '1'
-
-            DATATYPE(' -34E3 ','N')
-            	
-
-            '1'
-
-            DATATYPE('A_SYMBOL!?!','S')
-            	
-
-            '1'
-
-            DATATYPE('1.23.39E+4.5','S')
-            	
-
-            '1'
-
-            DATATYPE('Foo bar','S')
-            	
-
-            '0'
-
-            DATATYPE('FOOBAR','U')
-            	
-
-            '1'
-
-            DATATYPE('123deadbeef','X')
-            	
-
-            '1'
+| DATATYPE(' - 1.35E-5 ') | 'NUM' |
+| DATATYPE('1E999999999') | 'CHAR' |
+| DATATYPE('1E9999999999') | 'CHAR' |
+| DATATYPE('!@#&#$(&*%`') | 'CHAR' |
+| DATATYPE('FooBar','A') | '1' |
+| DATATYPE('Foo Bar','A') | '0' |
+| DATATYPE('010010111101','B') | '1' |
+| DATATYPE('0100 1011 1101','B') | '0' |
+| DATATYPE('foobar','L') | '1' |
+| DATATYPE('FooBar','M') | '1' |
+| DATATYPE(' -34E3 ','N') | '1' |
+| DATATYPE('A_SYMBOL!?!','S') | '1' |
+| DATATYPE('1.23.39E+4.5','S') | '1' |
+| DATATYPE('Foo bar','S') | '0' |
+| DATATYPE('FOOBAR','U') | '1' |
+| DATATYPE('123deadbeef','X') | '1' |
 
 
 ==== DATE([opt_out [,date [,opt_in[,sep_out[,sep_in]]]]]) - (ANSI+) ====
