@@ -3096,96 +3096,43 @@ Returns the current "form", in which numbers are presented when exponential form
 
 
 ==== FORMAT(number [,[before] [,[after] [,[expp] [,[expt]]]]]) - (ANSI) ====
- This function is used to control the format of numbers, and you may request the size and format in which the number is written. The parameter number is the number to be formatted, and it must be a valid Rexx number. note that before any conversion or formatting is done, this number will be normalized according to the current NUMERIC settings.
+
+This function is used to control the format of numbers, and you may request the size and format in which the number is written. The parameter number is the number to be formatted, and it must be a valid Rexx number. note that before any conversion or formatting is done, this number will be normalized according to the current NUMERIC settings.
+
+The before and after parameters determines how many characters that are used before and after the decimal point, respectively. Note that before does not specify the number of digits in the integer part, it specifies the size of the field in which the integer part of the number is written. Remember to allocate space in this field for a minus too, if that is relevant. If the field is not long enough to hold the integer part (including a minus if relevant), an error is reported.
+
+The after parameter will dictate the size of the field in which the fractional part of the number is written. The decimal point itself is not a part of that field, but the decimal point will be omitted if the field holding the fractional part is empty. If there are less digits in the number than the size of the field, it is padded with zeros at the right. If there is more digits then it is possible to fit into the field, the number will be rounded (not truncated) to fit the field.
+
+Before must at least be large enough to hold the integer part of number. Therefore it can never be less than 1, and never less than 2 for negative numbers. The integer field will have no leading zeros, except a single zero digit if the integer part of number is empty.
+
+The parameter expp the size of the field in which the exponent is written. This is the size of the numeric part of the exponent, so the "E" and the sign comes in addition, i.e. the real length if the exponent is two more than expp specifies. If expp is zero, it signalizes that exponential form should not be used. Expp must be a non-negative whole number. If expp is positive, but not large enough to hold the exponent, an error is reported.
+
+Expt is the trigger value that decides when to switch from simple to exponential form. Normally, the default precision (NUMERIC DIGITS) is used, but if expt is set, it will override that. Note that if expt is set to zero, exponential form will always be used. However, if expt tries to force exponential form, simple form will still be used if expp is zero. Negative values for expt will give an error.
+
+Exponential form is used if more digits than expt is needed in the integer part, or more than twice
+
+expt digits are needed in the fractional part.
+
+Note that the after number will mean different things in exponential and simple form. If after is set to e.g. 3, then in simple form it will force the precision to 0.001, no matter the magnitude of the number. If in exponential form, it will force the number to 4 digits precision.
 
 
-            The before and after parameters determines how many characters that are used before and after the decimal point, respectively. Note that before does not specify the number of digits in the integer part, it specifies the size of the field in which the integer part of the number is written. Remember to allocate space in this field for a minus too, if that is relevant. If the field is not long enough to hold the integer part (including a minus if relevant), an error is reported.
-
-
-            The after parameter will dictate the size of the field in which the fractional part of the number is written. The decimal point itself is not a part of that field, but the decimal point will be omitted if the field holding the fractional part is empty. If there are less digits in the number than the size of the field, it is padded with zeros at the right. If there is more digits then it is possible to fit into the field, the number will be rounded (not truncated) to fit the field.
-
-            Before must at least be large enough to hold the integer part of number. Therefore it can never be less than 1, and never less than 2 for negative numbers. The integer field will have no leading zeros, except a single zero digit if the integer part of number is empty.
-
-
-            The parameter expp the size of the field in which the exponent is written. This is the size of the numeric part of the exponent, so the "E" and the sign comes in addition, i.e. the real length if the exponent is two more than expp specifies. If expp is zero, it signalizes that exponential form should not be used. Expp must be a non-negative whole number. If expp is positive, but not large enough to hold the exponent, an error is reported.
-
-
-            Expt is the trigger value that decides when to switch from simple to exponential form. Normally, the default precision (NUMERIC DIGITS) is used, but if expt is set, it will override that. Note that if expt is set to zero, exponential form will always be used. However, if expt tries to force exponential form, simple form will still be used if expp is zero. Negative values for expt will give an error.
-
-            Exponential form is used if more digits than expt is needed in the integer part, or more than twice
-
-            expt digits are needed in the fractional part.
-
-
-            Note that the after number will mean different things in exponential and simple form. If after is set to e.g. 3, then in simple form it will force the precision to 0.001, no matter the magnitude of the number. If in exponential form, it will force the number to 4 digits precision.
-
-
-            FORMAT(12.34,3,4)
-            	
-
-            '
-            	
-
-            12.3400'
-
-            FORMAT(12.34,3,,3,0)
-            	
-
-            '
-            	
-
-            1.234E+001'
-
-            FORMAT(12.34,3,1)
-            	
-
-            '
-            	
-
-            12.3400'
-
-            FORMAT(12.34,3,0)
-            	
-
-            '
-            	
-
-            12.3'
-
-            FORMAT(12.34,3,4)
-            	
-
-            '
-            	
-
-            12'
-
-            FORMAT(12.34,,,,0)
-            	
-
-            '1.234E+1'
-
-            FORMAT(12.34,,,0)
-            	
-
-            '12.34'
-
-            FORMAT(12.34,,,0,0)
-            	
-
-            '12.34'
+| FORMAT(12.34,3,4) | ' 12.3400' |
+| FORMAT(12.34,3,,3,0) | '  1.234E+001' |
+| FORMAT(12.34,3,1) | ' 12.3400' |
+| FORMAT(12.34,3,0) | ' 12.3' |
+| FORMAT(12.34,3,4) | ' 12' |
+| FORMAT(12.34,,,,0) | '1.234E+1' |
+| FORMAT(12.34,,,0) | '12.34' |
+| FORMAT(12.34,,,0,0) | '12.34' |
 
 
 ==== FREESPACE(address, length) - (AREXX) ====
- Returns a block of memory of the given length to the interpreter's internal pool. The address argument must be a 4-byte string obtained by a prior call to GETSPACE(),the internal allocator. It is not always necessary to release internally-allocated memory,since it will be released to the system when the program terminates. However,if a very large block has been allocated,returning it to the pool may avoid memory space problems. The return value is a boolean success flag.
 
-            See also GETSPACE()
+Returns a block of memory of the given length to the interpreter's internal pool. The address argument must be a 4-byte string obtained by a prior call to GETSPACE(),the internal allocator. It is not always necessary to release internally-allocated memory,since it will be released to the system when the program terminates. However,if a very large block has been allocated,returning it to the pool may avoid memory space problems. The return value is a boolean success flag.
 
+See also GETSPACE()
 
-            FREESPACE('00042000'x,32)
-            	
-
-            '1'
+| FREESPACE('00042000'x,32) | '1' |
 
 
 ==== FUZZ() - (ANSI) ====
