@@ -1807,132 +1807,117 @@ a += b → equivalent to a = a + b
 </code>
 These operators are invalid with the STRICT_ANSI option. Introduced in v3.9.1.
 
+Arithmetic Assignment
 
-                Arithmetic Assignment
+The existing value of the variable on the left must be numeric.
 
+%%+=%% Add the numeric value on the right of the "%%+=%%" to the existing value of the variable on the left.
 
-                The existing value of the variable on the left must be numeric.
+x %%+=%% 1 is equivalent to x = x + 1
 
+%%−=%% Subtract the value on the right of the "%%−=%%" from the existing value of the variable on the left.
 
-                += Add the numeric value on the right of the "+=" to the existing value of the variable on the left.
+%%*=%% Multiply the existing value of the variable on the left of the "%%*=%%" by the value on the right.
 
-                x += 1 is equivalent to x = x + 1
+%%/=%% Divide the existing value of the variable on the left of the "%%/=%%" by the value on the right.
 
-                −= Subtract the value on the right of the "−=" from the existing value of the variable on the left.
+%%%=%% Integer divide the existing value of the variable on the left of the "%%%=%%" by the value on the right.
 
-                *= Multiply the existing value of the variable on the left of the "−=" by the value on the right.
-
-                /= Divide the existing value of the variable on the left of the "/=" by the value on the right.
-
-                %= Integer divide the existing value of the variable on the left of the "%=" by the value on the right.
-
-                //= Remainder divide the existing value of the variable on the left of the "//=" by the value on the right.
+%%//=%% Remainder divide the existing value of the variable on the left of the "%%//=%%" by the value on the right.
 
 
-                Logical Assignment
+Logical Assignment
 
 
-                The existing value of the variable on the left must be Boolean; ie 0 or 1.
+The existing value of the variable on the left must be Boolean; ie 0 or 1.
 
+%%|=%% Apply inclusive or to the existing Boolean value of the variable on the left of the "%%|=%%" with the value on the right.
 
-                |= Apply inclusive or to the existing Boolean value of the variable on the left of the "|=" with the value on the right.
+%%&=%% Apply logical and to the existing Boolean value of the variable on the left of the "%%&=%%" with the value on the right.
 
-                &= Apply logical and to the existing Boolean value of the variable on the left of the "&=" with the value on the right.
+%%&&=%% Apply exclusive or to the existing Boolean value of the variable on the left of the "%%&&=%%" with the value on the right.
 
-                &&= Apply exclusive or to the existing Boolean value of the variable on the left of the "&&=" with the value on the right.
+Concatenation Assignment
 
-
-                Concatenation Assignment
-
-
-                ||= Append the string on the right of the "||=" to the value of the variable on the left with no intervening space.
+%%||=%% Append the string on the right of the "%%||=%%" to the value of the variable on the left with no intervening space.
 
 ==== Concatenation Operators ====
 
-
-            The concatenation operators combine two strings to form one, by appending the second string to the right side of the first. The Rexx concatenation operators are:
-
-
-            (blank) Concatenation of strings with one space between them. (abuttal) Concatenation of strings with no intervening space.
-
-            || Concatenation of strings with no intervening space.
+The concatenation operators combine two strings to form one, by appending the second string to the right side of the first. The Rexx concatenation operators are:
 
 
-            Examples:
+(blank) Concatenation of strings with one space between them.
 
-            a = abc;b = 'def'
+(abuttal) Concatenation of strings with no intervening space.
 
-            Say a b Say a || b Say a'xyz'
+%%||%% Concatenation of strings with no intervening space.
 
-            → results in 'abc def'
+Examples:
 
-            → results in 'abcdef'
+<code rexx>
+a = abc;b = 'def'
+Say a b               → results in 'abc def'
+Say a || b            → results in 'abcdef'
+Say a'xyz'            → results in 'abcxyz'
+</code>
 
-            → results in 'abcxyz'
 
 ==== Comparative Operators ====
 
+The Rexx comparative operators compare two terms and return the logical value 1 if the result of the comparison is true, or 0 if the result of the comparison is false. The non-strict comparative operators will ignore leading or trailing blanks for string comparisons, and leading zeros for numeric comparisons. Numeric comparisons are made if both terms to be compared are valid Rexx numbers, otherwise string comparison is done. String comparisons are case sensitive, and the shorter of the two strings is padded with blanks.
 
-            The Rexx comparative operators compare two terms and return the logical value 1 if the result of the comparison is true, or 0 if the result of the comparison is false. The non-strict comparative operators will ignore leading or trailing blanks for string comparisons, and leading zeros for numeric comparisons. Numeric comparisons are made if both terms to be compared are valid Rexx numbers, otherwise string comparison is done. String comparisons are case sensitive, and the shorter of the two strings is padded with blanks.
-
-
-            The following lists the non-strict comparative operators.
+The following lists the non-strict comparative operators.
 
 
-            = Equal
+= Equal
 
-            > Greater than.
+> Greater than.
 
-            < Less than.
+< Less than.
 
-            >= Greater than or equal.
+>= Greater than or equal.
 
-            <= Less than or equal
+<= Less than or equal
 
-            <>, >< Greater than or less than. Same as Not equal.
+<>, >< Greater than or less than. Same as Not equal.
 
+The following lists the strict comparative operators. For two strings to be considered equal when using the strict equal comparative operator, both strings must be the same length.
 
-            The following lists the strict comparative operators. For two strings to be considered equal when using the strict equal comparative operator, both strings must be the same length.
+== Strictly equal
 
+>> Strictly greater than.
 
-            == Strictly equal
+<< Strictly less than.
 
-            >> Strictly greater than.
+>>= Strictly greater than or equal.
 
-            << Strictly less than.
-
-            >>= Strictly greater than or equal.
-
-            <<= Strictly less than or equal.
-
+<<= Strictly less than or equal.
 
 === Negators ===
 
+Some of the above comparisons can be negated by prefixing a negator character. Regina supports the following characters as negators:
 
-                Some of the above comparisons can be negated by prefixing a negator character. Regina supports the following characters as negators:
+\ Backslash (ANSI Standard)
 
+^ Caret
 
-                \ Backslash (ANSI Standard)
+~ Tilde
 
-                ^ Caret
+¬ Logical Not
 
-                ~ Tilde
+Valid negated comparative operators are (any negator character can be used in place of backslash):
 
-                ¬ Logical Not
+\= Not equal
 
-                Valid negated comparative operators are (any negator character can be used in place of backslash):
+\== Not strictly equal
 
-                \= Not equal
+\> Not greater than
 
-                \== Not strictly equal
+\>> Not strictly greater than
 
-                \> Not greater than
+\< Not less than
 
-                \>> Not strictly greater than
-
-                \< Not less than
-
-                \<< Not strictly less than
+\<< Not strictly less than
 
 ==== Logical Operators ====
 
