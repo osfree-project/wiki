@@ -2040,98 +2040,83 @@ Is handled by Regina in the following way: A label can occur inside an INTERPRET
 ==== Implementation of the ADDRESS environment ====
 
 
-            Most people have problems invoking external programs. This section shows the basic rules, and some tricks to let you use Regina and other Rexx interpreters successfully.
+Most people have problems invoking external programs. This section shows the basic rules, and some tricks to let you use Regina and other Rexx interpreters successfully.
 
+Every call to an external program is executed by an implicit ADDRESS statement.
 
-            Every call to an external program is executed by an implicit ADDRESS statement.
+<code rexx>
+'echo Hello planet'
+</code>
 
+is equivalent to
 
-            'echo Hello planet'
+<code rexx>
+ADDRESS currentenvironment 'echo Hello planet'
+</code>
 
-            is equivalent to
+The default environment is SYSTEM in Regina and many other Rexx interpreters.
 
-            ADDRESS currentenvironment 'echo Hello planet'
+Every ADDRESS environment has its own purpose and advantages. It is a good idea to use ADDRESS in front of each command. Everybody knows what happens in this case. And you can choose the best environment for the command.
 
+SYSTEM aka ENVIRONMENT aka OS2ENVIRONMENT
 
-            The default environment is SYSTEM in Regina and many other Rexx interpreters.
+This is the all-purpose solution for every command. The command is passed to the current command interpreter. It is generally the best option for most commands, but is has some disadvantages:
 
-            Every ADDRESS environment has its own purpose and advantages. It is a good idea to use ADDRESS in front of each command. Everybody knows what happens in this case. And you can choose the best environment for the command.
+  * You don't have control over the different interpreters. You can get ugly errors in Windows NT, 2000, XP or in unices if you don't know how the interpreter interprets your command.
+  * You have some trouble passing special characters to the command. Have you every tried to pass a ">" sign to a command? You won't get what you expect if you don't know how to quote it to bypass the interpreter.
+  * You invoke a separate program just to invoke another program. It costs time and memory usage. Choosing another environment may lead to a quicker and safer execution.
 
-            SYSTEM aka ENVIRONMENT aka OS2ENVIRONMENT
+Use SYSTEM if you want to use pipelines and redirections of the interpreter or if you want to use a built-in command of the shell. "echo" is a built-in command in command interpreters. Also, the Unix pipeline of commands like "prog1 | prog2 | prog3" cannot be represented shorter in Regina.
 
-            This is the all-purpose solution for every command. The command is passed to the current command interpreter. It is generally the best option for most commands, but is has some disadvantages:
+COMMAND aka CMD aka PATH
 
+This is the right ADDRESS environment if you know the called program's name but not where it is on disk. One example is "sort" in many systems.
 
-                You don't have control over the different interpreters. You can get ugly errors in Windows NT, 2000, XP or in unices if you don't know how the interpreter interprets your command.
+Since Regina has ANSI's extremely useful ADDRESS WITH technique, you can very effectively sort queue contents or stem leaves by:
 
-                You have some trouble passing special characters to the command. Have you every tried to pass a ">" sign to a command? You won't get what you expect if you don't know how to quote it to bypass the interpreter.
+<code rexx>
+ADDRESS PATH 'sort' WITH INPUT STEM unsort. OUTPUT STEM sort.
+</code>
 
-                You invoke a separate program just to invoke another program. It costs time and memory usage. Choosing another environment may lead to a quicker and safer execution.
+You let Regina find the program 'sort' (or SORT.EXE if you use Windows) and get the fastest way to do it. You don't have to bother about the current command interpreter; Regina acts as one. You can pass every character you want and Regina does its best to let it appear in the called program. If you want to specify a specific program, simply specify the fully qualified filename of the command to execute.
 
-            Use SYSTEM if you want to use pipelines and redirections of the interpreter or if you want to use a built-in command of the shell. "echo" is a built-in command in command interpreters. Also, the Unix pipeline of commands like "prog1 | prog2 | prog3" cannot be represented shorter in Regina.
+REXX or REGINA
 
-            COMMAND aka CMD aka PATH
+Use this if you want to execute a Rexx program in a separate instance of the interpreter. Whereas a normal CALL on an external program will run the external Rexx program in the current instance of Regina, this allows the external Rexx program to run in a new, independent instance of Regina.
 
-            This is the right ADDRESS environment if you know the called program's name but not where it is on disk. One example is "sort" in many systems.
+Use this environment if:
 
+  - The called interpreter is unstable and a crash in it should not affect the current execution. A common situation where you want it, is an external program library you can bind with RxFuncAdd. Such a library can crash or terminate the interpreter. The calling interpreter won't be affected by this termination.
+  - You want to take advantage of the powerful ADDRESS WITH redirection. The general mechanism to communicate with external scripts is a queue, but you don't have this in cases where you want to pass error messages in a different way or if you use a script which wasn't designed to use queues originally.
+  - The current interpreter shall be reused and you want to take advantage of the second point. You may have different Regina interpreters and you want to use just the current interpreter even if it isn't in your path. Regina tries to load the current interpreter a second time if you use this ADDRESS environment. There is no difference between ADDRESS REXX and ADDRESS REGINA. Regina also attempts to load the same executable that the current instance was started from, but not every system passes enough informations to Regina to find its own executable in all cases.
 
-            Since Regina has ANSI's extremely useful ADDRESS WITH technique, you can very effectively sort queue contents or stem leaves by:
+ADRRESS WITH on Windows
 
+Redirection of program's input and/or output in general is relatively predictable on most operating systems, however mention must be made of behaviour specific to the Windows platform.
 
-            ADDRESS PATH 'sort' WITH INPUT STEM unsort. OUTPUT STEM sort.
+Windows and to a lesser degree OS/2, have techniques to hide windows, to start programs in separate windows and other cool features. Florian did some significant testing of this on all different Windows platforms and there is bad news. There is no consistent mechanism to start external programs without error and full control. Sounds strange, is strange. We have the options to:
 
+  * use the interpreter (ADDRESS SYSTEM) or not (ADDRESS PATH or CMD)
+  * start GUI or text mode programs
+  * choose the interpreter (CMD.EXE or COMMAND.COM)
 
-            You let Regina find the program 'sort' (or SORT.EXE if you use Windows) and get the fastest way to do it. You don't have to bother about the current command interpreter; Regina acts as one. You can pass every character you want and Regina does its best to let it appear in the called program. If you want to specify a specific program, simply specify the fully qualified filename of the command to execute.
+The main goal was to start GUIs separately and text mode programs under the control of the caller (GUI or text). Regina can be part of a GUI progress and must be treated as GUI in this case. Most people get upset with console windows popping up showing nothing.
 
-            REXX or REGINA
+Some combinations of the interpreter, the target programs, and the options we can pass along to the system lead to nonstarting, nonstopping, crashing programs. Or we may loose control by means of broken communications to the subprocess (ADDRESS WITH...).
 
-            Use this if you want to execute a Rexx program in a separate instance of the interpreter. Whereas a normal CALL on an external program will run the external Rexx program in the current instance of Regina, this allows the external Rexx program to run in a new, independent instance of Regina.
+So we had to choose either to let program run safely OR to let program run pretty. Blame the guys who designed Windows, not the Regina crew!
 
-            Use this environment if:
+So, if you have a DOS graphical extension known as Windows 95, Windows 98 or Windows Millennium you will get console windows popping up if run from a GUI program. We are sorry for this, we can't change it.
 
+Those Systems with a 32 bit startup kernel known as Windows NT, Windows 2000, Windows XP will hide the console windows when starting a text mode program from a GUI program.
 
-                The called interpreter is unstable and a crash in it should not affect the current execution. A common situation where you want it, is an external program library you can bind with RxFuncAdd. Such a library can crash or terminate the interpreter. The calling interpreter won't be affected by this termination.
+ATTENTION: Your programs might crash or you may loose control either of the called program or of Regina if you change the interpreter inside your Rexx program. Never use
 
-                You want to take advantage of the powerful ADDRESS WITH redirection. The general mechanism to communicate with external scripts is a queue, but you don't have this in cases where you want to pass error messages in a different way or if you use a script which wasn't designed to use queues originally.
+<code rexx>
+CALL VALUE 'COMSPEC', something, 'SYSTEM'
+</code>
 
-                The current interpreter shall be reused and you want to take advantage of the second point. You may have different Regina interpreters and you want to use just the current interpreter even if it isn't in your path. Regina tries to load the current interpreter a second time if you use this ADDRESS environment. There is no difference between ADDRESS REXX and ADDRESS REGINA. Regina also attempts to load the same executable that the current instance was started from, but not every system passes enough informations to Regina to find its own executable in all cases.
-
-                ADRRESS WITH on Windows
-
-                Redirection of program's input and/or output in general is relatively predictable on most operating systems, however mention must be made of behaviour specific to the Windows platform.
-
-
-                Windows and to a lesser degree OS/2, have techniques to hide windows, to start programs in separate windows and other cool features. Florian did some significant testing of this on all different Windows platforms and there is bad news. There is no consistent mechanism to start external
-
-                programs without error and full control. Sounds strange, is strange. We have the options to:
-
-
-                    use the interpreter (ADDRESS SYSTEM) or not (ADDRESS PATH or CMD)
-
-                    start GUI or text mode programs
-
-                    choose the interpreter (CMD.EXE or COMMAND.COM)
-
-
-                    The main goal was to start GUIs separately and text mode programs under the control of the caller (GUI or text). Regina can be part of a GUI progress and must be treated as GUI in this case. Most people get upset with console windows popping up showing nothing.
-
-                    Some combinations of the interpreter, the target programs, and the options we can pass along to the system lead to nonstarting, nonstopping, crashing programs. Or we may loose control by means of broken communications to the subprocess (ADDRESS WITH...).
-
-
-                    So we had to choose either to let program run safely OR to let program run pretty. Blame the guys who designed Windows, not the Regina crew!
-
-
-                    So, if you have a DOS graphical extension known as Windows 95, Windows 98 or Windows Millennium you will get console windows popping up if run from a GUI program. We are sorry for this, we can't change it.
-
-
-                    Those Systems with a 32 bit startup kernel known as Windows NT, Windows 2000, Windows XP will hide the console windows when starting a text mode program from a GUI program.
-
-
-                    ATTENTION: Your programs might crash or you may loose control either of the called program or of Regina if you change the interpreter inside your Rexx program. Never use
-
-                    CALL VALUE 'COMSPEC', something, 'SYSTEM'
-
-                    in your program if you don't know the consequences! Unpredictable behaviour is likely to occur; use at your own peril!
+in your program if you don't know the consequences! Unpredictable behaviour is likely to occur; use at your own peril!
 
 
 ====== Rexx Built-in Functions ======
@@ -2278,15 +2263,15 @@ Below follows an in depth description of all the functions in the library of bui
 
 ==== ABBREV(long, short [,length]) - (ANSI) ====
 
-Returns 1 if the string short is strictly equal to the leading charcaters of the string long , and returns 0 (zero) otherwise. The minimum length which short must have, can be specified as length . If length is unspecified, length is set to the length of short. The nullstring is an abbreviation of any string.
+Returns 1 if the string short is strictly equal to the leading characters of the string long , and returns 0 (zero) otherwise. The minimum length which short must have, can be specified as length . If length is unspecified, length is set to the length of short. The nullstring is an abbreviation of any string.
 
 Note that this function is case sensitive, and that leading and trailing spaces are not stripped off before the two strings are compared.
 
 | ABBREV('Foobar','Foo') | 1 |
 | ABBREV('Foobar','Foo',4) | 0 /*Too short */ |
 | ABBREV('Foobar','foo') | 0 /*Different case */ |
-| ABBREV('Foobar','',0) | 1 /* '' matches any string */ |
-| ABBREV('','anything',0) | 0 /* nothing matches '' */ |
+| ABBREV('Foobar',%%''%%,0) | 1 /* %%''%% matches any string */ |
+| ABBREV(%%''%%,'anything',0) | 0 /* nothing matches %%''%% */ |
 
 ==== ABS(number) - (ANSI) ====
  Returns the absolute value of the number , which can be any valid Rexx number. Note that the result will be normalized according to the current NUMERIC settings.
