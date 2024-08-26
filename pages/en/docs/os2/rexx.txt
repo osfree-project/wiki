@@ -3137,123 +3137,81 @@ See also GETSPACE()
 
 ==== FUZZ() - (ANSI) ====
 
+Returns the current number of digits which are ignored when comparing numbers, during operations like = and >. The default value for this is 0. This value is set using the NUMERIC FUZZ statement, for more information see that.
 
-            Returns the current number of digits which are ignored when comparing numbers, during operations like = and >. The default value for this is 0. This value is set using the NUMERIC FUZZ statement, for more information see that.
-
-
-            FUZZ()
-            	
-
-            '0' /* Maybe */
+| FUZZ() | '0' /* Maybe */ |
 
 ==== GETCALLER([level]) - (REGINA) ====
 
 
-            Returns the fully qualified file name of the Rexx program that called the current program. The optional argument level specifies the level in Regina's call stack you wish to query. The immediate level is 1, the level above that is 2, etc. If not specified level is 1. Where level exceeds Regina's call stack this function returns the empty string.
+Returns the fully qualified file name of the Rexx program that called the current program. The optional argument level specifies the level in Regina's call stack you wish to query. The immediate level is 1, the level above that is 2, etc. If not specified level is 1. Where level exceeds Regina's call stack this function returns the empty string.
 
+| GETCALLER() | 'C:\regina\fred1.rexx' /* (Maybe) */ |
+| GETCALLER(1) | 'C:\regina\fred1.rexx' /* (Maybe) */ |
+| GETCALLER() | %%''%% /* this program called from OS */ |
+| GETCALLER(55) | %%''%% /* (Probably) */ |
 
-            GETCALLER()
-            	
-
-            'C:\regina\fred1.rexx' /* (Maybe) */
-
-            GETCALLER(1)
-            	
-
-            'C:\regina\fred1.rexx' /* (Maybe) */
-
-            GETCALLER()
-            	
-
-            '' /* this program called from OS */
-
-            GETCALLER(55)
-            	
-
-            '' /* (Probably) */
 
 
 ==== GETCALLSTACK([stem]) - (REGINA) ====
 
+If the optional argument stem is provided, populates that array with the contents of the current call stack. If no stem argument is provided the current call stack is sent to stderr. Each item in the array contains the line number from which the routine was called followed by the routine name.
 
-            If the optional argument stem is provided, populates that array with the contents of the current call stack. If no stem argument is provided the current call stack is sent to stderr. Each item in the array contains the line number from which the routine was called followed by the routine name.
+| GETCALLSTACK('stack.') | '2' /* stack.0 (Maybe) */ |
 
-
-            GETCALLSTACK('stack.')
-            	
-
-            '2' /* stack.0 (Maybe) */
 
 
 ==== GETENV(environmentvar) - (REGINA) ====
- Returns the value of the environment variable from the system. If this variable is not defined, a nullstring is returned. It is not possible to use this function to determine whether the variable was unset, or just set to the nullstring.
 
+Returns the value of the environment variable from the system. If this variable is not defined, a nullstring is returned. It is not possible to use this function to determine whether the variable was unset, or just set to the nullstring.
 
-            This function is now obsolete, instead you should use:
+This function is now obsolete, instead you should use:
 
-
-            VALUE( environmentvar, ,'SYSTEM' )
+<code rexx>
+VALUE( environmentvar, ,'SYSTEM' )
+</code>
 
 
 ==== GETPID() - (REGINA) ====
 
+Returns the process id of the currently running process.
 
-            Returns the process id of the currently running process.
+| GETPID() | '234' /* Maybe */ |
 
-
-            GETPID()
-            	
-
-            '234' /* Maybe */
 
 
 ==== GETSPACE(length) - (AREXX) ====
 
+Allocates a block of memory of the specified length from the interpreter's internal pool. The returned value is the 4-byte address of the allocated block, which is not cleared or otherwise initialized. Internal memory is automatically returned to the system when the Rexx program terminates,so this function should not be used to allocate memory for use by external programs. See also FREESPACE()
 
-            Allocates a block of memory of the specified length from the interpreter's internal pool. The returned value is the 4-byte address of the allocated block, which is not cleared or otherwise initialized. Internal memory is automatically returned to the system when the Rexx program terminates,so this function
-
-            should not be used to allocate memory for use by external programs. See also FREESPACE()
-
-
-            GETSPACE(32)
-            	
-
-            '0003BF40' /* maybe */
+| GETSPACE(32) | '0003BF40' /* maybe */ |
 
 
 ==== GETTID() - (REGINA) ====
 
+Returns the thread id of the currently running process.
 
-            Returns the thread id of the currently running process.
+| GETTID() | '2' /* Maybe */ |
 
-
-            GETTID()
-            	
-
-            '2' /* Maybe */
 
 ==== HASH(string) - (AREXX) ====
- Returns the hash attribute of a string as a decimal number,and updates the internal hash value of the string.
 
+Returns the hash attribute of a string as a decimal number,and updates the internal hash value of the string.
 
-            HASH('1')
-            	
+| HASH('1') | '49' |
 
-            '49'
 
 
 ==== IMPORT(address [,length]) - (AREXX) ====
- Creates a string by copying data from the specified 4-byte address . If the length parameter is not supplied,the copy terminates when a null byte is found.
 
-            See also EXPORT()
+Creates a string by copying data from the specified 4-byte address . If the length parameter is not supplied,the copy terminates when a null byte is found.
 
-            Note that the address specified is subject to a machine's endianess.
+See also EXPORT()
 
+Note that the address specified is subject to a machine's endianess.
 
-            IMPORT('0004 0000'x,10)
-            	
+| IMPORT('0004 0000'x,10) | 'The answer' /* maybe */ |
 
-            'The answer' /* maybe */
 
 
 ==== INDEX(haystack, needle [,start]) - (CMS) ====
