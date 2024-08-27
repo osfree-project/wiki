@@ -3394,29 +3394,12 @@ Actually, the standard says that the value returned is the first number in the p
 
 ==== MIN(number [,number] ...) - (ANSI) ====
 
+Like MAX(), except that the lowest numerical value is returned. For more information, see MAX().
 
-            Like MAX(), except that the lowest numerical value is returned. For more information, see MAX().
-
-
-            MIN(5,4,3,1,2)
-            	
-
-            '1'
-
-            MIN(6)
-            	
-
-            '6'
-
-            MIN(-4,.001E3,4)
-            	
-
-            '-4'
-
-            MIN(1,2,05.0E-1,4)
-            	
-
-            '0.50'
+| MIN(5,4,3,1,2) | '1' |
+| MIN(6) | '6' |
+| MIN(-4,.001E3,4) | '-4' |
+| MIN(1,2,05.0E-1,4) | '0.50' |
 
 
 ==== OPEN(file, filename, ['Append'|'Read'|'Write']) - (AREXX) ====
