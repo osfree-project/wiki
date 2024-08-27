@@ -3434,38 +3434,21 @@ If length is specified, then string2 will be stripped or padded at the right han
 
 ==== POOLID() - (REGINA) ====
 
+Returns the current call level for the current procedure.
 
-            Returns the current call level for the current procedure.
-
-
-            POOLID()
-            	
-
-            '1' /* top level */
-
-            POOLID()
-            	
-
-            '6' /* 6th level call nesting */
+| POOLID() | '1' /* top level */ |
+| POOLID() | '6' /* 6th level call nesting */ |
 
 
 ==== POPEN(command [,stem.]) - (REGINA) ====
 
+Runs the operating system command. If the optional stem. is supplied all output from the command is placed in the specified stem variable as a Rexx array. Note that only the command's stdout can be captured.
 
-            Runs the operating system command. If the optional stem. is supplied all output from the command is placed in the specified stem variable as a Rexx array. Note that only the command's stdout can be captured.
+This command is now deprecated. ADDRESS WITH can do the same thing, and can also capture the command's stderr.
 
-            This command is now deprecated. ADDRESS WITH can do the same thing, and can also capture the command's stderr.
+| POPEN('ls -l', 'lists.') | /* LISTS. stem has list */ |
+| ADDRESS SYSTEM 'ls -l' WITH OUTPUT STEM LISTS. | /* same as above */ |
 
-
-            POPEN('ls -l', 'lists.')
-            	
-
-            /* LISTS. stem has list */
-
-            ADDRESS SYSTEM 'ls -l' WITH OUTPUT STEM LISTS.
-            	
-
-            /* same as above */
 
 
 ==== POS(needle, haystack [,start]) - (ANSI) ====
