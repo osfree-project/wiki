@@ -3453,91 +3453,12 @@ This command is now deprecated. ADDRESS WITH can do the same thing, and can also
 
 ==== POS(needle, haystack [,start]) - (ANSI) ====
 
+Seeks for an occurrence of the string needle in the string haystack. If needle is not found, then 0 is returned. Else, the position in haystack of the first character in the part that matched is returned, which will be a positive whole number. If start (which must be a positive whole number) is specified, the search for needle will start at position start in haystack.
 
-            Seeks for an occurrence of the string needle in the string haystack. If needle is not found, then 0 is returned. Else, the position in haystack of the first character in the part that matched is returned, which will be a positive whole number. If start (which must be a positive whole number) is
-
-            specified, the search for needle will start at position start in haystack.
-
-
-            POS('be','to
-            	
-
-            be
-            	
-
-            or
-            	
-
-            not
-            	
-
-            to
-            	
-
-            be')
-            	
-
-            4
-
-            POS('to','to
-            	
-
-            be
-            	
-
-            or
-            	
-
-            not
-            	
-
-            to
-            	
-
-            be',10)
-            	
-
-            14
-
-            POS('is','to
-            	
-
-            be
-            	
-
-            or
-            	
-
-            not
-            	
-
-            to
-            	
-
-            be')
-            	
-
-            0
-
-            POS('to','to
-            	
-
-            be
-            	
-
-            or
-            	
-
-            not
-            	
-
-            to
-            	
-
-            be',18)
-            	
-
-            0
+| POS('be','to be or not to be') | 4 |
+| POS('to','to be or not to be',10) | 14 |
+| POS('is','to be or not to be') | 0 |
+| POS('to','to be or not to be',18) | 0 |
 
 
 ==== PUTENV(environmentvar=[value]) - (REGINA) ====
