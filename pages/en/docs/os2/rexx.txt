@@ -3305,214 +3305,91 @@ Assuming that the file /tmp/file contains the three lines: "First line", Second 
 
 
 ==== LINEOUT([streamid] [,[string] [,line]]) - (ANSI) ====
- Returns the number of lines remaining after having positioned the stream streamid to the start of line line and written out string as a line of text. If streamid is omitted, the default output stream is used. If line (which must be a positive whole number) is omitted, the stream will not be repositioned before the write. If string is omitted, nothing is written to the stream. If string is specified, a system-specific action is taken after it has been written to stream, to mark a new line.
 
+Returns the number of lines remaining after having positioned the stream streamid to the start of line line and written out string as a line of text. If streamid is omitted, the default output stream is used. If line (which must be a positive whole number) is omitted, the stream will not be repositioned before the write. If string is omitted, nothing is written to the stream. If string is specified, a system-specific action is taken after it has been written to stream, to mark a new line.
 
-            The format and contents of the first parameter will depend upon the implementation and how it names streams. Consult implementation-specific documentation for more information.
+The format and contents of the first parameter will depend upon the implementation and how it names streams. Consult implementation-specific documentation for more information.
 
-            If string is specified, but not line, the effect is to write string to the stream, starting at the current write position. If line is specified, but not string, the effect is only to position the stream at the new position. Note that the line parameter is only legal if the stream is persistent; you can not position the current write position for transient streams.
+If string is specified, but not line, the effect is to write string to the stream, starting at the current write position. If line is specified, but not string, the effect is only to position the stream at the new position. Note that the line parameter is only legal if the stream is persistent; you can not position the current write position for transient streams.
 
+If neither line nor string is specified, the standard requires that the current write position is set the end of the stream, and implementation specific side-effects may occur. In practice, this means that an implementation can use this situation to do things like closing the stream, or flushing the output. Consult the implementation specific documentation for more information.
 
-            If neither line nor string is specified, the standard requires that the current write position is set the end of the stream, and implementation specific side-effects may occur. In practice, this means that an implementation can use this situation to do things like closing the stream, or flushing the output. Consult the implementation specific documentation for more information.
+Also note that the return value of this functions may be of little or no value, If just a half line is written, 1 may still be returned, and there are no way of finding out how much (if any) of string was written. If string is not specified, the return value will always be 0, even if LINEOUT() was not able to correctly position the stream.
 
+If it is impossible to correctly write string to the stream, the NOTREADY flag will be raised. It is not defined whether or not the NOTREADY flag is raised when LINEOUT() is used for positioning, and this is not possible.
 
-            Also note that the return value of this functions may be of little or no value, If just a half line is written, 1 may still be returned, and there are no way of finding out how much (if any) of string was written. If string is not specified, the return value will always be 0, even if LINEOUT() was not able to correctly position the stream.
+Note that if you write string to a line in the middle of the stream (i.e. line is less than the total number of lines in the stream), then the behavior is system and implementation specific. Some systems will truncate the stream after the newly written line, other will only truncate if the newly written line has a different length than the old line which it replaced, and yet other systems will overwrite and never truncate.
 
+In general, consult your system and implementation specific documentation for more information about this function. You can safely assume very little about how it behaves.
 
-            If it is impossible to correctly write string to the stream, the NOTREADY flag will be raised. It is not defined whether or not the NOTREADY flag is raised when LINEOUT() is used for positioning, and this is not possible.
-
-
-            Note that if you write string to a line in the middle of the stream (i.e. line is less than the total number of lines in the stream), then the behavior is system and implementation specific. Some systems will truncate the stream after the newly written line, other will only truncate if the newly written line has a different length than the old line which it replaced, and yet other systems will overwrite and never truncate.
-
-
-            In general, consult your system and implementation specific documentation for more information about this function. You can safely assume very little about how it behaves.
-
-
-            LINEOUT(,'First line')
-            	
-
-            '1'
-
-            LINEOUT('/tmp/file','Second line',2)
-            	
-
-            '1'
-
-            LINEOUT('/tmp/file','Third line')
-            	
-
-            '1'
-
-            LINEOUT('/tmp/file','Fourth line',4)
-            	
-
-            '0'
+| LINEOUT(,'First line') | '1' |
+| LINEOUT('/tmp/file','Second line',2) | '1' |
+| LINEOUT('/tmp/file','Third line') | '1' |
+| LINEOUT('/tmp/file','Fourth line',4) | '0' |
 
 
 ==== LINES([streamid] [,option]) - (ANSI) ====
- Returns 1 if there is at least one complete line remaining in the named file stream or 0 if no complete lines remain in the file. A complete line is not really as complete as the name might indicate; a complete line is zero or more characters, followed by an End-Of-Line (EOL) marker. So, if you have read half a line already, you still have a "complete" line left. Note that it is not defined what to do with a half-finished line at the end of a file. Some interpreters might interpret the End-Of-File as an implicit EOL mark too, while others might not.
 
+Returns 1 if there is at least one complete line remaining in the named file stream or 0 if no complete lines remain in the file. A complete line is not really as complete as the name might indicate; a complete line is zero or more characters, followed by an End-Of-Line (EOL) marker. So, if you have read half a line already, you still have a "complete" line left. Note that it is not defined what to do with a half-finished line at the end of a file. Some interpreters might interpret the End-Of-File as an implicit EOL mark too, while others might not.
 
-            The format and contents of the stream streamid is system and implementation dependent. If omitted, the default input stream will be used.
+The format and contents of the stream streamid is system and implementation dependent. If omitted, the default input stream will be used.
 
+The ANSI Standard has extended this function from TRL2. It allows an option:
 
-            The ANSI Standard has extended this function from TRL2. It allows an option:
+[C]
 
-            [C]
+(Count) Returns the actual number of complete lines remaining in the stream, irrespective of how expensive this operation is.
 
+[N]
 
-            [N]
+(Normal) Returns 1 if there is at least one complete line remaining in the file or 0 if no lines remain. This is the default. To maintain backwards compatibility with older releases of Regina, the OPTION; NOFAST_LINES_BIF_DEFAULT can be used to make the default option behave as though LINES(streamid,'C') was specified.
 
+LINES will only return 0 or 1 for all transient streams, as the interpreter can not reposition in these files, and can therefore not count the number of remaining lines.
 
-            (Count) Returns the actual number of complete lines remaining in the stream, irrespective of how expensive this operation is.
+As a result, defensive programming indicates that you can safely only assume that this function will return either 0 or a non-zero result. If you want to use the non-zero result to more than just an indicator on whether more lines are available, you must check that it is larger than one. If so, you can safely assume that it hold the number of available lines left.
 
+As with all the functions operating on streams, you can safely assume very little about this function, so consult the system and implementation specific documentation.
 
-            (Normal) Returns 1 if there is at least one complete line remaining in the file or 0 if no lines remain. This is the default. To maintain backwards compatibility with older releases of Regina, the OPTION; NOFAST_LINES_BIF_DEFAULT can be used to make the default option behave as though LINES(streamid,'C') was specified.
-
-
-            LINES will only return 0 or 1 for all transient streams, as the interpreter can not reposition in these files, and can therefore not count the number of remaining lines.
-
-
-            As a result, defensive programming indicates that you can safely only assume that this function will return either 0 or a non-zero result. If you want to use the non-zero result to more than just an indicator on whether more lines are available, you must check that it is larger than one. If so, you can safely assume that it hold the number of available lines left.
-
-
-            As with all the functions operating on streams, you can safely assume very little about this function, so consult the system and implementation specific documentation.
-
-
-            LINES()
-            	
-
-            '1'
-            	
-
-            /*
-            	
-
-            Maybe
-            	
-
-            */
-
-            LINES()
-            	
-
-            '0'
-            	
-
-            /*
-            	
-
-            Maybe
-            	
-
-            */
-
-            LINES('/tmp/file','C')
-            	
-
-            '2'
-            	
-
-            /*
-            	
-
-            Maybe
-            	
-
-            */
-
-            LINES('/tmp/file')
-            	
-
-            '1'
-            	
-
-            /*
-            	
-
-            Maybe
-            	
-
-            */
+| LINES() | '1'  /* Maybe */ |
+| LINES() | '0' /* Maybe */ |
+| LINES('/tmp/file','C') | '2' /* Maybe */ |
+| LINES('/tmp/file') | '1' /* Maybe */
 
 
 ==== LOWER(string [,start [,length [,pad]]]) - (REGINA) ====
- Translates the substring of string that starts at start , and has the length length to lower case. Length defaults to the rest of the string. Start must be a positive whole number, while length can be any
 
-            non-negative whole number. The default value for start is 1 and for length is the length of string.
+Translates the substring of string that starts at start , and has the length length to lower case. Length defaults to the rest of the string. Start must be a positive whole number, while length can be any non-negative whole number. The default value for start is 1 and for length is the length of string.
 
-            It is not an error for start to be larger than the length of string. If length is specified and the sum of length and start minus 1 is greater that the length of string, then the result will be padded with padchars to the specified length. The default value for padchar is the <space> character.
+It is not an error for start to be larger than the length of string. If length is specified and the sum of length and start minus 1 is greater that the length of string, then the result will be padded with padchars to the specified length. The default value for padchar is the <space> character.
 
+If a specific locale is set (via the -l switch), then the string is set to the correct lowercase values based on that locale.
 
-            If a specific locale is set (via the -l switch), then the string is set to the correct lowercase values based on that locale.
-
-
-            LOWER('One Fine Day')
-            	
-
-            'one fine day'
-
-            LOWER('FRED', 2 )
-            	
-
-            'Fred'
-
-            LOWER('FRED', 3, 1 )
-            	
-
-            'FreD'
-
-            LOWER('FRED',1, 10, '*' )
-            	
-
-            'fred******'
+| LOWER('One Fine Day') | 'one fine day' |
+| LOWER('FRED', 2 ) | 'Fred' |
+| LOWER('FRED', 3, 1 ) | 'FreD' |
+| LOWER('FRED',1, 10, '*' ) | %%'fred******'%% |
 
 
 ==== MAKEBUF() - (CMS) ====
 
+Creates a new buffer on the stack, at the current top of the stack. Each new buffer will be assigned a number; the first buffer being assigned the number 1. A new buffer will be assigned a number which is one higher than the currently highest number of any buffer on the stack. In practice, this means that the buffers are numbered, with the bottom-most having the number 1 and the topmost having a number which value is identical to the number of buffers currently in the stack.
 
-            Creates a new buffer on the stack, at the current top of the stack. Each new buffer will be assigned a number; the first buffer being assigned the number 1. A new buffer will be assigned a number which is one higher than the currently highest number of any buffer on the stack. In practice, this means that the buffers are numbered, with the bottom-most having the number 1 and the topmost having a number which value is identical to the number of buffers currently in the stack.
+The value returned from this function is the number assigned to the newly created buffer. The assigned number will be one more than the number of buffers already in the stack, so the numbers will be "recycled". Thus, the assigned numbers will not necessarily be in sequence.
 
-            The value returned from this function is the number assigned to the newly created buffer. The assigned number will be one more than the number of buffers already in the stack, so the numbers will be "recycled". Thus, the assigned numbers will not necessarily be in sequence.
-
-
-            MAKEBUF()
-            	
-
-            1 /* if no buffers existed */
-
-            MAKEBUF()
-            	
-
-            6 /* if 5 buffers existed */
+| MAKEBUF() | 1 /* if no buffers existed */ |
+| MAKEBUF() | 6 /* if 5 buffers existed */ |
 
 
 ==== MAX(number1 [,number2] ...) - (ANSI) ====
- Takes any positive number of parameters, and will return the parameter that had the highest numerical value. The parameters may be any valid Rexx number. The number that is returned, is normalized according to the current NUMERIC settings, so the result need not be strictly equal to any of the parameters.
 
+Takes any positive number of parameters, and will return the parameter that had the highest numerical value. The parameters may be any valid Rexx number. The number that is returned, is normalized according to the current NUMERIC settings, so the result need not be strictly equal to any of the parameters.
 
-            Actually, the standard says that the value returned is the first number in the parameter list which is equal to the result of adding a positive number or zero to any of the other parameters. Note that this definition opens for "strange" results if you are brave enough to play around with the settings of NUMERIC FUZZ.
+Actually, the standard says that the value returned is the first number in the parameter list which is equal to the result of adding a positive number or zero to any of the other parameters. Note that this definition opens for "strange" results if you are brave enough to play around with the settings of NUMERIC FUZZ.
 
-
-            MAX(1,2,3,5,4)
-            	
-
-            '5'
-
-            MAX(6)
-            	
-
-            '6'
-
-            MAX(-4,.001E3,4)
-            	
-
-            '4'
-
-            MAX(1,2,05.0,4)
-            	
-
-            '5.0'
+| MAX(1,2,3,5,4) | '5' |
+| MAX(6) | '6' |
+| MAX(-4,.001E3,4) | '4' |
+| MAX(1,2,05.0,4) | '5.0' |
 
 
 ==== MIN(number [,number] ...) - (ANSI) ====
