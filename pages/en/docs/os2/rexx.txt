@@ -3482,22 +3482,13 @@ Returns a name for the streamid. The two names are currently associated with the
 
 ==== QUEUED() - (ANSI) ‌ ====
 
+Returns the number of lines currently in the external data queue (the "stack"). Note that the stack is a concept external to Rexx, this function may depend on the implementation and system Consult the system specific documentation for more information.
 
-            Returns the number of lines currently in the external data queue (the "stack"). Note that the stack is a concept external to Rexx, this function may depend on the implementation and system Consult the system specific documentation for more information.
+| QUEUED() | '0' /* Maybe */ |
+| QUEUED() | '42' /* Maybe */ |
 
+==== RANDOM(max) - (ANSI) ====
 
-            QUEUED()
-            	
-
-            '0' /* Maybe */
-
-            QUEUED()
-            	
-
-            '42' /* Maybe */
-
-
-            RANDOM(max) - (ANSI)
 
 
 ==== RANDOM([min] [,[max] [,seed]]) - (ANSI) ====
