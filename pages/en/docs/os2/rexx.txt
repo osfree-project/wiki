@@ -3403,81 +3403,33 @@ Like MAX(), except that the lowest numerical value is returned. For more informa
 
 
 ==== OPEN(file, filename, ['Append'|'Read'|'Write']) - (AREXX) ====
- Opens a file for the specified operation. The file argument defines the logical name by which the file will be referenced. The filename is the external name of the file, and may include any portions of a full file path.
 
-            The function returns a boolean value that indicates whether the operation was successful. There is no limit to the number of files that can be open simultaneously, and all open files are closed automatically when the program exits.
+Opens a file for the specified operation. The file argument defines the logical name by which the file will be referenced. The filename is the external name of the file, and may include any portions of a full file path.
 
-            Use OPTIONS AREXX_SEMANTICS for the AREXX behaviour to be executed. See also CLOSE(), READ(), WRITE().
+The function returns a boolean value that indicates whether the operation was successful. There is no limit to the number of files that can be open simultaneously, and all open files are closed automatically when the program exits.
 
+Use OPTIONS AREXX_SEMANTICS for the AREXX behaviour to be executed. See also CLOSE(), READ(), WRITE().
 
-            OPEN('myfile','c:\temp\aa.txt','R')
-            	
-
-            '1'
-
-            OPEN('infile','/tmp/fred.txt')
-            	
-
-            '1'
+| OPEN('myfile','c:\temp\aa.txt','R') | '1' |
+| OPEN('infile','/tmp/fred.txt') | '1' |
 
 ==== OVERLAY(string1, string2 [,[start] [,[length] [,padchar]]]) -(ANSI) ====
 
+Returns a copy of string2, totally or partially overwritten by string1. If these are the only arguments, the overwriting starts at the first character in string2.
 
-            Returns a copy of string2, totally or partially overwritten by string1. If these are the only arguments,
+If start is specified, the first character in string1 overwrites character number start in string2. Start must be a positive whole number, and defaults to 1, i.e. the first character of string1. If the start position is to the right of the end of string2, then string2 is padded at the right hand end to make it start -1 characters long, before string1 is added.
 
-            the overwriting starts at the first character in string2.
+If length is specified, then string2 will be stripped or padded at the right hand end to match the specified length. For padding (of both strings) padchar will be used, or <space> if padchar is unspecified. Length must be non-negative, and defaults to the length of string1.
 
-
-            If start is specified, the first character in string1 overwrites character number start in string2. Start must be a positive whole number, and defaults to 1, i.e. the first character of string1. If the start position is to the right of the end of string2, then string2 is padded at the right hand end to make it start -1 characters long, before string1 is added.
-
-
-            If length is specified, then string2 will be stripped or padded at the right hand end to match the specified length. For padding (of both strings) padchar will be used, or <space> if padchar is unspecified. Length must be non-negative, and defaults to the length of string1.
-
-
-            OVERLAY('NEW','old-value')
-            	
-
-            'NEW-value'
-
-            OVERLAY('NEW','old-value',4)
-            	
-
-            'oldNEWlue'
-
-            OVERLAY('NEW','old-value',4,5)
-            	
-
-            'oldNEW e'
-
-            OVERLAY('NEW','old-value',4,5,'*')
-            	
-
-            'oldNEW**e'
-
-            OVERLAY('NEW','old-value',4,2)
-            	
-
-            'oldNEalue'
-
-            OVERLAY('NEW','old-value',9)
-            	
-
-            'old-valuNEW'
-
-            OVERLAY('NEW','old-value',12)
-            	
-
-            'old-value NEW'
-
-            OVERLAY('NEW','old-value',12,,'*')
-            	
-
-            'old-value**NEW'
-
-            OVERLAY('NEW','old-value',12,5,'*')
-            	
-
-            'old-value**NEW**'
+| OVERLAY('NEW','old-value') | 'NEW-value' |
+| OVERLAY('NEW','old-value',4) | 'oldNEWlue' |
+| OVERLAY('NEW','old-value',4,5) | 'oldNEW e' |
+| OVERLAY('NEW','old-value',4,5,'*') | %%'oldNEW**e'%% |
+| OVERLAY('NEW','old-value',4,2) | 'oldNEalue' |
+| OVERLAY('NEW','old-value',9) | 'old-valuNEW' |
+| OVERLAY('NEW','old-value',12) | 'old-value NEW' |
+| OVERLAY('NEW','old-value',12,,'*') | %%'old-value**NEW'%% |
+| OVERLAY('NEW','old-value',12,5,'*') | %%'old-value**NEW**'%% |
 
 
 ==== POOLID() - (REGINA) ====
