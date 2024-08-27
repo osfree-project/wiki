@@ -3463,33 +3463,21 @@ Seeks for an occurrence of the string needle in the string haystack. If needle i
 
 ==== PUTENV(environmentvar=[value]) - (REGINA) ====
 
+Sets the value of the named system environment variable or deletes it. The existing value is returned if the environment variable has a value or if this environment variable is not defined, a nullstring is returned.
 
-            Sets the value of the named system environment variable or deletes it. The existing value is returned if the environment variable has a value or if this environment variable is not defined, a nullstring is returned.
+If no value is supplied, the system environment variable is deleted. This is the only mechanism available to delete a system environment variable.
 
-            If no value is supplied, the system environment variable is deleted. This is the only mechanism available to delete a system environment variable.
+| PUTENV('FRED=hello') | %%''%% /* If unset */ |
+| PUTENV('FRED=') | 'hello' /* variable deleted */ |
 
-
-            PUTENV('FRED=hello')
-            	
-
-            '' /* If unset */
-
-            PUTENV('FRED=')
-            	
-
-            'hello' /* variable deleted */
 
 
 ==== QUALIFY([streamid]) - (ANSI) ====
 
+Returns a name for the streamid. The two names are currently associated with the same resource and the result of this function may be more persistently associated with that resource.
 
-            Returns a name for the streamid. The two names are currently associated with the same resource and the result of this function may be more persistently associated with that resource.
+| QUALIFY('../mypath/fred.the') | '/home/mark/mypath/fred.the' |
 
-
-            QUALIFY('../mypath/fred.the')
-            	
-
-            '/home/mark/mypath/fred.the'
 
 
 ==== QUEUED() - (ANSI) ‌ ====
