@@ -3282,53 +3282,26 @@ Returns the number of characters in string.
 | LENGTH(' foo bar ') | '10' |
 
 ==== LINEIN([streamid][,[line][,count]]) - (ANSI) ====
- Returns a line read from a file. When only streamid is specified, the reading starts at the current read position and continues to the first End-Of-Line (EOL) mark. Afterward, the current read position is set to the character after the EOL mark which terminated the read-operation. If the operating system uses special characters for EOL marks, these are not returned by as a part of the string read..
 
+Returns a line read from a file. When only streamid is specified, the reading starts at the current read position and continues to the first End-Of-Line (EOL) mark. Afterward, the current read position is set to the character after the EOL mark which terminated the read-operation. If the operating system uses special characters for EOL marks, these are not returned by as a part of the string read.
 
-            The default value for streamid is default input stream. The format and range of the string streamid
+The default value for streamid is default input stream. The format and range of the string streamid are implementation dependent.
 
-            are implementation dependent.
+The line parameter (which must be a positive whole number) might be specified to set the current position in the file to the beginning of line number line before the read operation starts. If line is unspecified, the current position will not be changed before the read operation. Note that line is only valid for persistent steams. For transient streams, an error is reported if line is specified. The first line in the stream is numbered 1.
 
+Count specifies the number of lines to read. However, it can only take the values 0 and 1. When it is 1 (which is the default), it will read one line. When it is 0 it will not read any lines, and a nullstring is returned. This has the effect of setting the current read position of the file if line was specified.
 
-            The line parameter (which must be a positive whole number) might be specified to set the current position in the file to the beginning of line number line before the read operation starts. If line is unspecified, the current position will not be changed before the read operation. Note that line is only valid for persistent steams. For transient streams, an error is reported if line is specified. The first line in the stream is numbered 1.
+What happens when the functions finds a End-Of-File (EOF) condition is to some extent implementation dependent. The implementation may interpret the EOF as an implicit End-Of-Line (EOL) mark is none such was explicitly present. The implementation may also choose to raise the NOTREADY condition flag (this condition is new from Rexx language level 4.00).
 
+Whether or not stream must be explicitly opened before a read operation can be performed, is implementation dependent. In many implementations, a read or write operation will implicitly open the stream if not already open.
 
-            Count specifies the number of lines to read. However, it can only take the values 0 and 1. When it is 1 (which is the default), it will read one line. When it is 0 it will not read any lines, and a nullstring is returned. This has the effect of setting the current read position of the file if line was specified.
+Assuming that the file /tmp/file contains the three lines: "First line", Second line" and "Third line":
 
-
-            What happens when the functions finds a End-Of-File (EOF) condition is to some extent implementation dependent. The implementation may interpret the EOF as an implicit End-Of-Line (EOL) mark is none such was explicitly present. The implementation may also choose to raise the NOTREADY condition flag (this condition is new from Rexx language level 4.00).
-
-
-            Whether or not stream must be explicitly opened before a read operation can be performed, is implementation dependent. In many implementations, a read or write operation will implicitly open the stream if not already open.
-
-
-            Assuming that the file /tmp/file contains the three lines: "First line", Second line" and "Third line":
-
-
-            LINEIN('/tmp/file',1)
-            	
-
-            'First line'
-
-            LINEIN('/tmp/file')
-            	
-
-            'Second line'
-
-            LINEIN('/tmp/file',1,0)
-            	
-
-            '' /* But sets read position */
-
-            LINEIN('/tmp/file')
-            	
-
-            'First line'
-
-            LINEIN()
-            	
-
-            'Hi, there!' /* maybe */
+| LINEIN('/tmp/file',1) | 'First line' |
+| LINEIN('/tmp/file') | 'Second line' |
+| LINEIN('/tmp/file',1,0) | %%''%% /* But sets read position */ |
+| LINEIN('/tmp/file') | 'First line' |
+| LINEIN() | 'Hi, there!' /* maybe */ |
 
 
 ==== LINEOUT([streamid] [,[string] [,line]]) - (ANSI) ====
