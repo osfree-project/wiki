@@ -4157,17 +4157,16 @@ Example running Windows NT 4.0 on 'VM_NT', Intel Pentium
 
 ==== UNIXERROR(errorno) - (REGINA) ====
 
+This function returns the string associated with the errno error number that errorno specifies. When some UNIX interface function returns an error, it really is a reference to an error message which can be obtained through UNIXERROR.
 
-            This function returns the string associated with the errno error number that errorno specifies. When some UNIX interface function returns an error, it really is a reference to an error message which can be obtained through UNIXERROR.
+This function is just an interface to the strerror() function call in UNIX, and the actual error messages might differ with the operating system.
 
+This function is now obsolete, instead you should use:
 
-            This function is just an interface to the strerror() function call in UNIX, and the actual error messages might differ with the operating system.
+<code rexx>
+ERRORTEXT(100 + errorno)
+</code>
 
-
-            This function is now obsolete, instead you should use:
-
-
-            ERRORTEXT(100 + errorno)
             	
 
 
