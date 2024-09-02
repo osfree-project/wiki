@@ -4572,313 +4572,131 @@ The initial value for the event queue is to be empty. The default-action and the
 
 ==== How to Set up a Condition Trap ====
 
+How do you set the information in a condition trap? You do it with a SIGNAL or CALL clause, with the ON or OFF subkeyword. Remember that a condition trap contain three pieces of information?
 
-            How do you set the information in a condition trap? You do it with a SIGNAL or CALL clause, with the ON or OFF subkeyword. Remember that a condition trap contain three pieces of information?
+Here are the rules for how to set them:
 
-            Here are the rules for how to set them:
+  * To set the trap method, use either SIGNAL or CALL as keyword.
+  * To set state to ON or OFF, use the appropriate subkeyword in the clause. Note that there is no clause or function in Rexx, capable of setting the state of a trap to DELAY.
+  * To set the condition handler, append the term "NAME handler" to the command. Note that this term is only legal if you are setting the state to ON; you can not specify a handler when setting the state to OFF.
 
+The trap is said to be "enabled" when the state is either ON or DELAY, and "disabled" when the state is OFF. Note that neither the event queue, nor the current trapped condition can be set explicitly by Rexx clauses. They can only be set as a result of incidents, when raising and trapping conditions. It sounds very theoretical, doesn't it? Look at the following examples, which sets the trap MYTH:
 
-                To set the trap method, use either SIGNAL or CALL as keyword.
+<code rexx>
+/* 1 */ SIGNAL ON MYTH NAME TRAP_IT
+/* 2 */ SIGNAL OFF MYTH
+/* 3 */ CALL ON MYTH NAME MYTH_TRAP
+/* 4 */ CALL ON MYTH
+/* 5 */ CALL OFF MYTH
+</code>
 
+Line 1 sets state to ON, method to SIGNAL and handler to TRAP_IT. Line 2 sets state to OFF, handler and method becomes undefined. Line 3 sets state to ON, method to CALL, and handler to MYTH_TRAP. Line 4 sets state to ON, method to CALL and handler to MYTH (the default). Line 5 sets state to OFF, handler and method become undefined.
 
-                To set state to ON or OFF, use the appropriate subkeyword in the clause. Note that there is no clause or function in Rexx, capable of setting the state of a trap to DELAY.
+Why should method and handler become undefined when the trap in state OFF? For two reasons: firstly, these values are not used when the trap is in state OFF; and secondly, when you set the trap to state ON, they are redefined. So it really does not matter what they are in state OFF.
 
-
-                To set the condition handler, append the term "NAME handler" to the command. Note that this term is only legal if you are setting the state to ON; you can not specify a handler when setting the state to OFF.
-
-
-                The trap is said to be "enabled" when the state is either ON or DELAY, and "disabled" when the state is OFF. Note that neither the event queue, nor the current trapped condition can be set explicitly by
-
-                Rexx clauses. They can only be set as a result of incidents, when raising and trapping conditions. It sounds very theoretical, doesn't it? Look at the following examples, which sets the trap MYTH:
-
-                /* 1 */ SIGNAL ON MYTH NAME TRAP_IT
-
-                /* 2 */ SIGNAL OFF MYTH
-
-                /* 3 */ CALL ON MYTH NAME MYTH_TRAP
-
-                /* 4 */ CALL ON MYTH
-
-                /* 5 */ CALL OFF MYTH
-
-
-                Line 1 sets state to ON, method to SIGNAL and handler to TRAP_IT. Line 2 sets state to OFF, handler and method becomes undefined. Line 3 sets state to ON, method to CALL, and handler to MYTH_TRAP. Line 4 sets state to ON, method to CALL and handler to MYTH (the default). Line 5 sets state to OFF, handler and method become undefined.
-
-
-                Why should method and handler become undefined when the trap in state OFF? For two reasons: firstly, these values are not used when the trap is in state OFF; and secondly, when you set the trap to state ON, they are redefined. So it really does not matter what they are in state OFF.
-
-
-                What happens to this information when you call a subroutine? All information about traps are inherited by the subroutine, provided that it is an internal routine. External routines do not inherit any information about traps, but use the default values. Note that the inheritance is done by copying, so any changes done in the subroutine (internal or external), will only have effect until the routine returns.
+What happens to this information when you call a subroutine? All information about traps are inherited by the subroutine, provided that it is an internal routine. External routines do not inherit any information about traps, but use the default values. Note that the inheritance is done by copying, so any changes done in the subroutine (internal or external), will only have effect until the routine returns.
 
 ==== How to Raise a Condition ====
 
+How do you raise a condition? Well, there are really no explicit way in Rexx to do that. The conditions are raised when an incident occurs. What sort of situations that is, depends on the context. There are in general three types of incidents, classified by the origin of the event:
 
-            How do you raise a condition? Well, there are really no explicit way in Rexx to do that. The conditions are raised when an incident occurs. What sort of situations that is, depends on the context. There are in general three types of incidents, classified by the origin of the event:
+Internal origin. The incident is only dependent on the behaviour of the Rexx script. The SYNTAX condition is of this type.
 
+External origin. The Rexx script and the interpreter has really no control over when this incident. It happens completely independent of the control of the Rexx script or interpreter. The HALT condition is of this type.
 
-                Internal origin. The incident is only dependent on the behaviour of the Rexx script. The
+Mixed origin. The incident is of external origin, but the situation that created the incident, was an action by the Rexx script or the interpreter. The ERROR condition is of this type: the incident is a command returning error, but it can only occur when the interpreter is executing commands.
 
-                SYNTAX condition is of this type.
+For conditions trapped by method CALL, standard Rexx requires an implementation to at least check for incidents and raise condition at clause boundaries. (But it is allowed to do so elsewhere too; although the actual triggering must only be performed at clause boundaries.) Consequently, you must be prepared that in some implementations, conditions trappable by method CALL might only be raised (and the trap triggered) at clause boundaries, even if they are currently trapped by method SIGNAL.
 
-
-                External origin. The Rexx script and the interpreter has really no control over when this incident. It happens completely independent of the control of the Rexx script or interpreter. The HALT condition is of this type.
-
-
-                Mixed origin. The incident is of external origin, but the situation that created the incident, was an action by the Rexx script or the interpreter. The ERROR condition is of this type: the incident is a command returning error, but it can only occur when the interpreter is executing commands.
-
-
-                For conditions trapped by method CALL, standard Rexx requires an implementation to at least check for incidents and raise condition at clause boundaries. (But it is allowed to do so elsewhere too; although the actual triggering must only be performed at clause boundaries.) Consequently, you must be prepared that in some implementations, conditions trappable by method CALL might only be raised (and the trap triggered) at clause boundaries, even if they are currently trapped by method SIGNAL.
-
-
-                The seven standard conditions will be raised as result of various situations, read the section
-
-                describing each one of them for more information.
+The seven standard conditions will be raised as result of various situations, read the section describing each one of them for more information.
 
 
                 + +
-                	
-
-
-                	
-
                 + +
-                	
-
-
-                	
-
                 /-----\
-                	
-
-
-                	
-
                 + +
-
                 |Incident|
-                	
-
-
-                	
-
                 |Condition |
-                	
-
-
-                	
-
                 / Trap \
-                	
-
                 Off
-                	
-
                 |Default |
-
                 | occurs |
-                	
-
                 ->
-                	
-
                 |is raised |
-                	
-
                 ->
-                	
-
                 \ State /
-                	
-
                 -->
-                	
-
                 | action |
-
                 + +
-                	
-
-
-                	
-
                 + +
-                	
-
-
-                	
-
                 \-----/
-                	
-
-
-                	
-
                 + +
-
-
-                	
-
                 /
-                	
-
-
-                	
-
                 |
-
                 /On
-                	
-
-
-                	
-
                 |Delay
-
                 /
-                	
-
-
-                	
-
                 |
-
                 /
-                	
-
-
-                	
-
                 v
-
-
                 + +
-
-
                 Ignore| event|
-
                 + +
-
-
                 -\
-
-
                 \
-
                 +--------+/ / \
-
-
                 | Queue | Yes /DelayAction\ No |
-
-
                 |an event| <-- \is queue? / --> |
-
-
                 +--------+ \ /
-
-
                 | v
-
                 / \
-
                 /Method is\
-
                 \ CALL? /
-
                 \-------/ \
-
                 / \
-
                 /No Yes\
-
                 / \ /--------
-
-
                 / \ /
-
                 +-----------+ +-----------+ \ Decision
-
                 /
-
                 | Set state | | Set state
-
                 | \ /
-
                 | OFF | | DELAY |
-
                 +-----------+ + +
-
                 |
-                	
-
                 |
-                	
-
-
-                	
-
                 |
-                	
-
                 |
-                	
-
-
                 |
-                	
-
                 |
-                	
-
                 Return
-                	
-
                 |
-                	
-
                 |
-                	
-
                 Action
-
                 + +
-
                 | Trigger
-
                 |
-
                 | trap
-
                 |
-
                 +-----------+ + +
-
                 + +
 
 
-                The triggering of a condition
+The triggering of a condition
 
+When an incident occurs and the condition is raised, the interpreter will check the state of the condition trap for that particular condition at the current procedure level.
 
-                When an incident occurs and the condition is raised, the interpreter will check the state of the condition trap for that particular condition at the current procedure level.
+If the trap state is OFF, the default-action of the condition is taken immediately. The "standard" default-action is to ignore the condition.
 
+If the trap state is DELAY, the action will depend on the delay-action of that condition. The standard delay-action is to ignore, then nothing further is done. If the delay-action is to queue, the interpreter continues as if the state was ON.
 
-                If the trap state is OFF, the default-action of the condition is taken immediately. The "standard"
+If the state of the trap is ON, an event is generated which describes the incident, and it is queued in the pending event queue. The further action will depend on the method of trapping.
 
-                default-action is to ignore the condition.
+If the method is CALL, the state of the trap will be set to DELAY. Then the normal execution is resumed. The idea is that the interpreter will check the event queue later (at a clause boundary), and trigger the appropriate trap, if it finds any events in the event queue.
 
+Else, if method of trapping is SIGNAL, then the action taken is this: First set the trap to state OFF, then terminate clause the interpreter was executing at this procedure level. Then it explicitly trigger the condition trap.
 
-                If the trap state is DELAY, the action will depend on the delay-action of that condition. The standard delay-action is to ignore, then nothing further is done. If the delay-action is to queue, the interpreter continues as if the state was ON.
-
-
-                If the state of the trap is ON, an event is generated which describes the incident, and it is queued in the pending event queue. The further action will depend on the method of trapping.
-
-
-                If the method is CALL, the state of the trap will be set to DELAY. Then the normal execution is resumed. The idea is that the interpreter will check the event queue later (at a clause boundary), and trigger the appropriate trap, if it finds any events in the event queue.
-
-
-                Else, if method of trapping is SIGNAL, then the action taken is this: First set the trap to state OFF, then terminate clause the interpreter was executing at this procedure level. Then it explicitly trigger the condition trap.
-
-
-                This process has be shown in the figure above. It shows how an incident makes the interpreter raise a condition, and that the state of the condition trap determines what to do next. The possible outcomes of this process are: to take the default-action; to ignore if delay-action is not to queue; to just queue and the continue execution; or to queue and trigger the trap.
+This process has be shown in the figure above. It shows how an incident makes the interpreter raise a condition, and that the state of the condition trap determines what to do next. The possible outcomes of this process are: to take the default-action; to ignore if delay-action is not to queue; to just queue and the continue execution; or to queue and trigger the trap.
 
 ==== How to Trigger a Condition Trap ====
 
