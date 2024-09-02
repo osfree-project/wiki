@@ -3928,86 +3928,42 @@ Assume a file; '/home/mark/myfile' last changed March 30th 2002 at 15:07:56, wit
 
 
 ==== STRIP(string [,[option] [,char]]) - (ANSI) ====
- Returns string after possibly stripping it of any number of leading and/or trailing characters. The default action is to strip off both leading and trailing blanks. If char (which must be a string containing exactly one character) is specified, that character will be stripped off instead of blanks.
 
-            Inter-word blanks (or chars if defined, that are not leading of trailing) are untouched. If option is specified, it will define what to strip. The possible values for option are:
+Returns string after possibly stripping it of any number of leading and/or trailing characters. The default action is to strip off both leading and trailing blanks. If char (which must be a string containing exactly one character) is specified, that character will be stripped off instead of blanks.
 
-            [L]
+Inter-word blanks (or chars if defined, that are not leading of trailing) are untouched. If option is specified, it will define what to strip. The possible values for option are:
 
-            (Leading) Only strip off leading blanks, or chars if specified.
+[L]
 
-            [T]
+(Leading) Only strip off leading blanks, or chars if specified.
 
-            (Trailing) Only strip off trailing blanks, or chars if specified.
+[T]
 
-            [B]
+(Trailing) Only strip off trailing blanks, or chars if specified.
 
-            (Both) Combine the effect of L and T, that is, strip off both leading and trailing blanks, or
+[B]
 
-            chars if it is specified. This is the default action.
+(Both) Combine the effect of L and T, that is, strip off both leading and trailing blanks, or chars if it is specified. This is the default action.
 
+| STRIP(' Foo bar ') | 'Foo bar' |
+| STRIP(' Foo bar ','L') | 'Foo bar ' |
+| STRIP(' Foo bar ','t') | ' Foo bar' |
+| STRIP(' Foo bar ','Both') | 'Foo bar' |
+| STRIP('0.1234500',,'0') | '.12345' |
+| STRIP('0.1234500 ',,'0') | '.1234500 ' |
 
-            STRIP(' Foo bar ')
-            	
-
-            'Foo bar'
-
-            STRIP(' Foo bar ','L')
-            	
-
-            'Foo bar '
-
-            STRIP(' Foo bar ','t')
-            	
-
-            ' Foo bar'
-
-            STRIP(' Foo bar ','Both')
-            	
-
-            'Foo bar'
-
-            STRIP('0.1234500',,'0')
-            	
-
-            '.12345'
-
-            STRIP('0.1234500 ',,'0')
-            	
-
-            '.1234500 '
 
 ==== SUBSTR(string, start [,length [,padchar]]) - (ANSI) ====
- Returns the substring of string that starts at start , and has the length length . Length defaults to the rest of the string. Start must be a positive whole, while length can be any non-negative whole number.
 
+Returns the substring of string that starts at start , and has the length length . Length defaults to the rest of the string. Start must be a positive whole, while length can be any non-negative whole number.
 
-            It is not an error for start to be larger than the length of string. If length is specified and the sum of length and start minus 1 is greater that the length of string, then the result will be padded with padchars to the specified length. The default value for padchar is the <space> character.
+It is not an error for start to be larger than the length of string. If length is specified and the sum of length and start minus 1 is greater that the length of string, then the result will be padded with padchars to the specified length. The default value for padchar is the <space> character.
 
-
-            SUBSTR('Foo bar',3)
-            	
-
-            'o bar'
-
-            SUBSTR('Foo bar',3,3)
-            	
-
-            'o b'
-
-            SUBSTR('Foo bar',4,6)
-            	
-
-            ' bar '
-
-            SUBSTR('Foo bar',4,6,'*')
-            	
-
-            ' bar**'
-
-            SUBSTR('Foo bar',9,4,'*')
-            	
-
-            '****'
+| SUBSTR('Foo bar',3) | 'o bar' |
+| SUBSTR('Foo bar',3,3) | 'o b' |
+| SUBSTR('Foo bar',4,6) | ' bar ' |
+| SUBSTR('Foo bar',4,6,'*') | %%' bar**'%% |
+| SUBSTR('Foo bar',9,4,'*') | %%'****'%% |
 
 
 ==== SUBWORD( string , start [, length ]) - (ANSI) ====
