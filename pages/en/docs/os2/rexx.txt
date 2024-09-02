@@ -4172,51 +4172,27 @@ ERRORTEXT(100 + errorno)
 
 
 ==== UPPER(string [,start [,length [,pad]]]) – (AREXX/REGINA) ====
- Translates the substring of string that starts at start , and has the length length to upper case. Length defaults to the rest of the string. Start must be a positive whole number, while length can be any
 
-            non-negative whole number. The default value for start is 1 and for length is the length of string.
+Translates the substring of string that starts at start , and has the length length to upper case. Length defaults to the rest of the string. Start must be a positive whole number, while length can be any non-negative whole number. The default value for start is 1 and for length is the length of string.
 
+It is not an error for start to be larger than the length of string. If length is specified and the sum of length and start minus 1 is greater that the length of string, then the result will be padded with padchars to the specified length. The default value for padchar is the <space> character.
 
-            It is not an error for start to be larger than the length of string. If length is specified and the sum of length and start minus 1 is greater that the length of string, then the result will be padded with padchars to the specified length. The default value for padchar is the <space> character.
+If a specific locale is set (via the -l switch), then the string is set to the correct uppercase values based on that locale.
 
+While this BIF is an AREXX BIF, it is not necessary to have OPTIONS AREXX_BIFS set to use it. The optional arguments are Regina extensions.
 
-            If a specific locale is set (via the -l switch), then the string is set to the correct uppercase values based on that locale.
-
-
-            While this BIF is an AREXX BIF, it is not necessary to have OPTIONS AREXX_BIFS set to use it. The optional arguments are Regina extensions.
-
-
-            UPPER('One Fine Day')
-            	
-
-            'ONE FINE DAY'
-
-            UPPER('fred', 2 )
-            	
-
-            'fRED'
-
-            UPPER('fred', 1, 1 )
-            	
-
-            'Fred'
-
-            UPPER('fred',1, 10, '*' )
-            	
-
-            'FRED******'
+| UPPER('One Fine Day') | 'ONE FINE DAY' |
+| UPPER('fred', 2 ) | 'fRED' |
+| UPPER('fred', 1, 1 ) | 'Fred' |
+| UPPER('fred',1, 10, '*' ) | %%'FRED******'%% |
 
 
 ==== USERID() - (REGINA) ====
 
+Returns the name of the current user. A meaningful name will only be returned on those platforms that support multiple users, otherwise an empty string is returned.
 
-            Returns the name of the current user. A meaningful name will only be returned on those platforms that support multiple users, otherwise an empty string is returned.
+| USERID() | 'mark' /* Maybe */ |
 
-
-            USERID()
-            	
-
-            'mark' /* Maybe */
 
 
 ==== VALUE(symbol [,[value], [pool]]) - (ANSI) ====
