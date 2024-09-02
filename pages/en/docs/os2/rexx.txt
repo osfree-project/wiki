@@ -4074,77 +4074,40 @@ Returns the current value of the trace setting. If the string setting is specifi
 | TRACE('?') | 'N' |
 
 ==== TRANSLATE(string [,[tableout] [,[tablein] [,padchar]]]) - (ANSI) ====
- Performs a translation on the characters in string . As a special case, if neither tablein nor tableout is specified, it will translate string from lower case to upper case. Note that this operation may depend on the language chosen, if your interpreter supports national character sets.
 
+Performs a translation on the characters in string . As a special case, if neither tablein nor tableout is specified, it will translate string from lower case to upper case. Note that this operation may depend on the language chosen, if your interpreter supports national character sets.
 
-            Two translation tables might be specified as the strings tablein and tableout. If one or both of the tables are specified, each character in string that exists in tablein is translated to the character in tableout that occupies the same position as the character did in tablein. The tablein defaults to the whole character set (all 256) in numeric sequence, while tableout defaults to an empty set.
+Two translation tables might be specified as the strings tablein and tableout. If one or both of the tables are specified, each character in string that exists in tablein is translated to the character in tableout that occupies the same position as the character did in tablein. The tablein defaults to the whole character set (all 256) in numeric sequence, while tableout defaults to an empty set.
 
-            Characters not in tablein are left unchanged.
+Characters not in tablein are left unchanged.
 
+If tableout is larger than tablein, the extra entries are ignored. If it is smaller than tablein it is padded with padchar to the correct length. Padchar defaults to <space>.
 
-            If tableout is larger than tablein, the extra entries are ignored. If it is smaller than tablein it is padded with padchar to the correct length. Padchar defaults to <space>.
+If a character occurs more than once in tablein, only the first occurrence will matter.
 
-
-            If a character occurs more than once in tablein, only the first occurrence will matter.
-
-
-            TRANSLATE('FooBar')
-            	
-
-            'FOOBAR'
-
-            TRANSLATE('FooBar','ABFORabfor','abforABFOR')
-            	
-
-            'fOObAR'
-
-            TRANSLATE('FooBar','abfor')
-            	
-
-            ' '
-
-            TRANSLATE('FooBar','abfor',,'#')
-            	
-
-            '######'
+| TRANSLATE('FooBar') | 'FOOBAR' |
+| TRANSLATE('FooBar','ABFORabfor','abforABFOR') | 'fOObAR' |
+| TRANSLATE('FooBar','abfor') | ' ' |
+| TRANSLATE('FooBar','abfor',,'#') | %%'######'%% |
 
 
 ==== TRIM(string) - (AREXX) ====
- Removes trailing blanks from the string argument. A more portable option is to use the Trailing option of the STRIP BIF.
 
+Removes trailing blanks from the string argument. A more portable option is to use the Trailing option of the STRIP BIF.
 
-            TRIM(' abc ')
-            	
-
-            ' abc'
+| TRIM(' abc ') | 'abc' |
 
 
 ==== TRUNC(number [,length]) - (ANSI) ====
- Returns number truncated to the number of decimals specified by length . Length defaults to 0 , that is return an whole number with no decimal part.
 
+Returns number truncated to the number of decimals specified by length . Length defaults to 0 , that is return an whole number with no decimal part.
 
-            The decimal point will only be present if the is a non-empty decimal part, i.e. length is non-zero. The number will always be returned in simple form, never exponential form, no matter what the current settings of NUMERIC might be. If length specifies more decimals than number has, extra zeros are appended. If length specifies less decimals than number has, the number is truncated. Note that number is never rounded, except for the rounding that might take place during normalization.
+The decimal point will only be present if the is a non-empty decimal part, i.e. length is non-zero. The number will always be returned in simple form, never exponential form, no matter what the current settings of NUMERIC might be. If length specifies more decimals than number has, extra zeros are appended. If length specifies less decimals than number has, the number is truncated. Note that number is never rounded, except for the rounding that might take place during normalization.
 
-
-            TRUNC(12.34)
-            	
-
-            '12'
-
-            TRUNC(12.99)
-            	
-
-            '12'
-
-            TRUNC(12.34,4)
-            	
-
-            '12.3400'
-
-            TRUNC(12.3456,2)
-            	
-
-            '12.34'
+| TRUNC(12.34) | '12' |
+| TRUNC(12.99) | '12' |
+| TRUNC(12.34,4) | '12.3400' |
+| TRUNC(12.3456,2) | '12.34' |
 
 
 ==== UNAME([option]) - (REGINA) ====
