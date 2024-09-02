@@ -4251,382 +4251,201 @@ Returns the blank delimited word number wordno from the string string . If wordn
 | WORD('To be or not to be',8) | %%''%% |
 
 ==== WORDINDEX(string, wordno) - (ANSI) ====
- Returns the character position of the first character of blank delimited word number wordno in string , which is interpreted as a string of blank delimited words. If number (which must be a positive whole number) refers to a word that does not exist in string , then 0 is returned. See 3.1.6 for characters that delimit a word.
 
+Returns the character position of the first character of blank delimited word number wordno in string , which is interpreted as a string of blank delimited words. If number (which must be a positive whole number) refers to a word that does not exist in string , then 0 is returned. See 3.1.6 for characters that delimit a word.
 
-            WORDINDEX('To be or not to be',3)
-            	
-
-            '7'
-
-            WORDINDEX('To be or not to be',4)
-            	
-
-            '10'
-
-            WORDINDEX('To be or not to be',8)
-            	
-
-            '0'
+| WORDINDEX('To be or not to be',3) | '7' |
+| WORDINDEX('To be or not to be',4) | '10' |
+| WORDINDEX('To be or not to be',8) | '0' |
 
 
 ==== WORDLENGTH(string, wordno) - (ANSI) ====
- Returns the number of characters in blank delimited word number number in string . If number (which must be a positive whole number) refers to an non-existent word, then 0 is returned. Trailing or leading blanks do not count when calculating the length. See 3.1.6 for characters that delimit a word.
 
+Returns the number of characters in blank delimited word number number in string . If number (which must be a positive whole number) refers to an non-existent word, then 0 is returned. Trailing or leading blanks do not count when calculating the length. See 3.1.6 for characters that delimit a word.
 
-            WORDLENGTH('To be or not to be',3)
-            	
-
-            '2'
-
-            WORDLENGTH('To be or not to be',4)
-            	
-
-            '3'
-
-            WORDLENGTH('To be or not to be',0)
-            	
-
-            '0'
+| WORDLENGTH('To be or not to be',3) | '2' |
+| WORDLENGTH('To be or not to be',4) | '3' |
+| WORDLENGTH('To be or not to be',0) | '0' |
 
 
 ==== WORDPOS(phrase, string [,start]) - (ANSI) ====
- Returns the word number in string which indicates at which phrase begins, provided that phrase is a subphrase of string . If not, 0 is returned to indicate that the phrase was not found. A phrase differs from a substring in one significant way; a phrase is a set of words, separated by any number of blanks.
 
+Returns the word number in string which indicates at which phrase begins, provided that phrase is a subphrase of string . If not, 0 is returned to indicate that the phrase was not found. A phrase differs from a substring in one significant way; a phrase is a set of words, separated by any number of blanks.
 
-            For instance, "is a" is a subphrase of "This is a phrase". Notice the different amount of whitespace between "is" and "a".
+For instance, "is a" is a subphrase of "This is a phrase". Notice the different amount of whitespace between "is" and "a".
 
+If start is specified it sets the word in string at which the search starts. The default for start is 1. See 3.1.6 for characters that delimit a word.
 
-            If start is specified it sets the word in string at which the search starts. The default for start is 1. See
-
-            3.1.6 for characters that delimit a word.
-
-
-            WORDPOS('or not','to be or not to be')
-            	
-
-            '3'
-
-            WORDPOS('not to','to be or not to be')
-            	
-
-            '4'
-
-            WORDPOS('to be','to be or not to be')
-            	
-
-            '1'
-
-            WORDPOS('to be','to be or not to be',3)
-            	
-
-            '6'
+| WORDPOS('or not','to be or not to be') | '3' |
+| WORDPOS('not to','to be or not to be') | '4' |
+| WORDPOS('to be','to be or not to be') | '1' |
+| WORDPOS('to be','to be or not to be',3) | '6' |
 
 
 ==== WORDS(string) - (ANSI) ====
- Returns the number of blank delimited words in the string . See 3.1.6 for characters that delimit a word.
 
+Returns the number of blank delimited words in the string . See 3.1.6 for characters that delimit a word.
 
-            WORDS('To be or not to be')
-            	
-
-            '6'
-
-            WORDS('Hello world')
-            	
-
-            '2'
-
-            WORDS('')
-            	
-
-            '0'
+| WORDS('To be or not to be') | '6' |
+| WORDS('Hello world') | '2' |
+| WORDS(%%''%%) | '0' |
 
 ==== WRITECH(file, string) - (AREXX) ====
- Writes the string argument to the given logical file. The returned value is the actual number of characters written.
 
+Writes the string argument to the given logical file. The returned value is the actual number of characters written.
 
-            WRITECH('outfile','Testing')
-            	
-
-            '7'
+| WRITECH('outfile','Testing') | '7' |
 
 
 ==== WRITELN(file, string) - (AREXX) ====
- Writes the string argument to the given logical file with a "newline" appended. The returned value is the actual number of characters written, including the“newline” character(s).
 
+Writes the string argument to the given logical file with a "newline" appended. The returned value is the actual number of characters written, including the“newline” character(s).
 
-            WRITELN('outfile','Testing')
-            	
+| WRITELN('outfile','Testing') | '8' /* Unix */ |
+| WRITELN('outfile','Testing') | '9' /* DOS */ |
 
-            '8' /* Unix */
-
-            WRITELN('outfile','Testing')
-            	
-
-            '9' /* DOS */
 
 
 ==== XRANGE([start] [,end]) - (ANSI) ====
 
+Returns a string that consists of all the characters from start through end, inclusive. The default value for character start is '00'x, while the default value for character end is 'ff'x. Without any parameters, the whole character set in "alphabetic" order is returned. Note that the actual representation of the output from XRANGE() depends on the character set used by your computer.
 
-            Returns a string that consists of all the characters from start through end, inclusive. The default value for character start is '00'x, while the default value for character end is 'ff'x. Without any parameters, the whole character set in "alphabetic" order is returned. Note that the actual representation of the output from XRANGE() depends on the character set used by your computer.
+If the value of start is larger than the value of end, the output will wrap around from 'ff'x to '00'x. If start or end is not a string containing exactly one character, an error is reported.
 
-
-            If the value of start is larger than the value of end, the output will wrap around from 'ff'x to
-
-            '00'x. If start or end is not a string containing exactly one character, an error is reported.
-
-            XRANGE('A','J')
-            	
-
-            'ABCDEFGHIJ'
-
-            XRANGE('FC'x)
-            	
-
-            'FCFDFEFF'x
-
-            XRANGE(,'05'x)
-            	
-
-            '000102030405'x
-
-            XRANGE('FD'x,'04'x)
-            	
-
-            'FDFEFF0001020304'x
+| XRANGE('A','J') | 'ABCDEFGHIJ' |
+| XRANGE('FC'x) | 'FCFDFEFF'x |
+| XRANGE(,'05'x) | '000102030405'x |
+| XRANGE('FD'x,'04'x) | 'FDFEFF0001020304'x |
 
 
 ==== X2B(hexstring) - (ANSI) ====
- Translate hexstring to a binary string. Each hexadecimal digits in hexstring will be translated to four binary digits in the result. There will be no blanks in the result.
 
+Translate hexstring to a binary string. Each hexadecimal digits in hexstring will be translated to four binary digits in the result. There will be no blanks in the result.
 
-            X2B('')
-            	
-
-            ''
-
-            X2B('466f6f 426172')
-            	
-
-            '0100011001101111011011110100001001100001
-
-            01110010'
-
-            X2B('46 6f 6f')
-            	
-
-            '010001100110111101101111'
+| X2B(%%''%%) | %%''%% |
+| X2B('466f6f 426172') | '010001100110111101101111010000100110000101110010' |
+| X2B('46 6f 6f') | '010001100110111101101111' |
 
 
 ==== X2C(hexstring) - (ANSI) ====
- Returns the (packed) string representation of hexstring . The hexstring will be converted bytewise, and blanks may optionally be inserted into the hexstring between pairs or hexadecimal digits, to divide the number into groups and improve readability. All groups must have an even number of hexadecimal digits, except the first group. If the first group has an odd number of hexadecimal digits, it is padded with an extra leading zero before conversion.
 
+Returns the (packed) string representation of hexstring . The hexstring will be converted bytewise, and blanks may optionally be inserted into the hexstring between pairs or hexadecimal digits, to divide the number into groups and improve readability. All groups must have an even number of hexadecimal digits, except the first group. If the first group has an odd number of hexadecimal digits, it is padded with an extra leading zero before conversion.
 
-            X2C('')
-            	
-
-            ''
-
-            X2C('466f6f 426172')
-            	
-
-            'FooBar' /* on ASCII machines */
-
-            X2C('46 6f 6f')
-            	
-
-            'Foo' /* on ASCII machines */
+| X2C(%%''%%) | %%''%% |
+| X2C('466f6f 426172') | 'FooBar' /* on ASCII machines */ |
+| X2C('46 6f 6f') | 'Foo' /* on ASCII machines */ |
 
 ==== X2D(hexstring [,length]) - (ANSI) ====
- Returns a whole number that is the decimal representation of hexstring . If length is specified, then hexstring is interpreted as a two's complement hexadecimal number consisting of the number rightmost hexadecimal numerals in hexstring . If hexstring is shorter than number , it is padded to the left with <NUL> characters (that is: '00'x ).
 
+Returns a whole number that is the decimal representation of hexstring . If length is specified, then hexstring is interpreted as a two's complement hexadecimal number consisting of the number rightmost hexadecimal numerals in hexstring . If hexstring is shorter than number , it is padded to the left with <NUL> characters (that is: '00'x ).
 
-            If length is not specified, hexstring will always be interpreted as an unsigned number. Else, it is interpreted as an signed number, and the leftmost bit in hexstring decides the sign.
+If length is not specified, hexstring will always be interpreted as an unsigned number. Else, it is interpreted as an signed number, and the leftmost bit in hexstring decides the sign.
 
+If it is not possible to express the final result as a whole number under the current settings of NUMERIC DIGITS, and STRICT_ANSI option is in effect, error 40.35 is reported. The number to be returned will not be stored in the internal representation of the built-in library, so size restrictions on whole numbers that generally applies for built-in functions, do not apply in this case.
 
-            If it is not possible to express the final result as a whole number under the current settings of NUMERIC DIGITS, and STRICT_ANSI option is in effect, error 40.35 is reported. The number to be returned will not be stored in the internal representation of the built-in library, so size restrictions on whole numbers that generally applies for built-in functions, do not apply in this case.
+| X2D('03 24') | '792' |
+| X2D('0310') | '784' |
+| X2D('ffff') | '65535' |
+| X2D('ffff',5) | '65535' |
+| X2D('ffff',4) | '-1' |
+| X2D('ff80',3) | '-128' |
+| X2D('12345',3) | '837' |
 
-
-            X2D('03 24')
-            	
-
-            '792'
-
-            X2D('0310')
-            	
-
-            '784'
-
-            X2D('ffff')
-            	
-
-            '65535'
-
-            X2D('ffff',5)
-            	
-
-            '65535'
-
-            X2D('ffff',4)
-            	
-
-            '-1'
-
-            X2D('ff80',3)
-            	
-
-            '-128'
-
-            X2D('12345',3)
-            	
-
-            '837'
 ====== Implementation specific documentation for Regina ======
 
 ===== Deviations from the Standard =====
 
+For those built-in functions where the last parameter can be omitted, Regina allows the last comma to be specified, even when the last parameter itself has been omitted.
 
-                    For those built-in functions where the last parameter can be omitted, Regina allows the last comma to be specified, even when the last parameter itself has been omitted.
+The error messages are slightly redefined in two ways. Firstly, some of the have a slightly more definite text, and secondly, some new error messages have been defined.
 
+The environments available are described in chapter [not yet written].
 
-                    The error messages are slightly redefined in two ways. Firstly, some of the have a slightly more definite text, and secondly, some new error messages have been defined.
+Parameter calling
 
+Stream I/O
 
-                    The environments available are described in chapter [not yet written].
+Conditions
 
+National character sets
 
-                    Parameter calling
+Blanks
 
+Stacks have the following extra functionality: DROPBUF(), DESBUF() and MAKEBUF() and BUFTYPE().
 
-                    Stream I/O
+Random()
 
+Sourceline
 
-                    Conditions
+Time
 
-
-                    National character sets
-
-
-                    Blanks
-
-
-                    Stacks have the following extra functionality: DROPBUF(), DESBUF() and MAKEBUF() and
-
-                    BUFTYPE().
-
-
-                    Random()
-
-
-                    Sourceline
-
-
-                    Time
-
-
-                    Character sets
+Character sets
 
 ===== Interpreter Internal Debugging Functions =====
 
 ==== ALLOCATED([ option ]) ====
- Returns the amount of dynamic storage allocated, measured in bytes. This is the memory allocated by the malloc() call, and does not concern stack space or static variables.
 
+Returns the amount of dynamic storage allocated, measured in bytes. This is the memory allocated by the malloc() call, and does not concern stack space or static variables.
 
-                As parameter it may take an option, which is one of the single characters:
+As parameter it may take an option, which is one of the single characters:
 
+[A]
 
-                [A]
+It will return a string that is the number of bytes of dynamic memory currently allocated by the interpreter.
 
+[C]
 
-                [C]
+Returns a number that is the number of bytes of dynamic memory that is currently in use (i.e. not leaked).
 
+[L]
 
-                [L]
+Returns the number of bytes of dynamic memory that is supposed to have been leaked.
 
-                It will return a string that is the number of bytes of dynamic memory currently allocated by the interpreter.
+[S]
 
+This is the default value if you do not specify an option. Returns a string that is nicely formatted and contains all the other three options, with labels. The format of this string is:
 
-                Returns a number that is the number of bytes of dynamic memory that is currently in use (i.e. not leaked).
+"Memory: Allocated=XXX, Current=YYY, Leaked=ZZZ".
 
-
-                Returns the number of bytes of dynamic memory that is supposed to have been leaked.
-
-                [S]
-
-                This is the default value if you do not specify an option. Returns a string that is nicely formatted and contains all the other three options, with labels. The format of this string is:
-
-
-                "Memory: Allocated=XXX, Current=YYY, Leaked=ZZZ".
-
-
-                This function will only be available if the interpreter was compiled with the TRACEMEM
-
-                preprocessor macro defined.
+This function will only be available if the interpreter was compiled with the TRACEMEM preprocessor macro defined.
 
 
 ==== DUMPTREE() ====
 
-
-                Prints out the internal parse tree for the Rexx program currently being executed. This output is not
-
-                very interesting unless you have good knowledge of the interpreter's internal structures.
+Prints out the internal parse tree for the Rexx program currently being executed. This output is not very interesting unless you have good knowledge of the interpreter's internal structures.
 
 
 ==== DUMPVARS() ====
 
-
-                This routine dumps a list of all the variables currently defined. It also gives a lot of information
-
-                which is rather uninteresting for most users.
+This routine dumps a list of all the variables currently defined. It also gives a lot of information which is rather uninteresting for most users.
 
 
 ==== LISTLEAKED() ====
 
+List out all memory that has leaked from the interpreter. As a return value, the total memory that has been listed is returned. There are several option to this function:
 
-                List out all memory that has leaked from the interpreter. As a return value, the total memory that has
+[N]
 
-                been listed is returned. There are several option to this function:
+[A]
 
+[L]
 
-                [N]
-
-
-                [A]
-
-
-                [L]
-
-                Do not list anything, just calculate the memory.
+Do not list anything, just calculate the memory.
 
 
 ==== TRACEBACK() ====
 
+List all memory allocations currently in use, not only that which has been marked as leaked. Only list the memory that has been marked as leaked. This is the default option.
 
-                List all memory allocations currently in use, not only that which has been marked as leaked. Only list the memory that has been marked as leaked. This is the default option.
-
-
-                Prints out a traceback. This is the same routine which is called when the interpreter encounters an error. Nice for debugging, but not really useful for any other purposes.
+Prints out a traceback. This is the same routine which is called when the interpreter encounters an error. Nice for debugging, but not really useful for any other purposes.
 
 ===== Rexx VMS Interface Functions =====
 
-
-
-                F$CVSI F$CVTIME F$CVUI F$DIRECTORY F$ELEMENT F$EXTRACT F$FAO
-
-                F$FILE_ATTRIBUTES F$GETDVI
-
-                F$GETJPI F$GETQUI F$GETSYI F$IDENTIFIER F$INTEGER F$LENGTH F$LOCATE F$LOGICAL F$MESSAGE F$MODE F$PARSE F$PID F$PRIVILEGE F$PROCESS F$SEARCH
-
-                F$SETPRV F$STRING F$TIME F$TRNLNM F$TYPE
-
-                F$USER
+F$CVSI F$CVTIME F$CVUI F$DIRECTORY F$ELEMENT F$EXTRACT F$FAO F$FILE_ATTRIBUTES F$GETDVI F$GETJPI F$GETQUI F$GETSYI F$IDENTIFIER F$INTEGER F$LENGTH F$LOCATE F$LOGICAL F$MESSAGE F$MODE F$PARSE F$PID F$PRIVILEGE F$PROCESS F$SEARCH F$SETPRV F$STRING F$TIME F$TRNLNM F$TYPE F$USER
 
 ===== RexxUtil for Regina =====
 
-
-    Regina 3.5 and above provides Patrick McPhee's Regutil external function package as part of the Regina distribution. The documentation for Regutil is supplied in a separate document.
+Regina 3.5 and above provides Patrick McPhee's Regutil external function package as part of the Regina distribution. The documentation for Regutil is supplied in a separate document.
 
 ====== Conditions ======
 
