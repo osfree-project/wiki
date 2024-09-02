@@ -3660,108 +3660,49 @@ Only the Files option is valid on all platforms. All other values for option are
 
 
 ==== SIGN(number) - (ANSI) ====
- Returns either -1 , 0 or 1 , depending on whether number is negative, zero, or positive, respectively. Number must be a valid Rexx number, and are normalized according to the current settings of NUMERIC before comparison.
 
+Returns either -1 , 0 or 1 , depending on whether number is negative, zero, or positive, respectively. Number must be a valid Rexx number, and are normalized according to the current settings of NUMERIC before comparison.
 
-            SIGN(-12)
-            	
-
-            '-1'
-
-            SIGN(42)
-            	
-
-            '1'
-
-            SIGN(-0.00000012)
-            	
-
-            '-1'
-
-            SIGN(0.000)
-            	
-
-            '0'
-
-            SIGN(-0.0)
-            	
-
-            '0'
+| SIGN(-12) | '-1' |
+| SIGN(42) | '1' |
+| SIGN(-0.00000012) | '-1' |
+| SIGN(0.000) | '0' |
+| SIGN(-0.0) | '0' |
 
 
 ==== SLEEP(seconds) - (CMS) ====
 
+Pauses for the supplied number of seconds.
 
-            Pauses for the supplied number of seconds.
-
-            SLEEP(5)
-            	
-
-            /* sleeps for 5 seconds */
+| SLEEP(5) | /* sleeps for 5 seconds */ |
 
 
 ==== SOURCELINE([lineno]) - (ANSI) ====
 
+If lineno (which must be a positive whole number) is specified, this function will return a string containing a copy of the Rexx script source code on that line. If lineno is greater than the number of lines in the Rexx script source code, an error is reported.
 
-            If lineno (which must be a positive whole number) is specified, this function will return a string containing a copy of the Rexx script source code on that line. If lineno is greater than the number of lines in the Rexx script source code, an error is reported.
+If lineno is unspecified, the number of lines in the Rexx script source code is returned.
 
+Note that from Rexx language level 3.50 to 4.00, the requirements of this function were relaxed to simplify execution when the source code is not available (compiled or pre-parsed Rexx). An implementation might make two simplifications: to return 0 if called without a parameter. If so, any call to SOURCELINE() with a parameter will generate an error. The other simplification is to return a nullstring for any call to SOURCELINE() with a legal parameter.
 
-            If lineno is unspecified, the number of lines in the Rexx script source code is returned.
+Note that the code executed by the INTERPRET clause can not be retrieved by SOURCELINE().
 
-
-            Note that from Rexx language level 3.50 to 4.00, the requirements of this function were relaxed to simplify execution when the source code is not available (compiled or pre-parsed Rexx). An implementation might make two simplifications: to return 0 if called without a parameter. If so, any call to SOURCELINE() with a parameter will generate an error. The other simplification is to return a nullstring for any call to SOURCELINE() with a legal parameter.
-
-
-            Note that the code executed by the INTERPRET clause can not be retrieved by SOURCELINE().
-
-
-            SOURCELINE()
-            	
-
-            '42' /*Maybe */
-
-            SOURCELINE(1)
-            	
-
-            '/* This Rexx script will ... */'
-
-            SOURCELINE(23)
-            	
-
-            'var = 12' /*Maybe */'
+| SOURCELINE() | '42' /*Maybe */ |
+| SOURCELINE(1) | '/* This Rexx script will ... */' |
+| SOURCELINE(23) | 'var = 12' /*Maybe */' |
 
 
 ==== SPACE(string[, [length] [,padchar]]) - (ANSI) ====
- With only one parameter string is returned, stripped of any trailing or leading blanks, and any consecutive blanks inside string translated to a single <space> character (or padchar if specified).
 
+With only one parameter string is returned, stripped of any trailing or leading blanks, and any consecutive blanks inside string translated to a single <space> character (or padchar if specified).
 
-            Length must be a non-negative whole number. If specified, consecutive blanks within string are replaced by exactly length instances of <space> (or padchar if specified). However, padchar will only be used in the output string, in the input string, blanks will still be the "magic" characters. As a consequence, if there exist any padchars in string, they will remain untouched and will not affect the spacing.
+Length must be a non-negative whole number. If specified, consecutive blanks within string are replaced by exactly length instances of <space> (or padchar if specified). However, padchar will only be used in the output string, in the input string, blanks will still be the "magic" characters. As a consequence, if there exist any padchars in string, they will remain untouched and will not affect the spacing.
 
-
-            SPACE(' Foo bar ')
-            	
-
-            'Foo bar'
-
-            SPACE(' Foo bar ',2)
-            	
-
-            'Foo bar'
-
-            SPACE(' Foo bar ',,'*')
-            	
-
-            'Foo*bar'
-
-            SPACE('Foo bar',3, '-')
-            	
-
-            'Foo---bar'
-
-            SPACE('Foo bar',,'o')
-            	
-
-            'Fooobar'
+| SPACE(' Foo bar ') | 'Foo bar' |
+| SPACE(' Foo bar ',2) | 'Foo bar' |
+| SPACE(' Foo bar ',,'*') | 'Foo*bar' |
+| SPACE('Foo bar',3, '-') | 'Foo---bar' |
+| SPACE('Foo bar',,'o') | 'Fooobar' |
 
 
 ==== STATE(streamid) - (CMS) ====
@@ -3769,24 +3710,15 @@ Only the Files option is valid on all platforms. All other values for option are
 
 
 ==== STORAGE([address], [string], [length], [pad]) - (AREXX) ====
- Calling STORAGE() with no arguments returns the available system memory. If the address argument is given, it must be a 4-byte string,and the function copies data from the optional string into the indicated memory area. The length parameter specifies the maximum number of bytes to be
 
-            copied,and defaults to the length of the string. If the specified length is longer than the string,the remaining area is filled with the pad character or nulls('00'x.)
+Calling STORAGE() with no arguments returns the available system memory. If the address argument is given, it must be a 4-byte string,and the function copies data from the optional string into the indicated memory area. The length parameter specifies the maximum number of bytes to be copied,and defaults to the length of the string. If the specified length is longer than the string,the remaining area is filled with the pad character or nulls('00'x.)
 
-            The returned value is the previous contents of the memory area. This can be used in a subsequent call to restore the original contents.
+The returned value is the previous contents of the memory area. This can be used in a subsequent call to restore the original contents.
 
-            Caution is advised in using this function. Any area of memory can be overwritten,possibly causing a system crash.
+Caution is advised in using this function. Any area of memory can be overwritten,possibly causing a system crash.
 
-
-            STORAGE()
-            	
-
-            '248400'
-
-            STORAGE('0004 0000'x,'The answer')
-            	
-
-            'question' /* maybe */
+| STORAGE() | '248400' |
+| STORAGE('0004 0000'x,'The answer') | 'question' /* maybe */ |
 
 
 ==== STREAM(streamid[,option[,command]]) (ANSI) ====
