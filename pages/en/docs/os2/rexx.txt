@@ -3546,208 +3546,117 @@ See also READCH()
 
 ==== REVERSE(string) - (ANSI) ====
 
+Returns a string of the same length as string, but having the order of the characters reversed.
 
-            Returns a string of the same length as string, but having the order of the characters reversed.
-
-
-            REVERSE('FooBar')
-            	
-
-            'raBooF'
-
-            REVERSE(' Foo Bar')
-            	
-
-            'raB ooF '
-
-            REVERSE('3.14159')
-            	
-
-            '95141.3'
+| REVERSE('FooBar') | 'raBooF' |
+| REVERSE(' Foo Bar') | 'raB ooF ' |
+| REVERSE('3.14159') | '95141.3' |
 
 
 ==== RIGHT(string, length[,padchar]) - (ANSI) ====
 
+Returns the length rightmost characters in string. If length (which must be a non-negative whole number) is greater than the length of string the result is padded on the left with the necessary number of padchars to make it as long as length specifies. Padchar defaults to <space>.
 
-            Returns the length rightmost characters in string. If length (which must be a non-negative whole number) is greater than the length of string the result is padded on the left with the necessary number of padchars to make it as long as length specifies. Padchar defaults to <space>.
-
-
-            RIGHT('Foo bar',5)
-            	
-
-            'o bar'
-
-            RIGHT('Foo bar',3)
-            	
-
-            'bar'
-
-            RIGHT('Foo bar',10)
-            	
-
-            ' Foo bar'
-
-            RIGHT('Foo bar',10,'*')
-            	
-
-            ''***Foo bar'
+| RIGHT('Foo bar',5) | 'o bar' |
+| RIGHT('Foo bar',3) | 'bar' |
+| RIGHT('Foo bar',10) | ' Foo bar' |
+| RIGHT('Foo bar',10,'*') | %%''***Foo bar'%% |
 
 
 ==== RXFUNCADD(externalname, library, internalname) - (SAA) ====
 
+Registers the internalname in library as an external function callable from with the current program by referencing externalname. library is a Rexx external function package in the format of shared library or dynamic link library (DLL). library and internalname are case-sensitive. library is the base name of the shared library or dynamic link library. On platforms that support DLLs, the full name of the external function package is library.dll. On Unix environments, the full name of the shared library is lib library.a (AIX), lib library.sl (HPUX) or lib library.so (most other Unixes).
 
-            Registers the internalname in library as an external function callable from with the current program by referencing externalname. library is a Rexx external function package in the format of shared library or dynamic link library (DLL). library and internalname are case-sensitive. library is the base name of the shared library or dynamic link library. On platforms that support DLLs, the full name of the external function package is library.dll. On Unix environments, the full name of the shared library is lib library.a (AIX), lib library.sl (HPUX) or lib library.so (most other Unixes).
-
-            External function packages are searched for in the location where shared libraries or DLLs are normally found by the operating system. DLLs are normally located in directories specified in the PATH or LIBPATH environment variables. Shared libraries are normally searched for in LD_LIBRARY_PATH or LIBPATH environment variables.
+External function packages are searched for in the location where shared libraries or DLLs are normally found by the operating system. DLLs are normally located in directories specified in the PATH or LIBPATH environment variables. Shared libraries are normally searched for in LD_LIBRARY_PATH or LIBPATH environment variables.
 
 
-            This function returns 0 if the function is registered successfully; non-zero otherwise.
+This function returns 0 if the function is registered successfully; non-zero otherwise.
 
-            0
-
-            RXFUNCADD('SQLLoadFuncs','rexxsql','SQLLoadFuncs')
+| RXFUNCADD('SQLLoadFuncs','rexxsql','SQLLoadFuncs') | 0 |
 
 
 ==== RXFUNCDROP(externalname) - (SAA) ====
 
+Removes the specified externalname from the list of external functions available to be called. This function returns 0 if the function was successfully dropped.
 
-            Removes the specified externalname from the list of external functions available to be called. This
-
-            function returns 0 if the function was successfully dropped.
-
-
-            0
-
-            RXFUNCDROP('SQLLoadFuncs')
+| RXFUNCDROP('SQLLoadFuncs') | 0 |
 
 
 ==== RXFUNCERRMSG() - (REGINA) ====
 
+Returns the error message associated with the last call to RXFUNCADD. This function is generally used immediately after a failed call to RXFUNCADD to determine why it failed.
 
-            Returns the error message associated with the last call to RXFUNCADD. This function is generally
+| RXFUNCERRMSG() | 'rexxsql.dll not found' /* Maybe */ |
 
-            used immediately after a failed call to RXFUNCADD to determine why it failed.
-
-
-            RXFUNCERRMSG()
-            	
-
-            'rexxsql.dll not found' /* Maybe */
 
 
 ==== RXFUNCQUERY(externalname) - (SAA) ====
 
+Returns 0 if the externalname is already registered, or 1 if the externalname is not registered.
 
-            Returns 0 if the externalname is already registered, or 1 if the externalname is not registered.
-
-
-            RXFUNCQUERY('SQLLoadFuncs')
-            	
-
-            1 /* Maybe */
+| RXFUNCQUERY('SQLLoadFuncs') | 1 /* Maybe */ |
 
 
 ==== RXQUEUE(command [,queue|timeout]) - (OS/2) ‌ ====
 
+This function interfaces to the Regina internal or external queue mechanism. If OPTIONS INTERNAL_QUEUES is set, all operations on queues are internal to the interpreter.
 
-            This function interfaces to the Regina internal or external queue mechanism. If OPTIONS INTERNAL_QUEUES is set, all operations on queues are internal to the interpreter.
+[C]
 
-
-            [C]
-
-
-            [D]
+(Create) Request the interpreter or rxstack to create a new named queue. If the queue name already exists, a new unique queue name is generated. The name of the queue that was created (either the specified queue or the system-generated queue) is returned. All queue names are case-insensitive; i.e. the queue name FRED and fred are the same.
 
 
-            [G]
+[D]
 
+(Delete) Deletes the specified queue. The default queue; SESSION becomes the current queue.
 
-            [S]
+[G]
 
+(Get) Returns the current queue name.
 
-            [T]
+[S]
 
-            (Create) Request the interpreter or rxstack to create a new named queue. If the queue name already exists, a new unique queue name is generated. The name of the queue that was created (either the specified queue or the system-generated queue) is returned. All queue names are case-insensitive; i.e. the queue name FRED and fred are the same.
+(Set) Sets the current queue name to that queue specified. The previously current queue is returned. It is valid to set a queue name to a queue that has not been created.
 
+[T]
 
-            (Delete) Deletes the specified queue. The default queue; SESSION becomes the current queue.
+(Timeout) Sets the timeout period (in milliseconds) to wait for something to appear on the current queue (as set by RXQUEUE('S', queue) ). By default, when a line is read from a queue with a PULL command, it either returns immediately with the top line in the stack, or it will wait for a line to be entered by the user via the process' stdin. If 0 is specified, Regina will wait forever for a line to be ready on the stack.
 
+An error will result if an attempt is made to set a timeout on an internal queue; timeouts only make sense on external queues (ie those with a '@' in them that use the rxstack process).
 
-            (Get) Returns the current queue name.
+| RXQUEUE('Create') | 'S0738280' |
+| RXQUEUE('Create','fred') | 'FRED' |
+| RXQUEUE('Create','fred') | 'S88381' |
+| RXQUEUE('Get') | 'S88381' |
+| RXQUEUE('Delete','fred') | 'SESSION' |
+| RXQUEUE('Set','fred') | 'SESSION' |
+| RXQUEUE('Timeout',1000) | '0' |
 
-
-            (Set) Sets the current queue name to that queue specified. The previously current queue is returned. It is valid to set a queue name to a queue that has not been created.
-
-
-            (Timeout) Sets the timeout period (in milliseconds) to wait for something to appear on the current queue (as set by RXQUEUE('S', queue) ). By default, when a line is read from a queue with a PULL command, it either returns immediately with the top line in the stack, or it will wait for a line to be entered by the user via the process' stdin. If 0 is specified, Regina will wait forever for a line to be ready on the stack.
-
-            An error will result if an attempt is made to set a timeout on an internal queue; timeouts only make sense on external queues (ie those with a '@' in them that use the rxstack process).
-
-            RXQUEUE('Create')
-            	
-
-            'S0738280'
-
-            RXQUEUE('Create','fred')
-            	
-
-            'FRED'
-
-            RXQUEUE('Create', 'fred')
-            	
-
-            'S88381'
-
-            RXQUEUE('Get')
-            	
-
-            'S88381'
-
-            RXQUEUE('Delete','fred')
-            	
-
-            'SESSION'
-
-            RXQUEUE('Set','fred')
-            	
-
-            'SESSION'
-
-            RXQUEUE('Timeout',1000)
-            	
-
-            '0'
 
 
 ==== SEEK(file, offset, ['Begin'|'Current'|'End') - (AREXX) ====
- Moves to a new position in the given logical file, specified as an offset from an anchor position. The default anchor is Current. The returned value is the new position relative to the start of the file.
 
+Moves to a new position in the given logical file, specified as an offset from an anchor position. The default anchor is Current. The returned value is the new position relative to the start of the file.
 
-            SEEK('infile',10,'B')
-            	
-
-            '10'
-
-            SEEK('infile',0,'E')
-            	
-
-            '356' /* file length */
+| SEEK('infile',10,'B') | '10' |
+| SEEK('infile',0,'E') | '356' /* file length */ |
 
 
 ==== SHOW(option, [name], [pad]) - (AREXX) ====
- Returns the names in the resource list specified by the option argument, or tests to see whether an entry with the specified name is available. The currently implemented options keywords are Clip, Files, Libraries, and Ports, which are described below.
 
-            Clip. Examines the names in the Clip List.
+Returns the names in the resource list specified by the option argument, or tests to see whether an entry with the specified name is available. The currently implemented options keywords are Clip, Files, Libraries, and Ports, which are described below.
 
-            Files. Examines the names of the currently open logical file names.
+Clip. Examines the names in the Clip List.
 
-            Libraries. Examines the names in the Library List,which are either function libraries or function hosts.
+Files. Examines the names of the currently open logical file names.
 
-            Ports. Examine the names in the system Ports List.
+Libraries. Examines the names in the Library List,which are either function libraries or function hosts.
 
-            If the name argument is omitted, the function returns a string with the resource names separated by a blank space or the pad character,if one was supplied. If the name argument is given, the returned boolean value indicates whether the name was found in the resource list. The name entries are case-sensitive.
+Ports. Examine the names in the system Ports List.
 
-            Only the Files option is valid on all platforms. All other values for option are only applicable to the Amiga and AROS ports.
+If the name argument is omitted, the function returns a string with the resource names separated by a blank space or the pad character,if one was supplied. If the name argument is given, the returned boolean value indicates whether the name was found in the resource list. The name entries are case-sensitive.
+
+Only the Files option is valid on all platforms. All other values for option are only applicable to the Amiga and AROS ports.
 
 
 ==== SIGN(number) - (ANSI) ====
