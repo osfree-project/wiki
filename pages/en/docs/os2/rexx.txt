@@ -4112,88 +4112,47 @@ The decimal point will only be present if the is a non-empty decimal part, i.e. 
 
 ==== UNAME([option]) - (REGINA) ====
 
+Returns details about the current platform. This function is basically a wrapper for the Unix command; uname. Valid values for option are:
 
-            Returns details about the current platform. This function is basically a wrapper for the Unix command; uname. Valid values for option are:
+[A]
 
-            [A]
+(All) The default. Returns a string with the all following option values. Equivalent to: UNAME('S') UNAME('N') UNAME('R') UNAME('V') UNAME('M').
 
+[S]
 
-            [S]
+(System) The name of the operating system.
 
+[N]
 
-            [N]
+(Nodename) The name of the machine.
 
+[R]
 
-            [R]
+(Release) The release of the operating system. 
 
+[V]
 
-            [V]
+(Version) The version of the operating system.
 
+[M]
 
-            [M]
+(Machine) The machine's hardware type.
 
+Example running Linux Redhat 6.1 on 'boojum', Athalon K7
 
-            (All) The default. Returns a string with the all following option values. Equivalent to: UNAME('S') UNAME('N') UNAME('R') UNAME('V') UNAME('M').
+| UNAME('S') | Linux |
+| UNAME('N') | boojum |
+| UNAME('R') | 2.2.12.-20 |
+| UNAME('V') | #1 Mon Sep 27 10:40:35 EDT 1999 |
+| UNAME('M') | i686 |
 
+Example running Windows NT 4.0 on 'VM_NT', Intel Pentium
 
-            (System) The name of the operating system. (Nodename) The name of the machine. (Release) The release of the operating system. (Version) The version of the operating system. (Machine) The machine's hardware type.
-
-            Example running Linux Redhat 6.1 on 'boojum', Athalon K7
-
-
-            UNAME('S')
-            	
-
-            Linux
-
-            UNAME('N')
-            	
-
-            boojum
-
-            UNAME('R')
-            	
-
-            2.2.12.-20
-
-            UNAME('V')
-            	
-
-            #1 Mon Sep 27 10:40:35 EDT 1999
-
-            UNAME('M')
-            	
-
-            i686
-
-
-            Example running Windows NT 4.0 on 'VM_NT', Intel Pentium
-
-
-            UNAME('S')
-            	
-
-            WINNT
-
-            UNAME('N')
-            	
-
-            VM_NT
-
-            UNAME('R')
-            	
-
-            0
-
-            UNAME('V')
-            	
-
-            4
-
-            UNAME('M')
-            	
-
-            i586
+| UNAME('S') | WINNT |
+| UNAME('N') | VM_NT |
+| UNAME('R') | 0 |
+| UNAME('V') | 4 |
+| UNAME('M') | i586 |
 
 
 ==== UNIXERROR(errorno) - (REGINA) ====
