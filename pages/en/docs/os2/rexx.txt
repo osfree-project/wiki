@@ -3722,296 +3722,209 @@ Caution is advised in using this function. Any area of memory can be overwritten
 
 
 ==== STREAM(streamid[,option[,command]]) (ANSI) ====
- This function was added to Rexx in language level 4.00. It provides a general mechanism for doing operations on streams. However, very little is specified about how the internal of this function should work, so you should consult the implementation specific documentation for more information.
 
+This function was added to Rexx in language level 4.00. It provides a general mechanism for doing operations on streams. However, very little is specified about how the internal of this function should work, so you should consult the implementation specific documentation for more information.
 
-            The streamid identifies a stream. The actual contents and format of this string is implementation dependent.
+The streamid identifies a stream. The actual contents and format of this string is implementation dependent.
 
+The option selects one of several operations which STREAM() is to perform. The possible operations are:
 
-            The option selects one of several operations which STREAM() is to perform. The possible operations are:
+[C]
 
+(Command) If this option is selected, a third parameter must be present, command, which is the command to be performed on the stream. The contents of command is implementation dependent. For Regina, the valid commands follow. Commands consist of one or more space separated words.
 
-            [C]
+[D]
 
+(Description) Returns a description of the state of streamid. The return value is implementation dependent.
 
-            [D]
+[S]
 
+(Status) Returns a state which describes the state of streamid. The standard requires that it is one of the following: ERROR, NOTREADY, READY and UNKNOWN. The meaning of these are described in the chapter; Stream Input and Output.
 
-            [S]
+Note that the options Description and Status really have the same function, but that Status in general is implementation independent, while Description is implementation dependent. The command specifies the command to be performed on streamid. The possible operations are:
 
-            (Command) If this option is selected, a third parameter must be present, command, which is the command to be performed on the stream. The contents of command is implementation dependent. For Regina, the valid commands follow. Commands consist of one or more space separated words.
+[READ]
 
+Open for read access. The file pointer will be positioned at the start of the file, and only read operations are allowed. This command is Regina-specific; use OPEN READ in its place.
 
-            (Description) Returns a description of the state of streamid. The return value is implementation dependent.
+[WRITE]
 
+Open for write access and position the current write position at the end of the file. An error is returned if it was not possible to get appropriate access. This command is Regina-specific; use OPEN WRITE in its place.
 
-            (Status) Returns a state which describes the state of streamid. The standard requires that it is one of the following: ERROR, NOTREADY, READY and UNKNOWN. The meaning of these are described in the chapter; Stream Input and Output.
+[APPEND]
 
+Open for append access and position the current write position at the end of the file. An error is returned if it was not possible to get appropriate access. This command is Regina-specific; use OPEN WRITE APPEND in its place.
 
-            Note that the options Description and Status really have the same function, but that Status
+[UPDATE]
 
-            in general is implementation independent, while Description is implementation dependent. The command specifies the command to be performed on streamid. The possible operations are:
+Open for append access and position the current write position at the end of the file. An error is returned if it was not possible to get appropriate access. This command is Regina-specific; use OPEN BOTH in its place.
 
-            [READ]
+[CREATE]
 
-            Open for read access. The file pointer will be positioned at the start of the file, and only read operations are allowed. This command is Regina-specific; use OPEN READ in its place.
+Open for write access and position the current write position at the start of the file. An error is returned if it was not possible to get appropriate access. This command is Regina-specific; use OPEN WRITE REPLACE in its place.
 
-            [WRITE]
+[CLOSE]
 
-            Open for write access and position the current write position at the end of the file. An error is returned if it was not possible to get appropriate access. This command is Regina-specific; use OPEN WRITE in its place.
+Close the stream, flushing any pending writes. An error is returned if it was not possible to get appropriate access.
 
-            [APPEND]
+[FLUSH]
 
-            Open for append access and position the current write position at the end of the file. An error is returned if it was not possible to get appropriate access. This command is Regina-specific; use OPEN WRITE APPEND in its place.
+Flush any pending write to the stream. An error is returned if it was not possible to get appropriate access.
 
-            [UPDATE]
+[STATUS]
 
-            Open for append access and position the current write position at the end of the file. An error is returned if it was not possible to get appropriate access. This command is Regina-specific; use OPEN BOTH in its place.
+Returns status information about the stream in human readable form that Regina stores about the stream.
 
-            [CREATE]
+[FSTAT]
 
-            Open for write access and position the current write position at the start of the file. An error is returned if it was not possible to get appropriate access. This command is Regina-specific; use OPEN WRITE REPLACE in its place.
+Returns status information from the operating system about the stream. This consists of at least 8 words:
 
-            [CLOSE]
+Device Number Under DOS, Win32, OS/2, this represents the disk number, with 0 being Drive A.
 
-            Close the stream, flushing any pending writes. An error is returned if it was not possible to get appropriate access.
+Inode Number Under DOS, Win32, OS/2, this is zero.
 
-            [FLUSH]
+Permissions User/Group/Other permissions mask. Consists of 3 octal numbers with 4 representing read, 2 representing write, and 1 representing execute. Therefore a value of 750 is read/write/execute for user, read/execute for group, and no permissions for other.
 
-            Flush any pending write to the stream. An error is returned if it was not possible to get appropriate access.
+Number Links Under DOS, Win32, OS/2, this will always be 1.
 
-            [STATUS]
+User Name The owner of the stream. Under DOS, Win32, OS/2, this will always be “USER”.
 
-            Returns status information about the stream in human readable form that Regina stores about the stream.
+Group Name The group owner of the stream. Under DOS, Win32, OS/2, this will always be “GROUP”.
 
-            [FSTAT]
+Size Size of stream in bytes.
 
-            Returns status information from the operating system about the stream. This consists of at least 8 words:
+Stream Type One or more of the following:
 
-            Device Number Under DOS, Win32, OS/2, this represents the disk number, with 0 being Drive A.
+RegularFile a normal file.
 
-            Inode Number Under DOS, Win32, OS/2, this is zero.
+Directory a directory. BlockSpecial a block special file. FIFO usually a pipe.
 
-            Permissions User/Group/Other permissions mask. Consists of 3 octal numbers with 4 representing read, 2 representing write, and 1 representing execute. Therefore a value of 750 is read/write/execute for user, read/execute for group, and no permissions for other.
+SymbolicLink a symbolic link. If the stream is a symbolic link, the the details returned are details about the link, not the file the link points to.
 
-            Number Links Under DOS, Win32, OS/2, this will always be 1.
+Socket a socket
 
-            User Name The owner of the stream. Under DOS, Win32, OS/2, this will always be “USER”.
+SpecialName a named special file.
 
-            Group Name The group owner of the stream. Under DOS, Win32, OS/2, this will always be “GROUP”.
+CharacterSpecial a character special file.
 
-            Size Size of stream in bytes.
+[RESET]
 
-            Stream Type One or more of the following:
+Resets the stream after an error. Only streams that are resettable can be reset.
 
-            RegularFile a normal file.
+[READABLE]
 
-            Directory a directory. BlockSpecial a block special file. FIFO usually a pipe.
+Returns 1 if the stream is readable by the user or 0 otherwise.
 
-            SymbolicLink a symbolic link. If the stream is a symbolic link, the the details returned are details about the link, not the file the link points to.
+[WRITABLE]
 
-            Socket a socket
+Returns 1 if the stream is writable by the user or 0 otherwise.
 
-            SpecialName a named special file.
+[EXECUTABLE]
 
-            CharacterSpecial a character special file.
+Returns 1 if the stream is executable by the user or 0 otherwise.
 
-            [RESET]
+[QUERY]
 
-            Resets the stream after an error. Only streams that are resettable can be reset.
+Returns information about the named stream. If the named stream does not exists, then the empty string is returned. This command is further broken down into the following subcommands:
 
-            [READABLE]
+DATETIME returns the date and time of last modification of the stream in
 
-            Returns 1 if the stream is readable by the user or 0 otherwise.
+Rexx US Date format; MM-DD-YY HH:MM:SS.
 
-            [WRITABLE]
+EXISTS returns the fully-qualified file name of the specified stream.
 
-            Returns 1 if the stream is writable by the user or 0 otherwise.
+HANDLE returns the internal file handle of the stream. This will only return a valid value if the stream was opened explicitly or implicitly by Regina.
 
-            [EXECUTABLE]
+SEEK READ CHAR returns the current read position of the open stream expressed in characters.
 
-            Returns 1 if the stream is executable by the user or 0 otherwise.
+SEEK READ LINE returns the current read position of the open stream expressed in lines.
 
-            [QUERY]
+SEEK WRITE CHAR returns the current write position of the open stream expressed in characters.
 
-            Returns information about the named stream. If the named stream does not exists, then the empty string is returned. This command is further broken down into the following subcommands:
+SEEK WRITE LINE returns the current write position of the open stream expressed in lines.
 
-            DATETIME returns the date and time of last modification of the stream in
+SEEK SYS returns the current read position of the open stream as the operating reports it. This is expressed in characters.
 
-            Rexx US Date format; MM-DD-YY HH:MM:SS.
+SIZE returns the size, expressed in characters, of the persistent stream.
 
-            EXISTS returns the fully-qualified file name of the specified stream.
+STREAMTYPE returns the type of the stream. One of TRANSIENT,
 
-            HANDLE returns the internal file handle of the stream. This will only return a valid value if the stream was opened explicitly or implicitly by Regina.
+PERSISTENT or UNKNOWN is returned.
 
-            SEEK READ CHAR returns the current read position of the open stream expressed in characters.
+TIMESTAMP returns the date and time of last modification of the stream. The format of the string returned is YYYY-MM-DD HH:MM:SS.
 
-            SEEK READ LINE returns the current read position of the open stream expressed in lines.
+CREATETIME returns the date and time the stream was created in time_t format. If the file system does not support create time, this will return the stream’s last modification time.
 
-            SEEK WRITE CHAR returns the current write position of the open stream expressed in characters.
+MODIFYTIME returns the date and time the stream was last modified in time_t format.
 
-            SEEK WRITE LINE returns the current write position of the open stream expressed in lines.
+ACCESSTIME returns the date and time the stream was last accessed in time_t format. If the file system does not support access time, this will return the stream’s last modification time.
 
-            SEEK SYS returns the current read position of the open stream as the operating reports it. This is expressed in characters.
+You can use POSITION in place of SEEK in the above options.
 
-            SIZE returns the size, expressed in characters, of the persistent stream.
+[OPEN]
 
-            STREAMTYPE returns the type of the stream. One of TRANSIENT,
+Opens the stream in the optional mode specified. If no optional mode is specified, the default is OPEN BOTH .
 
-            PERSISTENT or UNKNOWN is returned.
+READ The file pointer will be positioned at the start of the file, and only read operations are allowed.
 
-            TIMESTAMP returns the date and time of last modification of the stream. The format of the string returned is YYYY-MM-DD HH:MM:SS.
+WRITE Open for write access and position the current write pointer at the end of the file. On platforms where it is not possible to open a file for write without also allowing reads, the read pointer will be positioned at the start of the file. An error is returned if it was not possible to get appropriate access.
 
-            CREATETIME returns the date and time the stream was created in time_t format. If the file system does not support create time, this will return the stream’s last modification time.
+BOTH Open for read and write access. Position the current read pointer at the start of the file, and the current write pointer at the end of the file. An error is returned if it was not possible to get appropriate access.
 
-            MODIFYTIME returns the date and time the stream was last modified in time_t
+WRITE APPEND Open for write access and position the write pointer at the end of the file. On platforms where it is not possible to open a file for write without also allowing reads, the read pointer will be positioned at the start of the file.
 
-            format.
+WRITE REPLACE Open for write access and position the current write position at the start of the file. On platforms where it is not possible to open a file for write without also allowing reads, the read pointer will be positioned at the start of the file. This operation will clear the contents of the file. An error is returned if it was not possible to get appropriate access.
 
-            ACCESSTIME returns the date and time the stream was last accessed in time_t format. If the file system does not support access time, this will return the stream’s last modification time.
+BOTH APPEND Open for read and write access. Position the current read position at the start of the file, and the current write position at the end of the file. An error is returned if it was not possible to get appropriate access.
 
-            You can use POSITION in place of SEEK in the above options.
+BOTH REPLACE Open for read and write access. Position both the current read and write pointers at the start of the file. An error is returned if it was not possible to get appropriate access.
 
-            [OPEN]
+[SEEK position READ|WRITE [CHAR|LINE]]
 
-            Opens the stream in the optional mode specified. If no optional mode is specified, the default is OPEN BOTH .
+Positions the file's read or write pointer in the file to the specified position. SEEK is a synonym for POSITION.
 
-            READ The file pointer will be positioned at the start of the file, and only read operations are allowed.
+position A position can be of the following forms. [relative]offset.
 
-            WRITE Open for write access and position the current write pointer at
+relative can be one of:
 
-            the end of the file. On platforms where it is not possible to open a file for write without also allowing reads, the read pointer will be positioned at the start of the file. An error is returned if it was not possible to get appropriate access.
+%%=%% The file pointer is moved to the specified offset relative to the start of the file. This is the default.
 
-            BOTH Open for read and write access. Position the current read pointer at the start of the file, and the current write pointer at the end of the file. An error is returned if it was not possible to get appropriate access.
+%%<%% The file pointer is moved to the specified offset relative to the end of the file.
 
-            WRITE APPEND Open for write access and position the write pointer at the end of the file. On platforms where it is not possible to open a file for write without also allowing reads, the read pointer will be positioned at the start of the file.
+%%-%% The file pointer is moved backwards relative to the current position.
 
-            WRITE REPLACE Open for write access and position the current write position at the start of the file. On platforms where it is not possible to open a file for write without also allowing reads, the read pointer will be positioned at the start of the file. This operation will
+%%+%% The file pointer is moved forwards relative to the current position.
 
-            clear the contents of the file. An error is returned if it was not possible to get appropriate access.
+offset is a positive whole number.
 
-            BOTH APPEND Open for read and write access. Position the current read position at the start of the file, and the current write position at the end of the file. An error is returned if it was not possible to get appropriate access.
+READ The read file pointer will be positioned.
 
-            BOTH REPLACE Open for read and write access. Position both the current read and write pointers at the start of the file. An error is returned if it was not possible to get appropriate access.
+WRITE The write file pointer is positioned.
 
-            [SEEK position READ|WRITE [CHAR|LINE]]
+CHAR The offset specified in position above is in terms of characters.
 
-            Positions the file's read or write pointer in the file to the specified position. SEEK is a synonym for POSITION .
+LINE The offset specified in position above is in terms of lines.
 
-            position A position can be of the following forms. [relative]offset.
+Assume a file; '/home/mark/myfile' last changed March 30th 2002 at 15:07:56, with 100 lines, each line 10 characters long, and the following command executed in sequence.
 
-            relative can be one of:
-
-            = The file pointer is moved to the specified offset
-
-            relative to the start of the file. This is the
-
-            default.
-
-            < The file pointer is moved to the specified offset
-
-            relative to the end of the file.
-
-            - The file pointer is moved backwards relative to the current position.
-
-            + The file pointer is moved forwards relative to the current position.
-
-
-            offset is a positive whole number.
-
-            READ The read file pointer will be positioned.
-
-            WRITE The write file pointer is positioned.
-
-            CHAR The offset specified in position above is in terms of characters.
-
-            LINE The offset specified in position above is in terms of lines.
-
-
-            Assume a file; '/home/mark/myfile' last changed March 30th 2002 at 15:07:56, with 100 lines, each line 10 characters long, and the following command executed in sequence.
-
-            STREAM('myfile','C','QUERY EXISTS')
-            	
-
-            '/home/mark/myfile'
-
-            STREAM('myfile','C','QUERY SIZE')
-            	
-
-            1100
-
-            STREAM('myfile','C','QUERY TIMESTAMP')
-            	
-
-            2002-03-30 15:07:56
-
-            STREAM('myfile','C','QUERY DATETIME')
-            	
-
-            03-30-02 15:07:56
-
-            STREAM('myfile','D')
-            	
-
-
-            STREAM('myfile','S')
-            	
-
-            UNKNOWN
-
-            STREAM('myfile','C','QUERY SEEK READ')
-            	
-
-
-            STREAM('myfile','C','OPEN READ')
-            	
-
-            READY:
-
-            STREAM('myfile','D')
-            	
-
-
-            STREAM('myfile','S')
-            	
-
-            READY
-
-            STREAM('myfile','C','QUERY SEEK READ')
-            	
-
-            1
-
-            STREAM('myfile','C','CLOSE')
-            	
-
-            UNKNOWN
-
-            STREAM('myfile','C','STATUS')
-            	
-
-
-            STREAM('myfile','C','FSTAT')
-            	
-
-            773 35006 064 1 mark
-
-            mark 1100 RegularFile
-
-            STREAM('myfile','C','READABLE')
-            	
-
-            1
-
-            STREAM('myfile','C','WRITABLE')
-            	
-
-            1
-
-            STREAM('myfile','C','EXECUTABLE')
-            	
-
-            0
+| STREAM('myfile','C','QUERY EXISTS') | '/home/mark/myfile' |
+| STREAM('myfile','C','QUERY SIZE') | 1100 |
+| STREAM('myfile','C','QUERY TIMESTAMP') | 2002-03-30 15:07:56 |
+| STREAM('myfile','C','QUERY DATETIME') | 03-30-02 15:07:56 |
+| STREAM('myfile','D') | |
+| STREAM('myfile','S') | UNKNOWN |
+| STREAM('myfile','C','QUERY SEEK READ') | |
+| STREAM('myfile','C','OPEN READ') | READY: |
+| STREAM('myfile','D') | |
+| STREAM('myfile','S') | READY |
+| STREAM('myfile','C','QUERY SEEK READ') | 1 |
+| STREAM('myfile','C','CLOSE') | UNKNOWN |
+| STREAM('myfile','C','STATUS') | |
+| STREAM('myfile','C','FSTAT') | 773 35006 064 1 mark |
+| | mark 1100 RegularFile |
+| STREAM('myfile','C','READABLE') | 1 |
+| STREAM('myfile','C','WRITABLE') | 1 |
+| STREAM('myfile','C','EXECUTABLE') | 0 |
 
 
 ==== STRIP(string [,[option] [,char]]) - (ANSI) ====
