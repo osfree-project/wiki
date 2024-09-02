@@ -3991,177 +3991,87 @@ Watch out for the effect of "double expansion". string is interpreted as an expr
 | SYMBOL('.Foo->bar') | 'BAD' |
 
 ==== TIME([option_out [,time [,option_in]]]) - (ANSI) ====
- Returns a string containing information about the local time. To get the time in a particular format, an option_out can be specified. The default option_out is Normal . The meaning of the possible options are:
 
+Returns a string containing information about the local time. To get the time in a particular format, an option_out can be specified. The default option_out is Normal . The meaning of the possible options are:
 
-            [C]
+[C]
 
+(Civil) Returns the time in civil format. The return value might be "hh:mmXX", where XX are either am or pm. The hh part will be stripped of any leading zeros, and will be in the range 1-12 inclusive. (ANSI)
 
-            [E]
+[E]
 
+(Elapsed) Returns the time elapsed in seconds since the internal stopwatch was started. The result will have leading zeros if the result is less than zero. The output will be a floating point number with six digits after the decimal point. (ANSI)
 
-            [H]
+[H]
 
+(Hours) Returns the number of complete hours that have passed since last midnight in the form "hh". The output will have no leading zeros, and will be in the range 0-23. (ANSI)
 
-            [J]
+[J]
 
+(Job) Returns the number of seconds of CPU time the currently running process has currently used. The result will have leading zeros if the result is less than zero, and will have 6 decimal places. (Regina Extension)
 
-            [L]
+[L]
 
+(Long) Returns the exact time, down to the microsecond. This is called the long format. The output might be "hh:mm:ss.mmmmmm". Be aware that most computers do not have a clock of that accuracy, so the actual granularity you can expect, will be about a few milliseconds. The hh, mm and ss parts will be identical to what is returned by the options H, M and S respectively, except that each part will have leading zeros as indicated by the format. (ANSI)
 
-            [M]
+[M]
 
+(Minutes) Returns the number of complete minutes since midnight, in a format having no leading spaces or zeros. (ANSI)
 
-            [N]
+[N]
 
+(Normal) The output format is "hh:mm:ss", and is padded with zeros if needed. The hh, mm and ss will contain the hours, minutes and seconds, respectively. Each part will be padded with leading zeros to make it double-digit. (ANSI)
 
-            [O]
+[O]
 
+(Offset) Returns the number of microseconds between UTC time and local time. Where local daylight savings is in effect, this offset may be adjusted by the addition of 1 hour. (Not all systems reliably provide dayight savings time indication). This option was added with the ANSI Standard. (ANSI)
 
-            [R]
+[R]
 
+(Reset) Returns the value of the internal stopwatch just like the E option, and using the same format. In addition, it will reset the stopwatch to zero after its contents has been read. (ANSI)
 
-            [S]
+[S]
 
+(Seconds) Returns the number of complete seconds since midnight, in a format having no leading spaces or zeros. (ANSI)
 
-            [T]
+[T]
 
-            (Civil) Returns the time in civil format. The return value might be "hh:mmXX", where XX are either am or pm. The hh part will be stripped of any leading zeros, and will be in the range 1-12 inclusive. (ANSI)
+(time_t) Returns the current UTC date/time in UNIX time_t format. time_t is the number of seconds since January 1st 1970. It always represents the UTC date/time, so any conversion from another time format (which is always assumed to be local time) will result in a time_t value offset by time zone. (Regina Extension)
 
 
-            (Elapsed) Returns the time elapsed in seconds since the internal stopwatch was started. The result will have leading zeros if the result is less than zero. The output will be a floating point number with six digits after the decimal point. (ANSI)
+Note that the time is never rounded, only truncated. As shown in the examples below, the seconds do not get rounded upwards, even though the decimal part implies that they are closer to 59 than to 58. The same applies for the minutes, which are closer to 33 than to 32, but is truncated to 32. None of the formats will have leading or trailing spaces.
 
+Assuming that the time is exactly 14:32:58.987654 on March 30th 2002, the following will be true:
 
-            (Hours) Returns the number of complete hours that have passed since last midnight in the form "hh". The output will have no leading zeros, and will be in the range 0-23. (ANSI)
+| TIME('C') | '2:32pm' |
+| TIME('E') | '0.01200' /* Maybe */ |
+| TIME('H') | '14' |
+| TIME('L') | '14:32:58.987654' |
+| TIME('M') | '872' |
+| TIME('N') | '14:32:58' |
+| TIME('R') | '0.430221' /* Maybe */ |
+| TIME('S') | '52378' |
+| TIME('O') | 36000000000 /* East Coast Aus */ |
+| TIME('J) | 5.342000 /* Maybe */ |
 
+If the time option is specified, the function provides for time conversions. The optional option_in specifies the format in which time is supplied. The possible values for option_in are: CHLMNST. The default value for option_in is N.
 
-            (Job) Returns the number of seconds of CPU time the currently running process has currently used. The result will have leading zeros if the result is less than zero, and will have 6 decimal places. (Regina Extension)
+When a time is converted to format T, the returned value is the input time for the current date.
 
+| TIME('C','11:27:21') | '11:27am' |
+| TIME('N','11:27am','C') | '11:27:00' |
+| TIME('T') | 1256475220 /* Maybe */ |
 
-            (Long) Returns the exact time, down to the microsecond. This is called the long format. The output might be "hh:mm:ss.mmmmmm". Be aware that most computers do not have a clock of that accuracy, so the actual granularity you can expect, will be about a few milliseconds. The hh, mm and ss parts will be identical to what is returned by the options H, M and S respectively, except that each part will have leading zeros as indicated by the format. (ANSI)
-
-
-            (Minutes) Returns the number of complete minutes since midnight, in a format having no leading spaces or zeros. (ANSI)
-
-
-            (Normal) The output format is "hh:mm:ss", and is padded with zeros if needed. The hh, mm and ss will contain the hours, minutes and seconds, respectively. Each part will be padded with leading zeros to make it double-digit. (ANSI)
-
-
-            (Offset) Returns the number of microseconds between UTC time and local time. Where local daylight savings is in effect, this offset may be adjusted by the addition of 1 hour. (Not all systems reliably provide dayight savings time indication). This option was added with the ANSI Standard. (ANSI)
-
-
-            (Reset) Returns the value of the internal stopwatch just like the E option, and using the same format. In addition, it will reset the stopwatch to zero after its contents has been read. (ANSI)
-
-
-            (Seconds) Returns the number of complete seconds since midnight, in a format having no leading spaces or zeros. (ANSI)
-
-
-            (time_t) Returns the current UTC date/time in UNIX time_t format. time_t is the number of
-
-            seconds since January 1st 1970. It always represents the UTC date/time, so any conversion from another time format (which is always assumed to be local time) will result in a time_t value offset by time zone. (Regina Extension)
-
-
-            Note that the time is never rounded, only truncated. As shown in the examples below, the seconds do not get rounded upwards, even though the decimal part implies that they are closer to 59 than to
-
-            58. The same applies for the minutes, which are closer to 33 than to 32, but is truncated to 32. None of the formats will have leading or trailing spaces.
-
-
-            Assuming that the time is exactly 14:32:58.987654 on March 30th 2002, the following will be true:
-
-
-            TIME('C')
-            	
-
-            '2:32pm'
-
-            TIME('E')
-            	
-
-            '0.01200' /* Maybe */
-
-            TIME('H')
-            	
-
-            '14'
-
-            TIME('L')
-            	
-
-            '14:32:58.987654'
-
-            TIME('M')
-            	
-
-            '872'
-
-            TIME('N')
-            	
-
-            '14:32:58'
-
-            TIME('R')
-            	
-
-            '0.430221' /* Maybe */
-
-            TIME('S')
-            	
-
-            '52378'
-
-            TIME('O')
-            	
-
-            36000000000 /* East Coast Aus */
-
-            TIME('J)
-            	
-
-            5.342000 /* Maybe */
-
-
-            If the time option is specified, the function provides for time conversions. The optional option_in specifies the format in which time is supplied. The possible values for option_in are: CHLMNST. The default value for option_in is N.
-
-            When a time is converted to format T, the returned value is the input time for the current date.
-
-
-            TIME('C','11:27:21')
-            	
-
-            '11:27am'
-
-            TIME('N','11:27am','C')
-            	
-
-            '11:27:00'
-
-            TIME('T')
-            	
-
-            1256475220 /* Maybe */
-
-
-            The time conversion capability of the TIME BIF was introduced with the ANSI standard.
+The time conversion capability of the TIME BIF was introduced with the ANSI standard.
 
 
 ==== TRACE([setting]) - (ANSI) ====
- Returns the current value of the trace setting. If the string setting is specified, it will be used as the new setting for tracing, after the old value have be recorded for the return value. Note that the setting is not an option, but may be any of the trace settings that can be specified to the clause TRACE , except that the numeric variant is not allowed with TRACE() . In practice, this can be a word, of which only the first letter counts, optionally preceded by a question mark.
 
+Returns the current value of the trace setting. If the string setting is specified, it will be used as the new setting for tracing, after the old value have be recorded for the return value. Note that the setting is not an option, but may be any of the trace settings that can be specified to the clause TRACE , except that the numeric variant is not allowed with TRACE() . In practice, this can be a word, of which only the first letter counts, optionally preceded by a question mark.
 
-            TRACE()
-            	
-
-            'C' /* Maybe */
-
-            TRACE('N')
-            	
-
-            'C'
-
-            TRACE('?')
-            	
-
-            'N'
+| TRACE() | 'C' /* Maybe */ |
+| TRACE('N') | 'C' |
+| TRACE('?') | 'N' |
 
 ==== TRANSLATE(string [,[tableout] [,[tablein] [,padchar]]]) - (ANSI) ====
  Performs a translation on the characters in string . As a special case, if neither tablein nor tableout is specified, it will translate string from lower case to upper case. Note that this operation may depend on the language chosen, if your interpreter supports national character sets.
