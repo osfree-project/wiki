@@ -3493,105 +3493,55 @@ Returns the number of lines currently in the external data queue (the "stack"). 
 
 ==== RANDOM([min] [,[max] [,seed]]) - (ANSI) ====
 
+Returns a pseudo-random whole number. If called with only the first parameter, the first format will be used, and the number returned will be in the range 0 to the value of the first parameter, inclusive. Then the parameter max must be a non-negative whole number, not greater than 100000.
 
-            Returns a pseudo-random whole number. If called with only the first parameter, the first format will be used, and the number returned will be in the range 0 to the value of the first parameter, inclusive. Then the parameter max must be a non-negative whole number, not greater than 100000.
+If called with more than one parameter, or with one parameter, which is not the first, the second format will be used. Then min and max must be non-negative whole numbers, and max can not be less than min, and the difference max - min can not be more than 100000. If one or both of them is unspecified, the default for min is 0, and the default for max is 999.
 
+If seed is specified; (it must be a non-negative whole number) you may control which numbers the pseudo-random algorithm will generate. If you do not specify it, it will be set to some "random" value at the first call to RANDOM() (typically a function of the time). When specifying seed, it will effect the result of the current call to RANDOM().
 
-            If called with more than one parameter, or with one parameter, which is not the first, the second format will be used. Then min and max must be non-negative whole numbers, and max can not be less than min, and the difference max - min can not be more than 100000. If one or both of them is unspecified, the default for min is 0, and the default for max is 999.
+The standard does not require that a specific method is to be used for generating the pseudo-random numbers, so the reproducibility can only be guaranteed as long as you use the same implementation on the same machine, using the same operating system. If any of these change, a given seed may produce a different sequence of pseudo-random numbers.
 
+Note that depending on the implementation, some numbers might have a slightly increased chance of turning up than other. If the Rexx implementation uses a 32 bit pseudo-random generator provided by the operating system and returns the remainder after integer dividing it by the difference of min and max, low numbers are favored if the 2^32 is not a multiple of that difference. Supposing that the call is RANDOM(100000) and the pseudo-random generator generates any 32 bit number with equal chance, the change of getting a number in the range 0-67296 is about 0.000010000076, while the changes of getting a number in the range 67297-100000 is about 0.000009999843.
 
-            If seed is specified; (it must be a non-negative whole number) you may control which numbers the pseudo-random algorithm will generate. If you do not specify it, it will be set to some "random" value at the first call to RANDOM() (typically a function of the time). When specifying seed, it will
+A much worse problem with pseudo-random numbers are that they sometimes do not tend to be random at all. Under one operating system (name withheld to protect the guilty), the system's pseudo-random routine returned numbers where the last binary digit alternated between 0 and 1. On that machine, RANDOM(1) would return the series 0, 1, 0, 1, 0, 1, 0, 1 etc., which is hardly random at all. You should therefore never trust the pseudo-random routine to give you random numbers.
 
-            effect the result of the current call to RANDOM().
+Note that due to the special syntax, there is a big difference between using RANDOM(10) and RANDOM(10,). The former will give a pseudo-random number in the range 0-10, while the latter will give a pseudo-random number in the range 10-999.
 
+Also note that it is not clear whether the standard allows min to be equal to max, so to program compatible, make sure that max is always larger than min.
 
-            The standard does not require that a specific method is to be used for generating the pseudo-random numbers, so the reproducibility can only be guaranteed as long as you use the same implementation on the same machine, using the same operating system. If any of these change, a given seed may produce a different sequence of pseudo-random numbers.
-
-
-            Note that depending on the implementation, some numbers might have a slightly increased chance of turning up than other. If the Rexx implementation uses a 32 bit pseudo-random generator provided by the operating system and returns the remainder after integer dividing it by the difference of min and max, low numbers are favored if the 2^32 is not a multiple of that difference. Supposing that the call is RANDOM(100000) and the pseudo-random generator generates any 32 bit number with equal chance, the change of getting a number in the range 0-67296 is about 0.000010000076, while the changes of getting a number in the range 67297-100000 is about 0.000009999843.
-
-
-            A much worse problem with pseudo-random numbers are that they sometimes do not tend to be random at all. Under one operating system (name withheld to protect the guilty), the system's pseudo-random routine returned numbers where the last binary digit alternated between 0 and 1. On that machine, RANDOM(1) would return the series 0, 1, 0, 1, 0, 1, 0, 1 etc., which is hardly random at all. You should therefore never trust the pseudo-random routine to give you random numbers.
-
-
-            Note that due to the special syntax, there is a big difference between using RANDOM(10) and RANDOM(10,). The former will give a pseudo-random number in the range 0-10, while the latter will give a pseudo-random number in the range 10-999.
-
-
-            Also note that it is not clear whether the standard allows min to be equal to max, so to program compatible, make sure that max is always larger than min.
-
-
-            RANDOM()
-            	
-
-            '123' /*Between 0 and 999 */
-
-            RANDOM(10)
-            	
-
-            '5' /*Between 0 and 10 */
-
-            RANDOM(,10)
-            	
-
-            '3' /*Between 0 and 10 */
-
-            RANDOM(20,30)
-            	
-
-            '27' /*Between 20 and 30 */
-
-            RANDOM(,,12345)
-            	
-
-            '765' /*Between 0 and 999, and sets seed */
+| RANDOM() | '123' /*Between 0 and 999 */ |
+| RANDOM(10) |  '5' /*Between 0 and 10 */ |
+| RANDOM(,10) | '3' /*Between 0 and 10 */ |
+| RANDOM(20,30) | '27' /*Between 20 and 30 */ |
+| RANDOM(,,12345) | '765' /*Between 0 and 999, and sets seed */ |
 
 
 ==== RANDU([seed]) - (AREXX) ====
 
+Returns a uniformly-distributed pseudo random number between 0 and 1. The number of digits of precision in the result is always equal to the current NUMERIC DIGITS setting. With the choice of suitable scaling and translation values, RANDU()can be used to generate pseudo random numbers on an arbitrary interval.
 
-            Returns a uniformly-distributed pseudo random number between 0 and 1. The number of digits of precision in the result is always equal to the current NUMERIC DIGITS setting. With the choice of suitable scaling and translation values, RANDU()can be used to generate pseudo random numbers on an arbitrary interval.
+The optional seed argument is used to initialize the internal state of the random number generator. See also RANDOM()
 
-            The optional seed argument is used to initialize the internal state of the random number generator. See also RANDOM()
-
-
-            RANDU()
-            	
-
-            '0.371902021'
-
-            RANDU(45)
-            	
-
-            '0.873' /*numeric digits 3*/
+| RANDU() | '0.371902021' |
+| RANDU(45) | '0.873' /*numeric digits 3*/ |
 
 ==== READCH(file, length) - (AREXX) ====
 
+Reads the specified number of characters from the given logical file and returns them. The length of the returned string is the actual number of characters read,and may be less than the requested length if, for example, the end-of-file was reached.
 
-            Reads the specified number of characters from the given logical file and returns them. The length of
+See also READLN()
 
-            the returned string is the actual number of characters read,and may be less than the requested length if, for example, the end-of-file was reached.
-
-            See also READLN()
-
-
-            READCH('infile',10)
-            	
-
-            'a string o'
+| READCH('infile',10) | 'a string o' |
 
 
 ==== READLN(file) - (AREXX) ====
 
+Reads characters from the given logical file into a string until a "newline" character is found. The returned string does not include the "newline".
 
-            Reads characters from the given logical file into a string until a "newline" character is found. The returned string does not include the "newline".
-
-            See also READCH()
+See also READCH()
 
 
-            READLN('infile')
-            	
-
-            'a string of chars'
+| READLN('infile') | 'a string of chars' |
 
 
 ==== REVERSE(string) - (ANSI) ====
