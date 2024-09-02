@@ -3967,135 +3967,28 @@ It is not an error for start to be larger than the length of string. If length i
 
 
 ==== SUBWORD( string , start [, length ]) - (ANSI) ====
- Returns the part of string that starts at blank delimited word start (which must be a positive whole number). If length (which must be a non-negative whole number) is specified, that number of words are returned. The default value for length is the rest of the string.
 
+Returns the part of string that starts at blank delimited word start (which must be a positive whole number). If length (which must be a non-negative whole number) is specified, that number of words are returned. The default value for length is the rest of the string.
 
-            It is not an error to specify length to refer to more words than string contains, or for start and length together to specify more words than string holds. The result string will be stripped of any leading and trailing blanks, but inter-word blanks will be preserved as is.
+It is not an error to specify length to refer to more words than string contains, or for start and length together to specify more words than string holds. The result string will be stripped of any leading and trailing blanks, but inter-word blanks will be preserved as is.
 
-
-            SUBWORD('To
-            	
-
-            be
-            	
-
-            or
-            	
-
-            not
-            	
-
-            to
-            	
-
-            be',4)
-            	
-
-            'not
-            	
-
-            to be'
-
-            SUBWORD('To
-            	
-
-            be
-            	
-
-            or
-            	
-
-            not
-            	
-
-            to
-            	
-
-            be',4,2)
-            	
-
-            'not
-            	
-
-            to'
-
-            SUBWORD('To
-            	
-
-            be
-            	
-
-            or
-            	
-
-            not
-            	
-
-            to
-            	
-
-            be',4,5)
-            	
-
-            'not
-            	
-
-            to be'
-
-            SUBWORD('To
-            	
-
-            be
-            	
-
-            or
-            	
-
-            not
-            	
-
-            to
-            	
-
-            be',1,3)
-            	
-
-            'To be or'
+| SUBWORD('To be or not to be',4) | 'not to be' |
+| SUBWORD('To be or not to be',4,2) | 'not to' |
+| SUBWORD('To be or not to be',4,5) | 'not to be' |
+| SUBWORD('To be or not to be',1,3) | 'To be or' |
 
 
 ==== SYMBOL(string) - (ANSI) ====
 
+Checks if the string is a valid symbol (a positive number or a possible variable name), and returns a three letter string indicating the result of that check. If string is a symbol, and names a currently set variable, VAR is returned, if string is a legal symbol name, but has not a been given a value (or is a constant symbol, which can not be used as a variable name), LIT is returned to signify that it is a literal. Else, if string is not a legal symbol name the string BAD is returned.
 
-            Checks if the string is a valid symbol (a positive number or a possible variable name), and returns a three letter string indicating the result of that check. If string is a symbol, and names a currently set variable, VAR is returned, if string is a legal symbol name, but has not a been given a value (or is a constant symbol, which can not be used as a variable name), LIT is returned to signify that it is a literal. Else, if string is not a legal symbol name the string BAD is returned.
+Watch out for the effect of "double expansion". string is interpreted as an expression evaluating naming the symbol to be checked, so you might have to quote the parameter.
 
-
-            Watch out for the effect of "double expansion". string is interpreted as an expression evaluating naming the symbol to be checked, so you might have to quote the parameter.
-
-
-            SYMBOL('Foobar')
-            	
-
-            'VAR' /* Maybe */
-
-            SYMBOL('Foo bar')
-            	
-
-            'BAD'
-
-            SYMBOL('Foo.Foo bar')
-            	
-
-            'BAD'
-
-            SYMBOL('3.14')
-            	
-
-            'LIT'
-
-            SYMBOL('.Foo->bar')
-            	
-
-            'BAD'
+| SYMBOL('Foobar') | 'VAR' /* Maybe */ |
+| SYMBOL('Foo bar') | 'BAD' |
+| SYMBOL('Foo.Foo bar') | 'BAD' |
+| SYMBOL('3.14') | 'LIT' |
+| SYMBOL('.Foo->bar') | 'BAD' |
 
 ==== TIME([option_out [,time [,option_in]]]) - (ANSI) ====
  Returns a string containing information about the local time. To get the time in a particular format, an option_out can be specified. The default option_out is Normal . The meaning of the possible options are:
