@@ -4449,145 +4449,126 @@ Regina 3.5 and above provides Patrick McPhee's Regutil external function package
 
 ====== Conditions ======
 
-
-
 In this chapter, the Rexx concept of "conditions" is described. Conditions allow the programmer to handle abnormal control flow, and enable him to assign special pieces of Rexx code to be executed in case of certain incidences.
 
+In the first section the concept of conditions is explained.
 
-    In the first section the concept of conditions is explained.
+Then, there is a description of how a standard condition in Rexx would work, if it existed.
 
+In the third section, all the existing conditions in Rexx are presented, and the differences compared to the standard condition described in the previous section are listed.
 
-    Then, there is a description of how a standard condition in Rexx would work, if it existed.
-
-
-    In the third section, all the existing conditions in Rexx are presented, and the differences compared to the standard condition described in the previous section are listed.
-
-
-    The fourth sections contains a collections of random notes on the conditions in Rexx.
+The fourth sections contains a collections of random notes on the conditions in Rexx.
 
 
-    The last section describes differences, extensions and peculiarities in Regina on the of subject conditions, and the lists specific behavior.
+The last section describes differences, extensions and peculiarities in Regina on the of subject conditions, and the lists specific behavior.
 
 
 ===== What are Conditions =====
 
-
-        In this section, the concept of "conditions" are explained: What they are, how they work, and what they mean in programming.
+In this section, the concept of "conditions" are explained: What they are, how they work, and what they mean in programming.
 
 ==== What Do We Need Conditions for? ====
 
 ==== Terminology ====
 
+First, let's look at the terminology used in this chapter. If you don't get a thorough understanding of these terms, you will probably not understand much of what is said in the rest of this chapter.
 
-            First, let's look at the terminology used in this chapter. If you don't get a thorough understanding of these terms, you will probably not understand much of what is said in the rest of this chapter.
+[Incident:]
 
+A situation, external or internal to the interpreter, which it is required to respond to in certain pre-defined manners. The interpreter recognizes incidents of several different types. The incident will often have a character of "suddenness", and will also be independent of the normal control flow.
 
-            [Incident:]
+[Event:]
 
-            A situation, external or internal to the interpreter, which it is required to respond to in certain pre-defined manners. The interpreter recognizes incidents of several different types. The incident will often have a character of "suddenness", and will also be independent of the normal control flow.
+Data Structure describing one incident, used as a descriptor to the incident itself.
 
-            [Event:]
+[Condition:]
 
-            Data Structure describing one incident, used as a descriptor to the incident itself.
+Names the Rexx concept that is equivalent to the incident.
 
-            [Condition:]
+[Raise a Condition:]
 
-            Names the Rexx concept that is equivalent to the incident.
+The action of transforming the information about an incident into an event. This is done after the interpreter senses the condition. Also includes deciding whether to ignore or produce an event.
 
-            [Raise a Condition:]
+[Handle a Condition:]
 
-            The action of transforming the information about an incident into an event. This is done after the interpreter senses the condition. Also includes deciding whether to ignore or produce an event.
+The act of executing some pre-defined actions as a response to the event generated when a condition was raised.
 
-            [Handle a Condition:]
+[(Condition) Trap:]
 
-            The act of executing some pre-defined actions as a response to the event generated when a
+Data Structure containing information about how to handle a condition.
 
-            condition was raised.
+[(Trap) State:]
 
-            [(Condition) Trap:]
+Part of the condition trap.
 
-            Data Structure containing information about how to handle a condition.
+[(Condition) Handler:]
 
-            [(Trap) State:]
+Part of the condition trap, which points to a piece of Rexx code which is to be used to handle the condition.
 
-            Part of the condition trap.
+[(Trap) Method:]
 
-            [(Condition) Handler:]
+Part of the condition trap, which defined how the condition handler is to be invoked to handle the condition.
 
-            Part of the condition trap, which points to a piece of Rexx code which is to be used to handle the condition.
+[Trigger a Trap:]
 
-            [(Trap) Method:]
+The action of invoking a condition handler by the method specified by the trap method, in order to handle a condition.
 
-            Part of the condition trap, which defined how the condition handler is to be invoked to handle the condition.
+[Trap a Condition:]
 
-            [Trigger a Trap:]
+Short of trigger a trap for a particular condition.
 
-            The action of invoking a condition handler by the method specified by the trap method, in order to handle a condition.
+[Current Trapped Condition:]
 
-            [Trap a Condition:]
+The condition currently being handled. This is the same as the most recent trapped condition on this or higher procedure level.
 
-            Short of trigger a trap for a particular condition.
+[(Pending) Event Queue:]
 
-            [Current Trapped Condition:]
+Data Structure storing zero or more events in a specific order. There are only one event queue. The event queue contains events of all condition types, which have been raised, but not yet handled.
 
-            The condition currently being handled. This is the same as the most recent trapped condition on this or higher procedure level.
+[Default-Action:]
 
-            [(Pending) Event Queue:]
+The pre-defined default way of handling a condition, taken if the trap state for the condition raised is OFF.
 
-            Data Structure storing zero or more events in a specific order. There are only one event queue. The event queue contains events of all condition types, which have been raised, but not yet handled.
+[Delay-Action:]
 
-            [Default-Action:]
-
-            The pre-defined default way of handling a condition, taken if the trap state for the condition raised is OFF.
-
-            [Delay-Action:]
-
-            The pre-defined default action taken when a condition is raised, and the trap state is DELAY.
+The pre-defined default action taken when a condition is raised, and the trap state is DELAY.
 ===== The Mythical Standard Condition =====
 
+Rexx Language Level 4.00 has six different conditions, and Rexx Language Level 5.00 has seven. However, each of these is a special case of a mythical, non-existing, standard condition. In order to better understand the real conditions, we start by explaining how a standard condition work.
 
-        Rexx Language Level 4.00 has six different conditions, and Rexx Language Level 5.00 has seven. However, each of these is a special case of a mythical, non-existing, standard condition. In order to better understand the real conditions, we start by explaining how a standard condition work.
-
-
-        In the examples below, we will call our non-existing standard condition MYTH. Note that these examples will not be executable on any Rexx implementation.
+In the examples below, we will call our non-existing standard condition MYTH. Note that these examples will not be executable on any Rexx implementation.
 
 ==== Information Regarding Conditions (data structures) ====
 
+There are mainly five conceptual data structures involved in conditions.
 
-            There are mainly five conceptual data structures involved in conditions.
+[Event queue.]
 
+There is one interpreter-wide queue of pending conditions. Raising a condition is identical to adding information about the condition to this queue (FIFO). The order of the queue is the same order in which the conditions are to be handled.
 
-            [Event queue.]
+Every entry in the queue of pending conditions contains some information about the event: the line number of the Rexx script when the condition was raised, a descriptive text and the condition type.
 
-            There is one interpreter-wide queue of pending conditions. Raising a condition is identical to adding information about the condition to this queue (FIFO). The order of the queue is the same order in which the conditions are to be handled.
+[Default-Action.]
 
+To each, there exists information about the default-action to take if this condition is raised but the trap is in state OFF. This is called the "default-action". The standard default-action is to ignore the condition, while some conditions may abort the execution.
 
-            Every entry in the queue of pending conditions contains some information about the event: the line number of the Rexx script when the condition was raised, a descriptive text and the condition type.
+[Delay-Action.]
 
-            [Default-Action.]
+Each condition will also have delay-action, which tells what to do if the condition is raised when condition trap is in state DELAY. The standard delay-action is to queue the condition in the queue of pending conditions, while some conditions may ignore it.
 
-            To each, there exists information about the default-action to take if this condition is raised but the trap is in state OFF. This is called the "default-action". The standard default-action is to ignore the condition, while some conditions may abort the execution.
+[Condition traps.]
 
-            [Delay-Action.]
+For each condition there is a trap which contains three pieces of status information: the state; the handler; and the method. The state can be ON, OFF or DELAY.
 
-            Each condition will also have delay-action, which tells what to do if the condition is raised when condition trap is in state DELAY. The standard delay-action is to queue the condition in the queue of pending conditions, while some conditions may ignore it.
+The handler names the Rexx label in the start of the Rexx code to handle the event. The method can be either SIGNAL or CALL, and denotes the method in which the condition is to be handled. If the state is OFF, then neither handler nor method is defined.
 
-            [Condition traps.]
+[Current Trapped Condition.]
 
-            For each condition there is a trap which contains three pieces of status information: the state; the handler; and the method. The state can be ON, OFF or DELAY.
+This is the most recently handled condition, and is set whenever a trap is triggered. It contains information about method, which condition, and a context-dependent description. In fact, the information in the current trapped condition is the same information that was originally put into the pending event queue.
 
+Note that the event queue is a data structure connected to the interpreter itself. You operate on the same event queue, independent of subroutines, even external ones. On the other hand, the condition traps and the current trapped condition are data structures connected to each single routine. When a new routine is called, it will get its own condition traps and a current trapped condition. For internal routines, the initial values will be the same values as those of the caller. For external routines, the values are the defaults.
 
-            The handler names the Rexx label in the start of the Rexx code to handle the event. The method can be either SIGNAL or CALL, and denotes the method in which the condition is to be handled. If the state is OFF, then neither handler nor method is defined.
-
-            [Current Trapped Condition.]
-
-            This is the most recently handled condition, and is set whenever a trap is triggered. It contains information about method, which condition, and a context-dependent description. In fact, the information in the current trapped condition is the same information that was originally put into the pending event queue.
-
-
-            Note that the event queue is a data structure connected to the interpreter itself. You operate on the same event queue, independent of subroutines, even external ones. On the other hand, the condition traps and the current trapped condition are data structures connected to each single routine. When a new routine is called, it will get its own condition traps and a current trapped condition. For internal routines, the initial values will be the same values as those of the caller. For external routines, the values are the defaults.
-
-
-            The initial value for the event queue is to be empty. The default-action and the delay-action are static information, and will always retain their values during execution. The initial values for the condition traps are that they are all in state OFF. The initial value for the current trapped condition is that all information is set to the nullstring to signalize that no condition is currently being trapped.
+The initial value for the event queue is to be empty. The default-action and the delay-action are static information, and will always retain their values during execution. The initial values for the condition traps are that they are all in state OFF. The initial value for the current trapped condition is that all information is set to the nullstring to signalize that no condition is currently being trapped.
 
 ==== How to Set up a Condition Trap ====
 
