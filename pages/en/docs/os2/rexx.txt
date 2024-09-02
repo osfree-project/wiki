@@ -4196,118 +4196,59 @@ Returns the name of the current user. A meaningful name will only be returned on
 
 
 ==== VALUE(symbol [,[value], [pool]]) - (ANSI) ====
- This function expects as first parameter string symbol , which names an existing variable. The result returned from the function is the value of that variable. If symbol does not name an existing variable, the default value is returned, and the NOVALUE condition is not raised. If symbol is not a valid symbol name, and this function is used to access an normal Rexx variable, an error occurs. Be aware of the "double-expansion" effect, and quote the first parameter if necessary.
+
+This function expects as first parameter string symbol , which names an existing variable. The result returned from the function is the value of that variable. If symbol does not name an existing variable, the default value is returned, and the NOVALUE condition is not raised. If symbol is not a valid symbol name, and this function is used to access an normal Rexx variable, an error occurs. Be aware of the "double-expansion" effect, and quote the first parameter if necessary.
+
+If the optional second parameter is specified, the variable will be set to that value, after the old value has been extracted.
+
+The optional parameter pool might be specified to select a particular pool of variables to search for symbol. The contents and format of pool is implementation dependent. The default is to search in the variables at the current procedural level in Rexx. Which pools that are available is implementation dependent, but typically one can set variables in application programs or in the operating system.
+
+Note that if VALUE() is used to access variables in pools outside the Rexx interpreter, the requirements to format (a valid symbol) will not in general hold. There may be other requirements instead, depending on the implementation and the system. Depending on the validity of the name, the value, or whether the variable can be set or read, the VALUE() function can give error messages when accessing variables in pools other than the normal. Consult the implementation and system specific documentation for more information.
+
+If it is used to access compound variables inside the interpreter the tail part of this function can take any expression, even expression that are not normally legal in Rexx scripts source code.
+
+The valid value of pool in Regina is one of ENVIRONMENT, SYSTEM, OS2ENVIRONMENT, or CALLER; the latter refering to the most immediate, higher level poo, and the 3 former referring to the external environment. pool can also be a number representing the call level to search, with the first level being 1. It is therefore possible to get and set the value of a variable in a higher call level procedure from the current one without the need to EXPOSE the variable. This and the POOLID() BIF which returns the current call level are Regina extensions.
+
+By using this function, it is possible to perform an extra level of interpretation of a variable.
 
 
-            If the optional second parameter is specified, the variable will be set to that value, after the old value has been extracted.
-
-
-            The optional parameter pool might be specified to select a particular pool of variables to search for symbol. The contents and format of pool is implementation dependent. The default is to search in the variables at the current procedural level in Rexx. Which pools that are available is implementation dependent, but typically one can set variables in application programs or in the operating system.
-
-
-            Note that if VALUE() is used to access variables in pools outside the Rexx interpreter, the requirements to format (a valid symbol) will not in general hold. There may be other requirements instead, depending on the implementation and the system. Depending on the validity of the name, the value, or whether the variable can be set or read, the VALUE() function can give error messages when accessing variables in pools other than the normal. Consult the implementation and system specific documentation for more information.
-
-
-            If it is used to access compound variables inside the interpreter the tail part of this function can take any expression, even expression that are not normally legal in Rexx scripts source code.
-
-            The valid value of pool in Regina is one of ENVIRONMENT, SYSTEM, OS2ENVIRONMENT, or CALLER; the latter refering to the most immediate, higher level poo, and the 3 former referring to the external environment. pool can also be a number representing the call level to search, with the first level being 1. It is therefore possible to get and set the value of a variable in a higher call level procedure from the current one without the need to EXPOSE the variable. This and the POOLID() BIF which returns the current call level are Regina extensions.
-
-
-            By using this function, it is possible to perform an extra level of interpretation of a variable.
-
-
-            VALUE('FOO')
-            	
-
-            'bar'
-
-            VALUE('FOO','new')
-            	
-
-            'bar'
-
-            VALUE('FOO')
-            	
-
-            'new'
-
-            VALUE('USER','root','SYSTEM')
-            	
-
-            'guest' /* If SYSTEM exists */
-
-            VALUE('USER',,'SYSTEM')
-            	
-
-            'root'
+| VALUE('FOO') | 'bar' |
+| VALUE('FOO','new') | 'bar' |
+| VALUE('FOO') | 'new' |
+| VALUE('USER','root','SYSTEM') | 'guest' /* If SYSTEM exists */ |
+| VALUE('USER',,'SYSTEM') | 'root' |
 
 
 ==== VERIFY(string, ref [,[option] [,start]]) - (ANSI) ====
- With only the first two parameters, it will return the position of the first character in string that is not also a character in the string ref . If all characters in string are also in ref , it will return 0 .
 
+With only the first two parameters, it will return the position of the first character in string that is not also a character in the string ref . If all characters in string are also in ref , it will return 0 .
 
-            If option is specified, it can be one of:
+If option is specified, it can be one of:
 
-            [N]
+[N]
 
-            (Nomatch) The result will be the position of the first character in string that does not exist in
+(Nomatch) The result will be the position of the first character in string that does not exist in ref, or zero if all exist in ref. This is the default option.
 
-            ref, or zero if all exist in ref. This is the default option.
+[M]
 
-            [M]
+(Match) Reverses the search, and returns the position of the first character in string that exists in ref. If none exists in ref, zero is returned.
 
-            (Match) Reverses the search, and returns the position of the first character in string that exists in ref. If none exists in ref, zero is returned.
+If start (which must be a positive whole number) is specified, the search will start at that position in string. The default value for start is 1.
 
-
-            If start (which must be a positive whole number) is specified, the search will start at that position in
-
-            string. The default value for start is 1.
-
-
-            VERIFY('foobar','barfo')
-            	
-
-            '0'
-
-            VERIFY('foobar','barfo','M')
-            	
-
-            '1'
-
-            VERIFY('foobar','fob','N')
-            	
-
-            '5'
-
-            VERIFY('foobar','barf','N',3)
-            	
-
-            '3'
-
-            VERIFY('foobar','barf','N',4)
-            	
-
-            '0'
+| VERIFY('foobar','barfo') | '0' |
+| VERIFY('foobar','barfo','M') | '1' |
+| VERIFY('foobar','fob','N') | '5' |
+| VERIFY('foobar','barf','N',3) | '3' |
+| VERIFY('foobar','barf','N',4) | '0' |
 
 
 ==== WORD(string, wordno) - (ANSI) ====
- Returns the blank delimited word number wordno from the string string . If wordno (which must be a positive whole number) refers to a non-existing word, then a nullstring is returned. The result will be stripped of any blanks. See 3.1.6 for characters that delimit a word.
 
+Returns the blank delimited word number wordno from the string string . If wordno (which must be a positive whole number) refers to a non-existing word, then a nullstring is returned. The result will be stripped of any blanks. See 3.1.6 for characters that delimit a word.
 
-            WORD('To be or not to be',3)
-            	
-
-            'or'
-
-            WORD('To be or not to be',4)
-            	
-
-            'not'
-
-            WORD('To be or not to be',8)
-            	
-
-            ''
+| WORD('To be or not to be',3) | 'or' |
+| WORD('To be or not to be',4) | 'not' |
+| WORD('To be or not to be',8) | %%''%% |
 
 ==== WORDINDEX(string, wordno) - (ANSI) ====
  Returns the character position of the first character of blank delimited word number wordno in string , which is interpreted as a string of blank delimited words. If number (which must be a positive whole number) refers to a word that does not exist in string , then 0 is returned. See 3.1.6 for characters that delimit a word.
