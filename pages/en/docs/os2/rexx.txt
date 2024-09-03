@@ -5646,319 +5646,126 @@ Regina will be changed to allow it to generate files with holes for system where
 
 ==== Stream I/O in ARexx 1.15 ====
 
+ARexx differs considerably from standard Rexx with respect to stream I/O. In fact, none of the standard stream functionality of Rexx is available in ARexx. Instead, a completely distinct set of functions are used. The differences are so big, that it is useless to describe ARexx stream I/O in terms of standard Rexx stream I/O, and everything said so far in this chapter is irrelevant for ARexx. Therefore, we explain the ARexx functionality from scratch.
 
-                    ARexx differs considerably from standard Rexx with respect to stream I/O. In fact, none of the standard stream functionality of Rexx is available in ARexx. Instead, a completely distinct set of functions are used. The differences are so big, that it is useless to describe ARexx stream I/O in terms of standard Rexx stream I/O, and everything said so far in this chapter is irrelevant for ARexx. Therefore, we explain the ARexx functionality from scratch.
+All in all, the ARexx file I/O interface resembles the functions of the Standard C I/O library, probably because ARexx is written in C, and the ARexx I/O functions are "just" interfaces to the underlying C functions. You may want to check up the documentation for the ANSI C I/O library as described in [ANSIC], [KR], and [PJPlauger].
 
+ARexx uses a two level naming scheme for streams. The file names are bound to a stream name using the OPEN() built-in function. In all other I/O functions, only the stream name is used.
 
-                    All in all, the ARexx file I/O interface resembles the functions of the Standard C I/O library, probably because ARexx is written in C, and the ARexx I/O functions are "just" interfaces to the underlying C functions. You may want to check up the documentation for the ANSI C I/O library as described in [ANSIC], [KR], and [PJPlauger].
+<code>
+OPEN( name , filename [, mode ])
+</code>
 
-                    ARexx uses a two level naming scheme for streams. The file names are bound to a stream name using the OPEN() built-in function. In all other I/O functions, only the stream name is used.
+You use the OPEN() built-in function to open a stream connected to a file called filename in AmigaDOS. In subsequent I/O calls, you refer to the stream as name. These two names can be different.
 
+The name parameter cannot already be in use by another stream. If so, the OPEN() function fails. Note that the name parameter is case-sensitive. The filename parameter is not strictly case-sensitive: the case used when creating a new file is preserved, but when referring to an existing file, the name is case-insensitive. This is the usual behavior of AmigaDOS.
 
-                    OPEN( name , filename [, mode ])
+If any of the other I/O operations uses a stream name that has not been properly opened using OPEN(), that operation fails, because ARexx has no auto-open-on-demand feature.
 
+The optional parameter mode can be any of Read, Write, or Append. The mode Read opens an existing file and sets the current position to the start of the file. The mode Append is identical to Read, but sets the current positions to the end-of-file. The mode Write creates a new file, i.e. if a file with that name already exists, it is deleted and a new file is created. Thus, with Write you always start with an empty file. Note that the terms "read," "write," and "append" are only remotely connected to the mode in which the file is opened. Both reading and writing are allowed for all of these three modes; the mode names only reflect the typical operations of these modes.
 
-                    You use the OPEN() built-in function to open a stream connected to a file called filename in AmigaDOS. In subsequent I/O calls, you refer to the stream as name. These two names can be different.
+The result from OPEN() is a boolean value, which is 1 if a file by the specified name was successfully opened during the OPEN() call, and 0 otherwise.
 
+The number of simultaneously open files is no problem because AmigaDOS allocates files handles dynamically, and thus only limited by the available memory. One system managed 2000 simultaneously open files during a test.
 
-                    The name parameter cannot already be in use by another stream. If so, the OPEN() function fails. Note that the name parameter is case-sensitive. The filename parameter is not strictly case-sensitive: the case used when creating a new file is preserved, but when referring to an existing file, the name is case-insensitive. This is the usual behavior of AmigaDOS.
 
+| OPEN('infile', 'work:DataFile') | 1 | if successful |
+| OPEN('work', 'RAM:FooBar', 'Read') | 0 | if didn't exist |
+| OPEN('output', 'TmpFile', 'W') | 1 | (re)creates file |
 
-                    If any of the other I/O operations uses a stream name that has not been properly opened using
+<code>
+CLOSE( name )
+</code>
 
-                    OPEN(), that operation fails, because ARexx has no auto-open-on-demand feature.
+You use the CLOSE() built-in function to close a stream. The parameter name must match the first parameter in a call to OPEN() earlier in the same program, and must refer to an open stream. The return value is a boolean value that reflects whether there was a file to close (but not whether it was successfully closed).
 
+| CLOSE('infile') | 1 | if stream was previously open |
+| CLOSE('outfile') | 0 | if stream wasn't previously open |
 
-                    The optional parameter mode can be any of Read, Write, or Append. The mode Read opens an existing file and sets the current position to the start of the file. The mode Append is identical to Read, but sets the current positions to the end-of-file. The mode Write creates a new file, i.e. if a file with that name already exists, it is deleted and a new file is created. Thus, with Write you always start with an empty file. Note that the terms "read," "write," and "append" are only remotely connected to the mode in which the file is opened. Both reading and writing are allowed for all of these three modes; the mode names only reflect the typical operations of these modes.
+<code>
+WRITELN( name , string )
+</code>
 
+The WRITELN() function writes the contents of string as a line to the stream name. The name parameter must match the value of the first parameter in an earlier call to OPEN(), and must refer to an open stream. The data written is all the characters in string immediately followed by the newline character (ASCII <Ctrl-J> for AmigaDOS).
 
-                    The result from OPEN() is a boolean value, which is 1 if a file by the specified name was successfully opened during the OPEN() call, and 0 otherwise.
+The return value is the number of characters written, including the terminating newline. Thus, a return value of 0 indicates that nothing was written, while a value which is one more than the number of characters in string indicates that all data was successfully written to the stream.
 
+When writing a line to the middle of a stream, the old contents is written over, but the stream is not truncated; there is no way to truncate a stream with the ARexx built-in functions. This overwriting can leave partial lines in the stream.
 
-                    The number of simultaneously open files is no problem because AmigaDOS allocates files handles dynamically, and thus only limited by the available memory. One system managed 2000 simultaneously open files during a test.
+| WRITELN('tmp', 'Hello, world!') | 14 | if successful |
+| WRITELN('work', 'Hi there') | 0 | nothing was written |
+| WRITELN('tmp', 'Hi there') | 5 | partially successful |
 
+<code>
+WRITECH( name , string )
+</code>
 
-                    OPEN('infile', 'work:DataFile')
-                    	
+The WRITECH() function is identical to WRITELN(), except that the terminating newline character is not added to the data written out. Thus, WRITELN() is suitable for line-wise output, while WRITECH() is useful for character-wise output.
 
-                    1
-                    	
+| WRITECH('tmp', 'Hello, world!') | 13 | if successful |
+| WRITECH('work', 'Hi there') | 0 | nothing was written |
+| WRITECH('tmp', 'Hi there') | 5 | partially successful |
 
-                    if successful
+<code>
+READLN( name )
+</code>
 
-                    OPEN('work', 'RAM:FooBar', 'Read')
-                    	
+The READLN() function reads a line of data from the stream referred to by name. The parameter name must match the first parameter of an earlier call to OPEN(), i.e. it must be an open stream.
 
-                    0
-                    	
+The return value is a string of characters which corresponds to the characters in the stream from and including the current position forward to the first subsequent newline character found. If no newline character is found, the end-of-file is implicitly interpreted as a newline and the end-of-file state is set. However, the data returned to the user never contains the terminating end-of-line.
 
-                    if didn't exist
+To differ between the situation where the last line of the stream was implicitly terminated by the end-of-file and where it was explicitly terminated by an end-of-line character sequence, use the EOF() built-in function. The EOF() returns 1 in the former case and 0 in the latter case.
 
-                    OPEN('output', 'TmpFile', 'W')
-                    	
+There is a limit in ARexx on the length of lines that you can read in one call to READLN(). If the length of the line in the stream is more than 1000 characters, then only the first 1000 characters are returned. The rest of the line can be read by additional READLN() and READCH() calls. Note that whenever READLN() returns a string of exactly 1000 characters, then no terminating end-of-line was found, and a new call to READLN() must be executed in order to read the rest of the line.
 
-                    1
-                    	
+| READLN('tmp') | Hello world! | maybe |
+| READLN('work') | | maybe, if unsuccessful |
 
-                    (re)creates file
+<code>
+READCH( name [, length ])
+</code>
 
+The READCH() built-in function reads characters from the stream named by the parameter name, which must correspond to the first parameter in a previous call to OPEN(). The number of characters read is given by length, which must be a non-negative integer. The default value of length is 1.
 
-                    CLOSE( name )
+The value returned is the data read, which has the length corresponding to the length parameter if no errors occurred.
 
+There is a limit in ARexx for the length of strings that can be read in one call to READCH(). The limit is 65535 bytes, and is a limitation in the maximum size of an ARexx string.
 
-                    You use the CLOSE() built-in function to close a stream. The parameter name must match the first parameter in a call to OPEN() earlier in the same program, and must refer to an open stream. The return value is a boolean value that reflects whether there was a file to close (but not whether it was successfully closed).
+| READCH('tmp',3) | Hel | maybe |
+| READCH('tmp') | l | maybe |
+| READCH('tmp',6) | o worl | maybe |
 
+<code>
+EOF( name )
+</code>
 
-                    CLOSE('infile')
-                    	
+The EOF() built-in function tests to see whether the end-of-file has been seen on the stream specified by name, which must be an open stream, i.e. the first parameter in a previous call to OPEN().
 
-                    1
-                    	
+The return value is 1 if the stream is in end-of-file mode, i.e. if a read operation (either READLN() or READCH()) has seen the end-of-file during its operation. However, reading the last character of the stream does not put the stream in end-of-file mode; you must try to read at least one character past the last character. If the stream is not in end-of-file mode, the return value is 0.
 
-                    if stream was previously open
+Whenever the stream is in end-of-file mode, it stays there until a call to SEEK() is made. No read or write operation can remove the end-of-file mode, only SEEK() (and closing followed by reopening).
 
-                    CLOSE('outfile')
-                    	
+| EOF('tmp') | 0 | maybe |
+| EOF('work') | 1 | maybe |
 
-                    0
-                    	
+<code>
+SEEK( name , offset [, mode ])
+</code>
 
-                    if stream wasn't previously open
+The SEEK() built-in function repositions the current position of the file specified by the parameter name, which must correspond to an open file, i.e. to the first parameter of a previous call to OPEN(). The current position in the file is set to the byte referred to by the parameter offset. Note that offset is zero-based, so the first byte in the file is numbered 0. The value returned is the current position in the file after the seek operation has been carried through, using Beginning mode.
 
+If the current position is attempted set past the end-of-file or before the beginning of the file, then the current position is not moved, and the old current position is returned. Note that it is legal to position at the end-of-file, i.e. the position immediately after the last character of the file. If a file contains 12 characters, the valid range for the resulting new current position is 0-12.
 
-                    WRITELN( name , string )
+The last parameter, mode, can take any of the following values:
 
+Beginning, Current, or End. It specify the base of the seeking, i.e. whether it is relative to the first byte, the end-of-file position, or the old current position. For instance: for a 20 byte file with current position 3, then offset 7 for base Beginning is equivalent to offset -13 for base End and offset 4 for Current. Note that only the first character of the mode parameter is required, the rest of that parameter is ignored.
 
-                    The WRITELN() function writes the contents of string as a line to the stream name. The name parameter must match the value of the first parameter in an earlier call to OPEN(), and must refer to an open stream. The data written is all the characters in string immediately followed by the newline character (ASCII <Ctrl-J> for AmigaDOS).
-
-
-                    The return value is the number of characters written, including the terminating newline. Thus, a return value of 0 indicates that nothing was written, while a value which is one more than the number of characters in string indicates that all data was successfully written to the stream.
-
-
-                    When writing a line to the middle of a stream, the old contents is written over, but the stream is not truncated; there is no way to truncate a stream with the ARexx built-in functions. This overwriting can leave partial lines in the stream.
-
-
-                    WRITELN('tmp', 'Hello, world!')
-                    	
-
-                    14
-                    	
-
-                    if successful
-
-                    WRITELN('work', 'Hi there')
-                    	
-
-                    0
-                    	
-
-                    nothing was written
-
-                    WRITELN('tmp', 'Hi there')
-                    	
-
-                    5
-                    	
-
-                    partially successful
-
-
-                    WRITECH( name , string )
-
-
-                    The WRITECH() function is identical to WRITELN(), except that the terminating newline character is not added to the data written out. Thus, WRITELN() is suitable for line-wise output, while WRITECH() is useful for character-wise output.
-
-
-                    WRITECH('tmp', 'Hello, world!')
-                    	
-
-                    13
-                    	
-
-                    if successful
-
-                    WRITECH('work', 'Hi there')
-                    	
-
-                    0
-                    	
-
-                    nothing was written
-
-                    WRITECH('tmp', 'Hi there')
-                    	
-
-                    5
-                    	
-
-                    partially successful
-
-
-                    READLN( name )
-
-
-                    The READLN() function reads a line of data from the stream referred to by name. The parameter
-
-                    name must match the first parameter of an earlier call to OPEN(), i.e. it must be an open stream.
-
-
-                    The return value is a string of characters which corresponds to the characters in the stream from and including the current position forward to the first subsequent newline character found. If no newline character is found, the end-of-file is implicitly interpreted as a newline and the end-of-file state is set. However, the data returned to the user never contains the terminating end-of-line.
-
-
-                    To differ between the situation where the last line of the stream was implicitly terminated by the
-
-                    end-of-file and where it was explicitly terminated by an end-of-line character sequence, use the
-
-                    EOF() built-in function. The EOF() returns 1 in the former case and 0 in the latter case.
-
-
-                    There is a limit in ARexx on the length of lines that you can read in one call to READLN(). If the length of the line in the stream is more than 1000 characters, then only the first 1000 characters are returned. The rest of the line can be read by additional READLN() and READCH() calls. Note that whenever READLN() returns a string of exactly 1000 characters, then no terminating end-of-line was found, and a new call to READLN() must be executed in order to read the rest of the line.
-
-
-                    READLN('tmp')
-                    	
-
-                    Hello world!
-                    	
-
-                    maybe
-
-                    READLN('work')
-                    	
-
-
-                    	
-
-                    maybe, if unsuccessful
-
-
-                    READCH( name [, length ])
-
-
-                    The READCH() built-in function reads characters from the stream named by the parameter name, which must correspond to the first parameter in a previous call to OPEN(). The number of characters read is given by length, which must be a non-negative integer. The default value of length is 1.
-
-
-                    The value returned is the data read, which has the length corresponding to the length parameter if no errors occurred.
-
-
-                    There is a limit in ARexx for the length of strings that can be read in one call to READCH(). The limit is 65535 bytes, and is a limitation in the maximum size of an ARexx string.
-
-
-                    READCH('tmp',3)
-                    	
-
-                    Hel
-                    	
-
-                    maybe
-
-                    READCH('tmp')
-                    	
-
-                    l
-                    	
-
-                    maybe
-
-                    READCH('tmp',6)
-                    	
-
-                    o worl
-                    	
-
-                    maybe
-
-
-                    EOF( name )
-
-
-                    The EOF() built-in function tests to see whether the end-of-file has been seen on the stream specified by name, which must be an open stream, i.e. the first parameter in a previous call to OPEN().
-
-
-                    The return value is 1 if the stream is in end-of-file mode, i.e. if a read operation (either READLN() or READCH()) has seen the end-of-file during its operation. However, reading the last character of the stream does not put the stream in end-of-file mode; you must try to read at least one character past the last character. If the stream is not in end-of-file mode, the return value is 0.
-
-
-                    Whenever the stream is in end-of-file mode, it stays there until a call to SEEK() is made. No read or write operation can remove the end-of-file mode, only SEEK() (and closing followed by reopening).
-
-                    EOF('tmp')
-                    	
-
-                    0
-                    	
-
-                    maybe
-
-                    EOF('work')
-                    	
-
-                    1
-                    	
-
-                    maybe
-
-
-                    SEEK( name , offset [, mode ])
-
-
-                    The SEEK() built-in function repositions the current position of the file specified by the parameter name, which must correspond to an open file, i.e. to the first parameter of a previous call to OPEN(). The current position in the file is set to the byte referred to by the parameter offset. Note that offset is zero-based, so the first byte in the file is numbered 0. The value returned is the current position in the file after the seek operation has been carried through, using Beginning mode.
-
-
-                    If the current position is attempted set past the end-of-file or before the beginning of the file, then the current position is not moved, and the old current position is returned. Note that it is legal to position at the end-of-file, i.e. the position immediately after the last character of the file. If a file contains 12 characters, the valid range for the resulting new current position is 0-12.
-
-
-                    The last parameter, mode, can take any of the following values:
-
-
-                    Beginning, Current, or End. It specify the base of the seeking, i.e. whether it is relative to the first byte, the end-of-file position, or the old current position. For instance: for a 20 byte file with current position 3, then offset 7 for base Beginning is equivalent to offset -13 for base End and offset 4 for Current. Note that only the first character of the mode parameter is required, the rest of that parameter is ignored.
-
-
-                    SEEK('tmp', 12, 'B')
-                    	
-
-                    12
-                    	
-
-                    if successful
-
-                    SEEK('tmp', -4, 'Begin')
-                    	
-
-                    12
-                    	
-
-                    if previously at 12
-
-                    SEEK('tmp', -10, 'E')
-                    	
-
-                    20
-                    	
-
-                    if length is 30
-
-                    SEEK('tmp', 5)
-                    	
-
-                    17
-                    	
-
-                    if previously at 12
-
-                    SEEK('tmp', 5, 'Celcius')
-                    	
-
-                    17
-                    	
-
-                    only first character in mode matters
-
-                    SEEK('tmp', 0, 'B')
-                    	
-
-                    0
-                    	
-
-                    always to start of file
+| SEEK('tmp', 12, 'B') | 12 | if successful |
+| SEEK('tmp', -4, 'Begin') | 12 | if previously at 12 |
+| SEEK('tmp', -10, 'E') | 20 | if length is 30 |
+| SEEK('tmp', 5) | 17 | if previously at 12 |
+| SEEK('tmp', 5, 'Celcius') | 17 | only first character in mode matters |
+| SEEK('tmp', 0, 'B') | 0 | always to start of file |
 
 
 ==== Main Differences from Standard Rexx ====
