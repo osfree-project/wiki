@@ -6282,97 +6282,73 @@ Another goal of this chapter is to try to describe both the "real" standards and
 
 ===== Background and history =====
 
+In the various definitions of Rexx, there are numerous references to the "stack" (often called the "external data queue", or just the "queue"). It is a structure capable of storing information, but it is not a part of the Rexx language itself. Rather, it is a part of the external environment supporting a Rexx implementation.
 
-        In the various definitions of Rexx, there are numerous references to the "stack" (often called the "external data queue", or just the "queue"). It is a structure capable of storing information, but it is not a part of the Rexx language itself. Rather, it is a part of the external environment supporting a Rexx implementation.
+Originally, the references to the stack was introduced into Rexx because of the strong binding between Rexx and IBM mainframes in the early history of Rexx [BMARKS]. Most (all?) of the operating systems for these machines support a stack, and many of their script programming idioms involve the stack. Therefore, it was quite natural to introduce an interface to the stack into Rexx, and consequently today many of the programming paradigms of Rexx involve a stack.
 
+Unfortunately, this introduced an element of incompatibility into Rexx, as the stack is not in general supported for other operating systems. Consequently, Rexx implementers often must implement a stack as well of the core Rexx interpreter. Since no authoritative definition of the stack exists, considerable differences between various implementations. Ironically, although the stack was introduced to help communication between separate programs, the interpreter-specific implementations of stacks may actually be a hindrance against compatibility between different interpreters.
 
-        Originally, the references to the stack was introduced into Rexx because of the strong binding between Rexx and IBM mainframes in the early history of Rexx [BMARKS]. Most (all?) of the operating systems for these machines support a stack, and many of their script programming idioms involve the stack. Therefore, it was quite natural to introduce an interface to the stack into Rexx, and consequently today many of the programming paradigms of Rexx involve a stack.
-
-
-        Unfortunately, this introduced an element of incompatibility into Rexx, as the stack is not in general supported for other operating systems. Consequently, Rexx implementers often must implement a stack as well of the core Rexx interpreter. Since no authoritative definition of the stack exists, considerable differences between various implementations. Ironically, although the stack was introduced to help communication between separate programs, the interpreter-specific implementations of stacks may actually be a hindrance against compatibility between different interpreters.
-
-
-        The stack may have "seemed like a good idea at the time", but in hindsight, it was probably a bad move, since it made Rexx more dependent on the host operating system and its interfaces.
+The stack may have "seemed like a good idea at the time", but in hindsight, it was probably a bad move, since it made Rexx more dependent on the host operating system and its interfaces.
 
 
 ===== General functionality of the stack =====
 
-
-        This section describes the functionality generally available in implementations of stacks. The basic functionality described here will be complemented with information on specific implementations later. Unless explicitly labelled otherwise, this functionality is available in all standards treated in this documentation.
+This section describes the functionality generally available in implementations of stacks. The basic functionality described here will be complemented with information on specific implementations later. Unless explicitly labelled otherwise, this functionality is available in all standards treated in this documentation.
 
 ==== Basic functionality ====
 
+Below is listed the general functionality of the stack, in order of decreasing compatibility. I.e. the functionality listed first is more likely to be a part of all implementations than the ones listed at the end of the list.
 
-            Below is listed the general functionality of the stack, in order of decreasing compatibility. I.e. the functionality listed first is more likely to be a part of all implementations than the ones listed at the end of the list.
+The stack is a data structure, which strings can either be inserted into or extracted from. The strings in the stack are stored in a linear order. Extraction and insertion works at a granularity of a complete string, i.e. it is not possible to insert or extract parts of string.
 
-                The stack is a data structure, which strings can either be inserted into or extracted from. The strings in the stack are stored in a linear order. Extraction and insertion works at a granularity of a complete string, i.e. it is not possible to insert or extract parts of string.
+The stack has two ends: a top and a bottom. New strings can be inserted into the stack in both ends, but strings can only be extracted from the top of the stack.
 
+There exists a way of counting the number of strings currently stored in the stack.
 
-                The stack has two ends: a top and a bottom. New strings can be inserted into the stack in both ends, but strings can only be extracted from the top of the stack.
+A stack is often compared with the pile of plates you often find in cantinas. It allows you to either add new plates at the top of the pile or take old plates from the top. When a plate is taken from the pile, it will be the most recently plate (that is still present) added to the pile. Stack operating in Rexx works the same way, although it also allows "plates" to be added to the bottom of the pile.
 
+There might be an implementation-specific limit on the length and number of strings stored in the stack. Ideally, the maximum length will be fairly large, at least 2%%**%%16, although some implementations are likely to enforce shorter limits. Similarly, there might be a limit on the number of strings that can be simultaneously stored in the stack. Ideally, there should be no such limit.
 
-                There exists a way of counting the number of strings currently stored in the stack.
+It is natural that there are limits imposed on the amount of memory occupied by the strings in the stack. Some implementations are likely to reserve a fixed (but perhaps configurable) amount of memory for this purpose while others can dynamically re-size the stack as long as enough memory is available.
 
+Some implementations might restrict the set of characters allowed in strings in the stack, although ideally, all characters should be allowed, even characters normally used for end-of-line or end-of-string.
 
-                A stack is often compared with the pile of plates you often find in cantinas. It allows you to either add new plates at the top of the pile or take old plates from the top. When a plate is taken from the pile, it will be the most recently plate (that is still present) added to the pile. Stack operating in Rexx works the same way, although it also allows "plates" to be added to the bottom of the pile.
+This documentation use the term "string", while "line" is in common use elsewhere. The term is used because the strings in the stack are not inherently interpreted as lines (having an implied end-of-line), only as a string.
 
+Note that the stack itself is not a part of Rexx, only the parts which interface to the stack.
 
-                There might be an implementation-specific limit on the length and number of strings stored in the stack. Ideally, the maximum length will be fairly large, at least 2**16, although some implementations are likely to enforce shorter limits. Similarly, there might be a limit on the number of strings that can be simultaneously stored in the stack. Ideally, there should be no such limit.
+Example: Using the stack to transfer parameters
 
+This is a common Rexx idiom used in several situations for special parameter passing. The following code illustrates its use:
 
-                It is natural that there are limits imposed on the amount of memory occupied by the strings in the stack. Some implementations are likely to reserve a fixed (but perhaps configurable) amount of memory for this purpose while others can dynamically re-size the stack as long as enough memory is available.
+<code rexx>
+do i=1 to 10 /* for each parameter string */
+  queue string.1 /* put the string on the stack */
+end
 
+call subrout 10 /* call the subroutine */
+exit
 
-                Some implementations might restrict the set of characters allowed in strings in the stack, although ideally, all characters should be allowed, even characters normally used for end-of-line or end-of-string.
+subrout: procedure
 
+/* the definition of the subroutine */
 
-            This documentation use the term "string", while "line" is in common use elsewhere. The term is used because the strings in the stack are not inherently interpreted as lines (having an implied end-of-line), only as a string.
+do j=1 to arg(1) /* for each parameter passed */ 
+  parse pull line.j /* retrieve the parameter */
+end
 
+... /*do something with the parameters*/
 
-            Note that the stack itself is not a part of Rexx, only the parts which interface to the stack.
+return
+</code>
 
+In this example, ten parameter strings are transferred to the subroutine SUBROUT. The parameters are stored in the stack, and only the number of parameters are transferred as a "real" argument.
 
-            Example: Using the stack to transfer parameters
+There are several advantages: first, one avoids problems related to exposing variable names. Since the data is stored on the stack, there is no need to refer to the variable names and bind the variables in the subroutine to variables in the caller routine. In [TRL1], indirect references to variables in PROCEDURE EXPOSE is illegal, and this method circumvent the problem.
 
+Two other ways around this problem is to use INTERPRET for the PROCEDURE EXPOSE instruction in order to dynamically determine which variables to expose; or to use the VALUE() built-in function (with its two first parameters). The former is incompatible with TRL2, while the latter is incompatible with TRL1. Using the stack can solve the problem in a fashion compatible with both standards. Anyway, if the called routine is an external routine, then exposing does not work, so using the stack to transfer values may be the only solution.
 
-            This is a common Rexx idiom used in several situations for special parameter passing. The following code illustrates its use:
-
-            do i=1 to 10 /* for each parameter string
-
-            */
-
-            queue string.1 /* put the string on the stack */
-
-            end
-
-            call subrout 10 /* call the subroutine
-
-            */ exit
-
-
-            subrout: procedure /* the definition of the subroutine
-
-            */
-
-            do j=1 to arg(1) /* for each parameter passed */ parse pull line.j /* retrieve the parameter */
-
-            end
-
-            ... /*do something with the parameters*/
-
-            return
-
-
-            In this example, ten parameter strings are transferred to the subroutine SUBROUT. The parameters are stored in the stack, and only the number of parameters are transferred as a "real" argument.
-
-
-            There are several advantages: first, one avoids problems related to exposing variable names. Since the data is stored on the stack, there is no need to refer to the variable names and bind the variables in the subroutine to variables in the caller routine. In [TRL1], indirect references to variables in PROCEDURE EXPOSE is illegal, and this method circumvent the problem.
-
-
-            Two other ways around this problem is to use INTERPRET for the PROCEDURE EXPOSE instruction in order to dynamically determine which variables to expose; or to use the VALUE() built-in function (with its two first parameters). The former is incompatible with TRL2, while the latter is incompatible with TRL1. Using the stack can solve the problem in a fashion compatible with both standards. Anyway, if the called routine is an external routine, then exposing does not work, so using the stack to transfer values may be the only solution.
-
-
-            Another advantage of this idiom; TRL only requires implementations to support 10 parameters for subroutines. Although there are no reasons why an implementation should set a limit for the number of parameters a routine can get, you should use another mechanism than arguments when the number of strings is greater than 10. Using the stack fixes this.
+Another advantage of this idiom; TRL only requires implementations to support 10 parameters for subroutines. Although there are no reasons why an implementation should set a limit for the number of parameters a routine can get, you should use another mechanism than arguments when the number of strings is greater than 10. Using the stack fixes this.
 
 ==== LIFO and FIFO stack operations ====
 
