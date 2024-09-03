@@ -5366,189 +5366,136 @@ As you can see from the output of this example, the call to LINEOUT() inserts a 
 
 ===== Errors: Discovery, Handling, and Recovery =====
 
+TRL2 contains two important improvements over TRL1 in the area of handling errors in stream I/O: the NOTREADY condition and the STREAM() built-in function. The NOTREADY condition is raised whenever a stream I/O operation did not succeed. The STREAM() function is used to retrieve status information about a particular stream or to execute a particular operation for a stream.
 
-                TRL2 contains two important improvements over TRL1 in the area of handling errors in stream I/O: the NOTREADY condition and the STREAM() built-in function. The NOTREADY condition is raised whenever a stream I/O operation did not succeed. The STREAM() function is used to retrieve status information about a particular stream or to execute a particular operation for a stream.
+You can discover that an error occurred during an I/O operation in one of the following ways: a) it may trigger a SYNTAX condition; b) it may trigger a NOTREADY condition; or c) it may just not return that data it was supposed to. There is no clear border between which situations should trigger SYNTAX and which should trigger NOTREADY. Errors in parameters to the I/O functions, like a negative start position, is clearly a SYNTAX condition, while reading off the end-of-file is equally clearly a NOTREADY condition. In between lay more uncertain situations like trying to position the current write position after the end-of-file, or trying to read a non-existent file, or using an illegal file name.
 
+Some situations are likely to be differently handled in various implementations, but you can assume that they are handled as either SYNTAX or NOTREADY. Defensive, portable programming requires you to check for both. Unfortunately, NOTREADY is not allowed in TRL1, so you have to avoid that condition if you want maximum compatibility. And due to the very lax restrictions on implementations, you should always perform very strict verification on all data returned from any file I/O built-in function.
 
-                You can discover that an error occurred during an I/O operation in one of the following ways: a) it may trigger a SYNTAX condition; b) it may trigger a NOTREADY condition; or c) it may just not return that data it was supposed to. There is no clear border between which situations should trigger SYNTAX and which should trigger NOTREADY. Errors in parameters to the I/O functions, like a negative start position, is clearly a SYNTAX condition, while reading off the end-of-file is equally clearly a NOTREADY condition. In between lay more uncertain situations like trying to position the current write position after the end-of-file, or trying to read a non-existent file, or using an illegal file name.
+If neither are trapped, SYNTAX will terminate the program while NOTREADY will be ignored, so the implementor's decision about which of these to use may even depend on the severity of the problem (i.e. if the problem is small, raising SYNTAX may be a little too strict). Personally, I think SYNTAX should be raised in this context only if the value of a parameter is outside its valid range for all contexts in which the function might be called.
 
+Example: General NOTREADY condition handler
 
-                Some situations are likely to be differently handled in various implementations, but you can assume that they are handled as either SYNTAX or NOTREADY. Defensive, portable programming requires you to check for both. Unfortunately, NOTREADY is not allowed in TRL1, so you have to avoid that condition if you want maximum compatibility. And due to the very lax restrictions on implementations, you should always perform very strict verification on all data returned from any file I/O built-in function.
+Under TRL2 the "correct" way to handle NOTREADY conditions and errors from I/O operations is unfortunately very complex. It is shown in this example, in order to demonstrate the procedure:
 
+<code rexx>
+ myfile = 'MYFILE.DAT'
 
-                If neither are trapped, SYNTAX will terminate the program while NOTREADY will be ignored, so the implementor's decision about which of these to use may even depend on the severity of the problem (i.e. if the problem is small, raising SYNTAX may be a little too strict). Personally, I think SYNTAX should be raised in this context only if the value of a parameter is outside its valid range for all contexts in which the function might be called.
+signal on syntax name syn_handler 
+call on notready name IO_handler 
 
+do i=1 to 10 until res=0
+   res = lineout(myfile, 'line #'i) 
+   if (res=0) then
+      say 'Call to LINEOUT() didn"t manage to write out data'
+end
 
-                Example: General NOTREADY condition handler
+exit
 
+IO_handler:
+syn_handler:
+   file = condition('D')
+   say condition('C') 'raised for file' file 'at line' sigl':'
+   say ' ' sourceline(sigl)
+   say ' State='stream(file,'S') 'reason:' stream(file,'D')
+   call lineout( condition( 'D' )) /* try to close */
+   if condition('C')=='SYNTAX' then 
+     exit 1
+   else
+     return
+</code>
 
-                Under TRL2 the "correct" way to handle NOTREADY conditions and errors from I/O operations is unfortunately very complex. It is shown in this example, in order to demonstrate the procedure:
+Note the double checking in this example: first the condition handler is set up to trap any NOTREADY conditions, and then the return code from LINEOUT() is checked for each call.
 
-                myfile = 'MYFILE.DAT'
-
-                signal on syntax name syn_handler call on notready name IO_handler do i=1 to 10 until res=0
-
-                res = lineout(myfile, 'line #'i) if (res=0) then
-
-                say 'Call to LINEOUT() didn"t manage to write out
-
-                data' end exit
-
-
-                IO_handler:
-
-                syn_handler:
-
-                file = condition('D')
-
-                say condition('C') 'raised for file' file 'at line' sigl':'
-
-                say ' ' sourceline(sigl)
-
-                say ' State='stream(file,'S') 'reason:' stream(file,'D') call lineout( condition( 'D' )) /* try to close */
-
-                if condition('C')=='SYNTAX' then exit 1
-
-                else
-
-                return
-
-
-                Note the double checking in this example: first the condition handler is set up to trap any
-
-                NOTREADY conditions, and then the return code from LINEOUT() is checked for each call.
-
-
-                As you can see, there is not really that much information that you can retrieve about what went wrong. Some systems may have additional sources from which you can get information, e.g. special commands for the STREAM() built-in function, but these are non-standard and should be avoided when writing compatible programs.
+As you can see, there is not really that much information that you can retrieve about what went wrong. Some systems may have additional sources from which you can get information, e.g. special commands for the STREAM() built-in function, but these are non-standard and should be avoided when writing compatible programs.
 
 
 ===== Common Differences and Problems with Stream I/O =====
 
-
-                This section describes some of the common traps and pitfalls of Rexx I/O.
+This section describes some of the common traps and pitfalls of Rexx I/O.
 
 ==== Where Implementations are Allowed to Differ ====
 
+TRL is rather relaxed in its specifications of what an interpreter must implement of the I/O system. It recognizes that operating systems differ, and that some details must be left to the implementor to decide, if Rexx is to be effectively implemented. The parts of the I/O subsystem of Rexx where implementations are allowed to differ, are:
 
-                    TRL is rather relaxed in its specifications of what an interpreter must implement of the I/O system. It recognizes that operating systems differ, and that some details must be left to the implementor to decide, if Rexx is to be effectively implemented. The parts of the I/O subsystem of Rexx where implementations are allowed to differ, are:
+The functions LINES() and CHARS() are not required to return the number of lines or characters left in a stream. TRL says that if it is impossible or difficult to calculate the numbers, these functions may return 1 unless it is absolutely certain that there are no more data left. This leads to some rather kludgey programming techniques.
 
+Implementations are allowed to ignore closing streams, since TRL does not specify a way to do this. Often, the closing of streams is implemented as a command, which only makes it more incompatible.
 
-                        The functions LINES() and CHARS() are not required to return the number of lines or characters left in a stream. TRL says that if it is impossible or difficult to calculate the numbers, these functions may return 1 unless it is absolutely certain that there are no more data left. This leads to some rather kludgey programming techniques.
-
-
-                        Implementations are allowed to ignore closing streams, since TRL does not specify a way to do this. Often, the closing of streams is implemented as a command, which only makes it more
-
-                        incompatible.
+Check the implementation-specific documentation before using the function LINEOUT(file) for closing files.
 
 
-                        Check the implementation-specific documentation before using the function LINEOUT(file)
-
-                        for closing files.
+The difference in the action of closing and flushing a file, can make a Rexx script that works under one implementation crash under another, so this feature is of very limited value if you are trying to write portable programs.
 
 
-                        The difference in the action of closing and flushing a file, can make a Rexx script that works under one implementation crash under another, so this feature is of very limited value if you are trying to write portable programs.
-
-
-                        TRL says that because the operating system environments will differ a lot, and an efficient and useful interpreter is the most important goal, implementations are allowed to deviate from the standard in any respect necessary in the domain of I/O [TRL2]. Thus, you should never assume anything about the I/O system, as the "rules" listed in TRL are only advisory.
+TRL says that because the operating system environments will differ a lot, and an efficient and useful interpreter is the most important goal, implementations are allowed to deviate from the standard in any respect necessary in the domain of I/O [TRL2]. Thus, you should never assume anything about the I/O system, as the "rules" listed in TRL are only advisory.
 
 ==== Where Implementations might Differ anyway ====
 
+In the section above, some areas where the standard allows implementations to differ are listed. In an ideal world, that ought to be the only traps that you should need to look out for, but unfortunately, the world is not ideal. There are several areas where the requirements set up by the standard is quite high, and where implementations are likely to differ from the standard.
 
-                    In the section above, some areas where the standard allows implementations to differ are listed. In an ideal world, that ought to be the only traps that you should need to look out for, but unfortunately, the world is not ideal. There are several areas where the requirements set up by the standard is quite high, and where implementations are likely to differ from the standard.
+These areas are:
 
+Repositioning at (for the current write position) or beyond the end-of-file may be allowed. On some systems, to prohibit that would require a lot of checking, so some systems will probably skip that check. At least for some operating systems, the act of repositioning after end-of-file is a useful feature.
 
-                    These areas are:
+Under Unix, it can be used for creating a dynamically sized random access file; do not bother about how much space is allocated for the file, just position to the correct "sloth" and write the data there. If the data file is sparse, holes might occur in the file; that is parts of the file which has not been written, and which is all zeros (and which are therefore not stored on disk.
 
+Some implementations will use the same position for both the current read position and the current write position to overcome these implementations. Whenever you are doing a read, and the previous operation was a write (or vice versa), it is may prove useful to reposition the current read (or write) position.
 
-                        Repositioning at (for the current write position) or beyond the end-of-file may be allowed. On some systems, to prohibit that would require a lot of checking, so some systems will probably skip that check. At least for some operating systems, the act of repositioning after end-of-file is a useful feature.
+There might be a maximum linesize for your Rexx interpreter. At least the 50Kb limit on string length may apply.
 
-
-                        Under Unix, it can be used for creating a dynamically sized random access file; do not bother about how much space is allocated for the file, just position to the correct "sloth" and write the data there. If the data file is sparse, holes might occur in the file; that is parts of the file which has not been written, and which is all zeros (and which are therefore not stored on disk.
-
-
-                        Some implementations will use the same position for both the current read position and the current write position to overcome these implementations. Whenever you are doing a read, and the previous operation was a write (or vice versa), it is may prove useful to reposition the current read (or write) position.
-
-
-                        There might be a maximum linesize for your Rexx interpreter. At least the 50Kb limit on string length may apply.
-
-
-                        Handling the situation where another program writes data to a file which is used by the Rexx
-
-                        interpreter for reading.
+Handling the situation where another program writes data to a file which is used by the Rexx interpreter for reading.
 
 ==== LINES() and CHARS() are Inaccurate ====
 
+Because of the large differences between various operating systems, Rexx allows some fuzz in the implementation of the LINES() and CHARS() built-in functions. Sometimes, it is difficult to calculate the number of lines or characters in a stream; generally because the storage format of the file often requires a linear search through the whole stream to determine that number. Thus, Rexx allows an implementation to return the value 1 for any situation where the real number is difficult or impossible to determine. Effectively, an implementation can restrict the domain of return values for these two functions only 1 and 0 from these two functions.
 
-                    Because of the large differences between various operating systems, Rexx allows some fuzz in the implementation of the LINES() and CHARS() built-in functions. Sometimes, it is difficult to calculate the number of lines or characters in a stream; generally because the storage format of the file often requires a linear search through the whole stream to determine that number. Thus, Rexx allows an implementation to return the value 1 for any situation where the real number is difficult
+Many operating systems store lines using a special end-of-line character sequence. For these systems, it is very time-consuming to count the number of lines in a file, as the file must be scanned for such character sequences. Thus, it is very tempting for an implementor to return the value 1 for any situation where there are more than zero lines left.
 
-                    or impossible to determine. Effectively, an implementation can restrict the domain of return values for these two functions only 1 and 0 from these two functions.
+A similar situation arises for the number of characters left, although it is more common to know this number, thus it is generally a better chance of CHARS() returning the true number of characters left than LINES() returning the true number of lines left.
 
+However, you can be fairly sure that if an implementation returns a number greater than 1, then that number is the real number of lines (or characters) left in the stream. And simultaneously, if the number returned is 0, then there is no lines (or characters) left to be read in the stream. But if the number is 1, then you will never know until you have tried.
 
-                    Many operating systems store lines using a special end-of-line character sequence. For these systems, it is very time-consuming to count the number of lines in a file, as the file must be scanned for such character sequences. Thus, it is very tempting for an implementor to return the value 1 for any situation where there are more than zero lines left.
+Example: File reading idiom
 
+This example shows a common idiom for reading all contents of a file into Rexx variables using the LINES() and LINEIN() built-in functions.
 
-                    A similar situation arises for the number of characters left, although it is more common to know this number, thus it is generally a better chance of CHARS() returning the true number of characters left than LINES() returning the true number of lines left.
+<code rexx>
+i = 1
+signal on notready 
+lleft = lines(file) 
+do while lleft>0
+   do i=i to i+lleft
+      line.i = linein(file)
+   end
+   lleft = lines(file)
+end
 
+notready:
+   lines.0 = i-1
+</code>
 
-                    However, you can be fairly sure that if an implementation returns a number greater than 1, then that number is the real number of lines (or characters) left in the stream. And simultaneously, if the number returned is 0, then there is no lines (or characters) left to be read in the stream. But if the number is 1, then you will never know until you have tried.
+Here, the two nested loops iterates over all the data to be read. The innermost loop reads all data currently available, while the outermost loop checks for more available data. Implementations having a LINES() that return only 0 and 1 will generally iterate the outermost loop many times; while implementations that returns the "true" number from LINES() generally only iterates the outermost loop once.
 
+There is only one place in this code that LINEIN() is called. The I variable is incremented at only one place, and the variable LINES.0 is set in one clause, too. Some redundancy can be removed by setting the WHILE expression to:
 
-                    Example: File reading idiom
+<code rexx>
+do while word(value('lleft',lines(file)) lleft,2)>0
+</code>
 
-
-                    This example shows a common idiom for reading all contents of a file into Rexx variables using the
-
-                    LINES() and LINEIN() built-in functions.
-
-
-                    i = 1
-
-                    signal on notready lleft = lines(file) do while lleft>0
-
-                    do i=i to i+lleft
-
-                    line.i = linein(file)
-
-                    end
-
-                    lleft = lines(file)
-
-                    end
-
-                    notready:
-
-                    lines.0 = i-1
-
-
-                    Here, the two nested loops iterates over all the data to be read. The innermost loop reads all data currently available, while the outermost loop checks for more available data. Implementations having a LINES() that return only 0 and 1 will generally iterate the outermost loop many times; while implementations that returns the "true" number from LINES() generally only iterates the outermost loop once.
-
-
-                    There is only one place in this code that LINEIN() is called. The I variable is incremented at only one place, and the variable LINES.0 is set in one clause, too. Some redundancy can be removed by setting the WHILE expression to:
-
-
-                    do while word(value('lleft',lines(file)) lleft,2)>0
-
-
-                    The two assignments to the LLEFT variable must be removed. This may look more complicated, but it decreases the number of clauses having a call to LINES() from two till one. However, it is
-
-                    less certain that this second solution is more efficient, since using VALUE() built-in function can be inefficient over "normal" variable references.
+The two assignments to the LLEFT variable must be removed. This may look more complicated, but it decreases the number of clauses having a call to LINES() from two till one. However, it is less certain that this second solution is more efficient, since using VALUE() built-in function can be inefficient over "normal" variable references.
 
 ==== The Last Line of a Stream ====
 
+How to handle the last line in a stream is sometimes a problem. If you use a system that stores end-of-lines as special character sequences, and the last part of the data of a stream is an unterminated line, then what is returned when you try to read that part of data?
 
-                    How to handle the last line in a stream is sometimes a problem. If you use a system that stores end-of-lines as special character sequences, and the last part of the data of a stream is an unterminated line, then what is returned when you try to read that part of data?
+There are three possible solutions: First, it may interpret the end-of-file itself as an implicit end-of-line, in this case, the partial part of the line is returned, as if it was properly terminated. Second, it may raise the NOTREADY condition, since the end-of-file was encountered during reading. Third, if there is any chance of additional data being appended, it may wait until such data are available. The second and third approaches are suitable for persistent and transient files, respectively.
 
+The first approach is sometimes encountered. It has some problems though. If the end of a stream contains the data ABC<NL>XYZ, then it might return the string XYZ as the last line of the stream. However, suppose the last line was an empty line, then the last part of the stream would be: ABC<NL>. Few would argue that there is any line in this stream after the line ABC. Thus, the decision whether the end-of-file is an implicit end-of-line depends on whether the would-be last line has zero length or not.
 
-                    There are three possible solutions: First, it may interpret the end-of-file itself as an implicit end-of-line, in this case, the partial part of the line is returned, as if it was properly terminated. Second, it may raise the NOTREADY condition, since the end-of-file was encountered during reading. Third, if there is any chance of additional data being appended, it may wait until such data are available. The second and third approaches are suitable for persistent and transient files, respectively.
+An pragmatic solution is to let the end-of-file only be an implicit end-of-file if the characters immediately in front of it are not an explicit end-of-line character sequence.
 
-
-                    The first approach is sometimes encountered. It has some problems though. If the end of a stream contains the data ABC<NL>XYZ, then it might return the string XYZ as the last line of the stream. However, suppose the last line was an empty line, then the last part of the stream would be: ABC<NL>. Few would argue that there is any line in this stream after the line ABC. Thus, the decision whether the end-of-file is an implicit end-of-line depends on whether the would-be last line has zero length or not.
-
-
-                    An pragmatic solution is to let the end-of-file only be an implicit end-of-file if the characters immediately in front of it are not an explicit end-of-line character sequence.
-
-
-                    However, TRL gives some indications that an end-of-file is not an implicit end-of-line. It says that LINES() returns the number of complete lines left, and that LINEIN() returns a complete line. On the other hand, the end-of-line sequence is not rigidly defined by TRL, so an implementor is almost free to define end-of-line in just about any terms that are comfortable. Thus, the last line of a stream may be a source of problem if it is not explicitly terminated by an end-of-line.
+However, TRL gives some indications that an end-of-file is not an implicit end-of-line. It says that LINES() returns the number of complete lines left, and that LINEIN() returns a complete line. On the other hand, the end-of-line sequence is not rigidly defined by TRL, so an implementor is almost free to define end-of-line in just about any terms that are comfortable. Thus, the last line of a stream may be a source of problem if it is not explicitly terminated by an end-of-line.
 
 ==== Other Parts of the I/O System ====
 
