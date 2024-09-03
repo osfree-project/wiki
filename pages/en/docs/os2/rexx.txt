@@ -5091,372 +5091,201 @@ The best method is to use a STREAM() function, if one is available. Unfortunatel
 
 ===== Opening a Stream =====
 
+In most programming languages, opening a file is the process of binding a file (given by a file name) to an internal handle. Rexx is a bit special, since conceptually, it does not use stream handles, just stream names. Therefore, the stream name is itself also the stream handle, and the process of opening streams becomes apparently redundant. However, note that a number of implementations allow explicit opening, and some even require it.
 
-        In most programming languages, opening a file is the process of binding a file (given by a file name) to an internal handle. Rexx is a bit special, since conceptually, it does not use stream handles, just stream names. Therefore, the stream name is itself also the stream handle, and the process of opening streams becomes apparently redundant. However, note that a number of implementations allow explicit opening, and some even require it.
+Rexx may open streams "on demand" when they are used for the first time. However, this behavior is not defined in TRL, which says the act of opening the stream is not a part of Rexx [TRL2]. This might be interpreted as open-on-demand or that some system-specific program must be executed to open a stream.
 
+Although an open-on-demand feature is very practical, there are situations where you need to open streams in particular modes. Thus, most systems have facilities for explicitly opening a file. Some Rexx interpreters may require you to perform some implementation-specific operation before accessing streams, but most are likely to just open them the first time they are referred to in an I/O operation.
 
-        Rexx may open streams "on demand" when they are used for the first time. However, this behavior is not defined in TRL, which says the act of opening the stream is not a part of Rexx [TRL2]. This might be interpreted as open-on-demand or that some system-specific program must be executed to open a stream.
+There are two main approaches to explicit opening of streams. The first uses a non-standard built-in function normally called OPEN(), which generally takes the name of the file to open as the first parameter, and often the mode as the second parameter. The second approach is similar, but uses the standard built-in function STREAM() with a Command option.
 
+Example: Not closing files
 
-        Although an open-on-demand feature is very practical, there are situations where you need to open streams in particular modes. Thus, most systems have facilities for explicitly opening a file. Some Rexx interpreters may require you to perform some implementation-specific operation before accessing streams, but most are likely to just open them the first time they are referred to in an I/O operation.
+Since there are no open or close operation, a Rexx interpreter never knows when to close a stream, unless explicitly told so. It can never predict when a particular stream is to be used next, so it has to keep the current read and write positions in case the stream is to be used again. Therefore, you should always close the streams when you are finished using them. Failure to do so, will fill the interpreter with data about unneeded streams, and more serious, it may fill the file table of your process or system. As a rule, any Rexx script that uses more than a couple of streams, should close every stream after use, in order to minimize the number of simultaneously open streams. Thus, the following code might eventually crash for some Rexx interpreters:
 
+<code rexx>
+do i=1 to 300
+   call lineout 'file.'||i, 'this is file number' i
+end
+</code>
 
-        There are two main approaches to explicit opening of streams. The first uses a non-standard built-in function normally called OPEN(), which generally takes the name of the file to open as the first parameter, and often the mode as the second parameter. The second approach is similar, but uses the standard built-in function STREAM() with a Command option.
+A Rexx interpreter might try to defend itself against this sort of open-many-close-none programming, using of various programming techniques; this may lead to other strange effects. However, the main responsibility for avoiding this is with you, the Rexx script programmer.
 
+Note that if a stream is already open for reading, and you start writing to it, your implementation may have to reopen it in order to open for both reading and writing. There are mainly two strategies for handling this. Either the old file is closed, and then reopened in the new mode, which may leave you with read and write access to another file. Or a new file handle is opened for the new mode, which may leave you with read and write access to two different files.
 
-        Example: Not closing files
-
-
-        Since there are no open or close operation, a Rexx interpreter never knows when to close a stream, unless explicitly told so. It can never predict when a particular stream is to be used next, so it has to keep the current read and write positions in case the stream is to be used again. Therefore, you should always close the streams when you are finished using them. Failure to do so, will fill the interpreter with data about unneeded streams, and more serious, it may fill the file table of your process or system. As a rule, any Rexx script that uses more than a couple of streams, should close every stream after use, in order to minimize the number of simultaneously open streams. Thus, the following code might eventually crash for some Rexx interpreters:
-
-
-        do i=1 to 300
-
-        call lineout 'file.'||i, 'this is file number' i
-
-        end
-
-
-        A Rexx interpreter might try to defend itself against this sort of open-many-close-none programming, using of various programming techniques; this may lead to other strange effects. However, the main responsibility for avoiding this is with you, the Rexx script programmer.
-
-
-        Note that if a stream is already open for reading, and you start writing to it, your implementation may have to reopen it in order to open for both reading and writing. There are mainly two strategies for handling this. Either the old file is closed, and then reopened in the new mode, which may leave you with read and write access to another file. Or a new file handle is opened for the new mode, which may leave you with read and write access to two different files.
-
-        These are real-world problems which are not treated by the ideal description of TRL. A good implementation should detect these situations and raise NOTREADY.
+These are real-world problems which are not treated by the ideal description of TRL. A good implementation should detect these situations and raise NOTREADY.
 
 ===== Closing a Stream =====
 
+As already mentioned, Rexx does not have an explicit way of opening a stream. Nor does it have an explicit way of closing a stream. There is one semi-standard method: If you call LINEOUT(), but omit both the data to be written and the new current write position, then the implementation is defined to set the current write position to the end-of-file. Furthermore, it is allowed by TRL to do something "magic" in addition. It is not explicitly defined what this magic is, but TRL suggests that it may be closing the stream, flushing the stream, or committing changes done previously to the stream.
 
-        As already mentioned, Rexx does not have an explicit way of opening a stream. Nor does it have an explicit way of closing a stream. There is one semi-standard method: If you call LINEOUT(), but omit both the data to be written and the new current write position, then the implementation is defined to set the current write position to the end-of-file. Furthermore, it is allowed by TRL to do something "magic" in addition. It is not explicitly defined what this magic is, but TRL suggests that it may be closing the stream, flushing the stream, or committing changes done previously to the stream.
+In SAA, the definition is strengthened to state that the "magic" is closing, provided that the environment supports that operation.
 
+A similar operating can be performed by calling CHAROUT() with neither data nor a new position. However, in this case, both TRL and SAA leave it totally up to the implementation whether or not the file is to be closed. One can wonder whether the changes for LINEOUT() in SAA with respect to TRL should also have been done to CHAROUT(), but that this was forgotten.
 
-        In SAA, the definition is strengthened to state that the "magic" is closing, provided that the environment supports that operation.
+TRL2 does not indicate that LINEIN() or CHARIN() can be used to close a string. Thus, the closest one gets to a standard way of closing input files is to call e.g. LINEOUT(); although it is conceptually suspect to call an output routine for an input file. The historical reasons for this omission are perhaps that flushing output files is vital , while the concept of flushing is irrelevant for input files; flushing is an important part of closing a file, and that explains why closing is only indicated for output files.
 
+Thus, the statement:
 
-        A similar operating can be performed by calling CHAROUT() with neither data nor a new position. However, in this case, both TRL and SAA leave it totally up to the implementation whether or not the file is to be closed. One can wonder whether the changes for LINEOUT() in SAA with respect to TRL should also have been done to CHAROUT(), but that this was forgotten.
+<code rexx>
+call lineout 'myfile.txt'
+</code>
 
-
-        TRL2 does not indicate that LINEIN() or CHARIN() can be used to close a string. Thus, the closest one gets to a standard way of closing input files is to call e.g. LINEOUT(); although it is conceptually suspect to call an output routine for an input file. The historical reasons for this omission are perhaps that flushing output files is vital , while the concept of flushing is irrelevant for input files; flushing is an important part of closing a file, and that explains why closing is only indicated for output files.
-
-
-        Thus, the statement:
-
-
-        call lineout 'myfile.txt'
-
-
-        might be used to close the stream myfile.txt in some implementations. However, it is not guaranteed to close the stream, so you cannot depend on this for scripts of maximum portability, but it's better than nothing. However, note that if it closes the stream, then also the current read position is affected. If it merely flushes the stream, then only the current write position is likely to be affected.
+might be used to close the stream myfile.txt in some implementations. However, it is not guaranteed to close the stream, so you cannot depend on this for scripts of maximum portability, but it's better than nothing. However, note that if it closes the stream, then also the current read position is affected. If it merely flushes the stream, then only the current write position is likely to be affected.
 
 
 ===== Character-wise and Line-wise I/O =====
 
 
-        Basically, the built-in Rexx library offers two strategies of reading and writing streams: line-wise and character-wise. When reading line-wise, the underlying storage method of the stream must contain information which describes where each line starts and ends.
+Basically, the built-in Rexx library offers two strategies of reading and writing streams: line-wise and character-wise. When reading line-wise, the underlying storage method of the stream must contain information which describes where each line starts and ends.
 
+Some file systems store this information as one or more special characters; while others structure the file in a number of records; each containing a single line. This introduces a slightly subtle point; even though a stream foo returns the same data when read by LINEIN()on two different machines; the data read from foo may differ between the same two machines when the stream is read by CHARIN(), and vice versa. This is so because the end-of-line markers can vary between the two operating systems.
 
-        Some file systems store this information as one or more special characters; while others structure the file in a number of records; each containing a single line. This introduces a slightly subtle point; even though a stream foo returns the same data when read by LINEIN()on two different machines; the data read from foo may differ between the same two machines when the stream is read by CHARIN(), and vice versa. This is so because the end-of-line markers can vary between the two operating systems.
+Example: Character-wise handling of EOL
 
-        Example: Character-wise handling of EOL
+Suppose a text file contains the following three lines (ASCII character set is assumed):
 
+<code>
+first
+second
+third
+</code>
 
-        Suppose a text file contains the following three lines (ASCII character set is assumed):
+and you first read it line-wise and then character-wise. Assume the following program:
 
+<code rexx>
+file = 'DATAFILE'
+foo = ''
+do i=1 while chars(file)>0
+  foo = foo || c2x(charin(file))' '
+end
 
-        first second third
+say foo
+</code>
 
+When the file is read line-wise, the output is identical on all machines, i.e. the three lines shown above. However, the character-wise reading will be dependent on your operating system and its file system, thus, the output might e.g. be any of:
 
-        and you first read it line-wise and then character-wise. Assume the following program:
+<code>
+66 69 72 73 74 73 65 6F 63 6E 64 74 68 69 72 64 66 69 72 73 74 0A
 
+66 69 72 73 74 0A
+73 65 6F 63 6E 64 0A
+74 68 69 72 64 0A
 
-        file = 'DATAFILE'
+66 69 72 73 74 0D 0A
+73 65 6F 63 6E 64 0D 0A
+74 68 69 72 64 0D 0A
+</code>
 
-        foo = ''
+If the machine uses records to store the lines, the first one may be the result; here, only the data in the lines of the file is returned. Note that the boxes in the output are put around the data generated by the actual line contents. What is outside the boxes is generated by the end-of-line character sequences.
 
-        do i=1 while chars(file)>0
+The second output line is typical for Unix machines. They use the newline ASCII character as line separator, and that character is read immediately after each line. The last line is typical for MS-DOS, where the line separator character sequence is a carriage return following by a newline (ASCII '0D'x and '0A'x).
 
-        foo = foo || c2x(charin(file))' '
+For maximum portability, the line-wise built-in functions (LINEIN(), LINEOUT() and LINES()) should only be used for line-wise streams. And the character-wise built-in functions (CHARIN(), CHAROUT() and CHARS()) should only be used for character-wise data. You should in general be very careful when mixing character- and line-wise data in a single stream; it does work, but may easily lead to portability problems.
 
-        end
+The difference between character- and line-wise streams are roughly equivalent to the difference between binary and text streams, but the two concepts are not totally equivalent. In a binary file, the data read is the actual data stored in the file, while in a text file, the character sequences used for denoting end-of-line and end-of-file markers may be translated to actions or other characters during reading.
 
-        say foo
-
-
-        When the file is read line-wise, the output is identical on all machines, i.e. the three lines shown above. However, the character-wise reading will be dependent on your operating system and its file system, thus, the output might e.g. be any of:
-
-
-        66
-        	
-
-        69
-        	
-
-        72
-        	
-
-        73
-        	
-
-        74
-        	
-
-        73
-        	
-
-        65 6F 63 6E 64 74 68 69 72 64 66 69 72 73
-
-        74
-        	
-
-        0A
-        	
-
-
-        	
-
-
-        	
-
-
-        	
-
-
-        	
-
-
-        66
-        	
-
-        69
-        	
-
-        72
-        	
-
-        73
-        	
-
-        74
-        	
-
-        0A
-        	
-
-
-        73
-        	
-
-        65
-        	
-
-        6F
-        	
-
-        63
-        	
-
-        6E
-        	
-
-        64
-        	
-
-        0A
-
-        74
-        	
-
-        68
-        	
-
-        69
-        	
-
-        72
-        	
-
-        64
-        	
-
-        0A
-        	
-
-
-        66
-        	
-
-        69
-        	
-
-        72
-        	
-
-        73
-        	
-
-        74
-        	
-
-        0D
-        	
-
-        0A
-
-        73
-        	
-
-        65
-        	
-
-        6F
-        	
-
-        63
-        	
-
-        6E
-        	
-
-        64
-        	
-
-        0D 0A
-
-        74
-        	
-
-        68
-        	
-
-        69
-        	
-
-        72
-        	
-
-        64
-        	
-
-        0D
-        	
-
-        0A
-
-
-        If the machine uses records to store the lines, the first one may be the result; here, only the data in the lines of the file is returned. Note that the boxes in the output are put around the data generated by the actual line contents. What is outside the boxes is generated by the end-of-line character sequences.
-
-
-        The second output line is typical for Unix machines. They use the newline ASCII character as line separator, and that character is read immediately after each line. The last line is typical for MS-DOS, where the line separator character sequence is a carriage return following by a newline (ASCII '0D'x and '0A'x).
-
-
-        For maximum portability, the line-wise built-in functions (LINEIN(), LINEOUT() and LINES()) should only be used for line-wise streams. And the character-wise built-in functions (CHARIN(), CHAROUT() and CHARS()) should only be used for character-wise data. You should in general be very careful when mixing character- and line-wise data in a single stream; it does work, but may easily lead to portability problems.
-
-        The difference between character- and line-wise streams are roughly equivalent to the difference between binary and text streams, but the two concepts are not totally equivalent. In a binary file, the data read is the actual data stored in the file, while in a text file, the character sequences used for denoting end-of-line and end-of-file markers may be translated to actions or other characters during reading.
-
-
-        The end-of-file marker may be differently implemented on different systems. On some systems, this marker is only implicitly present at the end-of-file--which is calculated from the file size (e.g.
-
-        Unix). Other systems may put a character signifying end-of-file at the end (or even in the middle) of the file (e.g. <Ctrl-Z> for MS-DOS). These concepts vary between operating systems, interpreters should handle each concept according to the customs of the operating system. Check the implementation-specific documentation for further information. In any case, if the interpreter treats a particular character as end-of-file, then it only gives special treatment to this character during line-wise operations. During character-wise operations, no characters have special meanings.
+The end-of-file marker may be differently implemented on different systems. On some systems, this marker is only implicitly present at the end-of-file--which is calculated from the file size (e.g. Unix). Other systems may put a character signifying end-of-file at the end (or even in the middle) of the file (e.g. <Ctrl-Z> for MS-DOS). These concepts vary between operating systems, interpreters should handle each concept according to the customs of the operating system. Check the implementation-specific documentation for further information. In any case, if the interpreter treats a particular character as end-of-file, then it only gives special treatment to this character during line-wise operations. During character-wise operations, no characters have special meanings.
 
 
 =====  Reading and Writing =====
 
+Four built-in functions provide line- and character-oriented stream reading and writing capabilities:
 
-        Four built-in functions provide line- and character-oriented stream reading and writing capabilities:
+CHARIN(), CHAROUT(), LINEIN(), LINEOUT().
 
-        CHARIN(), CHAROUT(), LINEIN(), LINEOUT().
+[CHARIN()]
 
+is a built-in function that takes up to three parameters, which are all optional: the name of the stream to read from, the start point, and the number of characters to read. The stream name defaults to the default input stream, the start point defaults to the current read position, the number of characters to read defaults to one character. Leave out the second parameter in order to avoid all repositioning. During execution, data is read from the stream specified, and returned as the return value.
 
-        [CHARIN()]
+[LINEIN()]
 
-        is a built-in function that takes up to three parameters, which are all optional: the name of the stream to read from, the start point, and the number of characters to read. The stream name defaults to the default input stream, the start point defaults to the current read position, the number of characters to read defaults to one character. Leave out the second parameter in order to avoid all repositioning. During execution, data is read from the stream specified, and returned as the return value.
+is a built-in function that takes three parameters too, and they are equivalent to the parameters of CHARIN(). However, if the second parameter is specified, it refer to a line position, rather than a character position; it refers to the character position of the first character of that line. Further, the third parameter can only be 0 or 1, and refers to the number of lines to read; i.e. you cannot read more than one line in each call. The line read is returned by the function, or the nullstring if no reading was requested.
 
-        [LINEIN()]
+[LINEOUT()]
 
-        is a built-in function that takes three parameters too, and they are equivalent to the parameters of CHARIN(). However, if the second parameter is specified, it refer to a line position, rather than a character position; it refers to the character position of the first character of that line. Further, the third parameter can only be 0 or 1, and refers to the number of lines to read; i.e. you cannot read more than one line in each call. The line read is returned by the function, or the nullstring if no reading was requested.
+is a built-in function that takes three parameters too, the first is the name of the stream to write to, and defaults to the default output stream. The second parameter is the data to be written to the file, and if not specified, no writing occurs. The third parameter is a line-oriented position in the file; if the third parameter is specified, the current position is repositioned at before the data (if any) is written. If data is written, an end-of-line character sequence is appended to the output stream.
 
-        [LINEOUT()]
+[CHAROUT()]
 
-        is a built-in function that takes three parameters too, the first is the name of the stream to write to, and defaults to the default output stream. The second parameter is the data to be written to the file, and if not specified, no writing occurs. The third parameter is a line-oriented position in the file; if the third parameter is specified, the current position is repositioned at before the data (if any) is written. If data is written, an end-of-line character sequence is appended to the output stream.
+is a built-in function that is used to write characters to a file. It is identical to LINEOUT(), except that the third parameter refers to a character position, instead of a line position. The second difference is that an end-of-line character sequence is not appended at the end of the data written.
 
-        [CHAROUT()]
+Example: Counting lines, words, and characters
 
-        is a built-in function that is used to write characters to a file. It is identical to LINEOUT(), except that the third parameter refers to a character position, instead of a line position. The second difference is that an end-of-line character sequence is not appended at the end of the data written.
+The following Rexx program emulates the core functionality of the wc program under Unix. It counts the number of lines, words, and characters in a file given as the first argument.
 
+<code rexx>
+file = arg(1)
+parse value 0 0 0 with lines words chars 
+do while lines(file)>0
+   line = linein(file)
+   lines = lines + 1
+   words = words + words(line)
+   chars = chars + length(line)
+end
 
-        Example: Counting lines, words, and characters
+say 'lines='lines 'words='words 'chars='chars
+</code>
 
-        The following Rexx program emulates the core functionality of the wc program under Unix. It counts the number of lines, words, and characters in a file given as the first argument.
-
-
-        file = arg(1)
-
-        parse value 0 0 0 with lines words chars do while lines(file)>0
-
-        line = linein(file) lines = lines + 1
-
-        words = words + words(line) chars = chars + length(line)
-
-        end
-
-        say 'lines='lines 'words='words 'chars='chars
-
-
-        There are some problems. For instance, the end-of-line characters are not counted, and a last improperly terminated line is not counted either.
+There are some problems. For instance, the end-of-line characters are not counted, and a last improperly terminated line is not counted either.
 
 ===== Determining the Current Position =====
 
+Standard Rexx does not have any seek call that returns the current position in a stream. Instead, it provides two calls that returns the amount of data remaining on a stream. These two built-in functions are LINES() and CHARS().
 
-        Standard Rexx does not have any seek call that returns the current position in a stream. Instead, it provides two calls that returns the amount of data remaining on a stream. These two built-in functions are LINES() and CHARS().
+The LINES() built-in function returns the number of complete lines left on the stream given as its first parameter. The term "complete lines" does not really matter much, since an implementation can assume the end-of-file to implicitly mean an end-of-line.
 
+The CHARS() built-in function returns the number of character left in the stream given as its first parameter.
 
-            The LINES() built-in function returns the number of complete lines left on the stream given as its first parameter. The term "complete lines" does not really matter much, since an implementation can assume the end-of-file to implicitly mean an end-of-line.
+This is one of the concepts where Rexx I/O does not map very well to C I/O and vice versa. While Rexx reports the amount of data from the current read position to the end of stream, C reports the amount of data from the start of the file to the current position. Further, the Rexx method only works for input streams, while the C method works for both input and output files. On the other hand, C has no basic constructs for counting remaining or reposition at lines of a file.
 
+Example: Retrieving current position
 
-            The CHARS() built-in function returns the number of character left in the stream given as its first parameter.
+So, how does one find the current position in a file, when only allowed to do normal repositioning? The trick is to reposition twice, as shown in the code below.
 
+<code rexx>
+ftell: procedure
+  parse arg filename
+  now = chars(filename)
+  call charin filename, 0, 1
+  total = chars(filename)
+  call charin filename, 0, total-now
+  return total-now
+</code>
 
-        This is one of the concepts where Rexx I/O does not map very well to C I/O and vice versa. While Rexx reports the amount of data from the current read position to the end of stream, C reports the amount of data from the start of the file to the current position. Further, the Rexx method only works for input streams, while the C method works for both input and output files. On the other hand, C has no basic constructs for counting remaining or reposition at lines of a file.
+Unfortunately, there are many potential problems with this code. First, it only works for input files, since there is no equivalent to CHARS() for output files. Second, if the file is empty, none of the repositioning work, since it is illegal to reposition at or after end-of-file for input files--and the end-of-file is the first position of the file. Third, if the current read position of the file is at the end of file (e.g. all characters have been read) it will not work for similar reasons as for the second case. And fourth, it only works for persistent files, since transient files do not allow repositioning.
 
+Example: Improved ftell function
+An improved version of the code for the ftell routine (given above), which tries to handle these problems is:
 
-        Example: Retrieving current position
+<code rexx>
+ftell: procedure
+   parse arg filename
+   signal on notready name not_persist
+   now = chars(filename)
+   signal on notready name is_empty 
+   call charin filename, 0, 1
+   total = chars() 
+   if now>0 then
+      call charin filename, 0, total-now+1 
+   else
+     if total>0 then
+        call charin filename, 1, total
+     else
+        nop /* empty file, should have raised NOTREADY */ 
+     
+   return total-now+1
 
+not_presist: 
+   say filename 'is not persistent'; 
+   return 0 
 
-        So, how does one find the current position in a file, when only allowed to do normal repositioning? The trick is to reposition twice, as shown in the code below.
+is_empty: 
+  say filename 'is empty'; 
+  return 0
+</code>
 
-
-        ftell: procedure parse arg filename
-
-        now = chars(filename) call charin filename, 0, 1 total = chars(filename)
-
-        call charin filename, 0, total-now return total-now
-
-
-        Unfortunately, there are many potential problems with this code. First, it only works for input files, since there is no equivalent to CHARS() for output files. Second, if the file is empty, none of the repositioning work, since it is illegal to reposition at or after end-of-file for input files--and the end-of-file is the first position of the file. Third, if the current read position of the file is at the end of file (e.g. all characters have been read) it will not work for similar reasons as for the second case. And fourth, it only works for persistent files, since transient files do not allow repositioning.
-
-
-        Example: Improved ftell function
-
-
-        An improved version of the code for the ftell routine (given above), which tries to handle these problems is:
-
-        ftell: procedure parse arg filename
-
-        signal on notready name not_persist now = chars(filename)
-
-        signal on notready name is_empty call charin filename, 0, 1
-
-        total = chars() if now>0 then
-
-        call charin filename, 0, total-now+1 else if total>0 then
-
-        call charin filename, 1, total else
-
-        nop /* empty file, should have raised NOTREADY */ return total-now+1
-
-
-        not_presist: say filename 'is not persistent'; return 0 is_empty: say filename 'is empty'; return 0
-
-        The same method can be used for line-oriented I/O too, in order to return the current line number of an input file. However, a potential problem in that case is that the routine leaves the stream repositioned at the start of the current line, even if it was initially positioned to the middle of a line. In addition, the line-oriented version of this ftell routine may prove to be fairly inefficient, since the interpreter may have to scan the whole file twice for end-of-line character sequences.
+The same method can be used for line-oriented I/O too, in order to return the current line number of an input file. However, a potential problem in that case is that the routine leaves the stream repositioned at the start of the current line, even if it was initially positioned to the middle of a line. In addition, the line-oriented version of this ftell routine may prove to be fairly inefficient, since the interpreter may have to scan the whole file twice for end-of-line character sequences.
 
 
 ===== Positioning Within a File =====
