@@ -7175,200 +7175,184 @@ This sections describes the external function handler interface, which extends t
 
 ==== What is an External Function Handler ====
 
+An external function handler is a piece of code, that is called to handle external functions and subroutine calls in Rexx. It must be either a subroutine in the application that started the interpreter, or a subroutine in a dynamic link library. In any case, when the interpreter needs to execute a function registered as an external function, it will call the external function handler, passing the function name as a parameter.
 
-            An external function handler is a piece of code, that is called to handle external functions and subroutine calls in Rexx. It must be either a subroutine in the application that started the interpreter, or a subroutine in a dynamic link library. In any case, when the interpreter needs to execute a function registered as an external function, it will call the external function handler, passing the function name as a parameter.
+All external functions written in a language other than Rexx must be registered with the interpreter before starting a Rexx script.
 
-            All external functions written in a language other than Rexx must be registered with the interpreter before starting a Rexx script.
+An external function handler can handle one or more functions. The handler can determine the function actually called by examining one of the parameters passed to the handler and act accordingly.
 
+The prototype of an external function is:
 
-            An external function handler can handle one or more functions. The handler can determine the function actually called by examining one of the parameters passed to the handler and act accordingly.
+<code c>
+APIRET APIENTRY handler( PSZ name, ULONG argc, PRXSTRING argv, PSZ queuename, PRXSTRING returnstring) ;
+</code>
 
+After a function is registered with this function defined as the handler, this function is called whenever the application calls the function. The value of the parameters are:
 
-            The prototype of an external function is:
+[name]
 
+The function called.
 
-            APIRET APIENTRY handler( PSZ name,
+[argc]
 
-            ULONG argc, PRXSTRING argv,
+The number of parameters passed to the function.
 
-            PSZ queuename, PRXSTRING returnstring
+[argv]
 
-            ) ;
+Argv will contain argc RXSTRINGs.
 
+[queuename]
 
-            After a function is registered with this function defined as the handler, this function is called whenever the application calls the function. The value of the parameters are:
+The name of the currently define data queue. [returnstring]
 
+Points to a RXSTRING which is to receive the return value from the function. Passing the return value as a string makes it possible to return non-numeric return codes. As a special case, you might set returnstring.strptr to NULL, instead of specifying a return string of the ASCII representation of zero.
 
-            [name]
+The returnstring string will provide a 256 byte array which the programmer might use if the return data is not longer that that. If that space is not sufficient, the handler can provide another area itself. In that case, the handler should not de-allocate the default area, and the new area should be allocated in a standard fashion. if the external function does not return a value, it should set returnstring to an empty RXSTRING. This will enable the interpreter to raise error 44; Function did not return data, if the external function is called as a function. If the external function is invoked via a CALL command, the interpreter drops the special variable RESULT.
 
-
-            [argc]
-
-
-            [argv]
-
-
-            The function called.
-
-
-            The number of parameters passed to the function.
-
-
-            Argv will contain argc RXSTRINGs.
-
-            [queuename]
-
-            The name of the currently define data queue. [returnstring]
-
-            Points to a RXSTRING which is to receive the return value from the function. Passing the return value as a string makes it possible to return non-numeric return codes. As a special case, you might set returnstring.strptr to NULL, instead of specifying a return string of the ASCII representation of zero.
-
-
-            The returnstring string will provide a 256 byte array which the programmer might use if the return data is not longer that that. If that space is not sufficient, the handler can provide another area itself. In that case, the handler should not de-allocate the default area, and the new area should be allocated in a standard fashion. if the external function does not return a value, it should set
-
-            returnstring to an empty RXSTRING. This will enable the interpreter to raise error 44; Function did not return data, if the external function is called as a function. If the external function is invoked via a CALL command, the interpreter drops the special variable RESULT.
-
-
-            The handler returns zero if the function completed successfully. When the handler returns a non-zero value, the interpreter will raise error 40; Invalid call to routine.
+The handler returns zero if the function completed successfully. When the handler returns a non-zero value, the interpreter will raise error 40; Invalid call to routine.
 
 ==== The RexxRegisterFunctionExe() function ====
 
+This function is used to register an external function handler with the interface. The external function handler must be a procedure located within the code of the application. After registration, the Rexx interpreter can execute external functions as if they were built-ins.
 
-            This function is used to register an external function handler with the interface. The external function handler must be a procedure located within the code of the application. After registration, the Rexx interpreter can execute external functions as if they were built-ins.
+The prototype for RexxRegisterFunctionExe() is:
 
+<code c>
+APIRET APIENTRY RexxRegisterFunctionExe( PSZ FuncName, PFN EntryPoint) ;
+</code>
 
-            The prototype for RexxRegisterFunctionExe() is:
+All the parameters are input, and their significance are: 
 
+[FuncName]
 
-            APIRET APIENTRY RexxRegisterFunctionExe( PSZ FuncName,
+Points to an ASCII NUL terminated character string which defines the name of the external function to be registered. This is the same name as the Rexx interpreter uses with a function call or via the CALL command.
 
-            PFN EntryPoint
+[EntryPoint]
 
-            ) ;
+Points to the entrypoint of the external function handler routine for the function to be registered. See the section on External Function Handlers for more information.
 
-            All the parameters are input, and their significance are: [FuncName]
+The area pointed to by FuncName is copied to a private area in the interface, so the programmer may de-allocate or reuse the area used for this parameter after the call has returned.
 
-            Points to an ASCII NUL terminated character string which defines the name of the external function to be registered. This is the same name as the Rexx interpreter uses with a function call or via the CALL command.
+The RexxRegisterFunctionExe() returns an unsigned long, which carries status information describing the outcome of the operation. The status will be one of the RXFUNC values:
 
-            [EntryPoint]
+[ RXFUNC_OK]
 
-            Points to the entrypoint of the external function handler routine for the function to be registered. See the section on External Function Handlers for more information.
+The handler was successfully registered.
 
+[RXFUNC_DEFINED]
 
-            The area pointed to by FuncName is copied to a private area in the interface, so the programmer may de-allocate or reuse the area used for this parameter after the call has returned.
+The handler was successfully registered. There already existed another external function handler which was registered with RexxRegisterFunctionExe(), but this will be shadowed by the newly registered handler.
 
+[RXFUNC_ENTNOTFND]
 
-            The RexxRegisterFunctionExe() returns an unsigned long, which carries status information describing the outcome of the operation. The status will be one of the RXFUNC values:
+The handler was not registered as the EntryPoint was not found. 
 
+[RXFUNC_NOMEM]
 
-            [ RXFUNC_OK]
-
-            The handler was successfully registered. [RXFUNC_DEFINED]
-
-            The handler was successfully registered. There already existed another external function handler which was registered with RexxRegisterFunctionExe(), but this will be shadowed by the newly registered handler.
-
-            [RXFUNC_ENTNOTFND]
-
-            The handler was not registered as the EntryPoint was not found. [RXFUNC_NOMEM]
-
-            The handler was not registered, due to lack of memory.
+The handler was not registered, due to lack of memory.
 
 ==== The RexxRegisterFunctionDll() function ====
 
+This function is used to set up an external function handler that is located in a module in a dynamic link library. Some operating systems don't have dynamic linking, and thus cannot make use of this facility. The prototype of this function is:
 
-            This function is used to set up an external function handler that is located in a module in a dynamic link library. Some operating systems don't have dynamic linking, and thus cannot make use of this facility. The prototype of this function is:
+<code c>
+APIRET APIENTRY RexxRegisterFunctionDll( PSZ ExternalName, PSZ LibraryName, PSZ InternalName) ;
+</code>
 
-            APIRET APIENTRY RexxRegisterFunctionDll( PSZ ExternalName,
+All the parameters are input, and their significance are:
 
-            PSZ LibraryName, PSZ InternalName
+[ExternalName]
 
-            ) ;
+Points to an ASCII NUL terminated character string which defines the name of the external function to be registered. This is the same name as the Rexx interpreter uses with a function call or via the CALL command.
 
-            All the parameters are input, and their significance are: [ExternalName]
+[LibraryName]
 
-            Points to an ASCII NUL terminated character string which defines the name of the external function to be registered. This is the same name as the Rexx interpreter uses with a function call or via the CALL command.
+Points to an ASCII NUL terminated character string which defines the name of the dynamic library. This string may require a directory specification.
 
-            [LibraryName]
+[InternalName]
 
-            Points to an ASCII NUL terminated character string which defines the name of the dynamic library. This string may require a directory specification.
+Points to an ASCII NUL terminated character string which defines the name of the entrypoint within the dynamic library. On systems where the case of function names in dynamic libraries is relevant, this name must be specified in the same case as the function name within the dynamic library.
 
-            [InternalName]
+The areas pointed to by all parameters are copied to a private area in the interface, so the programmer may de-allocate or reuse the area used for these parameters after the call has returned.
 
-            Points to an ASCII NUL terminated character string which defines the name of the entrypoint within the dynamic library. On systems where the case of function names in dynamic libraries is relevant, this name must be specified in the same case as the function name within the dynamic library.
+The RexxRegisterFunctionDll() returns an unsigned long, which carries status information describing the outcome of the operation. The status will be one of the RXFUNC values:
 
+[ RXFUNC_OK]
 
-            The areas pointed to by all parameters are copied to a private area in the interface, so the programmer may de-allocate or reuse the area used for these parameters after the call has returned.
+The handler was successfully registered. 
 
+[RXFUNC_DEFINED]
 
-            The RexxRegisterFunctionDll() returns an unsigned long, which carries status information describing the outcome of the operation. The status will be one of the RXFUNC values:
+The handler was successfully registered. There already existed another external function handler which was registered with RexxRegisterFunctionDll(), but this will be shadowed by the newly registered handler.
 
+[RXFUNC_MODNOTFND]
 
-            [ RXFUNC_OK]
+The handler was not registered as the LibraryName was not found.
 
-            The handler was successfully registered. [RXFUNC_DEFINED]
+[RXFUNC_ENTNOTFND]
 
-            The handler was successfully registered. There already existed another external function handler which was registered with RexxRegisterFunctionDll(), but this will be shadowed by the newly registered handler.
+The handler was not registered as the InternalName was not found.
 
-            [RXFUNC_MODNOTFND]
+[RXFUNC_NOMEM]
 
-            The handler was not registered as the LibraryName was not found. [RXFUNC_ENTNOTFND]
-
-            The handler was not registered as the InternalName was not found. [RXFUNC_NOMEM]
-
-            The handler was not registered, due to lack of memory.
+The handler was not registered, due to lack of memory.
 
 ==== The RexxDeregisterFunction() function ====
 
+This function is used to remove a particular external function handler from the list of registered external function handlers. The prototype of the function is:
 
-            This function is used to remove a particular external function handler from the list of registered external function handlers. The prototype of the function is:
+<code c>
+APIRET APIENTRY RexxDeregisterFunction( PSZ FuncName) ;
+</code>
 
+The parameter is an input value:
 
-            APIRET APIENTRY RexxDeregisterFunction( PSZ FuncName
+[FuncName]
 
-            ) ;
+Points to an ASCII NUL terminated character string which defines the name of the external function to be registered. This is the same name as the Rexx interpreter uses with a function call or via the CALL command.
 
+The list of defined function handlers is searched, and if an environment matching the one named by the parameter are found, it is deleted. This call is used to de-register function handlers registered with either RexxRegisterFunctionExe() or RexxRegisterFunctionDll().
 
-            The parameter is an input value:
+The returned value from RexxDeregisterFunction() can be one of: 
 
-            [FuncName]
+[RXFUNC_OK]
 
-            Points to an ASCII NUL terminated character string which defines the name of the external function to be registered. This is the same name as the Rexx interpreter uses with a function call or via the CALL command.
+The handler was successfully deleted.
 
+[RXFUNC_NOTREG]
 
-            The list of defined function handlers is searched, and if an environment matching the one named by the parameter are found, it is deleted. This call is used to de-register function handlers registered with either RexxRegisterFunctionExe() or RexxRegisterFunctionDll().
+The handler was not found.
 
-            The returned value from RexxDeregisterFunction() can be one of: [RXFUNC_OK]
-
-            The handler was successfully deleted. [RXFUNC_NOTREG]
-
-            The handler was not found.
-
-
-            Most systems that do have dynamic linking have no method for reclaiming the space used by dynamically linked routines. So, even if you were able to load a dll, there are no guarantees that you will be able to unload it.
+Most systems that do have dynamic linking have no method for reclaiming the space used by dynamically linked routines. So, even if you were able to load a dll, there are no guarantees that you will be able to unload it.
 
 ==== The RexxQueryFunction() function ====
 
+This function retrieves the status of an external function handler. The prototype of the function is:
 
-            This function retrieves the status of an external function handler. The prototype of the function is:
+<code c>
+APIRET APIENTRY RexxQueryFunction( PSZ FuncName) ;
+</code>
 
+The significance of the parameters is:
 
-            APIRET APIENTRY RexxQueryFunction( PSZ FuncName
+[FuncName]
 
-            ) ;
+Points to an ASCII NUL terminated character string which defines the name of the external function to be registered. This is the same name as the Rexx interpreter uses with a function call or via the CALL command.
 
-            The significance of the parameters is: [FuncName]
+The returned value from RexxQueryFunction() can be one of:
 
-            Points to an ASCII NUL terminated character string which defines the name of the external function to be registered. This is the same name as the Rexx interpreter uses with a function call or via the CALL command.
+[RXFUNC_OK]
 
-            The returned value from RexxQueryFunction() can be one of: [RXFUNC_OK]
+The external function handler was found.
 
-            The external function handler was found. [RXFUNC_NOTREG]
+[RXFUNC_NOTREG]
 
-            The handler was not found.
+The handler was not found.
 
 ===== Executing Rexx Code =====
 
 
-        This sections describes the RexxStart() function, which allows the application to startup the interpreter and make it interpret pieces of Rexx code.
+This sections describes the RexxStart() function, which allows the application to startup the interpreter and make it interpret pieces of Rexx code.
 
 ==== The RexxStart() function ====
 
