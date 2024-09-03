@@ -6039,625 +6039,245 @@ It can be invoked by using a command line option to the interpreter -o; which mu
 
 ===== The Format of the OPTIONS clause =====
 
+The format of the OPTIONS clause is very simple, it is followed by any Rexx string expression, which is interpreted as a set of space separated words. The words are treated strictly in order from left to right, and each word can change zero or more extension settings.
 
-        The format of the OPTIONS clause is very simple, it is followed by any Rexx string expression, which is interpreted as a set of space separated words. The words are treated strictly in order from left to right, and each word can change zero or more extension settings.
+Each extension has a name. If the word being treated matches that name, that extension will be turned on. However, if the word being treated matches the name of an extension but has the prefix NO, then that extension is turned off. If the word does not match any extensions, then it is simply ignored, without creating any errors or raising any conditions.
 
+Example: Extensions changing parsing
 
-        Each extension has a name. If the word being treated matches that name, that extension will be turned on. However, if the word being treated matches the name of an extension but has the prefix NO, then that extension is turned off. If the word does not match any extensions, then it is simply ignored, without creating any errors or raising any conditions.
+An example of this is the LINES BIF. In the following piece of code the same BIF returns different data:
 
-        Example: Extensions changing parsing
+<code rexx>
+/* file 'aa' contains 5 lines */
 
+options FAST_LINES_BIF_DEFAULT 
 
-        An example of this is the LINES BIF. In the following piece of code the same BIF returns different data:
+do i=1 to 2
+   if i=2 then 
+      OPTIONS NOFAST_LINES_BIF_DEFAULT
+   say lines('aa')
+end
+</code>
 
+In the first iteration of the loop, LINES('aa') returns 1, indicating that there is at least 1 line remaining the the stream 'aa'. However, in the second iteration of the loop, LINES('aa') will return 5, indicating that there are 5 lines remaining in the stream.
 
-        /* file 'aa' contains 5 lines */ options FAST_LINES_BIF_DEFAULT do i=1 to 2
-
-        if i=2 then OPTIONS NOFAST_LINES_BIF_DEFAULT
-
-        say lines('aa')
-
-        end
-
-
-        In the first iteration of the loop, LINES('aa') returns 1, indicating that there is at least 1 line remaining the the stream 'aa'. However, in the second iteration of the loop, LINES('aa') will return 5, indicating that there are 5 lines remaining in the stream.
-
-
-        Regina's frequent usage of extensions may slow down execution. To illustrate how this can happen, consider the OPEN() extra built-in function. As this is an extension, it might be dynamically included and excluded from the scope of currently defined function. Thus, if the function is used in a loop, it might be in the scope during the first iteration, but not the second. Thus, Regina can not cache anything relating to this function, since the cached information may be outdated later. As a consequence, Regina must look up the function in the table of functions for each invocation. To avoid this, you can set the extension CACHEEXT, which tells Regina to cache info whenever possible, without regards to whether this may render useless later executions of OPTIONS.
+Regina's frequent usage of extensions may slow down execution. To illustrate how this can happen, consider the OPEN() extra built-in function. As this is an extension, it might be dynamically included and excluded from the scope of currently defined function. Thus, if the function is used in a loop, it might be in the scope during the first iteration, but not the second. Thus, Regina can not cache anything relating to this function, since the cached information may be outdated later. As a consequence, Regina must look up the function in the table of functions for each invocation. To avoid this, you can set the extension CACHEEXT, which tells Regina to cache info whenever possible, without regards to whether this may render useless later executions of OPTIONS.
 
 ===== The Fundamental Extensions =====
 
+Here is a description of all "atomic" extensions in Regina:
 
-        Here is a description of all "atomic" extensions in Regina:
+[AREXX_BIFS]
 
+This option allows the user to enable or disable the AREXX BIFs introduced into Regina 3.1. The default is AREXX_BIFS on Amiga and AROS, but NOAREXX_BIFS on all other platforms.
 
-        [AREXX_BIFS]
+[AREXX_SEMANTICS]
 
-        This option allows the user to enable or disable the AREXX BIFs introduced into Regina
+With the introduction of AREXX BIFs into Regina 3.1, differences in the semantics of a number of BIFs resulted. These BIFs that differ between Standard Regina and AREXX are OPEN(), CLOSE() and EOF(). This OPTION specifies that the AREXX semantics be used for these BIFs. The default is to use Regina semantics for these BIFs.
 
-        3.1. The default is AREXX_BIFS on Amiga and AROS, but NOAREXX_BIFS on all other platforms.
+[BUFTYPE_BIF]
 
-        [AREXX_SEMANTICS]
+Allows calling the built-in function BUFTYPE(), which will write out all the contents of the stack, indicating the buffers, if there are any. The idea is taken from VM/CMS, and its command named BUFTYPE.
 
-        With the introduction of AREXX BIFs into Regina 3.1, differences in the semantics of a number of BIFs resulted. These BIFs that differ between Standard Regina and AREXX are OPEN(), CLOSE() and EOF(). This OPTION specifies that the AREXX semantics be used for these BIFs. The default is to use Regina semantics for these BIFs.
+[CALLS_AS_FUNCS]
 
-        [BUFTYPE_BIF]
+Allows the old broken syntax of :
 
-        Allows calling the built-in function BUFTYPE(), which will write out all the contents of the stack, indicating the buffers, if there are any. The idea is taken from VM/CMS, and its command named BUFTYPE.
+<code>
+call myfunc(arg1,arg2)
+</code>
 
-        [CALLS_AS_FUNCS]
+New programs should use the standard syntax for the CALL instruction. As the determination of invalid syntax is done before the code is executed, then this OPTION can only be specified using the REGINA_OPTIONS environment variable.
 
-        Allows the old broken syntax of :
+NOCALLS_AS_FUNCS is the default.
 
-        call myfunc(arg1,arg2)
+[CACHEEXT]
 
-        New programs should use the standard syntax for the CALL instruction. As the determination of invalid syntax is done before the code is executed, then this OPTION can only be specified using the REGINA_OPTIONS environment variable.
+Tells Regina that information should be cached whenever possible, even when this will render future execution of the OPTIONS instruction useless. Thus, if you use e.g. the OPEN() extra built-in function, and you set CACHEEXT, then you may experience that the OPEN() function does not disappear from the current scope when you set the NOOPEN_BIF extension.
 
-        NOCALLS_AS_FUNCS is the default.
 
-        [CACHEEXT]
+Whether or not a removal of an extension really does happen is unspecified when CACHEEXT has been called at least once. Effectively, info cached during the period when CACHEEXT was in effect might not be "uncached". The advantage of CACHEEXT is efficiency when you do not need to do a lot of toggling of some extension.
 
-        Tells Regina that information should be cached whenever possible, even when this will render future execution of the OPTIONS instruction useless. Thus, if you use e.g. the OPEN() extra built-in function, and you set CACHEEXT, then you may experience that the OPEN() function does not disappear from the current scope when you set the NOOPEN_BIF extension.
+[DESBUF_BIF]
 
+Allows calling the built-in function DESBUF(), to remove all contents and all buffers from the stack. This function is an idea taken from the program by the same name under VM/CMS.
 
-        Whether or not a removal of an extension really does happen is unspecified when CACHEEXT has been called at least once. Effectively, info cached during the period when CACHEEXT was in effect might not be "uncached". The advantage of CACHEEXT is efficiency when you do not need to do a lot of toggling of some extension.
+[DROPBUF_BIF]
 
-        [DESBUF_BIF]
+Allows calling the built-in function DROPBUF(), to removed one of more buffers from the stack. This function is an idea take from the program by the same name under VM/CMS.
 
-        Allows calling the built-in function DESBUF(), to remove all contents and all buffers from the stack. This function is an idea taken from the program by the same name under VM/CMS.
+[EXT_COMMANDS_AS_FUNCS]
 
-        [DROPBUF_BIF]
+When Regina resolves an expression to a function, and that function is not a built-in or a registered external function, Regina attempts to execute the function as an operating system command. With NOEXT_COMMANDS_AS_FUNCS set, Regina will return error 43; "Routine not found". EXT_COMMANDS_AS_FUNCS is the default.
 
-        Allows calling the built-in function DROPBUF(), to removed one of more buffers from the stack. This function is an idea take from the program by the same name under VM/CMS.
+[FAST_LINES_BIF_DEFAULT]
 
-        [EXT_COMMANDS_AS_FUNCS]
+The LINES() BIF in versions of Regina prior to 0.08g returned the actual number of lines available in a stream. Since then, the LINES() BIF has been changed to only return 0 or 1. This was done for two reasons. First, it is faster, and secondly. the ANSI standard allows for an option to return the actual number of lines. This OPTION is for backwards compatibility with programs written assuming the prior behavior of the LINES() BIF. FAST_LINES_BIF_DEFAULT is the default.
 
-        When Regina resolves an expression to a function, and that function is not a built-in or a registered external function, Regina attempts to execute the function as an operating system command. With NOEXT_COMMANDS_AS_FUNCS set, Regina will return error 43; "Routine not found". EXT_COMMANDS_AS_FUNCS is the default.
+[FLUSHSTACK]
 
-        [FAST_LINES_BIF_DEFAULT]
+Tells the interpreter that whenever a command clause instructs the interpreter to flush the commands output on the stack, and simultaneously take the input from the stack, then the interpreter will not buffer the output but flush it to the real stack before the command has terminated. That way, the command may read its own output. The default setting for Regina is not to flush, i.e. NOFLUSHSTACK, which tells interpreter to temporary buffer all output lines, and flush them to the stack when the command has finished.
 
-        The LINES() BIF in versions of Regina prior to 0.08g returned the actual number of lines available in a stream. Since then, the LINES() BIF has been changed to only return 0 or 1. This was done for two reasons. First, it is faster, and secondly. the ANSI standard allows for an option to return the actual number of lines. This OPTION is for backwards compatibility with programs written assuming the prior behavior of the LINES() BIF. FAST_LINES_BIF_DEFAULT is the default.
+[HALT_ON_EXT_CALL_FAIL]
 
-        [FLUSHSTACK]
+This options tells the interpreter that when a called external routine fails the caller halts with a syntax error 40.1. This behaviour also occurs with the STRICT_ANSI option.
 
-        Tells the interpreter that whenever a command clause instructs the interpreter to flush the commands output on the stack, and simultaneously take the input from the stack, then the interpreter will not buffer the output but flush it to the real stack before the command has terminated. That way, the command may read its own output. The default setting for Regina is not to flush, i.e. NOFLUSHSTACK, which tells interpreter to temporary buffer all output lines, and flush them to the stack when the command has finished.
+NOHALT_ON_EXT_CALL_FAIL is the default.
 
+[INTERNAL_QUEUES]
 
-        [HALT_ON_EXT_CALL_FAIL]
+Regina implements multiple named queues both as part of the interpreter, and as an external resource. If a queue name has the character '@' embedded, Regina will assume this to be an external queue name. This OPTION allows the exclusive use of Regina's internal queuing mechanism regardless of the queue name. NOINTERNAL_QUEUES is the default.
 
-        This options tells the interpreter that when a called external routine fails the caller halts with a syntax error 40.1. This behaviour also occurs with the STRICT_ANSI option.
+[LINEOUTTRUNC]
 
-        NOHALT_ON_EXT_CALL_FAIL is the default.
+This options tells the interpreter that whenever the LINEOUT() built-in function is executed for a persistent file, the file will be truncated after the newly written line, if necessary. This is the default setting of Regina, unless your system does not have the ftruncate() system call.
 
-        [INTERNAL_QUEUES]
+[MAKEBUF_BIF]
 
-        Regina implements multiple named queues both as part of the interpreter, and as an external resource. If a queue name has the character '@' embedded, Regina will assume this to be an external queue name. This OPTION allows the exclusive use of Regina's internal queuing mechanism regardless of the queue name. NOINTERNAL_QUEUES is the default.
+Allows calling the built-in function MAKEBUF(), to create a buffer on the stack. This function is an idea taken from a program by the same name under VM/CMS.
 
-        [LINEOUTTRUNC]
+[PRUNE_TRACE]
 
-        This options tells the interpreter that whenever the LINEOUT() built-in function is executed for a persistent file, the file will be truncated after the newly written line, if necessary. This is the default setting of Regina, unless your system does not have the ftruncate() system call.
+Makes deeply nested routines be displayed at one line. Instead of indenting the trace output at a very long line (possibly wrapping over several lines on the screen). It displays [...] at the start of the line, indicating that parts of the white space of the line has been removed.
 
-        [MAKEBUF_BIF]
+PRUNE_TRACE is the default.
 
-        Allows calling the built-in function MAKEBUF(), to create a buffer on the stack. This function is an idea taken from a program by the same name under VM/CMS.
+[QUEUES_301]
 
-        [PRUNE_TRACE]
+This OPTION changes the behaviour of external queue names. In Regina 3.1 meaning was given to queue names. If a queue name had '@' in its name, it was identified as an external queue (requiring rxstack to be running). Before 3.1, any time RXQUEUE BIF was used, it always referenced an external queue. New programs should use the naming convention to identify external queues, because you will be able to use internal of external queues in other instructions like ADDRESS.WITH. The default is NOQUEUES_301.
 
-        Makes deeply nested routines be displayed at one line. Instead of indenting the trace output at a very long line (possibly wrapping over several lines on the screen). It displays [...] at the start of the line, indicating that parts of the white space of the line has been removed.
+[REGINA_BIFS]
 
-        PRUNE_TRACE is the default.
+This OPTION allows the user to turn on all non-ANSI extension BIFs. The default is REGINA_BIFS.
 
-        [QUEUES_301]
+[SINGLE_LINE_COMMENTS]
 
-        This OPTION changes the behaviour of external queue names. In Regina 3.1 meaning was given to queue names. If a queue name had '@' in its name, it was identified as an external queue (requiring rxstack to be running). Before 3.1, any time RXQUEUE BIF was used, it always referenced an external queue. New programs should use the naming convention to identify external queues, because you will be able to use internal of external queues in other instructions like ADDRESS.WITH. The default is NOQUEUES_301.
+By default Regina supports the NetRexx and ooRexx single line comment marker; '–'. (two minus signs abutted). This will break code that expects '–' to be semantically equivalent to '+'. To remove single line comments, use NOSINGLE_LINE_COMMENTS. As the determination of single line comments is done before code is executed then this OPTION can only be specified using the REGINA_OPTIONS environment variable or the '-o' command line switch. The default is SINGLE_LINE_COMMENTS.
 
-        [REGINA_BIFS]
+[STDOUT_FOR_STDERR]
 
-        This OPTION allows the user to turn on all non-ANSI extension BIFs. The default is
+All output that Regina would normally write to stderr, such as TRACE output and errors, are written to stdout instead. This is useful if you need to capture TRACE output and normal output from SAY to a file in the order in which the lines were generated. The default is NOSTDOUT_FOR_STDERR.
 
-        REGINA_BIFS.
+[STRICT_ANSI]
 
-        [SINGLE_LINE_COMMENTS]
+This OPTION results in interpretation of a program to strict ANSI standards, and will reject any Regina extensions. NOSTRICT_ANSI is the default. As this OPTION affects the initial parsing of the Rexx program, it must be specified using the REGINA_OPTIONS environment variable or the '-o' command line switch.
 
-        By default Regina supports the NetRexx and ooRexx single line comment marker; '–'. (two minus signs abutted). This will break code that expects '–' to be semantically equivalent to '+'. To remove single line comments, use NOSINGLE_LINE_COMMENTS. As the determination of single line comments is done before code is executed then this OPTION can only be specified using the REGINA_OPTIONS environment variable or the '-o' command line switch. The default is SINGLE_LINE_COMMENTS.
+[STRICT_WHITE_SPACE_COMPARISONS]
 
-        [STDOUT_FOR_STDERR]
+This OPTION specifies if ANSI rules for non-strict comparisons are applied. Under ANSI, when doing non-strict comparisons, only the space character is stripped from the two comparators. Under Regina's default behavior, all whitespace characters are stripped.
 
-        All output that Regina would normally write to stderr, such as TRACE output and errors, are written to stdout instead. This is useful if you need to capture TRACE output and normal output from SAY to a file in the order in which the lines were generated. The default is NOSTDOUT_FOR_STDERR.
+NOSTRICT_WHITE_SPACE_COMPARISONS is the default.
 
-        [STRICT_ANSI]
+[TRACE_HTML]
 
-        This OPTION results in interpretation of a program to strict ANSI standards, and will reject any Regina extensions. NOSTRICT_ANSI is the default. As this OPTION affects the initial parsing of the Rexx program, it must be specified using the REGINA_OPTIONS environment variable or the '-o' command line switch.
+This OPTION generates HTML <PRE> and </PRE> tags around TRACE output, to enable tracing from within CGI scripts. The default is NOTRACE_HTML. The following code shows the necessary header information to enable this feature:
 
-        [STRICT_WHITE_SPACE_COMPARISONS]
+<code rexx>
+#!/usr/bin/rexx
+OPTIONS STDOUT_FOR_STDERR TRACE_HTML
+Parse Version ver
 
-        This OPTION specifies if ANSI rules for non-strict comparisons are applied. Under ANSI, when doing non-strict comparisons, only the space character is stripped from the two comparators. Under Regina's default behavior, all whitespace characters are stripped.
+/* following 2 lines MUST be 'sayed' before TRACE turned on  */
+Say 'Content-type: text/html'
+Say
 
-        NOSTRICT_WHITE_SPACE_COMPARISONS is the default.
+Say ver
+Trace i
+Say 'With tracing on' 
+Trace o
+Say 'With tracing off' 
+Return 0
+</code>
 
-        [TRACE_HTML]
+The output from this would look like:
 
-        This OPTION generates HTML <PRE> and </PRE> tags around TRACE output, to enable tracing from within CGI scripts. The default is NOTRACE_HTML. The following code shows the necessary header information to enable this feature:
+<code>
+image here
+</code>
 
-        #!/usr/bin/rexx
-
-        OPTIONS STDOUT_FOR_STDERR TRACE_HTML
-
-        Parse Version ver
-
-        /* following 2 lines MUST be 'sayed' before TRACE turned on
-
-        */
-
-        Say 'Content-type: text/html' Say
-
-        Say ver Trace i
-
-        Say 'With tracing on' Trace o
-
-        Say 'With tracing off' Return 0
-
-
-        The output from this would look like:
-
-
-
-        Note: OPEN_BIF, FIND_BIF, CLOSE_BIF and FILEIO OPTIONs have been removed in Regina 3.1
+Note: OPEN_BIF, FIND_BIF, CLOSE_BIF and FILEIO OPTIONs have been removed in Regina 3.1
 
 
 ===== Meta-extensions =====
 
+[ANSI]
 
-        [ANSI]
+Combination of STRICT_ANSI and STRICT_WHITE_SPACE_COMPARISONS .
 
-        Combination of STRICT_ANSI and STRICT_WHITE_SPACE_COMPARISONS .
+[BUFFERS]
 
-        [BUFFERS]
-
-        Combination of BUFTYPE_BIF, DESBUF_BIF, DROPBUF_BIF and MAKEBUF_BIF.
+Combination of BUFTYPE_BIF, DESBUF_BIF, DROPBUF_BIF and MAKEBUF_BIF.
 
 ===== Semi-standards =====
 
+[CMS]
 
-        [CMS]
+A set of extensions that stems from the VM/CMS operating system. Basically, this includes the most common extensions in the VM/CMS version of Rexx, in addition of some functions that perform tasks normally done with commands under VM/CMS.
 
-        A set of extensions that stems from the VM/CMS operating system. Basically, this includes the most common extensions in the VM/CMS version of Rexx, in addition of some functions that perform tasks normally done with commands under VM/CMS.
+[VMS]
 
-        [VMS]
+A set of interface functions to the VMS operating system. Basically, this makes the Rexx programming under VMS as powerful as programming directly in DCL.
 
-        A set of interface functions to the VMS operating system. Basically, this makes the Rexx
+[UNIX]
 
-        programming under VMS as powerful as programming directly in DCL.
+A set of interface functionality to the Unix operating system. Basically, this includes some functions that are normally called as commands when programming Unix shell scripts.
 
-        [UNIX]
-
-        A set of interface functionality to the Unix operating system. Basically, this includes some functions that are normally called as commands when programming Unix shell scripts.
-
-        Although it is possible to call these as commands in Regina, there are considerable speed improvements in implementing them as built-in functions.
+Although it is possible to call these as commands in Regina, there are considerable speed improvements in implementing them as built-in functions.
 
 ===== Standards =====
 
 
-        The following table shows which options are available in different Rexx Language Levels, and the default settings applicable for Regina.
+The following table shows which options are available in different Rexx Language Levels, and the default settings applicable for Regina.
 
+[ANSI]
 
-        [ANSI]
+Rexx Language level 5.0, as described in [ANSI].
 
-        Rexx Language level 5.0, as described in [ANSI].
+[REGINA]
 
-        [REGINA]
+Rexx Language level 5.0, plus extensions, as implemented by Regina 3.1 and above.
 
-        Rexx Language level 5.0, plus extensions, as implemented by Regina 3.1 and above.
+[SAA]
 
-        [SAA]
+Rexx Language level ??, as defined by IBM's System Application Architecture [SAA].
 
-        Rexx Language level ??, as defined by IBM's System Application Architecture [SAA].
+[TRL1]
 
-        [TRL1]
+Rexx Language level 3.50, as described in [TRL1].
 
-        Rexx Language level 3.50, as described in [TRL1].
+[TRL2]
 
-        [TRL2]
+Rexx Language level 4.00, as described in [TRL2].
 
-        Rexx Language level 4.00, as described in [TRL2].
+^ Option ^ ANSI ^ REGINA ^ SAA ^ TRL1 ^ TRL2 ^
+| AREXX_BIFS | no  | yes | no | no | no |
+| AREXX_SEMANTICS | no | no | no | no | no |
+| BUFTYPE_BIF | no | yes | no | no | no |
+| CACHEEXT | no | no | no | no | no |
+| CALLS_AS_FUNCS | no | yes | no | no | no |
+| DESBUF_BIF | no | yes | no | no | no |
+| DROPBUF_BIF | no | yes | no | no | no |
+| EXT_COMMANDS_AS_FUNCS | no | yes | no | no | no |
+| FAST_LINES_BIF_DEFAULT | yes | yes | no | no | no |
+| FLUSHSTACK | no | no | no | no | no |
+| HALT_ON_EXT_CALL_FAIL | no | yes | no | no | no |
+| INTERNAL_QUEUES | no | no | no | no | no |
+| LINEOUTTRUNC | no | yes | no | no | no |
+| MAKEBUF_BIF | no | yes | no | no | no |
+| PRUNE_TRACE | no | yes | no | no | no |
+| QUEUES_301 | no | yes | no | no | no |
+| REGINA_BIFS | no | yes | no | no | no |
+| SINGLE_LINE_COMMENTS | no | yes | no | no | no |
+| STDOUT_FOR_STDERR | no | no | no | no | no |
+| STRICT_ANSI | yes | no | no | no | no |
+| STRICT_WHITE_SPACE_COMPARISONS | yes | no | no | no | no |
+| TRACE_HTML | no | no | no | no | no |
 
-        Option
-        	
-
-        ANSI
-        	
-
-        REGINA
-        	
-
-        SAA
-        	
-
-        TRL1
-        	
-
-        TRL2
-
-        AREXX_BIFS
-        	
-
-        no
-        	
-
-        yes
-        	
-
-        no
-        	
-
-        no
-        	
-
-        no
-
-        AREXX_SEMANTICS
-        	
-
-        no
-        	
-
-        no
-        	
-
-        no
-        	
-
-        no
-        	
-
-        no
-
-        BUFTYPE_BIF
-        	
-
-        no
-        	
-
-        yes
-        	
-
-        no
-        	
-
-        no
-        	
-
-        no
-
-        CACHEEXT
-        	
-
-        no
-        	
-
-        no
-        	
-
-        no
-        	
-
-        no
-        	
-
-        no
-
-        CALLS_AS_FUNCS
-        	
-
-        no
-        	
-
-        yes
-        	
-
-        no
-        	
-
-        no
-        	
-
-        no
-
-        DESBUF_BIF
-        	
-
-        no
-        	
-
-        yes
-        	
-
-        no
-        	
-
-        no
-        	
-
-        no
-
-        DROPBUF_BIF
-        	
-
-        no
-        	
-
-        yes
-        	
-
-        no
-        	
-
-        no
-        	
-
-        no
-
-        EXT_COMMANDS_AS_FUNCS
-        	
-
-        no
-        	
-
-        yes
-        	
-
-        no
-        	
-
-        no
-        	
-
-        no
-
-        FAST_LINES_BIF_DEFAULT
-        	
-
-        yes
-        	
-
-        yes
-        	
-
-        no
-        	
-
-        no
-        	
-
-        no
-
-        FLUSHSTACK
-        	
-
-        no
-        	
-
-        no
-        	
-
-        no
-        	
-
-        no
-        	
-
-        no
-
-        HALT_ON_EXT_CALL_FAIL
-        	
-
-        no
-        	
-
-        yes
-        	
-
-        no
-        	
-
-        no
-        	
-
-        no
-
-        INTERNAL_QUEUES
-        	
-
-        no
-        	
-
-        no
-        	
-
-        no
-        	
-
-        no
-        	
-
-        no
-
-        LINEOUTTRUNC
-        	
-
-        no
-        	
-
-        yes
-        	
-
-        no
-        	
-
-        no
-        	
-
-        no
-
-        MAKEBUF_BIF
-        	
-
-        no
-        	
-
-        yes
-        	
-
-        no
-        	
-
-        no
-        	
-
-        no
-
-        PRUNE_TRACE
-        	
-
-        no
-        	
-
-        yes
-        	
-
-        no
-        	
-
-        no
-        	
-
-        no
-
-        QUEUES_301
-        	
-
-        no
-        	
-
-        yes
-        	
-
-        no
-        	
-
-        no
-        	
-
-        no
-
-        REGINA_BIFS
-        	
-
-        no
-        	
-
-        yes
-        	
-
-        no
-        	
-
-        no
-        	
-
-        no
-
-        SINGLE_LINE_COMMENTS
-        	
-
-        no
-        	
-
-        yes
-        	
-
-        no
-        	
-
-        no
-        	
-
-        no
-
-        STDOUT_FOR_STDERR
-        	
-
-        no
-        	
-
-        no
-        	
-
-        no
-        	
-
-        no
-        	
-
-        no
-
-        STRICT_ANSI
-        	
-
-        yes
-        	
-
-        no
-        	
-
-        no
-        	
-
-        no
-        	
-
-        no
-
-        STRICT_WHITE_SPACE_COMPARISONS
-        	
-
-        yes
-        	
-
-        no
-        	
-
-        no
-        	
-
-        no
-        	
-
-        no
-
-        TRACE_HTML
-        	
-
-        no
-        	
-
-        no
-        	
-
-        no
-        	
-
-        no
-        	
-
-        no
 ====== The Stack ======
 
+In this chapter, the stack and operations manipulating the stack are discussed. Since the stack is external to the Rexx language, there are large differences between implementations with respect to the stack. These differences are attempted described in the latter part of this chapter.
 
-    In this chapter, the stack and operations manipulating the stack are discussed. Since the stack is external to the Rexx language, there are large differences between implementations with respect to the stack. These differences are attempted described in the latter part of this chapter.
-
-
-    Another goal of this chapter is to try to describe both the "real" standards and some of the most commonly used de facto standards related to stack operation. Where something is not a part of any defined standard, this is clearly labelled. Also, some liberties have been taken in order to create a coherent vocabulary on a field where very little standardization has taken place.
+Another goal of this chapter is to try to describe both the "real" standards and some of the most commonly used de facto standards related to stack operation. Where something is not a part of any defined standard, this is clearly labelled. Also, some liberties have been taken in order to create a coherent vocabulary on a field where very little standardization has taken place.
 
 
 ===== Background and history =====
