@@ -5535,168 +5535,114 @@ In addition, the variations within this topic are rather large. Regina implement
 
 ==== Stream I/O in Regina ====
 
+Regina implements stream I/O in a fashion that closely resembles how it is described in TRL2. The following list gives the relevant system-specific information.
 
-                    Regina implements stream I/O in a fashion that closely resembles how it is described in TRL2. The following list gives the relevant system-specific information.
+[Names for standard streams.]
 
+Regina uses <stdout> and <stdin> as names for the standard output and input streams. Note that the angle brackets are part of the names. You may also access the standard error stream (on systems supporting this stream) under the name <stderr>. In addition, the nullstring is taken to be equivalent to an empty first parameter in the I/O-related built-in functions.
 
-                    [Names for standard streams.]
+[Implicit opening.]
 
-                    Regina uses <stdout> and <stdin> as names for the standard output and input streams. Note that the angle brackets are part of the names. You may also access the standard error stream (on systems supporting this stream) under the name <stderr>. In addition, the nullstring is taken to be equivalent to an empty first parameter in the I/O-related built-in functions.
+Regina implicitly opens any file whenever it is first used.
 
-                    [Implicit opening.]
+If the first operation is a read, it will be opened in read-only mode. If the first operation is a write, it is opened in read-write mode. In this case if the read-write opening does not succeed, the file is opened in write-only mode. If the file exists, the opening is non-destructive, i.e. that the file is not truncated or overwritten when opened, else it is created if opened in read-write mode.
 
-                    Regina implicitly opens any file whenever it is first used.
+If you name a file currently open in read-only mode in a write operation, Regina closes the file, and reopens it in read-write mode. The only exception is when you call LINEOUT() with both second and third arguments unspecified, which always closes a file, both for reading and writing. Similarly, if the file was opened in write-only mode, and you use it in a read operation, Regina closes and reopens in read-write mode.
 
+This implicit reopening is enabled by default. You can turn it off by unsetting the extension ExplicitOpen.
 
-                    If the first operation is a read, it will be opened in read-only mode. If the first operation is a write, it is opened in read-write mode. In this case if the read-write opening does not succeed, the file is opened in write-only mode. If the file exists, the opening is non-destructive, i.e. that the file is not truncated or overwritten when opened, else it is created if opened in read-write mode.
+[Separate current positions.]
 
+The environment in which Regina operates (ANSI C and POSIX) does not allow separate read and write positions, but only supplies one position for both operations. Regina handles this by maintaining the two positions internally, and move the "real" current position back and forth depending on whether a read or write operation is next.
 
-                    If you name a file currently open in read-only mode in a write operation, Regina closes the file, and reopens it in read-write mode. The only exception is when you call LINEOUT() with both second and third arguments unspecified, which always closes a file, both for reading and writing. Similarly, if the file was opened in write-only mode, and you use it in a read operation, Regina closes and reopens in read-write mode.
+[Swapping out file descriptors.]
 
+In order to defend itself against "open-many-close-none" programming, Regina tries to "swap out" files that have been unused for some time. Assume that your operating system limits Regina to 100 simultaneously open files; when your try to open your 101st file, Regina closes the least recently used stream, and recycles its descriptor for the new file. You can enable or disable this recycling with the SwapFilePtr extension.
 
-                    This implicit reopening is enabled by default. You can turn it off by unsetting the extension
+During this recycling, Regina only closes the file in the operating system, but retains all vital information about the file itself. If you re-access the file later, Regina reopens it, and positions the current read and write positions at the correct (i.e. previous) positions. This introduces some uncertainties into stream processing. Renaming a file affects it only if it gets swapped out. Since the swap operation is something the users do not see, it can cause some strange effects.
 
-                    ExplicitOpen.
+Regina will not allow a transient stream to be swapped out, since they often are connected to some sort of active partner in the other end, and closing the file might kill the partner or make it impossible to reestablish the stream. So only persistent files are swapped out. Thus, you can still fill the file table in Regina.
 
-                    [Separate current positions.]
+[Explicit opening and closing.]
 
-                    The environment in which Regina operates (ANSI C and POSIX) does not allow separate read and write positions, but only supplies one position for both operations. Regina handles this by maintaining the two positions internally, and move the "real" current position back and forth depending on whether a read or write operation is next.
+Regina allows streams to be explicitly opened or closed through the use of the built-in function STREAM(). The exact syntax of this function is described in section stream. Old versions of Regina supported two non-standard built-in functions OPEN() and CLOSE() for these operations. These functions are still supported for compatibility reasons, but might be removed in future releases. Their availability is controlled by the OpenBif and CloseBif extensions.
 
-                    [Swapping out file descriptors.]
+[Truncation after writing lines.]
 
-                    In order to defend itself against "open-many-close-none" programming, Regina tries to "swap out" files that have been unused for some time. Assume that your operating system limits Regina to 100 simultaneously open files; when your try to open your 101st file, Regina closes the least recently used stream, and recycles its descriptor for the new file. You can enable or disable this recycling with the SwapFilePtr extension.
+If you reposition line-wise the current write position to the middle of a file, Regina truncates the file at the new position. This happens whether data is written during the LINEOUT() or not. If not, the file might contain half a line, some lines might disappear, and the linecount would in general be disrupted. The availability of this behavior is controlled by LineOutTrunc, which is turned on by default.
 
+Unfortunately, the operation of truncating a file is not part of POSIX, and it might not exist on all systems, so on some rare systems, this truncating will not occur. In order to be able to truncate a file, your machine must have the ftruncate() system call in C. If you don't have this, the truncating functionality is not available.
 
-                    During this recycling, Regina only closes the file in the operating system, but retains all vital information about the file itself. If you re-access the file later, Regina reopens it, and positions the current read and write positions at the correct (i.e. previous) positions. This introduces some uncertainties into stream processing. Renaming a file affects it only if it gets swapped out. Since the swap operation is something the users do not see, it can cause some strange effects.
+[Caching info on lines left.]
 
+When Regina executes the built-in function LINES() for a persistent stream, it caches the number of lines left as an attribute to the stream. In subsequent calls to LINEIN(), this number is updated, so that subsequent calls to LINES() can retrieve the cached number instead of having to re-scan the rest of the stream, provided that the number is still valid.
 
-                    Regina will not allow a transient stream to be swapped out, since they often are connected to some sort of active partner in the other end, and closing the file might kill the partner or make it impossible to reestablish the stream. So only persistent files are swapped out. Thus, you can still fill the file table in Regina.
+Some operations will invalidate the count: repositioning the current read position; reading using the character oriented I/O, i.e. CHARIN(); and any write operation by the same interpreter on the stream. Ideally, any write operation should invalidate the count, but that might require a large overhead before any operation, in order to check whether the file has been written to by other programs.
 
-                    [Explicit opening and closing.]
+This functionality can be controlled by the extension called CacheLineNo, which is turned on by default. Note that if you turn that off, you can experience a serious decrease in performance.
 
-                    Regina allows streams to be explicitly opened or closed through the use of the built-in function STREAM(). The exact syntax of this function is described in section stream. Old versions of Regina supported two non-standard built-in functions OPEN() and CLOSE() for these operations. These functions are still supported for compatibility reasons, but might be removed in future releases. Their availability is controlled by the OpenBif and CloseBif extensions.
+The following extra built-in functions relating to stream I/O are defined in Regina. They are provided for extra support and compatibility with other systems. Their support may be discontinued in later versions, and they are likely to be moved to a library of extra support.
 
-                    [Truncation after writing lines.]
+CLOSE(streamid)
 
-                    If you reposition line-wise the current write position to the middle of a file, Regina truncates the file at the new position. This happens whether data is written during the LINEOUT() or not. If not, the file might contain half a line, some lines might disappear, and the linecount would in general be disrupted. The availability of this behavior is controlled by LineOutTrunc, which is turned on by default.
+Closes the stream named by streamid. This stream must have been opened by implicit open or by the OPEN function call earlier. The function returns 1 if there was any file to close, and 0 if the file was not opened. Note that the return value does not indicate whether the closing was successful.
 
+You can use the extension named CloseBif with the OPTIONS instruction to select or remove this function. This function is now obsolete, instead you should use:
 
-                    Unfortunately, the operation of truncating a file is not part of POSIX, and it might not exist on all systems, so on some rare systems, this truncating will not occur. In order to be able to truncate a file, your machine must have the ftruncate() system call in C. If you don't have this, the truncating functionality is not available.
+<code rexx>
+STREAM( streamid, 'Command', 'CLOSE' )
+</code>
 
-                    [Caching info on lines left.]
+| CLOSE(myfile) | 1 | if stream was open |
+| CLOSE('NOSUCHFILE') | 0 | if stream didn't exist |
 
-                    When Regina executes the built-in function LINES() for a persistent stream, it caches the number of lines left as an attribute to the stream. In subsequent calls to LINEIN(), this number is updated, so that subsequent calls to LINES() can retrieve the cached number instead of having to re-scan the rest of the stream, provided that the number is still valid.
+<code rexx>
+OPEN(streamid,access)
+</code>
 
-                    Some operations will invalidate the count: repositioning the current read position; reading using the character oriented I/O, i.e. CHARIN(); and any write operation by the same interpreter on the stream. Ideally, any write operation should invalidate the count, but that
+Opens the stream named streamid with the access access. If access is not specified, the access R will be used. access may be the following characters. Only the first character of the access is needed.
 
-                    might require a large overhead before any operation, in order to check whether the file has been written to by other programs.
+[R]
 
+(Read) Open for read access. The file pointer will be positioned at the start of the file, and only read operations are allowed.
 
-                    This functionality can be controlled by the extension called CacheLineNo, which is turned on by default. Note that if you turn that off, you can experience a serious decrease in performance.
+[W]
 
+(Write) Open for write access and position the current write position at the end of the file. An error is returned if it was not possible to get appropriate access.
 
-                    The following extra built-in functions relating to stream I/O are defined in Regina. They are provided for extra support and compatibility with other systems. Their support may be discontinued in later versions, and they are likely to be moved to a library of extra support.
+The return value from this function is either 1 or 0, depending on whether the named stream is in opened state after the operation has been performed.
 
+Note that if you open the files "foobar" and "./foobar" they will point to the same physical file, but Regina interprets them as two different streams, and will open a internal file descriptor for each one. If you try to open an already open stream, using the same name, it will have no effect.
 
-                    CLOSE(streamid)
+You can use the extension OpenBif with the OPTIONS instruction to control the availability of this function. This function is now obsolete, but is still kept for compatibility with other interpreters and older versions of Regina. Instead, with Regina you should use:
 
+<code rexx>
+STREAM( streamid, 'C', 'READ'|'WRITE'|'APPEND'|'UPDATE' )
+</code>
 
-                    Closes the stream named by streamid. This stream must have been opened by implicit open or by the OPEN function call earlier. The function returns 1 if there was any file to close, and 0 if the file was not opened. Note that the return value does not indicate whether the closing was successful.
+| OPEN(myfile, 'write') | 1 | maybe, if successful |
+| OPEN(passwd, 'Write') | 0 | maybe, if no write access |
+| OPEN('DATA', 'READ') | 0 | maybe, if successful |
 
-                    You can use the extension named CloseBif with the OPTIONS instruction to select or remove this function. This function is now obsolete, instead you should use:
-
-
-                    STREAM( streamid, 'Command', 'CLOSE' )
-
-
-                    CLOSE(myfile)
-                    	
-
-                    1
-                    	
-
-                    if stream was open
-
-                    CLOSE('NOSUCHFILE')
-                    	
-
-                    0
-                    	
-
-                    if stream didn't exist
-
-
-                    OPEN(streamid,access)
-
-
-                    Opens the stream named streamid with the access access. If access is not specified, the access R will be used. access may be the following characters. Only the first character of the access is needed.
-
-
-                    [R]
-
-                    (Read) Open for read access. The file pointer will be positioned at the start of the file, and only read operations are allowed.
-
-                    [W]
-
-                    (Write) Open for write access and position the current write position at the end of the file. An error is returned if it was not possible to get appropriate access.
-
-
-                    The return value from this function is either 1 or 0, depending on whether the named stream is in opened state after the operation has been performed.
-
-
-                    Note that if you open the files "foobar" and "./foobar" they will point to the same physical file, but Regina interprets them as two different streams, and will open a internal file descriptor for each one. If you try to open an already open stream, using the same name, it will have no effect.
-
-                    You can use the extension OpenBif with the OPTIONS instruction to control the availability of this function. This function is now obsolete, but is still kept for compatibility with other interpreters and older versions of Regina. Instead, with Regina you should use:
-
-
-                    STREAM( streamid, 'C', 'READ'|'WRITE'|'APPEND'|'UPDATE' )
-
-
-                    OPEN(myfile, 'write')
-                    	
-
-                    1
-                    	
-
-                    maybe, if successful
-
-                    OPEN(passwd, 'Write')
-                    	
-
-                    0
-                    	
-
-                    maybe, if no write access
-
-                    OPEN('DATA', 'READ')
-                    	
-
-                    0
-                    	
-
-                    maybe, if successful
-
-                    The return value from this function is either 1 or 0, depending on whether the named stream is in opened state after the operation has been performed.
+The return value from this function is either 1 or 0, depending on whether the named stream is in opened state after the operation has been performed.
 
 ==== Functionality to be Implemented Later ====
 
+This section lists the functionality not yet in Regina, but which is intended to be added later. Most of these are fixes to problems, compatibility modes, etc.
 
-                    This section lists the functionality not yet in Regina, but which is intended to be added later. Most of these are fixes to problems, compatibility modes, etc.
+[Indirect naming of streams.]
 
+Currently, streams are named directly, which is a convenient. However, there are a few problems: for instance, it is difficult to write to a file which name is <stdout>, simply because that is a reserved name. To fix this, an indirect naming scheme will be provided through the STREAM()< built-in function. The functionality will resemble the OPEN() built-in function of ARexx.
 
-                    [Indirect naming of streams.]
+[Consistence in filehandle swapping.]
 
-                    Currently, streams are named directly, which is a convenient. However, there are a few problems: for instance, it is difficult to write to a file which name is <stdout>, simply because that is a reserved name. To fix this, an indirect naming scheme will be provided through the STREAM()< built-in function. The functionality will resemble the OPEN() built-in function of ARexx.
+When a file handle is currently swapped out in order to avoid filling the system file table, very little checking of consistency is currently performed. At least, vital information about the file should be retained, such as the inode and file system for Unix machines retrieval by the fstat() call. When the file is swapped in again, this information must be checked against the file which is reopened. If there is a mismatch, NOTREADY should be raised.
 
-                    [Consistence in filehandle swapping.]
+Similarly, when reopening a file because of a new access mode is requested, the same checking should be performed.
 
-                    When a file handle is currently swapped out in order to avoid filling the system file table, very little checking of consistency is currently performed. At least, vital information about the file should be retained, such as the inode and file system for Unix machines retrieval by the fstat() call. When the file is swapped in again, this information must be checked against the file which is reopened. If there is a mismatch, NOTREADY should be raised.
+[Files with holes.]
 
-                    Similarly, when reopening a file because of a new access mode is requested, the same checking should be performed.
-
-                    [Files with holes.]
-
-                    Regina will be changed to allow it to generate files with holes for system where this is relevant. Although standard Rexx does not allow this, it is a very common programming idiom for certain systems, and should be allowed. It will, however, be controllable through a extension called SparseFiles.
+Regina will be changed to allow it to generate files with holes for system where this is relevant. Although standard Rexx does not allow this, it is a very common programming idiom for certain systems, and should be allowed. It will, however, be controllable through a extension called SparseFiles.
 
 ==== Stream I/O in ARexx 1.15 ====
 
