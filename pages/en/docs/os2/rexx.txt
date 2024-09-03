@@ -5770,452 +5770,272 @@ Beginning, Current, or End. It specify the base of the seeking, i.e. whether it 
 
 ==== Main Differences from Standard Rexx ====
 
+Now, as the functionality has been explained, let me point out the main conceptual differences from standard Rexx; they are:
 
-                    Now, as the functionality has been explained, let me point out the main conceptual differences from standard Rexx; they are:
+[Current position.]
 
+ARexx does not differ between a current read and write position, but uses a common current position for both reading and writing. Further, this current position (which it is called in this documentation) can be set to any byte within the file, and to the end-of-file position. Note that the current position is zero-based.
 
-                    [Current position.]
+[Indirect naming.]
 
-                    ARexx does not differ between a current read and write position, but uses a common current position for both reading and writing. Further, this current position (which it is called in this documentation) can be set to any byte within the file, and to the end-of-file position. Note that the current position is zero-based.
+The stream I/O operations in ARexx do not get a parameter which is the name of the file. Instead, ARexx uses an indirect naming scheme. The OPEN() built-in function binds a Rexx stream name for a file to a named file in the AmigaDOS operating system; and later, only the Rexx stream name is used in other stream I/O functions operating on that file.
 
-                    [Indirect naming.]
+[Special stream names.]
 
-                    The stream I/O operations in ARexx do not get a parameter which is the name of the file. Instead, ARexx uses an indirect naming scheme. The OPEN() built-in function binds a Rexx stream name for a file to a named file in the AmigaDOS operating system; and later,
+There are two special file names in ARexx: STDOUT and STDIN, which refer to the standard input file and standard output file. With respect to the indirect naming scheme, these are not file names, but names for open streams; i.e. they can be used in stream I/O operations other than OPEN(). For some reason, is it possible to close STDIN but not STDOUT.
 
-                    only the Rexx stream name is used in other stream I/O functions operating on that file.
+[NOTREADY not supported.]
 
-                    [Special stream names.]
+ARexx has no NOTREADY condition. Instead, you must detect errors by calling EOF() and checking the return codes from each I/O operations.
 
-                    There are two special file names in ARexx: STDOUT and STDIN, which refer to the standard input file and standard output file. With respect to the indirect naming scheme, these are not file names, but names for open streams; i.e. they can be used in stream I/O operations other than OPEN(). For some reason, is it possible to close STDIN but not STDOUT.
+[Other things missing.]
 
-                    [NOTREADY not supported.]
+In ARexx, all files must be explicitly opened. There is no way to reposition line-wise, except for reading lines and keeping a count yourself.
 
-                    ARexx has no NOTREADY condition. Instead, you must detect errors by calling EOF() and checking the return codes from each I/O operations.
+Of course, ARexx also has a lot of functionality which is not part of standard Rexx, like relative repositioning, explicit opening, an end-of-file indicator, etc. But this functionality is descriptive above in the descriptions of extended built-in functions, and it is of less interest here.
 
-                    [Other things missing.]
+When an ARexx script has opened a file in Write mode, other ARexx scripts are not allowed to access that file. However, if the file is opened in Read or Append mode, then other ARexx scripts can open the file too, and the same state of the contents of the file is seen by all scripts.
 
-                    In ARexx, all files must be explicitly opened. There is no way to reposition line-wise, except for reading lines and keeping a count yourself.
+Note that it is difficult to translate between using standard Rexx stream I/O and ARexx stream I/O. In particular, the main problem (other than missing functionality in one of the systems) is the processing of end-of-lines. In standard Rexx, the end-of-file is detected by checking whether there is more data left, while in ARexx one checks whether the end-of-file has been read. The following is a common standard Rexx idiom:
 
+<code rexx>
+while lines('file')>0 /* for each line available */ 
+  say linein('file') /* process it */
+end
+</code>
 
-                    Of course, ARexx also has a lot of functionality which is not part of standard Rexx, like relative repositioning, explicit opening, an end-of-file indicator, etc. But this functionality is descriptive above in the descriptions of extended built-in functions, and it is of less interest here.
+In ARexx this becomes:
 
+<code rexx>
+tmp = readln('file') /* attempt to read first line */ 
+do until eof('file') /* if EOF was not seen */
+  say tmp /* process line */
+  tmp = readln('file') /* attempt to read next line */
+end
+</code>
 
-                    When an ARexx script has opened a file in Write mode, other ARexx scripts are not allowed to access that file. However, if the file is opened in Read or Append mode, then other ARexx scripts can open the file too, and the same state of the contents of the file is seen by all scripts.
+It is hard to mechanically translate between them, because of the lack of an EOF() built-in function in standard Rexx, and the lack of a LINES() built-in function in ARexx.
 
+Note that in the ARexx example, an improperly terminated last line is not read as an independent line, since READLN() searches for an end-of-line character sequence. Thus, in the last invocation tmp is set to the last unterminated line, but EOF() returns true too. To make this different, make the UNTIL subterm of the DO loop check for the expression EOF('file') && TMP<>".
 
-                    Note that it is difficult to translate between using standard Rexx stream I/O and ARexx stream I/O. In particular, the main problem (other than missing functionality in one of the systems) is the processing of end-of-lines. In standard Rexx, the end-of-file is detected by checking whether there is more data left, while in ARexx one checks whether the end-of-file has been read. The following is a common standard Rexx idiom:
+The limit of 1000 characters for READLN() means that a generic line reading routine in ARexx must be similar to this:
 
+<code rexx>
+readline: procedure 
+  parse arg filename line = ''
+  do until length(tmpline)<1000 
+    tmpline = readln(filename) 
+    line = line || tmpline
+  end
+  return line
+</code>
 
-                    while lines('file')>0 /* for each line available */ say linein('file') /* process it */
-
-                    end
-
-
-                    In ARexx this becomes:
-
-
-                    tmp = readln('file') /* attempt to read first line */ do until eof('file') /* if EOF was not seen */
-
-                    say tmp /* process line */
-
-                    tmp = readln('file') /* attempt to read next line */
-
-                    end
-
-
-                    It is hard to mechanically translate between them,
-
-
-                    because of the lack of an EOF() built-in function in standard Rexx, and the lack of a LINES()
-
-                    built-in function in ARexx.
-
-
-                    Note that in the ARexx example, an improperly terminated last line is not read as an independent line, since READLN() searches for an end-of-line character sequence. Thus, in the last invocation tmp is set to the last unterminated line, but EOF() returns true too. To make this different, make the UNTIL subterm of the DO loop check for the expression EOF('file') && TMP<>".
-
-                    The limit of 1000 characters for READLN() means that a generic line reading routine in ARexx must be similar to this:
-
-
-                    readline: procedure parse arg filename line = ''
-
-                    do until length(tmpline)<1000 tmpline = readln(filename) line = line || tmpline
-
-                    end
-
-                    return line
-
-
-                    This routine calls READLN() until it returns a line that is shorter than 1000 characters. Note that end-of-file checking is ignored, since READLN() returns an empty string a the end-of-stream.
+This routine calls READLN() until it returns a line that is shorter than 1000 characters. Note that end-of-file checking is ignored, since READLN() returns an empty string a the end-of-stream.
 
 ==== Stream I/O in BRexx 1.0b ====
 
+BRexx contains a set of I/O which shows very close relations with the C programming language I/O library. In fact, you should consider consulting the C library documentation for in-depth documentation on this functionality.
 
-                    BRexx contains a set of I/O which shows very close relations with the C programming language I/O library. In fact, you should consider consulting the C library documentation for in-depth documentation on this functionality.
+BRexx contains a two-level naming scheme: in Rexx, streams are referred to by a stream handle, which is an integer; in the operating system files are referred to by a file name, which is a normal string. The function OPEN() is used to bind a file name to a stream handle. However, BRexx I/O functions generally have the ability to get a reference either as a file name and a stream handle, and open the file if appropriate. However, if the name of a file is an integer which can be interpreted as a file descriptor number, it is interpreted as a descriptor rather than a name. Whenever you use BRexx and want to program robust code, always use OPEN() and the descriptor.
 
+If a file is opened by specifying the name in a I/O operation other than OPEN(), and the name is an integer and only one or two higher than the highest current file descriptor, strange things may happen.
 
-                    BRexx contains a two-level naming scheme: in Rexx, streams are referred to by a stream handle, which is an integer; in the operating system files are referred to by a file name, which is a normal string. The function OPEN() is used to bind a file name to a stream handle. However, BRexx I/O functions generally have the ability to get a reference either as a file name and a stream handle, and open the file if appropriate. However, if the name of a file is an integer which can be interpreted as a file descriptor number, it is interpreted as a descriptor rather than a name. Whenever you use BRexx and want to program robust code, always use OPEN() and the descriptor.
+Five special streams are defined, having the pseudo file names: <STDIN>, <STDOUT>, <STDERR>, <STDAUX>, and <STDPRN>; and are assigned pre-defined stream handles from 0 to 4, respectively. These refer to the default input, default output, and default error output, default auxiliary output, and printer output. The two last generally refer to the COM1: and LPT1: devices under MS-DOS. Either upper or lower case letter can be used when referring to these four special names.
 
+However, note that if any of these five special files are closed, they can not be reopened again. The reopened file will be just a normal file, having the name e.g. <STDOUT>.
 
-                    If a file is opened by specifying the name in a I/O operation other than OPEN(), and the name is an integer and only one or two higher than the highest current file descriptor, strange things may happen.
+There is a few things you should watch out for with the special files. I/O involving the <STDAUX> and <STDPRN> can cause the Abort, Retry, Ignore message to be shown once for each character that was attempted read or written. It can be boring and tedious to answer R or I if the text string is long. If A is answered, BRexx terminates.
 
+You should never write data to file descriptor 0 (<STDIN>), apparently, it will only disappear.
 
-                    Five special streams are defined, having the pseudo file names: <STDIN>, <STDOUT>,
+Likewise, never read data to file descriptors 1 and 2 (<STDOUT> and <STDERR>), the former seems to terminate the program while the latter apparently just returns the nullstring. Also be careful with reading from file descriptors 3 and 4, since your program may hang if no data is available.
 
-                    <STDERR>, <STDAUX>, and <STDPRN>; and are assigned pre-defined stream handles from 0 to 4, respectively. These refer to the default input, default output, and default error output, default auxiliary output, and printer output. The two last generally refer to the COM1: and LPT1: devices under MS-DOS. Either upper or lower case letter can be used when referring to these four special names.
+<code>
+OPEN( file , mode )
+</code>
 
+The OPEN() built-in function opens a file named by file, in mode mode, and returns an integer which is the number of the stream handle assigned to the file. In general, the stream handle is a non-negative integer, where 0 to 4 are pre-defined for the default streams. If an error occurred during the open operation, the value -1 is returned.
 
-                    However, note that if any of these five special files are closed, they can not be reopened again. The reopened file will be just a normal file, having the name e.g. <STDOUT>.
+The mode parameter specifies the mode in which the file is opened. It consists of two parts: the access mode, and the file mode. The access mode part consists of one single character, which can be r for read, w for write, and a for append. In addition, the + character can be appended to open a file in both read and write mode. The file mode part can also have of one additional character which can be t for text files and b for binary files. The t mode is default.
 
+The following combinations of + and access mode are possible:
 
-                    There is a few things you should watch out for with the special files. I/O involving the <STDAUX> and <STDPRN> can cause the Abort, Retry, Ignore message to be shown once for each character that was attempted read or written. It can be boring and tedious to answer R or I if the text string is long. If A is answered, BRexx terminates.
+r is non-destructive open for reading;
 
+w is destructive open for write-only mode;
 
-                    You should never write data to file descriptor 0 (<STDIN>), apparently, it will only disappear.
+a is non-destructive open for in append-only mode, i.e. only write operations are allowed, and all write operations must be performed at the end-of-file; 
 
-                    Likewise, never read data to file descriptors 1 and 2 (<STDOUT> and <STDERR>), the former seems to terminate the program while the latter apparently just returns the nullstring. Also be careful with reading from file descriptors 3 and 4, since your program may hang if no data is available.
+r+ is non-destructive open for reading and writing; 
 
+w+ is destructive open for reading and writing; and a+ is non-destructive open in append update, i.e. reading is allowed anywhere, but writing is allowed only at end-of-file. Destructive mode means that the file is truncated to zero length when opened.
 
-                    OPEN( file , mode )
+In addition, the b and t characters can be appended in order to open the file in binary or text mode.
 
+These modes are the same as under C, although the t mode character is strictly not in ANSI C. Also note that r, w, and a are mutually exclusive, but one of them must always be present. The mode + is optional, but if present, it must always come immediately after r, w, or a. The t and b modes are optional and mutually exclusive; the default is t. If present, t or b must be the last character in the mode string.
 
-                    The OPEN() built-in function opens a file named by file, in mode mode, and returns an integer which is the number of the stream handle assigned to the file. In general, the stream handle is a non-negative integer, where 0 to 4 are pre-defined for the default streams. If an error occurred during the open operation, the value -1 is returned.
+| open('myfile','w') | 7 | perhaps |
+| open('no.such.file','r') | -1 | if non-existent |
+| open('c:tmp','r+b') | 6 | perhaps |
 
+If two file descriptors are opened to the same file, only the most recently of them works. However, if the most recently descriptor is closed, the least recently starts working again. There may be other strange effects too, so try avoid reopening a file that is already open.
 
-                    The mode parameter specifies the mode in which the file is opened. It consists of two parts: the access mode, and the file mode. The access mode part consists of one single character, which can be r for read, w for write, and a for append. In addition, the + character can be appended to open a file in both read and write mode. The file mode part can also have of one additional character which can be t for text files and b for binary files. The t mode is default.
+<code>
+CLOSE( file )
+</code>
 
+The CLOSE() built-in function closes a file that is already open. The parameter file can be either a stream handle returned from OPEN() or a file name which has been opened (but for which you do not known the correct stream handle).
 
-                    The following combinations of + and access mode are possible:
+The return value of this function seems to be the nullstring in all cases.
 
+| close(6) | | if open | 
+| close(7) | | if not open |
+| close('foobar') | | perhaps |
 
-                    r is non-destructive open for reading; w is destructive open for write-only mode; a is non-destructive open for in append-only mode, i.e. only write operations are allowed, and all write operations must be performed at the end-of-file; r+ is non-destructive open for reading and writing; w+ is destructive open for reading and writing; and a+ is non-destructive open in append update,
+<code>
+EOF( file )
+</code>
 
-                    i.e. reading is allowed anywhere, but writing is allowed only at end-of-file. Destructive mode means that the file is truncated to zero length when opened.
+The EOF() built-in function checks the end-of-file state for the stream given by file, which can be either a stream descriptor or a file name. The value returned is 1 if the end-of-file status is set for the stream, and 0 if it is cleared. In addition, the value -1 is returned if an error occurred, for instance if the file is not open.
 
+The end-of-file indicator is set whenever an attempt was made to read at least one character past the last character of the file. Note that reading the last character itself will not set the end-of-file condition.
 
-                    In addition, the b and t characters can be appended in order to open the file in binary or text mode.
+| eof(foo) | 0 | if not at eof |
+| eof('8') | 1 | if at eof |
+| eof('no.such.file') | -1 | if file isn't open |
 
+<code>
+READ([ file ][, length ])
+</code>
 
-                    These modes are the same as under C, although the t mode character is strictly not in ANSI C. Also note that r, w, and a are mutually exclusive, but one of them must always be present. The mode + is optional, but if present, it must always come immediately after r, w, or a. The t and b modes are optional and mutually exclusive; the default is t. If present, t or b must be the last character in the mode string.
+The READ() built-in function reads data from the file referred to by the file parameter, which can be either a file name or a stream descriptor. If it is a file name, and that file is not currently open, then BRexx opens the file in mode rt. The default value of the first parameter is the default input stream. The data is read from and including the current position.
 
+If the length parameter is not specified, a whole line is read, i.e. reading forwards to and including the first end-of-line sequence. However, the end-of-line sequence itself is not returned. If the length parameter is specified, it must be a non-negative integer, and specified the number of characters to read.
 
-                    open('myfile','w')
-                    	
+The data returned is the data read, except that if length is not specified, the terminating end-of-line sequence is stripped off. If the last line of a file contains a string unterminated by the end-of-string character sequence, then the end-of-file is implicitly interpreted as an end-of-line. However, in this case the end-of-file state is entered, since the end-of-stream was found while looking for an end-of-line.
 
-                    7
-                    	
+| read('foo') | one line | reads a complete line |
+| read('foo',5) | anoth | reads parts of a line |
+| read(6) | er line | using a file descriptor |
+| read() | hello there | perhaps, reads line from default input stream |
 
-                    perhaps
+<code>
+WRITE([ file ][,[ string ][, dummy ]])
+</code>
 
-                    open('no.such.file','r')
-                    	
+The WRITE() built-in function writes a string of data to the stream specified by the file parameter, or by default the default output stream. If specified, file can be either a file name or a stream descriptor. If it is a file name, and that file is not already open, it is opened using wt mode.
 
-                    -1
-                    	
+The data written is specified by the string parameter.
 
-                    if non-existent
+The return value is an integer, which is the number of bytes written during the operation. If the file is opened in text mode, all ASCII newline characters are translated into ASCII CRLF character sequences. However, the number returned is not affected by this translation; it remains independent of any text of binary mode. Unfortunately, errors while writing is seldom trapped, so the number returned is generally the number of character that was supposed to be written, independent of whether they was actually written or not.
 
-                    open('c:tmp','r+b')
-                    	
+If a third parameter is specified, the data is written as a line, i.e. including the end-of-line sequence. Else, the data is written as-is, without any end-of-line sequence. Note that with BRexx, the third parameter is considered present if at least the comma in front of it--the second comma--is present. This is a bit inconsistent with the standard operations of the ARG() built-in function. The value of the third parameter is always ignored, only its presence is considered.
 
-                    6
-                    	
+If the second parameter is omitted, only an end-of-line action is written, independent of whether the third parameter is present or not.
 
-                    perhaps
+| write('bar','data') | 4 | writes four bytes |
+| write('bar','data','nl') | 4+?? | write a line |
+| write('bar','data',) | 4+?? | same as previous |
 
+<code>
+SEEK( file [,[ offset ][, origin ]])
+</code>
 
-                    If two file descriptors are opened to the same file, only the most recently of them works. However, if the most recently descriptor is closed, the least recently starts working again. There may be other strange effects too, so try avoid reopening a file that is already open.
+The SEEK() built-in function moves the current position to a location in the file referred to by file. The parameter file can be either a file name (which must already be open) or a stream descriptor.
 
+This function does not implicitly open files that is not currently open.
 
-                    CLOSE( file )
+The parameter offset determines the location of the stream and must be an integer. It defaults to zero. Note that the addressing of bytes within the stream is zero-based.
 
-                    The CLOSE() built-in function closes a file that is already open. The parameter file can be either a stream handle returned from OPEN() or a file name which has been opened (but for which you do not known the correct stream handle).
+The third parameter can be any of TOF, CUR, or EOF, in order to set the reference point in which to recon the offset location. The three strings refer to top-of-file, current position, and end-of-file, and either upper or lower case can be used. The default value is ???.
 
+The return value of this function is the absolute position of the position in the file after the seek operation has been performed.
 
-                    The return value of this function seems to be the nullstring in all cases.
-
-
-                    close(6)
-                    	
-
-
-                    	
-
-                    if open
-
-                    close(7)
-                    	
-
-
-                    	
-
-                    if not open
-
-                    close('foobar')
-                    	
-
-
-                    	
-
-                    perhaps
-
-
-                    EOF( file )
-
-
-                    The EOF() built-in function checks the end-of-file state for the stream given by file, which can be either a stream descriptor or a file name. The value returned is 1 if the end-of-file status is set for the stream, and 0 if it is cleared. In addition, the value -1 is returned if an error occurred, for instance if the file is not open.
-
-
-                    The end-of-file indicator is set whenever an attempt was made to read at least one character past the last character of the file. Note that reading the last character itself will not set the end-of-file condition.
-
-
-                    eof(foo)
-                    	
-
-                    0
-                    	
-
-                    if not at eof
-
-                    eof('8')
-                    	
-
-                    1
-                    	
-
-                    if at eof
-
-                    eof('no.such.file')
-                    	
-
-                    -1
-                    	
-
-                    if file isn't open
-
-
-                    READ([ file ][, length ])
-
-
-                    The READ() built-in function reads data from the file referred to by the file parameter, which can be either a file name or a stream descriptor. If it is a file name, and that file is not currently open, then BRexx opens the file in mode rt. The default value of the first parameter is the default input stream. The data is read from and including the current position.
-
-
-                    If the length parameter is not specified, a whole line is read, i.e. reading forwards to and including the first end-of-line sequence. However, the end-of-line sequence itself is not returned. If the length parameter is specified, it must be a non-negative integer, and specified the number of characters to read.
-
-
-                    The data returned is the data read, except that if length is not specified, the terminating end-of-line sequence is stripped off. If the last line of a file contains a string unterminated by the end-of-string character sequence, then the end-of-file is implicitly interpreted as an end-of-line. However, in this case the end-of-file state is entered, since the end-of-stream was found while looking for an end-of-line.
-
-
-                    read('foo')
-                    	
-
-                    one line
-                    	
-
-                    reads a complete line
-
-                    read('foo',5)
-                    	
-
-                    anoth
-                    	
-
-                    reads parts of a line
-
-                    read(6)
-                    	
-
-                    er line
-                    	
-
-                    using a file descriptor
-
-                    read()
-                    	
-
-                    hello there
-                    	
-
-                    perhaps, reads line from default input stream
-
-
-                    WRITE([ file ][,[ string ][, dummy ]])
-
-
-                    The WRITE() built-in function writes a string of data to the stream specified by the file parameter, or by default the default output stream. If specified, file can be either a file name or a stream descriptor. If it is a file name, and that file is not already open, it is opened using wt mode.
-
-
-                    The data written is specified by the string parameter.
-
-
-                    The return value is an integer, which is the number of bytes written during the operation. If the file is opened in text mode, all ASCII newline characters are translated into ASCII CRLF character sequences. However, the number returned is not affected by this translation; it remains independent of any text of binary mode. Unfortunately, errors while writing is seldom trapped, so the number returned is generally the number of character that was supposed to be written, independent of whether they was actually written or not.
-
-
-                    If a third parameter is specified, the data is written as a line, i.e. including the end-of-line sequence. Else, the data is written as-is, without any end-of-line sequence. Note that with BRexx, the third parameter is considered present if at least the comma in front of it--the second comma--is present. This is a bit inconsistent with the standard operations of the ARG() built-in function. The value of the third parameter is always ignored, only its presence is considered.
-
-
-                    If the second parameter is omitted, only an end-of-line action is written, independent of whether the third parameter is present or not.
-
-
-                    write('bar','data')
-                    	
-
-                    4
-                    	
-
-                    writes four bytes
-
-                    write('bar','data','nl')
-                    	
-
-                    4+??
-                    	
-
-                    write a line
-
-                    write('bar','data',)
-                    	
-
-                    4+??
-                    	
-
-                    same as previous
-
-
-                    SEEK( file [,[ offset ][, origin ]])
-
-
-                    The SEEK() built-in function moves the current position to a location in the file referred to by file. The parameter file can be either a file name (which must already be open) or a stream descriptor.
-
-                    This function does not implicitly open files that is not currently open.
-
-
-                    The parameter offset determines the location of the stream and must be an integer. It defaults to zero. Note that the addressing of bytes within the stream is zero-based.
-
-
-                    The third parameter can be any of TOF, CUR, or EOF, in order to set the reference point in which to recon the offset location. The three strings refer to top-of-file, current position, and end-of-file, and
-
-                    either upper or lower case can be used. The default value is ???.
-
-
-                    The return value of this function is the absolute position of the position in the file after the seek operation has been performed.
-
-
-                    The SEEK() function provides a very important additional feature. Whenever a file opened for both reading and writing has been used in a read operation and is to be used in a write operation next (or vice versa), then a call to SEEK() must be performed between the two I/O calls. In other words, after a read only a seeking and reading may occur; after a write, only seeking and writing may occur; and after a seek, reading, writing, and seeking may occur.
+The SEEK() function provides a very important additional feature. Whenever a file opened for both reading and writing has been used in a read operation and is to be used in a write operation next (or vice versa), then a call to SEEK() must be performed between the two I/O calls. In other words, after a read only a seeking and reading may occur; after a write, only seeking and writing may occur; and after a seek, reading, writing, and seeking may occur.
 
 ==== Problems with Binary and Text Modes ====
 
+Under the MS-DOS operating system, the end-of-line character sequence is <CR><LF>, while in C, the end-of-line sequence is only <LF>. This opens for some very strange effects.
 
-        Under the MS-DOS operating system, the end-of-line character sequence is <CR><LF>, while in C, the end-of-line sequence is only <LF>. This opens for some very strange effects.
+When an MS-DOS file is opened for read in text mode by BRexx, all <CR><LF> character sequences in file data are translated to <LF> when transferred into the C program. Further, BRexx, which is a C program, interprets <LF> as an end-of-line character sequence. However, if the file is opened in binary mode, then the first translation from <CR><LF> in the file to <LF> into the C program is not performed. Consequently, if a file that really is a text file is opened as a binary file and read line-wise, all lines would appear to have a trailing <CR> character.
 
+Similarly, <LF> written by the C program is translated to <CR><LF> in the file. This is always done when the file is opened in text mode. When the file is opened in binary mode, all data is transferred without any alterations. Thus, when writing lines to a file which is opened for write in binary mode, the lines appear to have only <LF>, not <CR><LF>. If later opened as a text file, this is not recognized as an end-of-line sequence.
 
-        When an MS-DOS file is opened for read in text mode by BRexx, all <CR><LF> character sequences in file data are translated to <LF> when transferred into the C program. Further, BRexx, which is a C program, interprets <LF> as an end-of-line character sequence. However, if the file is opened in binary mode, then the first translation from <CR><LF> in the file to <LF> into the C program is not performed. Consequently, if a file that really is a text file is opened as a binary file and read line-wise, all lines would appear to have a trailing <CR> character.
+Example: Differing end-of-lines
 
+Here is an example of how an incorrect choice of file type can corrupt data. Assume BRexx running under MS-DOS, using <CR><LF> as a end-of-line sequence in text files, but the system calls translating this to <LF> in the file I/O interface. Consider the following code.
 
-        Similarly, <LF> written by the C program is translated to <CR><LF> in the file. This is always done when the file is opened in text mode. When the file is opened in binary mode, all data is transferred without any alterations. Thus, when writing lines to a file which is opened for write in binary mode, the lines appear to have only <LF>, not <CR><LF>. If later opened as a text file, this is not recognized as an end-of-line sequence.
+<code rexx>
+file = open('testfile.dat', 'wt') /* text mode */ 
+call write file, '45464748'x, 'dummy' /* i.e. 'abcd' */ 
+call write file, '65666768'x, 'dummy' /* i.e. 'ABCD' */ 
+call close file
 
+file = open('testfile.dat', 'rb') /* binary mode */ 
+say c2x(read(file)) /* says '454647480D' */
+say c2x(read(file)) /* says '656667680D' */
+call close file
+</code>
 
-        Example: Differing end-of-lines
+Here, two lines of four characters each are written to the file, while when reading, two lines of five characters are read. The reason is simply that the writing was in text mode, so the end-of-line character sequence was <CR><LF>; while the reading was in binary mode, so the end-of-line character sequence was just <LF>. Thus, the <CR> preceding the <LF> is taken to be part of the line during the read.
 
-
-        Here is an example of how an incorrect choice of file type can corrupt data. Assume BRexx running under MS-DOS, using <CR><LF> as a end-of-line sequence in text files, but the system calls translating this to <LF> in the file I/O interface. Consider the following code.
-
-
-        file = open('testfile.dat', 'wt') /* text mode */ call write file, '45464748'x, 'dummy' /* i.e. 'abcd' */ call write file, '65666768'x, 'dummy' /* i.e. 'ABCD' */ call close file
-
-        file = open('testfile.dat', 'rb') /* binary mode */ say c2x(read(file)) /* says '454647480D'
-
-        */
-
-        say c2x(read(file)) /* says '656667680D'
-
-        */
-
-        call close file
-
-
-        Here, two lines of four characters each are written to the file, while when reading, two lines of five characters are read. The reason is simply that the writing was in text mode, so the end-of-line character sequence was <CR><LF>; while the reading was in binary mode, so the end-of-line
-
-        character sequence was just <LF>. Thus, the <CR> preceding the <LF> is taken to be part of the line during the read.
-
-
-        To avoid this, be very careful about using the correct mode when opening files. Failure to do so will almost certainly give strange effects.
+To avoid this, be very careful about using the correct mode when opening files. Failure to do so will almost certainly give strange effects.
 
 ====== Extensions ======
 
-    This chapter describes how extensions to Regina are implemented. The whole contents of this chapter is specific for Regina.
+This chapter describes how extensions to Regina are implemented. The whole contents of this chapter is specific for Regina.
 
 
 ===== Why Have Extensions =====
 
+Why do we need extensions? Well, there are a number of reasons, although not all of these are very good reasons:
 
-        Why do we need extensions? Well, there are a number of reasons, although not all of these are very good reasons:
+Adaptations to new environments may require new functionality in order to easily interface to the operating system.
 
+Extending the language with more power, to facilitate programming.
 
-            Adaptations to new environments may require new functionality in order to easily interface to the operating system.
+Sometimes, a lot of time can be saved if certain assumptions are met, so an extension might be implemented to allow programmers to take shortcuts.
 
+When a program is ported from one platform to another, parts of the code may depend of non-standard features not available on the platform being ported to. In this situation, the availability of extensions that implement the feature may be of great help to the programmer.
 
-            Extending the language with more power, to facilitate programming.
+The implementor had some good idea during development.
 
+Backwards compatibility.
 
-            Sometimes, a lot of time can be saved if certain assumptions are met, so an extension might be implemented to allow programmers to take shortcuts.
-
-
-            When a program is ported from one platform to another, parts of the code may depend of non-standard features not available on the platform being ported to. In this situation, the availability of extensions that implement the feature may be of great help to the programmer.
-
-
-            The implementor had some good idea during development.
-
-
-            Backwards compatibility.
-
-
-            Extensions arise from holes in the functionality. Whether they will survive or not depends on how they are perceived by programmers; if perceived as useful, they will probably be used and thus supported in more interpreters.
+Extensions arise from holes in the functionality. Whether they will survive or not depends on how they are perceived by programmers; if perceived as useful, they will probably be used and thus supported in more interpreters.
 
 
 ===== Extensions and Standard Rexx =====
 
+In standard Rexx, the OPTIONS instruction provides a "hook" for extensions. It takes any type of parameters, and interprets them in a system-dependent manner.
 
-        In standard Rexx, the OPTIONS instruction provides a "hook" for extensions. It takes any type of parameters, and interprets them in a system-dependent manner.
-
-
-        The format and legal values of the parameters for the OPTIONS instruction is clearly implementation dependent [TRL2, p62].
+The format and legal values of the parameters for the OPTIONS instruction is clearly implementation dependent [TRL2, p62].
 
 
 ===== Specifying Extensions in Regina =====
 
+In Regina there are three level of extensions. Each independent extension has its own name. Exactly what an independent extension is, will depend on the viewer, but a classification has been done, and is listed at the end of this chapter.
 
-        In Regina there are three level of extensions. Each independent extension has its own name. Exactly what an independent extension is, will depend on the viewer, but a classification has been done, and is listed at the end of this chapter.
+At the lowest level are these "atomic" extensions. Then there are some "meta-extensions". These are collections of other extensions which belong together in some manner. If you need the extension for creating "buffers" on the stack, it would be logical to use the extension to remove buffers from the stack too. Therefore, all the individual extensions for operations that handle buffers in the stack can be named by such a "meta-extensions". At the end of this chapter, there is a list of all the meta-extensions, and which extensions they include.
 
-
-        At the lowest level are these "atomic" extensions. Then there are some "meta-extensions". These are collections of other extensions which belong together in some manner. If you need the extension for creating "buffers" on the stack, it would be logical to use the extension to remove buffers from
-
-        the stack too. Therefore, all the individual extensions for operations that handle buffers in the stack can be named by such a "meta-extensions". At the end of this chapter, there is a list of all the meta-extensions, and which extensions they include.
-
-
-        At the top is "standards". These are sets of extensions that makes the interpreter behave in a fashion compatible with some standard. Note that "standard" is used very liberally, since it may refer to other implementations of Rexx. However, this description of how the extensions are structured is only followed to some extent. Where practical, the structure has been deviated.
+At the top is "standards". These are sets of extensions that makes the interpreter behave in a fashion compatible with some standard. Note that "standard" is used very liberally, since it may refer to other implementations of Rexx. However, this description of how the extensions are structured is only followed to some extent. Where practical, the structure has been deviated.
 
 
 ===== The Trouble Begins =====
 
+There is one very big problem with extensions. If you want to be able to turn them on and off during execution, then your program has to be a bit careful.
 
-        There is one very big problem with extensions. If you want to be able to turn them on and off during execution, then your program has to be a bit careful.
+More and more Rexx interpreters (including Regina parsing the program when the interpreter is started. The "old" way was to postpone the parsing of each clause until it was actually executed. This leads to the problem mentioned.
 
+Suppose you want to use an extension that allows a slightly different syntax, for the sake of the argument, let us assume that you allow an expression after the SELECT keyword. Also assume that this extension is only allowed in extended mode, not in "standard mode". However, since Regina parses the source code only once (typically at the starts of the program), the problem is a catch-22: the extension can only be turned on after parsing the program, but it is needed before parsing. This also applies to a lot of other Rexx interpreters, and all Rexx compilers and preprocessors.
 
-        More and more Rexx interpreters (including Regina parsing the program when the interpreter is started. The "old" way was to postpone the parsing of each clause until it was actually executed. This leads to the problem mentioned.
+If the extension is not turned on during parsing, it will generate a syntax error, but the parsing is all done before the first clause is executed. Consequently, this extension can not be turned on during execution, it has to be set before the parsing starts.
 
+Therefore, there are two alternative ways to invoke a set of extensions before the Rexx program is parsed:
 
-        Suppose you want to use an extension that allows a slightly different syntax, for the sake of the argument, let us assume that you allow an expression after the SELECT keyword. Also assume that this extension is only allowed in extended mode, not in "standard mode". However, since Regina parses the source code only once (typically at the starts of the program), the problem is a catch-22: the extension can only be turned on after parsing the program, but it is needed before parsing. This also applies to a lot of other Rexx interpreters, and all Rexx compilers and preprocessors.
+It can be invoked by setting an environment variable, which must be a string of the same format as the parameters to the OPTIONS clause. Regina supports this mechanism by the use of the REGINA_OPTIONS environment variable.
 
-
-        If the extension is not turned on during parsing, it will generate a syntax error, but the parsing is all done before the first clause is executed. Consequently, this extension can not be turned on during execution, it has to be set before the parsing starts.
-
-
-        Therefore, there are two alternative ways to invoke a set of extensions before the Rexx program is parsed:
-
-
-            It can be invoked by setting an environment variable, which must be a string of the same format as the parameters to the OPTIONS clause. Regina supports this mechanism by the use of the REGINA_OPTIONS environment variable.
-
-            It can be invoked by using a command line option to the interpreter -o; which must be a string of the same format as the parameters to the OPTIONS clause. The command line switch overwrites any option specified in the REGINA_OPTIONS environment variable.
+It can be invoked by using a command line option to the interpreter -o; which must be a string of the same format as the parameters to the OPTIONS clause. The command line switch overwrites any option specified in the REGINA_OPTIONS environment variable.
 
 ===== The Format of the OPTIONS clause =====
 
