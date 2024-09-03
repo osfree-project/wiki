@@ -6825,178 +6825,161 @@ Must be set in order to get the prototypes, symbols and datatype definitions nec
 
 ==== Data structures and data types ====
 
+In this section, some data structures and datatypes relevant to the application interface to Rexx are defined and described. The datatypes defined are:
 
-            In this section, some data structures and datatypes relevant to the application interface to Rexx are defined and described. The datatypes defined are:
+RXSTRING
 
+Holds a Rexx string.
 
-                RXSTRING
+RXSYSEXIT
 
-                Holds a Rexx string.
+Holds a definition of a system exit handler. Used when starting a Rexx script with RexxStart(), and when defining the system exit handlers.
 
-                RXSYSEXIT
+The datatypes used in the SAA API are defined in rexxsaa.h. They are: 
 
-                Holds a definition of a system exit handler. Used when starting a Rexx script with
+<code c>
+typedef char CHAR ;
+typedef short SHORT ; 
+typedef long LONG ; 
+typedef char *PSZ ;
+typedef CHAR *PCHAR ; 
+typedef SHORT *PSHORT ; 
+typedef LONG *PLONG ; 
+typedef unsigned char UCHAR ; 
+typedef unsigned short USHORT ; 
+typedef unsigned long ULONG ; 
+typedef USHORT *PUSHORT ; 
+typedef char *PCH ;
+typedef unsigned char *PUCHAR ;
+typedef void VOID;
+typedef void *PVOID; 
+typedef ULONG APIRET;
+typedef APIRET (APIENTRY *PFN)();
+</code>
 
-                RexxStart(), and when defining the system exit handlers.
-
-                The datatypes used in the SAA API are defined in rexxsaa.h. They are: typedef char CHAR ;
-
-                typedef short SHORT ; typedef long LONG ; typedef char *PSZ ;
-
-                typedef CHAR *PCHAR ; typedef SHORT *PSHORT ; typedef LONG *PLONG ; typedef unsigned char UCHAR ; typedef unsigned short USHORT ; typedef unsigned long ULONG ; typedef USHORT *PUSHORT ; typedef char *PCH ;
-
-                typedef unsigned char *PUCHAR ; typedef void VOID;
-
-                typedef void *PVOID; typedef ULONG APIRET;
-
-                typedef APIRET (APIENTRY *PFN)();
-
-
-                One other item needs mentioning; APIENTRY. This value is used to specify the linkage type on OS/2 and Win32 platforms. It is assumed that this value #defined by inclusion of compiler-specific header files in rexxsaa.h. Under Unix, this is #defined to nothing.
-
+One other item needs mentioning; APIENTRY. This value is used to specify the linkage type on OS/2 and Win32 platforms. It is assumed that this value #defined by inclusion of compiler-specific header files in rexxsaa.h. Under Unix, this is #defined to nothing.
 
 === The RXSTRING structured ===
 
+The SAA API interface uses Rexx string which are stored in the structure RXSTRING. There is also a datatype PRXSTRING, which is a pointer to RXSTRING. Their definitions are:
 
-                    The SAA API interface uses Rexx string which are stored in the structure RXSTRING. There is also a datatype PRXSTRING, which is a pointer to RXSTRING. Their definitions are:
+<code c>
+typedef struct {
+  unsigned char *strptr ; /* Pointer to string contents */ 
+  unsigned long strlength ; /* Length of string */
+} RXSTRING ;
+typedef RXSTRING *PRXSTRING ;
+</code>
 
+The strptr field is a pointer to an array of characters making up the contents of the Rexx string', while strlength holds the number of characters in that array.
 
-                    typedef struct {
+Unfortunately, there are some inconsistencies in naming of various special kinds of strings. In Rexx (TRL), a ''null string'' is a string that has zero length. On the other hand, the SAA API operates with two kinds of special strings: null strings and zero length strings. The latter is a string with zero length (equals null strings in Rexx), while the former is a sort of undefined or empty string, which denotes a string without a value. The null strings of SAA API are used to denote unspecified values (e.g. a parameter left out in a subroutine call). In this chapter, when the terms null strings and zero length strings are italicized, they refer to the SAA API style meaning.
 
-                    unsigned char *strptr ; /* Pointer to string contents */ unsigned long strlength ; /* Length of string */
+A number of macros are defined, which simplifies operations on RXSTRINGs for the programmer. In the list below, all parameters called x are of type RXSTRING.
 
-                    } RXSTRING ;
+MAKERXSTRING(x,content,length)]
 
+The parameter content must be a pointer to char, while length is integer. The x parameter will be set to the contents and length supplied. The only operations are assignments; no new space is allocated and the contents of the string is not copied.
 
-                    typedef RXSTRING *PRXSTRING ;
+RXNULLSTRING(x)]
 
+Returns true only if x is a null string.
 
-                    The strptr field is a pointer to an array of characters making up the contents of the Rexx string', while strlength holds the number of characters in that array.
+i.e. x.strptr is NULL.
 
+RXSTRLEN(x)]
 
-                    Unfortunately, there are some inconsistencies in naming of various special kinds of strings. In Rexx (TRL), a ``null string'' is a string that has zero length. On the other hand, the SAA API operates with two kinds of special strings: null strings and zero length strings. The latter is a string with zero length (equals null strings in Rexx), while the former is a sort of undefined or empty string, which denotes a string without a value. The null strings of SAA API are used to denote unspecified values (e.g. a parameter left out in a subroutine call). In this chapter, when the terms null strings and zero length strings are italicized, they refer to the SAA API style meaning.
+Returns the length of the string x as an unsigned long. Zero is returned both when x is a null string or a zero length string.
 
+RXSTRPTR(x)]
 
-                    A number of macros are defined, which simplifies operations on RXSTRINGs for the programmer. In the list below, all parameters called x are of type RXSTRING.
+Returns a pointer to the first character in the string x, or NULL if x is a null string. If x is a zero length string, and non-NULL pointer is returned.
 
+RXVALIDSTRING(x)]
 
-                MAKERXSTRING(x,content,length)]
+Returns true only if x is neither a null string nor a zero length string
 
-                The parameter content must be a pointer to char, while length is integer. The x parameter will be set to the contents and length supplied. The only operations are assignments; no new space is allocated and the contents of the string is not copied.
+i.e. x must have non-empty contents.
 
-                RXNULLSTRING(x)]
+RXZEROLENSTRING(x)]
 
-                Returns true only if x is a null string.
+Returns true only if x is a zero length string.
 
-                i.e. x.strptr is NULL.
+i.e. x.strptr is non-NULL, and x.strlength is zero.
 
-                RXSTRLEN(x)]
+These definitions are most likely to be defined as preprocessor macros, so you should never call them with parameters having any side effects. Also note that at least MAKERXSTRING() is likely to be implemented as two statements, and might not work properly if following
 
-                Returns the length of the string x as an unsigned long. Zero is returned both when x is a null string or a zero length string.
+e.g. an if statement. Check the actual definitions in the rexxsaa.h header file before using them in a fancy context.
 
-                RXSTRPTR(x)]
+One definition of these might be (don't rely on this to be the case with your implementation): 
 
-                Returns a pointer to the first character in the string x, or NULL if x is a null string. If x is a
+<code c>
+#define MAKERXSTRING(x,c,l) ((x).strptr=(c),(x).strlength=(l))
+#define RXNULLSTRING(x) (!(x).strptr)
+#define RXSTRLEN(x) ((x).strptr ? (x).strlength : 0UL)
+#define RXSTRPTR(x) ((x).strptr)
+#define RXVALIDSTRING(x) ((x).strptr && (x).strlength)
+#define RXZEROLENSTRING(x) ((x).strptr && !(x).strlength)
+</code>
 
-                zero length string, and non-NULL pointer is returned.
-
-                RXVALIDSTRING(x)]
-
-                Returns true only if x is neither a null string nor a zero length string
-
-                i.e. x must have non-empty contents.
-
-                RXZEROLENSTRING(x)]
-
-            Returns true only if x is a zero length string.
-
-            i.e. x.strptr is non-NULL, and x.strlength is zero.
-
-
-            These definitions are most likely to be defined as preprocessor macros, so you should never call them with parameters having any side effects. Also note that at least MAKERXSTRING() is likely to be implemented as two statements, and might not work properly if following
-
-            e.g. an if statement. Check the actual definitions in the rexxsaa.h header file before using them in a fancy context.
-
-            One definition of these might be (don't rely on this to be the case with your implementation): #define MAKERXSTRING(x,c,l) ((x).strptr=(c),(x).strlength=(l))
-
-            #define RXNULLSTRING(x) (!(x).strptr)
-
-            #define RXSTRLEN(x) ((x).strptr ? (x).strlength : 0UL) #define RXSTRPTR(x) ((x).strptr)
-
-            #define RXVALIDSTRING(x) ((x).strptr && (x).strlength) #define RXZEROLENSTRING(x) ((x).strptr && !(x).strlength)
-
-
-            Note that these definitions of strings differ from the normal definition in C programs; where a string is an array of characters, and its length is implicitly given by a terminating ASCII NUL character. In the RXSTRING definition, a string can contain any character, including an ASCII NUL, and the length is explicitly given.
+Note that these definitions of strings differ from the normal definition in C programs; where a string is an array of characters, and its length is implicitly given by a terminating ASCII NUL character. In the RXSTRING definition, a string can contain any character, including an ASCII NUL, and the length is explicitly given.
 
 
 === The RXSYSEXIT structured ===
 
+This structure is used for defining which system exit handlers are to handle which system exits. The two relevant datatypes are defined as:
 
-                This structure is used for defining which system exit handlers are to handle which system exits. The two relevant datatypes are defined as:
+<code c>
+typedef struct {
+  unsigned char *sysexit_name ; 
+  short sysexit_code ;
+} RXSYSEXIT ;
+typedef RXSYSEXIT *PRXSYSEXIT ;
+</code>
 
+In this structure, sysexit_name is a pointer to the ASCII NUL terminated string containing the name of a previously registered (and currently active) system exit handler. This registration is done by the RexxRegisterExitExe() or RexxRegisterExitDll() functions. The EnvName argument to these function calls match sysexit_name.
 
-                typedef struct {
+The sysexit_code field is main function code of a system exit.
 
-                unsigned char *sysexit_name ; short sysexit_code ;
-
-                } RXSYSEXIT ;
-
-
-                typedef RXSYSEXIT *PRXSYSEXIT ;
-
-
-                In this structure, sysexit_name is a pointer to the ASCII NUL terminated string containing the name of a previously registered (and currently active) system exit handler. This registration is done by the RexxRegisterExitExe() or RexxRegisterExitDll() functions. The EnvName argument to these function calls match sysexit_name.
-
-                The sysexit_code field is main function code of a system exit.
-
-                The system exits are divided into main functions and sub-functions. An exit is defined to handle a main function, and must thus handle all the sub-functions for that main function. All the functions and sub-functions are listed in the description of the EXIT structure.
+The system exits are divided into main functions and sub-functions. An exit is defined to handle a main function, and must thus handle all the sub-functions for that main function. All the functions and sub-functions are listed in the description of the EXIT structure.
 
 ===== The Subcommand Handler Interface =====
 
-
-        This sections describes the subcommand handler interface, which enables the application to trap commands in a Rexx script being executed and handle these commands itself.
+This sections describes the subcommand handler interface, which enables the application to trap commands in a Rexx script being executed and handle these commands itself.
 
 ==== What is a Subcommand Handler ====
 
+A subcommand handler is a piece of code that is called to handle a command to an external environment in Rexx. It must be either a subroutine in the application that started the interpreter, or a subroutine in a dynamic link library. In any case, when the interpreter needs to execute a command to an external environment, it will call the subcommand handler, passing the command as a parameter.
 
-            A subcommand handler is a piece of code that is called to handle a command to an external environment in Rexx. It must be either a subroutine in the application that started the interpreter, or a subroutine in a dynamic link library. In any case, when the interpreter needs to execute a command to an external environment, it will call the subcommand handler, passing the command as a parameter.
+Typically, an application will set up a subcommand handler before starting a Rexx script. That way, it can trap and handle any command being executed during the course of the script.
 
-            Typically, an application will set up a subcommand handler before starting a Rexx script. That way, it can trap and handle any command being executed during the course of the script.
+Each subcommand handler handles one environment, which is referred to by a name. It seems to be undefined whether upper and lower case letters differ in the environment name, so you should assume they differ. Also, there might be an upper limit for the length of an environment name, and some letters may be illegal as part of an environment name.
 
+Regina allows any letter in the environment name, except ASCII NUL; and sets no upper limit for the length of an environment name. However, for compatibility reasons, you should avoid uncommon letters and keep the length of the name fairly short.
 
-            Each subcommand handler handles one environment, which is referred to by a name. It seems to be undefined whether upper and lower case letters differ in the environment name, so you should assume they differ. Also, there might be an upper limit for the length of an environment name, and some letters may be illegal as part of an environment name.
+The prototype of a subcommand handler function is:
 
+<code c>
+APIRET APIENTRY handler( PRXSTRING command, PUSHORT flags, PRXSTRING returnstring) ;
+</code>
 
-            Regina allows any letter in the environment name, except ASCII NUL; and sets no upper limit for the length of an environment name. However, for compatibility reasons, you should avoid uncommon letters and keep the length of the name fairly short.
+After registration, this function is called whenever the application is to handle a subcommand for a given environment. The value of the parameters are:
 
+[command]
 
-            The prototype of a subcommand handler function is:
+The command string that is to be executed. This is the resulting string after the command expression has been evaluated in the Rexx interpreter. It can not be empty, although it can be a zero-length-string.
 
+[flags]
 
-            APIRET APIENTRY handler( PRXSTRING command, PUSHORT flags, PRXSTRING returnstring
+Points to an unsigned short which is to receive the status of the completion of the handler. This can be one of the following: RXSUBCOM_OK, RXSUBCOM_ERROR, or RXSUBCOM_FAILURE. The contents will be used to determine whether to raise any condition at return of the subcommand. Do not confuse it with the return value.
 
-            ) ;
+[returnstring]
 
+Points to a RXSTRING which is to receive the return value from the subcommand. Passing the return value as a string makes it possible to return non-numeric return codes. As a special case, you might set returnstring.strptr to NULL, instead of specifying a return string of the ASCII representation of zero.
 
-            After registration, this function is called whenever the application is to handle a subcommand for a given environment. The value of the parameters are:
+Note that it is not possible to return nothing in a subcommand, since this is interpreted as zero. Nor is it possible to return a numeric return code as such; you must convert it to ASCII representation before you return.
 
-
-            [command]
-
-            The command string that is to be executed. This is the resulting string after the command expression has been evaluated in the Rexx interpreter. It can not be empty, although it can be a zero-length-string.
-
-            [flags]
-
-            Points to an unsigned short which is to receive the status of the completion of the handler. This can be one of the following: RXSUBCOM_OK, RXSUBCOM_ERROR, or RXSUBCOM_FAILURE. The contents will be used to determine whether to raise any condition at return of the subcommand. Do not confuse it with the return value.
-
-            [returnstring]
-
-            Points to a RXSTRING which is to receive the return value from the subcommand. Passing the return value as a string makes it possible to return non-numeric return codes. As a special case, you might set returnstring.strptr to NULL, instead of specifying a return string of the ASCII representation of zero.
-
-            Note that it is not possible to return nothing in a subcommand, since this is interpreted as zero. Nor is it possible to return a numeric return code as such; you must convert it to ASCII representation before you return.
-
-
-            The returnstring string will provide a 256 byte array which the programmer might use if the return data is not longer that that. If that space is not sufficient, the handler can provide another area itself. In that case, the handler should not de-allocate the default area, and the new area should be allocated in a standard fashion.
+The returnstring string will provide a 256 byte array which the programmer might use if the return data is not longer that that. If that space is not sufficient, the handler can provide another area itself. In that case, the handler should not de-allocate the default area, and the new area should be allocated in a standard fashion.
 
 ==== The RexxRegisterSubcomExe() function ====
 
