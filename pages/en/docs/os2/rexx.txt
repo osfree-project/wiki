@@ -4836,347 +4836,258 @@ NOTREADY within the current clause will be simulated as if operation had succeed
 
 ==== The LOSTDIGITS condition ====
 
+The condition LOSTDIGITS was introduced in Language Level 5.00. It is raised as a result of any arithmetic operation which results in the loss of any digits. i.e. If the number of significant digits in the result of an arithmetic operation would exceed the currently defined number of digits via NUMERIC DIGITS, then the LOSTDIGITS condition is raised.
 
-            The condition LOSTDIGITS was introduced in Language Level 5.00. It is raised as a result of any arithmetic operation which results in the loss of any digits. i.e. If the number of significant digits in the result of an arithmetic operation would exceed the currently defined number of digits via NUMERIC DIGITS, then the LOSTDIGITS condition is raised.
+Differences between LOSTDIGITS and the standard condition are:
 
+It may only be trapped by method SIGNAL, never method CALL.
 
-            Differences between LOSTDIGITS and the standard condition are:
+There is not delay-action for condition NOVALUE, since it can not be trapped by method CALL, and consequently never can get into state DELAY.
 
-
-                It may only be trapped by method SIGNAL, never method CALL.
-
-
-                There is not delay-action for condition NOVALUE, since it can not be trapped by method CALL, and consequently never can get into state DELAY.
-
-
-                The descriptive text returned by CONDITION() when called with the Description option for condition NOTREADY, is the name of the stream which caused the problem. This is probably the same string that you used as the first parameter to the functions that operates on stream I/O. For the default streams (default input and output stream), the string returned by CONDITION() will be the nullstring.
+The descriptive text returned by CONDITION() when called with the Description option for condition NOTREADY, is the name of the stream which caused the problem. This is probably the same string that you used as the first parameter to the functions that operates on stream I/O. For the default streams (default input and output stream), the string returned by CONDITION() will be the nullstring.
 ===== Further Notes on Conditions =====
 
 
 ==== Conditions under Language Level 3.50 ====
 
+The concept of conditions was very much expanded from Rexx language level 3.50 to level 4.00. Many of the central features in conditions are new in level 4.00, these include:
 
-            The concept of conditions was very much expanded from Rexx language level 3.50 to level 4.00. Many of the central features in conditions are new in level 4.00, these include:
+The CALL method is new, previously only the SIGNAL method was available, which made it rather difficult to resume execution after a problem. As a part of this, the DELAY state has been added too.
 
+The condition NOTREADY has been added, to allow better control over problems involving stream I/O.
 
-                The CALL method is new, previously only the SIGNAL method was available, which made it rather difficult to resume execution after a problem. As a part of this, the DELAY state has been added too.
-
-
-                The condition NOTREADY has been added, to allow better control over problems involving stream I/O.
-
-
-                The built-in function CONDITION() has been added, to allow extraction of information about the current trapped condition.
+The built-in function CONDITION() has been added, to allow extraction of information about the current trapped condition.
 
 ==== Pitfalls when Using Condition Traps ====
 
+There are several pitfalls when using conditions:
 
-            There are several pitfalls when using conditions:
+Remember that some information are saved across the functions. Both the current trapped condition and the settings of the traps. Consequently, you can not set a trap in a procedure level from a lower level. (i.e. calling a subroutine to set a trap is will not work.)
 
+Remember that SIGL is set when trapped by method CALL. This means that whenever a condition might be trapped by CALL, the SIGL will be set to a new value. Consequently, never trust the contents of the SIGL variable for more than one clause at a time. This is very frustrating, but at least it will not happen often. When it do happen, though, you will probably have a hard time debugging it.
 
-                Remember that some information are saved across the functions. Both the current trapped condition and the settings of the traps. Consequently, you can not set a trap in a procedure level from a lower level. (i.e. calling a subroutine to set a trap is will not work.)
-
-
-                Remember that SIGL is set when trapped by method CALL. This means that whenever a condition might be trapped by CALL, the SIGL will be set to a new value. Consequently, never trust the contents of the SIGL variable for more than one clause at a time. This is very frustrating, but at least it will not happen often. When it do happen, though, you will probably have a hard time debugging it.
-
-
-                Also remember that if you use the PROCEDURE clause in a condition handler called by method CALL, remember to EXPOSE the special variable SIGL if you want to use it inside the condition handler. Else it will be shadowed by the PROCEDURE.
+Also remember that if you use the PROCEDURE clause in a condition handler called by method CALL, remember to EXPOSE the special variable SIGL if you want to use it inside the condition handler. Else it will be shadowed by the PROCEDURE.
 
 ==== The Correctness of this Description ====
 
+In this description of conditions in Rexx, I have gone further in the description of how conditions work, their internal data structures, the order in which things are executed etc., than the standard does. I have tried to interpret the set of distinct statements that is the documentation on condition, and design a complete and consistent system describing how such conditions work. I have done this to try to clarify an area of Rexx which at first glance is very difficult and sometimes non-intuitive.
 
-            In this description of conditions in Rexx, I have gone further in the description of how conditions work, their internal data structures, the order in which things are executed etc., than the standard does. I have tried to interpret the set of distinct statements that is the documentation on condition, and design a complete and consistent system describing how such conditions work. I have done this to try to clarify an area of Rexx which at first glance is very difficult and sometimes non-intuitive.
+I hope that the liberties I have taken have helped describe conditions in Rexx. I do not feel that the adding of details that I have done in any way change how conditions work, but at least I owe the reader to list which concepts that are genuine Rexx, and which have been filled in by me to make the picture more complete. These are not a part of the standard Rexx.
 
+Rexx does not have anything called a standard condition. There just "are" a set of conditions having different attributes and values. Sometimes there are default values to some of the attributes, but still the are no default condition.
 
-            I hope that the liberties I have taken have helped describe conditions in Rexx. I do not feel that the adding of details that I have done in any way change how conditions work, but at least I owe the reader to list which concepts that are genuine Rexx, and which have been filled in by me to make the picture more complete. These are not a part of the standard Rexx.
+The terms "event" and "incident" are not used. Instead the term "condition" is somewhat overloaded to mean several things, depending on the situation. I have found it advantageous to use different terms for each of these concepts.
 
+Standard Rexx does not have condition queue, although a structure of such a kind is needed to handled the queuing of pending conditions when the trap state is DELAY.
 
-                Rexx does not have anything called a standard condition. There just "are" a set of conditions having different attributes and values. Sometimes there are default values to some of the
+The values default-action and delay-action are really non-existing in the Standard Rexx documentation. I made them up to make the system more easy to explain.
 
-                attributes, but still the are no default condition.
+The two-step process of first raising the flag, and then (possibly at a later stage) triggering the trap, is not really a Rexx concept. Originally, Rexx seems to allow implementations to select certain places of the interpreter where events are sought for. All standard conditions that can be called by method CALL, can be implemented by checking only at clause boundaries.
 
+Consequently, a Rexx implementation can choose to trigger the trap immediately after a condition are raised (since conditions are only raised immediately before the trap would trigger anyway). This is also the common way used in language level 3.50, when only method SIGNAL was implemented.
 
-                The terms "event" and "incident" are not used. Instead the term "condition" is somewhat overloaded to mean several things, depending on the situation. I have found it advantageous to use different terms for each of these concepts.
+Unfortunately, the introduction of the state DELAY forces the interpreter to keep a queue of pending conditions, so there is nothing to gain on insisting that raising should happen immediately before triggering. And the picture is even more muddied when the NOTREADY condition is introduced. Since it explicitly allows raising of condition to be done during the clause, even though the triggering of the trap must happen (if method is CALL) at the end of the clause.
 
-
-                Standard Rexx does not have condition queue, although a structure of such a kind is needed to handled the queuing of pending conditions when the trap state is DELAY.
-
-
-                The values default-action and delay-action are really non-existing in the Standard Rexx
-
-                documentation. I made them up to make the system more easy to explain.
-
-
-                The two-step process of first raising the flag, and then (possibly at a later stage) triggering the trap, is not really a Rexx concept. Originally, Rexx seems to allow implementations to select certain places of the interpreter where events are sought for. All standard conditions that can be called by method CALL, can be implemented by checking only at clause boundaries.
-
-
-                Consequently, a Rexx implementation can choose to trigger the trap immediately after a condition are raised (since conditions are only raised immediately before the trap would trigger anyway). This is also the common way used in language level 3.50, when only method SIGNAL was implemented.
-
-
-                Unfortunately, the introduction of the state DELAY forces the interpreter to keep a queue of pending conditions, so there is nothing to gain on insisting that raising should happen immediately before triggering. And the picture is even more muddied when the NOTREADY condition is introduced. Since it explicitly allows raising of condition to be done during the clause, even though the triggering of the trap must happen (if method is CALL) at the end of the clause.
-
-
-                I really hope that these changes has made the concept of conditions easier to understand, not harder. Please feel free to flame me for any of these which you don't think is representative for Rexx.
+I really hope that these changes has made the concept of conditions easier to understand, not harder. Please feel free to flame me for any of these which you don't think is representative for Rexx.
 
 
 ===== Conditions in Regina =====
 
-
-        Here comes documentation that are specific for the Regina implementation of Rexx.
+Here comes documentation that are specific for the Regina implementation of Rexx.
 
 ==== How to Raise the HALT condition ====
 
+The implementation connect the HALT condition to an external event, which might be the pressing of certain key combination. The common conventions of the operating system will dictate what that combination of keystrokes is.
 
-            The implementation connect the HALT condition to an external event, which might be the pressing of certain key combination. The common conventions of the operating system will dictate what that combination of keystrokes is.
+Below is a list, which describes how to invoke an event that will raise the HALT condition under various the operating systems which Regina runs under.
 
+Under various variants of the Unix operating system, the HALT event it connected to the signal "interrupt" (SIGINT). Often this signal is bound to special keystrokes. Depending on your version of Unix, this might be <ctrl>-<c> (mostly BSD-variants) or the <del> key (mostly System V). It is also possible to send this signal from the command line, in general using the program kill(1); or from program, in general using the call signal(3). Refer to your Unix documentation for more information.
 
-            Below is a list, which describes how to invoke an event that will raise the HALT condition under various the operating systems which Regina runs under.
-
-
-                Under various variants of the Unix operating system, the HALT event it connected to the signal "interrupt" (SIGINT). Often this signal is bound to special keystrokes. Depending on your version of Unix, this might be <ctrl>-<c> (mostly BSD-variants) or the <del> key (mostly System V). It is also possible to send this signal from the command line, in general using the program kill(1); or from program, in general using the call signal(3). Refer to your
-
-                Unix documentation for more information.
-
-
-                Under VAX/VMS, the key sequence <ctrl>-<c> is used to raise the HALT condition in the interpreter.
+Under VAX/VMS, the key sequence <ctrl>-<c> is used to raise the HALT condition in the interpreter.
 
 
 ===== Possible Future extensions =====
 
+Here is a list of possible future extensions to Rexx which has not been implemented into Regina. Some of these exist in other implementations of Rexx, and some of them are just suggestions or ideas thrown around by various people.
 
-                Here is a list of possible future extensions to Rexx which has not been implemented into Regina. Some of these exist in other implementations of Rexx, and some of them are just suggestions or ideas thrown around by various people.
+Another extension could have been included, but have been left out so far. It is the delay-action, which in standard Rexx can be either to ignore or to queue. There is at least one other action that make sense: to replace. That is, when a trap is in state DELAY, and a new condition has been raised, the pending queue is emptied, before the new condition is queued. That way, the new condition will effectively replace any conditions already in the queue.
 
+If there are several new conditions raised while the condition handler is executing (and the trap state is DELAY), only the very last of them is remembered.
 
-                Another extension could have been included, but have been left out so far. It is the delay-action, which in standard Rexx can be either to ignore or to queue. There is at least one other action that make sense: to replace. That is, when a trap is in state DELAY, and a new condition has been raised, the pending queue is emptied, before the new condition is queued. That way, the new condition will effectively replace any conditions already in the queue.
-
-
-                If there are several new conditions raised while the condition handler is executing (and the trap state is DELAY), only the very last of them is remembered.
-
-
-                It should be possible to set the state for a trap to DELAY, so that any new instances of the condition is handles by the delay-action. As a special case, the SYNTAX condition trap might not be set in state DELAY
+It should be possible to set the state for a trap to DELAY, so that any new instances of the condition is handles by the delay-action. As a special case, the SYNTAX condition trap might not be set in state DELAY
 
 ====== Stream Input and Output ======
 
+And the streams thereof shall be turned into pitch
 
-    And the streams thereof shall be turned into pitch
+Isaiah 33:21
 
-    Isaiah 33:21
+For every one that asketh receivedth; and he that seeketh findth;
 
+and to him that knocketh it shall be opened.
 
-    For every one that asketh receivedth; and he that seeketh findth;
+Matthew 7:8
 
-    and to him that knocketh it shall be opened.
-
-    Matthew 7:8
-
-
-    This chapter treats the topic of input from and output to streams using the built-in functions. An overview of the other parts of the input/output (I/O) system is also given but not discussed in detail. At the end of the chapter there are sections containing implementation-specific information for this topic.
+This chapter treats the topic of input from and output to streams using the built-in functions. An overview of the other parts of the input/output (I/O) system is also given but not discussed in detail. At the end of the chapter there are sections containing implementation-specific information for this topic.
 
 
 ===== Background and Historical Remarks =====
 
+Stream I/O is a problem area for languages like Rexx. They try to maintain compatibility for all platforms (i.e. to be non-system-specific), but the basic I/O capabilities differ between systems, so the simplest way to achieve compatibility is to include only a minimal, common subset of the functionality of all platforms. With respect to the functionality of the interface to their surrounding environment, non-system-specific script languages like Rexx are inherently inferior to system specific script languages which are hardwired to particular operating systems and can benefit from all their features.
 
-        Stream I/O is a problem area for languages like Rexx. They try to maintain compatibility for all platforms (i.e. to be non-system-specific), but the basic I/O capabilities differ between systems, so the simplest way to achieve compatibility is to include only a minimal, common subset of the functionality of all platforms. With respect to the functionality of the interface to their surrounding environment, non-system-specific script languages like Rexx are inherently inferior to system specific script languages which are hardwired to particular operating systems and can benefit from all their features.
+Although Rexx formally has its own I/O constructs, it is common for some platforms that most or all of the I/O is performed as operating system commands rather than in Rexx. This is how it was originally done under VM/CMS, which was one of the earliest implementations and which did not support Rexx's I/O constructs. There, the EXECIO program and the stack (among other methods) are used to transfer data to and from a Rexx program.
 
-
-        Although Rexx formally has its own I/O constructs, it is common for some platforms that most or all of the I/O is performed as operating system commands rather than in Rexx. This is how it was originally done under VM/CMS, which was one of the earliest implementations and which did not support Rexx's I/O constructs. There, the EXECIO program and the stack (among other methods) are used to transfer data to and from a Rexx program.
-
-
-        Later, the built-in functions for stream I/O gained territory, but lots of implementations still rely on special purpose programs for doing I/O. The general recommendation to Rexx programmers is to use the built-in functions instead of special purpose programs whenever possible; that is the only way to make compatible programs.
+Later, the built-in functions for stream I/O gained territory, but lots of implementations still rely on special purpose programs for doing I/O. The general recommendation to Rexx programmers is to use the built-in functions instead of special purpose programs whenever possible; that is the only way to make compatible programs.
 
 
 ===== Rexx's Notion of a Stream =====
 
+Rexx regards a stream as a sequence of characters, conceptually equivalent to what a user might type at the keyboard. Note that a stream is not generally equivalent to a file. [MCGH:DICT] defines a file as "a collection of related records treated as a unit," while [OX:CDICT] defines it as "Information held on backing store [...] in order (a) to enable it to persist beyond the time of execution of a single job and/or (b) to overcome space limitations in main memory." A stream is defined by [OX:CDICT] as "a flow of data characterized by relative long duration and constant rate."
 
-        Rexx regards a stream as a sequence of characters, conceptually equivalent to what a user might type at the keyboard. Note that a stream is not generally equivalent to a file. [MCGH:DICT] defines a file as "a collection of related records treated as a unit," while [OX:CDICT] defines it as "Information held on backing store [...] in order (a) to enable it to persist beyond the time of execution of a single job and/or (b) to overcome space limitations in main memory." A stream is defined by [OX:CDICT] as "a flow of data characterized by relative long duration and constant rate."
+Thus, a file has a flavor of persistency, while a stream has a flavor of sequence and momentarily. For a stream, data read earlier may already have been lost, and the data not yet read may not be currently defined; for instance the input typed at a keyboard or the output of a program. Even though much of the Rexx literature use these two terms interchangeably (and after all, there is some overlap), you should bear in mind that there is a difference between them.
 
-        Thus, a file has a flavor of persistency, while a stream has a flavor of sequence and momentarily. For a stream, data read earlier may already have been lost, and the data not yet read may not be currently defined; for instance the input typed at a keyboard or the output of a program. Even though much of the Rexx literature use these two terms interchangeably (and after all, there is some overlap), you should bear in mind that there is a difference between them.
-
-
-        In this documentation, the term "file" means "a collection of persistent data on secondary storage, to which random access and multiple retrieval are allowed." The term "stream" means a sequential flow of data from a file or from a sequential device like a terminal, tape, or the output of a program. The term stream is also used in its strict Rexx meaning: a handle to/from which a flow of data can be written/read.
+In this documentation, the term "file" means "a collection of persistent data on secondary storage, to which random access and multiple retrieval are allowed." The term "stream" means a sequential flow of data from a file or from a sequential device like a terminal, tape, or the output of a program. The term stream is also used in its strict Rexx meaning: a handle to/from which a flow of data can be written/read.
 
 
 ===== Short Crash-Course =====
 
+Rexx I/O is very simple, and this short crash course is probably all you need in a first-time reading of this chapter. But note that that, we need to jump a bit ahead in this section.
 
-        Rexx I/O is very simple, and this short crash course is probably all you need in a first-time reading of this chapter. But note that that, we need to jump a bit ahead in this section.
+To read a line from a stream, use the LINEIN() built-in function, which returns the data read. To write a stream, use the LINEOUT() built-in function, and supply the data to be written as the second parameter. For both operations, give the name of the stream as the first parameter. Some small examples:
 
+<code rexx>
+contents = linein( 'myfile.txt' )
+call lineout 'yourfile.txt', 'Data to be written'
+</code>
 
-        To read a line from a stream, use the LINEIN() built-in function, which returns the data read. To write a stream, use the LINEOUT() built-in function, and supply the data to be written as the second parameter. For both operations, give the name of the stream as the first parameter. Some small examples:
+The first of these reads a line from the stream myfile.txt, while the second writes a line to the stream yourfile.txt. Both these calls operate on lines and they use a system specific end-of-line marker as a delimiter between lines. The marker is tagged on at the end of any data written out, and stripped off any data read.
 
+Opening a stream in Rexx is generally done automatically, so you can generally ignore that in your programs. Another useful method is repositioning to a particular line:
 
-        contents = linein( 'myfile.txt' )
+<code rexx>
+call linein 'myfile.txt', 12, 0 call lineout 'yourfile.txt',, 13
+</code>
 
-        call lineout 'yourfile.txt', 'Data to be written'
+Where the first of these sets the current read position to the start of line 12 of the stream; the second sets the current write position to the start of line 13. Note that the second parameter is empty, that means no data is to be written. Also note that the current read and write positions are two independent entities; setting one does not affect the other.
 
+The built-in functions CHARIN() and CHAROUT() are similar to the ones just described, except that they are character-oriented, i.e. the end-of-line delimiter is not treated as a special character.
 
-        The first of these reads a line from the stream myfile.txt, while the second writes a line to the stream yourfile.txt. Both these calls operate on lines and they use a system specific end-of-line marker as a delimiter between lines. The marker is tagged on at the end of any data written out, and stripped off any data read.
+Examples of use are:
 
+<code rexx>
+say charin( 'myfile.txt', 10 )
+call charout 'logfile', 'some data'
+</code>
 
-        Opening a stream in Rexx is generally done automatically, so you can generally ignore that in your programs. Another useful method is repositioning to a particular line:
+Here, the first example reads 10 characters, starting at the current input position, while the second writes the eleven characters of "some data" to the file, without an end-of-file marker afterward. It is possible to reposition character-wise too, some examples are:
 
+<code rexx>
+call charin 'myfile',, 8 call charout 'foofile,, 10
+</code>
 
-        call linein 'myfile.txt', 12, 0 call lineout 'yourfile.txt',, 13
-
-
-        Where the first of these sets the current read position to the start of line 12 of the stream; the second sets the current write position to the start of line 13. Note that the second parameter is empty, that means no data is to be written. Also note that the current read and write positions are two independent entities; setting one does not affect the other.
-
-
-        The built-in functions CHARIN() and CHAROUT() are similar to the ones just described, except that they are character-oriented, i.e. the end-of-line delimiter is not treated as a special character.
-
-
-        Examples of use are:
-
-
-        say charin( 'myfile.txt', 10 )
-
-        call charout 'logfile', 'some data'
-
-
-        Here, the first example reads 10 characters, starting at the current input position, while the second
-
-        writes the eleven characters of "some data" to the file, without an end-of-file marker afterward. It is possible to reposition character-wise too, some examples are:
-
-        call charin 'myfile',, 8 call charout 'foofile,, 10
-
-
-        These two clauses repositions the current read and write positions of the named files to the 8th and 10th characters, respectively.
+These two clauses repositions the current read and write positions of the named files to the 8th and 10th characters, respectively.
 
 
 ===== Naming Streams =====
 
+Unlike most programming languages, Rexx does not use file handles; the name of the stream is also in general the handle (although some implementations add an extra level of indirection). You must supply the name to all I/O functions operating on a stream. However, internally, the Rexx interpreter is likely to use the native file pointers of the operating system, in order to improve speed. The name specified can generally be the name of an operating system file, a device name, or a special stream name supported by your implementation.
 
-        Unlike most programming languages, Rexx does not use file handles; the name of the stream is also in general the handle (although some implementations add an extra level of indirection). You must supply the name to all I/O functions operating on a stream. However, internally, the Rexx interpreter is likely to use the native file pointers of the operating system, in order to improve speed. The name specified can generally be the name of an operating system file, a device name, or a special stream name supported by your implementation.
+The format of the stream name is very dependent upon your operating system. For portability concerns, you should try not to specify it as a literal string in each I/O call, but set a variable to the stream name, and use that variable when calling I/O functions. This reduces the number of places you need to make changes if you need to port the program to another system. Unfortunately, this approach increases the need for PROCEDURE EXPOSE, since the variable containing the files name must be available to all routines using file I/O for that particular file, and all their non-common ancestors.
 
+Example: Specifying file names
 
-        The format of the stream name is very dependent upon your operating system. For portability concerns, you should try not to specify it as a literal string in each I/O call, but set a variable to the stream name, and use that variable when calling I/O functions. This reduces the number of places you need to make changes if you need to port the program to another system. Unfortunately, this approach increases the need for PROCEDURE EXPOSE, since the variable containing the files name must be available to all routines using file I/O for that particular file, and all their non-common ancestors.
+The following code illustrates a portability problem related to the naming of streams. The variable filename is set to the name of the stream operated on in the function call.
 
+<code rexx>
+filename = '/tmp/MyFile.Txt'
+say ' first line is' linein( filename ) say 'second line is' linein( filename ) say ' third line is' linein( filename )
+</code>
 
-        Example: Specifying file names
+Suppose this script, which looks like it is written for Unix, is moved to a VMS machine. Then, the stream name might be something like SYS$TEMP:MYFILE.TXT, but you only need to change the script at one particular point: the assignment to the variable filename; as opposed to three places if the stream name is hard-coded in each of the three calls to LINEIN().
 
+If the stream name is omitted from the built-in I/O functions, a default stream is used: input functions use the default input stream, while output functions use the default output stream. These are implicit references to the default input and output streams, but unfortunately, there is no standard way to explicitly refer to these two streams. And consequently, there is no standard way to refer to the default input or output stream in the built-in function STREAM().
 
-        The following code illustrates a portability problem related to the naming of streams. The variable
+However, most implementations allow you to access the default streams explicitly through a name, maybe the nullstring or something like stdin and stdout. However, you must refer to the implementation-specific documentation for information about this.
 
-        filename is set to the name of the stream operated on in the function call.
+Also note that standard Rexx does not support the concept of a default error stream. On operating systems supporting this, it can probably be accessed through a special name; see system-specific information. The same applies for other special streams.
 
+Sometimes the term "default input stream" is called "standard input stream," "default input devices," "standard input," or just "stdin."
 
-        filename = '/tmp/MyFile.Txt'
+The use of stream names instead of stream descriptors or handles is deeply rooted in the Rexx philosophy: Data structures are text strings carrying information, rather than opaque data blocks in internal, binary format. This opens for some intriguing possibilities. Under some operating systems, a file can be referred to by many names. For instance, under Unix, a file can be referred to as foobar, ./foobar and ././foobar. All which name the same file, although a Rexx interpreter may be likely to interpret them as three different streams, because the names themselves differ. On the other hand, nothing prevents an interpreter from discovering that these are names for the same stream, and treat them as equivalent (except concerns for processing time). Under Unix, the problem is not just confined to the use of ./ in file names, hard-links and soft-links can produce similar effects, too.
 
-        say ' first line is' linein( filename ) say 'second line is' linein( filename ) say ' third line is' linein( filename )
+Example: Internal file handles
 
+Suppose you start reading from a stream, which is connected to a file called foo. You read the first line of foo, then you issue a command, in order to rename foo to bar. Then, you try to read the next line from foo. The Rexx program for doing this under Unix looks something like:
 
-        Suppose this script, which looks like it is written for Unix, is moved to a VMS machine. Then, the stream name might be something like SYS$TEMP:MYFILE.TXT, but you only need to change the script at one particular point: the assignment to the variable filename; as opposed to three places if the stream name is hard-coded in each of the three calls to LINEIN().
+<code rexx>
+signal on notready line1 = linein( 'foo' ) 'mv foo bar'
+line2 = linein( 'foo' )
+</code>
 
+Theoretically, the file foo does not exist during the second call, so the second read should raise the NOTREADY condition. However, a Rexx interpreter is likely to have opened the stream already, so it is performing the reading on the file descriptor of the open file. It is probably not going to check whether the file exists before each I/O operation (that would require a lot of extra checking). Under most operating systems, renaming a file will not invalidate existing file descriptors. Consequently, the interpreter is likely to continue to read from the original foo file, even though its has changed.
 
-        If the stream name is omitted from the built-in I/O functions, a default stream is used: input functions use the default input stream, while output functions use the default output stream. These are implicit references to the default input and output streams, but unfortunately, there is no standard way to explicitly refer to these two streams. And consequently, there is no standard way to refer to the default input or output stream in the built-in function STREAM().
+Example: Unix temporary files
 
+On some systems, you can delete a file, and still read from and write to the stream connected to that file. This technique is shown in the following Unix specific code:
 
-        However, most implementations allow you to access the default streams explicitly through a name,
+<code rexx>
+tmpfile = '/tmp/myfile' call lineout tmpfile, '' call lineout tmpfile,, 1 'rm' tmpfile
+call lineout tmpfile, 'This is the first line'
+</code>
 
-        maybe the nullstring or something like stdin and stdout. However, you must refer to the implementation-specific documentation for information about this.
+Under Unix, this technique is often used to create temporary files; you are guaranteed that the file will be deleted on closing, no matter how your program terminates. Unix deletes a file whenever there are no more references to it. Whether the reference is from the file system or from an open descriptor in a user process is irrelevant. After the rm command, the only reference to the file is from the Rexx interpreter. Whenever it terminates, the file is deleted--since there are no more references to it.
 
+Example: Files in different directories
 
-        Also note that standard Rexx does not support the concept of a default error stream. On operating systems supporting this, it can probably be accessed through a special name; see system-specific information. The same applies for other special streams.
+Here is yet another example of how using the filename directly in the stream I/O functions may give strange effects. Suppose you are using a system that has hierarchical directories, and you have a function CHDIR() which sets a current directory; then consider the following code:
 
+<code rexx>
+call chdir '../dir1'
+call lineout 'foobar', 'written to foobar while in dir1' call chdir '../dir2'
+call lineout 'foobar', 'written to foobar while in dir2'
+</code>
 
-        Sometimes the term "default input stream" is called "standard input stream," "default input devices," "standard input," or just "stdin."
+Since the file is implicitly opened while you are in the directory dir1, the file foobar refers to a file located there. However, after changing the directory to dir2, it may seem logical that the second call to LINEOUT() operates on a file in dir2, but that may not be the case. Considering that these clauses may come a great number of lines apart, that Rexx has no standard way of closing files, and that Rexx only have one file table (i.e. open files are not local to subroutines); this may open for a significant astonishment in complex Rexx scripts.
 
+Whether an implementation treats ././foo and ./foo as different streams is system-dependent; that applies to the effects of renaming or deleting the file while reading or writing, too. See your interpreter's system-specific documentation.
 
-        The use of stream names instead of stream descriptors or handles is deeply rooted in the Rexx philosophy: Data structures are text strings carrying information, rather than opaque data blocks in internal, binary format. This opens for some intriguing possibilities. Under some operating systems, a file can be referred to by many names. For instance, under Unix, a file can be referred to as foobar, ./foobar and ././foobar. All which name the same file, although a Rexx interpreter may be likely to interpret them as three different streams, because the names themselves differ. On the other hand, nothing prevents an interpreter from discovering that these are names for the same stream, and treat them as equivalent (except concerns for processing time). Under Unix, the problem is not just confined to the use of ./ in file names, hard-links and soft-links can produce similar effects, too.
+Most of the effects shown in the examples above are due to insufficient isolation between the filename of the operating system and the file handle in the Rexx program. Whenever a file can be explicitly opened and bound to a file handle, you should do that in order to decrease the possibilities for strange side effects.
 
+Interpreters that allow this method generally have an OPEN() function that takes the name of the files to open as a parameter, and returns a string that uniquely identifies that open file within the current context; e.g. an index into a table of open files. Later, this index can be used instead of the filename.
 
-        Example: Internal file handles
-
-        Suppose you start reading from a stream, which is connected to a file called foo. You read the first line of foo, then you issue a command, in order to rename foo to bar. Then, you try to read the next line from foo. The Rexx program for doing this under Unix looks something like:
-
-
-        signal on notready line1 = linein( 'foo' ) 'mv foo bar'
-
-        line2 = linein( 'foo' )
-
-
-        Theoretically, the file foo does not exist during the second call, so the second read should raise the NOTREADY condition. However, a Rexx interpreter is likely to have opened the stream already, so it is performing the reading on the file descriptor of the open file. It is probably not going to check whether the file exists before each I/O operation (that would require a lot of extra checking). Under most operating systems, renaming a file will not invalidate existing file descriptors. Consequently, the interpreter is likely to continue to read from the original foo file, even though its has changed.
-
-
-        Example: Unix temporary files
-
-
-        On some systems, you can delete a file, and still read from and write to the stream connected to that file. This technique is shown in the following Unix specific code:
-
-        tmpfile = '/tmp/myfile' call lineout tmpfile, '' call lineout tmpfile,, 1 'rm' tmpfile
-
-        call lineout tmpfile, 'This is the first line'
-
-
-        Under Unix, this technique is often used to create temporary files; you are guaranteed that the file will be deleted on closing, no matter how your program terminates. Unix deletes a file whenever there are no more references to it. Whether the reference is from the file system or from an open descriptor in a user process is irrelevant. After the rm command, the only reference to the file is from the Rexx interpreter. Whenever it terminates, the file is deleted--since there are no more references to it.
-
-
-        Example: Files in different directories
-
-
-        Here is yet another example of how using the filename directly in the stream I/O functions may give strange effects. Suppose you are using a system that has hierarchical directories, and you have a function CHDIR() which sets a current directory; then consider the following code:
-
-
-        call chdir '../dir1'
-
-        call lineout 'foobar', 'written to foobar while in dir1' call chdir '../dir2'
-
-        call lineout 'foobar', 'written to foobar while in dir2'
-
-
-        Since the file is implicitly opened while you are in the directory dir1, the file foobar refers to a file located there. However, after changing the directory to dir2, it may seem logical that the second call to LINEOUT() operates on a file in dir2, but that may not be the case. Considering that these clauses may come a great number of lines apart, that Rexx has no standard way of closing files, and that Rexx only have one file table (i.e. open files are not local to subroutines); this may open for a significant astonishment in complex Rexx scripts.
-
-
-        Whether an implementation treats ././foo and ./foo as different streams is system-dependent; that applies to the effects of renaming or deleting the file while reading or writing, too. See your interpreter's system-specific documentation.
-
-
-        Most of the effects shown in the examples above are due to insufficient isolation between the filename of the operating system and the file handle in the Rexx program. Whenever a file can be explicitly opened and bound to a file handle, you should do that in order to decrease the possibilities for strange side effects.
-
-
-        Interpreters that allow this method generally have an OPEN() function that takes the name of the files to open as a parameter, and returns a string that uniquely identifies that open file within the current context; e.g. an index into a table of open files. Later, this index can be used instead of the filename.
-
-
-        Some implementations allow only this indirect naming scheme, while others may allow a mix between direct and indirect naming. The latter is likely to create some problems, since some strings are likely to be both valid direct and indirect file ids.
+Some implementations allow only this indirect naming scheme, while others may allow a mix between direct and indirect naming. The latter is likely to create some problems, since some strings are likely to be both valid direct and indirect file ids.
 
 ===== Persistent and Transient Streams =====
 
+Rexx knows two different types of streams: persistent and transient. They differ conceptually in the way they can be operated, which is dictated by the way they are stored. But there is no difference in the data you can read from or write to them (i.e. both can used for character- or line-wise data), and both are read and written using the same functions.
 
+[Persistent streams]
 
-        Rexx knows two different types of streams: persistent and transient. They differ conceptually in the way they can be operated, which is dictated by the way they are stored. But there is no difference in the data you can read from or write to them (i.e. both can used for character- or line-wise data), and both are read and written using the same functions.
+(often referred to just as "files") are conceptually stored on permanent storage in the computer (e.g. a disk), as an array of characters. Random access to and repeated retrieval of any part of the stream are allowed for persistent streams. Typical example of persistent streams are normal operating system files.
 
+[Transient streams]
 
-        [Persistent streams]
+are typically not available for random access or repeated retrieval, either because it is not stored permanently, but read as a sequence of data that is generated on the fly; or because they are available from a sequential storage (e.g. magnetic tape) where random access is difficult or impossible. Typical examples of transient streams are devices like keyboards, printers, communication interfaces, pipelines, etc.
 
-        (often referred to just as "files") are conceptually stored on permanent storage in the computer (e.g. a disk), as an array of characters. Random access to and repeated retrieval of any part of the stream are allowed for persistent streams. Typical example of persistent streams are normal operating system files.
+Rexx does not allow any repositioning on transient streams; such operations are not conceptually meaningful; a transient stream must be treated sequentially. It is possible to treat a persistent stream as a transient stream, but not vice versa. Thus, some implementations may allow you to open a persistent stream as transient. This may be useful for files to which you have only append access, i.e. writes can only be performed at the end of file. Whether you can open a stream in a particular mode, or change the mode of a stream already open depends on your implementation.
 
-        [Transient streams]
+Example: Determining stream type
 
-        are typically not available for random access or repeated retrieval, either because it is not stored permanently, but read as a sequence of data that is generated on the fly; or because they are available from a sequential storage (e.g. magnetic tape) where random access is difficult or impossible. Typical examples of transient streams are devices like keyboards, printers, communication interfaces, pipelines, etc.
+Unfortunately, there is no standard way to determine whether a given file is persistent or transient. You may try to reposition for the file, and you can assume that the file is persistent if the repositioning succeeded, like in the following code:
 
+<code rexx>
+streamtype: procedure 
+  signal on notready
+  call linein arg(1), 1, 0
+  return 'persistent' /* unless file is empty */ 
 
-        Rexx does not allow any repositioning on transient streams; such operations are not conceptually meaningful; a transient stream must be treated sequentially. It is possible to treat a persistent stream as a transient stream, but not vice versa. Thus, some implementations may allow you to open a persistent stream as transient. This may be useful for files to which you have only append access,
+notready:
+   return 'transient'
+</code>
 
-        i.e. writes can only be performed at the end of file. Whether you can open a stream in a particular mode, or change the mode of a stream already open depends on your implementation.
+Although the idea in this code is correct, there are unfortunately a few problems. First, the NOTREADY condition can be raised by other things than trying to reposition a transient stream; e.g. by any repositioning of the current read position in an empty file, if you have write access only, etc. Second, your implementation may not have NOTREADY, or it may not use it for this situation.
 
-
-        Example: Determining stream type
-
-
-        Unfortunately, there is no standard way to determine whether a given file is persistent or transient. You may try to reposition for the file, and you can assume that the file is persistent if the repositioning succeeded, like in the following code:
-
-
-        streamtype: procedure signal on notready
-
-        call linein arg(1), 1, 0
-
-        return 'persistent' /* unless file is empty */ notready:
-
-        return 'transient'
-
-
-        Although the idea in this code is correct, there are unfortunately a few problems. First, the NOTREADY condition can be raised by other things than trying to reposition a transient stream; e.g. by any repositioning of the current read position in an empty file, if you have write access only, etc. Second, your implementation may not have NOTREADY, or it may not use it for this situation.
-
-
-        The best method is to use a STREAM() function, if one is available. Unfortunately, that is not very compatible, since no standard stream commands are defined.
+The best method is to use a STREAM() function, if one is available. Unfortunately, that is not very compatible, since no standard stream commands are defined.
 
 ===== Opening a Stream =====
 
