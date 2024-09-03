@@ -5290,93 +5290,79 @@ The same method can be used for line-oriented I/O too, in order to return the cu
 
 ===== Positioning Within a File =====
 
+Rexx supports two strategies for reading and writing streams: character-wise, and line-wise, this section describes how a program can reposition the current positions for each these strategies. Note that positioning is only allowed for persistent streams.
 
-        Rexx supports two strategies for reading and writing streams: character-wise, and line-wise, this section describes how a program can reposition the current positions for each these strategies. Note that positioning is only allowed for persistent streams.
+For each open file, there is a current read position or a current write position, depending on whether the file is opened for reading or writing. If the file is opened for reading and writing simultaneously, it has both a current read position and a current write position, and the two are independent and in general different. A position within a file is the sequence number of the byte or line that will be read or written in the next such operation.
 
+Note that Rexx starts numbering at one, not zero. Therefore, the first character and the first line of a stream are both numbered one. This differs from several other programming languages, which starts numbering at zero.
 
-        For each open file, there is a current read position or a current write position, depending on whether the file is opened for reading or writing. If the file is opened for reading and writing simultaneously, it has both a current read position and a current write position, and the two are independent and in general different. A position within a file is the sequence number of the byte or line that will be read or written in the next such operation.
+Just after a stream has been opened, the initial values of the current read position is the first character in the stream, while the current write position is the end-of-file, i.e. the position just after the last character in the stream. Then, reading will return the first character (or line) in the stream, and writing will append a new character (or line) to the stream.
 
+These initial values for the current read and write positions are the default values. Depending on your Rexx implementation, other mechanisms for explicitly opening streams (e.g. through the STREAM() built-in function) may be provided, and may set other initial values for these positions. See the implementation-specific documentation for further information.
 
-        Note that Rexx starts numbering at one, not zero. Therefore, the first character and the first line of a stream are both numbered one. This differs from several other programming languages, which starts numbering at zero.
+When setting the current read position, it must be set to the position of an existing character in the stream; i.e. a positive value, not greater than the total number of characters in the stream. In particular, it is illegal to set the current read position to the position immediately after the last character in the stream; although this is legal in many other programming languages and operating systems, where it is known as "seeking to the end-of-file".
 
+When setting the current write position, it too must be set to the position of an existing character in the stream. In addition, and unlike the current read position, the current write position may also be set to the position immediately following the last character in the stream. This is known as "positioning at the end-of-file", and it is the initial value for the current write position when a stream is opened. Note that you are not allowed to reposition the current write position further out beyond the end-of-file--which would create a "hole" in the stream--even though this is allowed in many other languages and operating systems.
 
-        Just after a stream has been opened, the initial values of the current read position is the first character in the stream, while the current write position is the end-of-file, i.e. the position just after the last character in the stream. Then, reading will return the first character (or line) in the stream, and writing will append a new character (or line) to the stream.
+Depending on your operating system and Rexx interpreter, repositioning to after the end-of-file may be allowed as an extension, although it is illegal according to TRL2. You should avoid this technique if you wish to write portable programs.
 
+Rexx only keeps one current read position and one current write position for each stream. So both line-wise and character-wise reading as well as positioning of the current read position will operate on the same current read position, and similarly for the current write position.
 
-        These initial values for the current read and write positions are the default values. Depending on your Rexx implementation, other mechanisms for explicitly opening streams (e.g. through the STREAM() built-in function) may be provided, and may set other initial values for these positions. See the implementation-specific documentation for further information.
+When repositioning line-wise, the current write position is set to the first character of the line positioned at. However, if positioning character-wise so that the current read position is in the middle of a line in the file, a subsequent call to LINEIN() will read from (and including) the current position until the next end-of-line marker. Thus, LINEIN() might under some circumstances return only the last part of a line. Similarly, if the current write position has been positioned in the middle of an existing line by character-wise positioning, and LINEOUT() is called, then the line written out becomes the last part of the line stored in the stream.
 
-        When setting the current read position, it must be set to the position of an existing character in the stream; i.e. a positive value, not greater than the total number of characters in the stream. In particular, it is illegal to set the current read position to the position immediately after the last character in the stream; although this is legal in many other programming languages and operating systems, where it is known as "seeking to the end-of-file".
+Note that if you want to reposition the current write position using a line count, the stream may have to be open for read, too. This is because the interpreter may have to read the contents of the stream in order to find where the lines start and end. Depending on your operating system, this may even apply if you reposition using character count.
 
+Example: Repositioning in empty files
 
-        When setting the current write position, it too must be set to the position of an existing character in the stream. In addition, and unlike the current read position, the current write position may also be set to the position immediately following the last character in the stream. This is known as "positioning at the end-of-file", and it is the initial value for the current write position when a stream is opened. Note that you are not allowed to reposition the current write position further out beyond the end-of-file--which would create a "hole" in the stream--even though this is allowed in many other languages and operating systems.
+Since the current read position must be at an existing character in the stream, it is impossible to reposition in or read from an empty stream. Consider the following code:
 
+<code rexx>
+filename = '/tmp/testing'
+call lineout filename,, 1 /* assuming truncation */ 
+call linein filename, 1, 0
+</code>
 
-        Depending on your operating system and Rexx interpreter, repositioning to after the end-of-file may be allowed as an extension, although it is illegal according to TRL2. You should avoid this technique if you wish to write portable programs.
+One might believe that this would set the current read and write positions to the start of the stream. However, assume that the LINEOUT() call truncates the file, so that it is zero bytes long. Then, the last call can never be legal, since there is no byte in the file at which it is possible to position the current read position. Therefore, a NOTREADY condition is probably raised.
 
+Example: Relative repositioning
 
-        Rexx only keeps one current read position and one current write position for each stream. So both line-wise and character-wise reading as well as positioning of the current read position will operate on the same current read position, and similarly for the current write position.
+It is rather difficult to reposition a current read or write position relative to the current position. The only way to do this within the definition of the standard is to keep a counter which tells you the current position. That is, if you want to move the current read position five lines backwards, you must do it like this:
 
+<code rexx>
+filename = '/tmp/data'
+linenum = 0 ;
+say linein(filename,10);
+linenum = 10
+do while random(100)>3
+   say linein(filename);
+   linenum = linenum+1
+end
 
-        When repositioning line-wise, the current write position is set to the first character of the line positioned at. However, if positioning character-wise so that the current read position is in the middle of a line in the file, a subsequent call to LINEIN() will read from (and including) the current position until the next end-of-line marker. Thus, LINEIN() might under some circumstances return only the last part of a line. Similarly, if the current write position has been positioned in the middle of an existing line by character-wise positioning, and LINEOUT() is called, then the line written out becomes the last part of the line stored in the stream.
+call linein(filename,linenum-5,0);
+linenum = linenum-5
+</code>
 
+Here, the variable linenum is updated for each time the current read position is altered. This may not seem to difficult, and it is not in most cases. However, it is nearly impossible to do this in the general case, since you must keep an account of both line numbers and character numbers. Setting one may invalidate the other: consider the situation where you want to reposition the current read position to the 10th character before the 100th line in the stream. Except from mixing line-wise and character-wise I/O (which can have strange effects), this is nearly impossible. When repositioning character-wise, the line number count is invalidated, and vice versa.
 
-        Note that if you want to reposition the current write position using a line count, the stream may have to be open for read, too. This is because the interpreter may have to read the contents of the stream in order to find where the lines start and end. Depending on your operating system, this may even apply if you reposition using character count.
+The "only" proper way of handling this is to allow one or more (non-standard) STREAM() built-in function operations that returns the current character and line count of the stream in the interpreter.
 
+Example: Destroying linecount
 
-        Example: Repositioning in empty files
+This example shows how overwriting text to the middle of a file can destroy the line count. In the following code, we assume that the file foobar exists, and contains ten lines which are "first line", second line, etc. up to "tenth line". Then consider the following code:
 
+<code rexx>
+filename = 'foobar'
+say linein(filename, 5) /* says 'fifth line' */
+say linein(filename) /*
+says 'sixth line' */
+say linein(filename) /* says 'seventh line' */
+call lineout filename, 'This is a very long line', 5
+say linein(filename, 5) /* says 'This is a very long line' */
+say linein(filename) /* says 'venth line' */
+say linein(filename) /* says 'eight line' */
+</code>
 
-        Since the current read position must be at an existing character in the stream, it is impossible to reposition in or read from an empty stream. Consider the following code:
-
-
-        filename = '/tmp/testing'
-
-        call lineout filename,, 1 /* assuming truncation */ call linein filename, 1, 0
-
-
-        One might believe that this would set the current read and write positions to the start of the stream. However, assume that the LINEOUT() call truncates the file, so that it is zero bytes long. Then, the last call can never be legal, since there is no byte in the file at which it is possible to position the current read position. Therefore, a NOTREADY condition is probably raised.
-
-        Example: Relative repositioning
-
-
-        It is rather difficult to reposition a current read or write position relative to the current position. The only way to do this within the definition of the standard is to keep a counter which tells you the current position. That is, if you want to move the current read position five lines backwards, you must do it like this:
-
-
-        filename = '/tmp/data' linenum = 0 ;
-
-        say linein(filename,10); linenum = 10 do while random(100)>3
-
-        say linein(filename); linenum = linenum+1
-
-        end
-
-        call linein(filename,linenum-5,0); linenum = linenum-5
-
-
-        Here, the variable linenum is updated for each time the current read position is altered. This may not seem to difficult, and it is not in most cases. However, it is nearly impossible to do this in the general case, since you must keep an account of both line numbers and character numbers. Setting one may invalidate the other: consider the situation where you want to reposition the current read position to the 10th character before the 100th line in the stream. Except from mixing line-wise and character-wise I/O (which can have strange effects), this is nearly impossible. When repositioning character-wise, the line number count is invalidated, and vice versa.
-
-
-        The "only" proper way of handling this is to allow one or more (non-standard) STREAM() built-in function operations that returns the current character and line count of the stream in the interpreter.
-
-
-        Example: Destroying linecount
-
-
-        This example shows how overwriting text to the middle of a file can destroy the line count. In the following code, we assume that the file foobar exists, and contains ten lines which are "first line", second line, etc. up to "tenth line". Then consider the following code:
-
-
-        filename = 'foobar'
-
-        say linein(filename, 5) /* says 'fifth line' */ say linein(filename) /* says 'sixth line' */ say linein(filename) /* says 'seventh line' */ call lineout filename, 'This is a very long line', 5
-
-        say linein(filename, 5) /* says 'This is a very long line'
-
-        */
-
-        say linein(filename) /* says 'venth line' */ say linein(filename) /* says 'eight line' */
-
-
-        As you can see from the output of this example, the call to LINEOUT() inserts a long line and overwrites the fifth and sixth lines completely, and the seventh line partially. Afterward, the sixth line is the remaining part of the old seventh line, and the new seventh line is the old eighth line, etc.
+As you can see from the output of this example, the call to LINEOUT() inserts a long line and overwrites the fifth and sixth lines completely, and the seventh line partially. Afterward, the sixth line is the remaining part of the old seventh line, and the new seventh line is the old eighth line, etc.
 
 ===== Errors: Discovery, Handling, and Recovery =====
 
