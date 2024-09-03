@@ -4775,87 +4775,64 @@ The descriptive text returned by CONDITION() when called with the Description op
 
 ==== The ERROR condition ====
 
+The ERROR is a condition of mixed origin, it is raised when a command returns a return value which indicates error during execution. Often, commands return a numeric value, and a particular value is considered to mean success. Then, other values might raise the ERROR condition.
 
-            The ERROR is a condition of mixed origin, it is raised when a command returns a return value which indicates error during execution. Often, commands return a numeric value, and a particular value is considered to mean success. Then, other values might raise the ERROR condition.
+Differences between ERROR and the standard condition:
 
+The delay action of ERROR is to ignore, not to queue.
 
-            Differences between ERROR and the standard condition:
+The special variable RC is always set before this condition is raised. So even if it is trapped by method SIGNAL, you can rely on RC to be set to the return value of the command.
 
+Unfortunately, there is no universal standard on return values. As stated, they are often numeric, but some operating system use non-numeric return values. For those which do use numeric values, there are no standard telling which values and ranges are considered errors and which are considered success. In fact, the interpretation of the value might differ between commands within the same operating system.
 
-                The delay action of ERROR is to ignore, not to queue.
+Therefore, it is up to the Rexx implementation to define which values and ranges that are considered errors. You must expect that this information can differ between implementations as well as between different environments within one implementation.
 
-
-                The special variable RC is always set before this condition is raised. So even if it is trapped by method SIGNAL, you can rely on RC to be set to the return value of the command.
-
-
-                Unfortunately, there is no universal standard on return values. As stated, they are often numeric, but some operating system use non-numeric return values. For those which do use numeric values, there are no standard telling which values and ranges are considered errors and which are considered success. In fact, the interpretation of the value might differ between commands within the same operating system.
-
-
-                Therefore, it is up to the Rexx implementation to define which values and ranges that are considered errors. You must expect that this information can differ between implementations as well as between different environments within one implementation.
-
-
-                The descriptive text returned by CONDITION() when called with the Description option for condition ERROR, is the command which caused the error. Note that this is the command as the environment saw it, not as it was entered in the Rexx script source code.
+The descriptive text returned by CONDITION() when called with the Description option for condition ERROR, is the command which caused the error. Note that this is the command as the environment saw it, not as it was entered in the Rexx script source code.
 
 ==== The FAILURE condition ====
 
+The FAILURE is a condition of mixed origin, it is raised when a command returns a return value which indicates failure during execution, abnormal termination, or when it was impossible to execute a command. It is a subset of the ERROR condition, and if it is in state OFF, then the ERROR condition will be raised instead. But note that an implementation is free to consider all return codes from commands as ERRORs, and none as FAILURES. In that case, the only situation where a FAILURE would occur, is when it is impossible to execute a command.
 
-            The FAILURE is a condition of mixed origin, it is raised when a command returns a return value which indicates failure during execution, abnormal termination, or when it was impossible to execute a command. It is a subset of the ERROR condition, and if it is in state OFF, then the ERROR condition will be raised instead. But note that an implementation is free to consider all return codes from commands as ERRORs, and none as FAILURES. In that case, the only situation where a FAILURE would occur, is when it is impossible to execute a command.
+Differences between FAILURE and the standard condition:
 
+The delay action of FAILURE is to ignore, not to queue.
 
-            Differences between FAILURE and the standard condition:
+The special variable RC is always set before this condition is raised. So even if it is trapped by method SIGNAL, you can rely on RC to be set to the return value of the command, or the return code that signalize that the command was impossible to execute.
 
+As for ERROR, there is no standard the defines which return values are failures and which are errors. Consult the system and implementation independent documentation for more information.
 
-                The delay action of FAILURE is to ignore, not to queue.
-
-
-                The special variable RC is always set before this condition is raised. So even if it is trapped by method SIGNAL, you can rely on RC to be set to the return value of the command, or the return code that signalize that the command was impossible to execute.
-
-
-                As for ERROR, there is no standard the defines which return values are failures and which are errors. Consult the system and implementation independent documentation for more information.
-
-
-                The descriptive text returned by CONDITION() when called with the Description option for condition FAILURE, is the command which caused the error. Note that this is the command as the environment saw it, not as it was entered in the Rexx script source code.
+The descriptive text returned by CONDITION() when called with the Description option for condition FAILURE, is the command which caused the error. Note that this is the command as the environment saw it, not as it was entered in the Rexx script source code.
 
 ==== The NOVALUE condition ====
 
+The NOVALUE condition is of internal origin. It is raised in some circumstances if the value of an unset symbol (which is not a constant symbol) is requested. Normally, this would return the default value of the symbol. It is considered bad programming practice not to initialize variables, and setting the NOVALUE condition is one method of finding the parts of your program that uses this programming practice.
 
-            The NOVALUE condition is of internal origin. It is raised in some circumstances if the value of an unset symbol (which is not a constant symbol) is requested. Normally, this would return the default value of the symbol. It is considered bad programming practice not to initialize variables, and setting the NOVALUE condition is one method of finding the parts of your program that uses this programming practice.
+Note however, there are only three instances where this condition may be raised: that is when the value of an unset (non-constant) symbol is used requested: in an expression; after the VAR subkeyword in a PARSE clause; and as an indirect reference in either a template, a DROP or a PROCEDURE clause. In particular, this condition is not raised if the VALUE() or SYMBOL() builtin functions refer to an unset symbol.
 
+Differences between NOVALUE and the standard condition are:
 
-            Note however, there are only three instances where this condition may be raised: that is when the value of an unset (non-constant) symbol is used requested: in an expression; after the VAR subkeyword in a PARSE clause; and as an indirect reference in either a template, a DROP or a PROCEDURE clause. In particular, this condition is not raised if the VALUE() or SYMBOL() builtin functions refer to an unset symbol.
+It may only be trapped by method SIGNAL, never method CALL. This requirement might seem somewhat strange, but the idea is that since an implementation is only forced to check for conditions trapped by method CALL at clause boundaries, incidences that may occur at any point within clauses (like NOVALUE) can only be trapped by method SIGNAL. (However, condition NOTREADY can occur within a clause, and may be trapped by method CALL so this does not seem to be absolute consistent.)
 
+There is not delay-action for condition NOVALUE, since it can not be trapped by method CALL, and consequently never can get into state DELAY.
 
-            Differences between NOVALUE and the standard condition are:
-
-
-                It may only be trapped by method SIGNAL, never method CALL. This requirement might seem somewhat strange, but the idea is that since an implementation is only forced to check for conditions trapped by method CALL at clause boundaries, incidences that may occur at any point within clauses (like NOVALUE) can only be trapped by method SIGNAL. (However, condition NOTREADY can occur within a clause, and may be trapped by method CALL so this does not seem to be absolute consistent.)
-
-
-                There is not delay-action for condition NOVALUE, since it can not be trapped by method CALL, and consequently never can get into state DELAY.
-
-                The descriptive text returned by calling CONDITION() with the Description option, is the derived (i.e. tail has be substituted if possible) name of the variable that caused the condition to be raised.
+The descriptive text returned by calling CONDITION() with the Description option, is the derived (i.e. tail has be substituted if possible) name of the variable that caused the condition to be raised.
 
 ==== The NOTREADY condition ====
 
 
-            The condition NOTREADY is a condition of mixed origin. It is raised as a result of problems with stream I/O. Exactly what causes it, may vary between implementations, but some of the more probable causes are: waiting for more I/O on transient streams; access to streams not allowed; I/O operation would block if attempted; etc. See the chapter; Stream Input and Output for more information.
+The condition NOTREADY is a condition of mixed origin. It is raised as a result of problems with stream I/O. Exactly what causes it, may vary between implementations, but some of the more probable causes are: waiting for more I/O on transient streams; access to streams not allowed; I/O operation would block if attempted; etc. See the chapter; Stream Input and Output for more information.
 
+Differences between NOTREADY and the standard condition are:
 
-            Differences between NOTREADY and the standard condition are:
+It will be ignored rather than queued if condition trap is in state DELAY.
 
+This condition differs from the rest in that it can be raised during execution of a clause, but can still be trapped by method CALL.
 
-                It will be ignored rather than queued if condition trap is in state DELAY.
+The descriptive text returned by CONDITION() when called with the Description option for condition NOTREADY, is the name of the stream which caused the problem. This is probably the same string that you used as the first parameter to the functions that operates on stream I/O. For the default streams (default input and output stream), the string returned by CONDITION() will be the nullstring.
 
+Note that if the NOTREADY trap is in state DELAY, then all I/O for files which has tried to raise
 
-                This condition differs from the rest in that it can be raised during execution of a clause, but can still be trapped by method CALL.
-
-
-                The descriptive text returned by CONDITION() when called with the Description option for condition NOTREADY, is the name of the stream which caused the problem. This is probably the same string that you used as the first parameter to the functions that operates on stream I/O. For the default streams (default input and output stream), the string returned by CONDITION() will be the nullstring.
-
-
-                Note that if the NOTREADY trap is in state DELAY, then all I/O for files which has tried to raise
-
-                NOTREADY within the current clause will be simulated as if operation had succeeded.
+NOTREADY within the current clause will be simulated as if operation had succeeded.
 
 ==== The LOSTDIGITS condition ====
 
