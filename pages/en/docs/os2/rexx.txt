@@ -4631,23 +4631,15 @@ The seven standard conditions will be raised as result of various situations, re
                     \-------/ \
                    /           \
                   /No        Yes\
-                 / \ /--------
--\
-/ \ /
-\
-+-----------+ +-----------+ \ Decision
-/
-| Set state | | Set state
-| \---------/
-| OFF | | DELAY |
-+-----------+ +-----------+
-+-----------+
-| Trigger | | | |
-|
-| trap | | Return | | Action
-|
-+-----------+ +-----------+
-+-----------+
+                 /               \        /---------\
+                /                 \      /           \
+         +-----------+   +-----------+   \ Decision  /
+         | Set state |   | Set state |    \---------/
+         |    OFF    |   |   DELAY   |
+         +-----------+   +-----------+    +-----------+
+         | Trigger   |   |   Return  |    | Action    |
+         |    trap   |   |           |    |           |
+         +-----------+   +-----------+    +-----------+
 </code>
 
 
@@ -4679,146 +4671,107 @@ Note that the Rexx standard does not require the pending events to be handled in
 
 ==== Trapping by Method SIGNAL ====
 
+Assume that a condition is being trapped by method SIGNAL, that the state is ON and the handler is MYTH_TRAP. The following Rexx clause will setup the trap correctly:
 
-            Assume that a condition is being trapped by method SIGNAL, that the state is ON and the handler is
+<code rexx>
+SIGNAL ON MYTH NAME MYTH_TRAP
+</code>
 
-            MYTH_TRAP. The following Rexx clause will setup the trap correctly:
+Now, suppose the MYTH incident occurs. The interpreter will sense it, queue an event, set the trap state to OFF and then explicitly trigger the trap, since the method is SIGNAL. What happens when the trap is triggered?
 
-            SIGNAL ON MYTH NAME MYTH_TRAP
+It collects the first event from the queue of pending events. The information is removed from the queue.
 
+The current trapped condition is set to the information removed from the pending event queue.
 
-            Now, suppose the MYTH incident occurs. The interpreter will sense it, queue an event, set the trap state to OFF and then explicitly trigger the trap, since the method is SIGNAL. What happens when the trap is triggered?
+Then, the interpreter simulates a SIGNAL clause to the label named by trap handler of the trap for the condition in question.
 
+As all SIGNAL clauses, this will have the side-effects of setting the SIGL special variable, and terminating all active loops at the current procedure level.
 
-                It collects the first event from the queue of pending events. The information is removed from the queue.
+That's it for method SIGNAL. If you want to continue trapping condition MYTH, you have to execute a new SIGNAL ON MYTH clause to set the state of the trap to ON. But no matter how quick you reset the trap, you will always have a short period where it is in state OFF. This means that you can not in general use the method SIGNAL if you really want to be sure that you don't loose any MYTH events, unless you have some control over when MYTH condition may arise.
 
-
-                The current trapped condition is set to the information removed from the pending event queue.
-
-
-                Then, the interpreter simulates a SIGNAL clause to the label named by trap handler of the trap for the condition in question.
-
-
-                As all SIGNAL clauses, this will have the side-effects of setting the SIGL special variable, and terminating all active loops at the current procedure level.
-
-
-                That's it for method SIGNAL. If you want to continue trapping condition MYTH, you have to execute a new SIGNAL ON MYTH clause to set the state of the trap to ON. But no matter how quick you reset the trap, you will always have a short period where it is in state OFF. This means that you can not in general use the method SIGNAL if you really want to be sure that you don't loose any MYTH events, unless you have some control over when MYTH condition may arise.
-
-
-                Also note that since the statement being executed is terminated; all active loops on the current procedure level are terminated; and the only indication where the error occurred is the line number (the line may contain several clauses), then it is in general impossible to pick up the normal execution after a condition trapped by SIGNAL. Therefore, this method is best suited for a "graceful death" type of traps. If the trap is triggered, you want to terminate what you were doing, and pick up the execution at an earlier stage, e.g. the previous procedure level.
+Also note that since the statement being executed is terminated; all active loops on the current procedure level are terminated; and the only indication where the error occurred is the line number (the line may contain several clauses), then it is in general impossible to pick up the normal execution after a condition trapped by SIGNAL. Therefore, this method is best suited for a "graceful death" type of traps. If the trap is triggered, you want to terminate what you were doing, and pick up the execution at an earlier stage, e.g. the previous procedure level.
 
 ==== Trapping by Method CALL ====
 
 
-            Assume that the condition MYTH is being trapped by method CALL, that the state is ON and the handler is MYTH_HANDLER.
+Assume that the condition MYTH is being trapped by method CALL, that the state is ON and the handler is MYTH_HANDLER.
 
+The following Rexx clause will setup the trap correctly:
 
-            The following Rexx clause will setup the trap correctly:
+<code rexx>
+CALL ON MYTH NAME MYTH_HANDLER
+</code>
 
+Now, suppose that the MYTH incident occurs. When the interpreter senses that, it will raise the MYTH condition. Since the trap state is ON and the trap method is CALL, it will create an event and queue it in the pending event queue and set the trap state to DELAY. Then it continues the normal execution. The trap is not triggered before the interpreter encounters the next clause boundary. What happens then?
 
-            CALL ON MYTH NAME MYTH_HANDLER
+At the every clause boundaries, the interpreter check for any pending events in the event queue. If one is found, it is handled. This action is done repeatedly, until the event queue is empty.
 
+It will simulate a normal function call to the label named by the trap handler. As with any CALL clause, this will set the special variable SIGL to the line of from which the call was made. This is done prior to the call. Note that this is the current line at the time when the condition was raised, not when it was triggered. All other actions normally performed when calling a subroutine are done. Note that the arguments to the subroutine are set to empty.
 
-            Now, suppose that the MYTH incident occurs. When the interpreter senses that, it will raise the MYTH condition. Since the trap state is ON and the trap method is CALL, it will create an event and queue it in the pending event queue and set the trap state to DELAY. Then it continues the normal execution. The trap is not triggered before the interpreter encounters the next clause boundary. What happens then?
+However, just before execution of the routine starts, it will remove the first event in the pending event queue, the information is instead put into the current trapped condition. Note that the current trapped condition is information that is saved across subroutine calls. It is set after the condition handler is called, and will be local to the condition handler (and functions called by the condition handler). To the "caller" (i.e. the procedure level active when the trap was triggered), it will seem as if the current trapped condition was never changed.
 
+Then the condition handler finishes execution, and returns by executing the RETURN clause. Any expression given as argument to RETURN will be ignored, i.e. the special variable RESULT will not be set upon return from a condition handler.
 
-                At the every clause boundaries, the interpreter check for any pending events in the event queue. If one is found, it is handled. This action is done repeatedly, until the event queue is empty.
+At the return from the condition handler, the current trapped condition and the setup of all traps are restored, as with a normal return from subroutine. As a special case, the state of the trap just triggered, will not be put back into DELAY state, but is set to state ON.
 
+Afterward (and before the next normal clause), the interpreter will again check for more events in the event queue, and it will not continue on the Rexx script before the queue is empty.
 
-                It will simulate a normal function call to the label named by the trap handler. As with any CALL
+During the triggering of a trap by method CALL at a clause boundary, the state of the trap is not normally changed, it will continue to be DELAY, as was set when the condition was raised. It will continue to be in state DELAY until return from the condition handler, at which the state of the trap in the caller will be changed to ON. If, during the execution of the condition trap, the state of the condition being trapped is set, that change will only last until the return from the condition handler.
 
-                clause, this will set the special variable SIGL to the line of from which the call was made. This
-
-                is done prior to the call. Note that this is the current line at the time when the condition was raised, not when it was triggered. All other actions normally performed when calling a subroutine are done. Note that the arguments to the subroutine are set to empty.
-
-
-                However, just before execution of the routine starts, it will remove the first event in the pending event queue, the information is instead put into the current trapped condition. Note that the current trapped condition is information that is saved across subroutine calls. It is set after the condition handler is called, and will be local to the condition handler (and functions called by the condition handler). To the "caller" (i.e. the procedure level active when the trap was triggered), it will seem as if the current trapped condition was never changed.
-
-
-                Then the condition handler finishes execution, and returns by executing the RETURN clause. Any expression given as argument to RETURN will be ignored, i.e. the special variable RESULT will not be set upon return from a condition handler.
-
-
-                At the return from the condition handler, the current trapped condition and the setup of all traps are restored, as with a normal return from subroutine. As a special case, the state of the trap just triggered, will not be put back into DELAY state, but is set to state ON.
-
-
-                Afterward (and before the next normal clause), the interpreter will again check for more events in the event queue, and it will not continue on the Rexx script before the queue is empty.
-
-
-                During the triggering of a trap by method CALL at a clause boundary, the state of the trap is not normally changed, it will continue to be DELAY, as was set when the condition was raised. It will continue to be in state DELAY until return from the condition handler, at which the state of the trap in the caller will be changed to ON. If, during the execution of the condition trap, the state of the condition being trapped is set, that change will only last until the return from the condition handler.
-
-
-                Since new conditions are generally delayed when an condition handler is executing, new conditions are queued up for execution. If the trap state is changed to ON, the pending event queue will be processed as named at the next clause boundary. If the state is changed to OFF, the default action of the conditions will be taken at the next clause boundary.
+Since new conditions are generally delayed when an condition handler is executing, new conditions are queued up for execution. If the trap state is changed to ON, the pending event queue will be processed as named at the next clause boundary. If the state is changed to OFF, the default action of the conditions will be taken at the next clause boundary.
 
 ==== The Current Trapped Condition ====
 
 
-            The interpreter maintains a data structure called the current trapped condition. It contains information relating the most recent condition trapped on this or higher procedure level. The current trapped condition is normally inherited by subroutines and functions, and restored after return from these.
+The interpreter maintains a data structure called the current trapped condition. It contains information relating the most recent condition trapped on this or higher procedure level. The current trapped condition is normally inherited by subroutines and functions, and restored after return from these.
 
+When trapped by method SIGNAL the current trapped condition of the current procedure level is set to information describing the condition trapped.
 
-                When trapped by method SIGNAL the current trapped condition of the current procedure level is set to information describing the condition trapped.
+When trapped by method CALL, the current trapped condition at the procedure level which the trap occurred at, is not changed. Instead, the current trapped condition in the condition handler is set to information describing the condition.
 
+The information stored in the current trapped condition can be retrieved by the built-in function CONDITION(). The syntax format of this function is:
 
-                When trapped by method CALL, the current trapped condition at the procedure level which the trap occurred at, is not changed. Instead, the current trapped condition in the condition handler is set to information describing the condition.
+<code>
+CONDITION(option)
+</code>
 
+where option is an option string of which only the first character matters. The valid options are: Condition name, Description, Instruction and State. These will return: the name of the current trapped condition; the descriptive text; the method; and the current state of the condition, respectively. The default option is Instruction. See the documentation on the built-in functions. See also the description of each condition below.
 
-                The information stored in the current trapped condition can be retrieved by the built-in function
-
-                CONDITION(). The syntax format of this function is:
-
-                CONDITION(option)
-
-
-                where option is an option string of which only the first character matters. The valid options are: Condition name, Description, Instruction and State. These will return: the name of the current trapped condition; the descriptive text; the method; and the current state of the condition, respectively. The default option is Instruction. See the documentation on the built-in functions. See also the description of each condition below.
-
-
-                Note that the State option do not return the state at the time when the condition was raised or the trap was triggered. It returns the current state of the trap, and may change during execution. The other information in the current trapped condition may only change when a new condition is trapped at return from subroutines.
+Note that the State option do not return the state at the time when the condition was raised or the trap was triggered. It returns the current state of the trap, and may change during execution. The other information in the current trapped condition may only change when a new condition is trapped at return from subroutines.
 
 
 ===== The Real Conditions =====
 
-
-        We have now described how the standard condition and condition trap works in Rexx. Let's look at the seven conditions defined which do exist. Note that none of these behaves exactly as the standard condition.
+We have now described how the standard condition and condition trap works in Rexx. Let's look at the seven conditions defined which do exist. Note that none of these behaves exactly as the standard condition.
 
 ==== The SYNTAX condition ====
 
+The SYNTAX condition is of internal origin, and is raised when any syntax or runtime error is discovered by the Rexx interpreter. It might be any of the situations that would normally lead to the abortion of the program and the report of a Rexx error message, except error message number 4 (Program interrupted), which is handled by the HALT condition.
 
-            The SYNTAX condition is of internal origin, and is raised when any syntax or runtime error is discovered by the Rexx interpreter. It might be any of the situations that would normally lead to the abortion of the program and the report of a Rexx error message, except error message number 4 (Program interrupted), which is handled by the HALT condition.
+There are several differences between this condition and the standard condition:
 
+It is not possible to trap this condition with the method CALL, only method SIGNAL. The reason for this is partly that method CALL tries to continue execution until next boundary before triggering the trap. That might not be possible with syntax or runtime errors.
 
-            There are several differences between this condition and the standard condition:
+When this condition is trapped, the special variable RC is set to the Rexx error number of the syntax or runtime error that caused the condition. This is done just before the setting of the special variable SIGL.
 
+The default action of this condition if the trap state is OFF, is to abort the program with a traceback and error message.
 
-                It is not possible to trap this condition with the method CALL, only method SIGNAL. The reason for this is partly that method CALL tries to continue execution until next boundary before triggering the trap. That might not be possible with syntax or runtime errors.
+There is not delay-action for condition SYNTAX, since it can not be trapped by method CALL, and consequently never can get into state DELAY.
 
-
-                When this condition is trapped, the special variable RC is set to the Rexx error number of the syntax or runtime error that caused the condition. This is done just before the setting of the special variable SIGL.
-
-
-                The default action of this condition if the trap state is OFF, is to abort the program with a traceback and error message.
-
-
-                There is not delay-action for condition SYNTAX, since it can not be trapped by method CALL, and consequently never can get into state DELAY.
-
-
-                The descriptive text returned by CONDITION() when called with the Description option for condition SYNTAX, is implementation dependent, and may also be a nullstring. Consult the implementation-specific documentation for more information.
+The descriptive text returned by CONDITION() when called with the Description option for condition SYNTAX, is implementation dependent, and may also be a nullstring. Consult the implementation-specific documentation for more information.
 
 ==== The HALT condition ====
 
 
-            The HALT condition of external origin, which is raised as a result of an action from the user, normally a combination of keys which tries to abort the program. Which combination of keys will vary between operating systems. Some systems might also simulate this event by other means than
+The HALT condition of external origin, which is raised as a result of an action from the user, normally a combination of keys which tries to abort the program. Which combination of keys will vary between operating systems. Some systems might also simulate this event by other means than key combinations. In general ^C and ^-Break key combinations will generate this condition. The differences between HALT and the standard condition are:
 
-            key combinations. In general ^C and ^-Break key combinations will generate this condition. The differences between HALT and the standard condition are:
+The default-action for the HALT condition is to abort execution, as though a Rexx runtime error number 4 (Program interrupted) had been reported. But note that SYNTAX will never be raised if HALT is not trapped.
 
-                The default-action for the HALT condition is to abort execution, as though a Rexx runtime error number 4 (Program interrupted) had been reported. But note that SYNTAX will never be raised if HALT is not trapped.
+The delay-action of this condition is to ignore, not queue.
 
+The standard allows the interpreter to limit the search for situations that would set the HALT condition, to clause boundaries. As a result, the response time from pressing the key combination to actually raising the condition or triggering the trap may vary, even if HALT is trapped by method SIGNAL. If a clause for some reason has blocked execution, and never finish, you may not be able to break the program.
 
-                The delay-action of this condition is to ignore, not queue.
-
-
-                The standard allows the interpreter to limit the search for situations that would set the HALT condition, to clause boundaries. As a result, the response time from pressing the key combination to actually raising the condition or triggering the trap may vary, even if HALT is trapped by method SIGNAL. If a clause for some reason has blocked execution, and never finish, you may not be able to break the program.
-
-
-                The descriptive text returned by CONDITION() when called with the Description option for condition HALT, is implementation dependent, and may also be a nullstring. In general, it will describe the way in which the interpreter was attempted halted, in particular if there are more than one way to do raise a HALT condition. Consult the implementation documentation for more information.
+The descriptive text returned by CONDITION() when called with the Description option for condition HALT, is implementation dependent, and may also be a nullstring. In general, it will describe the way in which the interpreter was attempted halted, in particular if there are more than one way to do raise a HALT condition. Consult the implementation documentation for more information.
 
 ==== The ERROR condition ====
 
