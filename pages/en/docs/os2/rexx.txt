@@ -7031,149 +7031,147 @@ Indicates that the handler was not registered, due to one or more of the paramet
 
 ==== The RexxRegisterSubcomDll() function ====
 
+This function is used to set up a routine that is located in a module in a dynamic link library, as a subcommand handler. After registration, the Rexx interpreter can execute subcommands by calling the subcommand handler with parameters describing the subcommand.
 
-            This function is used to set up a routine that is located in a module in a dynamic link library, as a subcommand handler. After registration, the Rexx interpreter can execute subcommands by calling the subcommand handler with parameters describing the subcommand.
+Some operating systems don't have dynamic linking, and thus cannot make use of this facility. The prototype of this function is:
 
-            Some operating systems don't have dynamic linking, and thus cannot make use of this facility. The prototype of this function is:
+<code c>
+APIRET APIENTRY RexxRegisterSubcomDll( PSZ EnvName, PSZ ModuleName, PFN EntryPoint, PUCHAR UserArea, ULONG DropAuth) ;
+</code>
 
+All the parameters are input, and their significance are:
 
-            APIRET APIENTRY RexxRegisterSubcomDll( PSZ EnvName,
+[EnvName]
 
-            PSZ ModuleName, PFN EntryPoint, PUCHAR UserArea, ULONG DropAuth
+Points to an ASCII NUL terminated character string which defines the name of the environment to be registered. This is the same name as the Rexx interpreter uses with the ADDRESS clause in order to select an external environment.
 
-            ) ;
+[ModuleName]
 
+Points to an ASCII NUL terminated character string which defines the name of the dynamic or shared library in which the EntryPoint to the subcommand exists.
 
-            All the parameters are input, and their significance are:
+[EntryPoint]
 
+Points to the entrypoint of the subcommand handler routine for the environment to be registered. See the section on Subcommand Handlers for more information.
 
-            [EnvName]
+There is an upper limit for the length of this name.
 
-            Points to an ASCII NUL terminated character string which defines the name of the environment to be registered. This is the same name as the Rexx interpreter uses with the ADDRESS clause in order to select an external environment.
+[UserArea]
 
-            [ModuleName]
+Pointer to an 8 byte area of information that is to be associated with this environment. This pointer can be NULL if no such area is necessary.
 
-            Points to an ASCII NUL terminated character string which defines the name of the dynamic or shared library in which the EntryPoint to the subcommand exists.
+[DropAuth]
 
-            [EntryPoint]
+Is either RXSUBCOM_DROPABLE or RXSUBCOM_NONDROP. This argument is ignored by Regina as subcommands only exists within the current process.
 
-            Points to the entrypoint of the subcommand handler routine for the environment to be registered. See the section on Subcommand Handlers for more information.
+The areas pointed to by EnvName, ModuleName and UserArea are copied to a private area in the interface, so the programmer may de-allocate or reuse the area used for these parameters after the call has returned.
 
-            There is an upper limit for the length of this name. [UserArea]
+RexxRegisterSubcomDll() returns an unsigned long, which carries status information describing the outcome of the operation. The status will be one of the RXSUBCOM values:
 
-            Pointer to an 8 byte area of information that is to be associated with this environment. This pointer can be NULL if no such area is necessary.
+[ RXSUBCOM_OK]
 
-            [DropAuth]
+The subcommand handler was successfully registered.
 
-            Is either RXSUBCOM_DROPABLE or RXSUBCOM_NONDROP. This
+[RXSUBCOM_DUP]
 
-            argument is ignored by Regina as subcommands only exists within the current process.
+The subcommand handler was successfully registered. There already existed another subcommand handler which was registered with RexxRegisterSubcomDll(), but this will be shadowed by the newly registered handler.
 
+[RXSUBCOM_NOTREG]
 
-            The areas pointed to by EnvName, ModuleName and UserArea are copied to a private area in the interface, so the programmer may de-allocate or reuse the area used for these parameters after the call has returned.
+Due to some error, the handler was not registered. Probably because a handler for EnvName was already defined at a previous call to RexxRegisterSubcomDll().
 
-            RexxRegisterSubcomDll() returns an unsigned long, which carries status information describing the outcome of the operation. The status will be one of the RXSUBCOM values:
+[RXSUBCOM_NOEMEM]
 
+The handler was not registered, due to lack of memory.
 
-            [ RXSUBCOM_OK]
+[RXSUBCOM_BADTYPE]
 
-            The subcommand handler was successfully registered. [RXSUBCOM_DUP]
-
-            The subcommand handler was successfully registered. There already existed another subcommand handler which was registered with RexxRegisterSubcomDll(), but this will be shadowed by the newly registered handler.
-
-            [RXSUBCOM_NOTREG]
-
-            Due to some error, the handler was not registered. Probably because a handler for
-
-            EnvName was already defined at a previous call to RexxRegisterSubcomDll(). [RXSUBCOM_NOEMEM]
-
-            The handler was not registered, due to lack of memory. [RXSUBCOM_BADTYPE]
-
-            Indicates that the handler was not registered, due to one or more of the parameters having invalid values. Regina addition.
+Indicates that the handler was not registered, due to one or more of the parameters having invalid values. Regina addition.
 
 ==== The RexxDeregisterSubcom() function ====
 
+This function is used to remove a particular environment from the list of registered environments. The prototype of the function is:
 
-            This function is used to remove a particular environment from the list of registered environments. The prototype of the function is:
+<code c>
+APIRET APIENTRY RexxDeregisterSubcom( PSZ EnvName, PSZ ModuleName) ;
+</code>
 
+Both parameters are input values:
 
-            APIRET APIENTRY RexxDeregisterSubcom( PSZ EnvName,
+[EnvName]
 
-            PSZ ModuleName
+Pointer to ASCII NUL terminated string, which represents the name of the environment to be removed.
 
-            ) ;
+[ModuleName]
 
-            Both parameters are input values: [EnvName]
-
-            Pointer to ASCII NUL terminated string, which represents the name of the environment to be removed.
-
-            [ModuleName]
-
-            Also an ASCII NUL terminated string, which points to the name of the module containing the subcommand handler of the environment to be deleted.
+Also an ASCII NUL terminated string, which points to the name of the module containing the subcommand handler of the environment to be deleted.
 
 
-            The list of defined environments is searched, and if an environment matching the one named by the first parameter are found, it is deleted.
+The list of defined environments is searched, and if an environment matching the one named by the first parameter are found, it is deleted.
 
-            The returned value from RexxDeregisterSubcom() can be one of: [RXSUBCOM_OK]
+The returned value from RexxDeregisterSubcom() can be one of: 
 
-            The subcommand handler was successfully deleted. [RXSUBCOM_NOTREG]
+[RXSUBCOM_OK]
 
-            The subcommand handler was not found. [RXSUBCOM_BADTYPE]
+The subcommand handler was successfully deleted. 
 
-            One or more of the parameters had illegal values, and the operation was not carried through. Regina addition.
+[RXSUBCOM_NOTREG]
 
-            [RXSUBCOM_NOCANDROP]
+The subcommand handler was not found. 
 
-            Unable to deregister the subcommand handler. Regina addition.
+[RXSUBCOM_BADTYPE]
 
-            Most systems that do have dynamic linking have no method for reclaiming the space used by dynamically linked routines. So, even if you were able to load a dll, there are no guarantees that you will be able to unload it.
+One or more of the parameters had illegal values, and the operation was not carried through. Regina addition.
+
+[RXSUBCOM_NOCANDROP]
+
+Unable to deregister the subcommand handler. Regina addition.
+
+Most systems that do have dynamic linking have no method for reclaiming the space used by dynamically linked routines. So, even if you were able to load a dll, there are no guarantees that you will be able to unload it.
 
 ==== The RexxQuerySubcom() function ====
 
+This function retrieves information about a previously registered subcommand handler. The prototype of the function is:
 
-            This function retrieves information about a previously registered subcommand handler. The prototype of the function is:
 
+<code c>
+APIRET APIENTRY RexxQuerySubcom( PSZ EnvName, PSZ ModuleName, PUSHORT Flag, PUCHAR UserArea) ;
+</code>
 
-            APIRET APIENTRY RexxQuerySubcom( PSZ EnvName,
+The significance of the parameters are:
 
-            PSZ ModuleName, PUSHORT Flag,
+[EnvName]
 
-            PUCHAR UserArea
+Pointer to an ASCII NUL terminated character string, which names the subcommand handler about which information is to be returned.
 
-            ) ;
+[ModuleName]
 
-            The significance of the parameters are: [EnvName]
+Pointer to an ASCII NUL terminated character string, which names a dynamic link library. Only the named library will be searched for the subcommand handler named by EnvName. This parameter must be NULL if all subcommand handlers are to be searched.
 
-            Pointer to an ASCII NUL terminated character string, which names the subcommand handler about which information is to be returned.
+[Flag]
 
-            [ModuleName]
+Pointer to a short which is to receive the value RXSUBCOM_OK or RXSUBCOM_NOTREG. In fact, this is the same as the return value from the function.
 
-            Pointer to an ASCII NUL terminated character string, which names a dynamic link library. Only the named library will be searched for the subcommand handler named by EnvName. This parameter must be NULL if all subcommand handlers are to be searched.
+[UserArea]
 
-            [Flag]
+Pointer to an area of 8 bytes. The userarea of the subcommand handler is copied to the area pointed to by UserArea. This parameter might be NULL if the data of the userarea is not needed.
 
-            Pointer to a short which is to receive the value RXSUBCOM_OK or RXSUBCOM_NOTREG. In fact, this is the same as the return value from the function.
+The returned value from RexxQuerySubcom() can be one of: 
 
-            [UserArea]
+[RXSUBCOM_OK]
 
-            Pointer to an area of 8 bytes. The userarea of the subcommand handler is copied to the area pointed to by UserArea. This parameter might be NULL if the data of the userarea is not needed.
+The subcommand handler was found, and the required information has been returned in the Flag and UserAreavariables.
 
-            The returned value from RexxQuerySubcom() can be one of: [RXSUBCOM_OK]
+[RXSUBCOM_NOTREG]
 
-            The subcommand handler was found, and the required information has been returned in the Flag and UserAreavariables.
+The subcommand handler was not found. The Flag variable will also be set to this value, and the UserArea variable is not changed.
 
-            [RXSUBCOM_NOTREG]
+[RXSUBCOM_BADTYPE]
 
-            The subcommand handler was not found. The Flag variable will also be set to this value, and the UserArea variable is not changed.
-
-            [RXSUBCOM_BADTYPE]
-
-            One or more of the parameters had illegal values, and the operation was not carried through. Regina addition.
+One or more of the parameters had illegal values, and the operation was not carried through. Regina addition.
 
 ===== The External Function Handler Interface =====
 
-
-        This sections describes the external function handler interface, which extends the language by enabling external functions to be written in a language other than Rexx.
+This sections describes the external function handler interface, which extends the language by enabling external functions to be written in a language other than Rexx.
 
 ==== What is an External Function Handler ====
 
