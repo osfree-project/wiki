@@ -7356,272 +7356,129 @@ This sections describes the RexxStart() function, which allows the application t
 
 ==== The RexxStart() function ====
 
+This function is used to invoke the Rexx interpreter in order to execute a piece of Rexx code, which may be located on disk, as a pre-tokenized macro, or as ASCII source code in memory.
 
-            This function is used to invoke the Rexx interpreter in order to execute a piece of Rexx code, which may be located on disk, as a pre-tokenized macro, or as ASCII source code in memory.
+<code c>
+APIRET APIENTRY RexxStart(LONG ArgCount, PRXSTRING ArgList, PCSZ ProgramName, PRXSTRING Instore, PCSZ EnvName, LONG CallType, PRXSYSEXIT Exits, PSHORT ReturnCode, PRXSTRING Result) ;
+</code>
 
+Of these parameters, ReturnCode and Result are output-only, while Instore is both input and output. The rest of the parameters are input-only. The significance of the parameters are:
 
-            APIRET APIENTRY RexxStart(
+[ArgCount]
 
-            LONG ArgCount, PRXSTRING ArgList,
+The number of parameter strings given to the procedure. This is the number of defined Rexx-strings pointed to by the ArgList parameter. The default maximum number of arguments that can be passed is 32, but this can be changed by the MAX_ARGS_TO_REXXSTART macro in rexx.h.
 
-            PCSZ ProgramName, PRXSTRING Instore, PCSZ EnvName, LONG CallType, PRXSYSEXIT Exits,
+[ArgList]
 
-            PSHORT ReturnCode, PRXSTRING Result
+Pointer to an array of Rexx-strings, constituting the parameters to this call to Rexx. The size of this array is given by the parameter ArgCount. If ArgCount is greater than one, the first and last parameters are ArgList[0] and ArgList[ArgCount-1]. If ArgCount is 0, the value of ArgList is irrelevant.
 
-            ) ;
+If the strptr of one of the elements in the array pointed to by ArgList is NULL, that means that this parameter is empty (i.e. unspecified, as opposed to a string of zero size).
 
+[ProgramName]
 
-            Of these parameters, ReturnCode and Result are output-only, while Instore is both input and output. The rest of the parameters are input-only. The significance of the parameters are:
+An ASCII NUL terminated string, specifying the name of the Rexx script to be executed. The value of Instore will determine whether this value is interpreted as the name of a (on-disk) script, or a pre-tokenized macro. If it refers to a filename, the syntax of the contents of this parameter depends on the operating system.
 
+[Instore]
 
-            [ArgCount]
+Parameter used for storing tokenized Rexx scripts. This parameter might either be NULL, else it will be a pointer to two RXSTRING structures, the first holding the ASCII version of a Rexx program, the other holding the tokenized version of that program. See below for more information about how to use Instore.
 
-            The number of parameter strings given to the procedure. This is the number of defined Rexx-strings pointed to by the ArgList parameter. The default maximum number of arguments that can be passed is 32, but this can be changed by the MAX_ARGS_TO_REXXSTART macro in rexx.h.
+[EnvName]
 
-            [ArgList]
+Pointer to ASCII NUL terminated string naming the environment which is to be the initial current environment when the script is started. If this parameter is set to NULL, the filetype is used as the initial environment name. What the filetype is, may depend on your operating system, but in general it is everything after the last period '.' in the filename.
 
-            Pointer to an array of Rexx-strings, constituting the parameters to this call to Rexx. The size of this array is given by the parameter ArgCount. If ArgCount is greater than one, the first and last parameters are ArgList[0] and ArgList[ArgCount-1]. If ArgCount is 0, the value of ArgList is irrelevant.
+[CallType]
 
+A value describing whether the Rexx interpreter is to be invoked in command, function or subroutine mode. Actually, this has little significance. The main difference is that in command mode, only one parameter string can be passed, and in function mode, a value must be returned. In addition, the mode chosen will affect the output of the PARSE SOURCE instruction in Rexx.
 
-            If the strptr of one of the elements in the array pointed to by ArgList is NULL, that means that this parameter is empty (i.e. unspecified, as opposed to a string of zero size).
+[Exits]
 
-            [ProgramName]
+Three symbolic values of integral type are defined, which can be used for this parameter: RXCOMMAND, RXFUNCTION and RXSUBROUTINE.
 
-            An ASCII NUL terminated string, specifying the name of the Rexx script to be executed. The value of Instore will determine whether this value is interpreted as the name of a (on-disk) script, or a pre-tokenized macro. If it refers to a filename, the syntax of the contents of this parameter depends on the operating system.
+A value of RXRESTRICTED can be OR'ed with one of the above types to specify that Regina will run in restricted mode. This is particularly useful when Regina is used as an embedded interpreter in applications such as a database procedural language or a web-browser scripting language.
 
-            [Instore]
+A pointer to an array of exit handlers to be used. If no exit handlers are to be defined, NULL may be specified. Each element in the array defines one exit handler, and the element immediately following the last definition must have a sysexit_code set to RXENDLST. Each element's sysexit_name must match the EnvName specified in a call to RexxRegisterExitExe() or RexxRegisterExitDll() called prior to calling RexxStart().
 
-            Parameter used for storing tokenized Rexx scripts. This parameter might either be NULL, else it will be a pointer to two RXSTRING structures, the first holding the ASCII version of a Rexx program, the other holding the tokenized version of that program. See below for more information about how to use Instore.
+[ReturnCode]
 
-            [EnvName]
+Pointer to a SHORT integer where the return code is stored, provided that the returned value is numeric, and within the range %%-(2**15)%% to %%2**15-1%%. I don't know what happens to ReturnCode if either of these conditions is not satisfied. It probably becomes undefined, which means that it is totally useless since the program has to inspect the return string in order to determine whether ReturnCode is valid. Regina allows the value of this parameter to be NULL if the user is not interested in it.
 
-            Pointer to ASCII NUL terminated string naming the environment which is to be the initial current environment when the script is started. If this parameter is set to NULL, the filetype is used as the initial environment name. What the filetype is, may depend on your operating system, but in general it is everything after the last period '.' in the filename.
+[Result]
 
-            [CallType]
+Points to a Rexx string into which the result string is written. The caller may or may not let the strptr field be supplied. If supplied (i.e. it is non-NULL), that area will be used, else a new area will be allocated. If the supplied area is used, its size is supposed to be given by the strlength field. If the size if not sufficient, a new area will be allocated, by RexxAllocateMemory(), and the caller must see to that it is properly de-allocated using RexxFreeMemory().
 
-            A value describing whether the Rexx interpreter is to be invoked in command, function or subroutine mode. Actually, this has little significance. The main difference is that in command mode, only one parameter string can be passed, and in function mode, a value must be returned. In addition, the mode chosen will affect the output of the PARSE SOURCE instruction in Rexx.
+Regina allows the value of this parameter to be NULL if the user is not interested in it.
 
+Note that the ArgCount parameter need not be the same as the ARG() built-in function would return. Differences will occur if the last entries in ArgList are null strings.
 
+The Instore parameter needs some special attention. It is used to directly or indirectly specify where to fetch the code to execute. The following algorithm is used to determine what to execute:
 
-            [Exits]
+If Instore is NULL, then ProgramName names the filename of an on-disk Rexx script which it to be read and executed.
 
-            Three symbolic values of integral type are defined, which can be used for this parameter: RXCOMMAND, RXFUNCTION and RXSUBROUTINE.
+Else, if Instore is not NULL, the script is somewhere in memory, and no reading from disk is performed. If both Instore[0].strptr and Instore[1].strptr are NULL, then the script to execute is a pre-loaded macro which must have been loaded with a call to either RexxAddMacro() or RexxLoadMacroSpace(); and ProgName is the name of the macro to execute.
 
-            A value of RXRESTRICTED can be OR'ed with one of the above types to specify that Regina will run in restricted mode. This is particularly useful when Regina is used as an embedded interpreter in applications such as a database procedural language or a web-browser scripting language.
+Else, if Instore[1].strptr is non-NULL, then Instore[1] contains the pre-tokenized image of a Rexx script, and it is used for the execution.
 
+Else, if Instore[0].strptr is non-NULL, then Instore[0]} contains the ASCII image of a Rexx script, just as if the script had been read directly from the disk (i.e. including linefeeds and such). This image is passed to the interpreter, which tokenizes it, and stores the tokenized script in the Instore[1] string, and then proceeds to execute that script. Upon return, the Instore[1] will be set, and can later be used to re-execute the script within the same process, without the overhead of tokenizing.
 
-            A pointer to an array of exit handlers to be used. If no exit handlers are to be defined, NULL may be specified. Each element in the array defines one exit handler, and the element immediately following the last definition must have a sysexit_code set to RXENDLST. Each element's sysexit_name must match the EnvName specified in a call to RexxRegisterExitExe() or RexxRegisterExitDll() called prior to calling RexxStart().
+The user is responsible for de-allocating any storage used by Instore[1]. Note that after tokenizing, the source code in Instore[0] is strictly speaking not needed anymore. It will only be consulted if the user calls the SOURCELINE() built-in function. It is not an error to use SOURCELINE() if the source is not present, but nullstring and zero will be returned.
 
-            [ReturnCode]
+To tokenise a Rexx script and save it for execution by a later execution by RexxStart() either in the currently running process or outside the current process, you need to call RexxStart() with the following arguments:
 
-            Pointer to a SHORT integer where the return code is stored, provided that the returned value is numeric, and within the range -(2**15) to 2**15-1. I don't know what happens to ReturnCode if either of these conditions is not satisfied. It probably becomes undefined, which means that it is totally useless since the program has to inspect the return string in order to determine whether ReturnCode is valid. Regina allows the value of this parameter to be NULL if the user is not interested in it.
+^ Parameter ^ Value ^ Notes ^
+| ArgCount | 1 |  |
+| ArgList.strlength | 3 | |
+| ArgList.strptr | %%//T%% | |
+| ProgramName |  | Ignored |
+| Instore[0].strptr | ASCII image of Rexx script | |
+| Instrore[0].strlength | Length of Instore[0].strptr | |
+| Instrore[1].strptr | Ignored | This will be populated with the tokenised code. |
+| Instore[1].strlength | Ignored | This will be set to the length of Instore[1].strptr |
+| EnvName | SYSTEM | |
+| CallType | RXCOMMAND |
+| Exits | NULL | |
+| ReturnCode | Ignored | |
+| Result.strptr | Ignored | |
+| Result.strlength | Ignored | |
 
-            [Result]
+The valid return values from RexxStart() are:
 
-            Points to a Rexx string into which the result string is written. The caller may or may not let the strptr field be supplied. If supplied (i.e. it is non-NULL), that area will be used, else a new area will be allocated. If the supplied area is used, its size is supposed to be given by the strlength field. If the size if not sufficient, a new area will be allocated, by RexxAllocateMemory(), and the caller must see to that it is properly de-allocated using RexxFreeMemory().
+[Negative]
 
-            Regina allows the value of this parameter to be NULL if the user is not interested in it.
+indicates that a syntax error occurred during interpretation. In general, you can expect the error value to have the same absolute value as the Rexx syntax error (but opposite signs, of course).
 
+[Zero]
 
-            Note that the ArgCount parameter need not be the same as the ARG() built-in function would return. Differences will occur if the last entries in ArgList are null strings.
+indicates that the interpreter finished executing the script without errors.
 
+[Positive]
 
-            The Instore parameter needs some special attention. It is used to directly or indirectly specify where to fetch the code to execute. The following algorithm is used to determine what to execute:
+indicates probably that some problem occurred, that made it impossible to execute the script, e.g. a bad parameter value. However, I can't find any references in the documentation which states which values it is supposed to return.
 
+During the course of an execution of RexxStart(), subcommand handlers and exit handlers might be called. These may call any function in the application interface, including another invocation of RexxStart().
 
-            If Instore is NULL, then ProgramName names the filename of an on-disk Rexx script
+Often, the application programmer is interested in providing support simplifying the specification of filenames, like an environment variable search path or a default file type. The Rexx interface does support a default file type: .CMD, but the user may not set this to anything else. Therefore, it is generally up to the application programmer to handle search paths, and also default file types (unless .CMD is OK).
 
-            which it to be read and executed.
-
-
-            Else, if Instore is not NULL, the script is somewhere in memory, and no reading from disk is performed. If both Instore[0].strptr and Instore[1].strptr are NULL, then the script to execute is a pre-loaded macro which must have been loaded with a call to either RexxAddMacro() or RexxLoadMacroSpace(); and ProgName is the name of the macro to execute.
-
-
-            Else, if Instore[1].strptr is non-NULL, then Instore[1] contains the pre-tokenized image of a Rexx script, and it is used for the execution.
-
-
-            Else, if Instore[0].strptr is non-NULL, then Instore[0]} contains the ASCII image of a
-
-            Rexx script, just as if the script had been read directly from the disk (i.e. including
-
-            linefeeds and such). This image is passed to the interpreter, which tokenizes it, and stores the tokenized script in the Instore[1] string, and then proceeds to execute that script. Upon return, the Instore[1] will be set, and can later be used to re-execute the script within the same process, without the overhead of tokenizing.
-
-
-            The user is responsible for de-allocating any storage used by Instore[1]. Note that after tokenizing, the source code in Instore[0] is strictly speaking not needed anymore. It will only be consulted if the user calls the SOURCELINE() built-in function. It is not an error to use SOURCELINE() if the source is not present, but nullstring and zero will be returned.
-
-
-            To tokenise a Rexx script and save it for execution by a later execution by RexxStart() either in the currently running process or outside the current process, you need to call RexxStart() with the following arguments:
-
-
-            Parameter
-            	
-
-            Value
-            	
-
-            Notes
-
-            ArgCount
-            	
-
-            1
-            	
-
-
-            ArgList.strlength
-            	
-
-            3
-            	
-
-
-            ArgList.strptr
-            	
-
-            //T
-            	
-
-
-            ProgramName
-            	
-
-
-            	
-
-            Ignored
-
-            Instore[0].strptr
-            	
-
-            ASCII image of Rexx script
-            	
-
-
-            Instrore[0].strlength
-            	
-
-            Length of Instore[0].strptr
-            	
-
-
-            Instrore[1].strptr
-            	
-
-            Ignored
-            	
-
-            This will be populated with the tokenised code.
-
-            Instore[1].strlength
-            	
-
-            Ignored
-            	
-
-            This will be set to the length of Instore[1].strptr
-
-            EnvName
-            	
-
-            SYSTEM
-            	
-
-
-            CallType
-            	
-
-            RXCOMMAND
-            	
-
-
-            Parameter
-            	
-
-            Value
-            	
-
-            Notes
-
-            Exits
-            	
-
-            NULL
-            	
-
-
-            ReturnCode
-            	
-
-            Ignored
-            	
-
-
-            Result.strptr
-            	
-
-            Ignored
-            	
-
-
-            Result.strlength
-            	
-
-            Ignored
-            	
-
-
-
-            The valid return values from RexxStart() are: [Negative]
-
-            indicates that a syntax error occurred during interpretation. In general, you can
-
-            expect the error value to have the same absolute value as the Rexx syntax error (but opposite signs, of course).
-
-            [Zero]
-
-            indicates that the interpreter finished executing the script without errors.
-
-            [Positive]
-
-            indicates probably that some problem occurred, that made it impossible to execute the script, e.g. a bad parameter value. However, I can't find any references in the documentation which states which values it is supposed to return.
-
-
-            During the course of an execution of RexxStart(), subcommand handlers and exit handlers might be called. These may call any function in the application interface, including another invocation of RexxStart().
-
-
-            Often, the application programmer is interested in providing support simplifying the specification of filenames, like an environment variable search path or a default file type. The Rexx interface does support a default file type: .CMD, but the user may not set this to anything else. Therefore, it is generally up to the application programmer to handle search paths, and also default file types (unless .CMD is OK).
-
-
-            If the initial environment name (EvnName) is NULL, then the initial environment during interpretation will be set equal to the file type of the script to execute. If the script does not have a file
-
-            type, it is probably set to some interpreter specific value.
+If the initial environment name (EvnName) is NULL, then the initial environment during interpretation will be set equal to the file type of the script to execute. If the script does not have a file type, it is probably set to some interpreter specific value.
 
 ===== Variable Pool Interface =====
 
-        This section describes the variable pool part of the application interface, which allows the application programmer to set, retrieve and drop variables in the Rexx interpreter from the application program. It also allows access to other information.
+This section describes the variable pool part of the application interface, which allows the application programmer to set, retrieve and drop variables in the Rexx interpreter from the application program. It also allows access to other information.
 
-
-        The C preprocessor symbol INCL_RXSHV must be defined if the definitions for the variable pool interface are to be made available when rexxsaa.h is included.
+The C preprocessor symbol INCL_RXSHV must be defined if the definitions for the variable pool interface are to be made available when rexxsaa.h is included.
 
 ==== Symbolic or Direct ====
 
+First, let us define two terms, symbolic variable name and direct variable name, which are used in connection with the variable pool.
 
-            First, let us define two terms, symbolic variable name and direct variable name, which are used in connection with the variable pool.
+A symbolic variable name is the name of a variable, but it needs normalization and tail substitution before it names the real variable. The name foo.bar is a symbolic variable name, and it is transformed by normalization, to FOO.BAR, and then by tail substitution to FOO.42 (assuming that the current value of BAR is 42).
 
+Normalization is the process of uppercasing all characters in the symbolic name; and tail substitution is the process of substituting each distinct simple symbol in the tail for its value.
 
-            A symbolic variable name is the name of a variable, but it needs normalization and tail substitution before it names the real variable. The name foo.bar is a symbolic variable name, and it is transformed by normalization, to FOO.BAR, and then by tail substitution to FOO.42 (assuming that the current value of BAR is 42).
+On the other hand, a direct variable refers directly to the name of the variable. In a sense, it is a symbolic variable that has already been normalized and tail substituted. For instance, foo.bar is not a valid direct variable name, since lower case letters are not allowed in the variable stem. The direct variable FOO.42 is the same as the variable above. For simple variables, the only difference between direct and symbolic variable names is that lower case letters are allowed in symbolic names
 
+Note that the two direct variable names FOO.bar and FOO.BAR refer to different variables, since upper and lower case letters differ in the tail. In fact, the tail of a compound direct variable may contain any character, including ASCII NUL. The stem part of a variable, and all simple variables can not contain any lower case letters.
 
-            Normalization is the process of uppercasing all characters in the symbolic name; and tail substitution is the process of substituting each distinct simple symbol in the tail for its value.
-
-
-            On the other hand, a direct variable refers directly to the name of the variable. In a sense, it is a symbolic variable that has already been normalized and tail substituted. For instance, foo.bar is not a valid direct variable name, since lower case letters are not allowed in the variable stem. The direct variable FOO.42 is the same as the variable above. For simple variables, the only difference between direct and symbolic variable names is that lower case letters are allowed in symbolic names
-
-
-            Note that the two direct variable names FOO.bar and FOO.BAR refer to different variables, since upper and lower case letters differ in the tail. In fact, the tail of a compound direct variable may contain any character, including ASCII NUL. The stem part of a variable, and all simple variables can not contain any lower case letters.
-
-
-            As a remark, what would the direct variable FOO. refer to: the stem FOO. or the compound variable having stem FOO. and a nullstring as tail? Well, I suppose the former, since it is the more useful. Thus, the latter is inaccessible as a direct variable.
+As a remark, what would the direct variable FOO. refer to: the stem FOO. or the compound variable having stem FOO. and a nullstring as tail? Well, I suppose the former, since it is the more useful. Thus, the latter is inaccessible as a direct variable.
 
 ==== The SHVBLOCK structure ====
 
