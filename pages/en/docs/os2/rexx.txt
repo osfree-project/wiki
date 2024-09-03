@@ -6983,53 +6983,51 @@ The returnstring string will provide a 256 byte array which the programmer might
 
 ==== The RexxRegisterSubcomExe() function ====
 
+This function is used to register a subcommand handler with the interface. The subcommand handler must be a procedure located within the code of the application. After registration, the Rexx interpreter can execute subcommands by calling the subcommand handler with parameters describing the subcommand.
 
-            This function is used to register a subcommand handler with the interface. The subcommand handler must be a procedure located within the code of the application. After registration, the Rexx interpreter can execute subcommands by calling the subcommand handler with parameters describing the subcommand.
+The prototype for RexxRegisterSubcomExe() is:
 
+<code c>
+APIRET APIENTRY RexxRegisterSubcomExe( PSZ EnvName, PFN EntryPoint, PUCHAR UserArea) ;
+</code>
 
-            The prototype for RexxRegisterSubcomExe() is:
+All the parameters are input, and their significance are: 
 
+[EnvName]
 
-            APIRET APIENTRY RexxRegisterSubcomExe( PSZ EnvName,
+Points to an ASCII NUL terminated character string which defines the name of the environment to be registered. This is the same name as the Rexx interpreter uses with the ADDRESS clause in order to select an external environment.
 
-            PFN EntryPoint, PUCHAR UserArea
+[EntryPoint]
 
-            ) ;
+Points to the entrypoint of the subcommand handler routine for the environment to be registered. See the section on Subcommand Handlers for more information.
 
-            All the parameters are input, and their significance are: [EnvName]
+There is an upper limit for the length of this name. [UserArea]
 
-            Points to an ASCII NUL terminated character string which defines the name of the environment to be registered. This is the same name as the Rexx interpreter uses with the ADDRESS clause in order to select an external environment.
+Pointer to an 8 byte area of information that is to be associated with this environment. This pointer can be NULL if no such area is necessary.
 
-            [EntryPoint]
+The areas pointed to by EnvName and UserArea are copied to a private area in the interface, so the programmer may de-allocate or reuse the area used for these parameters after the call has returned.
 
-            Points to the entrypoint of the subcommand handler routine for the environment to be registered. See the section on Subcommand Handlers for more information.
+RexxRegisterSubcomExe() returns an unsigned long, which carries status information describing the outcome of the operation. The status will be one of the RXSUBCOM values:
 
-            There is an upper limit for the length of this name. [UserArea]
+[ RXSUBCOM_OK]
 
-            Pointer to an 8 byte area of information that is to be associated with this environment. This pointer can be NULL if no such area is necessary.
+The subcommand handler was successfully registered.
 
+[RXSUBCOM_DUP]
 
-            The areas pointed to by EnvName and UserArea are copied to a private area in the interface, so the programmer may de-allocate or reuse the area used for these parameters after the call has returned.
+The subcommand handler was successfully registered. There already existed another subcommand handler which was registered with RexxRegisterSubcomExe(), but this will be shadowed by the newly registered handler.
 
+[RXSUBCOM_NOTREG]
 
-            RexxRegisterSubcomExe() returns an unsigned long, which carries status information describing the outcome of the operation. The status will be one of the RXSUBCOM values:
+Due to some error, the handler was not registered. Probably because a handler for EnvName was already defined at a previous call to RexxRegisterSubcomExe(). 
 
+[RXSUBCOM_NOEMEM]
 
-            [ RXSUBCOM_OK]
+The handler was not registered, due to lack of memory.
 
-            The subcommand handler was successfully registered. [RXSUBCOM_DUP]
+[RXSUBCOM_BADTYPE]
 
-            The subcommand handler was successfully registered. There already existed another subcommand handler which was registered with RexxRegisterSubcomExe(), but
-
-            this will be shadowed by the newly registered handler. [RXSUBCOM_NOTREG]
-
-            Due to some error, the handler was not registered. Probably because a handler for
-
-            EnvName was already defined at a previous call to RexxRegisterSubcomExe(). [RXSUBCOM_NOEMEM]
-
-            The handler was not registered, due to lack of memory. [RXSUBCOM_BADTYPE]
-
-            Indicates that the handler was not registered, due to one or more of the parameters having invalid values. Regina addition.
+Indicates that the handler was not registered, due to one or more of the parameters having invalid values. Regina addition.
 
 ==== The RexxRegisterSubcomDll() function ====
 
