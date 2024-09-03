@@ -4610,76 +4610,45 @@ For conditions trapped by method CALL, standard Rexx requires an implementation 
 
 The seven standard conditions will be raised as result of various situations, read the section describing each one of them for more information.
 
-
-                + +
-                + +
-                /-----\
-                + +
-                |Incident|
-                |Condition |
-                / Trap \
-                Off
-                |Default |
-                | occurs |
-                ->
-                |is raised |
-                ->
-                \ State /
-                -->
-                | action |
-                + +
-                + +
-                \-----/
-                + +
-                /
-                |
-                /On
-                |Delay
-                /
-                |
-                /
-                v
-                + +
-                Ignore| event|
-                + +
-                -\
-                \
-                +--------+/ / \
-                | Queue | Yes /DelayAction\ No |
-                |an event| <-- \is queue? / --> |
-                +--------+ \ /
-                | v
-                / \
-                /Method is\
-                \ CALL? /
-                \-------/ \
-                / \
-                /No Yes\
-                / \ /--------
-                / \ /
-                +-----------+ +-----------+ \ Decision
-                /
-                | Set state | | Set state
-                | \ /
-                | OFF | | DELAY |
-                +-----------+ + +
-                |
-                |
-                |
-                |
-                |
-                |
-                Return
-                |
-                |
-                Action
-                + +
-                | Trigger
-                |
-                | trap
-                |
-                +-----------+ + +
-                + +
+<code>
++--------+    +----------+     /-----\      +--------+
+|Incident|    |Condition |    /  Trap \ Off |Default |
+| occurs | -> |is raised | -> \ State / --> | action |
++--------+    +----------+     \-----/      +--------+
+                                 /              |
+                                /On             |Delay
+                               /                |
+                              /                 v
+                   +--------+/             /---------\      +------+
+                   | Queue  |         Yes /DelayAction\  No |Ignore|
+                   |an event|         <-- \ is queue? / --> |event |
+                   +--------+              \---------/      +------+
+                        |
+                        v
+                    /-------\
+                   /Method is\
+                   \  CALL?  /
+                    \-------/ \
+                   /           \
+                  /No        Yes\
+                 / \ /--------
+-\
+/ \ /
+\
++-----------+ +-----------+ \ Decision
+/
+| Set state | | Set state
+| \---------/
+| OFF | | DELAY |
++-----------+ +-----------+
++-----------+
+| Trigger | | | |
+|
+| trap | | Return | | Action
+|
++-----------+ +-----------+
++-----------+
+</code>
 
 
 The triggering of a condition
@@ -4700,17 +4669,13 @@ This process has be shown in the figure above. It shows how an incident makes th
 
 ==== How to Trigger a Condition Trap ====
 
+What are the situations where a condition trap might be triggered? It depends on the method currently set in the condition trap.
 
-            What are the situations where a condition trap might be triggered? It depends on the method currently set in the condition trap.
+If the method is SIGNAL, then the interpreter will explicitly trigger the relevant trap when it has raised the condition after having sensed the incident. Note that only the particular trap in question will be triggered in this case; other traps will not be triggered, even if the pending event queue is non-empty.
 
+In addition, the interpreter will at each clause boundary check for any pending events in the event queue. If the queue is non-empty, the interpreter will not immediately execute the next normal statement, but it will handle the condition(s) first. This procedure is repeated until there are no more events queued. Only then will the interpreter advance to execute the next normal statement.
 
-            If the method is SIGNAL, then the interpreter will explicitly trigger the relevant trap when it has raised the condition after having sensed the incident. Note that only the particular trap in question will be triggered in this case; other traps will not be triggered, even if the pending event queue is non-empty.
-
-
-            In addition, the interpreter will at each clause boundary check for any pending events in the event queue. If the queue is non-empty, the interpreter will not immediately execute the next normal statement, but it will handle the condition(s) first. This procedure is repeated until there are no more events queued. Only then will the interpreter advance to execute the next normal statement.
-
-
-            Note that the Rexx standard does not require the pending events to be handled in any particular order, although the model shown in this documentation it will be in the order in which the conditions were raised. Consequently, if one clause generates several events that raise conditions before or at the next clause boundary, and these conditions are trapped by method CALL. Then, the order on which the various traps are triggered is implementations-dependent. But the order in which the different instances of the same condition is handled, is the same as the order of the condition indicator queue.
+Note that the Rexx standard does not require the pending events to be handled in any particular order, although the model shown in this documentation it will be in the order in which the conditions were raised. Consequently, if one clause generates several events that raise conditions before or at the next clause boundary, and these conditions are trapped by method CALL. Then, the order on which the various traps are triggered is implementations-dependent. But the order in which the different instances of the same condition is handled, is the same as the order of the condition indicator queue.
 
 ==== Trapping by Method SIGNAL ====
 
