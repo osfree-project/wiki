@@ -6500,411 +6500,328 @@ There exists a binary interface to the stack in SAA, see the chapter on the SAA 
 
 ===== Strategies for implementing stacks =====
 
+As mentioned, stacks are rarely a part of the operating system. Therefore, under most operating systems, Rexx interpreters have to implement their own stacks. There are several strategies for doing this, some which are listed below.
 
-        As mentioned, stacks are rarely a part of the operating system. Therefore, under most operating systems, Rexx interpreters have to implement their own stacks. There are several strategies for doing this, some which are listed below.
+[In the operating system.]
 
-        [In the operating system.]
+This is of course "the right way" to do it. However, it requires that the definition of the operating system is such that stacks are supported. Currently, only IBM mainframe-based systems support stack, together with a few other systems that have included stacks as a consequence of making Rexx a main scripting language (Amiga and OS/2 come to mind).
 
-        This is of course "the right way" to do it. However, it requires that the definition of the operating system is such that stacks are supported. Currently, only IBM mainframe-based systems support stack, together with a few other systems that have included stacks as a consequence of making Rexx a main scripting language (Amiga and OS/2 come to mind).
+[As a device driver.]
 
-        [As a device driver.]
+This is really just a variation of making the stack a part of the operating system. However, in some systems, drivers can be added very easily to the system. Drivers are often filesystem-based, in which case driver-based stack operations must operate on a file or pseudo-file. But for some systems, adding a driver requires much more profound changes, reconfiguration, and often system privileges. In all cases, drivers are likely to be very system specific.
 
-        This is really just a variation of making the stack a part of the operating system. However, in some systems, drivers can be added very easily to the system. Drivers are often filesystem-based, in which case driver-based stack operations must operate on a file or pseudo-file. But for some systems, adding a driver requires much more profound changes, reconfiguration, and often system privileges. In all cases, drivers are likely to be very system specific.
+[As a daemon.]
 
-        [As a daemon.]
+A "daemon" is background process that does some housekeeping service, e.g. handling mail from remote systems. Implementing a stack as a daemon is only slightly simpler than using a driver, but the main idea is the same for both approaches.
 
-        A "daemon" is background process that does some housekeeping service, e.g. handling mail from remote systems. Implementing a stack as a daemon is only slightly simpler than using a driver, but the main idea is the same for both approaches.
+[In the interpreter.]
 
-        [In the interpreter.]
+Using this approach, the stack is built into the interpreter as a sort of extension. This is often the simplest way, since it require very little coordination with other programs during runtime. The main problem is that the stack becomes private to the interpreter, so two interpreters can not use the same stack; not even if they are two invocations of the same interpreter.
 
-        Using this approach, the stack is built into the interpreter as a sort of extension. This is often the simplest way, since it require very little coordination with other programs during runtime. The main problem is that the stack becomes private to the interpreter, so two interpreters can not use the same stack; not even if they are two invocations of the same interpreter.
+These items are listed in the order of how closely they are coupled to the operating system: the first items are very closely, while the last items are loosely coupled. The more closely coupled the implementation of a stack is coupled to the operating system, the better is the chance that several interpreters on the same system can communicate in a compatible way, using the stack.
 
+There is room for several hybrid solutions, based on the four fundamental approaches. For instance, a built-in stack can also act as a daemon.
 
-        These items are listed in the order of how closely they are coupled to the operating system: the first items are very closely, while the last items are loosely coupled. The more closely coupled the implementation of a stack is coupled to the operating system, the better is the chance that several interpreters on the same system can communicate in a compatible way, using the stack.
+Regina supports the stack as both a daemon and internal to the interpreter.
 
+Example: Commands takes input from the stack
 
-        There is room for several hybrid solutions, based on the four fundamental approaches. For instance, a built-in stack can also act as a daemon.
+In the example above, the routine that is called takes its arguments from the stack. Similarly, commands to an external environment can get their arguments in the same way. Here is an example of how to do it:
 
+<code rexx>
+queue 'anonymous' /* the username */
+queue 'user@node' /* the password */
+queue 'dir' /* first command */
+queue 'exit' /* second command */ 
+address command 'FTP flipper.pvv.unit.no'
+</code>
 
-        Regina supports the stack as both a daemon and internal to the interpreter.
+Although this is very convenient in some situations, there is also considerable disadvantages with this method: There is no real interactive communication between the interpreter and the command;
 
+i.e. all input meant for the command must be set up before the command itself is invoked. Consequently, if one of the input lines to the command provokes an error, there is very little error
 
-        Example: Commands takes input from the stack
+handling facility. Commonly, such an error might start a cascade of errors, as the remaining input lines are likely to be invalid, or even be interpreted in a context different from what they were intended.
 
+As with all commands involving the stack, it is important to push or queue the correct order.
 
-        In the example above, the routine that is called takes its arguments from the stack. Similarly, commands to an external environment can get their arguments in the same way. Here is an example of how to do it:
+Using this technique, a program can "fool" a command to do almost anything, by storing the correct input on the stack. However, there is a big disadvantage: Since the stack is implementation-dependent, it is not certain that a command will take its input from the stack. For some systems, this is the default, while for other systems, this is only possible through some explicit action. Some systems might not even allow commands to take their input from the stack at all.
 
+Example: "Execing" commands
 
-        queue 'anonymous' /* the username */
+Many script programming languages can only execute commands while still running, or at most start a new command immediately after the termination (like the exec() system call in Unix). However, the stack can be used on some systems to set up the system to execute one or more commands after the current script terminates. Here is an example:
 
-        queue 'user@node' /* the password */
+<code rexx>
+push 'ls' /* finally execute 'ls' */
+push 'who' /* then execute 'who' */
+push 'pwd' /* first execute 'pwd' */
+exit 0
+</code>        	
 
-        queue 'dir' /* first command */
+Supposing that the system reads its commands from the stack if the stack is not empty, then this script will terminate after having set up the stack so that the three commands pwd, who and ls will be run in that sequence. Note the order, if QUEUE had been used, the order would be the opposite, which is perhaps more intuitive (assuming the topmost buffer is empty).
 
-        queue 'exit' /* second command */ address command 'FTP flipper.pvv.unit.no'
+As with the example above, this too is only relevant for some systems, thus is not very compatible, and you should be careful when using it. It also suffers from the lack of interactivity, error handling, and the importance of the order in which the strings are pushed or queued. For all practical reasons, this is just a special case.
 
-
-        Although this is very convenient in some situations, there is also considerable disadvantages with this method: There is no real interactive communication between the interpreter and the command;
-
-        i.e. all input meant for the command must be set up before the command itself is invoked. Consequently, if one of the input lines to the command provokes an error, there is very little error
-
-        handling facility. Commonly, such an error might start a cascade of errors, as the remaining input lines are likely to be invalid, or even be interpreted in a context different from what they were intended.
-
-
-        As with all commands involving the stack, it is important to push or queue the correct order.
-
-
-        Using this technique, a program can "fool" a command to do almost anything, by storing the correct input on the stack. However, there is a big disadvantage: Since the stack is implementation-dependent, it is not certain that a command will take its input from the stack. For some systems, this is the default, while for other systems, this is only possible through some explicit action. Some systems might not even allow commands to take their input from the stack at all.
-
-
-        Example: "Execing" commands
-
-
-        Many script programming languages can only execute commands while still running, or at most start a new command immediately after the termination (like the exec() system call in Unix). However, the stack can be used on some systems to set up the system to execute one or more commands after the current script terminates. Here is an example:
-
-
-        push 'ls'
-        	
-
-        /* finally execute 'ls'
-        	
-
-        */
-
-        push 'who'
-        	
-
-        /* then execute 'who'
-        	
-
-        */
-
-        push 'pwd'
-        	
-
-        /* first execute 'pwd'
-        	
-
-        */
-
-        exit 0
-        	
-
-
-        	
-
-
-
-        Supposing that the system reads its commands from the stack if the stack is not empty, then this script will terminate after having set up the stack so that the three commands pwd, who and ls will be run in that sequence. Note the order, if QUEUE had been used, the order would be the opposite, which is perhaps more intuitive (assuming the topmost buffer is empty).
-
-
-        As with the example above, this too is only relevant for some systems, thus is not very compatible, and you should be careful when using it. It also suffers from the lack of interactivity, error handling, and the importance of the order in which the strings are pushed or queued. For all practical reasons, this is just a special case.
-
-
-        Using the stack to "leave behind" command names and input only works for systems where command interpreters and commands reads their input from the stack. This is in general true for IBM mainframe systems, but very few other systems.
+Using the stack to "leave behind" command names and input only works for systems where command interpreters and commands reads their input from the stack. This is in general true for IBM mainframe systems, but very few other systems.
 
 
 ===== Implementations of the stack in Regina =====
 
+In Regina, the stack is implemented as both an integral, private part of the interpreter and as a cross-platform external stack able to be used by multiple clients on multiple machines. Internal stacks provide the obvious advantage of speed at the expense of data sharing. External stacks are considerably slower, but do enable data sharing between instances of Regina and/or other programs.
 
-        In Regina, the stack is implemented as both an integral, private part of the interpreter and as a cross-platform external stack able to be used by multiple clients on multiple machines. Internal stacks provide the obvious advantage of speed at the expense of data sharing. External stacks are considerably slower, but do enable data sharing between instances of Regina and/or other programs.
-
-
-        Regina supports the standard TRL (and ANSI) Rexx stack interface functionality, like PARSE PULL, PULL, QUEUE, PUSH, the QUEUED() built-in function, and in future versions, support the SAA API stack interface. These commands and functions operate on both the internal and external stacks.
+Regina supports the standard TRL (and ANSI) Rexx stack interface functionality, like PARSE PULL, PULL, QUEUE, PUSH, the QUEUED() built-in function, and in future versions, support the SAA API stack interface. These commands and functions operate on both the internal and external stacks.
 
 ==== Implementation of the internal stack in Regina 2.2 and above ====
 
+Whenever the Rexx programmer wants to execute a command and let that command either flush the output to the internal stack, or read its input from the internal stack, this has to be arranged by the interpreter itself. In Regina this is normally done by pre pending or appending certain terms to the command to be executed.
 
-            Whenever the Rexx programmer wants to execute a command and let that command either flush the output to the internal stack, or read its input from the internal stack, this has to be arranged by the interpreter itself. In Regina this is normally done by pre pending or appending certain terms to the command to be executed.
+Consider the following command clauses for Regina:
 
+<code>
+'ls >LIFO'
+'who >FIFO'
+'LIFO> wc'
+'LIFO> sort >FIFO'
+</code>
 
-            Consider the following command clauses for Regina:
+For all these commands, the "piping" terms are stripped off the command string before the command is sent to the command interpreter of the operating system. Thus, the command interpreter only sees the commands ls, who, wc, and sort. The terms stripped off, are used as indicators of how the input and output is to be coupled with the stack. The use of input/output redirection as above is only available with the internal stack.
 
+Note that it is important not to confuse the redirection of output to the stack and input from the stack in Regina with the redirection of the Unix shells. The two can be mixed in command lines, but are still two different concepts.
 
-            'ls >LIFO' 'who >FIFO' 'LIFO> wc'
+The first command will execute the ls command, and redirect the output from it to the stack in a LIFO fashion. The second executes the command who and redirects the output to the stack to, but in a FIFO fashion. The third command executes the wc, but lets the standard input of that command come from the stack. Actually, it is irrelevant whether FIFO> or LIFO> is used for input; the strings are read from the top of the stack in both cases. The fourth command is a plain ps command without any redirection to or from the stack. The last command executes the sort program and lets it read its input from the stack, and redirect the output to the stack.
 
-            'LIFO> sort >FIFO'
+Regina allows a command to take both an input and an output "redirection" to a stack, as showed in the last example above. However, it also guarantees that the output is not available in the stack before the command has terminated. The output from the command is stored in a temporary stack, and flushed to the ordinary stack after the command is terminated. Thus, the command will not start to read its own output.
 
+Note that this temporary buffering of command output is the default behavior, which might be set up to something different at your site.
 
-            For all these commands, the "piping" terms are stripped off the command string before the command is sent to the command interpreter of the operating system. Thus, the command interpreter only sees the commands ls, who, wc, and sort. The terms stripped off, are used as indicators of how the input and output is to be coupled with the stack. The use of input/output redirection as above is only available with the internal stack.
+In addition, you can change it through the OPTIONS instruction, by using either FLUSHSTACK or BUFFERSTACK as "parameters".
 
+Note the difference between Regina's redirection and Unix redirection. In Regina, only the term LIFO> (when first in the command string), and the terms >LIFO and >FIFO (when last in the command string), will be interpreted as redirection directives. These terms will be stripped off the command string. All other redirection directives will be left untouched. If you should happen to need to redirect output from a Unix command to the file FIFO or LIFO, then you can append a space at the end or specify the file as ./FIFO of ./LIFO. That will make Regina ignore the redirection term.
 
-            Note that it is important not to confuse the redirection of output to the stack and input from the stack in Regina with the redirection of the Unix shells. The two can be mixed in command lines, but are still two different concepts.
+Note that this particular form of redirection of command input and output will most probably disappear in future versions of Regina, where it will probably be replaced by an extended ADDRESS instruction.
 
-
-            The first command will execute the ls command, and redirect the output from it to the stack in a LIFO fashion. The second executes the command who and redirects the output to the stack to, but in a FIFO fashion. The third command executes the wc, but lets the standard input of that command come from the stack. Actually, it is irrelevant whether FIFO> or LIFO> is used for input; the strings are read from the top of the stack in both cases. The fourth command is a plain ps command without any redirection to or from the stack. The last command executes the sort program and lets it read its input from the stack, and redirect the output to the stack.
-
-
-            Regina allows a command to take both an input and an output "redirection" to a stack, as showed in the last example above. However, it also guarantees that the output is not available in the stack before the command has terminated. The output from the command is stored in a temporary stack, and flushed to the ordinary stack after the command is terminated. Thus, the command will not start to read its own output.
-
-
-            Note that this temporary buffering of command output is the default behavior, which might be set up to something different at your site.
-
-
-            In addition, you can change it through the OPTIONS instruction, by using either FLUSHSTACK or
-
-            BUFFERSTACK as "parameters".
-
-
-            Note the difference between Regina's redirection and Unix redirection. In Regina, only the term LIFO> (when first in the command string), and the terms >LIFO and >FIFO (when last in the command string), will be interpreted as redirection directives. These terms will be stripped off the command string. All other redirection directives will be left untouched. If you should happen to need to redirect output from a Unix command to the file FIFO or LIFO, then you can append a space at the end or specify the file as ./FIFO of ./LIFO. That will make Regina ignore the
-
-            redirection term.
-
-
-            Note that this particular form of redirection of command input and output will most probably disappear in future versions of Regina, where it will probably be replaced by an extended ADDRESS instruction.
-
-
-            In addition to the ANSI standard, there are a few extra built-in functions, which are supposed to provide compatibility with other Rexx implementations, principally CMS Rexx. These are BUFTYPE, DESBUF, DROPBUF and MAKEBUF. See the descriptions of these function in the built-in functions section above.
+In addition to the ANSI standard, there are a few extra built-in functions, which are supposed to provide compatibility with other Rexx implementations, principally CMS Rexx. These are BUFTYPE, DESBUF, DROPBUF and MAKEBUF. See the descriptions of these function in the built-in functions section above.
 
 ==== Implementation of the external stack in Regina 2.2 and above ====
 
-
-            The implementation of the external stack follows the model used by OS/2 Rexx, but is implemented as an operating system daemon. This daemon is rxstack.
-
+The implementation of the external stack follows the model used by OS/2 Rexx, but is implemented as an operating system daemon. This daemon is rxstack.
 
 === rxstack ===
 
+Under most operating systems, rxstack is started from the operating system's startup process and terminates when the machine is shutdown. Under Windows 2000 and above, it runs as a Service.
 
-            Under most operating systems, rxstack is started from the operating system's startup process and terminates when the machine is shutdown. Under Windows 2000 and above, it runs as a Service.
+Communication between rxstack and Regina is done via TCP/IP sockets. Using sockets as the IPC mechanism on a local machine is somewhat slow compared to other mechanisms such as shared memory or named pipes. It does however enable operation between machines on different operating systems to function seamlessly.
 
+The full syntax of the rxstack command is:
 
-            Communication between rxstack and Regina is done via TCP/IP sockets. Using sockets as the IPC mechanism on a local machine is somewhat slow compared to other mechanisms such as shared memory or named pipes. It does however enable operation between machines on different operating systems to function seamlessly.
+<code>
+rxstack [switch]
+</code>
 
+switch is one of the following:
 
-            The full syntax of the rxstack command is:
+-h, --help display help message
 
+-D, --debug show debugging information
 
-            rxstack [switch]
+-d, --daemon run rxstack as a daemon - Unix only
 
+-k, --kill kills (stops) rxstack - subject to being a valid killer - see Security of External Queues
 
-            switch is one of the following:
+-p, --port the TCP port on which rxstack runs
 
-            -h, --help display help message
+Breakage Alert!! - Start
 
-            -D, --debug show debugging information
+-w, --world allow access to rxstack from anywhere. Since v3.8, rxstack by default only allows access from localhost
 
-            -d, --daemon run rxstack as a daemon - Unix only
+Breakage Alert!! - End
 
-            -k, --kill kills (stops) rxstack - subject to being a valid killer - see Security of External Queues
+the following switches are applicable to Windows 2000 and above
 
-            -p, --port the TCP port on which rxstack runs
+-install installs the NT Service; Rexx Stack - Windows 2000 and above only
 
-            Breakage Alert!! - Start
+-start starts the NT Service; Rexx Stack - Windows 2000 and above only
 
-            -w, --world allow access to rxstack from anywhere. Since v3.8, rxstack by default only allows access from localhost
+-stop stops the NT Service; Rexx Stack - Windows 2000 and above only
 
-            Breakage Alert!! - End
+-remove stops and removes the NT Service; Rexx -Stack - Windows 2000 and above only
 
-            the following switches are applicable to Windows 2000 and above
+-d runs rxstack in a command prompt which then allows non-service related switches - Windows 2000 and above only
 
-            -install installs the NT Service; Rexx Stack - Windows 2000 and above only
-
-            -start starts the NT Service; Rexx Stack - Windows 2000 and above only
-
-            -stop stops the NT Service; Rexx Stack - Windows 2000 and above only
-
-            -remove stops and removes the NT Service; Rexx -Stack - Windows 2000 and above only
-
-            -d runs rxstack in a command prompt which then allows non-service related switches - Windows 2000 and above only
-
-            To stop rxstack, the process can be killed with a SIGINT or SIGTERM or by running rxstack with the -k or --kill switch.
-
+To stop rxstack, the process can be killed with a SIGINT or SIGTERM or by running rxstack with the -k or --kill switch.
 
 === rxqueue ===
 
+To allow non-Rexx program to interface to the rxstack daemon, a companion program; rxqueue, is provided. rxqueue communicates with non-Rexx programs via its stdin and stdout.
 
-            To allow non-Rexx program to interface to the rxstack daemon, a companion program; rxqueue, is provided. rxqueue communicates with non-Rexx programs via its stdin and stdout.
+Consider the following equivalents for Regina's internal and external stack
 
+<code>
+'ls >LIFO'
+'ls | rxqueue /lifo'
+'who >FIFO'
+'who | rxqueue /fifo'
+'LIFO> wc' 
+rxqueue /pull | wc'
+'LIFO> sort >FIFO'
+rxqueue /pull | sort | rxqueue /fifo'
+</code>
 
-            Consider the following equivalents for Regina's internal and external stack
+The full syntax of the rxqueue command is:
 
+<code>
+rxqueue [switch] [queue] [action]
+</code>
 
-            'ls >LIFO' 'ls | rxqueue /lifo'
+switch is a Regina extension and is one of the following:
 
-            'who >FIFO' 'who | rxqueue /fifo'
+-h, --help display help message
 
-            'LIFO> wc' rxqueue /pull | wc'
+-D, --debug show debugging information
 
-            'LIFO> sort >FIFO' rxqueue /pull | sort | rxqueue /fifo'
+-t, --text “string” queue the supplied string rather than from stdin. Only valid for /fifo or /lifo actions
 
+queue is a Regina external queue name – see Queue Names for structure. If no queue is specified, rxqueue uses the queue name; SESSION
 
-            The full syntax of the rxqueue command is:
+action is one of the following – as per OS/2 Rexx
 
+/fifo queue lines from stdin LIFO onto the queue
 
-            rxqueue [switch] [queue] [action]
+/lifo queue lines from stdin FIFO onto the queue
 
+/clear remove all lines from the queue the following switches are Regina extensions
 
-            switch is a Regina extension and is one of the following:
+/delete delete the specified queue
 
-            -h, --help display help message
+/queued return the number of lines on the queue
 
-            -D, --debug show debugging information
+/pull pull all lines from the queue and display on stdout
 
-            -t, --text “string” queue the supplied string rather than from stdin. Only valid for /fifo or
-
-            /lifo actions
-
-            queue is a Regina external queue name – see Queue Names for structure. If no queue is specified, rxqueue uses the queue name; SESSION
-
-            action is one of the following – as per OS/2 Rexx
-
-            /fifo queue lines from stdin LIFO onto the queue
-
-            /lifo queue lines from stdin FIFO onto the queue
-
-            /clear remove all lines from the queue the following switches are Regina extensions
-
-            /delete delete the specified queue
-
-            /queued return the number of lines on the queue
-
-            /pull pull all lines from the queue and display on stdout
-
-            /list displays list of queues held by rxstack
-
+/list displays list of queues held by rxstack
 
 === rxqueue Built-in Function ===
 
-
-            Rexx programs communicate with rxstack via the normal queueing mechanisms of QUEUE, PUSH, PULL and QUEUED(). These commands operate on the current queue and have no mechanism for changing the queue to use. This is whereRXQUEUE() is used. Its primary purpose is to control the queue that the remainder of the Rexx program operates on.
-
+Rexx programs communicate with rxstack via the normal queueing mechanisms of QUEUE, PUSH, PULL and QUEUED(). These commands operate on the current queue and have no mechanism for changing the queue to use. This is whereRXQUEUE() is used. Its primary purpose is to control the queue that the remainder of the Rexx program operates on.
 
 === Queue Names ‌ ===
 
+To enable the use of the Rexx stack as a cross-platform, multi-machine IPC, the naming conventions adopted by OS/2 Rexx has been modified. As OS/2 Rexx queues are local to a single machine, queue names have no structure. To enable identification of queues on different machines, some structure must be built into external queue names on Regina. An external queue name on Regina has the following format:
 
-            To enable the use of the Rexx stack as a cross-platform, multi-machine IPC, the naming conventions adopted by OS/2 Rexx has been modified. As OS/2 Rexx queues are local to a single machine, queue names have no structure. To enable identification of queues on different machines, some structure must be built into external queue names on Regina. An external queue name on Regina has the following format:
+<code>
+[queue][@machine[:port]]
+</code>
 
+The components of the queue name are:
 
-            [queue][@machine[:port]]
+queue the name of the queue. The only criteria for the name is that it contains none of the following characters: @, . or :. The queue component can be blank, when specifying the default queue on a specified machine.
 
-            The components of the queue name are:
+machine the machine that hosts the specified queue. This can either be a standard IPv4 IP address or a machine name that can be resolved to a standard IPv4 IP address. The machine name is optional, and defaults to 127.0.0.1
 
-            queue the name of the queue. The only criteria for the name is that it contains none of the following characters: @, . or :. The queue component can be blank, when specifying the default queue on a specified machine.
+port The port number that rxstack on machine is listening to. The default port number for rxstack is 5757.
 
-            machine the machine that hosts the specified queue. This can either be a standard IPv4 IP address or a machine name that can be resolved to a standard IPv4 IP address. The machine name is optional, and defaults to 127.0.0.1
+When referring to queues on the local machine, the machine and port components need not be specified. The behaviour of the external stack is then the same as for OS/2 Rexx, with the exception that the queues on the local machine can still be manipulated by Regina on another machine.
 
-            port The port number that rxstack on machine is listening to. The default port number for
-
-            rxstack is 5757.
-
-            When referring to queues on the local machine, the machine and port components need not be specified. The behaviour of the external stack is then the same as for OS/2 Rexx, with the exception that the queues on the local machine can still be manipulated by Regina on another machine.
-
-
-            Some examples may make this clearer. TBD
-
+Some examples may make this clearer. TBD
 
 === Security of External Queues ‌ ===
 
+(Not implemented yet)
 
-
-            (Not implemented yet)
-
-            A daemon process like rxstack, waiting on a TCP/IP socket for anyone to connect to and use is open to abuse. To reduce the openness of rxstack, it uses a security mechanism much like the Unix hosts.allow and hosts.deny files is used to control access to rxstack.
+A daemon process like rxstack, waiting on a TCP/IP socket for anyone to connect to and use is open to abuse. To reduce the openness of rxstack, it uses a security mechanism much like the Unix hosts.allow and hosts.deny files is used to control access to rxstack.
 
 === Environment Variables ===
 
-
-
-            RXQUEUE RXSTACK
+RXQUEUE RXSTACK
 
 ====== Interfacing Rexx to other programs ======
 
-
-    This chapter describes an interface between a Rexx interpreter and another program, typically written in C or another high level, compiled language. It is intended for application programmers who are implementing Rexx support in their programs. It describes the interface known as the Rexx SAA API.
+This chapter describes an interface between a Rexx interpreter and another program, typically written in C or another high level, compiled language. It is intended for application programmers who are implementing Rexx support in their programs. It describes the interface known as the Rexx SAA API.
 
 
 ===== Overview of functions in SAA =====
 
+The functionality of the interface is divided into some main areas:
 
-        The functionality of the interface is divided into some main areas:
+Subcommand handlers
 
+which trap and handle a command to an external environment.
 
-            Subcommand handlers
+External function handlers
 
-            which trap and handle a command to an external environment.
+extend the Rexx language with external functions
 
-            External function handlers
+Interpreting
 
-            extend the Rexx language with external functions
+Rexx scripts, either from a disk file, or from memory.
 
-            Interpreting
+Variable interface
 
-            Rexx scripts, either from a disk file, or from memory.
+which makes it possible to access the variables in the interpreter, and allows operations like setting, fetching and dropping variables.
 
-            Variable interface
+System exits
 
-            which makes it possible to access the variables in the interpreter, and allows operations like setting, fetching and dropping variables.
+which are used to hook into certain key points in the interpreter while it executes a script.
 
-            System exits
+External Queue interface
 
-            which are used to hook into certain key points in the interpreter while it executes a script.
+which allows access to Regina's external queuing mechanism.
 
-            External Queue interface
+Macrospace functions
 
-            which allows access to Regina's external queuing mechanism.
+which are used to load and save external macros into Regina's macrospace for faster execution. These are not implemented in Regina yet.
 
-            Macrospace functions
+Memory Allocation functions
 
-            which are used to load and save external macros into Regina's macrospace for faster execution. These are not implemented in Regina yet.
+which provide for platform-independent memory allocating/deallocation functions.
 
-            Memory Allocation functions
+Callback functions
 
-            which provide for platform-independent memory allocating/deallocation functions.
+which are used to allow the API program to execute a procedure within the running script.
 
-            Callback functions
+In the following sections each of these areas are described in detail, and a number of brief but complete examples are given at the end of the chapter.
 
-        which are used to allow the API program to execute a procedure within the running script.
+The description is of a highly technical nature, since it is assumed that the reader will be an application programmer seeking information about the interface. Therefore, much of the content is given as prototypes and C style datatype definitions. Although this format is cryptic for non-C programmers, it will convey exact, compact, and complete information to the intended readers.
 
-
-        In the following sections each of these areas are described in detail, and a number of brief but complete examples are given at the end of the chapter.
-
-
-        The description is of a highly technical nature, since it is assumed that the reader will be an application programmer seeking information about the interface. Therefore, much of the content is given as prototypes and C style datatype definitions. Although this format is cryptic for non-C programmers, it will convey exact, compact, and complete information to the intended readers.
-
-        Also, the problems with
-
-        ambiguity and incompleteness that often accompany a descriptive prose text are avoided.
+Also, the problems with ambiguity and incompleteness that often accompany a descriptive prose text are avoided.
 
 ==== Include Files and Libraries ====
 
+All the C code that uses the Rexx application interface, must include a special header file that contains the necessary definitions. This file is called rexxsaa.h. Where you will find this file, will depend on you system and which compiler you use.
 
-            All the C code that uses the Rexx application interface, must include a special header file that contains the necessary definitions. This file is called rexxsaa.h. Where you will find this file, will depend on you system and which compiler you use.
-
-            Also, the interface part between the application and the Rexx interpreter may be implemented as a library, which you link with the application using the functions described in this chapter. The name of this library, and its location might differ from system to system. Under Unix, this library is implemented as a static (libregina.a) or dynamic library (libregina.[so|sl]). Under other platforms the Regina library is also implemented as a static or dynamic library.
+Also, the interface part between the application and the Rexx interpreter may be implemented as a library, which you link with the application using the functions described in this chapter. The name of this library, and its location might differ from system to system. Under Unix, this library is implemented as a static (libregina.a) or dynamic library (libregina.[so|sl]). Under other platforms the Regina library is also implemented as a static or dynamic library.
 
 ==== Preprocessor Symbols ====
 
+Including a header file ought to be enough; unfortunately, that is not so. Each of the domains of functionality listed above are defined in separate sections' in the rexxsaa.h header file. In order for these to be made available, certain preprocessor symbols have to be set. For instance, you have to include the following definition:
 
-            Including a header file ought to be enough; unfortunately, that is not so. Each of the domains of functionality listed above are defined in separate sections' in the rexxsaa.h header file. In order for these to be made available, certain preprocessor symbols have to be set. For instance, you have to include the following definition:
+<code c>
+#define INCL_RXSHV
+</code>
 
-            #define INCL_RXSHV
+in order to make available the definitions and datatypes concerning the variable pool interface. The various definitions that can be set are:
 
-            in order to make available the definitions and datatypes concerning the variable pool interface. The various definitions that can be set are:
+INCL_RXSUBCOM
 
+Must be defined in order to get the prototypes, datatypes and symbols needed for the subcommand interface of the API.
 
-                INCL_RXSUBCOM
+INCL_RXFUNC
 
-                Must be defined in order to get the prototypes, datatypes and symbols needed for the subcommand interface of the API.
+Must be defined in order to get the prototypes, datatypes and symbols needed for the external function interface of the API.
 
-                INCL_RXFUNC
+INCL_RXSYSEXIT
 
-                Must be defined in order to get the prototypes, datatypes and symbols needed for the external function interface of the API.
+Must be defined in order to get the prototypes, datatypes, and symbols needed for the system exit functions
 
-                INCL_RXSYSEXIT
+INCL_RXSHV
 
-                Must be defined in order to get the prototypes, datatypes, and symbols needed for the system exit functions
+Must be set in order to get the prototypes, symbols and datatype definitions necessary to use the Rexx variable pool.
 
-                INCL_RXSHV
+INCL_RXQUEUE
 
-                Must be set in order to get the prototypes, symbols and datatype definitions necessary to use the Rexx variable pool.
+Must be set in order to get the prototypes, symbols and datatype definitions necessary to use the Rexx external queues.
 
-                INCL_RXQUEUE
+INCL_RXMACRO
 
-                Must be set in order to get the prototypes, symbols and datatype definitions necessary to use the Rexx external queues.
-
-                INCL_RXMACRO
-
-            Must be set in order to get the prototypes, symbols and datatype definitions necessary to use the Rexx macrospace interface of the API.
+Must be set in order to get the prototypes, symbols and datatype definitions necessary to use the Rexx macrospace interface of the API.
 
 ==== Data structures and data types ====
 
