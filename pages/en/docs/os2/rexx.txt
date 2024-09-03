@@ -5499,46 +5499,39 @@ However, TRL gives some indications that an end-of-file is not an implicit end-o
 
 ==== Other Parts of the I/O System ====
 
+This section lists some of the other parts of Rexx and the environments around Rexx that may be considered a part of the I/O system.
 
-                    This section lists some of the other parts of Rexx and the environments around Rexx that may be considered a part of the I/O system.
+[Stack.]
 
+The stack be used to communicate with external environments. At the Rexx side, the interface to the stack is the instructions PUSH, PULL, PARSE PULL, and QUEUE; and the built-in function QUEUED(). These can be used to communicate with external programs by storing data to be transferred on the stack.
 
-                    [Stack.]
+[The STREAM() built-in function.]
 
-                    The stack be used to communicate with external environments. At the Rexx side, the interface to the stack is the instructions PUSH, PULL, PARSE PULL, and QUEUE; and the built-in function QUEUED(). These can be used to communicate with external programs by storing data to be transferred on the stack.
+This function is used to control various aspects about the files manipulated with the other standard I/O functions. The standard says very little about this function, and leaves it up to the implementor to specify the rest. Operations like opening, closing, truncating, and changing modes
 
-                    [The STREAM() built-in function.]
+[The SAY instruction.]
 
-                    This function is used to control various aspects about the files manipulated with the other standard I/O functions. The standard says very little about this function, and leaves it up to the implementor to specify the rest. Operations like opening, closing, truncating, and changing modes
+The SAY instruction can be used to write data to the default output stream. If you use redirection, you can indirectly use it to write data to a file.
 
-                    [The SAY instruction.]
+[The ADDRESS instruction.]
 
-                    The SAY instruction can be used to write data to the default output stream. If you use redirection, you can indirectly use it to write data to a file.
+The ADDRESS instruction and commands can be used to operate on files, depending on the power of your host environments and operating system.
 
-                    [The ADDRESS instruction.]
+[The VALUE() built-in function.]
 
-                    The ADDRESS instruction and commands can be used to operate on files, depending on the
+The function VALUE(), when used with three parameters, can be used to communicate with external host environments and the operating system. However, this depends on the implementation of your interpreter.
 
-                    power of your host environments and operating system.
+[SAA API.]
 
-                    [The VALUE() built-in function.]
+The SAA API provides several operations that can be used to communicate between processes. In general, SAA API allows you to perform the operations listed above from a binary program written in a language other than Rexx.
 
-                    The function VALUE(), when used with three parameters, can be used to communicate with external host environments and the operating system. However, this depends on the implementation of your interpreter.
-
-                    [SAA API.]
-
-                    The SAA API provides several operations that can be used to communicate between processes. In general, SAA API allows you to perform the operations listed above from a binary program written in a language other than Rexx.
-
-
-                    And of course, I/O is performed whenever a Rexx program or external function is started.
+And of course, I/O is performed whenever a Rexx program or external function is started.
 
 ==== Implementation-Specific Information ====
 
+This section describes some implementations of stream I/O in Rexx. Unfortunately, this has become a very large section, reflecting the fact that stream I/O is an area of many system-specific solutions.
 
-                    This section describes some implementations of stream I/O in Rexx. Unfortunately, this has become a very large section, reflecting the fact that stream I/O is an area of many system-specific solutions.
-
-
-                    In addition, the variations within this topic are rather large. Regina implements a set of functions that are very close to that of TRL2. The other extreme are ARexx and BRexx, which contain a set of functions which is very close to the standard I/O library of the C programming language.
+In addition, the variations within this topic are rather large. Regina implements a set of functions that are very close to that of TRL2. The other extreme are ARexx and BRexx, which contain a set of functions which is very close to the standard I/O library of the C programming language.
 
 ==== Stream I/O in Regina ====
 
