@@ -6352,213 +6352,151 @@ Another advantage of this idiom; TRL only requires implementations to support 10
 
 ==== LIFO and FIFO stack operations ====
 
+As already mentioned, the stack is a linear list of strings. Obviously, this list has two ends. Strings can only be extracted from one end, while strings can be added to both ends.
 
-            As already mentioned, the stack is a linear list of strings. Obviously, this list has two ends. Strings can only be extracted from one end, while strings can be added to both ends.
+If a set of new strings are added to the same end as they are later extracted from, the strings will be extracted in the reversed order with respect to the order in which they were added. This is called stacking "LIFO", which means "last-in-first-out", meaning that the last string stacked, will be the first string extracted, i.e. reversal of the order.
 
+Similarly, when a set of strings are stacked in the end opposite to the end which they are later extracted from, they will be extracted in the same order in which they were stacked. This is referred to as "FIFO" stacking, meaning "first-in-first-out".
 
-            If a set of new strings are added to the same end as they are later extracted from, the strings will be extracted in the reversed order with respect to the order in which they were added. This is called stacking "LIFO", which means "last-in-first-out", meaning that the last string stacked, will be the first string extracted, i.e. reversal of the order.
-
-
-            Similarly, when a set of strings are stacked in the end opposite to the end which they are later extracted from, they will be extracted in the same order in which they were stacked. This is referred to as "FIFO" stacking, meaning "first-in-first-out".
-
-            The FIFO method of stacking is also sometimes referred to as "queueing", while the LIFO method is sometimes referred to as "stacking" or "pushing".
+The FIFO method of stacking is also sometimes referred to as "queueing", while the LIFO method is sometimes referred to as "stacking" or "pushing".
 
 ==== Using multiple buffers in the stack ====
 
+The concept of buffers and everything directly related to buffers lay without the domain of standard Rexx. Thus, this section describes a de facto standard.
 
-            The concept of buffers and everything directly related to buffers lay without the domain of standard
+Note that Regina supports multiple buffers only in internal stacks.
 
-            Rexx. Thus, this section describes a de facto standard.
+Some implementations support "buffers", which are a means of focusing on a part of the stack. When creating a new buffer, the old contents of the stack is somewhat insulated from the effects of stack operations. When the buffer is removed, the state of the old buffer i restored, to some extent: Whenever a string is read from the stack, and the topmost buffer on the stack is empty, then that buffer will be destroyed. Consequently, if this situation has arisen, dropping buffers will not restore the state of the stack before the buffer was created.
 
+The functionality of buffers, and their effect on other stack operations may differ considerably between implementations.
 
-            Note that Regina supports multiple buffers only in internal stacks.
+Whenever a queuing operations is performed (e.g. by the QUEUE instruction), then the new string is inserted into the bottom of the topmost buffer, not the bottom of the stack. This is the same if the stack has no buffers, but else, the outcome of the queuing operation can be very different.
 
+With IBM mainframe operating systems like CMS, buffers can be inserted on the top of the stack. To perform buffer operations, operating system commands are used. It may be instructional to list the buffer operations of CMS:
 
-            Some implementations support "buffers", which are a means of focusing on a part of the stack. When creating a new buffer, the old contents of the stack is somewhat insulated from the effects of stack operations. When the buffer is removed, the state of the old buffer i restored, to some extent: Whenever a string is read from the stack, and the topmost buffer on the stack is empty, then that buffer will be destroyed. Consequently, if this situation has arisen, dropping buffers will not restore the state of the stack before the buffer was created.
+[DESBUF]
 
+Removes all strings and buffers from the stack, and leaves the stack clean and empty. It is often used instead of repeated calls to DROPBUF. It always returns the value zero.
 
-            The functionality of buffers, and their effect on other stack operations may differ considerably between implementations.
+[DROPBUF]
 
+Removes zero or more buffers from the stack. It takes one parameter which can be omitted, and which must be an integer position if specified, and is the assigned number of the bottom-most buffer to be removed, i.e. that buffer and all buffers above it (and of course, all the strings in these buffers) are to be removed. If the parameter is not specified, only the topmost buffer is removed. The return valued is always zero, unless an error occurred.
 
-            Whenever a queuing operations is performed (e.g. by the QUEUE instruction), then the new string is inserted into the bottom of the topmost buffer, not the bottom of the stack. This is the same if the stack has no buffers, but else, the outcome of the queuing operation can be very different.
+[MAKEBUF]
 
+Makes a new buffer on the stack, starting at the current top of the stack. The return code (as stored in the special variable RC) is the number of buffers currently on the stack after the new buffer has been added. Obviously, this will be a positive integer. This program takes no parameters.
 
-            With IBM mainframe operating systems like CMS, buffers can be inserted on the top of the stack. To perform buffer operations, operating system commands are used. It may be instructional to list the buffer operations of CMS:
+One might regard a buffer as a sort of bookmark, which is inserted into the stack, so that a subsequent DROPBUF command can remove the stack down to a particular such bookmark.
 
+When such a mark is located on the top of the stack, and a PULL instruction is executed, the buffer mark is implicitly destroyed when the PULL instruction reads the string below the buffer mark.
 
-            [DESBUF]
-
-            Removes all strings and buffers from the stack, and leaves the stack clean and empty. It is often used instead of repeated calls to DROPBUF. It always returns the value zero.
-
-            [DROPBUF]
-
-            Removes zero or more buffers from the stack. It takes one parameter which can be omitted, and which must be an integer position if specified, and is the assigned number of the bottom-most buffer to be removed, i.e. that buffer and all buffers above it (and of course, all the strings in these buffers) are to be removed. If the parameter is not specified, only the topmost buffer is removed. The return valued is always zero, unless an error occurred.
-
-            [MAKEBUF]
-
-            Makes a new buffer on the stack, starting at the current top of the stack. The return code (as stored in the special variable RC) is the number of buffers currently on the stack after the new buffer has been added. Obviously, this will be a positive integer. This program takes no parameters.
-
-
-            One might regard a buffer as a sort of bookmark, which is inserted into the stack, so that a subsequent DROPBUF command can remove the stack down to a particular such bookmark.
-
-
-            When such a mark is located on the top of the stack, and a PULL instruction is executed, the buffer mark is implicitly destroyed when the PULL instruction reads the string below the buffer mark.
-
-            This is to say that a buffer can be destroyed by either a DESBUF command, a DROPBUF command, or a read from the stack (by either the PULL or PARSE PULL instructions).
+This is to say that a buffer can be destroyed by either a DESBUF command, a DROPBUF command, or a read from the stack (by either the PULL or PARSE PULL instructions).
 
 ==== The zeroth buffer ====
 
+Normally, data pushed on the stack is added to the top of the stack. When a stack contains only one buffer, the strings in that buffer are the strings stored above that buffer-mark. The strings below it are not part of the first buffer; instead, they are said to belong to the zeroth buffer.
 
-            Normally, data pushed on the stack is added to the top of the stack. When a stack contains only one buffer, the strings in that buffer are the strings stored above that buffer-mark. The strings below it are not part of the first buffer; instead, they are said to belong to the zeroth buffer.
+Thus, all strings from the bottom of the stack, up till the first buffer mark (or the top of the stack if no buffers exist) is said to be the strings in the zeroth buffer. However, note that the zeroth buffer is only defined implicitly. Thus, it can not really be removed by calling DROP; only the strings in the zeroth buffer are removed. Afterwards, the zeroth buffer will still contain all strings at the bottom of the stack, up till the first buffer mark (if existing).
 
+Example: Process all strings in the stack
 
-            Thus, all strings from the bottom of the stack, up till the first buffer mark (or the top of the stack if no buffers exist) is said to be the strings in the zeroth buffer. However, note that the zeroth buffer is only defined implicitly. Thus, it can not really be removed by calling DROP; only the strings in the zeroth buffer are removed. Afterwards, the zeroth buffer will still contain all strings at the bottom of the stack, up till the first buffer mark (if existing).
+This is a common Rexx idiom, where a loop iterates over all the strings currently in the stack, but otherwise leave the stack untouched. Supposing the routine PROCESS() exists, and do to processing with its parameter and return the processed string:
 
+<code rexx>
+do i=1 to 5 /* just to fill the stack */
+  push 'line #' i
+end
 
-            Example: Process all strings in the stack
+do queued() /* foreach line in the stack */
+   parse pull line /* fetch the line */
+   queue process(line) /* put back the processed line */
+end
+</code>
 
+Here, it is important to use QUEUE to put the strings back into the stack, not PUSH, else the loop will iterate the correct number of times, but only operate on the same data string. It is also important that the stack does not contain any buffers. Since QUEUE will insert into the bottom of the topmost buffer, the loop would iterate the correct number of times, but only on a part of the stack. Thus, the topmost part of the strings in the stack would be processed multiple times.
 
-            This is a common Rexx idiom, where a loop iterates over all the strings currently in the stack, but otherwise leave the stack untouched. Supposing the routine PROCESS() exists, and do to processing with its parameter and return the processed string:
-
-
-            do i=1 to 5
-
-            push 'line
-
-            end
-            	
-
-
-            #' i
-            	
-
-            /* just to fill the stack
-            	
-
-            */
-
-            do queued()
-
-            parse pull
-            	
+Example: How to empty the stack
 
 
-            line
-            	
+The following short example shows how you can most easily empty the stack:
 
-            /* foreach line in the stack
+<code rexx>
+do i=1 to 5 /* Just to fill the stack */ 
+  push 'line #' i
+end
 
-            /* fetch the line
-            	
+do queued() /* For each line in the stack */ 
+  pull /* Remove the line from the stack */ 
+end
+</code>
 
-            */
+This is trivially simple, but there are several interesting and subtle notes to make about this example. First, if the number of strings in the stack is likely to change, due to some external process, then the DO clause should perhaps better be written as:
 
-            */
+<code rexx>
+do i=1 to 5 /* Just to file the stack */ 
+  push 'line #' i
+end
 
-            queue process(line) /* put back the processed line */
+do while queued()>0 /* While the stack is not empty */ 
+  pull /* Remove a line from the stack */
+end
+</code>
 
-            end
+This will in general mean more work for the interpreter, as it is now required to check the number of strings in the stack for each iteration, while for the previous code fragment, the number of strings is only checked once. Another point is that this might not remove all buffers from the stack. Suppose the zeroth buffer is empty, i.e. there exists an buffer which was put on the stack when the stack was empty. This buffer is removed in any of the following situations: calling DESBUF, calling DROPBUF (sometimes), or reading a string below the buffer mark. Since there are no strings below the buffer mark, pulling a string from the stack would make the interpreter read from the keyboard, and hang the interpreter.
 
-
-            Here, it is important to use QUEUE to put the strings back into the stack, not PUSH, else the loop will iterate the correct number of times, but only operate on the same data string. It is also important that the stack does not contain any buffers. Since QUEUE will insert into the bottom of the topmost buffer, the loop would iterate the correct number of times, but only on a part of the stack. Thus, the topmost part of the strings in the stack would be processed multiple times.
-
-
-            Example: How to empty the stack
-
-
-            The following short example shows how you can most easily empty the stack:
-
-
-            do i=1 to 5 /* Just to fill the stack */ push 'line #' i
-
-            end
-
-
-            do queued() /* For each line in the stack */ pull /* Remove the line from the stack
-
-            */ end
-
-
-            This is trivially simple, but there are several interesting and subtle notes to make about this example. First, if the number of strings in the stack is likely to change, due to some external process, then the DO clause should perhaps better be written as:
-
-            do i=1 to 5 /* Just to file the stack */ push 'line #' i
-
-            end
-
-
-            do while queued()>0 /* While the stack is not empty */ pull /* Remove a line from the stack */
-
-            end
-
-
-            This will in general mean more work for the interpreter, as it is now required to check the number of strings in the stack for each iteration, while for the previous code fragment, the number of strings is only checked once. Another point is that this might not remove all buffers from the stack. Suppose the zeroth buffer is empty, i.e. there exists an buffer which was put on the stack when the stack was empty. This buffer is removed in any of the following situations: calling DESBUF, calling DROPBUF (sometimes), or reading a string below the buffer mark. Since there are no strings below the buffer mark, pulling a string from the stack would make the interpreter read from the keyboard, and hang the interpreter.
-
-
-            Thus, the only "safe" way to remove the string and buffers from the stack, without side effects, is to call DESBUF or DROPBUF. On the other hand, if you only want to make sure that there are no strings in the buffer, the method described here is more suitable, since it is far more compatible (although possibly not so efficient). But anyway, buffers are not a compatible construct, so it does not matter so much.
+Thus, the only "safe" way to remove the string and buffers from the stack, without side effects, is to call DESBUF or DROPBUF. On the other hand, if you only want to make sure that there are no strings in the buffer, the method described here is more suitable, since it is far more compatible (although possibly not so efficient). But anyway, buffers are not a compatible construct, so it does not matter so much.
 
 ==== Creating new stacks ====
 
+The description of multiple stack operations in this section, is not part of standard Rexx, nor is it implemented in Regina. Thus, this section describes a de facto standard and you may find that few implementations support these operations.
 
-            The description of multiple stack operations in this section, is not part of standard Rexx, nor is it implemented in Regina. Thus, this section describes a de facto standard and you may find that few implementations support these operations.
+Just as the operations described above let the Rexx programmer use multiple buffers within one stack, there exists another set of operations which let the programmer create multiple stacks. There is really nothing fancy about this, except that a command will swap the stack the interpreter correctly uses with another stack.
 
+To the interpreter this is really equivalent to a situation where a command empties the current stack, and sets up a new stack. When one stack is empty, and the Rexx program tries to read from the stack, the request will not "overflow" to the previous stack (as requests to an empty buffer "overflows" to the previous buffer). Thus, the use of multiple stacks has even less direct impact on Rexx interpreters than multiple buffers.
 
-            Just as the operations described above let the Rexx programmer use multiple buffers within one stack, there exists another set of operations which let the programmer create multiple stacks. There is really nothing fancy about this, except that a command will swap the stack the interpreter correctly uses with another stack.
+Here, it is instructive to list the commands operating multiple stacks that exists. This list has been taken from the MVS environment, according to [REXXSAA].
 
+[DELSTACK]
 
-            To the interpreter this is really equivalent to a situation where a command empties the current stack, and sets up a new stack. When one stack is empty, and the Rexx program tries to read from the stack, the request will not "overflow" to the previous stack (as requests to an empty buffer "overflows" to the previous buffer). Thus, the use of multiple stacks has even less direct impact on Rexx interpreters than multiple buffers.
+Is used to remove the most currently stack, and make the most recent of the saved stacks the current stack. When there are no saved stacks, the current stack is emptied.
 
+[NEWSTACK]
 
-            Here, it is instructive to list the commands operating multiple stacks that exists. This list has been taken from the MVS environment, according to [REXXSAA].
+Creates a new stack, which becomes the current stack. The old current stack is put on the top of the list of saved stacks, and can be retrieved as the current stack by a subsequent DELSTACK.
 
+[QBUF]
 
-            [DELSTACK]
+Counts the number of buffers in the current stack, and returns that number as the return value. A Rexx program starting this command can retrieve this value as the special variable RC.
 
-            Is used to remove the most currently stack, and make the most recent of the saved stacks the current stack. When there are no saved stacks, the current stack is emptied.
+[QELEM]
 
-            [NEWSTACK]
+Counts the number of strings (i.e. elements) in the current stack, and returns that value as the return value of the command. This value can be retrieved in Rexx as the special variable RC. This operation is equivalent to the QUEUED() built-in function in Rexx; it has been probably included for the benefit of other script languages that have less functionality than Rexx.
 
-            Creates a new stack, which becomes the current stack. The old current stack is put on the top of the list of saved stacks, and can be retrieved as the current stack by a subsequent DELSTACK.
+[QSTACK]
 
-            [QBUF]
+Counts the number of stacks (including the current stack) and returns the value as the return value from the command. This number can be retrieved in Rexx as the special variable RC.
 
-            Counts the number of buffers in the current stack, and returns that number as the return value. A Rexx program starting this command can retrieve this value as the special variable RC.
+One can regard multiple buffers and stacks as two ways of insulating the stack; where multiple stacks are a deeper and more insulating method than buffers. Note that each stack can contain multiple buffers, while a buffer can not contain any stacks. The term "hard buffers" has been used about multiple stacks, as opposed to normal buffers, which are sometimes called "soft buffers".
 
-            [QELEM]
+Also note that neither multiple stacks nor buffers are part of standard Rexx, so you might come across implementations that support only multiple stacks, only buffers, or even none of them.
 
-            Counts the number of strings (i.e. elements) in the current stack, and returns that value as the return value of the command. This value can be retrieved in Rexx as the special variable RC. This operation is equivalent to the QUEUED() built-in function in Rexx; it has been probably included for the benefit of other script languages that have less functionality than Rexx.
+Example: Counting the number of buffers
 
-            [QSTACK]
+In order to count the number of buffers on the stack, the following method can be used (Regina syntax has been used for buffer handling). This method is equivalent to the QBUF command described above.
 
-            Counts the number of stacks (including the current stack) and returns the value as the return value from the command. This number can be retrieved in Rexx as the special variable RC.
+<code rexx>
+buffers = makebuf() - 1 
+call dropbuf
+</code>
 
-
-            One can regard multiple buffers and stacks as two ways of insulating the stack; where multiple stacks are a deeper and more insulating method than buffers. Note that each stack can contain multiple buffers, while a buffer can not contain any stacks. The term "hard buffers" has been used about multiple stacks, as opposed to normal buffers, which are sometimes called "soft buffers".
-
-
-            Also note that neither multiple stacks nor buffers are part of standard Rexx, so you might come across implementations that support only multiple stacks, only buffers, or even none of them.
-
-
-            Example: Counting the number of buffers
-
-
-            In order to count the number of buffers on the stack, the following method can be used (Regina syntax has been used for buffer handling). This method is equivalent to the QBUF command described above.
-
-
-            buffers = makebuf() - 1 call dropbuf
-
-
-            This will store the number of buffers in the stack in the variable buffers. However, just as for the other examples using buffers, this example also suffers from the fact that buffer handling is fairly non-standard. Thus, you will have to adapt the code to whatever system you want to use.
+This will store the number of buffers in the stack in the variable buffers. However, just as for the other examples using buffers, this example also suffers from the fact that buffer handling is fairly non-standard. Thus, you will have to adapt the code to whatever system you want to use.
 
 
 ===== The interface between Rexx and the stack =====
 
+As defined in TRL, the interface to the stack consists of the PARSE PULL, PULL, PUSH, and QUEUE instructions; and the QUEUED() built-in function.
 
-        As defined in TRL, the interface to the stack consists of the PARSE PULL, PULL, PUSH, and
-
-        QUEUE instructions; and the QUEUED() built-in function.
-
-
-        There exists a binary interface to the stack in SAA, see the chapter on the SAA API interface. This interface consists of the RXMSQ exit handler and the QUENAME value of the RXSHV_PRIV request of the RexxVariablePool() function of the variable pool interface.
+There exists a binary interface to the stack in SAA, see the chapter on the SAA API interface. This interface consists of the RXMSQ exit handler and the QUENAME value of the RXSHV_PRIV request of the RexxVariablePool() function of the variable pool interface.
 
 ===== Strategies for implementing stacks =====
 
