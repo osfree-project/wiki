@@ -8536,411 +8536,288 @@ This function is specific to Regina, so caution should be exercised if you plan 
 
 ==== The RexxCallBack() function ====
 
+This function is used to execute an internal procedure within the running Rexx script. The procedure is executed with the same context as if the procedure were called from within the Rexx program as a function call.
 
-            This function is used to execute an internal procedure within the running Rexx script. The procedure is executed with the same context as if the procedure were called from within the Rexx program as a function call.
+<code c>
+APIRET APIENTRY RexxCallBack( PSZ ProcedureName, LONG ArgCount, PRXSTRING ArgList, PUSHORT ReturnCode, PRXSTRING Result) ;
+</code>
 
+Of these parameters, ReturnCode and Result are output-only. The rest of the parameters are input-only. The significance of the parameters are:
 
-            APIRET APIENTRY RexxCallBack( PSZ ProcedureName,
+[ProcedureName]
 
-            LONG ArgCount, PRXSTRING ArgList,
+An ASCII NUL terminated string, specifying the name of the internal procedure of the running Rexx script to be executed. This internal procedure name must exist or this function will return with RX_CB_BADN.
 
-            PUSHORT ReturnCode, PRXSTRING Result
+[ArgCount]
 
-            ) ;
+The number of parameter strings given to the procedure. This is the number of defined Rexx-strings pointed to by the ArgList parameter. The default maximum number of arguments that can be passed is 32, but this can be changed by the MAX_ARGS_TO_REXXSTART macro in rexx.h.
 
+[ArgList]
 
-            Of these parameters, ReturnCode and Result are output-only. The rest of the parameters are input-only. The significance of the parameters are:
+Pointer to an array of Rexx-strings, constituting the parameters to this call to Rexx. The size of this array is given by the parameter ArgCount. If ArgCount is greater than one, the first and last parameters are ArgList[0] and ArgList[ArgCount-1]. If ArgCount is 0, the value of ArgList is irrelevant.
 
+If the strptr of one of the elements in the array pointed to by ArgList is NULL, that means that this parameter is empty (i.e. unspecified, as opposed to a string of zero size).
 
-            [ProcedureName]
+[ReturnCode]
 
-            An ASCII NUL terminated string, specifying the name of the internal procedure of the running Rexx script to be executed. This internal procedure name must exist or this function will return with RX_CB_BADN.
+Pointer to a SHORT integer where the return code from the called ProcedureName is stored, provided that the returned value is numeric, and within the range %%-(2**15)%% to %%2**15-1%%. I don't know what happens to ReturnCode if either of these conditions is not satisfied. It probably becomes undefined, which means that it is totally useless since the program has to inspect the return string in order to determine whether ReturnCode is valid.
 
-            [ArgCount]
+Regina allows the value of this parameter to be NULL if the user is not interested in it.
 
-            The number of parameter strings given to the procedure. This is the number of defined Rexx-strings pointed to by the ArgList parameter. The default maximum number of arguments that can be passed is 32, but this can be changed by the MAX_ARGS_TO_REXXSTART macro in rexx.h.
+[Result]
 
-            [ArgList]
+Points to a Rexx string into which the result string from the called ProcedureName is written. The caller may or may not let the strptr field be supplied. If supplied (i.e. it is non-NULL), that area will be used, else a new area will be allocated. If the supplied area is used, its size is supposed to be given by the strlength field. If the size if not sufficient, a new area will be allocated, by RexxAllocateMemory(), and the caller must see to that it is properly de-allocated using RexxFreeMemory().
 
-            Pointer to an array of Rexx-strings, constituting the parameters to this call to Rexx. The size of this array is given by the parameter ArgCount. If ArgCount is greater than one, the first and last parameters are ArgList[0] and ArgList[ArgCount-1]. If ArgCount is 0, the value of ArgList is irrelevant.
+Regina allows the value of this parameter to be NULL if the user is not interested in it.
 
+Note that the ArgCount parameter need not be the same as the ARG() built-in function would return. Differences will occur if the last entries in ArgList are null strings.
 
-            If the strptr of one of the elements in the array pointed to by ArgList is NULL, that means that this parameter is empty (i.e. unspecified, as opposed to a string of zero size).
+The arguments passed to the ProcedureName will be passed individually. i.e. the PARSE ARG command in the ProcedureName must use commas to separate the arguments. The valid return values from RexxCallBack() are:
 
-            [ReturnCode]
+[Negative]
 
-            Pointer to a SHORT integer where the return code from the called ProcedureName
+indicates that a syntax error occurred during interpretation. In general, you can expect the error value to have the same absolute value as the Rexx syntax error (but opposite signs, of course).
 
-            is stored, provided that the returned value is numeric, and within the range -(2**15)
+[Zero, or RX_CB_OK]
 
-            to 2**15-1. I don't know what happens to ReturnCode if either of these conditions is not satisfied. It probably becomes undefined, which means that it is totally useless since the program has to inspect the return string in order to determine whether ReturnCode is valid.
+indicates that the interpreter finished executing the procedure without errors. 
 
-            Regina allows the value of this parameter to be NULL if the user is not interested in it.
+[Positive]
 
-            [Result]
+indicates probably that some problem occurred, that made it impossible to execute the procedure, e.g. a bad parameter value. The values that can be return are: RX_CB_BADP bad parameters
 
-            Points to a Rexx string into which the result string from the called ProcedureName is written. The caller may or may not let the strptr field be supplied. If supplied (i.e. it is non-NULL), that area will be used, else a new area will be allocated. If the supplied area is used, its size is supposed to be given by the strlength field. If the size if not sufficient, a new area will be allocated, by RexxAllocateMemory(), and the caller must see to that it is properly de-allocated using RexxFreeMemory().
+RX_CB_NOTSTARTED there is no running Rexx program RX_CB_TOOMANYP too many parameters supplied RX_CB_BADN the ProcedureName does not exist
 
-            Regina allows the value of this parameter to be NULL if the user is not interested in it.
-
-
-            Note that the ArgCount parameter need not be the same as the ARG() built-in function would return. Differences will occur if the last entries in ArgList are null strings.
-
-
-            The arguments passed to the ProcedureName will be passed individually. i.e. the PARSE ARG
-
-            command in the ProcedureName must use commas to separate the arguments. The valid return values from RexxCallBack() are:
-
-            [Negative]
-
-            indicates that a syntax error occurred during interpretation. In general, you can expect the error value to have the same absolute value as the Rexx syntax error (but opposite signs, of course).
-
-            [Zero, or RX_CB_OK]
-
-            indicates that the interpreter finished executing the procedure without errors. [Positive]
-
-            indicates probably that some problem occurred, that made it impossible to execute the procedure, e.g. a bad parameter value. The values that can be return are: RX_CB_BADP bad parameters
-
-            RX_CB_NOTSTARTED there is no running Rexx program RX_CB_TOOMANYP too many parameters supplied RX_CB_BADN the ProcedureName does not exist
-
-
-            During the course of an execution of RexxCallBack(), subcommand handlers and exit handlers might be called. These may call any function in the application interface, including another invocation of RexxCallBack().
+During the course of an execution of RexxCallBack(), subcommand handlers and exit handlers might be called. These may call any function in the application interface, including another invocation of RexxCallBack().
 
 ====== Implementation Limits ======
 
-
-    This chapter lists the implementation limits required by the Rexx standard. All implementations are supposed to support at least these limits.
+This chapter lists the implementation limits required by the Rexx standard. All implementations are supposed to support at least these limits.
 
 
 ===== Why Use Limits? =====
 
+Why use implementation limits at all? Often, a program (ab)uses a feature in a language to an extent that the implementor did not foresee. Suppose an implementor decides that variable names can not be longer than 64 bytes. Sooner or later, a programmer gets the idea of using very long variable names to encode special information in the name; maybe as the output of a machine generated program. The result will be a program that works only for some interpreters or only for some problems.
 
-        Why use implementation limits at all? Often, a program (ab)uses a feature in a language to an extent that the implementor did not foresee. Suppose an implementor decides that variable names can not be longer than 64 bytes. Sooner or later, a programmer gets the idea of using very long variable names to encode special information in the name; maybe as the output of a machine generated program. The result will be a program that works only for some interpreters or only for some problems.
+By introducing implementation limits, Rexx tells the implementors to what extent a implementation is required to support certain features, and simultaneously it tells the programmers how much functionality they can assume is present.
 
-
-        By introducing implementation limits, Rexx tells the implementors to what extent a implementation is required to support certain features, and simultaneously it tells the programmers how much functionality they can assume is present.
-
-
-        Note that these limited are required minimums for what an implementation must allow. An interpreter is not supposed to enforce these limits unless there is a good reason to.
+Note that these limited are required minimums for what an implementation must allow. An interpreter is not supposed to enforce these limits unless there is a good reason to.
 
 
 ===== What Limits to Choose? =====
 
+A limit must not be perceived as an absolute limit, the implementer is free to increase the limit. To some extent, the implementer may also decrease the limit, in which case this must be properly documented as a non-standard feature. Also, the reason for this should be noted in the documentation.
 
-        A limit must not be perceived as an absolute limit, the implementer is free to increase the limit. To some extent, the implementer may also decrease the limit, in which case this must be properly documented as a non-standard feature. Also, the reason for this should be noted in the documentation.
+Many interpreters are likely to have "memory" as an implementation limit, meaning that they will allow any size as long as there is enough memory left. Actually, this is equivalent to no limit, since running out of memory is an error with limit enforcing interpreters as well. Some interpreters let the user set the limits, often controlled through the OPTIONS instruction.
 
-
-        Many interpreters are likely to have "memory" as an implementation limit, meaning that they will allow any size as long as there is enough memory left. Actually, this is equivalent to no limit, since running out of memory is an error with limit enforcing interpreters as well. Some interpreters let the user set the limits, often controlled through the OPTIONS instruction.
-
-
-        For computers, limit choices are likely to be powers of two, like 256, 1024, 8192, etc. However, the Rexx language takes the side of the user, and defines the limits in units which looks as more "sensible" to computer non-experts: most of the limits in Rexx are numbers like 250, 500, 1000, etc.
+For computers, limit choices are likely to be powers of two, like 256, 1024, 8192, etc. However, the Rexx language takes the side of the user, and defines the limits in units which looks as more "sensible" to computer non-experts: most of the limits in Rexx are numbers like 250, 500, 1000, etc.
 
 
 ===== Required Limits =====
 
+These are the implementation minimums defined by Rexx:
 
-        These are the implementation minimums defined by Rexx:
+[Binary strings]
 
+Must be able to hold at least 50 characters after packing. That means that the unpacked size might be at least 400 characters, plus embedded white space.
 
-        [Binary strings]
+[Elapse time clock]
 
-        Must be able to hold at least 50 characters after packing. That means that the unpacked size might be at least 400 characters, plus embedded white space.
+Must be able to run for at least %%10**10-1%% seconds, which is approximately 31.6 years. In general, this is really a big overkill, since virtually no program will run for a such a period. Actually, few computers will be operational for such a period.
 
-        [Elapse time clock]
+[Hexadecimal strings]
 
-        Must be able to run for at least 10**10-1 seconds, which is approximately 31.6 years. In
+Must be able to hold at least 50 characters after packing. This means that the unpacked size might be at least 100 characters, plus embedded white space.
 
-        general, this is really a big overkill, since virtually no program will run for a such a period. Actually, few computers will be operational for such a period.
+[Literal strings]
 
-        [Hexadecimal strings]
+Must be able to hold at least 100 characters. Note that a double occurrence of the quote character (the same character used to delimit the string) in a literal string counts as a single character. In particular, it does not count as two, nor does it start a new string.
 
-        Must be able to hold at least 50 characters after packing. This means that the unpacked size might be at least 100 characters, plus embedded white space.
+[Nesting of comments]
 
-        [Literal strings]
+Must be possible to in at least 10 levels. What happens then is not really defined. Maybe one of the syntax errors is issued, but none is obvious for this use. Another, more dangerous way of handling this situation would be to ignore new start-of-comments designators when on level 10. This could, under certain circumstances, lead to running of code that is actually commented out. However, most interpreter are likely to support nesting of comments to an arbitrary level.
 
-        Must be able to hold at least 100 characters. Note that a double occurrence of the quote character (the same character used to delimit the string) in a literal string counts as a single character. In particular, it does not count as two, nor does it start a new string.
+[The Number of Parameters]
 
-        [Nesting of comments]
+In calls must be supported up to at least 10 parameters. Most implementations support somewhat more than that, but quite a few enforce some sort of upper limit. For the built-in function, this may be a problem only for MIN() and MAX().
 
-        Must be possible to in at least 10 levels. What happens then is not really defined. Maybe one of the syntax errors is issued, but none is obvious for this use. Another, more dangerous way of handling this situation would be to ignore new start-of-comments designators when on level 10. This could, under certain circumstances, lead to running of code that is actually commented out. However, most interpreter are likely to support nesting of comments to an arbitrary level.
+[Significant digits]
 
-        [The Number of Parameters]
+Must be supported to at least 9 decimal digits. Also, if an implementation supports floating point numbers, it should allow exponents up to 9 decimal digits. An implementation is allowed to operate with different limits for the number of significant digits and the numbers of digits in exponents.
 
-        In calls must be supported up to at least 10 parameters. Most implementations support somewhat more than that, but quite a few enforce some sort of upper limit. For the built-in function, this may be a problem only for MIN() and MAX().
+[Subroutine levels]
 
-        [Significant digits]
+May be nested to a total of 100 levels, which counts both internal and external functions, but probably not built-in functions. You may actually trip in this limit if you are using recursive solution for large problems. Also, some tail-recursive approaches may crash in this limit.
 
-        Must be supported to at least 9 decimal digits. Also, if an implementation supports floating point numbers, it should allow exponents up to 9 decimal digits. An implementation is allowed to operate with different limits for the number of significant digits and the numbers of digits in exponents.
+[Symbol (name) length]
 
-        [Subroutine levels]
+Can be at least 50 characters. This is the name of the symbol, not the length of the value if it names a variable. Nor is it the name of the variable after tail substitution. In other words, it is the symbol as it occurs in the source code. Note that this applies not only to simple symbols, but also compound symbols and constant symbols. Consequently, you can not write numbers of more than 50 digits in the source code, even if NUMERIC DIGITS is set high.
 
-        May be nested to a total of 100 levels, which counts both internal and external functions, but probably not built-in functions. You may actually trip in this limit if you are using recursive solution for large problems. Also, some tail-recursive approaches may crash in this limit.
+[Variable name length]
 
-        [Symbol (name) length]
-
-        Can be at least 50 characters. This is the name of the symbol, not the length of the value if it names a variable. Nor is it the name of the variable after tail substitution. In other words, it is the symbol as it occurs in the source code. Note that this applies not only to simple symbols, but also compound symbols and constant symbols. Consequently, you can not write numbers of more than 50 digits in the source code, even if NUMERIC DIGITS is set high.
-
-        [Variable name length]
-
-        Of at least 50 characters. This is the name of a variable (which may or may not be set) after tail substitution.
+Of at least 50 characters. This is the name of a variable (which may or may not be set) after tail substitution.
 
 ===== Older (Obsolete) Limits =====
 
+First edition of TRL1 contained some additional limits, which have been relaxed in the second edition in order to make implementation possible for a large set of computers. These limits are:
 
-        First edition of TRL1 contained some additional limits, which have been relaxed in the second edition in order to make implementation possible for a large set of computers. These limits are:
+[Clock granularity]
 
+Was defined to be at least of a millisecond.
 
-        [Clock granularity]
-
-        Was defined to be at least of a millisecond.
-
-
-        Far from all computers provide this granularity, so the requirement have been relaxed. The current requirement is a granularity of at least one second, although a millisecond
-
-        granularity is advised.
+Far from all computers provide this granularity, so the requirement have been relaxed. The current requirement is a granularity of at least one second, although a millisecond granularity is advised.
 
 
 ===== What the Standard does not Say =====
 
+An implementation might enforce a certain limit even though one is not specified in the standard. This section tries to list most of the places where this might be the case:
 
-        An implementation might enforce a certain limit even though one is not specified in the standard. This section tries to list most of the places where this might be the case:
+[The stack]
 
+(Also called: the external data queue) is not formally defined as a concept of the language itself, but a concept to which the Rexx language has an interface. Several limits might apply to the stack, in particular the maximum length of a line in the stack and the maximum number of lines the stack can hold at once.
 
-        [The stack]
+There might also be also be other limits related to the stack, like a maximum number of buffers or a maximum number of different stack. These concepts are not referred to by Rexx, but the programmer ought to be aware of them.
 
-        (Also called: the external data queue) is not formally defined as a concept of the language itself, but a concept to which the Rexx language has an interface. Several limits might apply to the stack, in particular the maximum length of a line in the stack and the maximum number of lines the stack can hold at once.
+[Files]
 
+May have several limits not specified by the definition of Rexx, e.g. the number of files simultaneously open, the maximum size of a file, and the length and syntax of file names. Some of these limits are enforced by the operating system rather than an implementation. The programmer should be particularly aware of the maximum number of simultaneously open files, since Rexx does not have a standard construct for closing files.
 
-        There might also be also be other limits related to the stack, like a maximum number of buffers or a maximum number of different stack. These concepts are not referred to by Rexx, but the programmer ought to be aware of them.
+[Expression nesting]
 
-        [Files]
+Can in some interpreters only be performed to a certain level. No explicit minimum limit has been put forth, so take care in complex expressions, in particular machine generated expressions.
 
-        May have several limits not specified by the definition of Rexx, e.g. the number of files simultaneously open, the maximum size of a file, and the length and syntax of file names. Some of these limits are enforced by the operating system rather than an implementation. The programmer should be particularly aware of the maximum number of simultaneously open files, since Rexx does not have a standard construct for closing files.
+[Environment name length]
 
-        [Expression nesting]
+May have some restrictions, depending on your operating system. There is not defined any limit, but there exists an error message for use with too long environment names.
 
-        Can in some interpreters only be performed to a certain level. No explicit minimum limit has been put forth, so take care in complex expressions, in particular machine generated expressions.
+[Clause length]
 
-        [Environment name length]
+May have an upper limit. There is defined an error message "Clause too long" which is supposed to be issued if a clause exceeds a particular implementation dependent size. Note that a "clause" does not mean a "line" in this context; a line can contain multiple clauses.
 
-        May have some restrictions, depending on your operating system. There is not defined any limit, but there exists an error message for use with too long environment names.
+[Source line length]
 
-        [Clause length]
+Might have an upper limit. This is not the same as a "clause" (see above). Typically, the source line limit will be much larger than the clause limit. The source line limit ought to be as large as the string limit.
 
-        May have an upper limit. There is defined an error message "Clause too long" which is supposed to be issued if a clause exceeds a particular implementation dependent size. Note that a "clause" does not mean a "line" in this context; a line can contain multiple clauses.
+[Stack operations]
 
-        [Source line length]
-
-        Might have an upper limit. This is not the same as a "clause" (see above). Typically, the source line limit will be much larger than the clause limit. The source line limit ought to be as large as the string limit.
-
-        [Stack operations]
-
-        Might be limited by several limits; first there is the number of strings in the stack, then there is the maximum length of each string, and at last there might be restrictions on the character set allowed in strings in the stack. Typically, the stack will be able to hold any character. It will either have "memory" as the limit for the number of string and the length of each string, or it might have a fixed amount of memory set aside for stack strings. Some implementations also set a maximum length of stack strings, often 2*8 or 2*16.
+Might be limited by several limits; first there is the number of strings in the stack, then there is the maximum length of each string, and at last there might be restrictions on the character set allowed in strings in the stack. Typically, the stack will be able to hold any character. It will either have "memory" as the limit for the number of string and the length of each string, or it might have a fixed amount of memory set aside for stack strings. Some implementations also set a maximum length of stack strings, often 2*8 or 2*16.
 
 ===== What an Implementation is Allowed to "Ignore" =====
 
+In order to make the Rexx language implementable on as many machines as possible, the Rexx standard allow implementation to ignore certain features. The existence of these features are recommended, but not required. These features are:
 
-        In order to make the Rexx language implementable on as many machines as possible, the Rexx standard allow implementation to ignore certain features. The existence of these features are recommended, but not required. These features are:
+[Floating point numbers]
 
-        [Floating point numbers]
+Are not required; integers will suffice. If floating points are not supported, numbers can have not fractional or exponential part. And the normal division will not be available, i.e. the operator "/" will not be present. Use integer division instead.
 
-        Are not required; integers will suffice. If floating points are not supported, numbers can have not fractional or exponential part. And the normal division will not be available, i.e. the operator "/" will not be present. Use integer division instead.
+[File operations]
 
-        [File operations]
-
-        Are defined in Rexx, but an implementation seems to be allowed to differ in just about any file operation feature.
+Are defined in Rexx, but an implementation seems to be allowed to differ in just about any file operation feature.
 
 ===== Limits in Regina =====
 
+Regina tries not to enforce any limits. Wherever possible, "memory" is the limit, at the cost of some CPU whenever internal data structures must be expanded if their initial size were too small. Note that Regina will only increase the internal areas, not decrease them afterwards. The rationale is that if you happen to need a large internal area once, you may need it later in the same program too.
 
-        Regina tries not to enforce any limits. Wherever possible, "memory" is the limit, at the cost of some CPU whenever internal data structures must be expanded if their initial size were too small. Note that Regina will only increase the internal areas, not decrease them afterwards. The rationale is that if you happen to need a large internal area once, you may need it later in the same program too.
+In particular, Regina has the following limits:
 
-
-        In particular, Regina has the following limits:
-
-
-        Binary Strings
-        	
-
-        source line length
-
-        Clock Granularity
-        	
-
-        0.001-1 second (note 2)
-
-        Elapsed Time clock
-        	
-
-        until ca. 2038 (note 1)
-
-        Named Queues
-        	
-
-        100
-
-        Hexadecimal Strings
-        	
-
-        source line length
-
-        Interpretable String
-        	
-
-        source line length
-
-        Literal String Length
-        	
-
-        source line length
-
-        Nesting of Comments
-        	
-
-        memory
-
-        Parameters
-        	
-
-        memory
-
-        Significant Digits
-        	
-
-        source line length
-
-        Source Line Length
-        	
-
-        100,000 (note 3)
-
-        Subroutine Levels
-        	
-
-        memory
-
-        Symbol Length
-        	
-
-        source line length
-
-        Variable Name Length
-        	
-
-        source line length
+| Binary Strings | source line length |
+| Clock Granularity | 0.001-1 second (note 2) |
+| Elapsed Time clock | until ca. 2038 (note 1) |
+| Named Queues | 100 |
+| Hexadecimal Strings | source line length |
+| Interpretable String | source line length |
+| Literal String Length | source line length |
+| Nesting of Comments | memory |
+| Parameters | memory |
+| Significant Digits | source line length |
+| Source Line Length | 100,000 (note 3) |
+| Subroutine Levels | memory |
+| Symbol Length | source line length |
+| Variable Name Length | source line length |
 
 
-        Notes:
+Notes:
 
+Regina uses the Unix-derived call time() for the elapsed time (and time in general). This is a function which returns the number of seconds since January 1st 1970. According to the ANSI C standard, in which Regina is written, this is a number which will at least hold the number 2**31-1. Therefore, these machines will be able to work until about 2038, and Regina will satisfy the requirement of the elapse time clock until 2006. By then, computers will hopefully be 64 bit.
 
-            Regina uses the Unix-derived call time() for the elapsed time (and time in general). This is a function which returns the number of seconds since January 1st 1970. According to the ANSI C standard, in which Regina is written, this is a number which will at least hold the number 2**31-1. Therefore, these machines will be able to work until about 2038, and Regina will satisfy the requirement of the elapse time clock until 2006. By then, computers will hopefully be 64 bit.
+Unfortunately, the time() C function call only returns whole seconds, so Regina is forced to use other (less standardised) calls to get a finer granularity. However, most of what is said about time() applies for these too.
 
+The clock granularity is a bit of a problem to define. All systems can be trusted to have a granularity of about 1 second. Except from that, it's very difficult to say anything more specific for certain. Most systems allows alternative ways to retrieve the time, giving a more accurate result. Wherever these alternatives are available, Regina will try to use them. If everything else fails, Regina will use 1 second granularity.
 
-            Unfortunately, the time() C function call only returns whole seconds, so Regina is forced to use
+For most machines, the granularity are in the range of a few milliseconds. Some typical examples are: 20 ms for Sun3, 4 ms for Decstations 3100, and 10 ms for SGI Indigo. Since this is a hardware restriction, this is the best measure anyone can get for these machines.
 
-            other (less standardised) calls to get a finer granularity. However, most of what is said about
+The line length limit is defined when Regina is built. Due to the nature of implementation of the source parser, it is not possible to make this a dynamically increase as the source line is read. If you need a line length longer than the current default value, you need to make two changes:
 
-            time() applies for these too.
+change YY_BUF_LEN in lexsrc.c
 
+change BUFFERSIZE in rexx.h
 
-            The clock granularity is a bit of a problem to define. All systems can be trusted to have a granularity of about 1 second. Except from that, it's very difficult to say anything more specific for certain. Most systems allows alternative ways to retrieve the time, giving a more accurate result. Wherever these alternatives are available, Regina will try to use them. If everything else fails, Regina will use 1 second granularity.
-
-
-            For most machines, the granularity are in the range of a few milliseconds. Some typical examples are: 20 ms for Sun3, 4 ms for Decstations 3100, and 10 ms for SGI Indigo. Since this is a hardware restriction, this is the best measure anyone can get for these machines.
-
-
-            The line length limit is defined when Regina is built. Due to the nature of implementation of the source parser, it is not possible to make this a dynamically increase as the source line is read. If you need a line length longer than the current default value, you need to make two changes:
-
-                change YY_BUF_LEN in lexsrc.c
-
-                change BUFFERSIZE in rexx.h
-
-        See the notes in rexx.h that explain that YY_BUF_LEN must be larger than BUFFERSIZE
+See the notes in rexx.h that explain that YY_BUF_LEN must be larger than BUFFERSIZE
 
 ====== Regina Features and Implementation ======
 
-
-    This chapter lists features of Regina and specific implementation capabilities.
+This chapter lists features of Regina and specific implementation capabilities.
 
 
 ===== Regina Restricted Mode =====
 
+Many language interpreters provide a mechanism where code executed within that interpreter is limited to affecting the environment of the interpreter and cannot change the external environment in which the interpreter runs.
 
-        Many language interpreters provide a mechanism where code executed within that interpreter is limited to affecting the environment of the interpreter and cannot change the external environment in which the interpreter runs.
+Restricted mode is used in situations where you need to guarantee that the author of a Rexx program is unable to affect the user's environment.
 
-        Restricted mode is used in situations where you need to guarantee that the author of a Rexx
+Situations where a restricted mode is applicable include, using Regina as a database procedural language, or as a language plug-in for a Web browser.
 
-        program is unable to affect the user's environment.
+Features of Regina that are disabled in restricted mode are:
 
-        Situations where a restricted mode is applicable include, using Regina as a database procedural language, or as a language plug-in for a Web browser.
+  * LINEOUT, CHAROUT, POPEN, RXFUNCADD BIFs
+  * "OPEN WRITE", "OPEN BOTH" subcommands of STREAM BIF
+  * The "built-in" environments eg. SYSTEM, CMD or PATH of ADDRESS command
+  * Setting the value of a variable in the external environment with VALUE BIF.
+  * Calling external functions
 
-        Features of Regina that are disabled in restricted mode are:
-
-            LINEOUT, CHAROUT, POPEN, RXFUNCADD BIFs
-
-            "OPEN WRITE", "OPEN BOTH" subcommands of STREAM BIF
-
-            The "built-in" environments eg. SYSTEM, CMD or PATH of ADDRESS command
-
-            Setting the value of a variable in the external environment with VALUE BIF.
-
-            Calling external functions
-
-            To run Regina in restricted mode, you can start the Regina interpreter from the command line with the '-r' switch, or when using the Rexx SAA API, or-ing RXRESTRICTED to the CallType parameter of RexxStart() function.
+To run Regina in restricted mode, you can start the Regina interpreter from the command line with the '-r' switch, or when using the Rexx SAA API, or-ing RXRESTRICTED to the CallType parameter of RexxStart() function.
 
 
 ===== Native Language Support ‌ =====
 
+Regina provides native language support in the following ways:
 
-        Regina provides native language support in the following ways:
-
-            Error messages can be displayed in a user-selectable native language.
-
-            Locale support for whitespace and character translations.
+  * Error messages can be displayed in a user-selectable native language.
+  * Locale support for whitespace and character translations.
 
 
 ==== Error Messages ====
 
+All native language error messages are contained in binary files (*.mtb) that are built with the Regina executables from source files (*.mts).
 
-            All native language error messages are contained in binary files (*.mtb) that are built with the Regina executables from source files (*.mts).
+The mechanism Regina uses to determine what native language to use to display error messages depends on the operating system.
 
-            The mechanism Regina uses to determine what native language to use to display error messages depends on the operating system.
+On EPOC32, the language is supplied when installing; the selected language is contained in default.mtb. On all other platforms, Regina uses environment variables if you want to use a language other than English.
 
-            On EPOC32, the language is supplied when installing; the selected language is contained in default.mtb. On all other platforms, Regina uses environment variables if you want to use a language other than English.
+The English language messages are built into the interpreter for two reasons:
 
-            The English language messages are built into the interpreter for two reasons:
-
-                to satisfy the ANSI requirement that error messages can be obtained in English using the ERRORTEXT BIF and specifying a value of 'S' for argument 2.
-
-                used as a fallback position when no native language support is available
+  * to satisfy the ANSI requirement that error messages can be obtained in English using the ERRORTEXT BIF and specifying a value of 'S' for argument 2.
+  * used as a fallback position when no native language support is available
 
 
 ==== Locale Support ====
 
+Locale support is very limited in Regina currently. There is no ANSI specification about it and care has been taken to avoid unexpected behaviour for multi-language scripts. The basic intention of the support was the ability to handle special characters in some western locales or on some systems.
 
-            Locale support is very limited in Regina currently. There is no ANSI specification about it and care has been taken to avoid unexpected behaviour for multi-language scripts. The basic intention of the support was the ability to handle special characters in some western locales or on some systems.
+Non-breakable spaces are part of nearly every character set, but they are hard to implement in Rexx programs because of the missing information about the runtime character set when writing the program. Another typical problem came from extra characters in the character sets which allow the translation in some cases. This problem is unsolvable in advance, because some glyphs are characters in one language and they are symbols in other languages. These problems can be solved at runtime only with the knowledge of the country and language.
 
-            Non-breakable spaces are part of nearly every character set, but they are hard to implement in Rexx programs because of the missing information about the runtime character set when writing the program. Another typical problem came from extra characters in the character sets which allow the translation in some cases. This problem is unsolvable in advance, because some glyphs are characters in one language and they are symbols in other languages. These problems can be solved at runtime only with the knowledge of the country and language.
+Regina implements some code which is executed once when the interpreter starts up. This code evaluates the command line parameter or the environment variables and extracts the information about the character set. Note that this operation is not done on a per-thread basis and it is done before any other operation happens. So no change can be done once a program has been loaded into memory and parsed. The use of ADDRESS REXX is recommended for cases where a different character set is required for a called program.
 
-            Regina implements some code which is executed once when the interpreter starts up. This code evaluates the command line parameter or the environment variables and extracts the information about the character set. Note that this operation is not done on a per-thread basis and it is done before any other operation happens. So no change can be done once a program has been loaded into memory and parsed. The use of ADDRESS REXX is recommended for cases where a different character set is required for a called program.
+Affected operations of the locale support are:
 
-            Affected operations of the locale support are:
-
-                string comparison if options STRICT_ANSI and STRICT_WHITESPACE_COMPARISON are not set.
-
-                upper-case translation of variable names, see VALUE BIF or the API functions.
-
-                white space delimiter detection and elimination at word boundaries or number boundaries at all possible places including cases of reading Rexx programs and processing PARSE operations.
-
-                CASELESS translation in PARSE operations.
-
-                case translation of the builtin functions TRANSLATE, LOWER, UPPER and the instruction
-
-                UPPER
-
-                DATATYPE BIF results.
-
-                file name case translation when searching external procedures or when using the API for loading external libraries.
+  * string comparison if options STRICT_ANSI and STRICT_WHITESPACE_COMPARISON are not set.
+  * upper-case translation of variable names, see VALUE BIF or the API functions.
+  * white space delimiter detection and elimination at word boundaries or number boundaries at all possible places including cases of reading Rexx programs and processing PARSE operations.
+  * CASELESS translation in PARSE operations.
+  * case translation of the builtin functions TRANSLATE, LOWER, UPPER and the instruction
+    * UPPER
+    * DATATYPE BIF results.
+    * file name case translation when searching external procedures or when using the API for loading external libraries.
 
 ==== Using Native Language Support ====
 
