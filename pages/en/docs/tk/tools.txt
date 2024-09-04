@@ -6,3 +6,4 @@
   * [[en:docs:tk:tools:BIND]]
   * [[en:docs:tk:tools:JWASM]]
   * [[en:docs:tk:tools:UNI]]
+  * [[en:docs:tk:tools:IPFC]]

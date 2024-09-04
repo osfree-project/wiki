@@ -8,7 +8,7 @@ Extrect set of messages from MSG message file
 ===== Syntax =====
 
 <diagram>
-|-|v|-|-|-|v|v|-|-|-|v|MKMSGF|-@2|
+|-|v|-|-|-|v|v|-|-|-|v|MSGEXTRT|-@2|
 | |`|drive|'|`|path|'|
 
 |-@2|v|-|-|-|v|v|-|-|-|v|infile|-@2|
@@ -16,26 +16,5 @@ Extrect set of messages from MSG message file
 
 |-@2|v|-|-|-|v|v|-|-|-|v|outfile|-@2|
 | |`|drive|'|`|path|'|
-
-|   |,|-|-|-|-|-|.| |
-|-@2|^@1f|v|-|-|-|v|^|(|
-| | |)|/?|(|
-| | |!| | | |!|
-| | |)|/V|(|
-| | |!| | | |!|
-| | |)|/Q|(|
-| | |!| | | |!|
-| | |)|/D <DBCS range or country>|(|
-| | |!| | | |!|
-| | |)|/P codepage|(|
-| | |!| | | |!|
-| | |)|/L <language id,sub id>|(|
-| | |!| | | |!|
-| | |)|/I path|(|
-| | |!| | | |!|
-| | |)|/A|(|
-| | |!| | | |!|
-| | |`|/C|'|
-
 
 </diagram>
