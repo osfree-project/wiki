@@ -8328,136 +8328,140 @@ The queue name was not specified.
 
 ==== The RexxQueryQueue() function ====
 
+This function is used to determine the number of items that are available on the named, external queue.
 
-            This function is used to determine the number of items that are available on the named, external queue.
+The prototype for RexxQueueQueue() is:
 
+<code c>
+APIRET APIENTRY RexxQueryQueue( PSZ QueueName, ULONG *Count) ;
+</code>
 
-            The prototype for RexxQueueQueue() is:
+One parameters is an input, and its significance is: 
 
+[QueueName]
 
-            APIRET APIENTRY RexxQueryQueue( PSZ QueueName,
+Points to an ASCII NUL terminated character string which specifies the name of the queue to be queried. See Queue Names for the structure of a queue name.
 
-            ULONG *Count
+The following parameter is output, and its significance is: 
 
-            ) ;
+[Count]
 
-            One parameters is an input, and its significance is: [QueueName]
+Points to an unsigned long which indicates the number of items on the specified queue.
 
-            Points to an ASCII NUL terminated character string which specifies the name of the queue to be queried. See Queue Names for the structure of a queue name.
+The RexxQueryQueue() returns an unsigned long, which carries status information describing the outcome of the operation. The status will be one of the RXQUEUE values:
 
-            The following parameter is output, and its significance is: [Count]
+[RXQUEUE_OK]
 
-            Points to an unsigned long which indicates the number of items on the specified queue.
+The queue was successfully queried, and Count contains the number of items on the queue.
 
-            The RexxQueryQueue() returns an unsigned long, which carries status information describing the outcome of the operation. The status will be one of the RXQUEUE values:
+[RXQUEUE_NOTREG]
 
+The queue name specified does not exist. 
 
-            [RXQUEUE_OK]
+[RXQUEUE_BADQNAME]
 
-            The queue was successfully queried, and Count contains the number of items on the queue.
-
-            [RXQUEUE_NOTREG]
-
-            The queue name specified does not exist. [RXQUEUE_BADQNAME]
-
-            The queue name was not specified
+The queue name was not specified
 
 ==== The RexxAddQueue() function ====
 
+This function is used to determine add an item to a named, external queue. The prototype for RexxAddQueue() is:
 
-            This function is used to determine add an item to a named, external queue. The prototype for RexxAddQueue() is:
+<code c>
+APIRET APIENTRY RexxAddQueue( PSZ QueueName, PRXSTRING EntryData, ULONG AddFlag) ;
+</code>
 
-            APIRET APIENTRY RexxAddQueue( PSZ QueueName,
+All parameters are input, and their significance are: 
 
-            PRXSTRING EntryData, ULONG AddFlag
+[QueueName]
 
-            ) ;
+Points to an ASCII NUL terminated character string which specifies the name of the queue on which the data is to be added. See Queue Names for the structure of a queue name.
 
+[EntryData]
 
-            All parameters are input, and their significance are: [QueueName]
+Points to a RXSTRING structure containing the data to be added to the queue. 
 
-            Points to an ASCII NUL terminated character string which specifies the name of the queue on which the data is to be added. See Queue Names for the structure of a queue name.
+[AddFlag]
 
-            [EntryData]
+Indicates how the data is to be added. Can be one of:
 
-            Points to a RXSTRING structure containing the data to be added to the queue. [AddFlag]
+RXQUEUE_FIFO, to indicate that the data is to be added in a first-in-first-out order. This is equivalent to the QUEUE keyword.
 
-            Indicates how the data is to be added. Can be one of:
+RXQUEUE_LIFO, to indicate that the data is to be added in a last-in-first-out order. This is equivalent to the PUSH keyword.
 
-            RXQUEUE_FIFO, to indicate that the data is to be added in a first-in-first-out order. This is equivalent to the QUEUE keyword.
+The RexxAddQueue() returns an unsigned long, which carries status information describing the outcome of the operation. The status will be one of the RXQUEUE values:
 
-            RXQUEUE_LIFO, to indicate that the data is to be added in a last-in-first-out order. This is equivalent to the PUSH keyword.
+[RXQUEUE_OK]
 
+The data was successfully added to the specified queue. 
 
-            The RexxAddQueue() returns an unsigned long, which carries status information describing the outcome of the operation. The status will be one of the RXQUEUE values:
+[RXQUEUE_NOTREG]
 
+The queue name specified does not exist. 
 
-            [RXQUEUE_OK]
+[RXQUEUE_BADQNAME]
 
-            The data was successfully added to the specified queue. [RXQUEUE_NOTREG]
-
-            The queue name specified does not exist. [RXQUEUE_BADQNAME]
-
-            The queue name was not specified
+The queue name was not specified
 
 ==== The RexxPullQueue() function ====
 
+This function is used to extract an item from the specified named, external queue. When successful, the item from the queue is returned, and that item deleted from the queue.
 
-            This function is used to extract an item from the specified named, external queue. When successful, the item from the queue is returned, and that item deleted from the queue.
+The prototype for RexxPullQueue() is:
 
-            The prototype for RexxPullQueue() is:
+<code c>
+APIRET APIENTRY RexxPullQueue( PSZ QueueName, PRXSTRING DataBuf, PDATETIME TimeStamp, ULONG WaitFlag) ;
+</code>
 
+The following parameters are input, and their significance are: 
 
-            APIRET APIENTRY RexxPullQueue( PSZ QueueName,
+[QueueName]
 
-            PRXSTRING DataBuf,
+Points to an ASCII NUL terminated character string which specifies the name of the queue from which the data is to be extracted. See Queue Names for the structure of a queue name.
 
-            PDATETIME TimeStamp, ULONG WaitFlag
+[WaitFlag]
 
-            ) ;
+Indicates if the process should wait until there is data in the specified queue before returning. This could cause the process to block forever, if no data is due in the queue. Regina does not support this option at this stage; RXQUEUE_NOWAIT is assumed Value can be one of:
 
-            The following parameters are input, and their significance are: [QueueName]
+RXQUEUE_WAIT, the process is to block and wait for data if the queue is currently empty.
 
-            Points to an ASCII NUL terminated character string which specifies the name of the queue from which the data is to be extracted. See Queue Names for the structure of a queue name.
+RXQUEUE_NOWAIT, the process does not wait for data in the queue if it is currently empty. RexxPullQueue() will return RXQUEUE_EMPTY if there is no data in the queue.
 
-            [WaitFlag]
+The following parameters are output, and their significance are: 
 
-            Indicates if the process should wait until there is data in the specified queue before returning. This could cause the process to block forever, if no data is due in the queue. Regina does not support this option at this stage; RXQUEUE_NOWAIT is assumed Value can be one of:
+[DataBuf]
 
-            RXQUEUE_WAIT, the process is to block and wait for data if the queue is currently empty.
+Points to a RXSTRING structure into which the contents of the extracted item are placed. The memory associated with the RXSTRING strptr, should be deallocated using RexxFreeMemory().
 
-            RXQUEUE_NOWAIT, the process does not wait for data in the queue if it is currently empty. RexxPullQueue() will return RXQUEUE_EMPTY if there is no data in the queue.
+[TimeStamp]
 
-            The following parameters are output, and their significance are: [DataBuf]
+Points to a PDATETIME structure, which on return, contains the time details of when the item was added to the external queue. Regina does not support this option at this stage.
 
-            Points to a RXSTRING structure into which the contents of the extracted item are placed. The memory associated with the RXSTRING strptr, should be deallocated using RexxFreeMemory().
+The RexxPullQueue() returns an unsigned long, which carries status information describing the outcome of the operation. The status will be one of the RXQUEUE values:
 
-            [TimeStamp]
+[RXQUEUE_OK]
 
-            Points to a PDATETIME structure, which on return, contains the time details of when the item was added to the external queue. Regina does not support this option at this stage.
+The data was successfully added to the specified queue. 
 
+[RXQUEUE_NOTREG]
 
-            The RexxPullQueue() returns an unsigned long, which carries status information describing the outcome of the operation. The status will be one of the RXQUEUE values:
+The queue name specified does not exist. 
 
+[RXQUEUE_BADQNAME]
 
-            [RXQUEUE_OK]
+The queue name was not specified 
 
-            The data was successfully added to the specified queue. [RXQUEUE_NOTREG]
+[RXQUEUE_EMPTY]
 
-            The queue name specified does not exist. [RXQUEUE_BADQNAME]
+The queue was empty and RXQUEUE_NOWAIT was specified. 
 
-            The queue name was not specified [RXQUEUE_EMPTY]
+[RXQUEUE_BADWAITFLAG]
 
-            The queue was empty and RXQUEUE_NOWAIT was specified. [RXQUEUE_BADWAITFLAG]
+The value of the WaitFlag parameter was not RXQUEUE_WAIT or RXQUEUE_NOWAIT.
 
-            The value of the WaitFlag parameter was not RXQUEUE_WAIT or
-
-            RXQUEUE_NOWAIT.
 
 ===== The Macro Space Interface =====
 
-
-        The macro space interface provide a mechanism for pre-loading external Rexx programs into the current interpreter's macro space, so that the macros can be executed faster than reading them from disk each time they are called. This interface is not available in Regina at this stage.
+The macro space interface provide a mechanism for pre-loading external Rexx programs into the current interpreter's macro space, so that the macros can be executed faster than reading them from disk each time they are called. This interface is not available in Regina at this stage.
 
 ==== The RexxAddMacro() function ====
 
@@ -8487,57 +8491,48 @@ The queue name was not specified.
 
 ===== Allocating and De-allocating Space =====
 
-
-        For several of the functions described in this chapter, the application calling them must allocate or de-allocate dynamic memory. Depending on the operating system, compiler and Rexx interpreter, the method for these allocations and de-allocations vary. Because of this, Regina supplies the API function calls RexxAllocateMemory() and RexxFreeMemory(). These functions are wrappers for the appropriate compiler or operating system memory functions.
+For several of the functions described in this chapter, the application calling them must allocate or de-allocate dynamic memory. Depending on the operating system, compiler and Rexx interpreter, the method for these allocations and de-allocations vary. Because of this, Regina supplies the API function calls RexxAllocateMemory() and RexxFreeMemory(). These functions are wrappers for the appropriate compiler or operating system memory functions.
 
 ==== The RexxAllocateMemory() function ====
 
+The prototype for RexxAllocateMemory() is:
+
+<code c>
+PVOID APIENTRY RexxAllocateMemory( ULONG size) ;
+</code>
+
+The parameter is an input, and its significance is:
+
+[size]
+
+The number of bytes of dynamic memory requested.
 
 
-            The prototype for RexxAllocateMemory() is:
-
-
-            PVOID APIENTRY RexxAllocateMemory( ULONG size
-
-            ) ;
-
-
-            The parameter is an input, and its significance is:
-
-
-            [size]
-
-            The number of bytes of dynamic memory requested.
-
-
-            RexxAllocateMemory() returns a pointer to the newly allocated block of memory, or NULL if no memory could be allocated.
+RexxAllocateMemory() returns a pointer to the newly allocated block of memory, or NULL if no memory could be allocated.
 
 ==== The RexxFreeMemory() function ====
 
+The prototype for RexxFreeMemory() is:
 
-            The prototype for RexxFreeMemory() is:
+<code c>
+APIRET APIENTRY RexxFreeMemory( PVOID MemoryBlock) ;
+</code>
 
+The parameter is an input, and its significance is: 
 
-            APIRET APIENTRY RexxFreeMemory( PVOID MemoryBlock
+[MemoryBlock]
 
-            ) ;
+A void pointer to the block of memory allocated by the interpreter, or allocated by a previous call to RexxAllocateMemory().
 
-            The parameter is an input, and its significance is: [MemoryBlock]
-
-            A void pointer to the block of memory allocated by the interpreter, or allocated by a previous call to RexxAllocateMemory().
-
-
-            RexxFreeMemory() always return 0.
+RexxFreeMemory() always return 0.
 
 ===== Calling back into running Rexx Code =====
 
+This section describes the RexxCallBack() function, which allows the application to execute a procedure within the running Rexx program. This function is particularly useful for building a Rexx interface to those library applications that operate using a callback mechanism.
 
-        This section describes the RexxCallBack() function, which allows the application to execute a procedure within the running Rexx program. This function is particularly useful for building a Rexx interface to those library applications that operate using a callback mechanism.
+A callback mechanism is one where certain events within a particular application can be connected to a particular function, so that when a particular event occurs, the connected function is executed. Many C library applications use a callback mechanism.
 
-        A callback mechanism is one where certain events within a particular application can be connected to a particular function, so that when a particular event occurs, the connected function is executed. Many C library applications use a callback mechanism.
-
-
-        This function is specific to Regina, so caution should be exercised if you plan on making your code portable to other Rexx interpreters.
+This function is specific to Regina, so caution should be exercised if you plan on making your code portable to other Rexx interpreters.
 
 ==== The RexxCallBack() function ====
 
