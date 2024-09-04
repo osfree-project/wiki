@@ -8,3 +8,5 @@
   * [[en:docs:tk:formats:exe|Executable file format]]
   * [[en:docs:tk:formats:newexe|New Executable file format]]
   * [[en:docs:tk:formats:lxexe|Linear Executable file format]]
+  * [[en:docs:tk:formats:lxexe|INF/HLP file format]]
+  * [[en:docs:tk:formats:lxexe|COUNTRY.SYS file format]]
