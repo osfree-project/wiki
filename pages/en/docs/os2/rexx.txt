@@ -1,4 +1,4 @@
-====== osFree Classic Rexx Interpreter ======
+====== osFree Classic REXX Interpreter ======
 
 Version 3.9.6
 
@@ -19,32 +19,28 @@ A copy of the license is included in the section entitled "GNU Free Documentatio
 
 ====== Introduction to REXX ======
 
-This chapter provides an introduction to osFree Classic REXX, an Open Source Rexx Interpreter distributed under the GNU General Library License.
+This chapter provides an introduction to osFree Classic REXX, an Open Source REstructured eXtended eXecutor (REXX) Interpreter distributed under the GNU General Library License.
 
 ===== Purpose of this document =====
 
-The purpose of this document is to provide an overview of the Rexx Language and the osFree Classic REXX implementation of the Rexx Language. It is not intended as a definitive reference to Rexx; you should really have a copy of the Rexx "bible"; The Rexx Language, by Mike Cowlishaw [TRL2].
+The purpose of this document is to provide an overview of the Rexx Language and the osFree Classic REXX implementation of the REXX Language. It is not intended as a definitive reference to Rexx; you should really have a copy of the REXX "bible"; The REXX Language, by Mike Cowlishaw [TRL2].
 
 ===== Implementation =====
 
+The osFree Classic REXX Interpreter is implemented as a library suitable for linking into third-party applications. Access to osFree Classic REXX from third-party applications is via the REXX API, which is consistent with the IBM's REXX SAA API. This API is implemented on most other REXX interpreters.
 
-The osFree Classic REXX Interpreter is implemented as a library suitable for linking into third-party applications. Access to osFree Classic REXX from third-party applications is via the REXX API, which is consistent with the IBM's Rexx SAA API. This API is implemented on most other Rexx interpreters.
+The osFree Classic REXX distribution also includes a front end to the osFree Classic REXX library, to enable the execution of REXX programs directly from the command line. The command line referred to the a OS/2 command window.
 
-The osFree Classic REXX distribution also includes a front end to the osFree Classic REXX library, to enable the execution of Rexx programs directly from the command line. The command line referred to here relates to the a OS/2 command window.
+===== Executing REXX programs with osFree Classic REXX =====
 
-
-
-===== Executing Rexx programs with osFree Classic REXX =====
-
-
-Rexx programs are generally executed by osFree Classic REXX from the command line in the following manner:
+REXX programs are generally executed by osFree Classic REXX from the command line in the following manner:
 
   program.cmd [program parameters]
 
 where:
 
-  * program the name of the Rexx program to be executed. Program source code must be started from comment /* */.
-  * program parameters any optional parameters to be passed to the Rexx program.
+  * program the name of the REXX program to be executed. Program source code must be started from comment /* */.
+  * program parameters any optional parameters to be passed to the REXX program.
 
 Another way is following command line:
 
@@ -54,8 +50,8 @@ where:
 
   * rexx is the name of the osFree Classic REXX executable
   * switches are optional switches. See the section below for an explanation of the switches currently supported by osFree Classic REXX
-  * program the name of the Rexx program to be executed. See the section External Rexx Programs, below, for details on how osFree Classic REXX interprets this argument. If no program name is specified, osFree Classic REXX waits for Rexx commands to be typed in and will execute those commands when the appropriate end-of-file character is typed.
-  * program parameters any optional parameters to be passed to the Rexx program.
+  * program the name of the Rexx program to be executed. See the section External REXX Programs, below, for details on how osFree Classic REXX interprets this argument. If no program name is specified, osFree Classic REXX waits for REXX commands to be typed in and will execute those commands when the appropriate end-of-file character is typed.
+  * program parameters any optional parameters to be passed to the REXX program.
 
 The special processing done by osFree Classic REXX to find the file name in REGINA_MACROS and the file extension searching is ignored for the program to be run when using the magic number method of invocation, but is still done inside the program when using CALL.
 
@@ -143,9 +139,9 @@ Compile the specified program into a tokenised format. The only program paramete
 
 Execute the specified program from a tokenised format. program must be a file created by the -c switch. All other switches and program parameters are allowed except -c.
 
-==== External Rexx programs ====
+==== External REXX programs ====
 
-osFree Classic REXX searches for Rexx programs, using a combination of the REGINA_MACROS environment variable, the PATH environment variable, the REGINA_SUFFIXES environment variable and the addition of filename extensions. This rule applies to both external function calls within a Rexx program and the program specified on the command line.
+osFree Classic REXX searches for REXX programs, using a combination of the REGINA_MACROS environment variable, the PATH environment variable, the REGINA_SUFFIXES environment variable and the addition of filename extensions. This rule applies to both external function calls within a REXX program and the program specified on the command line.
 
 First of all we process the environment variable REGINA_MACROS. If no file is found we proceed with the current directory and then with the environment variable PATH. The semantics of the use of REGINA_MACROS and PATH are the same, and the search in the current directory is omitted for the superuser on Unix systems for security reasons. The current directory must be specified explicitly by the superuser.
 
@@ -161,7 +157,7 @@ e.g. ".macro,.mac,.regina" or "macro mac regina"
 
 Note that it is planned to extend the list of known suffixes by ".rxc" in version 3.4 to allow for seamless integration of pre-compiled macros.
 
-Example: Locating an external Rexx program for execution
+Example: Locating an external REXX program for execution
 
 Assume you have a call to an external function, and it is coded as follows:
 
@@ -194,7 +190,7 @@ The files that osFree Classic REXX will search for in order are:
             C:\OS2\myextfunc.rex
             C:\OS2\myextfunc.cmd /* found!! terminate search*/
 
-====== Rexx Language Constructs ======
+====== REXX Language Constructs ======
 
 In this chapter, the concept and syntax of Rexx clauses are explained. At the end of the chapter there is a section describing how osFree Classic REXX differs from standard Rexx as described in the first part of the chapter.
 
