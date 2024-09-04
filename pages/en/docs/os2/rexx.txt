@@ -7483,283 +7483,250 @@ As a remark, what would the direct variable FOO. refer to: the stem FOO. or the 
 ==== The SHVBLOCK structure ====
 
 
-            All requests to manipulate the Rexx variable pool are controlled by a structure which is called
+All requests to manipulate the Rexx variable pool are controlled by a structure which is called SHVBLOCK, having the definition:
 
-            SHVBLOCK, having the definition:
+<code c>
+typedef struct shvnode {
+   struct shvnode *shvnext ; /* ptr to next in blk in chain */ 
+   RXSTRING shvname ; /* name of variable */ 
+   RXSTRING shvvalue ; /* value of variable */ 
+   ULONG shvnamelen ; /* length of shvname.strptr */ 
+   ULONG shvvaluelen ; /* length of shvvalue.strptr */ 
+   UCHAR shvcode ; /* operation code */
+   UCHAR shvret ; /* return code */
+} SHVBLOCK ;
+typedef SHVBLOCK *PSHVBLOCK ;
+</code>
 
+The fields shvnext and shvcode are purely input, while shvret is purely output. The rest of the fields might be input or output, depending on the requested operation, and the value of the fields. The significance of each field is:
 
-            typedef struct shvnode {
+[shvnext]
 
-            struct shvnode *shvnext ; /* ptr to next in blk in chain */ RXSTRING shvname ; /* name of variable */ RXSTRING shvvalue ; /* value of variable */ ULONG shvnamelen ; /* length of shvname.strptr */ ULONG shvvaluelen ; /* length of shvvalue.strptr */ UCHAR shvcode ; /* operation code */
+One call to RexxVariablePool() may sequentially process many requests. The shvnext field links one request to the next in line. The last request must have set shvnext to NULL. The requests are handled individually and thus, calling RexxVariablePool() with several requests is equivalent to making one call to RexxVariablePool() for each request.
 
-            UCHAR shvret ; /* return code */
+[shvname]
 
-            } SHVBLOCK ;
+Contains the name of the variable to operate on, as a RXSTRING. This field is only relevant for some requests, and its use may differ.
 
+[shvvalue]
 
-            typedef SHVBLOCK *PSHVBLOCK ;
+Contains the value of the variable to operate on as a RXSTRING. Like shvname, this might not be relevant for all types of requests.
 
+[shvnamelen]
 
-            The fields shvnext and shvcode are purely input, while shvret is purely output. The rest of the fields might be input or output, depending on the requested operation, and the value of the fields. The significance of each field is:
+The length of the array that shvname.strptr points to. This field holds the maximum possible number of characters in shvname.strptr. While shvname.strlength holds the number of characters that are actually in use (i.e. defined).
 
+[shvvaluelen]
 
-            [shvnext]
+The length of the array that shvvalue.strptr points to. Relates to shvvalue, like shvnamelen relates to shvname. 
 
-            One call to RexxVariablePool() may sequentially process many requests. The shvnext field links one request to the next in line. The last request must have set shvnext to NULL. The requests are handled individually and thus, calling RexxVariablePool() with several requests is equivalent to making one call to RexxVariablePool() for each request.
+[shvcode]
 
-            [shvname]
+The code of operation; decides what type of request to perform. A list of all the available requests is given below.
 
-            Contains the name of the variable to operate on, as a RXSTRING. This field is only relevant for some requests, and its use may differ.
+[shvret]
 
-            [shvvalue]
+A return code describing the outcome of the request. This code is a bit special. The lower seven bits are flags which are set depending on whether some condition is met or not. Values above 127 are not used in this field.
 
-            Contains the value of the variable to operate on as a RXSTRING. Like shvname, this might not be relevant for all types of requests.
+There is a difference between shvnamelen and shvname.strlength. The former is the total length of the array of characters pointed to by shvname.strptr (if set). While the latter is the number of these characters that are actually in use. When a SHVBLOCK is used to return data from RexxVariablePool(), and a pre-allocated string space has been supplied, both these will be used; shvname.strlength will be set to the length of the data returned, while shvnamelen is never changed, only read to find the maximum number of characters that shvname can hold.
 
-            [shvnamelen]
+Even though shvnamelen is not really needed when shvname is used for input, it is wise to set it to its proper value (or at least set it to the same as shvname.strlength). The same applies for shvvalue and shvvaluelen.
 
-            The length of the array that shvname.strptr points to. This field holds the maximum possible number of characters in shvname.strptr. While shvname.strlength holds the number of characters that are actually in use (i.e. defined).
 
-            [shvvaluelen]
+The field shvcode can take one of the following symbolic values: 
 
-            The length of the array that shvvalue.strptr points to. Relates to shvvalue, like
+[RXSHV_DROPV]
 
-            shvnamelen relates to shvname. [shvcode]
+The variable named by the direct variable name shvname is dropped (i.e. becomes undefined). The fields shvvalue and shvvaluelen do not matter.
 
-            The code of operation; decides what type of request to perform. A list of all the available requests is given below.
+[RXSHV_EXIT]
 
-            [shvret]
+This is used to set the return value for an external function or exit handler.
 
-            A return code describing the outcome of the request. This code is a bit special. The lower seven bits are flags which are set depending on whether some condition is met or not. Values above 127 are not used in this field.
+[RXSHV_FETCH]
 
+The value of the variable named by the direct variable name shvname is retrieved and stored in shvvalue. If shvvalue.strptr is NULL, the interpreter will allocate sufficient space to store the value (but it is the responsibility of the application programmer to release that space). Else, the value will be stored in the area allocated for shvvalue, and shvvaluelen is taken to be the maximum size of that area.
 
-            There is a difference between shvnamelen and shvname.strlength. The former is the total length of the array of characters pointed to by shvname.strptr (if set). While the latter is the number of these characters that are actually in use. When a SHVBLOCK is used to return data from RexxVariablePool(), and a pre-allocated string space has been supplied, both these will be used; shvname.strlength will be set to the length of the data returned, while shvnamelen is never changed, only read to find the maximum number of characters that shvname can hold.
+[RXSHV_NEXTV]
 
+This code is used to retrieve the names and values of all variables at the current procedure level; i.e. excluding variables shadowed by PROCEDURE. The name and value of each variable are retrieved simultaneously into shvname and shvvalue, respectively.
 
-            Even though shvnamelen is not really needed when shvname is used for input, it is wise to set it to its proper value (or at least set it to the same as shvname.strlength). The same applies for shvvalue and shvvaluelen.
+Successive requests for RXSHV_NEXTV will traverse the interpreter's internal data structure for storing variables, and return a new pair of variable name and value for each request. Each variable that is visible in the current scope, is returned once and only once, but the order is non-deterministic.
 
+When all available variables in the Rexx interpreter have already been retrieved, subsequent RXSHV_NEXTV requests will set the flag RXSHV_LVAR in the shvret field. There are a few restrictions. The traversal will be reset whenever the interpreter resumes execution, so an incomplete traversal can not be continued in a later external function, exit handler, or subcommand handler. Also, any set, fetch or drop operation will reset the traversal. These restrictions have been added to ensure that the variable pool is static throughout one traversal.
 
-            The field shvcode can take one of the following symbolic values: [RXSHV_DROPV]
+[RXSHV_PRIV]
 
-            The variable named by the direct variable name shvname is dropped (i.e. becomes undefined). The fields shvvalue and shvvaluelen do not matter.
+Retrieves some piece of information from the interpreter, other than a variable value, based on the value of the shvname field. The value is stored in shvvalue as for a normal fetch. A list of possible names is shown below.
 
-            [RXSHV_EXIT]
+[RXSHV_SET]
 
-            This is used to set the return value for an external function or exit handler. [RXSHV_FETCH]
+The variable named by the direct variable name shvname is set to the value given by shvvalue.
 
-            The value of the variable named by the direct variable name shvname is retrieved and stored in shvvalue. If shvvalue.strptr is NULL, the interpreter will allocate sufficient space to store the value (but it is the responsibility of the application programmer to release that space). Else, the value will be stored in the area allocated for shvvalue, and shvvaluelen is taken to be the maximum size of that area.
+[RXSHV_SYFET]
 
-            [RXSHV_NEXTV]
+Like RXSHV_FETCH, except that shvname is a symbolic variable name. 
 
-            This code is used to retrieve the names and values of all variables at the current procedure level; i.e. excluding variables shadowed by PROCEDURE. The name and value of each variable are retrieved
+[RXSHV_SYDRO]
 
-            simultaneously into shvname and shvvalue, respectively.
+Like RXSHV_DROPV, except that shvname is a symbolic variable name. 
 
-            Successive requests for RXSHV_NEXTV will traverse the interpreter's internal data structure for storing variables, and return a new pair of variable name and value for each request. Each variable that is visible in the current scope, is returned once and only once, but the order is non-deterministic.
+[RXSHV_SYSET]
 
-            When all available variables in the Rexx interpreter have already been retrieved, subsequent RXSHV_NEXTV requests will set the flag RXSHV_LVAR in the shvret field. There are a few restrictions. The traversal will be reset whenever the interpreter resumes execution, so an incomplete traversal can not be continued in a later external function, exit handler, or subcommand handler. Also, any set, fetch or drop operation will reset the traversal. These restrictions have been added to ensure that the variable pool is static throughout one traversal.
+Like RXSHV_SET, except that shvname is a symbolic variable name.
 
-            [RXSHV_PRIV]
+One type of request that needs some special attention is the RXSHV_PRIV, which retrieves a kind of meta-variable. Depending on the value of shvname, it returns a value in shvvalue describing some aspect of the interpreter. For RXSHV_PRIV the possible values for shvname are:
 
-            Retrieves some piece of information from the interpreter, other than a variable value, based on the value of the shvname field. The value is stored in shvvalue as for a normal fetch. A list of possible names is shown below.
+[PARM]
 
-            [RXSHV_SET]
+Returns the ASCII representation of the number of parameters to the currently active Rexx procedure. This may not be the same value as the built-in function ARG() returns, but is the number ArgCount in RexxStart(). The two might differ if a routine was called with trailing omitted parameters.
 
-            The variable named by the direct variable name shvname is set to the value given by shvvalue.
+[PARM.n]
 
-            [RXSHV_SYFET]
+The n must be a positive integer; and the value returned will be the n'th parameter at the current procedure level. This is not completely equivalent to the information that the built-in function ARG() returns. For parameters where ARG() would return the state omitted, the returned value is a null string, while for parameters where ARG() would return the state existing, the return value will be the parameter string (which may be a zero length string.
 
-            Like RXSHV_FETCH, except that shvname is a symbolic variable name. [RXSHV_SYDRO]
+[QUENAME]
 
-            Like RXSHV_DROPV, except that shvname is a symbolic variable name. [RXSHV_SYSET]
+The name of the currently active external data queue. This feature has not yet been implemented in Regina, which always return default.
 
-            Like RXSHV_SET, except that shvname is a symbolic variable name.
+[SOURCE]
 
+Returns the same string that is used in the PARSE SOURCE clause in Rexx, at the current procedure level of interpretation.
 
-            One type of request that needs some special attention is the RXSHV_PRIV, which retrieves a kind of meta-variable. Depending on the value of shvname, it returns a value in shvvalue describing some aspect of the interpreter. For RXSHV_PRIV the possible values for shvname are:
+[VERSION]
 
+Returns the same string that is used in the PARSE VERSION clause in Rexx.
 
-            [PARM]
+The value returned by a variable pool request is a bit uncommon. A return value is computed for each request, and stored in the shvret field. This is a one-byte field, of which the most significant bit is never set. A symbolic value RXSHV_OK is defined as the value zero, and the shvret field will be equal to this name if none if the flags listed below is set. The symbolic value for these flags are:
 
-            Returns the ASCII representation of the number of parameters to the currently active Rexx procedure. This may not be the same value as the built-in function ARG() returns, but is the number ArgCount in RexxStart(). The two might differ if a routine was called with trailing omitted parameters.
+[RXSHV_BADF]
 
-            [PARM.n]
+The shvcode of this request contained a bad function code. 
 
-            The n must be a positive integer; and the value returned will be the n'th parameter at the current procedure level. This is not completely equivalent to the information that the built-in function ARG() returns. For parameters where ARG() would return the state omitted, the returned value is a null string, while for parameters where ARG() would return the state existing, the return value will be the parameter string (which may be a zero length string.
+[RXSHV_BADN]
 
-            [QUENAME]
+The shvname field contained a string that is not valid in this context. What exactly is a valid value depends on whether the operation is a private, a symbolic variable, or direct variable operation.
 
-            The name of the currently active external data queue. This feature has not yet been implemented in Regina, which always return default.
+[RXSHV_LVAR]
 
-            [SOURCE]
+Set if and only if the request was RXSHV_NEXTV, and all available variables have already been retrieved by earlier requests.
 
-            Returns the same string that is used in the PARSE SOURCE clause in Rexx, at the current procedure level of interpretation.
+[RXSHV_MEMFL]
 
-            [VERSION]
+There was not enough memory to complete this request. 
 
-            Returns the same string that is used in the PARSE VERSION clause in Rexx.
+[RXSHV_NEWV]
 
+Set if and only if the referenced variable did not previously have a value. It can be returned for any set, fetch or drop operation.
 
-            The value returned by a variable pool request is a bit uncommon. A return value is computed for each request, and stored in the shvret field. This is a one-byte field, of which the most significant bit is never set. A symbolic value RXSHV_OK is defined as the value zero, and the shvret field will be equal to this name if none if the flags listed below is set. The symbolic value for these flags are:
+[RXSHV_TRUNC]
 
+Set if the retrieved value was truncated when it was copied into either the shvname or shvvalue fields. See below.
 
-            [RXSHV_BADF]
+These flags are directly suitable for logical OR, without shifting, e.g. to check for truncation and no variables left, you can do something like:
 
-            The shvcode of this request contained a bad function code. [RXSHV_BADN]
+<code c>
+if (req->shvret & (RXSHV_TRUNC | RXSHV_LVAR)) printf("Truncation or no vars left\n") ;
+</code>
 
-            The shvname field contained a string that is not valid in this context. What exactly is a valid value depends on whether the operation is a private, a symbolic variable, or direct variable operation.
+RXSHV_TRUNC can only occur when the interface is storing a retrieved value in a SHVBLOCK, and the pre-allocated space is present, but not sufficiently large. As described for RXSHV_FETCH, the interpreter will allocate enough space if shvvalue.strptr is NULL, and then RXSHV_TRUNC will never be set. Else the space supplied by shvvalue.strptr is used, and shvvaluelen is taken as the maximum length of shvvalue, and truncation will occur if the supplied space is too small.
 
-            [RXSHV_LVAR]
+Some implementations will consider SHV_MEMFL to be so severe as to skip the rest of the operations in a chain of requests. In order to write compatible software, you should never assume that requests following in a chain after a request that returned SHV_MEMFL have been performed.
 
-            Set if and only if the request was RXSHV_NEXTV, and all available variables have already been retrieved by earlier requests.
+RXSHV_BADN is returned if the supplied shvname contains a value that is not legal in this context. For the symbolic set, fetch and drop operations, that means a symbol that is a legal variable name; both upper and lower case letters are allowed. For the direct set, fetch and drop operations, that means a variable name after normalization and tail substitution is not a legal variable name. For RXSHV_PRIV, it must be one of the values listed above.
 
-            [RXSHV_MEMFL]
+There is a small subtlety in the above description. TRL states that when a Rexx assignment assigns a value to a stem variable, all possible variables having that stem are assigned a new value (independent of whether they had an explicit value before). So, strictly speaking, if a stem is set, then a RXSHV_NEXTV sequence should return an (almost) infinite sequence of compound variables for that stem. Of course, that is completely useless, so you can assume that only compound variables of that stem given an explicit value after the stem was assigned a value will be returned by RXSHV_NEXTV. However, because of that subtlety, the variables returned by RXSHV_NEXTV for compound variables might not be representative for the state of the variables.
 
-            There was not enough memory to complete this request. [RXSHV_NEWV]
+e.g. what would a sequence of RXSHV_NEXT requests return after the following Rexx code: 
 
-            Set if and only if the referenced variable did not previously have a value. It can be returned for any set, fetch or drop operation.
+<code rexx>
+foo. = 'bar'
+drop foo.bar
+</code>
 
-            [RXSHV_TRUNC]
-
-            Set if the retrieved value was truncated when it was copied into either the shvname
-
-            or shvvalue fields. See below.
-
-
-            These flags are directly suitable for logical OR, without shifting, e.g. to check for truncation and no variables left, you can do something like:
-
-
-            if (req->shvret & (RXSHV_TRUNC | RXSHV_LVAR)) printf("Truncation or no vars left\n") ;
-
-
-            RXSHV_TRUNC can only occur when the interface is storing a retrieved value in a SHVBLOCK, and the pre-allocated space is present, but not sufficiently large. As described for RXSHV_FETCH, the interpreter will allocate enough space if shvvalue.strptr is NULL, and then RXSHV_TRUNC will never be set. Else the space supplied by shvvalue.strptr is used, and shvvaluelen is taken as the maximum length of shvvalue, and truncation will occur if the supplied space is too small.
-
-            Some implementations will consider SHV_MEMFL to be so severe as to skip the rest of the operations in a chain of requests. In order to write compatible software, you should never assume that requests
-
-            following in a chain after a request that returned SHV_MEMFL have been performed.
-
-
-            RXSHV_BADN is returned if the supplied shvname contains a value that is not legal in this context. For the symbolic set, fetch and drop operations, that means a symbol that is a legal variable name; both upper and lower case letters are allowed. For the direct set, fetch and drop operations, that means a variable name after normalization and tail substitution is not a legal variable name. For RXSHV_PRIV, it must be one of the values listed above.
-
-
-            There is a small subtlety in the above description. TRL states that when a Rexx assignment assigns a value to a stem variable, all possible variables having that stem are assigned a new value (independent of whether they had an explicit value before). So, strictly speaking, if a stem is set, then a RXSHV_NEXTV sequence should return an (almost) infinite sequence of compound variables for that stem. Of course, that is completely useless, so you can assume that only compound variables of that stem given an explicit value after the stem was assigned a value will be returned by RXSHV_NEXTV. However, because of that subtlety, the variables returned by RXSHV_NEXTV for compound variables might not be representative for the state of the variables.
-
-
-            e.g. what would a sequence of RXSHV_NEXT requests return after the following Rexx code ?: foo. = 'bar'
-
-            drop foo.bar
-
-
-            The second statement here, might not change the returned values! After the first statement, only the stem foo. would probably have been returned, and so also if all variables were fetched after the second statement.
+The second statement here, might not change the returned values! After the first statement, only the stem foo. would probably have been returned, and so also if all variables were fetched after the second statement.
 
 ==== Regina Notes for the Variable Pool ====
 
+Due to the subtleties described at the end of the previous subsection, some notes on how Regina handles RXSHV_NEXTV requests for compound variables are in order. The following rules applies:
 
-            Due to the subtleties described at the end of the previous subsection, some notes on how Regina handles RXSHV_NEXTV requests for compound variables are in order. The following rules applies:
+Both the stem variable FOO. and the compound variable having FOO. as stem and a nullstring as tail, are returned with the name of FOO.. In this situation, a sequence of RXSHV_NEXTV requests may seem to return values for the same variable twice. This is unfortunate, but it seems to be the only way. In any case, you'll have to perform the RXSHV_SYFET in order to determine which is which.
 
+If a stem variable has not been assigned a value, its compound variables are only returned if they have been assigned an explicit value. i.e. compound variables for that stem that have either never been assigned a value, or have been dropped, will not be reported by RXSHV_NEXTV. There is nothing strange about this.
 
-                Both the stem variable FOO. and the compound variable having FOO. as stem and a nullstring as tail, are returned with the name of FOO.. In this situation, a sequence of RXSHV_NEXTV requests may seem to return values for the same variable twice. This is unfortunate, but it seems to be the only way. In any case, you'll have to perform the RXSHV_SYFET in order to determine which is which.
+If a stem variable has been assigned a value, then its compound variables will be reported in two cases: Firstly, the compound variables having explicitly been assigned a value afterward. Secondly, the compound variables which have been dropped afterward, which are reported to have their initial value, and the flag RXSHV_NEWV is set in shvret.
 
-                If a stem variable has not been assigned a value, its compound variables are only returned if they have been assigned an explicit value. i.e. compound variables for that stem that have either never been assigned a value, or have been dropped, will not be reported by RXSHV_NEXTV. There is nothing strange about this.
+It may sound a bit stupid that unset variables are listed when the request is to list all variables which have been set, but that is about the best I can do, if I am to stay within the standard definition and return a complete and exact status of the variable pool.
 
-                If a stem variable has been assigned a value, then its compound variables will be reported in two cases: Firstly, the compound variables having explicitly been assigned a value afterward. Secondly, the compound variables which have been dropped afterward, which are reported to have their initial value, and the flag RXSHV_NEWV is set in shvret.
+If the return code from RexxVariablePool() is less than 128, Regina is guaranteed to have tried to process all requests in the chain. If the return code is above 127, some requests may not have been processed. Actually, the number 127 (or 128) is a bit inconvenient, since it will be an problem for later expansion of the standard. A much better approach would be to have a preprocessor symbol (say, RXSHV_FATAL, and if the return code from the RexxVariablePool() function was larger than that, it would be a direct error code, and not a composite error code built from the shvret fields of the requests. The RXSHV_FATAL would then have to be the addition of all the atomic composite error codes.
 
+(Warning: author mounting the soapbox.)
 
-            It may sound a bit stupid that unset variables are listed when the request is to list all variables which have been set, but that is about the best I can do, if I am to stay within the standard definition and
+The right way to fix this, is to let the function RexxVariablePool() set another flag in shvret (e.g. named RXSHV_STEM) during RXSHV_NEXTV if and only if the value returned is a stem variable. That way, the application programmer would be able to differ between stem variables and compound variable with a null string tail.
 
-            return a complete and exact status of the variable pool.
+To handle the other problem with compound variables and RXSHV_NEXTV, I would have liked to return a null string in shvvalue if and only if the variable is a compound variable having its initial value, and the stem of that compound variable has been assigned a value. Then, the value of the compound variable is equal to its name, and is available in the shvname field.
 
+I'd also like to see that the shvret value contained other information concerning the variables, e.g. whether the variable was exposed at the current procedure level. Of course, Regina does not contain any of these extra, non-standard features.
 
-            If the return code from RexxVariablePool() is less than 128, Regina is guaranteed to have tried to process all requests in the chain. If the return code is above 127, some requests may not have been processed. Actually, the number 127 (or 128) is a bit inconvenient, since it will be an problem for later expansion of the standard. A much better approach would be to have a preprocessor symbol (say,
+(Author is dismounting the soapbox.)
 
-            RXSHV_FATAL, and if the return code from the RexxVariablePool() function was larger than that, it would be a direct error code, and not a composite error code built from the shvret fields of the requests. The RXSHV_FATAL would then have to be the addition of all the atomic composite error codes.
-
-
-            (Warning: author mounting the soapbox.)
-
-            The right way to fix this, is to let the function RexxVariablePool() set another flag in shvret (e.g. named RXSHV_STEM) during RXSHV_NEXTV if and only if the value returned is a stem variable. That way, the application programmer would be able to differ between stem variables and compound variable with a null string tail.
-
-
-            To handle the other problem with compound variables and RXSHV_NEXTV, I would have liked to return a null string in shvvalue if and only if the variable is a compound variable having its initial value, and the stem of that compound variable has been assigned a value. Then, the value of the compound variable is equal to its name, and is available in the shvname field.
-
-
-            I'd also like to see that the shvret value contained other information concerning the variables, e.g. whether the variable was exposed at the current procedure level. Of course, Regina does not contain any of these extra, non-standard features.
-
-            (Author is dismounting the soapbox.)
-
-
-            When Regina is returning variables with RXSHV_NEXTV, the variables are returned in the order in which they occur in the open hash table in the interpreter. i.e. the order in which variables belonging to different bins are returned is consistent, but the order in which variables hashed to the same bin are returned, is non-deterministic. Note that all compound variables belonging to the same stem are returned in one sequence.
+When Regina is returning variables with RXSHV_NEXTV, the variables are returned in the order in which they occur in the open hash table in the interpreter. i.e. the order in which variables belonging to different bins are returned is consistent, but the order in which variables hashed to the same bin are returned, is non-deterministic. Note that all compound variables belonging to the same stem are returned in one sequence.
 
 ==== The RexxVariablePool() function ====
 
+This function is used to process a sequence of variable requests, and process them sequentially. The prototype of this function is:
 
-            This function is used to process a sequence of variable requests, and process them sequentially. The prototype of this function is:
+<code c>
+APIRET APIENTRY ULONG RexxVariablePool( SHVBLOCK *Request) ;
+</code>
 
+Its only parameter is a pointer to a SHVBLOCK structure, which may be the first of the linked list. The function performs the operation specified in each block. If an error should occur, the current request is terminated, and the function moves on to the next request in the chain.
 
-            APIRET APIENTRY ULONG RexxVariablePool( SHVBLOCK *Request
+The result value is a bit peculiar. If the returned value is less than 128, it is calculated by logically OR'ing the returned shvret field of all the requests in the chain. That way, you can easily check whether any of the requests was e.g. skipped because of lack of memory. To determine which request, you have to iterate through the list.
 
-            ) ;
+If the result value is higher than 127, it signifies an error. If any of these values are set, you can not assume that any of the requests have been processed. The following symbolic name gives its meaning.
 
+[RXSHV_NOAVL]
 
-            Its only parameter is a pointer to a SHVBLOCK structure, which may be the first of the linked list. The function performs the operation specified in each block. If an error should occur, the current request is terminated, and the function moves on to the next request in the chain.
-
-
-            The result value is a bit peculiar. If the returned value is less than 128, it is calculated by logically OR'ing the returned shvret field of all the requests in the chain. That way, you can easily check whether any of the requests was e.g. skipped because of lack of memory. To determine which
-
-            request, you have to iterate through the list.
-
-
-            If the result value is higher than 127, it signifies an error. If any of these values are set, you can not assume that any of the requests have been processed. The following symbolic name gives its meaning.
-
-
-            [RXSHV_NOAVL]
-
-            Means that the interface is not available for this request. This might occur if the interface was not able to start the interpreter, or if an operation requested a variable when the interpreter is not currently executing any script (i.e. idle and waiting for a script to execute).
+Means that the interface is not available for this request. This might occur if the interface was not able to start the interpreter, or if an operation requested a variable when the interpreter is not currently executing any script (i.e. idle and waiting for a script to execute).
 
 ===== The System Exit Handler Interface =====
 
-
-        The exit handlers provide a mechanism for governing important aspects of the Rexx interpreter from the application: It can trap situations like the interpreter writing out text, and then handle them itself, e.g. by displaying the text in a special window. You can regard system exits as a sort of hooks.
+The exit handlers provide a mechanism for governing important aspects of the Rexx interpreter from the application: It can trap situations like the interpreter writing out text, and then handle them itself, e.g. by displaying the text in a special window. You can regard system exits as a sort of hooks.
 
 ==== The System Exit Handler ‌ ====
 
+Just like the subcommand handler, the system exit handler is a routine supplied by the application, and is called by the interpreter when certain situations occur. These situations are described in detail later. For the examples below, we will use the output from SAY as an example.
 
-            Just like the subcommand handler, the system exit handler is a routine supplied by the application, and is called by the interpreter when certain situations occur. These situations are described in detail later. For the examples below, we will use the output from SAY as an example.
+If a system exit handler is enabled for the SAY instruction, it will be called with a parameter describing the text that is to be written out. The system exit handler can choose to handle the situation (e.g. by writing the text itself), or it can ignore it and let the interpreter perform the output. The return code from the system exit tells the interpreter whether a system exit handled the situation or not.
 
+A system exit handler must be a routine defined according to the prototype: 
 
-            If a system exit handler is enabled for the SAY instruction, it will be called with a parameter describing the text that is to be written out. The system exit handler can choose to handle the situation (e.g. by writing the text itself), or it can ignore it and let the interpreter perform the output. The return code from the system exit tells the interpreter whether a system exit handled the situation or not.
+<code c>
+LONG APIENTRY my_exit_handler(LONG ExitNumber, LONG Subfunction, PEXIT ParmBlock) ;
+</code>
 
-            A system exit handler must be a routine defined according to the prototype: LONG APIENTRY my_exit_handler(
+In this prototype, the type PEXIT is a pointer to a parameter block containing all the parameters necessary to handle the situation. The actual definition of this parameter block will vary, and is described in detail in the list of each system exit.
 
-            LONG ExitNumber, LONG Subfunction, PEXIT ParmBlock
+The exits are defined in a two-level hierarchy. The ExitNumber defines the main function for a system exit, while the Subfunction defines the subfunction within that main function. e.g. for SAY, the main function will be RXSIO (the system exit for standard I/O) and the subfunction will be RXSIOSAY. The RXSIO main function has other sub-functions for handling trace output, interactive trace input, and PULL input from standard input.
 
-            ) ;
+The value returned from the system exit handler must be one of the following symbolic values: 
 
+[RXEXIT_HANDLED]
 
-            In this prototype, the type PEXIT is a pointer to a parameter block containing all the parameters necessary to handle the situation. The actual definition of this parameter block will vary, and is described in detail in the list of each system exit.
+Signals that the system exit handler took care of the situation, and that the interpreter should not proceed to do the default action. For the SAY instruction, this means that the interpreter will not print out anything.
 
+[RXEXIT_NOT_HANDLED]
 
-            The exits are defined in a two-level hierarchy. The ExitNumber defines the main function for a system exit, while the Subfunction defines the subfunction within that main function. e.g. for SAY, the main function will be RXSIO (the system exit for standard I/O) and the subfunction will be RXSIOSAY. The RXSIO main function has other sub-functions for handling trace output, interactive trace input, and PULL input from standard input.
+Signals that the system exit handler did not take care of the situation, and the interpreter will proceed to perform the default action. For the SAY instruction, this means that it must print out the argument to SAY.
 
+[RXEXIT_RAISE_ERROR]
 
-            The value returned from the system exit handler must be one of the following symbolic values: [RXEXIT_HANDLED]
+Signals that the interpreter's default action for this situation should not be performed, but instead a SYNTAX condition should be raised. Don't get confused by the name, it is not the ERROR condition, but the SYNTAX condition is raised, using the syntax error Failure in system service (normally numbered 48).
 
-            Signals that the system exit handler took care of the situation, and that the interpreter should not proceed to do the default action. For the SAY instruction, this means that the interpreter will not print out anything.
+In addition to returning information as the numeric return value, information may also be returned by setting variables in the parameter block. For instance, if the system exit is to handle interactive trace input, that is how it will supply the interpreter with the input string.
 
-            [RXEXIT_NOT_HANDLED]
-
-            Signals that the system exit handler did not take care of the situation, and the interpreter will proceed to perform the default action. For the SAY instruction, this means that it must print out the argument to SAY.
-
-            [RXEXIT_RAISE_ERROR]
-
-            Signals that the interpreter's default action for this situation should not be performed, but instead a SYNTAX condition should be raised. Don't get confused by the name, it is not the ERROR condition, but the SYNTAX condition is raised, using the
-
-            syntax error Failure in system service (normally numbered 48).
-
-
-            In addition to returning information as the numeric return value, information may also be returned by setting variables in the parameter block. For instance, if the system exit is to handle interactive trace input, that is how it will supply the interpreter with the input string.
-
-
-            It is a good and disciplined practice to let your exit handlers start by verifying the ExitNumber and Subfunction codes, and immediately return RXEXIT_NOT_HANDLED if it does not recognize both of them. That way, your application will be upwards compatible with future interpreters which might have more sub-functions for any given main function.
+It is a good and disciplined practice to let your exit handlers start by verifying the ExitNumber and Subfunction codes, and immediately return RXEXIT_NOT_HANDLED if it does not recognize both of them. That way, your application will be upwards compatible with future interpreters which might have more sub-functions for any given main function.
 
 ==== List of System Exit Handlers ====
 
