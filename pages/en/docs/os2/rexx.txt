@@ -8821,82 +8821,26 @@ Affected operations of the locale support are:
 
 ==== Using Native Language Support ====
 
+To specify a native language, up to 2 environment variables are used.
 
-            To specify a native language, up to 2 environment variables are used.
+REGINA_LANG environment variable is set to an ISO 639, 2 character language abbreviation as defined in the following table for error messages, optionally followed by a comma and the locale. The locale is explained in Section 1; “Executing Rexx programs With Regina”. The value given at the command line by the parameter "-l" takes precedence if it is given at all, even if the empty string is used.
 
-            REGINA_LANG environment variable is set to an ISO 639, 2 character language abbreviation as defined in the following table for error messages, optionally followed by a comma and the locale. The locale is explained in Section 1; “Executing Rexx programs With Regina”. The value given at the command line by the parameter "-l" takes precedence if it is given at all, even if the empty string is used.
+^ REGINA_LANG ^ Language ^ Translation By ^
+| de | German | Floran Grosse-Coosmann |
+| es | Spanish | Pablo Garcia-Abia |
+| no | Norwegian | Vidar Tysse |
+| pl | Polish | Bartosz Kozlowski |
+| pt | Portuguese | Susana and Brian Carpenter, Josie Medeiros |
+| sv | Swedish | Jan-Erik Lärka |
+| tr | Turkish | Haluk Polat |
 
-            REGINA_LANG
-            	
+(to get your name in this table, contact the maintainer with the language you wish to support)
 
-            Language
-            	
+If REGINA_LANG is not set, the default is en. The case of the value is irrelevant; EN is the same as en.
 
-            Translation By
+REGINA_LANG_DIR is required if Regina does not know where the language files will be at runtime.
 
-            de
-            	
-
-            German
-            	
-
-            Floran Grosse-Coosmann
-
-            es
-            	
-
-            Spanish
-            	
-
-            Pablo Garcia-Abia
-
-            no
-            	
-
-            Norwegian
-            	
-
-            Vidar Tysse
-
-            pl
-            	
-
-            Polish
-            	
-
-            Bartosz Kozlowski
-
-            pt
-            	
-
-            Portuguese
-            	
-
-            Susana and Brian Carpenter, Josie Medeiros
-
-            sv
-            	
-
-            Swedish
-            	
-
-            Jan-Erik Lärka
-
-            tr
-            	
-
-            Turkish
-            	
-
-            Haluk Polat
-
-            (to get your name in this table, contact the maintainer with the language you wish to support)
-
-            If REGINA_LANG is not set, the default is en. The case of the value is irrelevant; EN is the same as en.
-
-            REGINA_LANG_DIR is required if Regina does not know where the language files will be at runtime.
-
-            Any binary distribution that includes an installation routine; RPM, deb, Windows NSIS or EPOC32, will set the location of the .mtb files automatically. Similarly building and installing Regina on Unix-like platforms using configure;make install combination will also set the location automatically. All other platforms will require this environment variable to bet set manually.
+Any binary distribution that includes an installation routine; RPM, deb, Windows NSIS or EPOC32, will set the location of the .mtb files automatically. Similarly building and installing Regina on Unix-like platforms using configure;make install combination will also set the location automatically. All other platforms will require this environment variable to bet set manually.
 
 
 ===== Rexx and Regina binaries: Why? =====
@@ -8911,260 +8855,202 @@ Cannot use rxfuncadd() in a static library to load an external function package 
 
 ===== Definitions =====
 
+In order to make the definitions more readable, but still have a rigid definition of the terms, some extra comments have been added to some of the definitions. These comments are enclosed in square brackets.
 
-        In order to make the definitions more readable, but still have a rigid definition of the terms, some extra comments have been added to some of the definitions. These comments are enclosed in square brackets.
+Argument is an expression supplied to a function or subroutine, and it provides data on which the call can work on.
 
+Assignment is a clause in which second token is the equal sign. [Note that the statements "a==b" and "3=4" are an (invalid) assignment, not an expression. The type of the first token is irrelevant; if the second token is the equal sign, then the clause is assumed to be an assignment.]
 
-        Argument is an expression supplied to a function or subroutine, and it provides data on which the call can work on.
+Blanks are characters which glyphs are empty space, either vertically or horizontally. A blank is not a token (but may sometimes be embedded in tokens), but acts as token separators. [Exactly which characters are considered blanks will differ between operating systems and implementations, but the
 
+<space> character is always a blank. The <tab> character is also often considered a blank. Other characters considered blank might be the end-of-line <eol>), vertical tab (<vt>), and formfeed (<ff>). See specific documentation for each interpreter for more information.]
 
-        Assignment is a clause in which second token is the equal sign. [Note that the statements "a==b" and "3=4" are an (invalid) assignment, not an expression. The type of the first token is irrelevant; if the second token is the equal sign, then the clause is assumed to be an assignment.]
+Buffer
 
+Caller routine
 
-        Blanks are characters which glyphs are empty space, either vertically or horizontally. A blank is not a token (but may sometimes be embedded in tokens), but acts as token separators. [Exactly which characters are considered blanks will differ between operating systems and implementations, but the
+Character is a piece of information about a mapping from a storage unit (normally a byte) and a glyph. Often used as "the meaning of the glyph mapped to a particular storage unit". [The glyph "A" is the same in EBCDIC and ASCII, but the character "A" (i.e. the mapping from glyph to storage unit) differs.]
 
-        <space> character is always a blank. The <tab> character is also often considered a blank. Other characters considered blank might be the end-of-line <eol>), vertical tab (<vt>), and formfeed (<ff>). See specific documentation for each interpreter for more information.]
+Character string is an finite, ordered, and possibly empty set of characters.
 
+Clause is a non-empty collection of tokens in a Rexx script. The tokens making up a clause are all the consecutive tokens delimited by two consecutive clause delimiters. [Clauses are further divided into null clauses, instructions, assignments, and commands.]
 
-        Buffer
+Clause delimiter is a non-empty sequence of elements of a subset of tokens, normally the linefeed and the semicolon. Also the start and end of a Rexx script are considered clause delimiters. Also colon is a clause separator, but it is only valid after a label.
 
+Command
 
-        Caller routine
+Compound variable is a variable which name has at least one "." character that isn't positioned at the end of the name.
 
+Current environment is a particular environment to which commands is routed if no explicit
 
-        Character is a piece of information about a mapping from a storage unit (normally a byte) and a glyph. Often used as "the meaning of the glyph mapped to a particular storage unit". [The glyph "A" is the same in EBCDIC and ASCII, but the character "A" (i.e. the mapping from glyph to storage unit) differs.]
+environment is specified for their routing.
 
+Current procedure level is the procedure level in effect at a certain point during execution.
 
-        Character string is an finite, ordered, and possibly empty set of characters.
+Daemon Decimal digit Device driver
 
+Digit is a single character having a numeric value associate with its glyph.
 
-        Clause is a non-empty collection of tokens in a Rexx script. The tokens making up a clause are all the consecutive tokens delimited by two consecutive clause delimiters. [Clauses are further divided into null clauses, instructions, assignments, and commands.]
+Empty string
 
+Environment is a interface to which Rexx can route commands and afterwards retrieve status information like return values.
 
-        Clause delimiter is a non-empty sequence of elements of a subset of tokens, normally the linefeed and the semicolon. Also the start and end of a Rexx script are considered clause delimiters. Also colon is a clause separator, but it is only valid after a label.
+Evaluation is the process applied to an expression in order to derive a character string.
 
+Exposing is the binding of a variable in the current procedure level to the variable having the same name in the caller routine. This binding will be in effect for as long as the current procedure level is active.
 
-        Command
+Exponential form is a way of writing particularly large or small numbers in a fashion that makes them more readable. The number is divided into a mantissa and an exponent of base 10.
 
+Expression is a non-empty sequence of tokens, for which there exists syntactic restrictions on which tokens can be members, and the order in which the tokens can occur. [Typically, an expression may consist of literal strings or symbols, connected by concatenation and operators.]
 
-        Compound variable is a variable which name has at least one "." character that isn't positioned at the end of the name.
+External data queue see "stack".
 
+External subroutine is a script of Rexx code, which is executed as a response to a subroutine or function call that is neither internal nor built-in.
 
-        Current environment is a particular environment to which commands is routed if no explicit
+FIFO
 
-        environment is specified for their routing.
+Glyph is an atomic element of text, having a meaning and an appearance; like a letter, a digit, a punctuation mark, etc.
 
+Hex is used as a general abbreviation for term hexadecimal when used in compound words like hex digit and hex string.
 
-        Current procedure level is the procedure level in effect at a certain point during execution.
+Hexadecimal digit is a digit in the number system having a base of 16. The first ten digits are identical with the decimal digits (0-9), while for the last six digits, the first six letters of the Latin alphabet (A-F) are used.
 
+Hexadecimal string is a character string that consists only of the hexadecimal digits, and with optional whitespace to divide the hexadecimal digits into groups. Leading or trailing whitespace is illegal. All groups except the first must consist of an even number of digits. If the first group have an odd number of digits, an extra leading zero is implied under some circumstances.
 
-        Daemon Decimal digit Device driver
+Instruction is a clause that is recognized by the fact that the first token is a special keyword, and that the clause is not an assignment or label. Instructions typically are well-defined Rexx language components, such as loops and function calls.
 
-        Digit is a single character having a numeric value associate with its glyph.
+Interactive trace is a trace mode, where the interpreter halts execution between each clause, and offer the user the possibility to specify arbitrary Rexx statements to be executed before the execution continues.
 
+Label LIFO
 
-        Empty string
+Line continuation is the comma; ',' character. When it is the last token on a line, then the end of clause implied by the end of line is ignored and the clause continues on the next line.
 
+Literal name is a name which will always be interpreted as a constant, i.e. that no variable substitution will take place.
 
-        Environment is a interface to which Rexx can route commands and afterwards retrieve status information like return values.
+Literal string is a token in a Rexx script, that basically is surrounded by quotation marks, in order to make a character string containing the same characters as the literal string.
 
+Keyword is a element from finite set of symbols.
 
-        Evaluation is the process applied to an expression in order to derive a character string.
+Main level Main program
 
+Name space is a collection of named variables. In general, the expression is used when referring to the set of variables available to the program at some point during interpretation.
 
-        Exposing is the binding of a variable in the current procedure level to the variable having the same name in the caller routine. This binding will be in effect for as long as the current procedure level is active.
+Nullstring is a character string having the length zero, i.e. an empty character string. [Note the difference from the undefined string.]
 
+Operating system Parameters Parsing Procedure level
 
-        Exponential form is a way of writing particularly large or small numbers in a fashion that makes them more readable. The number is divided into a mantissa and an exponent of base 10.
+Program is a collection of Rexx code, which may be zero or more scripts, or other repositories of Rexx code. However, a program must contain a all the code to be executed.
 
+Queue see "external data queue" or "stack".
 
-        Expression is a non-empty sequence of tokens, for which there exists syntactic restrictions on which tokens can be members, and the order in which the tokens can occur. [Typically, an expression may consist of literal strings or symbols, connected by concatenation and operators.]
+Routine is a unit during run-time, which is a procedural level. Certain settings are saved across routines. One routine (the caller routine) can be temporarily suspended while another routine is executed (the called routine). With such nesting, the called routine must be terminated before execution of the caller routine can be resumed. Normally, the CALL instruction or a function call is used to do this. Note that the main level of a Rexx script is also a routine.
 
+Script is a single file containing Rexx code.
 
-        External data queue see "stack".
+Space separated Stack
 
+Statement is a clause having in general some action, i.e. a clause other than a null clause. [Assignments, commands and instructions are statements.]
 
-        External subroutine is a script of Rexx code, which is executed as a response to a subroutine or
+Stem collection Stem variable Strictly order
 
-        function call that is neither internal nor built-in.
+Subkeyword is a keyword, but the prefix "sub" stresses the fact that a symbol is a keyword only in certain contexts [e.g. inside a particular instruction].
 
+Subroutine is a routine which has been invoked from another Rexx routine; i.e. it can not be the "main" program of a Rexx script.
 
-        FIFO
+Symbol Symbol table
 
+Tail substitution Term
 
-        Glyph is an atomic element of text, having a meaning and an appearance; like a letter, a digit, a punctuation mark, etc.
+Token
 
+Token separator Uninitialized Variable name Variable symbol
 
-        Hex is used as a general abbreviation for term hexadecimal when used in compound words like hex digit and hex string.
+Whitespace One or several consecutive blank characters.
 
+hex literal norm. hex string
 
-        Hexadecimal digit is a digit in the number system having a base of 16. The first ten digits are identical with the decimal digits (0-9), while for the last six digits, the first six letters of the Latin alphabet (A-F) are used.
+bin {digit,string,literal}
 
+norm. bin string packed char string
 
-        Hexadecimal string is a character string that consists only of the hexadecimal digits, and with optional whitespace to divide the hexadecimal digits into groups. Leading or trailing whitespace is illegal. All groups except the first must consist of an even number of digits. If the first group have
-
-        an odd number of digits, an extra leading zero is implied under some circumstances.
-
-
-        Instruction is a clause that is recognized by the fact that the first token is a special keyword, and that the clause is not an assignment or label. Instructions typically are well-defined Rexx language components, such as loops and function calls.
-
-
-        Interactive trace is a trace mode, where the interpreter halts execution between each clause, and offer the user the possibility to specify arbitrary Rexx statements to be executed before the execution continues.
-
-
-        Label LIFO
-
-        Line continuation is the comma; ',' character. When it is the last token on a line, then the end of clause implied by the end of line is ignored and the clause continues on the next line.
-
-
-        Literal name is a name which will always be interpreted as a constant, i.e. that no variable substitution will take place.
-
-
-        Literal string is a token in a Rexx script, that basically is surrounded by quotation marks, in order to make a character string containing the same characters as the literal string.
-
-
-        Keyword is a element from finite set of symbols.
-
-
-        Main level Main program
-
-        Name space is a collection of named variables. In general, the expression is used when referring to the set of variables available to the program at some point during interpretation.
-
-
-        Nullstring is a character string having the length zero, i.e. an empty character string. [Note the difference from the undefined string.]
-
-
-        Operating system Parameters Parsing Procedure level
-
-        Program is a collection of Rexx code, which may be zero or more scripts, or other repositories of
-
-        Rexx code. However, a program must contain a all the code to be executed.
-
-
-        Queue see "external data queue" or "stack".
-
-
-        Routine is a unit during run-time, which is a procedural level. Certain settings are saved across
-
-        routines. One routine (the caller routine) can be temporarily suspended while another routine is
-
-        executed (the called routine). With such nesting, the called routine must be terminated before execution of the caller routine can be resumed. Normally, the CALL instruction or a function call is used to do this. Note that the main level of a Rexx script is also a routine.
-
-
-        Script is a single file containing Rexx code.
-
-
-        Space separated Stack
-
-        Statement is a clause having in general some action, i.e. a clause other than a null clause. [Assignments, commands and instructions are statements.]
-
-
-        Stem collection Stem variable Strictly order
-
-        Subkeyword is a keyword, but the prefix "sub" stresses the fact that a symbol is a keyword only in certain contexts [e.g. inside a particular instruction].
-
-
-        Subroutine is a routine which has been invoked from another Rexx routine; i.e. it can not be the "main" program of a Rexx script.
-
-
-        Symbol Symbol table
-
-        Tail substitution Term
-
-        Token
-
-
-        Token separator Uninitialized Variable name Variable symbol
-
-        Whitespace One or several consecutive blank characters.
-
-
-        hex literal norm. hex string
-
-        bin {digit,string,literal}
-
-        norm. bin string packed char string
-
-        Character strings is the only type of data available in Rexx, but to some extent there are 'subtypes' of character strings; character strings which contents has certain format. These special formats is discussed below.
+Character strings is the only type of data available in Rexx, but to some extent there are 'subtypes' of character strings; character strings which contents has certain format. These special formats is discussed below.
 
 
 ===== Bibliography =====
 
+[KIESEL]
 
+Peter C. Kiesel, REXX - Advanced Techniques for Programmers. McGraw-Hill, 1993, ISBN 0-07-034600-3
 
-        [KIESEL]
+[CALLAWAY]
 
-        Peter C. Kiesel, REXX - Advanced Techniques for Programmers. McGraw-Hill, 1993, ISBN 0-07-034600-3
+Merill Callaway, The ARexx Cookbook. 511-A Girard Blvd. SE, Albuquerque, NM 87106: Whitestone,1992, ISBN 0-9632773-0-8 
 
-        [CALLAWAY]
+[TRL2]
 
-        Merill Callaway, The ARexx Cookbook. 511-A Girard Blvd. SE, Albuquerque, NM 87106:
+M. F. Cowlishaw, The REXX Language- Second Edition. Englewood Cliffs: Prentice-Hall, 1990, ISBN 0-13-780651-5
 
-        Whitestone,1992, ISBN 0-9632773-0-8 [TRL2]
+[TRL1]
 
-        M. F. Cowlishaw, The REXX Language- Second Edition. Englewood Cliffs: Prentice-Hall, 1990, ISBN 0-13-780651-5
+M. F. Cowlishaw, The REXX Language - First Edition. Englewood Cliffs: Prentice-Hall, 1985, ISBN 0-13-780735-X
 
-        [TRL1]
+[SYMPOS3]
 
-        M. F. Cowlishaw, The REXX Language - First Edition. Englewood Cliffs: Prentice-Hall, 1985, ISBN 0-13-780735-X
+Proceedings of the Rexx Symposium for Developers and Users. Stanford: Stanford Linear Accelerator Center, 1992
 
-        [SYMPOS3]
+[TRH:PRICE]
 
-        Proceedings of the Rexx Symposium for Developers and Users. Stanford: Stanford Linear Accelerator Center, 1992
+Stephen G. Price, SAA Portability, chapter 37, pp 477-498. In Goldberg ans Smith III [TRH], 1992
 
-        [TRH:PRICE]
+[TRH]
 
-        Stephen G. Price, SAA Portability, chapter 37, pp 477-498. In Goldberg ans Smith III [TRH], 1992
+Gabriel Goldberg and Smith III, Philip H., The REXX Handbook. McGraw-Hill, 1992, ISBN 0-07-023682-8
 
-        [TRH]
+[DANEY]
 
+Charles Daney, Programming in REXX. McGraw-Hill, 1992, ISBN 0-07-015305-1 
 
-        Gabriel Goldberg and Smith III, Philip H., The REXX Handbook. McGraw-Hill, 1992, ISBN 0-07-023682-8
+[BMARKS]
 
-        [DANEY]
+Brian Marks, Advanced REXX programming. McGraw-Hill, 1992 
 
-        Charles Daney, Programming in REXX. McGraw-Hill, 1992, ISBN 0-07-015305-1 [BMARKS]
+[ZAMARA]
 
-        Brian Marks, Advanced REXX programming. McGraw-Hill, 1992 [ZAMARA]
+Chris Zamara and Nick Sullivan, Using ARexx on the Amiga. Abacus, 1991, ISBN 1-55755-114-6
 
-        Chris Zamara and Nick Sullivan, Using ARexx on the Amiga. Abacus, 1991, ISBN 1-55755-114-6
+[REXXSAA]
 
-        [REXXSAA]
+W. David Ashley, SAA Procedure Language REXX Reference. 5 Timberline Dr., Trophy Club, Tx 76262: Pedagogic Software, 1991
 
-        W. David Ashley, SAA Procedure Language REXX Reference. 5 Timberline Dr., Trophy Club, Tx 76262: Pedagogic Software, 1991
+[MCGH:DICT]
 
-        [MCGH:DICT]
+Sybil P. Parker, McGrw-Hill Dictionary of Computers. McGraw-Hill, 1984, ISBN 0-07-045415-9
 
-        Sybil P. Parker, McGrw-Hill Dictionary of Computers. McGraw-Hill, 1984, ISBN 0-07-045415-9
+[PJPLAUGER]
 
-        [PJPLAUGER]
+P. J. Plauger, The Standard C Library. Englewood Cliffs: Prentice Hall, 1992, ISBN 0-13-131509-9
 
-        P. J. Plauger, The Standard C Library. Englewood Cliffs: Prentice Hall, 1992, ISBN 0-13-131509-9
+[KR]
 
-        [KR]
+Brian W. Kernighan and Dennis M. Ritchie, The C Programming Language - Second Edition. Englewood Cliffs: Prentice Hall, 1988, ISBN 0-13-110362-8
 
+[ANSIC]
 
-        Brian W. Kernighan and Dennis M. Ritchie, The C Programming Language - Second Edition. Englewood Cliffs: Prentice Hall, 1988, ISBN 0-13-110362-8
+Programming languages - C. , Technical Report ISO/IEC 9899:1990, ISO, Case postale 56, CH-1211 Geneve 20, Switzerland, 1990
 
-        [ANSIC]
+[OX:CDICT]
 
-        Programming languages - C. , Technical Report ISO/IEC 9899:1990, ISO, Case postale 56, CH-1211 Geneve 20, Switzerland, 1990
+Edward L. Glaser and I. C. Pyle and Valerie Illingsworth, Oxford Reference Dictionary of Computing - Third Edition. Oxford University Press, 1990, ISBN 0-19-286131-X
 
-        [OX:CDICT]
+[ANSI]
 
-        Edward L. Glaser and I. C. Pyle and Valerie Illingsworth, Oxford Reference Dictionary of Computing - Third Edition. Oxford University Press, 1990, ISBN 0-19-286131-X
-
-        [ANSI]
-
-
-        Programming Languages - REXX. , ANSI X3.274-1996, 11 West 42nd Street, New York, New York 10036
+Programming Languages - REXX. , ANSI X3.274-1996, 11 West 42nd Street, New York, New York 10036
 
 ===== GNU Free Documentation License =====
 
 
 
 GNU Free Documentation License Version 1.1, March 2000
-
 
 Copyright (C) 2000 Free Software Foundation, Inc.
 
@@ -9173,138 +9059,136 @@ Copyright (C) 2000 Free Software Foundation, Inc.
 Everyone is permitted to copy and distribute verbatim copies of this license document, but changing it is not allowed.
 
 
-    PREAMBLE
+PREAMBLE
 
-    The purpose of this License is to make a manual, textbook, or other written document "free" in the sense of freedom: to assure everyone the effective freedom to copy and redistribute it, with or without modifying it, either commercially or noncommercially. Secondarily, this License preserves for the author and publisher a way to get credit for their work, while not being considered responsible for modifications made by others.
+The purpose of this License is to make a manual, textbook, or other written document "free" in the sense of freedom: to assure everyone the effective freedom to copy and redistribute it, with or without modifying it, either commercially or noncommercially. Secondarily, this License preserves for the author and publisher a way to get credit for their work, while not being considered responsible for modifications made by others.
 
-    This License is a kind of "copyleft", which means that derivative works of the document must themselves be free in the same sense. It complements the GNU General Public License, which is a copyleft license designed for free software.
+This License is a kind of "copyleft", which means that derivative works of the document must themselves be free in the same sense. It complements the GNU General Public License, which is a copyleft license designed for free software.
 
-    We have designed this License in order to use it for manuals for free software, because free software needs free documentation: a free program should come with manuals providing the same freedoms that the software does. But this License is not limited to software manuals; it can be used for any textual work, regardless of subject matter or whether it is published as a printed book. We recommend this License principally for works whose purpose is instruction or reference.
+We have designed this License in order to use it for manuals for free software, because free software needs free documentation: a free program should come with manuals providing the same freedoms that the software does. But this License is not limited to software manuals; it can be used for any textual work, regardless of subject matter or whether it is published as a printed book. We recommend this License principally for works whose purpose is instruction or reference.
 
 
-    APPLICABILITY AND DEFINITIONS
+APPLICABILITY AND DEFINITIONS
 
-    This License applies to any manual or other work that contains a notice placed by the copyright holder saying it can be distributed under the terms of this License. The "Document", below, refers to any such manual or work. Any member of the public is a licensee, and is addressed as "you".
+This License applies to any manual or other work that contains a notice placed by the copyright holder saying it can be distributed under the terms of this License. The "Document", below, refers to any such manual or work. Any member of the public is a licensee, and is addressed as "you".
 
-    A "Modified Version" of the Document means any work containing the Document or a portion of it, either copied verbatim, or with modifications and/or translated into another language.
+A "Modified Version" of the Document means any work containing the Document or a portion of it, either copied verbatim, or with modifications and/or translated into another language.
 
-    A "Secondary Section" is a named appendix or a front-matter section of the Document that deals exclusively with the relationship of the publishers or authors of the Document to the Document's overall subject (or to related matters) and contains nothing that could fall directly within that overall subject. (For example, if the Document is in part a textbook of mathematics, a Secondary Section may not explain any mathematics.) The relationship could be a matter of historical connection with the subject or with related matters, or of legal, commercial, philosophical, ethical or political position regarding them.
+A "Secondary Section" is a named appendix or a front-matter section of the Document that deals exclusively with the relationship of the publishers or authors of the Document to the Document's overall subject (or to related matters) and contains nothing that could fall directly within that overall subject. (For example, if the Document is in part a textbook of mathematics, a Secondary Section may not explain any mathematics.) The relationship could be a matter of historical connection with the subject or with related matters, or of legal, commercial, philosophical, ethical or political position regarding them.
 
-    The "Invariant Sections" are certain Secondary Sections whose titles are designated, as being those of Invariant Sections, in the notice that says that the Document is released under this License.
+The "Invariant Sections" are certain Secondary Sections whose titles are designated, as being those of Invariant Sections, in the notice that says that the Document is released under this License.
 
-    The "Cover Texts" are certain short passages of text that are listed, as Front-Cover Texts or Back-Cover Texts, in the notice that says that the Document is released under this License.
+The "Cover Texts" are certain short passages of text that are listed, as Front-Cover Texts or Back-Cover Texts, in the notice that says that the Document is released under this License.
 
-    A "Transparent" copy of the Document means a machine-readable copy, represented in a format whose specification is available to the general public, whose contents can be viewed and edited directly and straightforwardly with generic text editors or (for images composed of pixels) generic paint programs or (for drawings) some widely available drawing editor, and that is suitable for input to text formatters or for automatic translation to a variety of formats suitable for input to text formatters. A copy made in an otherwise Transparent file format whose markup has been designed to thwart or discourage subsequent modification by readers is not Transparent. A copy that is not "Transparent" is called "Opaque".
+A "Transparent" copy of the Document means a machine-readable copy, represented in a format whose specification is available to the general public, whose contents can be viewed and edited directly and straightforwardly with generic text editors or (for images composed of pixels) generic paint programs or (for drawings) some widely available drawing editor, and that is suitable for input to text formatters or for automatic translation to a variety of formats suitable for input to text formatters. A copy made in an otherwise Transparent file format whose markup has been designed to thwart or discourage subsequent modification by readers is not Transparent. A copy that is not "Transparent" is called "Opaque".
 
-    Examples of suitable formats for Transparent copies include plain ASCII without markup, Texinfo input format, LaTeX input format, SGML or XML using a publicly available DTD, and standard-conforming simple HTML designed for human modification. Opaque formats include PostScript, PDF, proprietary formats that can be read and edited only by proprietary word processors, SGML or XML for which the DTD and/or processing tools are not generally available, and the machine-generated HTML produced by some word processors for output purposes only.
+Examples of suitable formats for Transparent copies include plain ASCII without markup, Texinfo input format, LaTeX input format, SGML or XML using a publicly available DTD, and standard-conforming simple HTML designed for human modification. Opaque formats include PostScript, PDF, proprietary formats that can be read and edited only by proprietary word processors, SGML or XML for which the DTD and/or processing tools are not generally available, and the machine-generated HTML produced by some word processors for output purposes only.
 
-    The "Title Page" means, for a printed book, the title page itself, plus such following pages as are needed to hold, legibly, the material this License requires to appear in the title page. For works in formats which do not have any title page as such, "Title Page" means the text near the most prominent appearance of the work's title, preceding the beginning of the body of the text.
+The "Title Page" means, for a printed book, the title page itself, plus such following pages as are needed to hold, legibly, the material this License requires to appear in the title page. For works in formats which do not have any title page as such, "Title Page" means the text near the most prominent appearance of the work's title, preceding the beginning of the body of the text.
 
 
-    VERBATIM COPYING
+VERBATIM COPYING
 
-    You may copy and distribute the Document in any medium, either commercially or noncommercially, provided that this License, the copyright notices, and the license notice saying this License applies to the Document are reproduced in all copies, and that you add no other conditions whatsoever to those of this License. You may not use technical measures to obstruct or control the reading or further copying of the copies you make or distribute. However, you may accept compensation in exchange for copies. If you distribute a large enough number of copies you must also follow the conditions in section 3.
+You may copy and distribute the Document in any medium, either commercially or noncommercially, provided that this License, the copyright notices, and the license notice saying this License applies to the Document are reproduced in all copies, and that you add no other conditions whatsoever to those of this License. You may not use technical measures to obstruct or control the reading or further copying of the copies you make or distribute. However, you may accept compensation in exchange for copies. If you distribute a large enough number of copies you must also follow the conditions in section 3.
 
-    You may also lend copies, under the same conditions stated above, and you may publicly display copies.
+You may also lend copies, under the same conditions stated above, and you may publicly display copies.
 
 
-    COPYING IN QUANTITY
+COPYING IN QUANTITY
 
-    If you publish printed copies of the Document numbering more than 100, and the Document's license notice requires Cover Texts, you must enclose the copies in covers that carry, clearly and legibly, all these Cover Texts: Front-Cover Texts on the front cover, and Back-Cover Texts on the back cover. Both covers must also clearly and legibly identify you as the publisher of these copies. The front cover must present the full title with all words of the title equally prominent and visible. You may add other material on the covers in addition.
+If you publish printed copies of the Document numbering more than 100, and the Document's license notice requires Cover Texts, you must enclose the copies in covers that carry, clearly and legibly, all these Cover Texts: Front-Cover Texts on the front cover, and Back-Cover Texts on the back cover. Both covers must also clearly and legibly identify you as the publisher of these copies. The front cover must present the full title with all words of the title equally prominent and visible. You may add other material on the covers in addition.
 
-    Copying with changes limited to the covers, as long as they preserve the title of the Document and satisfy these conditions, can be treated as verbatim copying in other respects.
+Copying with changes limited to the covers, as long as they preserve the title of the Document and satisfy these conditions, can be treated as verbatim copying in other respects.
 
-    If the required texts for either cover are too voluminous to fit legibly, you should put the first ones listed (as many as fit reasonably) on the actual cover, and continue the rest onto adjacent pages.
+If the required texts for either cover are too voluminous to fit legibly, you should put the first ones listed (as many as fit reasonably) on the actual cover, and continue the rest onto adjacent pages.
 
-    If you publish or distribute Opaque copies of the Document numbering more than 100, you must either include a machine-readable Transparent copy along with each Opaque copy, or state in or
+If you publish or distribute Opaque copies of the Document numbering more than 100, you must either include a machine-readable Transparent copy along with each Opaque copy, or state in or with each Opaque copy a publicly-accessible computer-network location containing a complete Transparent copy of the Document, free of added material, which the general network-using public has access to download anonymously at no charge using public-standard network protocols. If you use the latter option, you must take reasonably prudent steps, when you begin distribution of Opaque copies in quantity, to ensure that this Transparent copy will remain thus accessible at the stated location until at least one year after the last time you distribute an Opaque copy (directly or through your agents or retailers) of that edition to the public.
 
-    with each Opaque copy a publicly-accessible computer-network location containing a complete Transparent copy of the Document, free of added material, which the general network-using public has access to download anonymously at no charge using public-standard network protocols. If you use the latter option, you must take reasonably prudent steps, when you begin distribution of Opaque copies in quantity, to ensure that this Transparent copy will remain thus accessible at the stated location until at least one year after the last time you distribute an Opaque copy (directly or through your agents or retailers) of that edition to the public.
+It is requested, but not required, that you contact the authors of the Document well before redistributing any large number of copies, to give them a chance to provide you with an updated version of the Document.
 
-    It is requested, but not required, that you contact the authors of the Document well before redistributing any large number of copies, to give them a chance to provide you with an updated version of the Document.
 
+MODIFICATIONS
 
-    MODIFICATIONS
+You may copy and distribute a Modified Version of the Document under the conditions of sections 2 and 3 above, provided that you release the Modified Version under precisely this License, with the Modified Version filling the role of the Document, thus licensing distribution and modification of the Modified Version to whoever possesses a copy of it. In addition, you must do these things in the Modified Version:
 
-    You may copy and distribute a Modified Version of the Document under the conditions of sections 2 and 3 above, provided that you release the Modified Version under precisely this License, with the Modified Version filling the role of the Document, thus licensing distribution and modification of the Modified Version to whoever possesses a copy of it. In addition, you must do these things in the Modified Version:
+Use in the Title Page (and on the covers, if any) a title distinct from that of the Document, and from those of previous versions (which should, if there were any, be listed in the History section of the Document). You may use the same title as a previous version if the original publisher of that version gives permission.
 
-        Use in the Title Page (and on the covers, if any) a title distinct from that of the Document, and from those of previous versions (which should, if there were any, be listed in the History section of the Document). You may use the same title as a previous version if the original publisher of that version gives permission.
+List on the Title Page, as authors, one or more persons or entities responsible for authorship of the modifications in the Modified Version, together with at least five of the principal authors of the Document (all of its principal authors, if it has less than five).
 
-        List on the Title Page, as authors, one or more persons or entities responsible for authorship of the modifications in the Modified Version, together with at least five of the principal authors of the Document (all of its principal authors, if it has less than five).
+State on the Title page the name of the publisher of the Modified Version, as the publisher.
 
-        State on the Title page the name of the publisher of the Modified Version, as the publisher.
+Preserve all the copyright notices of the Document.
 
-        Preserve all the copyright notices of the Document.
+Add an appropriate copyright notice for your modifications adjacent to the other copyright notices.
 
-        Add an appropriate copyright notice for your modifications adjacent to the other copyright notices.
+Include, immediately after the copyright notices, a license notice giving the public permission to use the Modified Version under the terms of this License, in the form shown in the Addendum below.
 
-        Include, immediately after the copyright notices, a license notice giving the public permission to use the Modified Version under the terms of this License, in the form shown in the Addendum below.
+Preserve in that license notice the full lists of Invariant Sections and required Cover Texts given in the Document's license notice.
 
-        Preserve in that license notice the full lists of Invariant Sections and required Cover Texts given in the Document's license notice.
+Include an unaltered copy of this License.
 
-        Include an unaltered copy of this License.
+Preserve the section entitled "History", and its title, and add to it an item stating at least the title, year, new authors, and publisher of the Modified Version as given on the Title Page. If there is no section entitled "History" in the Document, create one stating the title, year, authors, and publisher of the Document as given on its Title Page, then add an item describing the Modified Version as stated in the previous sentence.
 
-        Preserve the section entitled "History", and its title, and add to it an item stating at least the title, year, new authors, and publisher of the Modified Version as given on the Title Page. If there is no section entitled "History" in the Document, create one stating the title, year, authors, and publisher of the Document as given on its Title Page, then add an item describing the Modified Version as stated in the previous sentence.
+Preserve the network location, if any, given in the Document for public access to a Transparent copy of the Document, and likewise the network locations given in the Document for previous versions it was based on. These may be placed in the "History" section. You may omit a network location for a work that was published at least four years before the Document itself, or if the original publisher of the version it refers to gives permission.
 
-        Preserve the network location, if any, given in the Document for public access to a Transparent copy of the Document, and likewise the network locations given in the Document for previous versions it was based on. These may be placed in the "History" section. You may omit a network location for a work that was published at least four years before the Document itself, or if the original publisher of the version it refers to gives permission.
+In any section entitled "Acknowledgements" or "Dedications", preserve the section's title, and preserve in the section all the substance and tone of each of the contributor acknowledgements and/or dedications given therein.
 
-        In any section entitled "Acknowledgements" or "Dedications", preserve the section's title, and preserve in the section all the substance and tone of each of the contributor acknowledgements and/or dedications given therein.
+Preserve all the Invariant Sections of the Document, unaltered in their text and in their titles. Section numbers or the equivalent are not considered part of the section titles.
 
-        Preserve all the Invariant Sections of the Document, unaltered in their text and in their titles. Section numbers or the equivalent are not considered part of the section titles.
+Delete any section entitled "Endorsements". Such a section may not be included in the Modified Version.
 
-        Delete any section entitled "Endorsements". Such a section may not be included in the Modified Version.
+Do not retitle any existing section as "Endorsements" or to conflict in title with any Invariant Section.
 
-        Do not retitle any existing section as "Endorsements" or to conflict in title with any Invariant Section.
+If the Modified Version includes new front-matter sections or appendices that qualify as Secondary Sections and contain no material copied from the Document, you may at your option designate some or all of these sections as invariant. To do this, add their titles to the list of Invariant Sections in the Modified Version's license notice.
 
-        If the Modified Version includes new front-matter sections or appendices that qualify as Secondary Sections and contain no material copied from the Document, you may at your option designate some or all of these sections as invariant. To do this, add their titles to the list of Invariant Sections in the Modified Version's license notice.
+These titles must be distinct from any other section titles.
 
-        These titles must be distinct from any other section titles.
+You may add a section entitled "Endorsements", provided it contains nothing but endorsements of your Modified Version by various parties--for example, statements of peer review or that the text has been approved by an organization as the authoritative definition of a standard.
 
-        You may add a section entitled "Endorsements", provided it contains nothing but endorsements of your Modified Version by various parties--for example, statements of peer review or that the text has been approved by an organization as the authoritative definition of a standard.
+You may add a passage of up to five words as a Front-Cover Text, and a passage of up to 25 words as a Back-Cover Text, to the end of the list of Cover Texts in the Modified Version. Only one passage of Front-Cover Text and one of Back-Cover Text may be added by (or through arrangements made by) any one entity. If the Document already includes a cover text for the same cover, previously added by you or by arrangement made by the same entity you are acting on behalf of, you may not add another; but you may replace the old one, on explicit permission from the previous publisher that added the old one.
 
-        You may add a passage of up to five words as a Front-Cover Text, and a passage of up to 25 words as a Back-Cover Text, to the end of the list of Cover Texts in the Modified Version. Only one passage of Front-Cover Text and one of Back-Cover Text may be added by (or through arrangements made by) any one entity. If the Document already includes a cover text for the same cover, previously added by you or by arrangement made by the same entity you are acting on behalf of, you may not add another; but you may replace the old one, on explicit permission from the previous publisher that added the old one.
+The author(s) and publisher(s) of the Document do not by this License give permission to use their names for publicity for or to assert or imply endorsement of any Modified Version.
 
-        The author(s) and publisher(s) of the Document do not by this License give permission to use their names for publicity for or to assert or imply endorsement of any Modified Version.
 
+COMBINING DOCUMENTS
 
-    COMBINING DOCUMENTS
+You may combine the Document with other documents released under this License, under the terms defined in section 4 above for modified versions, provided that you include in the combination all of the Invariant Sections of all of the original documents, unmodified, and list them all as Invariant Sections of your combined work in its license notice.
 
-    You may combine the Document with other documents released under this License, under the terms defined in section 4 above for modified versions, provided that you include in the combination all of the Invariant Sections of all of the original documents, unmodified, and list them all as Invariant Sections of your combined work in its license notice.
+The combined work need only contain one copy of this License, and multiple identical Invariant Sections may be replaced with a single copy. If there are multiple Invariant Sections with the same name but different contents, make the title of each such section unique by adding at the end of it, in parentheses, the name of the original author or publisher of that section if known, or else a unique number.
 
-    The combined work need only contain one copy of this License, and multiple identical Invariant Sections may be replaced with a single copy. If there are multiple Invariant Sections with the same name but different contents, make the title of each such section unique by adding at the end of it, in parentheses, the name of the original author or publisher of that section if known, or else a unique number.
+Make the same adjustment to the section titles in the list of Invariant Sections in the license notice of the combined work.
 
-    Make the same adjustment to the section titles in the list of Invariant Sections in the license notice of the combined work.
+In the combination, you must combine any sections entitled "History" in the various original documents, forming one section entitled "History"; likewise combine any sections entitled "Acknowledgements", and any sections entitled "Dedications". You must delete all sections entitled "Endorsements."
 
-    In the combination, you must combine any sections entitled "History" in the various original documents, forming one section entitled "History"; likewise combine any sections entitled "Acknowledgements", and any sections entitled "Dedications". You must delete all sections entitled "Endorsements."
+COLLECTIONS OF DOCUMENTS
 
-    COLLECTIONS OF DOCUMENTS
+You may make a collection consisting of the Document and other documents released under this License, and replace the individual copies of this License in the various documents with a single copy that is included in the collection, provided that you follow the rules of this License for verbatim copying of each of the documents in all other respects.
 
-    You may make a collection consisting of the Document and other documents released under this License, and replace the individual copies of this License in the various documents with a single copy that is included in the collection, provided that you follow the rules of this License for verbatim copying of each of the documents in all other respects.
+You may extract a single document from such a collection, and distribute it individually under this License, provided you insert a copy of this License into the extracted document, and follow this License in all other respects regarding verbatim copying of that document.
 
-    You may extract a single document from such a collection, and distribute it individually under this License, provided you insert a copy of this License into the extracted document, and follow this License in all other respects regarding verbatim copying of that document.
 
+AGGREGATION WITH INDEPENDENT WORKS
 
-    AGGREGATION WITH INDEPENDENT WORKS
+A compilation of the Document or its derivatives with other separate and independent documents or works, in or on a volume of a storage or distribution medium, does not as a whole count as a Modified Version of the Document, provided no compilation copyright is claimed for the compilation. Such a compilation is called an "aggregate", and this License does not apply to the other self-contained works thus compiled with the Document, on account of their being thus compiled, if they are not themselves derivative works of the Document.
 
-    A compilation of the Document or its derivatives with other separate and independent documents or works, in or on a volume of a storage or distribution medium, does not as a whole count as a Modified Version of the Document, provided no compilation copyright is claimed for the compilation. Such a compilation is called an "aggregate", and this License does not apply to the other self-contained works thus compiled with the Document, on account of their being thus compiled, if they are not themselves derivative works of the Document.
+If the Cover Text requirement of section 3 is applicable to these copies of the Document, then if the Document is less than one quarter of the entire aggregate, the Document's Cover Texts may be placed on covers that surround only the Document within the aggregate.
 
-    If the Cover Text requirement of section 3 is applicable to these copies of the Document, then if the Document is less than one quarter of the entire aggregate, the Document's Cover Texts may be placed on covers that surround only the Document within the aggregate.
+Otherwise they must appear on covers around the whole aggregate.
 
-    Otherwise they must appear on covers around the whole aggregate.
 
+TRANSLATION
 
-    TRANSLATION
+Translation is considered a kind of modification, so you may distribute translations of the Document under the terms of section 4.
 
-    Translation is considered a kind of modification, so you may distribute translations of the Document under the terms of section 4.
+Replacing Invariant Sections with translations requires special permission from their copyright holders, but you may include translations of some or all Invariant Sections in addition to the original versions of these Invariant Sections. You may include a translation of this License provided that you also include the original English version of this License. In case of a disagreement between the translation and the original English version of this License, the original English version will prevail.
 
-    Replacing Invariant Sections with translations requires special permission from their copyright holders, but you may include translations of some or all Invariant Sections in addition to the original versions of these Invariant Sections. You may include a translation of this License provided that you also include the original English version of this License. In case of a disagreement between the translation and the original English version of this License, the original English version will prevail.
 
+TERMINATION
 
-    TERMINATION
+You may not copy, modify, sublicense, or distribute the Document except as expressly provided for under this License. Any other attempt to copy, modify, sublicense or distribute the Document is void, and will automatically terminate your rights under this License. However, parties who have received copies, or rights, from you under this License will not have their licenses terminated so long as such parties remain in full compliance.
 
-    You may not copy, modify, sublicense, or distribute the Document except as expressly provided for under this License. Any other attempt to copy, modify, sublicense or distribute the Document is void, and will automatically terminate your rights under this License. However, parties who have received copies, or rights, from you under this License will not have their licenses terminated so long as such parties remain in full compliance.
 
-
-    FUTURE REVISIONS OF THIS LICENSE
+FUTURE REVISIONS OF THIS LICENSE
 
 The Free Software Foundation may publish new, revised versions of the GNU Free Documentation License from time to time. Such new versions will be similar in spirit to the present version, but may differ in detail to address new problems or concerns. See http://www.gnu.org/copyleft/.
 
