@@ -7733,623 +7733,598 @@ It is a good and disciplined practice to let your exit handlers start by verifyi
 
 === RXFNC - The External Function Exit Handler ===
 
+The RXFNC system exit handler provides hooks for external functions. It has only one subfunction; RXFNCCAL, which allows an application program to intervene and handle any external function or subroutine.
 
-                The RXFNC system exit handler provides hooks for external functions. It has only one subfunction; RXFNCCAL, which allows an application program to intervene and handle any external function or subroutine.
-
-
-                Do not confuse this exit handler with the external function routines which allow you to define new Rexx, semi-built-in functions. The exit handler is called for all invocations of external routines, and can be called for function names which you were unaware of.
+Do not confuse this exit handler with the external function routines which allow you to define new Rexx, semi-built-in functions. The exit handler is called for all invocations of external routines, and can be called for function names which you were unaware of.
 
 
-                The parameter ParmBlock for RXFNCCAL is defined as:
+The parameter ParmBlock for RXFNCCAL is defined as:
 
+<code c>
+typedef struct {
+  typedef struct {
+    unsigned int rxfferr:1 ;
+    unsigned int rxffnfnd1 ; 
+    unsigned int rxffsub: 1;
+  } rxfnc_flags ;
+  unsigned char *rxfnc_address ; 
+  unsigned short rxfnc_addressl ; 
+  unsigned char *rxfnc_que ; 
+  unsigned short rxfnc_quel ; 
+  unsigned short rxfnc_argc; 
+  RXSTRING *rxfnc_argv ; 
+  RXSTRING rxfnc_retc ;
+} RXFNCCAL_PARM ;
+</code>
 
-                typedef struct { typedef struct {
+The significance of each variable is: 
 
-                unsigned int rxfferr:1 ; unsigned int rxffnfnd1 ; unsigned int rxffsub: 1;
+[rxfnc_flags.rxfferr]
 
-                } rxfnc_flags ;
+Is an output parameter that is set on return in order to inform the interpreter that the function or subroutine was incorrectly called, and thus the SYNTAX condition should be raised.
 
-                unsigned char *rxfnc_address ; unsigned short rxfnc_addressl ; unsigned char *rxfnc_que ; unsigned short rxfnc_quel ; unsigned short rxfnc_argc; RXSTRING *rxfnc_argv ; RXSTRING rxfnc_retc ;
+[rxfnc_flags.rxffnfnd]
 
-                } RXFNCCAL_PARM ;
+Is an output parameter that tells the interpreter that the function was not found. Note the inconsistency: it is only effective if the exit handler returns RXEXIT_HANDLED, which looks like a logic contradiction to setting the not-found flag.
 
+[rxfnc_flags.rxffsub]
 
-                The significance of each variable is: [rxfnc_flags.rxfferr]
+Is an input parameter that tells the exit handler whether it was called for a function or subroutine call. If set, the call being handled is a subroutine call and returning a value is optional; else it was called for a function, and must return a value in rxfnc_retc if RXEXIT_HANDLED is to be returned.
 
-                Is an output parameter that is set on return in order to inform the interpreter that the function or subroutine was incorrectly called, and thus the SYNTAX condition should be raised.
+[rxfnc_name]
 
-                [rxfnc_flags.rxffnfnd]
+Is a pointer to the name of the function or subroutine to be handled, stored as a character array. This is an input parameter, and its length is given by the rxfnc_namel parameter.
 
-                Is an output parameter that tells the interpreter that the function was not found. Note the inconsistency: it is only effective if the exit handler returns RXEXIT_HANDLED, which looks like a logic contradiction to setting the not-found flag.
+[rxfnc_namel]
 
-                [rxfnc_flags.rxffsub]
+Holds the length of rxfnc_name. Note that the last character is the letter ell, not the number one.
 
-                Is an input parameter that tells the exit handler whether it was called for a function or
+[rxfnc_que]
 
-                subroutine call. If set, the call being handled is a subroutine call and returning a value is optional; else it was called for a function, and must return a value in rxfnc_retc if RXEXIT_HANDLED is to be returned.
+Points to a character array holding the name of the currently active queue. This is an input parameter. The length of this name is given by the rxfnc_quel field.
 
-                [rxfnc_name]
+[rxfnc_que1]
 
-                Is a pointer to the name of the function or subroutine to be handled, stored as a character array. This is an input parameter, and its length is given by the rxfnc_namel parameter.
+Holds the length of rxfnc_que. Note that the last character is the letter ell, not the number one.
 
-                [rxfnc_namel]
+[rxfnc_argc]
 
-                Holds the length of rxfnc_name. Note that the last character is the letter ell, not the number one.
+Is the number of arguments passed to the function or subroutine. It defines the size of the array pointed to by the rxfnc_argv field.
 
-                [rxfnc_que]
+[rxfnc_argv]
 
-                Points to a character array holding the name of the currently active queue. This is an input parameter. The length of this name is given by the rxfnc_quel field.
+Points to an array holding the parameters for the routines. The size of this array is given by the rxfnc_argc field. If rxfnc_argc is zero, the value of rxfnc_argv is undefined.
 
-                [rxfnc_que1]
+[rxfnc_retc]
 
-                Holds the length of rxfnc_que. Note that the last character is the letter ell, not the number one.
-
-                [rxfnc_argc]
-
-                Is the number of arguments passed to the function or subroutine. It defines the size of the array pointed to by the rxfnc_argv field.
-
-                [rxfnc_argv]
-
-                Points to an array holding the parameters for the routines. The size of this array is given by the rxfnc_argc field. If rxfnc_argc is zero, the value of rxfnc_argv is undefined.
-
-                [rxfnc_retc]
-
-                Holds an RXSTRING structure suitable for storing the return value of the handler. It is the responsibility of the handler to allocate space for the contents of this string (i.e. the array pointed to by the rxfnc_retc.strptr).
-
+Holds an RXSTRING structure suitable for storing the return value of the handler. It is the responsibility of the handler to allocate space for the contents of this string (i.e. the array pointed to by the rxfnc_retc.strptr).
 
 === RXCMD - The Subcommand Exit Handler ===
 
+The main function code for this exit handler is given by the symbolic name RXCMD. It is called whenever the interpreter is about to call a subcommand, i.e. a command to an external environment. It has only one subfunction: 
 
-                The main function code for this exit handler is given by the symbolic name RXCMD. It is called whenever the interpreter is about to call a subcommand, i.e. a command to an external environment. It has only one subfunction: RXCMDHST.
+RXCMDHST
 
-                The ParmBlock parameter for this subfunction has the following definition: typedef struct {
+The ParmBlock parameter for this subfunction has the following definition: 
 
-                typedef struct {
+<code c>
+typedef struct {
+  typedef struct {
+    unsigned int rxfcfail:1 ; 
+    unsigned int rxfcerr:1 ;
+  } rxcmd_flags ;
+  unsigned char *rxcmd_address ; 
+  unsigned short rxcmd_addressl ; 
+  unsigned char *rxcmd_dll ; 
+  unsigned short rxcmd_dll_len ; 
+  RXSTRING rxcmd_command ; 
+  RXSTRING rxcmd_retc ;
+} RXCMDHST_PARM ;
+</code>
 
-                unsigned int rxfcfail:1 ; unsigned int rxfcerr:1 ;
+The significance of each variable is: 
 
-                } rxcmd_flags ;
+[rxcmd_flags.rxfcfail]
 
-                unsigned char *rxcmd_address ; unsigned short rxcmd_addressl ; unsigned char *rxcmd_dll ; unsigned short rxcmd_dll_len ; RXSTRING rxcmd_command ; RXSTRING rxcmd_retc ;
+If this flag is set, the interpreter will raise a FAILURE condition at the return of the exit handler.
 
-                } RXCMDHST_PARM ;
+[rxcmd_flags.rxfcerr]
 
+Like the previous, but the ERROR condition is raised instead. 
 
-                The significance of each variable is: [rxcmd_flags.rxfcfail]
+[rxcmd_address]
 
-                If this flag is set, the interpreter will raise a FAILURE condition at the return of the exit handler.
+Points to a character array containing the name of the environment to which the command normally would be sent.
 
-                [rxcmd_flags.rxfcerr]
+[rxcmd_addressl]
 
-                Like the previous, but the ERROR condition is raised instead. [rxcmd_address]
+Holds the length of rxcmd_address. Note that the last character is the letter ell, not the number one.
 
-                Points to a character array containing the name of the environment to which the command normally would be sent.
+[rxcmd_dll]
 
-                [rxcmd_addressl]
+Defines the name for the DLL which is to handle the command. I'm not sure what this entry is used for. It is not currently in use for Regina.
 
-                Holds the length of rxcmd_address. Note that the last character is the letter ell, not the number one.
+[rxcmd_dll_len]
 
-                [rxcmd_dll]
+Holds the length of rxcmd_dll. If this length is set to zero, the subcommand handler for this environment is not a DLL, but an EXE handler.
 
-                Defines the name for the DLL which is to handle the command. I'm not sure what this entry is used for. It is not currently in use for Regina.
+[rxcmd_command]
 
-                [rxcmd_dll_len]
+Holds the command string to be executed, including command name and parameters.
 
-                Holds the length of rxcmd_dll. If this length is set to zero, the subcommand handler for this environment is not a DLL, but an EXE handler.
+[rxcmd_retc]
 
-                [rxcmd_command]
+Set by the exit handler to the string which is to be considered the return code from the command. It is assigned to the special variable RC at return from the exit handler. The user is responsible for allocating space for this variable. I have no clear idea what happens if rxcmd_retc.strptr is set to NULL; it might set RC to zero, to the null string, or even drop it.
 
-                Holds the command string to be executed, including command name and parameters.
+It seems that this exit handler is capable of raising both the ERROR and the FAILURE conditions simultaneously. I don't know whether that is legal, or whether only the FAILURE condition is raised, since the ERROR condition is a sort of subset of FAILURE.
 
-                [rxcmd_retc]
-
-                Set by the exit handler to the string which is to be considered the return code from the command. It is assigned to the special variable RC at return from the exit handler. The user is responsible for allocating space for this variable. I have no clear idea what happens if rxcmd_retc.strptr is set to NULL; it might set RC to zero, to the null string, or even drop it.
-
-
-                It seems that this exit handler is capable of raising both the ERROR and the FAILURE conditions simultaneously. I don't know whether that is legal, or whether only the FAILURE condition is raised, since the ERROR condition is a sort of subset of FAILURE.
-
-
-                Note that the return fields of the parameter block are only relevant if the value RXEXIT_HANDLED was returned. This applies to the rxcmd_flags and rxcmd_retc fields of the structure.
-
+Note that the return fields of the parameter block are only relevant if the value RXEXIT_HANDLED was returned. This applies to the rxcmd_flags and rxcmd_retc fields of the structure.
 
 === RXMSQ - The External Data Queue Exit Handler ===
 
+The external data queue exit handler is used as a hook for operations manipulating the external data queue (or the stack). Unfortunately, the stack is a borderline case of what is relevant to the Rexx SAA API. Operations like putting something on, retrieving a string from, obtaining the size, etc. of the stack is not part of the SAA API.
 
-                The external data queue exit handler is used as a hook for operations manipulating the external data queue (or the stack). Unfortunately, the stack is a borderline case of what is relevant to the Rexx SAA API. Operations like putting something on, retrieving a string from, obtaining the size, etc. of the stack is not part of the SAA API.
+However, some of this functionality is seemingly here; but not all. For instance for the RXMSQPLL subfunction, SAA API is called by the interpreter before the interpreter calls whatever system-specific call is available for retrieving a string from the stack.
 
-                However, some of this functionality is seemingly here; but not all. For instance for the RXMSQPLL subfunction, SAA API is called by the interpreter before the interpreter calls whatever system-specific call is available for retrieving a string from the stack.
+Thus the SAA API can be used by an application to provide the interpreter with a fake stack, but it is not a suitable means for the application itself to manipulate the real stack.
 
-                Thus the SAA API can be used by an application to provide the interpreter with a fake stack, but it is not a suitable means for the application itself to manipulate the real stack.
+The RXMSG exit has four subfunctions:
 
-                The RXMSG exit has four subfunctions:
+[RXMSQPLL]
 
+This is called before a line is retrieved from the stack and the application may itself provide the interpreter with an alternative line. On entry, the third parameter points to a structure having the following definition:
 
-                [RXMSQPLL]
+<code c>
+typedef struct { 
+  RXSTRING rxmsq_retc;
+} RXMSQPLL_PARM;
+</code>
 
-                This is called before a line is retrieved from the stack and the application may itself provide the interpreter with an alternative line. On entry, the third parameter points to a structure having the following definition:
+The rxmsq_retc field holds the string to be retrieved from the stack. Note that it is an output parameter, so its value on entry is undefined.
 
-                typedef struct { RXSTRING rxmsq_retc;
+[RXMSQPSH]
 
-                } RXMSQPLL_PARM;
+This is called before the interpreter puts a line on the stack, and it may grab the line itself, and thus prevent the interpreter from putting the line on the stack. Note that this exit handles both pushing and queuing. The third parameter is:
 
+<code c>
+typedef struct { 
+  struct {
+    unsigned rxfmlifo: 1;
+  } rxmsq_flags; 
+  RXSTRING rxmsq_value;
+} RXMSQPSH_PARM;
+</code>
 
-                The rxmsq_retc field holds the string to be retrieved from the stack. Note that it is an output parameter, so its value on entry is undefined.
+Here the field rxmsq_value holds the string to be put on the stack. Whether the string is to be pushed or queued is determined by the boolean value rxmsq_flags.rxmlfifo, which is TRUE if the string is to be pushed.
 
-                [RXMSQPSH]
+All values are input values. What happens if you change them is not defined in the SAA API. Some implementations may let you modify the contents of rxmsq_value and return RXEXIT_NOT_HANDLED and the string push by the interpreter contains the modified string. However, you should not rely on this since it is highly incompatible. You may not de-allocate rxmsq_value.
 
-                This is called before the interpreter puts a line on the stack, and it may grab the line itself, and thus prevent the interpreter from putting the line on the stack. Note that this exit handles both pushing and queuing. The third parameter is:
+[RXMSQSIZ]
 
+this is called before the interpreter tries to determine the size of the stack, and it may present an alternative size to the interpreter. The third parameter is:
 
-                typedef struct { struct {
+<code c>
+typedef struct { 
+  ULONG rxmsq_size;
+} RXMSQSIZ_PARM;
+</code>
 
-                unsigned rxfmlifo: 1;
+The field rxmsq_size can be set to the number the application wants the QUEUED() function to return. Note that this parameter is undefined on entry, so it cannot be used to retrieve the number of lines on the stack.
 
-                } rxmsq_flags; RXSTRING rxmsq_value;
+[RXSQNAM]
 
-                } RXMSQPSH_PARM;
+This is called before the interpreter tries to retrieve the name of the current stack, and it may present the interpreter with an alternative name. Note that this functionality is part of SAA but not TRL; it supports the Get option of the RXQUEUE() built-in function. Note that there are no other exits supporting the other options of RXQUEUE(). The third parameter for this exit is:
 
+<code c>
+typedef struct {
+  RXSTRING rxmsq_name;
+} RXMSQNAM_PARM;
+</code>
 
-                Here the field rxmsq_value holds the string to be put on the stack. Whether the string is to be pushed or queued is determined by the boolean value rxmsq_flags.rxmlfifo, which is TRUE if the string is to be pushed.
+As with RXSQMSIZ, the field rxmsq_name can be set to the name which the application wants to return to the interpreter as the name of the current stack. Note that this is an output-only parameter; its value on input is undefined, and in particular is not the name of the real stack.
 
-                All values are input values. What happens if you change them is not defined in the SAA API. Some implementations may let you modify the contents of rxmsq_value and return RXEXIT_NOT_HANDLED and the string push by the interpreter contains the modified string. However, you should not rely on this since it is highly incompatible. You may not de-allocate rxmsq_value.
-
-                [RXMSQSIZ]
-
-                this is called before the interpreter tries to determine the size of the stack, and it may present an alternative size to the interpreter. The third parameter is:
-
-
-                typedef struct { ULONG rxmsq_size;
-
-                } RXMSQSIZ_PARM;
-
-
-                The field rxmsq_size can be set to the number the application wants the QUEUED() function to return. Note that this parameter is undefined on entry, so it cannot be used to retrieve the number of lines on the stack.
-
-                [RXSQNAM]
-
-                This is called before the interpreter tries to retrieve the name of the current stack, and it may present the interpreter with an alternative name. Note that this functionality is part of SAA but not TRL; it supports the Get option of the RXQUEUE() built-in function. Note that there are no other exits supporting the other options of RXQUEUE(). The third parameter for this exit is:
-
-
-                typedef struct {
-
-                RXSTRING rxmsq_name;
-
-                } RXMSQNAM_PARM;
-
-
-                As with RXSQMSIZ, the field rxmsq_name can be set to the name which the
-
-                application wants to return to the interpreter as the name of the current stack. Note that this is an output-only parameter; its value on input is undefined, and in particular is not the name of the real stack.
-
-
-                Note that this area is troublesome. In TRL, external data queues are not defined as part of the language, while in SAA it is. Thus, TRL-compliant interpreters are likely to implement stacks in various ways that may not be compatible with the SAA.
-
+Note that this area is troublesome. In TRL, external data queues are not defined as part of the language, while in SAA it is. Thus, TRL-compliant interpreters are likely to implement stacks in various ways that may not be compatible with the SAA.
 
 === RXSIO - The Standard I/O Exit Handler ===
 
+The main code for this exit handler has the symbolic value RXSIO. There are four sub-functions: 
 
-                The main code for this exit handler has the symbolic value RXSIO. There are four sub-functions: [RXSIODTR]
+[RXSIODTR]
 
-                Called whenever the interpreter needs to read a line from the user during interactive tracing. Note the difference between this subfunction and RXSIOTRD.
+Called whenever the interpreter needs to read a line from the user during interactive tracing. Note the difference between this subfunction and RXSIOTRD.
 
-                [RXSIOSAY]
+[RXSIOSAY]
 
-                Called whenever the interpreter tries to write something to standard output in a SAY
+Called whenever the interpreter tries to write something to standard output in a SAY instruction, even a SAY instruction without a parameter. 
 
-                instruction, even a SAY instruction without a parameter. [RXSIOTRC]
+[RXSIOTRC]
 
-                Called whenever the interpreter tries to write out debugging information, e.g. during tracing, as a trace back, or as a syntax error message.
+Called whenever the interpreter tries to write out debugging information, e.g. during tracing, as a trace back, or as a syntax error message.
 
-                [RXSIOTRD]
+[RXSIOTRD]
 
-                Called whenever the interpreter need to read from the standard input stream during a PULL or PARSE PULL instruction. Note that it will not be called if there is sufficient data on the stack to satisfy the operation.
+Called whenever the interpreter need to read from the standard input stream during a PULL or PARSE PULL instruction. Note that it will not be called if there is sufficient data on the stack to satisfy the operation.
 
+Note that these function are only called for the exact situations that are listed above. e.g. the RXSIOSAY is not called during a call to the Rexx built-in function LINEOUT() that writes to the default output stream. TRL says that SAY is identical to calling LINEOUT() for the standard output stream, but SAA API still manages to see the difference between stem variables and compound variables with a ``zero-length-string'' tail. Please bear with this inconsistency.
 
-                Note that these function are only called for the exact situations that are listed above. e.g. the RXSIOSAY is not called during a call to the Rexx built-in function LINEOUT() that writes to the default output stream. TRL says that SAY is identical to calling LINEOUT() for the standard output stream, but SAA API still manages to see the difference between stem variables and compound variables with a ``zero-length-string'' tail. Please bear with this inconsistency.
+Depending on the subfunction, the ParmBlock parameter will have four only slightly different definitions. It is kind of frustrating that the ParmBlock takes so many different datatypes, but it can be handled easily using unions, see a later section. The definitions are:
 
+<code c>
+typedef struct {
+  RXSTRING rxsiodtr_retc ; /* the interactive trace input */
+} RXSIODTR_PARM ;
 
-                Depending on the subfunction, the ParmBlock parameter will have four only slightly different definitions. It is kind of frustrating that the ParmBlock takes so many different datatypes, but it can be handled easily using unions, see a later section. The definitions are:
+typedef struct {
+  RXSTRING rxsio_string ; /* the SAY line to write out */
+} RXSIOSAY_PARM ;
 
+typedef struct {
+  RXSTRING rxsio_string ; /* the debug line to write out */
+} RXSIOTRC_PARM ;
 
-                typedef struct {
+typedef struct {
+  RXSTRING rxsiotrd_retc ; /* the line to read in */
+} RXSIOTRD_PARM ;
+</code>
 
-                RXSTRING rxsiodtr_retc ; /* the interactive trace input */
+In all of these, the RXSTRING structure either holds the value to be written out (for RXSIOSAY and RXSIOTRC), or the value to be used instead of reading standard input stream (for RXSIOTRD and RXSIODTR). Note that the values set by RXSIOTRD and RXSIODTR are ignored if the exit handler does not return the value RXEXIT_HANDLED.
 
-                } RXSIODTR_PARM ;
+Any end-of-line marker are stripped off the strings in this context. If the exit handler writes out the string during RXSIOSAY or RXSIOTRC, it must supply any end-of-line action itself. Similarly, the interpreter does not expect a end-of-line marker in the data returned from RXSIODTR and RXSIOTRD.
 
-
-                typedef struct {
-
-                RXSTRING rxsio_string ; /* the SAY line to write out */
-
-                } RXSIOSAY_PARM ;
-
-
-                typedef struct {
-
-                RXSTRING rxsio_string ; /* the debug line to write out */
-
-                } RXSIOTRC_PARM ;
-
-
-                typedef struct {
-
-                RXSTRING rxsiotrd_retc ; /* the line to read in */
-
-                } RXSIOTRD_PARM ;
-
-                In all of these, the RXSTRING structure either holds the value to be written out (for RXSIOSAY and RXSIOTRC), or the value to be used instead of reading standard input stream (for RXSIOTRD and RXSIODTR). Note that the values set by RXSIOTRD and RXSIODTR are ignored if the exit handler does not return the value RXEXIT_HANDLED.
-
-
-                Any end-of-line marker are stripped off the strings in this context. If the exit handler writes out the string during RXSIOSAY or RXSIOTRC, it must supply any end-of-line action itself. Similarly, the interpreter does not expect a end-of-line marker in the data returned from RXSIODTR and RXSIOTRD.
-
-
-                The space used to store the return data for the RXSIODTR and RXSIOTRD sub-functions, must be provided by the exit handler itself, and the space is not de-allocated by the interpreter. The space can be reused by the application at any later time. The space allocated to hold the data given by the RXSIOSAY and RXSIOTRC sub-functions, will be allocated by the interpreter, and must neither be de-allocated by the exit handler, nor used after the exit handler has terminated.
-
+The space used to store the return data for the RXSIODTR and RXSIOTRD sub-functions, must be provided by the exit handler itself, and the space is not de-allocated by the interpreter. The space can be reused by the application at any later time. The space allocated to hold the data given by the RXSIOSAY and RXSIOTRC sub-functions, will be allocated by the interpreter, and must neither be de-allocated by the exit handler, nor used after the exit handler has terminated.
 
 === RXHLT - The Halt Condition Exit Handler ===
 
+Note: Because the RXHLT exit handler is called after every Rexx instruction, enabling this exit slows Rexx program execution.
 
-                Note: Because the RXHLT exit handler is called after every Rexx instruction, enabling this exit slows Rexx program execution.
+The main code for this exit handler has the symbolic value RXHLT. There are two sub-functions: 
 
-                The main code for this exit handler has the symbolic value RXHLT. There are two sub-functions: [RXHLTTST]
+[RXHLTTST]
 
-                Called whenever the interpreter polls externally raised HALT conditions; i.e. after every Rexx instruction.
+Called whenever the interpreter polls externally raised HALT conditions; i.e. after every Rexx instruction.
 
-                The definition of the ParmBlock is: typedef struct {
+The definition of the ParmBlock is: 
 
-                unsigned rxfhhlt : 1 ;
+<code c>
+typedef struct {
+  unsigned rxfhhlt : 1 ;
+} RXHLTTST_PARM ;
+</code>
 
-                } RXHLTTST_PARM ;
+The rxfhhlt parameter is set to the state of the HALT condition in the interpreter; either TRUE or FALSE.
 
+[RXHLTCLR]
 
-                The rxfhhlt parameter is set to the state of the HALT condition in the interpreter; either TRUE or FALSE.
-
-                [RXHLTCLR]
-
-                Called to acknowledge processing of the HALT condition when the interpreter has recognized and raised a HALT condition.
-
+Called to acknowledge processing of the HALT condition when the interpreter has recognized and raised a HALT condition.
 
 === RXTRC - The Trace Status Exit Handler ===
 
-
-                Not implemented.
-
+Not implemented.
 
 === RXINI - The Initialization Exit Handler ===
 
+RXTER and this exit handler are a bit different from the others. RXINI provides the application programmer with a method of getting control before the execution of the script starts. Its main purpose is to enable manipulation of the variable pool in order to set up certain variables before the script starts, or set the trace mode.
 
-                RXTER and this exit handler are a bit different from the others. RXINI provides the application programmer with a method of getting control before the execution of the script starts. Its main purpose is to enable manipulation of the variable pool in order to set up certain variables before the script starts, or set the trace mode.
+It has only one subfunction, RXINIEXT, called once during each call to RexxStart(): just before the first Rexx statement is interpreted. Variable manipulations performed during this exit will have effect when the script starts.
 
-
-                It has only one subfunction, RXINIEXT, called once during each call to RexxStart(): just before the first Rexx statement is interpreted. Variable manipulations performed during this exit will have
-
-                effect when the script starts.
-
-
-                As there is no information to be communicated during this exit, the value of ParmBlock is undefined. It makes no difference whether you return RXEXIT_HANDLED or RXEXIT_NOT_HANDLED, since there is no situation to handle.
-
+As there is no information to be communicated during this exit, the value of ParmBlock is undefined. It makes no difference whether you return RXEXIT_HANDLED or RXEXIT_NOT_HANDLED, since there is no situation to handle.
 
 === RXTER - The Termination Exit Handler ===
 
+This exit resembles RXINI. Its sole subfunction is RXTEREXT, which is called once, just after the last statement of the Rexx script has been interpreted. The state of all variables are intact during this call; so it can be used to retrieve the values of the variables at the exit of a script. (In fact, that is the whole purpose of this exit handler.)
 
-                This exit resembles RXINI. Its sole subfunction is RXTEREXT, which is called once, just after the last statement of the Rexx script has been interpreted. The state of all variables are intact during this call; so it can be used to retrieve the values of the variables at the exit of a script. (In fact, that is the whole purpose of this exit handler.)
-
-
-                Like RXINI, there is no information to be communicated during the exit, so ParamBlock is undefined in this call. And also like RXINI, it is more of a hook than an exit handler, so it does not matter whether you return RXEXIT_HANDLED or RXEXIT_NOT_HANDLED.
-
+Like RXINI, there is no information to be communicated during the exit, so ParamBlock is undefined in this call. And also like RXINI, it is more of a hook than an exit handler, so it does not matter whether you return RXEXIT_HANDLED or RXEXIT_NOT_HANDLED.
 
 === RXENV - The External Environment Exit Handler ===
 
+This System Exit is specific to Regina, so caution should be exercised if you plan on making your code portable to other Rexx interpreters.
 
-                This System Exit is specific to Regina, so caution should be exercised if you plan on making your code portable to other Rexx interpreters.
+The main code for this exit handler has the symbolic value RXENV. There are four sub-functions: 
 
+[RXGETENV]
 
-                The main code for this exit handler has the symbolic value RXENV. There are four sub-functions: [RXGETENV]
+Called whenever the BIF; VALUE() is called to obtain a value from the external environment. i.e. the call to VALUE() is of the form:
 
-                Called whenever the BIF; VALUE() is called to obtain a value from the external environment. i.e. the call to VALUE() is of the form:
+<code>
+                VALUE('VARNAME', ,'ENVIRONMENT'). 
+</code>
 
-                VALUE('VARNAME', ,'ENVIRONMENT'). [RXSETENV]
+[RXSETENV]
 
-                Called whenever the BIF; VALUE() is called to set a value in the external environment. i.e the call to VALUE() is of the form: VALUE('VARNAME',newvalue,'ENVIRONMENT').
+Called whenever the BIF; VALUE() is called to set a value in the external environment. i.e the call to VALUE() is of the form: VALUE('VARNAME',newvalue,'ENVIRONMENT').
 
-                [RXGETCWD]
+[RXGETCWD]
 
-                Called whenever the current working directory is needed to be obtained from the environment. The DIRECTORY() BIF respects this system exit.
+Called whenever the current working directory is needed to be obtained from the environment. The DIRECTORY() BIF respects this system exit.
 
-                [RXSETCWD]
+[RXSETCWD]
 
-                Called whenever the current working directory is changed by a call to
+Called whenever the current working directory is changed by a call to DIRECTORY() or CHDIR() BIFs.
 
-                DIRECTORY() or CHDIR() BIFs.
-
-
-                The ParmBlock parameter has the following definitions for each sub-function type:
-
-
-
-                variable */
-
-                typedef struct {
-
-                RXSTRING rxenv_name ; /* the name of the external environment variable */ RXSTRING rxenv_value ; /* the returned value of the external environment
+The ParmBlock parameter has the following definitions for each sub-function type:
 
 
-                } RXGETENV_PARM ;
+<code c>
+typedef struct {
+  RXSTRING rxenv_name ; /* the name of the external environment variable */ RXSTRING rxenv_value ; /* the returned value of the external environment variable */
+} RXGETENV_PARM ;
 
+typedef struct {
+  RXSTRING rxenv_name ; /* the name of the external environment variable */ RXSTRING rxenv_value ; /* the value of the external environment variable */
+} RXSETENV_PARM ;
+</code>
 
-                typedef struct {
+In both of these, the RXSTRING; rxenv_name structure holds the name of the environment variable as known by the external environment. Note that the values set by RXSIOTRD and RXSIODTR are ignored if the exit handler does not return the value RXEXIT_HANDLED.
 
-                RXSTRING rxenv_name ; /* the name of the external environment variable */ RXSTRING rxenv_value ; /* the value of the external environment variable */
-
-                } RXSETENV_PARM ;
-
-                In both of these, the RXSTRING; rxenv_name structure holds the name of the environment variable as known by the external environment. Note that the values set by RXSIOTRD and RXSIODTR are ignored if the exit handler does not return the value RXEXIT_HANDLED.
-
-
-                The space used to store the return data for the RXSIODTR and RXSIOTRD sub-functions, must be provided by the exit handler itself, and the space is not de-allocated by the interpreter. The space can be reused by the application at any later time. The space allocated to hold the data given by the RXSIOSAY and RXSIOTRC sub-functions, will be allocated by the interpreter, and must neither be de-allocated by the exit handler, nor used after the exit handler has terminated.
+The space used to store the return data for the RXSIODTR and RXSIOTRD sub-functions, must be provided by the exit handler itself, and the space is not de-allocated by the interpreter. The space can be reused by the application at any later time. The space allocated to hold the data given by the RXSIOSAY and RXSIOTRC sub-functions, will be allocated by the interpreter, and must neither be de-allocated by the exit handler, nor used after the exit handler has terminated.
 
 ==== The RexxRegisterExitExe() function ====
 
+This function is used to register a system exit handler with the interface. The system exit handler must be a procedure located within the code of the application. After registration, the Rexx interpreter will execute the system exit handler when the approriate event is triggered in the interpreter.
 
-            This function is used to register a system exit handler with the interface. The system exit handler must be a procedure located within the code of the application. After registration, the Rexx interpreter will execute the system exit handler when the approriate event is triggered in the interpreter.
+The prototype for RexxRegisterExitExe() is:
 
+<code c>
+APIRET APIENTRY RexxRegisterExitExe( PCSZ EnvName, PFN EntryPoint, PUCHAR UserArea) ;
+</code>
 
-            The prototype for RexxRegisterExitExe() is:
+All the parameters are input: 
 
+[EnvName]
 
-            APIRET APIENTRY RexxRegisterExitExe( PCSZ EnvName,
+Points to an ASCII NUL terminated character string which defines the name of the system exit handler to be registered.
 
-            PFN EntryPoint, PUCHAR UserArea
+[EntryPoint]
 
-            ) ;
+Points to the entrypoint of the system exit handler routine to be registered. See 8.6.1 The System Exit Handler for more information.
 
-            All the parameters are input: [EnvName]
+[UserArea]
 
-            Points to an ASCII NUL terminated character string which defines the name of the system exit handler to be registered.
+Pointer to an 8 byte area of information that is to be associated with this environment. This data can be accessed via the RexxQueryExit() function. If no user-supplied data required, set this to NULL.
 
-            [EntryPoint]
-
-            Points to the entrypoint of the system exit handler routine to be registered. See 8.6.1 The System Exit Handler for more information.
-
-            [UserArea]
-
-            Pointer to an 8 byte area of information that is to be associated with this environment. This data can be accessed via the RexxQueryExit() function. If no user-supplied data required, set this to NULL.
-
-
-            The RexxRegisterExitExe() returns an unsigned long, which carries status information describing the outcome of the operation. The status will be one of the RXEXIT values:
+The RexxRegisterExitExe() returns an unsigned long, which carries status information describing the outcome of the operation. The status will be one of the RXEXIT values:
 
 
-            [ RXEXIT_OK]
+[ RXEXIT_OK]
 
-            The handler was successfully registered. [RXEXIT_LOADERR]
 
-            ?? [RXEXIT_NOTINIT]
+The handler was successfully registered. 
 
-            ?? [RXEXIT_DUP]
+[RXEXIT_LOADERR]
 
-            The handler was successfully registered. There already existed another system exit handler which was registered with RexxRegisterExitExe(), but this will be shadowed by the newly registered handler.
+??
 
-            [RXEXIT_NOTREG]
+[RXEXIT_NOTINIT]
 
-            Due to some error, the handler was not registered. Probably because a handler for
+?? 
 
-            EnvName was already defined at a previous call to RexxRegisterExitExe(). [RXEXIT_NOEMEM]
+[RXEXIT_DUP]
 
-            The handler was not registered, due to lack of memory. [RXEXIT_BADTYPE]
+The handler was successfully registered. There already existed another system exit handler which was registered with RexxRegisterExitExe(), but this will be shadowed by the newly registered handler.
 
-            One or more of the parameters had illegal values, and the operation was not carried through. Regina addition.
+[RXEXIT_NOTREG]
+
+Due to some error, the handler was not registered. Probably because a handler for EnvName was already defined at a previous call to RexxRegisterExitExe(). 
+
+[RXEXIT_NOEMEM]
+
+The handler was not registered, due to lack of memory. 
+
+[RXEXIT_BADTYPE]
+
+One or more of the parameters had illegal values, and the operation was not carried through. Regina addition.
 
 ==== The RexxRegisterExitDll() function ====
 
+This function is used to set up a routine that is located in a module in a dynamic link library, as a system exit handler. After registration, the Rexx interpreter will execute the system exit handler when the approriate event is triggered in the interpreter.
 
-            This function is used to set up a routine that is located in a module in a dynamic link library, as a system exit handler. After registration, the Rexx interpreter will execute the system exit handler when the approriate event is triggered in the interpreter.
+Some operating systems don't have dynamic linking, and thus cannot make use of this facility. The prototype of this function is:
 
-            Some operating systems don't have dynamic linking, and thus cannot make use of this facility. The prototype of this function is:
+<code c>
+APIRET APIENTRY RexxRegisterExitDll( PSZ EnvName, PSZ ModuleName, PFN EntryPoint, PUCHAR UserArea, ULONG DropAuth) ;
+</code>
 
+All the parameters are input, and their significance are:
 
-            APIRET APIENTRY RexxRegisterExitDll( PSZ EnvName,
+[EnvName]
 
-            PSZ ModuleName, PFN EntryPoint, PUCHAR UserArea, ULONG DropAuth
+Points to an ASCII NUL terminated character string which defines the name of the system exit handler to be registered.
 
-            ) ;
+[ModuleName]
 
+Points to an ASCII NUL terminated character string which defines the name of the dynamic or shared library in which the EntryPoint to the system exit exists.
 
-            All the parameters are input, and their significance are:
+[EntryPoint]
 
+Points to the entrypoint of the system exit handler routine for the environment to be registered. See the section on System Exit Handlers for more information. There is an upper limit for the length of this name.
 
-            [EnvName]
+[UserArea]
 
-            Points to an ASCII NUL terminated character string which defines the name of the system exit handler to be registered.
+Pointer to an 8 byte area of information that is to be associated with this environment. This data can be accessed via the RexxQueryExit() function. This pointer can be NULL if no such area is necessary.
 
-            [ModuleName]
+[DropAuth]
 
-            Points to an ASCII NUL terminated character string which defines the name of the dynamic or shared library in which the EntryPoint to the system exit exists.
+Is either RXEXIT_DROPABLE or RXEXIT_NONDROP. This argument is ignored by Regina as system exits only exist within the current process.
 
-            [EntryPoint]
+The areas pointed to by EnvName, ModuleName and UserArea are copied to a private area in the interface, so the programmer may de-allocate or reuse the area used for these parameters after the call has returned.
 
-            Points to the entrypoint of the system exit handler routine for the environment to be registered. See the section on System Exit Handlers for more information. There is an upper limit for the length of this name.
+RexxRegisterExitDll() returns an unsigned long, which carries status information describing the outcome of the operation. The status will be one of the RXEXIT values:
 
-            [UserArea]
+[ RXEXIT_OK]
 
-            Pointer to an 8 byte area of information that is to be associated with this environment. This data can be accessed via the RexxQueryExit() function. This pointer can be NULL if no such area is necessary.
+The system exit handler was successfully registered. 
 
-            [DropAuth]
+[RXEXIT_DUP]
 
-            Is either RXEXIT_DROPABLE or RXEXIT_NONDROP. This argument is ignored by Regina as system exits only exist within the current process.
+The system exit handler was successfully registered. There already existed another system exit handler which was registered with RexxRegisterExitDll(), but this will be shadowed by the newly registered handler.
 
+[RXEXIT_NOTREG]
 
-            The areas pointed to by EnvName, ModuleName and UserArea are copied to a private area in the interface, so the programmer may de-allocate or reuse the area used for these parameters after the call has returned.
+Due to some error, the handler was not registered. Probably because a handler for EnvName was already defined at a previous call to RexxRegisterExitDll(). 
 
+[RXEXIT_NOEMEM]
 
-            RexxRegisterExitDll() returns an unsigned long, which carries status information describing the outcome of the operation. The status will be one of the RXEXIT values:
+The handler was not registered, due to lack of memory. 
 
-            [ RXEXIT_OK]
+[RXEXIT_BADTYPE]
 
-            The system exit handler was successfully registered. [RXEXIT_DUP]
-
-            The system exit handler was successfully registered. There already existed another system exit handler which was registered with RexxRegisterExitDll(), but this will be shadowed by the newly registered handler.
-
-            [RXEXIT_NOTREG]
-
-            Due to some error, the handler was not registered. Probably because a handler for
-
-            EnvName was already defined at a previous call to RexxRegisterExitDll(). [RXEXIT_NOEMEM]
-
-            The handler was not registered, due to lack of memory. [RXEXIT_BADTYPE]
-
-            Indicates that the handler was not registered, due to one or more of the parameters having invalid values. Regina addition.
+Indicates that the handler was not registered, due to one or more of the parameters having invalid values. Regina addition.
 
 ==== The RexxDeregisterExit() function ====
 
-
-            This function is used to remove a particular environment from the list of registered environments. The prototype of the function is:
-
-
-            APIRET APIENTRY RexxDeregisterExit( PSZ EnvName,
-
-            PSZ ModuleName
-
-            ) ;
-
-            Both parameters are input values: [EnvName]
-
-            Pointer to ASCII NUL terminated string, which represents the name of the environment to be removed.
-
-            [ModuleName]
-
-            Also an ASCII NUL terminated string, which points to the name of the module containing the system exit handler of the environment to be deleted.
+This function is used to remove a particular environment from the list of registered environments. The prototype of the function is:
 
 
-            The list of defined environments is searched, and if an environment matching the one named by the first parameter are found, it is deleted.
+<code c>
+APIRET APIENTRY RexxDeregisterExit( PSZ EnvName, PSZ ModuleName) ;
+</code>
 
-            The returned value from RexxDeregisterExit() can be one of: [RXEXIT_OK]
+Both parameters are input values: 
 
-            The system exit handler was successfully deleted. [RXEXIT_NOTREG]
+[EnvName]
 
-            The system exit handler was not found. [RXEXIT_BADTYPE]
+Pointer to ASCII NUL terminated string, which represents the name of the environment to be removed.
 
-            One or more of the parameters had illegal values, and the operation was not carried through. Regina addition.
+[ModuleName]
 
-            [RXEXIT_NOCANDROP]
+Also an ASCII NUL terminated string, which points to the name of the module containing the system exit handler of the environment to be deleted.
 
-            Unable to deregister the system exit handler. Regina addition.
+The list of defined environments is searched, and if an environment matching the one named by the first parameter are found, it is deleted.
 
+The returned value from RexxDeregisterExit() can be one of: 
 
-            Most systems that do have dynamic linking have no method for reclaiming the space used by
+[RXEXIT_OK]
 
-            dynamically linked routines. So, even if you were able to load a dll, there are no guarantees that you will be able to unload it.
+The system exit handler was successfully deleted. 
+
+[RXEXIT_NOTREG]
+
+The system exit handler was not found. 
+
+[RXEXIT_BADTYPE]
+
+One or more of the parameters had illegal values, and the operation was not carried through. Regina addition.
+
+[RXEXIT_NOCANDROP]
+
+Unable to deregister the system exit handler. Regina addition.
+
+Most systems that do have dynamic linking have no method for reclaiming the space used by dynamically linked routines. So, even if you were able to load a dll, there are no guarantees that you will be able to unload it.
 
 ==== The RexxQueryExit() function ====
 
+This function retrieves information about a previously registered system exit handler. The prototype of the function is:
 
-            This function retrieves information about a previously registered system exit handler. The prototype of the function is:
+<code c>
+APIRET APIENTRY RexxQueryExit( PSZ EnvName, PSZ ModuleName, PUSHORT Flag,PUCHAR UserArea) ;
+</code>
 
+The significance of the parameters are: 
 
-            APIRET APIENTRY RexxQueryExit( PSZ EnvName,
+[EnvName]
 
-            PSZ ModuleName, PUSHORT Flag,
+Pointer to an ASCII NUL terminated character string, which names the system exit handler about which information is to be returned.
 
-            PUCHAR UserArea
+[ModuleName]
 
-            ) ;
+Pointer to an ASCII NUL terminated character string, which names a dynamic link library. Only the named library will be searched for the system exit handler named by EnvName. This parameter must be NULL if all system exit handlers are to be searched.
 
-            The significance of the parameters are: [EnvName]
+[Flag]
 
-            Pointer to an ASCII NUL terminated character string, which names the system exit handler about which information is to be returned.
+Pointer to a short which is to receive the value RXEXIT_OK or RXEXIT_NOTREG. In fact, this is the same as the return value from the function.
 
-            [ModuleName]
+[UserArea]
 
-            Pointer to an ASCII NUL terminated character string, which names a dynamic link library. Only the named library will be searched for the system exit handler named by EnvName. This parameter must be NULL if all system exit handlers are to be searched.
+Pointer to an area of 8 bytes. The userarea of the system exit handler is copied to the area pointed to by UserArea. This parameter might be NULL if the data of the userarea is not needed.
 
-            [Flag]
+The returned value from RexxQueryExit() can be one of: 
 
-            Pointer to a short which is to receive the value RXEXIT_OK or
+[RXEXIT_OK]
 
-            RXEXIT_NOTREG. In fact, this is the same as the return value from the function.
+The system exit handler was found, and the required information has been returned in the Flag and UserArea variables.
 
-            [UserArea]
+[RXEXIT_NOTREG]
 
-            Pointer to an area of 8 bytes. The userarea of the system exit handler is copied to the area pointed to by UserArea. This parameter might be NULL if the data of the userarea is not needed.
+The system exit handler was not found. The Flag variable will also be set to this value, and the UserArea variable is not changed.
 
-            The returned value from RexxQueryExit() can be one of: [RXEXIT_OK]
+[RXEXIT_BADTYPE]
 
-            The system exit handler was found, and the required information has been returned in the Flag and UserArea variables.
-
-            [RXEXIT_NOTREG]
-
-            The system exit handler was not found. The Flag variable will also be set to this value, and the UserArea variable is not changed.
-
-            [RXEXIT_BADTYPE]
-
-            One or more of the parameters had illegal values, and the operation was not carried through. Regina addition.
+One or more of the parameters had illegal values, and the operation was not carried through. Regina addition.
 
 ===== The External Queue Interface =====
 
-
-        The external queue interface provide a mechanism for interacting with the interpreter's external queues. This interface is analogous to a Rexx program's use of PUSH, QUEUE, PULL, and RXQUEUE(). Note that this interface only works with the external queues, it cannot interface to the internal named queues that exists within the interpreter.
+The external queue interface provide a mechanism for interacting with the interpreter's external queues. This interface is analogous to a Rexx program's use of PUSH, QUEUE, PULL, and RXQUEUE(). Note that this interface only works with the external queues, it cannot interface to the internal named queues that exists within the interpreter.
 
 ==== The RexxCreateQueue() function ====
 
+This function is used to create a new, named, external queue. The prototype for RexxCreateQueue() is:
 
-            This function is used to create a new, named, external queue. The prototype for RexxCreateQueue() is:
+<code c>
+APIRET APIENTRY RexxCreateQueue( PSZ Buffer, ULONG BuffLen, PSZ RequestedName, ULONG *DupFlag) ;
+</code>
 
-            APIRET APIENTRY RexxCreateQueue( PSZ Buffer,
+The following parameters are input, and their significance are: 
 
-            ULONG BuffLen, PSZ RequestedName, ULONG *DupFlag
+[RequestedName]
 
-            ) ;
+Points to an ASCII NUL terminated character string which specifies the name of the queue to be created. See Queue Names for the structure of a queue name. If the user wishes to have the interpreter create a unique queue name on the local queue server at the default port number, then this value should be set to NULL. To request an interpreter-generated queue name, on the machine fred listening on port 5858, then specify @fred:5858. i.e. leave the queue name portion blank.
 
-            The following parameters are input, and their significance are: [RequestedName]
+The following parameters are output, and their significance are: 
 
-            Points to an ASCII NUL terminated character string which specifies the name of the queue to be created. See Queue Names for the structure of a queue name. If the user wishes to have the interpreter create a unique queue name on the local queue server at the default port number, then this value should be set to NULL. To request an interpreter-generated queue name, on the machine fred listening on port 5858, then specify @fred:5858. i.e. leave the queue name portion blank.
+[Buffer]
 
-            The following parameters are output, and their significance are: [Buffer]
+Points to an ASCII NUL terminated character string allocated by the user. The name of the queue that is created will be copied into this area.
 
-            Points to an ASCII NUL terminated character string allocated by the user. The name of the queue that is created will be copied into this area.
+[BuffLen]
 
-            [BuffLen]
+Specifies the size of the memory area pointed to by Buffer. 
 
-            Specifies the size of the memory area pointed to by Buffer. [DupFlag]
+[DupFlag]
 
-            Indicates if the queue name specified already exists. If a queue name already exists, DupFlag is set to 1, otherwise it is set to 0.
+Indicates if the queue name specified already exists. If a queue name already exists, DupFlag is set to 1, otherwise it is set to 0.
 
+The RexxCreateQueue() returns an unsigned long, which carries status information describing the outcome of the operation. The status will be one of the RXQUEUE values:
 
-            The RexxCreateQueue() returns an unsigned long, which carries status information describing the outcome of the operation. The status will be one of the RXQUEUE values:
+[RXQUEUE_OK]
 
+The queue was successfully created. 
 
-            [RXQUEUE_OK]
+[RXQUEUE_NOEMEM]
 
-            The queue was successfully created. [RXQUEUE_NOEMEM]
+The queue was not created, due to lack of memory. 
 
-            The queue was not created, due to lack of memory. [RXQUEUE_BADQNAME]
+[RXQUEUE_BADQNAME]
 
-            The queue name is invalid or “SESSION” is specified.
+The queue name is invalid or “SESSION” is specified.
 
 ==== The RexxDeleteQueue() function ====
 
+This function is used to delete a named, external queue. The prototype for RexxDeleteQueue() is:
 
-            This function is used to delete a named, external queue. The prototype for RexxDeleteQueue() is:
+<code c>
+APIRET APIENTRY RexxDeleteQueue( PSZ QueueName) ;
+</code>
 
-            APIRET APIENTRY RexxDeleteQueue( PSZ QueueName
+The only parameters is an input, and its significance is: 
 
-            ) ;
+[QueueName]
 
-            The only parameters is an input, and its significance is: [QueueName]
+Points to an ASCII NUL terminated character string which specifies the name of the queue to be deleted. See Queue Names for the structure of a queue name.
 
-            Points to an ASCII NUL terminated character string which specifies the name of the queue to be deleted. See Queue Names for the structure of a queue name.
+The RexxDeleteQueue() returns an unsigned long, which carries status information describing the outcome of the operation. The status will be one of the RXQUEUE values:
 
+[RXQUEUE_OK]
 
-            The RexxDeleteQueue() returns an unsigned long, which carries status information describing the outcome of the operation. The status will be one of the RXQUEUE values:
+The queue was successfully deleted. 
 
+[RXQUEUE_NOTREG]
 
-            [RXQUEUE_OK]
+The queue name specified does not exist. 
 
-            The queue was successfully deleted. [RXQUEUE_NOTREG]
+[RXQUEUE_BADQNAME]
 
-            The queue name specified does not exist. [RXQUEUE_BADQNAME]
+The queue name was not specified.
 
-            The queue name was not specified.
 
 ==== The RexxQueryQueue() function ====
 
