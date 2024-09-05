@@ -39,7 +39,7 @@ Build message file from message source file
 
 
 </diagram>
-MKMSGF infile[.ext] outfile[.ext] [/?] [/V] [/D <DBCS range or country>] [/P <code page>] [/L <language id,sub id>]
+
 
 ===== Arguments =====
 
