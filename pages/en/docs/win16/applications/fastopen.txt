@@ -1,0 +1,15 @@
+{{logos:win16.gif}}
+
+====== FASTOPEN ======
+
+This is TSR program to provide accelerated access to frequently-used files and directories.
+
+===== Note =====
+
+This tool will be moved to DOS tools later
+
+===== Download =====
+
+You can download source code and binaries from [[https://github.com/osfree-project/fastopen|GitHub]]. Expand comes under MIT license.
+
+{{page>en:templates:win16app}}
