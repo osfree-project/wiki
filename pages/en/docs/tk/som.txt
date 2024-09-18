@@ -375,6 +375,8 @@ Include section is optional and contains names of OIDL files with definition of 
 [#include ( <metaclass> | "metaclass" ) ]
 </code>
 
+ancestor is the name of the OIDL file containing the private part of an ancestor class' interface needed in the definition of this class. If ancestor is enclosed in angle brackets (%%<>%%), the search for the file will begin in system-specific locations. If parent is enclosed in double quotation marks (%%""%%), the search for the file will begin in the local context, then move to the system-specific locations.
+
 ==== Class section ====
 
 <code>
