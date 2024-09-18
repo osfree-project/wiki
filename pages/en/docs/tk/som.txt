@@ -353,14 +353,14 @@ Using such approach you can easily make SOM wrappers for all Java classes. Using
 
 ===== SOM Object Interface Definition Language =====
 
-SOM Object Interface Definition Language is a pre-IDL object definition language used before IBM SOM 2.1. Since IBM SOM 2.1 uses CORBA IDL as defined in OMG CORBA 1.1. SOM Object Interface Definition Language (OIDL) is a simple definition language and not recommended to use. SOM Compiler support is only for compatibility with old source code. OIDL support implementation mostly based on [1] and various OIDL source files found on the Web.
+SOM Object Interface Definition Language is a pre-IDL object definition language used before IBM SOM 2. Since IBM SOM 2 uses CORBA IDL as defined in OMG CORBA 1.1. SOM Object Interface Definition Language (OIDL) is a simple definition language and not recommended to use. SOM Compiler support is only for compatibility with old source code. OIDL support implementation mostly based on [2] and various OIDL source files found on the Web.
 OIDL consist of sections set:
 
   * Include section (optional)
   * Class section (required)
   * Release order section (optional)
   * Parent class section (required)
-  * Passthru section (optionsl)
+  * Passthru section (optional)
   * Metaclass section (optional)
   * Data section (optional)
   * Methods section (optional)
@@ -376,6 +376,11 @@ Include section is optional and contains names of OIDL files with definition of 
 </code>
 
 ancestor is the name of the OIDL file containing the private part of an ancestor class' interface needed in the definition of this class. If ancestor is enclosed in angle brackets (%%<>%%), the search for the file will begin in system-specific locations. If parent is enclosed in double quotation marks (%%""%%), the search for the file will begin in the local context, then move to the system-specific locations.
+
+parent is the name of the OIDL file containing the parent class of the class for which the Include statement is provided. If parent is enclosed in angle
+brackets (%%<>%%), the search for the file will begin in system-specific locations. If parent is enclosed in double quotation marks (%%""%%), the search for the file will begin in the local context, then move to the system-specific locations.
+
+metaclass is the OIDL file containing the metaclass of the class for which the include statement is provided. If metaclass is enclosed in angle brackets (%%<>%%), the search for the file will begin in system-specific locations. If metaclass is enclosed in double quotation marks (%%""%%), the search for the file will begin in the local context, then move to the system-specific locations.
 
 ==== Class section ====
 
