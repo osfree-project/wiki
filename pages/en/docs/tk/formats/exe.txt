@@ -18,3 +18,10 @@
 |  | WORD | e_oeminfo | |
 |  | WORD | e_res2[ERES2WDS] | |
 |  | DWORD | e_lfanew |
+
+
+Relocation table entry
+
+^ Offset ^ Size ^ Name ^ Description ^
+| 00h | WORD | offset | |
+| 02h | WORD | segment | | 
