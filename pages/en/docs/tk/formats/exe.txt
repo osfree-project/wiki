@@ -1,6 +1,11 @@
 ====== DOS Executable file format ======
 
-All multi-byte values are stored LSB first. One block is 512 bytes, one paragraph is 16 bytes.
+  * All multi-byte values are stored LSB first. One block is 512 bytes, one paragraph is 16 bytes. 
+  * If the word at offset 02h is 4, it should be treated as 00h, since pre-1.10 versions of the MS linker set it that way.
+  *  If both minimum and maximum allocation (offset 0Ah/0Ch) are zero, the program is loaded as high in memory as possible (DOS only checks the maximum allocation, however).
+  *  The maximum allocation is set to FFFFh by default.
+  *  Additional data may be contained in the file beyond the end of the load image described by the .EXE header; this data may be overlays, the actual executable for newer-format executables, or debugging information (see #01600,#01624).
+  *  Relocations entries need not be in any particular order, although they are typically stored in order from beginning to end of the load image. 
 
 ^ Offset ^ Size ^ Name ^ Description ^
 | 00h | WORD | e_magic | 0x4d, 0x5a or 0x5a, 0x4d. This is the "magic number" of an EXE file |
@@ -21,7 +26,7 @@ All multi-byte values are stored LSB first. One block is 512 bytes, one paragrap
 | 20h | WORD | e_oemid | |
 | 22h | WORD | e_oeminfo | |
 | 24h | 24 WORD | e_res2 | |
-| 2ch | DWORD | e_lfanew |
+| 2ch | DWORD | e_lfanew | Offset of the first byte of extended header (NE, LX, LE, PE...)
 
 
 Relocation table entry
