@@ -1,3 +1,7 @@
+====== DOS Executable file format ======
+
+All multi-byte values are stored LSB first. One block is 512 bytes, one paragraph is 16 bytes.
+
 ^ Offset ^ Size ^ Name ^ Description ^
 | 00h | WORD | e_magic | 0x4d, 0x5a. This is the "magic number" of an EXE file. The first byte of the file is 0x4d and the second is 0x5a. |
 | 02h | WORD | e_cblp  | The number of bytes in the last block of the program that are actually used. If this value is zero, that means the entire last block is used (i.e. the effective value is 512). |
