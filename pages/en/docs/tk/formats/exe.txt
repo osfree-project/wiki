@@ -3,7 +3,7 @@
 All multi-byte values are stored LSB first. One block is 512 bytes, one paragraph is 16 bytes.
 
 ^ Offset ^ Size ^ Name ^ Description ^
-| 00h | WORD | e_magic | 0x4d, 0x5a. This is the "magic number" of an EXE file. The first byte of the file is 0x4d and the second is 0x5a. |
+| 00h | WORD | e_magic | 0x4d, 0x5a or 0x5a, 0x4d. This is the "magic number" of an EXE file |
 | 02h | WORD | e_cblp  | The number of bytes in the last block of the program that are actually used. If this value is zero, that means the entire last block is used (i.e. the effective value is 512). |
 | 04h | WORD | e_cp | Number of blocks in the file that are part of the EXE file. If [02-03] is non-zero, only that much of the last block is used. |
 | 06h | WORD | e_crlc | Number of relocation entries stored after the header. May be zero. |
@@ -17,11 +17,11 @@ All multi-byte values are stored LSB first. One block is 512 bytes, one paragrap
 | 16h | WORD | e_cs | Initial value of the CS register, relative to the segment the program was loaded at. |
 | 18h | WORD | e_lfarlc | Offset of the first relocation item in the file. |
 | 1Ah | WORD | e_ovno | Overlay number. Normally zero, meaning that it's the main program. |
-| 1Ch | WORD | e_res[ERES1WDS] | |
-|  | WORD | e_oemid | |
-|  | WORD | e_oeminfo | |
-|  | WORD | e_res2[ERES2WDS] | |
-|  | DWORD | e_lfanew |
+| 1Ch | DWORD | e_res | |
+| 20h | WORD | e_oemid | |
+| 22h | WORD | e_oeminfo | |
+| 24h | 24 WORD | e_res2 | |
+| 2ch | DWORD | e_lfanew |
 
 
 Relocation table entry
