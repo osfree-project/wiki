@@ -26,7 +26,7 @@
 | 20h | WORD | e_oemid | |
 | 22h | WORD | e_oeminfo | |
 | 24h | 24 WORD | e_res2 | |
-| 2ch | DWORD | e_lfanew | Offset of the first byte of extended header (NE, LX, LE, PE...)
+| 2ch | DWORD | e_lfanew | Offset of the first byte of extended header (NE, LX, LE, PE...) |
 
 
 Relocation table entry
