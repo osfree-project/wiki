@@ -75,28 +75,23 @@
     char	ne_res[NERESBYTES];		/* Reserved */ 
 };
 
-// On-disk segment entry
-struct new_seg {
-    WORD  ns_sector;				/* Logical-sector offset (n byte) to the contents of the segment
-									   data, relative to the beginning of the file. Zero means no
-									   file data */
-    WORD  ns_cbseg;					/* Length of the segment in the file, in bytes. Zero means 64K */
-    WORD  ns_flags;					/* Flag word */
-    WORD  ns_minalloc;				/* Minimum allocation size of the segment, in bytes. Total size
-									   of the segment. Zero means 64K */
-};
+On-disk segment entry
 
-// In-memory segment entry
-struct new_seg1 {
-    WORD  ns1_sector;				/* Logical-sector offset (n byte) to the contents of the segment
-									   data, relative to the beginning of the file. Zero means no
-									   file data */
-    WORD  ns1_cbseg;				/* Length of the segment in the file, in bytes. Zero means 64K */
-    WORD  ns1_flags;				/* Flag word */
-    WORD  ns1_minalloc;				/* Minimum allocation size of the segment, in bytes. Total size
-									   of the segment. Zero means 64K */
-    WORD  ns1_handle;				/* Selector or handle (selector - 1) of segment in memory */
-};
+^ Offset ^ Size ^ Name ^ Description ^
+| 00h | WORD | ns_sector | Logical-sector offset (n byte) to the contents of the segment data, relative to the beginning of the file. Zero means no file data |
+| 02h | WORD | ns_cbseg | Length of the segment in the file, in bytes. Zero means 64K |
+| 04h | WORD | ns_flags | Flag word |
+| 06h | WORD | ns_minalloc | Minimum allocation size of the segment, in bytes. Total size of the segment. Zero means 64K |
+
+In-memory segment entry
+
+^ Offset ^ Size ^ Name ^ Description ^
+| 00h | WORD | ns1_sector | Logical-sector offset (n byte) to the contents of the segment data, relative to the beginning of the file. Zero means no file data |
+| 02h | WORD | ns1_cbseg | Length of the segment in the file, in bytes. Zero means 64K |
+| 04h | WORD | ns1_flags | Flag word |
+| 06h | WORD | ns1_minalloc | Minimum allocation size of the segment, in bytes. Total size of the segment. Zero means 64K |
+| 08h | WORD | ns1_handle | Selector or handle (selector - 1) of segment in memory |
+
 
 struct new_segdata {
     union {
@@ -215,12 +210,4 @@ struct new_rsrc {
     struct rsrc_typeinfo    rs_typeinfo;
 };
 
-#endif
 
-#pragma pack(pop)
-
-#ifdef __cplusplus
-} /* extern "C" */
-#endif
-
-#endif
