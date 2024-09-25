@@ -1,42 +1,25 @@
 ^ Offset ^ Size ^ Name ^ Description ^
 | 00h | WORD | ne_magic | Signature word NEMAGIC |
-	union {
-		struct {
-			BYTE   ne_ver;			/* Version number of the linker */
-			BYTE   ne_rev;			/* Revision number of the linker */
-		};
-		WORD  count;				/* Usage count (ne_ver/ne_rev on disk) */
-	};
-    WORD  ne_enttab;				/* Entry Table file offset, relative to the beginning of
-									   the segmented EXE header */
-	union {
-		WORD  ne_cbenttab;			/* Number of bytes in the entry table */
-		WORD  next;					/* Selector to next module */
-	};
-	union {
-		DWORD            ne_crc;	/* 32-bit CRC of entire contents of file.
-									   These words are taken as 00 during the calculation */
-		struct {
-			WORD	dgroup_entry;	/* Near ptr to segment entry for DGROUP */
-			WORD	fileinfo;		/* Near ptr to file info (OFSTRUCT)*/
-		};
-	};
-    WORD  ne_flags;					/* Flag word */
-    WORD  ne_autodata;				/* Segment number of automatic data segment.
-									   This value is set to zero if SINGLEDATA and
-									   MULTIPLEDATA flag bits are clear, NOAUTODATA is
-									   indicated in the flags word.
-
-									   A Segment number is an index into the module's segment
-									   table. The first entry in the segment table is segment
-									   number 1 */
-    WORD  ne_heap;					/* Initial size, in bytes, of dynamic heap added to the
-									   data segment. This value is zero if no initial local
-									   heap is allocated */
-    WORD  ne_stack;					/* Initial size, in bytes, of stack added to the data
-									   segment. This value is zero to indicate no initial
-									   stack allocation, or when SS is not equal to DS */
-    DWORD            ne_csip;		/* Segment number:offset of CS:IP */
+| On-disk ||||
+| 02h | BYTE | ne_ver | Version number of the linker |
+| 03h | BYTE| ne_rev | Revision number of the linker |
+| In-memory ||||
+| 02h | WORD | count | Usage count (ne_ver/ne_rev on disk) |
+| 04h | WORD | ne_enttab | Entry Table file offset, relative to the beginning of the segmented EXE header |
+| On-disk ||||
+| 06h | WORD | ne_cbenttab | Number of bytes in the entry table |
+| In-memory ||||
+| 06h | WORD | next | Selector to next module |
+| On-disk ||||
+| 08h | DWORD | ne_crc | 32-bit CRC of entire contents of file. These words are taken as 00 during the calculation |
+| In-memory ||||									   
+| 08h | WORD | dgroup_entry | Near ptr to segment entry for DGROUP |
+| 0Ah | WORD | fileinfo | Near ptr to file info (OFSTRUCT) |
+| 0Ch | WORD | ne_flags | Flag word |
+| 0Eh | WORD | ne_autodata | Segment number of automatic data segment. This value is set to zero if SINGLEDATA and MULTIPLEDATA flag bits are clear, NOAUTODATA is indicated in the flags word. A Segment number is an index into the module's segment table. The first entry in the segment table is segment number 1 |
+| 10h | WORD | ne_heap | Initial size, in bytes, of dynamic heap added to the data segment. This value is zero if no initial local heap is allocated |
+| 12h | WORD | ne_stack | Initial size, in bytes, of stack added to the data segment. This value is zero to indicate no initial stack allocation, or when SS is not equal to DS |
+| 14h | DWORD | ne_csip | Segment number:offset of CS:IP |
 	DWORD            ne_sssp;		/* Segment number:offset of SS:SP.
 									   If SS equals the automatic data segment and SP equals
 									   zero, the stack pointer is set to the top of the
