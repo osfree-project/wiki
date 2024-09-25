@@ -35,7 +35,10 @@
 | 34h | WORD | ne_cres | Number of resource entries |
 | 36h | BYTE | ne_exetyp | Executable type, used by loader. 02h = WINDOWS |
 | 37h | BYTE | ne_flagsothers | Operating system flags |
-| 38h | NERESBYTES char | ne_res | Reserved |
+| 38h | WORD | ??? | offset to return thunks or start of gangload area |
+| 3Ah | WORD | ??? | offset to segment reference thunks or length of gangload area |
+| 3Ch | WORD | ??? | minimum code swap area size |
+| 3Eh | 2 BYTEs | ??? | expected Windows version (minor version first) |
 
 On-disk segment entry
 
