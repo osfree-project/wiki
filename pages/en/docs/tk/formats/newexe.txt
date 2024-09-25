@@ -27,21 +27,15 @@
 | 22h | WORD | ne_segtab | Segment Table file offset, relative to the beginning of the segmented EXE header |
 | 24h | WORD | ne_rsrctab | Resource Table file offset, relative to the beginning of the segmented EXE header |
 | 26h | WORD | ne_restab | Resident Name Table file offset, relative to the beginning of the segmented EXE header |
-    WORD  ne_modtab;				/* Module Reference Table file offset, relative to the
-									   beginning of the segmented EXE header */
-    WORD  ne_imptab;				/* Imported Names Table file offset, relative to the
-									   beginning of the segmented EXE header */
-    DWORD	ne_nrestab;				/* Non-Resident Name Table offset, relative to the
-									   beginning of the file */
-    WORD	ne_cmovent;				/* Number of movable entries in the Entry Table */
-    WORD	ne_align;				/* Logical sector alignment shift count, log(base 2) of
-									   the segment sector size (default 9) */
-    WORD	ne_cres;				/* Number of resource entries */
-    BYTE	ne_exetyp;				/* Executable type, used by loader.
-									   02h = WINDOWS */
-    BYTE	ne_flagsothers;			/* Operating system flags */
-    char	ne_res[NERESBYTES];		/* Reserved */ 
-};
+| 28h | WORD | ne_modtab | Module Reference Table file offset, relative to the beginning of the segmented EXE header |
+| 2Ah | WORD | ne_imptab | Imported Names Table file offset, relative to the beginning of the segmented EXE header |
+| 2Ch | DWORD | ne_nrestab | Non-Resident Name Table offset, relative to the beginning of the file |
+| 30h | WORD | ne_cmovent | Number of movable entries in the Entry Table |
+| 32h | WORD | ne_align | Logical sector alignment shift count, log(base 2) of the segment sector size (default 9) |
+| 34h | WORD | ne_cres | Number of resource entries |
+| 36h | BYTE | ne_exetyp | Executable type, used by loader. 02h = WINDOWS |
+| 37h | BYTE | ne_flagsothers | Operating system flags |
+| 38h | NERESBYTES char | ne_res | Reserved |
 
 On-disk segment entry
 
