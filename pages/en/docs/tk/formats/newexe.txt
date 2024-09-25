@@ -71,9 +71,9 @@ struct new_segdata {
     } ns_union;
 };
 
-struct new_rlcinfo {
-    WORD  nr_nreloc;
-};
+^ Offset ^ Size ^ Name ^ Description ^
+| 00h | WORD | nr_nreloc | ??? |
+
 
 struct new_rlc {
     char            nr_stype;
@@ -96,83 +96,26 @@ struct new_rlc {
       } nr_union;
 };
 
-#define NR_STYPE(x)     (x).nr_stype
-#define NR_FLAGS(x)     (x).nr_flags
-#define NR_SOFF(x)      (x).nr_soff
-#define NR_SEGNO(x)     (x).nr_union.nr_intref.nr_segno
-#define NR_RES(x)       (x).nr_union.nr_intref.nr_res
-#define NR_ENTRY(x)     (x).nr_union.nr_intref.nr_entry
-#define NR_MOD(x)       (x).nr_union.nr_import.nr_mod
-#define NR_PROC(x)      (x).nr_union.nr_import.nr_proc
-#define NR_OSTYPE(x)    (x).nr_union.nr_osfix.nr_ostype
-#define NR_OSRES(x)     (x).nr_union.nr_osfix.nr_osres
+^ Offset ^ Size ^ Name ^ Description ^
+| 00h | char | rs_len | ??? |
+| 01h | char | rs_string[1] | ??? |
 
-#define NRSTYP      0x0f
-#define NRSBYT      0x00
-#define NRSSEG      0x02
-#define NRSPTR      0x03
-#define NRSOFF      0x05
-#define NRPTR48     0x06
-#define NROFF32     0x07
-#define NRSOFF32    0x08
+^ Offset ^ Size ^ Name ^ Description ^
+| 00h | WORD | rt_id | ??? |
+| 02h | WORD | rt_nres | ??? |
+| 04h | DWORD | rt_proc | ??? |
 
-#define NRADD       0x04
-#define NRRTYP      0x03
-#define NRRINT      0x00
-#define NRRORD      0x01
-#define NRRNAM      0x02
-#define NRROSF      0x03
-#define NRICHAIN    0x08
+^ Offset ^ Size ^ Name ^ Description ^
+| 00h | WORD | rn_offset | ??? |
+| 02h | WORD | rn_length | ??? |
+| 04h | WORD | rn_flags | ??? |
+| 06h | WORD | rn_id | ??? |
+| 08h | WORD | rn_handle | ??? |
+| 0Ah | WORD | rn_usage | ??? |
 
-#if (EXE386 == 0)
+^ Offset ^ Size ^ Name ^ Description ^
+| 00h | WORD | rs_align | ??? |
+| 02h | struct rsrc_typeinfo | rs_typeinfo | ??? |
 
-#define RS_LEN(x)       (x).rs_len
-#define RS_STRING(x)    (x).rs_string
-#define RS_ALIGN(x)     (x).rs_align
-
-#define RT_ID(x)        (x).rt_id
-#define RT_NRES(x)      (x).rt_nres
-#define RT_PROC(x)      (x).rt_proc
-
-#define RN_OFFSET(x)    (x).rn_offset
-#define RN_LENGTH(x)    (x).rn_length
-#define RN_FLAGS(x)     (x).rn_flags
-#define RN_ID(x)        (x).rn_id
-#define RN_HANDLE(x)    (x).rn_handle
-#define RN_USAGE(x)     (x).rn_usage
-
-#define RSORDID     0x8000
-
-#define RNMOVE      0x0010
-#define RNPURE      0x0020
-#define RNPRELOAD   0x0040
-#define RNDISCARD   0xF000
-
-#define NE_FFLAGS_LIBMODULE 0x8000
-
-struct rsrc_string {
-    char    rs_len;
-    char    rs_string[1];
-};
-
-struct rsrc_typeinfo {
-    WORD  rt_id;
-    WORD  rt_nres;
-    DWORD            rt_proc;
-};
-
-struct rsrc_nameinfo {
-    WORD  rn_offset;
-    WORD  rn_length;
-    WORD  rn_flags;
-    WORD  rn_id;
-    WORD  rn_handle;
-    WORD  rn_usage;
-};
-
-struct new_rsrc {
-    WORD          rs_align;
-    struct rsrc_typeinfo    rs_typeinfo;
-};
 
 
