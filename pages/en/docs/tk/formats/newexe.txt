@@ -1,3 +1,7 @@
+====== New Executable file format ======
+
+New Executable (NE) file format used by set of operating system including OS/2, Windows, Multitasking MS-DOS 4 and set of DOS Extenders. It is designed to be store on disk and in-memory usage. In-disk format is same for all OSes, but In-memory usage is mostly specific for Windows systems.
+
 ^ Offset ^ Size ^ Name ^ Description ^
 | 00h | WORD | ne_magic | Signature word NEMAGIC |
 | On-disk ||||
