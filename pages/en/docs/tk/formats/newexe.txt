@@ -75,30 +75,28 @@ struct new_segdata {
     } ns_union;
 };
 
+Relocation table header
+
 ^ Offset ^ Size ^ Name ^ Description ^
 | 00h | WORD | nr_nreloc | ??? |
 
+Relocation table entry
 
-struct new_rlc {
-    char            nr_stype;
-    char            nr_flags;
-    WORD  nr_soff;
-    union {
-        struct {
-            char            nr_segno;
-            char            nr_res;
-            WORD  nr_entry;
-          } nr_intref;
-        struct {
-            WORD  nr_mod;
-            WORD  nr_proc;
-          } nr_import;
-        struct {
-            WORD  nr_ostype;
-            WORD  nr_osres;
-          } nr_osfix;
-      } nr_union;
-};
+^ Offset ^ Size ^ Name ^ Description ^
+| 00h | char | nr_stype | ??? |
+| 01h | char | nr_flags | ??? |
+| 02h | WORD | nr_soff | ??? |
+| Internal fixup ||||
+| 04h | char | nr_segno | ??? |
+| 05h | char | nr_res | ??? |
+| 06h | WORD | nr_entry | ??? |
+| ??? ||||
+| 04h | WORD | nr_mod | ??? |
+| 06h | WORD | nr_proc | ??? |
+| OS Fixup ||||
+| 04h | WORD | nr_ostype | ??? |
+| 06h | WORD | nr_osres | ??? |
+
 
 ^ Offset ^ Size ^ Name ^ Description ^
 | 00h | char | rs_len | ??? |
