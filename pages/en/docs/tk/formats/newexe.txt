@@ -78,7 +78,7 @@ struct new_segdata {
 Relocation table header
 
 ^ Offset ^ Size ^ Name ^ Description ^
-| 00h | WORD | nr_nreloc | ??? |
+| 00h | WORD | nr_nreloc | Number of relocation table entries |
 
 Relocation table entry
 
