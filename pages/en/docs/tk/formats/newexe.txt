@@ -83,14 +83,14 @@ Relocation table header
 Relocation table entry
 
 ^ Offset ^ Size ^ Name ^ Description ^
-| 00h | char | nr_stype | ??? |
-| 01h | char | nr_flags | ??? |
-| 02h | WORD | nr_soff | ??? |
+| 00h | char | nr_stype | Source type (0Fh = NRSTYP - source mask): 00h = LOBYTE, 02h = SEGMENT, 03h = FAR_ADDR (32-bit pointer), 05h = OFFSET (16-bit offset) |
+| 01h | char | nr_flags | Flags byte (03h = TARGET_MASK): 00h = INTERNALREF, 01h = IMPORTORDINAL, 02h = IMPORTNAME, 03h = OSFIXUP, 04h = ADDITIVE |
+| 02h | WORD | nr_soff | Offset within this segment of the source chain. If the ADDITIVE flag is set, then target value is added to the source contents, instead of replacing the source and following the chain. The source chain is an 0FFFFh terminated linked list within this segment of all references to the target |
 | Internal fixup ||||
 | 04h | char | nr_segno | ??? |
 | 05h | char | nr_res | ??? |
 | 06h | WORD | nr_entry | ??? |
-| ??? ||||
+| Import ||||
 | 04h | WORD | nr_mod | ??? |
 | 06h | WORD | nr_proc | ??? |
 | OS Fixup ||||
