@@ -22,6 +22,23 @@ Bind real-mode Family API stub.
 | |)|-|-|-|v|v|-|-|-|v|linklib|'|
 | |`|drive|'|`|path|'|
 
+
+|   |,|-|-|-|-|-|.| |
+|-@2|^@1f|v|-|-|-|v|^|(|
+| | |)|/?|(|
+| | |!| | | |!|
+| | |)|/H[ELP]|(|
+| | |!| | | |!|
+| | |)|/M[AP]|(|
+| | |!| | | |!|
+| | |)|/N[AMES]|(|
+| | |!| | | |!|
+| | |)|/NOLOGO|(|
+| | |!| | | |!|
+| | |)|/O[UTFILE]|(|
+| | |!| | | |!|
+| | |`|/Q[UIET]|'|
+
 </diagram>
 
 infile The name of the OS/2 program to be bound. BIND looks in the current directory unless you specify a complete path name. If you provide no extension, .EXE is assumed.
@@ -36,7 +53,7 @@ options
 	 
 BIND options must appear last on the command line. You can specify options in uppercase or lowercase and use a single letter or the full option name. For example, /M, /m, /MAP, and /map are equivalent.
  
-/HELP          Displays Help
+/H[ELP]        Displays Help
 
 /M[AP]         Generates Link Map File
 
