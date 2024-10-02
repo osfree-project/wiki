@@ -36,12 +36,15 @@ options
 	 
 BIND options must appear last on the command line. You can specify options in uppercase or lowercase and use a single letter or the full option name. For example, /M, /m, /MAP, and /map are equivalent.
  
-     Option         Action
- 
-     /HELP          Displays Help
-     /M[AP]         Generates Link Map File
-     /N[AMES]       Specifies Protected-Mode Functions
-     /NOLOGO        Suppresses Sign-On Banner
-     /O[UTFILE]     Specifies Name of Bound Program
-     /?             Displays Short Help
+/HELP          Displays Help
+
+/M[AP]         Generates Link Map File
+
+/N[AMES]       Specifies Protected-Mode Functions
+
+/NOLOGO        Suppresses Sign-On Banner
+
+/O[UTFILE]     Specifies Name of Bound Program
+
+/?             Displays Short Help
 
