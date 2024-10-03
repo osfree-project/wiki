@@ -65,3 +65,4 @@ BIND options must appear last on the command line. You can specify options in up
 
 /?             Displays Short Help
 
+{{page>en:templates:tktools}}
