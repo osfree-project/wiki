@@ -45,7 +45,7 @@ Bind real-mode Family API stub.
 
 The name of the OS/2 program to be bound. BIND looks in the current directory unless you specify a complete path name. If you provide no extension, .EXE is assumed.
  
-==== implibs ====
+==== implib ====
 
 The names of one or more import libraries. Use this field if your program calls functions imported using import libraries. You can specify the file APILMR.OBJ, which provides a 64K default data segment when running in real mode.
 
@@ -63,7 +63,7 @@ BIND options must appear last on the command line. You can specify options in up
 
 Displays Help
 
-=== /H[ELP] ===
+=== /HELP ===
 
 Displays Help
 
