@@ -29,15 +29,15 @@ Bind real-mode Family API stub.
 | | |!| | | |!|
 | | |)|BBB|(|BBB=[[#/HELP|/H[ELP] ]]
 | | |!| | | |!|
-| | |)|/M[AP]|(|
+| | |)|CCC|(|CCC=[[#/MAP|/M[AP] ]]
 | | |!| | | |!|
-| | |)|/N[AMES]|(|
+| | |)|DDD|(|DDD=[[#/NAMES|/N[AMES] ]]
 | | |!| | | |!|
-| | |)|/NOLOGO|(|
+| | |)|EEE|(|EEE=[[#/NOLOGO|/NOLOGO]]
 | | |!| | | |!|
-| | |)|/O[UTFILE]|(|
+| | |)|FFF|(|FFF=[[#/OUTFILE|/O[UTFILE] ]]
 | | |!| | | |!|
-| | |`|/Q[UIET]|'|
+| | |`|GGG|'|GGG=[[#/QUIET|/Q[UIET] ]]
 
 </diagram>
 
@@ -67,14 +67,25 @@ Displays Help
 
 Displays Help
 
-/M[AP]         Generates Link Map File
+=== /MAP ===
 
-/N[AMES]       Specifies Protected-Mode Functions
+Generates Link Map File
 
-/NOLOGO        Suppresses Sign-On Banner
+=== /NAMES ===
 
-/O[UTFILE]     Specifies Name of Bound Program
+Specifies Protected-Mode Functions
 
-/?             Displays Short Help
+=== /NOLOGO ===
+
+Suppresses Sign-On Banner
+
+=== /OUTFILE ===
+
+Specifies Name of Bound Program
+
+=== /QUIET ===
+
+Suppress output
+
 
 {{page>en:templates:tktools}}
