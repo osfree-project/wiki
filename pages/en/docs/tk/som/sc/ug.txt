@@ -470,6 +470,8 @@ Goal of somFree SOM Compiler and Emitter Framework is to provide a possibility t
 somFree SOMC.DLL provides automatic switching of IBM SOM 2.1 ABI and IBM SOM 3.0 ABI. Switching occurs on somtload call during loading of emitter. For IBM SOM 3.0 all emitter contains entry point emitSL, so, if loading was success, then somFree handles Optlink calling convention for all non SOMLINK calls. If no such entry (found only emit) then IBM SOM 2.1 ABI used.
 2. Support both entry points (emitSL and emit) in emitters.
 somFree emitters automatically switches to IBM SOM 2.1 ABI on emit call and to IBM SOM 3.0 ABI on emitSL call.
+
+todo: add info abount internal structures like in http://www.edm2.com/index.php/OS/2_Application_Binary_Interface_for_PowerPC_(32-bit)   http://www.os2site.com/sw/dev/info/abippc32.pdf
 ====== Список литературы ======
 
 
