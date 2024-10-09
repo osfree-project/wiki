@@ -1,0 +1,3 @@
+  * [[en:docs:tk:som:sc:ug|User's Guide]]
+  * [[en:docs:tk:som:sc:pg|Programmer's Guide]]
+  * [[en:docs:tk:som:sc:pr|Programmer's Reference]]
