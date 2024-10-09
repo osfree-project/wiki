@@ -61,7 +61,7 @@ List of emulated function and variables.
 somFree Compiler library somc is a set of helper functions for compiler tasks. Used by IBM SOM emitters. Library provided solely to provide support of IBM emitters. Must not be used to write new code.
 ==== somtfexists, somtfexistsSL function ====
 
-<code>
+<code C>
 SOMEXTERN BOOL somtfexists(char *file);
 SOMEXTERN BOOL SOMLINK somtfexistsSL(char *file);
 </code>
@@ -72,7 +72,7 @@ Note: somtfexists version uses default compiler calling convention. For IBM SOM 
 
 ==== somtsearchFile, somtsearchFileSL function ====
 
-<code>
+<code C>
 SOMEXTERN char * somtsearchFile(char *file, char *fullpath, char *env);
 SOMEXTERN char * SOMLINK somtsearchFileSL(char *file, char *fullpath, char *env);
 </code>
@@ -83,7 +83,7 @@ Note: somtsearchFile version uses default compiler calling convention. For IBM S
 
 ==== somttraverseParents, somttraverseParentsSL function ====
 
-<code>
+<code C>
 SOMEXTERN int somttraverseParents(FILE *fp, Entry * cls, Entry *arg, int (*fn)(FILE*,Entry*,Entry*), SMTraverse flg);
 SOMEXTERN int SOMLINK somttraverseParentsSL(FILE *fp, Entry * cls, Entry *arg, int (*fn)(FILE*,Entry*,Entry*), SMTraverse flg);
 </code>
@@ -92,7 +92,7 @@ Note: somttraverseParents version uses default compiler calling convention. For 
 
 ==== somtloadSL function ====
 
-<code c>
+<code C>
 SOMEXTERN EmitFn  SOMLINK somtloadSL(char *fileName, char *functionName, void **modHandle);
 </code>
 
@@ -101,7 +101,7 @@ This function switches somc to IBM SOM 3.0 ABI if emitSL function found or to IB
 
 ==== somtfindBaseEp, somtfindBaseEpSL function ====
 
-<code>
+<code C>
 SOMEXTERN Entry * somtfindBaseEp(Entry *ep);
 SOMEXTERN Entry * SOMLINK somtfindBaseEpSL(Entry *ep);
 </code>
@@ -110,7 +110,7 @@ Note: somtfindBaseEp version uses default compiler calling convention. For IBM S
 
 ==== somtgetType, somtgetTypeSL function ====
 
-<code>
+<code C>
 SOMEXTERN Entry * somtgetType(char *name, SOMTTypes type);
 SOMEXTERN Entry * SOMLINK somtgetTypeSL(char *name, SOMTTypes type);
 </code>
@@ -119,7 +119,7 @@ Note: somtGetType version uses default compiler calling convention. For IBM SOM 
 
 ==== somtokfopen, somtokfopenSL function ====
 
-<code>
+<code C>
 SOMEXTERN FILE * somtokfopen(char *path, char *mode);
 SOMEXTERN FILE * SOMLINK somtokfopenSL(char *path, char *mode);
 </code>
@@ -130,7 +130,7 @@ Note: somtokfopen version uses default compiler calling convention. For IBM SOM 
 
 ==== somtokrename, somtokrenameSL function ====
 
-<code>
+<code C>
 SOMEXTERN int somtokrename(const char*, const char *);
 SOMEXTERN int SOMLINK somtokrenameSL(const char*, const char *);
 </code>
@@ -139,7 +139,7 @@ Note: somtokrename version uses default compiler calling convention. For IBM SOM
 
 ==== somtopenEmitFile, somtopenEmitFileSL function ====
 
-<code>
+<code C>
 SOMEXTERN FILE * somtopenEmitFile(char *file, char *ext);
 SOMEXTERN FILE * SOMLINK somtopenEmitFileSL(char *file, char *ext);
 </code>
@@ -148,7 +148,7 @@ Note: somtopenEmitFile version uses default compiler calling convention. For IBM
 
 ==== somtisDbcs, somtisDbcsSL function ====
 
-<code>
+<code C>
 SOMEXTERN BOOL somtisDbcs(int c);
 SOMEXTERN BOOL SOMLINK somtisDbcsSL(int c);
 </code>
@@ -157,7 +157,7 @@ Note: somtisDbcs version uses default compiler calling convention. For IBM SOM 3
 
 ==== somtremoveExt, somtremoveExtSL function ====
 
-<code>
+<code C>
 SOMEXTERN boolean somtremoveExt(char *name, char *ext, char *buf);
 SOMEXTERN boolean SOMLINK somtremoveExt(char *name, char *ext, char *buf);
 </code>
@@ -168,7 +168,7 @@ Note: somtremoveExt version uses default compiler calling convention. For IBM SO
 
 ==== somtaddExt, somtaddExtSL function ====
 
-<code>
+<code C>
 SOMEXTERN char * somtaddExt(char *name, char *ext, char *buf);
 SOMEXTERN char * SOMLINK somtaddExtSL(char *name, char *ext, char *buf);
 </code>
@@ -179,7 +179,7 @@ Note: somtaddExt version uses default compiler calling convention. For IBM SOM 3
 
 ==== somtarrayToPtr, somtarrayToPtrSL function ====
 
-<code>
+<code C>
 SOMEXTERN char * somtarrayToPtr(Entry *ep, char *stars, char *buf);
 SOMEXTERN char * SOMLINK somtarrayToPtrSL(Entry *ep, char *stars, char *buf);
 </code>
@@ -188,7 +188,7 @@ Note: somtarrayToPtr version uses default compiler calling convention. For IBM S
 
 ==== somtattNormalise, somtattNormaliseSL function ====
 
-<code>
+<code C>
 SOMEXTERN char * somtattNormalise(char *name, char *buf);
 SOMEXTERN char * SOMLINK somtattNormaliseSL(char *name, char *buf);
 </code>
@@ -196,7 +196,7 @@ SOMEXTERN char * SOMLINK somtattNormaliseSL(char *name, char *buf);
 Note: somtattNormalise version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtbasename, somtbasenameSL function ====
 
-<code>
+<code C>
 SOMEXTERN char * somtbasenameSL(char *path);
 SOMEXTERN char * SOMLINK somtbasenameSL(char *path);
 </code>
@@ -207,7 +207,7 @@ Note: somtbasename version uses default compiler calling convention. For IBM SOM
 
 ==== somtctos, somtctosSL function ====
 
-<code>
+<code C>
 SOMEXTERN char * somtctos(Const *con, char *buf);
 SOMEXTERN char * SOMLINK somtctosSL(Const *con, char *buf);
 </code>
@@ -216,7 +216,7 @@ Note: somtctos version uses default compiler calling convention. For IBM SOM 3.0
 
 ==== somtdbcsPostincr, somtdbcsPostincrSL function ====
 
-<code>
+<code C>
 SOMEXTERN char * somtdbcsPostincr(char **p);
 SOMEXTERN char * SOMLINK somtdbcsPostincrSL(char **p);
 </code>
@@ -225,7 +225,7 @@ Note: somtdbcsPostincr version uses default compiler calling convention. For IBM
 
 ==== somtdbcsPreincr, somtdbcsPreincrSL function ====
 
-<code>
+<code C>
 SOMEXTERN char * somtdbcsPreincr(char **p);
 SOMEXTERN char * SOMLINK somtdbcsPreincrSL(char **p);
 </code>
@@ -234,7 +234,7 @@ Note: somtdbcsPreincr version uses default compiler calling convention. For IBM 
 
 ==== somtdbcsStrchr, somtdbcsStrchrSL function ====
 
-<code>
+<code C>
 SOMEXTERN char * somtdbcsStrchr(char *s, int c);
 SOMEXTERN char * SOMLINK somtdbcsStrchrSL(char *s, int c);
 </code>
@@ -243,7 +243,7 @@ Note: somtdbcsStrchr version uses default compiler calling convention. For IBM S
 
 ==== somtdbcsStrrchr, somtdbcsStrrchrsL function ====
 
-<code>
+<code C>
 SOMEXTERN char * somtdbcsStrrchr(char *s, int c);
 SOMEXTERN char * SOMLINK somtdbcsStrrchrSL(char *s, int c);
 </code>
@@ -251,7 +251,7 @@ SOMEXTERN char * SOMLINK somtdbcsStrrchrSL(char *s, int c);
 Note: somtdbcsStrrchr version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtdbcsStrstr, somtdbcsStrstrSL function ====
 
-<code>
+<code C>
 SOMEXTERN char * somtdbcsStrstr(char *s1, char *s2);
 SOMEXTERN char * SOMLINK somtdbcsStrstrSL(char *s1, char *s2);
 </code>
@@ -262,7 +262,7 @@ Note: somtdbcsStrstr version uses default compiler calling convention. For IBM S
 
 ==== somteptotype, somteptotypeSL function ====
 
-<code>
+<code C>
 SOMEXTERN char * somteptotype(Entry *ep, char *ptrs, char *buf);
 SOMEXTERN char * SOMLINK somteptotypeSL(Entry *ep, char *ptrs, char *buf);
 </code>
@@ -271,7 +271,7 @@ Note: somteptotype version uses default compiler calling convention. For IBM SOM
 
 ==== somtgetDesc, somtgetDescSL function ====
 
-<code>
+<code C>
 SOMEXTERN char * somtgetDesc(Stab *stab, Entry *cls, Entry *method, char *desc, BOOL addQuotes, BOOL use, BOOL versflg);
 SOMEXTERN char * SOMLINK somtgetDescSL(Stab *stab, Entry *cls, Entry *method, char *desc, BOOL addQuotes, BOOL use, BOOL versflg);
 </code>
@@ -280,7 +280,7 @@ Note: somtgetDesc version uses default compiler calling convention. For IBM SOM 
 
 ==== somtgetVersion, somtgetVersionSL function ====
 
-<code>
+<code C>
 SOMEXTERN char * somtgetVersion(char *sccsid, char *version);
 SOMEXTERN char * SOMLINK somtgetVersionSL(char *sccsid, char *version);
 </code>
@@ -289,7 +289,7 @@ Note: somtgetVersion version uses default compiler calling convention. For IBM S
 
 ==== somtgetgatt, somtgetgattSL function ====
 
-<code>
+<code C>
 SOMEXTERN char * somtgetgatt(char *s);
 SOMEXTERN char * SOMLINK somtgetgattSL(char *s);
 </code>
@@ -298,7 +298,7 @@ Note: somtgetgatt version uses default compiler calling convention. For IBM SOM 
 
 ==== somtnextword, somtnextwordSL function ====
 
-<code>
+<code C>
 SOMEXTERN char * somtnextword(const char *s, char *buf);
 SOMEXTERN char * SOMLINK somtnextwordSL(const char *s, char *buf);
 </code>
@@ -353,7 +353,7 @@ Note: somtstringFmt version uses default compiler calling convention. For IBM SO
 
 ==== somttype, somttypeSL function ====
 
-<code>
+<code C>
 SOMEXTERN char * somttype(SOMTType type);
 SOMEXTERN char * SOMLINK somttypeSL(SOMTType type);
 </code>
@@ -365,7 +365,7 @@ Warning: Depricated. Use somtEntryTypeName instead.
 
 ==== somtuniqFmt, somtuniqFmtSL function ====
 
-<code>
+<code C>
 SOMEXTERN char * somtuniqFmt(MemBuf *membuf, char *fmt, ...)
 SOMEXTERN char * SOMLINK somtuniqFmtSL(MemBuf *membuf, char *fmt, ...)
 </code>
@@ -375,7 +375,7 @@ Return unique formatted string.
 Note: somtuniqFmt version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink.
 ==== somtargFlag, somtargFlagSL function ====
 
-<code c>
+<code C>
 SOMEXTERN int somtargFlag(int *argc, char ***argv);
 SOMEXTERN int SOMLINK somtargFlagSL(int *argc, char ***argv);
 </code>
@@ -408,7 +408,7 @@ SOMEXTERN int SOMLINK somtdbcsScanSL(char **buf);
 Note: somtdbcsScan version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtdiskFull, somtdiskFullSL function ====
 
-<code c>
+<code C>
 SOMEXTERN int somtdiskFull(FILE *fp);
 SOMEXTERN int SOMLINK somtdiskFullSL(FILE *fp);
 </code>
@@ -416,7 +416,7 @@ SOMEXTERN int SOMLINK somtdiskFullSL(FILE *fp);
 Note: somtdiskFull version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtfclose, somtfcloseSL function ====
 
-<code>
+<code C>
 SOMEXTERN int somtfclose(FILE *fp);
 SOMEXTERN int SOMLINK somtfcloseSL(FILE *fp);
 </code>
@@ -459,7 +459,7 @@ SOMEXTERN int SOMLINK somtmprintfSL(int setnum, int msgnum, ...);
 Note: somtmprintf version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtokremove, somtokremoveSL function ====
 
-<code>
+<code C>
 SOMEXTERN int somtokremove(char *file);
 SOMEXTERN int SOMLINK somtokremoveSL(char *file);
 </code>
@@ -486,7 +486,7 @@ SOMEXTERN int SOMLINK somtwriteaccessSL(char *file);
 Note: somtwriteaccess version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtsmalloc, somtsmallocSL function ====
 
-<code>
+<code C>
 SOMEXTERN void * somtsmalloc(size_t nbytes, BYTE clear);
 SOMEXTERN void * SOMLINK somtsmallocSL(size_t nbytes, BYTE clear);
 </code>
@@ -513,7 +513,7 @@ SOMEXTERN void SOMLINK somtcalcFileNameSL(char *def, char *over, char *ext);
 Note: somtcalcFileName version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtcleanFilesFatal, somtcleanFilesFatalSL function ====
 
-<code>
+<code C>
 SOMEXTERN void  somtcleanFilesFatal(int status);
 SOMEXTERN void  SOMLINK somtcleanFilesFatalSL(int status);
 </code>
@@ -636,7 +636,7 @@ SOMEXTERN void SOMLINK somtwarnSL(char *file, long lineno, char *fmt, ...);
 Note: somtwarn version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtuppercase, somtuppercaseSL function ====
 
-<code>
+<code C>
 SOMEXTERN char * somtuppercase(char *s, char *buf);
 SOMEXTERN char * SOMLINK somtuppercaseSL(char *s, char *buf);
 </code>
@@ -647,7 +647,7 @@ Note: somtuppercase version uses default compiler calling convention. For IBM SO
 
 ==== somtlowercase, somtlowercaseSL function ====
 
-<code>
+<code C>
 SOMEXTERN char * somtlowercase(char *s, char *buf);
 SOMEXTERN char * SOMLINK somtlowercase(char *s, char *buf)
 </code>
@@ -786,7 +786,7 @@ Note: somtsetInternalMessages version uses default compiler calling convention. 
 
 ==== somtisvoid, somtisvoidSL function ====
 
-<code>
+<code C>
 SOMEXTERN boolean somtisvoidSL(Entry *type, char *defn)
 SOMEXTERN BOOL SOMLINK somtisvoidSL(Entry *type, char *defn)
 </code>
@@ -988,7 +988,7 @@ SOMEXTERN Entry * SOMLINK somtnthArgSL(Entry * method, int n);
 Note: somtnthArg version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 ==== somtemitModule, somtemitModuleSL function ====
 
-<code>
+<code C>
 SOMEXTERN FILE * somtemitModule(char *file, Entry *cls, char *ext);
 SOMEXTERN FILE * SOMLINK somtemitModuleSL(char *file, Entry *cls, char *ext);
 </code>
@@ -1475,7 +1475,7 @@ Note: somtuniqString version uses default compiler calling convention. For IBM S
 
 ===== somtkeyword, somtkeywordSL function =====
 
-<code>
+<code C>
 SOMEXTERN long somtkeyword(KeytabEntry *keytab, char *kword, long keytabsize);
 SOMEXTERN long SOMLINK somtkeywordSL(KeytabEntry *keytab, char *kword, long keytabsize);
 </code>
@@ -1486,7 +1486,7 @@ Note: somtkeyword version uses default compiler calling convention. For IBM SOM 
 
 ===== somtaddEntry, somtaddEntrySL function =====
 
-<code>
+<code C>
 SOMEXTERN void * somtaddEntry(Stab *stab, char *name, void *ep);
 SOMEXTERN void * SOMLINK somtaddEntrySL(Stab *stab, char *name, void *ep);
 </code>
@@ -1497,7 +1497,7 @@ Note: somtaddEntry version uses default compiler calling convention. For IBM SOM
 
 ===== somtgetEntry, somtgetEntrySL function =====
 
-<code>
+<code C>
 SOMEXTERN void * somtgetEntry(Stab *stab, char *name);
 SOMEXTERN void * SOMLINK somtgetEntrySL(Stab *stab, char *name);
 </code>
@@ -1508,7 +1508,7 @@ Note: somtgetEntry version uses default compiler calling convention. For IBM SOM
 
 ===== somtstabFirst, somtstabFirstSL function =====
 
-<code>
+<code C>
 SOMEXTERN void * somtstabFirst(Stab *stab, Sep **sepp);
 SOMEXTERN void * SOMLINK somtstabFirstSL(Stab *stab, Sep **sepp);
 </code>
@@ -1519,7 +1519,7 @@ Note: somtstabFirst version uses default compiler calling convention. For IBM SO
 
 ===== somtstabNext, somtstabNextSL function =====
 
-<code>
+<code C>
 SOMEXTERN void * somtstabNext(Stab *stab, Sep **sepp);
 SOMEXTERN void * SOMLINK somtstabNextSL(Stab *stab, Sep **sepp);
 </code>
@@ -1530,7 +1530,7 @@ Note: somtstabNext version uses default compiler calling convention. For IBM SOM
 
 ===== somtstabFirstName, somtstabFirstNameSL function =====
 
-<code>
+<code C>
 SOMEXTERN void * somtstabFirstName(Stab *stab, char *name, Sep **sepp);
 SOMEXTERN void * SOMLINK somtstabFirstNameSL(Stab *stab, char *name, Sep **sepp);
 </code>
@@ -1541,7 +1541,7 @@ Note: somtstabFirstName version uses default compiler calling convention. For IB
 
 ===== somtstabNextName, somtstabNextNameSL function =====
 
-<code>
+<code C>
 SOMEXTERN void * somtstabNextName(Stab *stab, Sep **sepp);
 SOMEXTERN void * SOMLINK somtstabNextNameSL(Stab *stab, Sep **sepp);
 </code>
@@ -1561,7 +1561,7 @@ Note: somtcreateMemBuf version uses default compiler calling convention. For IBM
 
 ===== somtcreateStab, somtcreateStabSL function =====
 
-<code>
+<code C>
 SOMEXTERN void somtcreateStab(Stab *stab, long stabsize, long entrysize);
 SOMEXTERN void SOMLINK somtcreateStabSL(Stab *stab, long stabsize, long entrysize);
 </code>
@@ -1572,7 +1572,7 @@ Note: somtcreateStab version uses default compiler calling convention. For IBM S
 
 ===== somticstrcmp, somticstrcmpSL function =====
 
-<code>
+<code C>
 SOMEXTERN int somticstrcmp(char *s, char *t)
 SOMEXTERN int SOMLINK somticstrcmpSL(char *s, char *t);
 </code>
@@ -1583,7 +1583,7 @@ Note: somticstrcmp version uses default compiler calling convention. For IBM SOM
 
 ===== somtaddEntryBuf, somtaddEntryBufSL function =====
 
-<code>
+<code C>
 SOMEXTERN void * somtaddEntryBuf(Stab *stab, char *name, void *ep, void *buf, size_t len);
 SOMEXTERN void * SOMLINK somtaddEntryBufSL(Stab *stab, char *name, void *ep, void *buf, size_t len);
 </code>
@@ -1607,7 +1607,7 @@ Note: somtfreeStab version uses default compiler calling convention. For IBM SOM
 
 === somtIsReadonly attribute ===
 
-<code>
+<code idl>
 readonly attribute boolean somtIsReadonly;
 </code>
 
