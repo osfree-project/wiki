@@ -162,7 +162,7 @@ First of all, think about your class. What it must do? Define them in terms of o
 
 Ok. Imagine, we need class to have access to Java objects. Let's write a class interface in terms of Interface Definition Language.
 
-<code>
+<code idl>
  #include <somobj.idl>
  
  interface JavaObject : [[SOMObject]]
@@ -183,7 +183,7 @@ On object destruction checks is Java Virtual Machine still required will be done
 
 Classic IDL file contains definitions like
 
-<code>
+<code idl>
  interface <class> : <parent_class>
  {
    attribute <type> <name>
@@ -195,7 +195,7 @@ Classic IDL file contains definitions like
 
 [http://www.omg.org OMG] IDL doesn't support methods override. SOM IDL has such feature (and incompatibility with OMG CORBA). This is done via keyword '''implementation'''. To solve problems with other IDL compilers such part must be wrapped to #ifdef structure:
 
-<code>
+<code idl>
  #include <somobj.idl>
  
  interface JavaObject : [[SOMObject]]
@@ -297,7 +297,7 @@ As result you'll have such file:
 So, this header can be used to generate actual class interface
 using this script:
 
-<code>
+<code rexx>
  /* REXX - our best dog */
  
  do while lines('java_lang_Object.h')
@@ -334,7 +334,7 @@ using this script:
 
 As result, you'll have following:
 
-<code>
+<code idl>
  #include <JavaObject.idl>
  
  interface java_lang_Object : JavaObject
