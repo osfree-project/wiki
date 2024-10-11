@@ -140,12 +140,27 @@ Usage of somFree Compiler will not be problem for most of you. But understanding
 
 Latest IBM SOM 3.0 supports CORBA IDL mostly at level of CORBA 1.1. somFree supports CORBA IDL 4.2 with all extensions found in SOM IDL.
 
-  * Include Directives (optional)
+==== Preprocessing ====
+
+IDL shall be preprocessed according to the specification of the preprocessor in ISO/IEC 14882:2003. The preprocessor may be implemented as a separate process or built into the IDL compiler.
+
+Lines beginning with # (also called "directives") communicate with this preprocessor. White space may appear before the #. These lines have syntax independent of the rest of IDL; they may appear anywhere and have effects that last (independent of the IDL scoping rules) until the end of the translation unit. The textual location of IDL-specific pragmas may be semantically constrained.
+
+A preprocessing directive (or any line) may be continued on the next line in a source file by placing a backslash character (\), immediately before the newline at the end of the line to be continued. The preprocessor effects the continuation by deleting the backslash and the newline. A backslash character may not be the last character in a source file.
+
+The primary use of the preprocessing facilities is to include definitions from other IDL specifications. Text in files included with a #include directive is treated as if it appeared in the including file.
+
+todo: #line
+todo: #pragma
+
+==== Syntax ====
+
   * Type and Constant Declarations (optional)
   * Exception Declarations (optional)
   * Interface Declarations (optional)
   * Module declaration (optional)
 
+==== Example ====
 Let's try to define our class interface.
 
 Interface Definition Language (IDL) is the core of System Object Model. All classes have definition of its interface via IDL. With help of somFree Compiler IDL file can be translated to various formats, including various language bindings. For example, to produce C header you can run
