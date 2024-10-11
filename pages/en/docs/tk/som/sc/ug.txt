@@ -475,9 +475,9 @@ todo: add info abount internal structures like in http://www.edm2.com/index.php/
 ====== Список литературы ======
 
 
-  - Object Management Group, «C Language Mapping Specification 1.0,» [В Интернете]. Available: https://www.omg.org/spec/C/. [Дата обращения: 24 Август 2022].
-  - IBM, OS/2 2.0 Technical Library. System Object Model Guide and Reference. First Edition., 1991. https://www.os2museum.com/files/docs/os220tl/os2-2.0-som-1991.pdf
-
+  - Object Management Group, "C Language Mapping Specification 1.0, 1999" Available: https://www.omg.org/spec/C/
+  - IBM, "OS/2 2.0 Technical Library. System Object Model Guide and Reference. First Edition, 1991"  Available: https://www.os2museum.com/files/docs/os220tl/os2-2.0-som-1991.pdf
+  - Object Management Group, "The Common Object Request Broker: Architecture and Specification. Revision 1.1, 1991" Available: https://www.omg.org/spec/CORBA/1.1
 
 
 
