@@ -380,7 +380,9 @@ OIDL consist of sections set:
   * Data section (optional)
   * Methods section (optional)
 
-==== Include section ====
+==== Include section (Preprocessing) ====
+
+Include section handled by SPP preprocessor. Preprocessor is a simple tool which includes files pointed by include section into the original file.
 
 Include section is optional and contains names of OIDL files with definition of parent class, metaclasses and private interfaces of ancestor classes.
 
@@ -392,10 +394,11 @@ Include section is optional and contains names of OIDL files with definition of 
 
 ancestor is the name of the OIDL file containing the private part of an ancestor class' interface needed in the definition of this class. If ancestor is enclosed in angle brackets (%%<>%%), the search for the file will begin in system-specific locations. If parent is enclosed in double quotation marks (%%""%%), the search for the file will begin in the local context, then move to the system-specific locations.
 
-parent is the name of the OIDL file containing the parent class of the class for which the Include statement is provided. If parent is enclosed in angle
-brackets (%%<>%%), the search for the file will begin in system-specific locations. If parent is enclosed in double quotation marks (%%""%%), the search for the file will begin in the local context, then move to the system-specific locations.
+parent is the name of the OIDL file containing the parent class of the class for which the Include statement is provided. If parent is enclosed in angle brackets (%%<>%%), the search for the file will begin in system-specific locations. If parent is enclosed in double quotation marks (%%""%%), the search for the file will begin in the local context, then move to the system-specific locations.
 
 metaclass is the OIDL file containing the metaclass of the class for which the include statement is provided. If metaclass is enclosed in angle brackets (%%<>%%), the search for the file will begin in system-specific locations. If metaclass is enclosed in double quotation marks (%%""%%), the search for the file will begin in the local context, then move to the system-specific locations.
+
+todo: @ line "file" "filepath"
 
 ==== Class section ====
 
