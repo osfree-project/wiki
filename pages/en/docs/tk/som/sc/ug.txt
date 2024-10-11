@@ -23,7 +23,7 @@ Changes from original somFree compiler:
   * somtShowEntry function outputs more info.
   * Undocumented SOMTTypes now documented.
   * SOMIPC now supports IDL 4.2 specification.
-  * CORBA C Language Mapping Specification 1.0 now supported by default instead of SOM C Language mapping.
+  * CORBA C Language Mapping Specification 1.0 now supported by default instead of CORBA 1.1 C Language mapping.
   * Added support of OIDL files
 
 ===== somFree Compiler =====
