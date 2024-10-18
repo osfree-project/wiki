@@ -29,13 +29,13 @@ Bind real-mode Family API stub.
 | | |!| | | |!|
 | | |)|BBB|(|BBB=[[#/HELP|/H[ELP] ]]
 | | |!| | | |!|
-| | |)|CCC|(|CCC=[[#/MAP|/M[AP] ]]
+| | |)|CCC|(|CCC=[[#/MAP|/M[AP] [filename] ]]
 | | |!| | | |!|
-| | |)|DDD|(|DDD=[[#/NAMES|/N[AMES] ]]
+| | |)|DDD|(|DDD=[[#/NAMES|/N[AMES] [name | @filename] ]]
 | | |!| | | |!|
 | | |)|EEE|(|EEE=[[#/NOLOGO|/NOLOGO]]
 | | |!| | | |!|
-| | |)|FFF|(|FFF=[[#/OUTFILE|/O[UTFILE] ]]
+| | |)|FFF|(|FFF=[[#/OUTFILE|/O[UTFILE] filename ]]
 | | |!| | | |!|
 | | |`|GGG|'|GGG=[[#/QUIET|/Q[UIET] ]]
 
@@ -89,5 +89,6 @@ Specifies Name of Bound Program
 
 Suppress output
 
+Source code can be found at https://github.com/osfree-project/osfree/tree/master/tools/bind Released under osFree (MIT) licence.
 
 {{page>en:templates:tktools}}
