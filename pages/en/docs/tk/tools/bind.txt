@@ -31,6 +31,8 @@ Bind real-mode Family API stub.
 | | |!| | | |!|
 | | |)|CCC|(|CCC=[[#/MAP|/M[AP] [filename] ]]
 | | |!| | | |!|
+| | |)|HHH|(|HHH=[[#/LIBPATH|/L[IBPATH] searchpath ]]
+| | |!| | | |!|
 | | |)|DDD|(|DDD=[[#/NAMES|/N[AMES] [name | @filename] ]]
 | | |!| | | |!|
 | | |)|EEE|(|EEE=[[#/NOLOGO|/NOLOGO]]
