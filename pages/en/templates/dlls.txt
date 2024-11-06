@@ -1,4 +1,3 @@
-
 ^ [[en:docs:os2:modules|OS/2 DLLs]] ^^
 | Base API | [[en:docs:os2:modules:doscalls|DOSCALLS]] [[en:docs:os2:modules:emxwrap|EMXWRAP]] [[en:docs:os2:modules:sub32|SUB32]] [[en:docs:os2:modules:ansicall|ANSICALL]] [[en:docs:os2:modules:nls|NLS]] [[en:docs:os2:modules:msg|MSG]] [[en:docs:os2:modules:moncalls|MONCALLS]] [[en:docs:os2:modules:kbdcalls|KBDCALLS]] [[en:docs:os2:modules:moucalls|MOUCALLS]] [[en:docs:os2:modules:viocalls|VIOCALLS]] [[en:docs:os2:modules:sesmgr|SESMGR]] [[en:docs:os2:modules:bkscalls|BKSCALLS]] [[en:docs:os2:modules:bmscalls|BMSCALLS]] [[en:docs:os2:modules:bvscalls|BVSCALLS]] [[en:docs:os2:modules:nampipes|NAMPIPES]] [[en:docs:os2:modules:quecalls|QUECALLS]] [[en:docs:os2:modules:os2char|OS2CHAR]] |
 | Bidirectional NLS | [[en:docs:os2:modules:bdcalls|BDCALLS]] [[en:docs:os2:modules:bdcalls32|BDCALLS32]] [[en:docs:os2:modules:bdime|BDIME]] [[en:docs:os2:modules:bdbvh|BDBVH]] [[en:docs:os2:modules:bdview|BDVIEW]] [[en:docs:os2:modules:bdwpcls|BDWPCLS]] [[en:docs:os2:modules:bidipm|BIDIPM]] [[en:docs:os2:modules:pmbidi|PMBIDI]] |
@@ -14,7 +13,7 @@
 | VDM PM interface | [[en:docs:os2:modules:pmvdmh|PMVDMH]] [[en:docs:os2:modules:pmvdmp|PMVDMP]] [[en:docs:os2:modules:seamless|SEAMLESS]] [[en:docs:os2:modules:shield|SHIELD]] |
 | WPS | [[en:docs:os2:modules:pmwp|PMWP]] [[en:docs:os2:modules:pmwpmri|PMWPMRU]] [[en:docs:os2:modules:pmvddrop|PMVDDROP]] |
 | Miscellaneous | [[en:docs:os2:modules:pmpic|PMPIC]] [[en:docs:os2:modules:pmtkt|PMTKT]] [[en:docs:os2:modules:mvdm|MVDM]] |
-
+| SOM API | [[en:docs:os2:modules:somc|SOMC]] |
 
 
 <diagram>
