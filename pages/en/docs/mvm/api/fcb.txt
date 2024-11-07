@@ -24,3 +24,5 @@ reserved field have different meaning in different DOSes. Not known is it used b
 
 [[en:docs:mvm:api:XFCB]]
 
+
+{{page>en:templates:svcapi}}
