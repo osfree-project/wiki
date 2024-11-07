@@ -1,7 +1,9 @@
 ====== Error codes ======
 
-^ Code ^ Description ^
-| 04h | too many open files (no handles available) |
-| 06h | invalid handle |
+SVC API error codes same as in DOS API
+
+^ Name ^ Code ^ Description ^
+| ERROR_TOO_MANY_OPEN_FILES | 04h | Too many open files (no handles available) |
+| ERROR_INVALID_HANDLE      | 06h | Invalid handle |
 
 {{page>en:templates:svcapi}}
