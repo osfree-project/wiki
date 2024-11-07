@@ -1,0 +1,7 @@
+====== Error codes ======
+
+^ Code ^ Description ^
+| 04h | too many open files (no handles available) |
+| 06h | invalid handle |
+
+{{page>en:templates:svcapi}}
