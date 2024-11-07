@@ -23,4 +23,5 @@ Set system time
 ===== See also =====
 
 
+{{page>en:templates:svcapi}}
 

@@ -18,3 +18,5 @@
 moving file pointer for either handle will also move it for the other, because both will refer to the same system file table
 
 ===== See also =====
+
+{{page>en:templates:svcapi}}

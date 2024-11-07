@@ -20,3 +20,4 @@ none
 
 ===== See also =====
 
+{{page>en:templates:svcapi}}
