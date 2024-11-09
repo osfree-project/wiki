@@ -2,7 +2,7 @@
 
 IBM SOM development was based on CORBA 1.1 specifications. But in later CORBA standards some changes (and incompatibilities) was introduced:
 
-  - Most of CORBA C mapping now has CORBA_ prefix because all CORBA definitions now in CORBA module (CORBA 1.2 p.79 4.11 CORBA Module).
+  - Most of CORBA C mapping now has CORBA_ prefix (CORBA 1.2 p.79 4.11 CORBA Module).
   - Up to CORBA 1.2 CORBA_Environment mapped to second argument of method function. But CORBA 2.0 changed this to last argument (CORBA 2.0 p.14-5 14.3 Mapping for Interfaces).
   - Interface Repository interfaces was changed in CORBA 2.0. Description structure not contains member 'name' but member 'kind' with different type. (CORBA 2.0 p.6-10 6.5.3 Contained).
   - CORBA 2.1 introduces wide chars (CORBA 2.1 p.1-17 wchar/wstring...
