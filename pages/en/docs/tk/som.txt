@@ -1,1 +1,2 @@
+  * [[en:docs:tk:som:progg|somFree Programming Guide]]
   * [[en:docs:tk:som:sc|somFree Compiler and Emitter Framework]]
