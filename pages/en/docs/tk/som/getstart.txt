@@ -1,0 +1,61 @@
+====== Notices ======
+
+===== Trademarks =====
+
+====== About This Book ======
+
+===== Who Should Use This Book =====
+
+===== How This Book is Organized =====
+
+===== Where to Find More Information =====
+
+====== Chapter 1. Quick Start Checklist ======
+
+===== Building Non-distributed Applications =====
+
+===== Building Distributed Applications =====
+
+====== Chapter 2. Introducing somFree ======
+
+===== Understanding somFree =====
+
+====== Chapter 3. Building the Classes ======
+
+===== Step 1: Determining What to Use =====
+
+===== Step 2: Creating the Source IDL for the Classes =====
+
+===== Step 3: Running the somFree Compiler =====
+
+===== Step 4: Updating the Implementation Templates =====
+
+===== Step 5: Compiling the Implementation Code =====
+
+===== Step 6: Linking the Object Code =====
+
+====== Chapter 4. Using the Classes in an Application ======
+
+===== Step 1: Determining What to Use =====
+
+===== Step 2: Creating the Application =====
+
+===== Step 3: Compiling the Application Code =====
+
+===== Step 4: Linking the Application =====
+
+===== Step 5: Running the Application =====
+
+====== Chapter 5. Running in a Distributed Environment ======
+
+===== Creating Distributed Classes =====
+
+===== Registering the Classes and Application Server =====
+
+===== Creating a Distributed Client Application =====
+
+====== Chapter 6. For More Information ======
+
+===== somFree Library Reference =====
+
+===== Summary of Sample Data Sets =====
