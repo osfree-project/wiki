@@ -6,25 +6,7 @@
 
 somFree Compiler and Emitter Framework is a free open source binary compatible reimplementation of IBM SOM Compiler and Emitter Framework. It is tries to be as compatible as possible on API and ABI level.
 
-===== Changes =====
 
-Changes from original somFree compiler:
-
-  * Most of internal structures now also present as in old IBM SOM 2.1 NT Toolkit.
-  * New emitters:
-    * LNK - Open Watcom WLink support.
-    * DUMP - displays structures, available to emitter.
-    * PAS - Pascal client support.
-    * IPAS - Pascal implementation classes support.
-  * SOM Compiler library now mostly documented.
-  * SOMLINK style functions for most of SOM Compiler library added.
-  * Emitters now IBM SOM 2.1 and IBM SOM 3.0 compatible without recompilation.
-  * somFree Compiler supports IBM SOM 2.1, IBM SOM 3.0, and somFree 1.0 emitters.
-  * somtShowEntry function outputs more info.
-  * Undocumented SOMTTypes now documented.
-  * SOMIPC now supports IDL 4.2 specification.
-  * CORBA C Language Mapping Specification 1.0 now supported by default instead of CORBA 1.1 C Language mapping.
-  * Added support of OIDL files
 
 ===== somFree Compiler =====
 

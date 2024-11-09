@@ -1,3 +1,54 @@
   * [[en:docs:tk:som:getstart|somFree Getting Started]]
   * [[en:docs:tk:som:progg|somFree Programming Guide]]
   * [[en:docs:tk:som:sc|somFree Compiler and Emitter Framework]]
+
+Quick history:
+
+SOM 1.0 - came out with OS/2 2.0 and used to build WorkPlaceShell
+
+SOM 2.0 - aligned with CORBA 1.1, used CORBA IDL and added DSOM.
+
+SOM adopted by Apple to move OpenDoc from C++ to a language neutral framework.
+
+SOM 3.0 - added IIOP support, referencing counting for SOMObject and more CORBA frameworks
+
+SOM was available on OS/2 2.0 upwards, Windows NT, AIX 4, OS/390 and OS/400.
+
+Why somFree?
+
+This project provides a clean-room implementation of the major SOM components and is built to be very portable. The name comes from the method used to delete a SOMObject.
+
+Main differences from IBM SOM
+
+  - IDL compiler is a C++ program rather than a SOM based framework. This solves a chicken-and-egg problem.
+
+  - Assembler is not used for thunking, somResolve() uses macros and apply/dispatch stubs.
+
+  - Some components are just hollow stubs, such as SOMP.
+
+  - Some components are not fully functional, eg somossvr.
+
+  - You can have both C and C++ header files generated. The choice of 'somcorba' or 'somstars' comes from managing the 'SOMSTAR' macro.
+
+  - No security functions implemented.
+
+===== Changes =====
+
+Changes from original somFree compiler:
+
+  * Most of internal structures now also present as in old IBM SOM 2.1 NT Toolkit.
+  * New emitters:
+    * LNK - Open Watcom WLink support.
+    * DUMP - displays structures, available to emitter.
+    * PAS - Pascal client support.
+    * IPAS - Pascal implementation classes support.
+  * SOM Compiler library now mostly documented.
+  * SOMLINK style functions for most of SOM Compiler library added.
+  * Emitters now IBM SOM 2.1 and IBM SOM 3.0 compatible without recompilation.
+  * somFree Compiler supports IBM SOM 2.1, IBM SOM 3.0, and somFree 1.0 emitters.
+  * somtShowEntry function outputs more info.
+  * Undocumented SOMTTypes now documented.
+  * SOMIPC now supports IDL 4.2 specification.
+  * CORBA C Language Mapping Specification 1.0 now supported by default instead of CORBA 1.1 C Language mapping.
+  * Added support of OIDL files
+  * 
