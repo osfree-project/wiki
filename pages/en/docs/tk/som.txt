@@ -21,15 +21,10 @@ This project provides a clean-room implementation of the major SOM components an
 Main differences from IBM SOM
 
   - IDL compiler is a C++ program rather than a SOM based framework. This solves a chicken-and-egg problem.
-
   - Assembler is not used for thunking, somResolve() uses macros and apply/dispatch stubs.
-
   - Some components are just hollow stubs, such as SOMP.
-
   - Some components are not fully functional, eg somossvr.
-
   - You can have both C and C++ header files generated. The choice of 'somcorba' or 'somstars' comes from managing the 'SOMSTAR' macro.
-
   - No security functions implemented.
 
 ===== Changes =====
@@ -51,4 +46,3 @@ Changes from original somFree compiler:
   * SOMIPC now supports IDL 4.2 specification.
   * CORBA C Language Mapping Specification 1.0 now supported by default instead of CORBA 1.1 C Language mapping.
   * Added support of OIDL files
-  * 
