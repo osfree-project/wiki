@@ -1,0 +1,5 @@
+====== Exceptions ======
+
+Base somFree classes (SOMObject, SOMClass, SOMClassMgr) is only classes which not uses exceptions for error handling.
+
+Other classes provided by the somFree Toolkit (including those in the Persistence, Replication, DSOM, and Interface Repository frameworks, and the utility classes and metaclasses) handle errors via exceptions. Rather than invoking SOMError with an error code, their methods return exceptions via the (CORBA_Environment *) inout parameter required by these methods. The following sections describe the exception declarations, the standard exceptions, and how to set and get exception information in an CORBA_Environment structure. Refer C Language Mapping 1.16 and 1.22 for more information.
