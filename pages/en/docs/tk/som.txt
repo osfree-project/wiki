@@ -4,13 +4,11 @@
 
 Quick history:
 
-SOM 1.0 - came out with OS/2 2.0 and used to build WorkPlaceShell
-
-SOM 2.0 - aligned with CORBA 1.1, used CORBA IDL and added DSOM.
-
-SOM adopted by Apple to move OpenDoc from C++ to a language neutral framework.
-
-SOM 3.0 - added IIOP support, referencing counting for SOMObject and more CORBA frameworks
+  * SOM 1.0 - came out with OS/2 2.0 and used to build WorkPlaceShell. It includes only SOMObject, SOMClass and SOMClsMgr classes.
+  * SOM 2.0 - aligned with CORBA 1.1, used CORBA IDL and added DSOM. SOM Compiler was reworked and Emitter Framework was added.
+  * SOM 2.1 
+  * SOM adopted by Apple to move OpenDoc from C++ to a language neutral framework.
+  * SOM 3.0 - added IIOP support, referencing counting for SOMObject and more CORBA frameworks
 
 SOM was available on OS/2 2.0 upwards, Windows NT, AIX 4, OS/390 and OS/400.
 
