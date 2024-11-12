@@ -6,17 +6,54 @@
 
 
 ^Ordinal ^Name ^Desc ^ Status ^
-| 1 | | | |
-| 2 | | | |
-| 3 | | | |
-| 4 | | | |
-| 5 | | | |
-| 6 | | | |
-| 7 | | | |
-| 8 | | | |
-| 9 | | | |
-| 10 | | | |
-| 11 | | | |
+| 1 | SOMCalloc | | |
+| 2 | somClassCClassData | | |
+| 3 | SomClassClassData | | |
+| 4 | somClassInitFuncName | | |
+| 5 | SomClassMgrCClassData | | |
+| 6 | SomClassMgrClassData | | |
+| 7 | SomClassMgrObject | | |
+| 8 | SOMDeleteModule | | |
+| 9 | SOMError | | |
+| 10 | SomFree | | |
+| 11 | SOMLoadModule | | |
+| 12 | SOMMalloc | | |
+| 13 | SomObjectCClassData | | |
+| 14 | SomObjectClassData | | |
+| 15 | SomOutCharRoutine | | |
+| 16 | SOMRealloc | | |
+| 17 | Som_AssertLevel | | |
+| 18 | Som_TraceLevel | | |
+| 19 | Som_WarnLevel | | |
+| 20 | SomClassMgrNewClass | | |
+| 21 | SomClassNewClass | | |
+| 22 | SomObjectNewClass | | |
+| 23 | SomAssert | | |
+| 24 | somBeginPersistentIds | | |
+| 25 | SomCheckArgs | | |
+| 26 | somCheckId | | |
+| 27 | somCompareIds | | |
+| 28 | SomConstructClass | | |
+| 29 | somEndPersistentIds | | |
+| 30 | somEnvironmentNew | | |
+| 31 | somIdFromString | | |
+| 32 | somLPrintf | | |
+| 33 | somParentResolve | | |
+| 34 | somPrefixLevel | | |
+| 35 | somPrintf | | |
+| 36 | somRegisterId | | |
+| 37 | somResolve | | |
+| 38 | SomSaveMetrics | | |
+| 39 | somSetExpectedIds | | |
+| 40 | somStringFromId | | |
+| 41 | SomTest | | |
+| 42 | SomTestCls | | |
+| 43 | somTotalRegIds | | |
+| 44 | somUniqueKey | | |
+| 45 | somVprintf | | |
+| 46 | SomWriteMetrics | | |
+| 47 | somDataResolve | | |
+
 
 {{page>en:templates:dlls}}
 
