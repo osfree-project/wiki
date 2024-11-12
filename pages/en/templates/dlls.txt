@@ -13,7 +13,7 @@
 | VDM PM interface | [[en:docs:os2:modules:pmvdmh|PMVDMH]] [[en:docs:os2:modules:pmvdmp|PMVDMP]] [[en:docs:os2:modules:seamless|SEAMLESS]] [[en:docs:os2:modules:shield|SHIELD]] |
 | WPS | [[en:docs:os2:modules:pmwp|PMWP]] [[en:docs:os2:modules:pmwpmri|PMWPMRU]] [[en:docs:os2:modules:pmvddrop|PMVDDROP]] |
 | Miscellaneous | [[en:docs:os2:modules:pmpic|PMPIC]] [[en:docs:os2:modules:pmtkt|PMTKT]] [[en:docs:os2:modules:mvdm|MVDM]] |
-| SOM API | [[en:docs:os2:modules:somc|SOMC]] |
+| SOM API | [[en:docs:os2:modules:som|SOM]] [[en:docs:os2:modules:somc|SOMC]] |
 
 
 <diagram>
