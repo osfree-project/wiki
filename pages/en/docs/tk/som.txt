@@ -37,6 +37,7 @@ Main differences from IBM SOM
 Changes from original somFree compiler:
 
   * Added and mostly documented SOM Compiler library SOMC. Most of internal structures now also present as in old IBM SOM 2.1 Toolkit. SOMLINK style functions for most of SOM Compiler library added (NT version used optlink for some functions). somtShowEntry function outputs more info. Undocumented SOMTTypes now documented.
+  * SOM Compiler now supports emitters too.
   * New emitters:
     * LNK - Open Watcom WLink support.
     * DUMP - displays structures, available to emitter.
