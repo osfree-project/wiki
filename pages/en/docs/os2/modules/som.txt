@@ -22,9 +22,9 @@
 | 14 | SOMObjectClassData | | |
 | 15 | SOMOutCharRoutine | | |
 | 16 | SOMRealloc | | |
-| 17 | SOM_AssertLevel | | |
-| 18 | SOM_TraceLevel | | |
-| 19 | SOM_WarnLevel | | |
+| 17 | SOM_AssertLevel | | Done |
+| 18 | SOM_TraceLevel | | Done |
+| 19 | SOM_WarnLevel | | Done |
 | 20 | SOMClassMgrNewClass | | |
 | 21 | SOMClassNewClass | | |
 | 22 | SOMObjectNewClass | | |
