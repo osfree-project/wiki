@@ -20,7 +20,7 @@
 | 12 | SOMMalloc | | |
 | 13 | SOMObjectCClassData | | |
 | 14 | SOMObjectClassData | | |
-| 15 | SOMOutCharRoutine | | |
+| 15 | SOMOutCharRoutine | | Done |
 | 16 | SOMRealloc | | |
 | 17 | SOM_AssertLevel | | Done |
 | 18 | SOM_TraceLevel | | Done |
@@ -28,7 +28,7 @@
 | 20 | SOMClassMgrNewClass | | |
 | 21 | SOMClassNewClass | | |
 | 22 | SOMObjectNewClass | | |
-| 23 | somAssert | | |
+| 23 | somAssert | | Done |
 | 24 | somBeginPersistentIds | | |
 | 25 | somCheckArgs | | Done |
 | 26 | somCheckId | | |
