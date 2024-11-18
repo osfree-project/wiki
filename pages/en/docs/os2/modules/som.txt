@@ -46,7 +46,7 @@
 | 38 | (???)somSaveMetrics | | |
 | 39 | somSetExpectedIds | | |
 | 40 | somStringFromId | | |
-| 41 | somTest | | |
+| 41 | somTest | | Done |
 | 42 | somTestCls | | |
 | 43 | somTotalRegIds | | |
 | 44 | somUniqueKey | | |
