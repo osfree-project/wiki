@@ -39,7 +39,7 @@ This is SOM 1.0 entry points as found in OS/2 2.0
 | 30 | somEnvironmentNew | | Done |
 | 31 | somIdFromString | | |
 | 32 | somLPrintf | | Done |
-| 33 | somParentResolve | | |
+| 33 | somParentResolve | | Done |
 | 34 | somPrefixLevel | | Done |
 | 35 | somPrintf | | Done |
 | 36 | somRegisterId | | |
