@@ -4,9 +4,10 @@
 
 ===== SOM =====
 
+This is SOM 1.0 entry points as found in OS/2 2.0
 
 ^Ordinal ^Name ^Desc ^ Status ^
-| 1 | SOMCalloc | | |
+| 1 | SOMCalloc | | Done |
 | 2 | SOMClassCClassData | | |
 | 3 | SOMClassClassData | | |
 | 4 | SOMClassInitFuncName | | |
@@ -15,13 +16,13 @@
 | 7 | SOMClassMgrObject | | |
 | 8 | SOMDeleteModule | | Done |
 | 9 | SOMError | | Done |
-| 10 | SOMFree | | |
+| 10 | SOMFree | | Done |
 | 11 | SOMLoadModule | | Done |
-| 12 | SOMMalloc | | |
+| 12 | SOMMalloc | | Done |
 | 13 | SOMObjectCClassData | | |
 | 14 | SOMObjectClassData | | |
 | 15 | SOMOutCharRoutine | | Done |
-| 16 | SOMRealloc | | |
+| 16 | SOMRealloc | | Done |
 | 17 | SOM_AssertLevel | | Done |
 | 18 | SOM_TraceLevel | | Done |
 | 19 | SOM_WarnLevel | | Done |
