@@ -10,10 +10,10 @@ This is SOM 1.0 entry points as found in OS/2 2.0
 | 1 | SOMCalloc | | Done |
 | 2 | SOMClassCClassData | | |
 | 3 | SOMClassClassData | | |
-| 4 | SOMClassInitFuncName | | |
+| 4 | SOMClassInitFuncName | | Done |
 | 5 | SOMClassMgrCClassData | | |
 | 6 | SOMClassMgrClassData | | |
-| 7 | SOMClassMgrObject | | |
+| 7 | SOMClassMgrObject | | Done |
 | 8 | SOMDeleteModule | | Done |
 | 9 | SOMError | | Done |
 | 10 | SOMFree | | Done |
@@ -36,7 +36,7 @@ This is SOM 1.0 entry points as found in OS/2 2.0
 | 27 | somCompareIds | | |
 | 28 | somConstructClass | | |
 | 29 | somEndPersistentIds | | |
-| 30 | somEnvironmentNew | | |
+| 30 | somEnvironmentNew | | Done |
 | 31 | somIdFromString | | |
 | 32 | somLPrintf | | Done |
 | 33 | somParentResolve | | |
@@ -44,7 +44,7 @@ This is SOM 1.0 entry points as found in OS/2 2.0
 | 35 | somPrintf | | Done |
 | 36 | somRegisterId | | |
 | 37 | somResolve | | |
-| 38 | (???)somSaveMetrics | | |
+| 38 | somSaveMetrics | | Done |
 | 39 | somSetExpectedIds | | |
 | 40 | somStringFromId | | |
 | 41 | somTest | | Done |
@@ -52,7 +52,7 @@ This is SOM 1.0 entry points as found in OS/2 2.0
 | 43 | somTotalRegIds | | |
 | 44 | somUniqueKey | | |
 | 45 | somVprintf | | Done |
-| 46 | (???)somWriteMetrics | | |
+| 46 | somWriteMetrics | | Done |
 | 47 | somDataResolve | | |
 
 
