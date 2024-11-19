@@ -43,7 +43,7 @@ This is SOM 1.0 entry points as found in OS/2 2.0
 | 34 | somPrefixLevel | | Done |
 | 35 | somPrintf | | Done |
 | 36 | somRegisterId | | |
-| 37 | somResolve | | |
+| 37 | somResolve | | Done |
 | 38 | somSaveMetrics | | Done |
 | 39 | somSetExpectedIds | | |
 | 40 | somStringFromId | | |
