@@ -13,10 +13,10 @@
 | 5 | SOMClassMgrCClassData | | |
 | 6 | SOMClassMgrClassData | | |
 | 7 | SOMClassMgrObject | | |
-| 8 | SOMDeleteModule | | |
+| 8 | SOMDeleteModule | | Done |
 | 9 | SOMError | | Done |
 | 10 | SOMFree | | |
-| 11 | SOMLoadModule | | |
+| 11 | SOMLoadModule | | Done |
 | 12 | SOMMalloc | | |
 | 13 | SOMObjectCClassData | | |
 | 14 | SOMObjectClassData | | |
