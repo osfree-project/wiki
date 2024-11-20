@@ -380,6 +380,8 @@ SOMEXTERN int somtargFlag(int *argc, char ***argv);
 SOMEXTERN int SOMLINK somtargFlagSL(int *argc, char ***argv);
 </code>
 
+Search command line for argument flag (starting with "-") and return its name.
+
 Note: somtargFlag version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
 
 ==== somtattjoin, somtattjoinSL function ====
