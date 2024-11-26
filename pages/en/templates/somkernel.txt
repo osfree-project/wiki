@@ -1,0 +1,2 @@
+^ Group ^ Functions/Macros ^
+^ Debugging | [[en:docs:som:api:kernel:SOM_Assert]] [[en:docs:som:api:kernel:SOM_Error]] [[en:docs:som:api:kernel:SOM_Expect]] [[en:docs:som:api:kernel:SOM_Test]] [[en:docs:som:api:kernel:SOM_TestC]] [[en:docs:som:api:kernel:SOM_WarnMsg]] [[en:docs:som:api:kernel:SOM_FatalCode]] [[en:docs:som:api:kernel:SOM_WarnCode]]  [[en:docs:som:api:kernel:SOM_IgnoreCode]] [[en:docs:som:api:kernel:SOM_OkCode]] [[en:docs:som:api:kernel:SOM_TemplateCode]] [[en:docs:som:api:kernel:SOM_MsgCode]] [[en:docs:som:api:kernel:SOMError]] |

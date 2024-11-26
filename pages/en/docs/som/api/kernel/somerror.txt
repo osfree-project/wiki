@@ -5,14 +5,14 @@ This call generates error message and terminates process if fatal error.
 ===== Syntax =====
 
 <code c>
-void (*SOMError) (int errorCode, string fileName, int lineNum);
+void (*SOMError) (CORBA_long errorCode, const CORBA_char * fileName, CORBA_long lineNum);
 </code>
 
 ===== Parameters =====
 
-  * errorCode ([[int]]) - input : Error code.
-  * fileName ([[string]]) - input : Name of source file where error was occurred.
-  * lineNum ([[int]]) - input : Line of source file where error occurred.
+  * errorCode ([[CORBA_long]]) - input : Error code.
+  * fileName ([[CORBA_char *]]) - input : Name of source file where error was occurred.
+  * lineNum ([[CORBA_long]]) - input : Line of source file where error occurred.
 
 ===== Return Code =====
 
@@ -32,12 +32,20 @@ SOMError(SOM_Fatal(12), __FILE__, __LINE__);
 
 ===== See also =====
 
-SOM_Assert Macro
-SOM_Error Macro
-SOM_Expect Macro
-SOM_Test Macro
-SOM_TestC Macro
-SOM_WarnMsg Macro
+  * [[en:docs:som:api:kernel:SOM_Assert]] Macro
+  * [[en:docs:som:api:kernel:SOM_Error]] Macro
+  * [[en:docs:som:api:kernel:SOM_Expect]] Macro
+  * [[en:docs:som:api:kernel:SOM_Test]] Macro
+  * [[en:docs:som:api:kernel:SOM_TestC]] Macro
+  * [[en:docs:som:api:kernel:SOM_WarnMsg]] Macro
+  * [[en:docs:som:api:kernel:SOM_FatalCode]] Macro
+  * [[en:docs:som:api:kernel:SOM_WarnCode]] Macro
+  * [[en:docs:som:api:kernel:SOM_IgnoreCode]] Macro
+  * [[en:docs:som:api:kernel:SOM_OkCode]] Macro
+  * [[en:docs:som:api:kernel:SOM_TemplateCode]] Macro
+  * [[en:docs:som:api:kernel:SOM_MsgCode]] Macro
 
+
+{{page>en:templates:somkernel}}
 
 
