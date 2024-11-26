@@ -2,7 +2,20 @@
 
 ===== Trademarks =====
 
+  * IBM is a registered trademark of International Business Machines Corporation.
+  * OS/2 is a trademark of International Business Machines Corporation.
+  * Windows and Windows NT is a trademark of Microsoft Corporation.
+  * SOM is a trademark of International Business Machines Corporation.
+  * SOMobject is a trademark of International Business Machines Corporation.
+  * OMG is a registered trademark of Object Management Group.
+  * CORBA is a registered trademark of Object Management Group.
+  * IDL is a registered trademark of Object Management Group.
+  * Interface Definition Language is a registered trademark of Object Management Group.
+  * C Language mapping is a trademark of Object Management Group.
+
 ====== About This Book ======
+
+
 
 ===== Who Should Use This Book =====
 
