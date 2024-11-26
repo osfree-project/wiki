@@ -1,0 +1,35 @@
+====== SOMError ======
+
+This call generates error message and terminates process if fatal error.
+
+===== Syntax =====
+
+<code c>
+void (*SOMError) (int errorCode, string fileName, int lineNum);
+</code>
+
+===== Parameters =====
+
+  * errorCode ([[int]]) - input : Error code.
+  * fileName ([[string]]) - input : Name of source file where error was occurred.
+  * lineNum ([[int]]) - input : Line of source file where error occurred.
+
+===== Return Code =====
+
+None
+
+===== Notes =====
+ 
+SOMError is a global variable and can be replaced by user function
+
+===== Example Code =====
+
+<code c>
+#include <som.h>
+
+SOMError(SOM_Fatal(12), __FILE__, __LINE__);
+</code>
+
+===== Note =====
+
+

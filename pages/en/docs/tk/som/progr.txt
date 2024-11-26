@@ -1,0 +1,1 @@
+[[en:docs:som:api:kernel:SOMError]]
