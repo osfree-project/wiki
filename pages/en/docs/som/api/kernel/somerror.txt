@@ -44,6 +44,10 @@ SOMError(SOM_Fatal(12), __FILE__, __LINE__);
   * [[en:docs:som:api:kernel:SOM_OkCode]] Macro
   * [[en:docs:som:api:kernel:SOM_TemplateCode]] Macro
   * [[en:docs:som:api:kernel:SOM_MsgCode]] Macro
+  * [[en:docs:som:api:kernel:SOM_TraceLevel]] Variable
+  * [[en:docs:som:api:kernel:SOM_AssertLevel]] Variable
+  * [[en:docs:som:api:kernel:SOM_WarnLevel]] Variable
+
 
 
 {{page>en:templates:somkernel}}
