@@ -6,7 +6,7 @@
 
 ALP/MASM compatible macro library for BIOS and DOS. Original MASM provides macros for BIOS and DOS interrupts as well as OS/2 and Windows macros. osFree Macro Library is a open source replacement of MASM macros. osFree macro library is for Microsoft MASM, IBM MASM, IBM ALP, JWASM and other MASM compatible assemblers. It has more type check and some BIOS bugs workaround. At the present time BIOS and DOS APIs are supported.
 
-This library based on IBM 5150 Technical Reference #6322507 of Apr 1984, MACRO.DOC from MASM 5.x, Ralf Brown Interrupt list.
+This library based on [[https://archive.org/details/IBMPCIBM5150TechnicalReference6322507APR84/|IBM 5150 Technical Reference #6322507 of Apr 1984]], MACRO.DOC from MASM 5.x, [[http://www.cs.cmu.edu/~ralf/files.html|Ralf Brown Interrupt list]].
 
 Functions, found in later BIOSes mostly not covered, but can be added in future. Main goal of osFree Macro Library is to provide support for Family API development. Macro names mostly constructed from MASM 5.x, MASM 6.x and ALP documentation.
 
