@@ -121,31 +121,31 @@ Here is each small component status:
 |::: |VSCRPUT	|	|4OS2	|JP Software	| |
 |::: |WINDOW	|	|4OS2	|JP Software	| |
 |::: |Y	|	|4OS2	|JP Software	| |
-|CLI tools	|ANSI	|Done	|osFree	|John Martin Alfredsson	| |
-|::: |ATTRIB	|Done	|osFree	|Bartosz Tomasik	| |
+|CLI tools	|ANSI	| **Done** |osFree	|John Martin Alfredsson	| |
+|::: |ATTRIB	| **Done** | osFree	|Bartosz Tomasik	| |
 |::: |BACKUP	|None	| | | | 	 	 
-|::: |BLDLEVEL	|Done	|osFree	|Yuri Prokushev	| |
-|::: |CHKDSK	|Done	|osFree	|Bartosz Tomasik	| |
-|::: |COMP	|Done	|GPL	|Knut St. Osmundsen	| |
-|::: |CLS	|Done	|osFree	|Bartosz Tomasik	| |
+|::: |BLDLEVEL	| **Done** |osFree	|Yuri Prokushev	| |
+|::: |CHKDSK	| **Done** |osFree	|Bartosz Tomasik	| |
+|::: |COMP	| **Done** |GPL	|Knut St. Osmundsen	| |
+|::: |CLS	| **Done** |osFree	|Bartosz Tomasik	| |
 |::: |DISKCOMP	|None	|GPL	|Eric Auer, \\ Michal Meller	|Port to OS/2 |
 |::: |DISKCOPY	|None	| | | |
 |::: |DTRACE	|None	| | | |
 |::: |EAUTIL	|None | | | |
-|::: |EJECT	|Done	| osFree	|Bartosz Tomasik	| |
-|::: |FDISK	|Done	| osFree	|Yuri Prokushev	| |
-|::: |FIND	|Done	| GPL	|Jim Hall	| |
-|::: |FORMAT	|Done	| osFree	|Bartosz Tomasik	| |
-|::: |HELPMSG	|Done	| osFree	|Yuri Prokushev	| |
+|::: |EJECT	| **Done** | osFree |Bartosz Tomasik	| |
+|::: |FDISK	| **Done** | osFree |Yuri Prokushev	| |
+|::: |FIND	| **Done** | GPL	|Jim Hall	| |
+|::: |FORMAT	| **Done** | osFree	|Bartosz Tomasik	| |
+|::: |HELPMSG	| **Done** | osFree	|Yuri Prokushev	| |
 |::: |KEYB	|None	| | | |
-|::: |LABEL	|Done	| osFree	|Bartosz Tomasik	| |
+|::: |LABEL	| **Done** | osFree	|Bartosz Tomasik	| |
 |::: |LVM	|None	| | | |
 |::: |MAKEINI	|Done   | GPL	|Ulrich Moeller	| |
 |::: |MD	|Done	| osFree	|Bartosz Tomasik	| |
 |::: |MKDIR	|Done	| osFree	|Bartosz Tomasik	| |
 |::: |MKMSGF	|Done   | GPL 2+ | Michael K Greene, \\ Yuri Prokushev, \\ Veit Kannegieser | |
 |::: |MODE	|None	| | | |
-|::: |MORE	|Done	| Public	|Stephen Lacy	| |
+|::: |MORE	| **Done** | Public	|Stephen Lacy	| |
 |::: |PATCH	|None	| | | |
 |::: |PDUMPSYS	|None	| | | |
 |::: |PDUMPUSR	|None	| | | |
@@ -153,43 +153,43 @@ Here is each small component status:
 |::: |PRINT	|Done   | | | |
 |::: |PROCDUMP	|None | | | |
 |::: |PSTAT	|None	| | | |
-|::: |RECOVER	|Done	|osFree	|Bartosz Tomasik	| |
+|::: |RECOVER	| **Done** |osFree	|Bartosz Tomasik	| |
 |::: |REPLACE	|None	| | | |
 |::: |RESTORE	|None	| | | |
 |::: |SORT	|Done	|GPL	|Eric Auer, Jim Lynch	| |
 |::: |SPOOL	|None	| | | |
 |::: |STRACE	|None	| | | |
-|::: |SYSINSTX	|Done	|osFree	|Bartosz Tomasik	| |
+|::: |SYSINSTX	| **Done** |osFree	|Bartosz Tomasik	| |
 |::: |SYSLEVEL	|Done   | | | |
 |::: |TRACE	|None | | | |
 |::: |TRAPDUMP	|None | | | |
-|::: |TREE	|Done	|osFree	|Cristiano Guadagnino, \\ Bartosz Tomasik	| |
+|::: |TREE	| **Done** |osFree	|Cristiano Guadagnino, \\ Bartosz Tomasik	| |
 |::: |TRSPOOL	|None	| | | |
 |::: |UNDELETE	|None	| | | |
 |::: |XCOPY	|Done   |GPL	|Vitus Jensen	| |
 |::: |VER	|Done	|osFree	|Bartosz Tomasik	| |
 |::: |VMDISK	|None	| | | |
 |::: |VOL	|Done	|osFree	|Bartosz Tomasik	| |
-|Classic REXX	|REGINA.DLL	|Done	|LGPL	|Anders Christensen, \\ Mark Hessling	| |
-|::: |REXX.DLL	|Done	|LGPL	|Yuri Prokushev, \\ Valery Sedletski | |
-|::: |REXXAPI.DLL	|Done	|LGPL	|Yuri Prokushev, \\ Valery Sedletski	| |
-|::: |REXXUTIL.DLL	|Done   |MPL	|Patrick TJ McPhee | |
+|Classic REXX	|REGINA.DLL | **Done** |LGPL	|Anders Christensen, \\ Mark Hessling	| |
+|::: |REXX.DLL	| **Done** | LGPL	|Yuri Prokushev, \\ Valery Sedletski | |
+|::: |REXXAPI.DLL | **Done** | LGPL	|Yuri Prokushev, \\ Valery Sedletski	| |
+|::: |REXXUTIL.DLL | **Done** | MPL	|Patrick TJ McPhee | |
 |CPI |[[en:docs:os2:modules:doscalls|DOSCALLS.DLL]] |None	| | | |
-|::: |[[en:docs:os2:modules:kbdcalls|KBDCALLS.DLL]] |Done	|osFree	|Yuri Prokushev	| |
-|::: |[[en:docs:os2:modules:moucalls|MOUCALLS.DLL]] |Done	|osFree	|Yuri Prokushev	| |
-|::: |[[en:docs:os2:modules:msg|MSG.DLL]]           |Done	|osFree	|Yuri Prokushev	| |
-|::: |[[en:docs:os2:modules:nls|NLS.DLL]]           |Done	|osFree	|Yuri Prokushev	| |
-|::: |[[en:docs:os2:modules:quecalls|QUECALLS.DLL]] |Done	|osFree	|Yuri Prokushev	| |
-|::: |[[en:docs:os2:modules:sesmgr|SESMGR.DLL]]     |Done	|osFree	|Yuri Prokushev	| |
-|::: |[[en:docs:os2:modules:viocalls|VIOCALLS.DLL]] |Done	|osFree	|Yuri Prokushev	| |
+|::: |[[en:docs:os2:modules:kbdcalls|KBDCALLS.DLL]] | **Done** |osFree	|Yuri Prokushev	| |
+|::: |[[en:docs:os2:modules:moucalls|MOUCALLS.DLL]] | **Done** |osFree	|Yuri Prokushev	| |
+|::: |[[en:docs:os2:modules:msg|MSG.DLL]]           | **Done** |osFree	|Yuri Prokushev	| |
+|::: |[[en:docs:os2:modules:nls|NLS.DLL]]           | **Done** |osFree	|Yuri Prokushev	| |
+|::: |[[en:docs:os2:modules:quecalls|QUECALLS.DLL]] | **Done** |osFree	|Yuri Prokushev	| |
+|::: |[[en:docs:os2:modules:sesmgr|SESMGR.DLL]]     | **Done** |osFree	|Yuri Prokushev	| |
+|::: |[[en:docs:os2:modules:viocalls|VIOCALLS.DLL]] | **Done** |osFree	|Yuri Prokushev	| |
 |::: |[[en:docs:os2:modules:bmscalls|BMSCALLS.DLL]] |None	|	|	| |
 |::: |[[en:docs:os2:modules:bkscalls|BKSCALLS.DLL]] |None	|	|	| |
 |::: |[[en:docs:os2:modules:bvscalls|BVSCALLS.DLL]] |None	|	|	| |
 |SOM |SOM.DLL	 | None | | | |
 |::: |SOMC.DLL   | None | | | |
-|::: |SC.EXE     | None | | | |
+|::: |SC.EXE     | **Done** | GPLv3| somFree project | |
 |::: |SOMCPP.EXE | **Done** | 2-clause BSD | Kiyoshi Matsui | |
-|::: |SOMIPC.EXE | None | | | |
+|::: |SOMIPC.EXE | **Done** | GPLv3| somFree project | Doesn't support  Emitters framework |
 |::: |SPP.EXE    | **Done** | osFree | Yuri Prokushev | Need to check compatibility with original |
 |::: |SOMOPC.EXE | None | | | |
 |::: |SOME.DLL   | None | | | |
