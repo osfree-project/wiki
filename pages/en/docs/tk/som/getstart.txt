@@ -25,7 +25,7 @@ This book for developers
 
 This book organized in 6 chapters, from quick example of class implementation and usage for local environment as well for distributed environment.
 
-Chapter 1. Quick Start Checklist
+Chapter 1. Quick Start
 Chapter 2. Introducing somFree
 Chapter 3. Building the Classes
 Chapter 4. Using the Classes in an Application
@@ -34,7 +34,14 @@ Chapter 6. For More Information
 
 ===== Where to Find More Information =====
 
-====== Chapter 1. Quick Start Checklist ======
+    * [[en:docs:tk:som:progg|somFree Programming Guide]]
+    * [[en:docs:tk:som:progr|somFree Programmer's Reference]]
+    * [[en:docs:tk:som:sc|somFree Compiler and Emitter Framework]]
+      * [[en:docs:tk:som:sc:ug|User's Guide]]
+      * [[en:docs:tk:som:sc:pg|Programmer's Guide]]
+      * [[en:docs:tk:som:sc:pr|Programmer's Reference]]
+
+====== Chapter 1. Quick Start======
 
 ===== Building Non-distributed Applications =====
 
