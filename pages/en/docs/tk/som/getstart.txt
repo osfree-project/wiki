@@ -13,7 +13,7 @@
   * Interface Definition Language is a registered trademark of Object Management Group.
   * C Language mapping is a trademark of Object Management Group.
 
-All other products or company names mentioned are used for identification purposes only, and may be trademarks of their respective owners.
+All other products or company names mentioned are only used for identification purposes, and may be trademarks of their respective owners. All other products or company names mentioned are used for identification purposes only, and may be trademarks of their respective owners.
 
 ====== About This Book ======
 
@@ -23,14 +23,19 @@ This book for developers
 
 ===== How This Book is Organized =====
 
-This book organized in 6 chapters, from quick example of class implementation and usage for local environment as well for distributed environment.
+This book is divided into 6 chapters, from quick example of class implementation and usage for local as well as distributed environment.
 
-Chapter 1. Quick Start
-Chapter 2. Introducing somFree
+Chapter 1 contains simple steps to provide a brief overview of how to use somFree.
+
+Chapter 2 describes the general concept of somFree technology.
+
 Chapter 3. Building the Classes
+
 Chapter 4. Using the Classes in an Application
+
 Chapter 5. Running in a Distributed Environment
-Chapter 6. For More Information
+
+Chapter 6. More Information
 
 ===== Where to Find More Information =====
 
@@ -85,7 +90,7 @@ Chapter 6. For More Information
 
 ===== Creating a Distributed Client Application =====
 
-====== Chapter 6. For More Information ======
+====== Chapter 6. More Information ======
 
 ===== somFree Library Reference =====
 
