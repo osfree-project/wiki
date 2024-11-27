@@ -43,6 +43,7 @@ Much thanks to those projects: (software or documentation)
   * 4os2
   * [[https://trac.netlabs.org/xworkplace|XWorkplace]]
   * Wine
-  * ReactOS
+  * [[https://reactos.org|ReactOS]]
+  * [[https://somfree.sourceforge.net|somFree]]
 
 and other projects here. Please add it if we missed one.
