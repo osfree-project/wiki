@@ -8,6 +8,7 @@ osFree toolkit is a set of tools, header files and documentation to produce osFr
   * [[en:docs:tk:som|Sytem Object Model toolkit]]
     * [[en:docs:tk:som:getstart|somFree Getting Started]]
     * [[en:docs:tk:som:progg|somFree Programming Guide]]
+    * [[en:docs:tk:som:interg|somFree Interoperability Guide]]
     * [[en:docs:tk:som:progr|somFree Programmer's Reference]]
     * [[en:docs:tk:som:sc|somFree Compiler and Emitter Framework]]
       * [[en:docs:tk:som:sc:ug|User's Guide]]
