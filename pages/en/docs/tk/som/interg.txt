@@ -1,0 +1,21 @@
+====== Overview ======
+
+somFree supports DSOM technology to produce distributed system. At the present time, somFree confirms CORBA 1.1 C language mapping as published in CORBA 1.1 Specification and IIOP 1.1 as published in CORBA/IIOP Specification ???. This mean you can write client and server application which will interoperable with ORB's which confirm at least IIOP Specification. This document describes practical approaches of interoperability with some know ORBs.
+
+As example base, ORBit2 ORBit Beginners Documentation V1.2 was chosen. First, we will create a simple IDL file, compile it and write somFree client which will communicate to corresponding server. 
+
+====== ORBit2 ======
+
+somFree was tested with the latest available ORBit2 implementation (version 2.14.19). ORBit2 shipped as packages on various operational systems, including sort of Linux distributions, and Cygwin package on Windows system. So, install ORBit2 first using your package manager.
+
+Now configure ORBit2 to communicate using IPv4 protocol and disable (optional) ORBit2 specific options. Edit or create /etc/orbitrc with following content:
+
+<code>
+ORBIIOPIPv4=1
+ORBIIOPIPSock=16000
+ORBIIOPIPName=127.0.0.1
+ORBIIOPIPv6=0
+ORBLocalOnly=1
+ORBIIOPUNIX=0
+</code>
+
