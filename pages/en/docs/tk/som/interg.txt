@@ -61,7 +61,7 @@ sc.exe -sh;ih;ir echo.idl
 
 Compiler will produce echo.h, echo.ih files.
 
-Now, to make DSOM happy and success creation of Echo proxy object, we need to make empty class implementation. In IBM SOM it is enough to create implementation template and compile it. But somFree compiled doesn't provide implementation template, so we need to write one:
+Now, to make DSOM happy and success creation of Echo proxy object, we need to make empty class implementation. In IBM SOM it is enough to create an implementation template and compile it. But somFree compiler doesn't provide implementation template, so we need to write one:
 
 <code c>
 #define Echo_Class_Source
