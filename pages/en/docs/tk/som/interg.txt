@@ -1,8 +1,8 @@
 ====== Introduction ======
 
-somFree supports DSOM technology to produce distributed system. At the present time, somFree confirms CORBA 1.1 C language mapping as published in CORBA 1.1 Specification and IIOP 1.1 as published in CORBA/IIOP Specification ???. This mean you can write client and server application which will interoperable with ORB's which confirm at least IIOP Specification. This document describes practical approaches of interoperability with some know ORBs.
+somFree supports DSOM technology to produce distributed system. At the present time, somFree confirms CORBA 1.1 C language mapping as published in CORBA 1.1 Specification and IIOP 1.1 as published in CORBA Specification ??? (link here...). This mean you can write client and server application which will interoperable with ORB's which confirm at least CORBA Specification. This document describes practical approaches of interoperability with some known ORBs.
 
-As example base, ORBit2 ORBit Beginners Documentation V1.2 (orbit-docs.tar.gz) was chosen. First, we will create a simple IDL file, compile it and write somFree client which will communicate to corresponding server. 
+As example base, ORBit2 ORBit Beginners Documentation V1.2 (orbit-docs.tar.gz (add file here because hard to find now)) was chosen. First, we will create a simple IDL file, compile it and write somFree client which will communicate to corresponding server. 
 
 ====== Defining IDL ======
 
@@ -211,16 +211,16 @@ Now you have SOM client with stub class implementation and interface registered 
 
 ====== ORBit2 ======
 
-somFree was tested with the latest available ORBit2 implementation (version 2.14.19). ORBit2 shipped as packages on various operational systems, including various Linux distributions, and Cygwin package on Windows system. So, install ORBit2 first using your package manager.
+somFree was tested with the latest available ORBit2 implementation (version 2.14.19). ORBit2 shipped as packages on various operational systems, including various Linux distributions, and Cygwin package on Windows system. So, install ORBit2 first using your package manager (add step-by-step guide for Cygwin at least).
 
-Now configure ORBit2 to communicate using IPv4 protocol and disable (optional) ORBit2-specific options. Edit or create /etc/orbitrc with following content:
+Now configure ORBit2 to communicate using IPv4 protocol and disable (optional) ORBit2-specific options. Edit or create /etc/orbitrc (can't find normal desription of file)  with following content:
 
 <code>
 ORBIIOPIPv4=1
-ORBIIOPIPSock=16000
+ORBIIOPIPSock=16000 (is it ok? Found something about standard port)
 ORBIIOPIPName=127.0.0.1
 ORBIIOPIPv6=0
-ORBLocalOnly=1
+ORBLocalOnly=1 (restriction for external connections???)
 ORBIIOPUNIX=0
 </code>
 
@@ -232,7 +232,7 @@ Call ORBit2 IDL compiler:
 orbit-idl-2 --skeleton-impl echo.idl
 </code>
 
-It will produce
+It will produce:
 
   * echo.h
   * echo-common.c
@@ -240,7 +240,7 @@ It will produce
   * echo-skels.c
   * echo-skelimpl.c
 
-Some of them not required because it is client implementation. Now compile echo-server.c with echo-common.c and echo-skels.c. Provided Makefile not well works with cygwin, but can be changed easily. Here is our version of Makefile for cygwin:
+Some of them not required because it is client implementation. Now compile echo-server.c with echo-common.c and echo-skels.c. Provided Makefile not well works with cygwin, but can be changed easily. Here is our version of Makefile for cygwin (make some cleanup of makefile):
 
 <code makefile>
 PREFIX=/usr
@@ -280,14 +280,14 @@ a single dot in line will terminate input
 Now type something and press . to finish client:
 
 <code>
-Hello from osFree!
+Hello from somFree!
 .
 </code>
 
 On server console, you must see:
 
 <code>
-Hello from osFree!
+Hello from somFree!
 </code>
 
 To show some information, you can add to client (before text input loop) something like this:
@@ -296,7 +296,7 @@ To show some information, you can add to client (before text input loop) somethi
 _somDumpSelf(echo_client,0);
 </code>
 
-So you will see after compiling, linking and excution:
+So you will see after compiling, linking and execution:
 
 <code>
 An instance of Echo__Proxy at address 01219738
@@ -306,3 +306,14 @@ An instance of Echo__Proxy at address 01219738
   object_key 0000000048a4ca0b334633e33a2115ee1080a940010000008a6ea430
 }
 </code>
+
+All source code can be found here (cleanup and publish code)
+
+====== somFree server implementation ======
+
+(Implement server first, then write chapter)
+
+
+
+
+(omniORB and TAX also must be tested as most available OSS. May be some other ORBs?)
