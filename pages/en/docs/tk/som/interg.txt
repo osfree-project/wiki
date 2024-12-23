@@ -317,3 +317,75 @@ All source code can be found here (cleanup and publish code)
 
 
 (omniORB and TAX also must be tested as most available OSS. May be some other ORBs?)
+
+====== C Language Mapping differences ======
+
+somFree uses CORBA 1.1 C Language Mappings. Most of CORBA compatible ORBs uses later specifications, at least at CORBA 2.0 level. Some changes was introduced from CORBA 1.1 to CORBA 2.0:
+
+  - All CORBA base types now prefixed by CORBA_ prefix
+  - All items from module CORBA prefixed by CORBA_ prefix (as well as other items from other modules also must be prefixed)
+  - Environment and Context moved to last function arguments
+
+So, to simplify migration from CORBA 2.0+ mapping to CORBA 1.1 mapping follow include file (not finished yes, contains only some conversions) can be used:
+
+<code c>
+/*
+ *  CORBA 2.0+ compatibility layer
+ */
+
+#ifndef CORBA_Environment
+#define CORBA_Environment Environment
+#endif
+
+#define CORBA_exception_init(ev) SOM_InitEnvironment(ev)
+
+#ifndef CORBA_ORB
+#define CORBA_ORB ORB
+#endif
+
+#ifndef CORBA_ORB_init
+CORBA_ORB SOMSTAR CORBA_ORB_init ( int * argc, char ** argv, char * orb_id, CORBA_Environment * env);
+
+CORBA_ORB SOMSTAR CORBA_ORB_init ( int * argc, char ** argv, char * orb_id, CORBA_Environment * env)
+{
+  SOMD_Init(env);
+  return SOMD_ORBObject;
+}
+#endif
+
+#ifndef CORBA_OBJECT_NIL
+#define CORBA_OBJECT_NIL NULL
+#endif
+
+#ifndef CORBA_NO_EXCEPTION
+#define CORBA_NO_EXCEPTION NO_EXCEPTION
+#endif
+
+#ifndef CORBA_exception_id
+#define CORBA_exception_id(ev) somExceptionId(ev)
+#endif
+
+#ifndef CORBA_exception_free
+#define CORBA_exception_free(ev) somExceptionFree(ev)
+#endif
+
+#ifndef CORBA_ORB_string_to_object
+#define CORBA_ORB_string_to_object ORB_string_to_object
+#endif
+
+#ifndef CORBA_Object_release
+#define CORBA_Object_release SOMDObject_release
+#endif
+</code>
+
+If you convert from CORBA 1.2 mapping such approach mostly enough. But for CORBA 2.0+ mapping you also need to change methods arguments order. For example:
+
+<code c>
+echo_client = CORBA_ORB_string_to_object(orb, ior, ev);
+</code>
+
+must be changed to
+
+<code c>
+echo_client = CORBA_ORB_string_to_object(orb, ev, ior);
+</code>
