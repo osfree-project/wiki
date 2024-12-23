@@ -353,6 +353,10 @@ CORBA_ORB SOMSTAR CORBA_ORB_init ( int * argc, char ** argv, char * orb_id, CORB
 }
 #endif
 
+#ifndef CORBA_ORB_destroy
+#define CORBA_ORB_destroy(orb, ev) SOMD_Uninit(ev); SOM_UninitEnvironment(ev); // Here exception will not be handled...
+#endif
+
 #ifndef CORBA_OBJECT_NIL
 #define CORBA_OBJECT_NIL NULL
 #endif
