@@ -168,7 +168,6 @@ main (int argc, char *argv[])
 	 */
 
         echo_client = ORB_string_to_object(SOMD_ORBObject, &ev, ior);
-        somPrintf("testec=%d", (long)echo_client);
 	abort_if_exception(&ev, "bind failed");
 
 	/*
@@ -209,7 +208,7 @@ As you see, here just downgraded code to CORBA 1.1 C Language mapping from CORBA
 
 Now you have SOM client with stub class implementation and interface registered in interface repository. You are ready now.
 
-====== ORBit2 ======
+====== ORBit2 2.14.19 ======
 
 somFree was tested with the latest available ORBit2 implementation (version 2.14.19). ORBit2 shipped as packages on various operational systems, including various Linux distributions, and Cygwin package on Windows system. So, install ORBit2 first using your package manager (add step-by-step guide for Cygwin at least).
 
@@ -267,6 +266,18 @@ $(IDLOUT): echo.idl
 </code>
 
 Now your server is ready. Execute echo-server and you will have console with waiting echo. To make client know about Echo server copy generated echo.ior to client directory.
+
+====== omniORB 4.3.2 ======
+
+Another ORB for testing is a omniORB 4.3.2. Unlike ORBit2 it still maintained and new versions published at 2024 year. So, it was also chosen for testing. It comes in source code so you need to build it. Build process described well, works with cygwin and VS2022. Only required fix is in mk\python.mk is to set line as bellow:
+
+<code>
+PYVERSION := $(shell $(PYTHON) -c 'import sys; sys.stdout.write(".".join(sys.version.split()[0].split(".")[:2]))')
+</code>
+
+We have tested it with Python 2.7 but newer versions also must work good. omniORB also contains echo example, but slightly differ. echoString method returns string back. So, echo.idl was replaced to one from ORBit2 and server skeleton was changed (add sources here).
+
+Same somFree client was executed and all works just fine. IOR file not stored in echo.ior but output to console. So IOR was replaced by this one. somFree client sucessfully connected and works as expected. omniORB is a C++ ORB.
 
 ====== Executing somFree client ======
 
