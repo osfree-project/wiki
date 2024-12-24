@@ -205,7 +205,7 @@ main (int argc, char *argv[])
 }
 </code>
 
-As you see, here just downgraded code to CORBA 1.1 C Language mapping from CORBA 2.x C Language mapping. ORB initialization and finalization replaced by DSOM initialization and finalization. And, this is matter, EchoNew() call added to create Echo class to make it known to DSOM. Now you can compile it and all mostly ready.
+As you see, here just downgraded code to CORBA 1.1 C Language mapping from CORBA 2.x C Language mapping. ORB initialization and finalization replaced by DSOM initialization and finalization. And, this is matter, EchoNew() call added to create Echo class to make it known to DSOM. Also add SOMSTAR to object variables. Now you can compile it and all mostly ready.
 
 Now you have SOM client with stub class implementation and interface registered in interface repository. You are ready now.
 
@@ -330,7 +330,7 @@ So, to simplify migration from CORBA 2.0+ mapping to CORBA 1.1 mapping follow in
 
 <code c>
 /*
- *  CORBA 2.0+ compatibility layer
+ *  CORBA 1.2+ compatibility layer
  */
 
 #ifndef CORBA_Environment
@@ -354,7 +354,7 @@ CORBA_ORB SOMSTAR CORBA_ORB_init ( int * argc, char ** argv, char * orb_id, CORB
 #endif
 
 #ifndef CORBA_ORB_destroy
-#define CORBA_ORB_destroy(orb, ev) SOMD_Uninit(ev); SOM_UninitEnvironment(ev); // Here exception will not be handled...
+#define CORBA_ORB_destroy(orb, ev) SOMD_Uninit(ev); SOM_UninitEnvironment(ev);
 #endif
 
 #ifndef CORBA_OBJECT_NIL
@@ -380,6 +380,15 @@ CORBA_ORB SOMSTAR CORBA_ORB_init ( int * argc, char ** argv, char * orb_id, CORB
 #ifndef CORBA_Object_release
 #define CORBA_Object_release SOMDObject_release
 #endif
+
+#ifndef CORBA_double
+#define CORBA_double double
+#endif
+
+#ifndef CORBA_Object
+#define CORBA_Object SOMObject
+#endif
+
 </code>
 
 If you convert from CORBA 1.2 mapping such approach mostly enough. But for CORBA 2.0+ mapping you also need to change methods arguments order. For example:
