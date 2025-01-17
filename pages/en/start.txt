@@ -13,9 +13,11 @@ Several projects with similar goals exist (or existed). [[en:docs:projects|Here]
 
 Our project is reusing the code of many [[en:credits|opensource projects]].
 
-Our project addresses in hidden networks: [[http://osfreeorgysalbcqrk3kqib55urra2mvtfmsoezcqwop2fed7jc64gqd.onion|Tor one]], [[http://yf2xankbjprn7xs2pd67xix7idfqyxbbl2zul3dgwln2wwefqjsa.b32.i2p|I2P one]], [[http://[200:ba50:4b2c:8dc9:9529:38de:5677:57a0]/|Yggdrasil]].
+Our project addresses in hidden networks: [[http://osfreeorgysalbcqrk3kqib55urra2mvtfmsoezcqwop2fed7jc64gqd.onion|Tor one]], [[http://yf2xankbjprn7xs2pd67xix7idfqyxbbl2zul3dgwln2wwefqjsa.b32.i2p|I2P one]], [[http://osfree.ygg/|Yggdrasil]].
 
-  * [[en:about|Learn more]] 
+Also, we're available as https://osfree.su or https://osfree.ru, and as http://osfree.lib (the latter is domain in [[https://sites.emercoin.com/|EmerDNS]] decentralized DNS system). Also, in addition to https:, all domains can be accessed as http: too.
+
+  * [[en:about|Learn more]]
 
 ==== Project News ====
 
@@ -33,11 +35,11 @@ Our project addresses in hidden networks: [[http://osfreeorgysalbcqrk3kqib55urra
 
 ==== Last bugtracker issues ====
 
-{{rss>http://osfree.org/mantis/issues_rss.php?username=valerius&key=IrYNBGclQADoHkoPqWjWErMc0EZ3vo6Zh-4j2W6BnxGE5dSRiAjrPJl-Lp5WsAIm4hHyv2lRFS_A7ypWM1nc 15 author date 1h}}
+{{rss>https://osfree.org/mantis/issues_rss.php?username=valerius&key=IrYNBGclQADoHkoPqWjWErMc0EZ3vo6Zh-4j2W6BnxGE5dSRiAjrPJl-Lp5WsAIm4hHyv2lRFS_A7ypWM1nc 15 author date 1h}}
 
 ==== Last forum topics ====
 
-{{rss>http://osfree.org/forum/feed.php 15 author date 1h}}
+{{rss>https://osfree.org/forum/feed.php 15 author date 1h}}
 
 ==== Roadmap ====
 
@@ -47,4 +49,4 @@ The next release will be 0.0.5, with an release date being open. See our [[en:ro
 
 ==== Getting access to site areas ====
 
-The site has several separate areas, like [[en:start|wiki]], [[http://osfree.org/forum/|forum]], [[http://osfree.org/mantis/|bugtracker]], [[http://osfree.org/roundcube/|webmail]] and [[http://osfree.org/dp/|dotProject]]. If you want to get access to these, you should register [[http://osfree.org/forum/ucp.php?mode=register|here]] first. After you verify your account via email, you'll get access to all five parts of the site. Approval of user accounts by site admin is now disabled. After verification of your account, you need to wait 15 mins or less, until your account info is propagated from forum to another site parts. Note also, that there is a guest account (user: guest, password: guest), which allows you to login to the site areas, requiring a login (like a dotProject area). It gives you a read only access. Once you log in into the forum, you get access to wiki too, and vice versa. The same login applies to dotProject, webmail and bugtracker. After adding to "Users" group you'll get a write access to wiki, bugtracker and forum. If you want to contribute to site design or development, or to get a mail account, the admin can add you to corresponding user groups and your access level will be increased. In case of troubles, or questions, you can contact site [[http://osfree.org/forum/memberlist.php?mode=contactadmin|admin]]. 
+The site has several separate areas, like [[en:start|wiki]], [[https://osfree.org/forum/|forum]], [[https://osfree.org/mantis/|bugtracker]], [[https://osfree.org/roundcube/|webmail]] and [[https://osfree.org/dp/|dotProject]]. If you want to get access to these, you should register [[https://osfree.org/forum/ucp.php?mode=register|here]] first. After you verify your account via email, you'll get access to all five parts of the site. Approval of user accounts by site admin is now disabled. After verification of your account, you need to wait 15 mins or less, until your account info is propagated from forum to another site parts. Note also, that there is a guest account (user: guest, password: guest), which allows you to login to the site areas, requiring a login (like a dotProject area). It gives you a read only access. Once you log in into the forum, you get access to wiki too, and vice versa. The same login applies to dotProject, webmail and bugtracker. After adding to "Users" group you'll get a write access to wiki, bugtracker and forum. If you want to contribute to site design or development, or to get a mail account, the admin can add you to corresponding user groups and your access level will be increased. In case of troubles, or questions, you can contact site [[https://osfree.org/forum/memberlist.php?mode=contactadmin|admin]]. 
