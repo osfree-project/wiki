@@ -1,14 +1,26 @@
 ====== TPCrt ======
 
-procedure FrameWindow(LeftCol, TopRow, RightCol, BotRow, FAttr, HAttr : Byte;
-                      Header : shortstring);
-  {-Draws a frame around a window}
+===== FrameWindow =====
 
+<code pascal>
+procedure FrameWindow(LeftCol, TopRow, RightCol, BotRow, FAttr, HAttr : Byte; Header : shortstring);
+</code>
+
+Draw a frame around a window
+
+===== WhereXAbs =====
+
+<code pascal>
 function WhereXAbs: Byte;
-  {-Return absolute column coordinate of cursor}
+</code>
 
-function WhereYAbs: Byte;
-  {-Return absolute row coordinate of cursor}
+Return absolute column coordinate of cursor
+
+===== WhereYAbs =====
+
+<code>function WhereYAbs: Byte;</code>
+
+Return absolute row coordinate of cursor
 
 function WhereXY: Word;
   {-Return absolute coordinates of cursor}
