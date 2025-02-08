@@ -18,48 +18,81 @@ Return absolute column coordinate of cursor
 
 ===== WhereYAbs =====
 
-<code>function WhereYAbs: Byte;</code>
+<code pascal>function WhereYAbs: Byte;</code>
 
 Return absolute row coordinate of cursor
 
-function WhereXY: Word;
-  {-Return absolute coordinates of cursor}
+===== WhereXY =====
 
-function ScreenX: Byte;
-  {-Return absolute column coordinate of cursor}
+<code pascal>function WhereXY: Word;</code>
 
-function ScreenY: Byte;
-  {-Return absolute row coordinate of cursor}
+Return absolute coordinates of cursor
 
-procedure FastWrite(St : string; Row, Col, Attr : Byte);
-  {-Write St at Row,Col in Attr (video attribute) without snow}
+===== ScreenX =====
 
-procedure SetFrameChars(Vertical, Horizontal, LowerRight, UpperRight,
-                        LowerLeft, UpperLeft : Char);
-  {-Sets the frame characters to be used on subsequent FrameWindow calls.}
+<code pascal>function ScreenX: Byte;</code>
 
-procedure WhereXYdirect(var X, Y : Byte);
-  {-Read the current position of the cursor directly from the CRT controller}
+Return absolute column coordinate of cursor
 
-function GetCrtMode : Byte;
- {-Get the current video mode. Also reinitializes internal variables. May
-   reset: CurrentMode, ScreenWidth, ScreenHeight, CurrentPage, and
-   VideoSegment.}
+===== ScreenY =====
 
-procedure GotoXYAbs(X, Y : Byte);
-  {-Move cursor to column X, row Y. No error checking done.}
+<code pascal>function ScreenY: Byte;</code>
 
-procedure SetVisiblePage(PageNum : Byte);
-  {-Set current video page}
+Return absolute row coordinate of cursor
 
-procedure ScrollWindowUp(XLo, YLo, XHi, YHi, Lines : Byte);
-  {-Scrolls the designated window up the specified number of lines.}
+===== FastWrite =====
 
-procedure ScrollWindowDown(XLo, YLo, XHi, YHi, Lines : Byte);
-  {-Scrolls the designated window down the specified number of lines.}
+<code pascal>procedure FastWrite(St : string; Row, Col, Attr : Byte);</code>
 
-function CursorTypeSL : Word;
-  {-Returns a word. High byte has starting scan line, low byte has ending.}
+Write St at Row,Col in Attr (video attribute) without snow
+
+===== SetFrameChars =====
+
+<code pascal>procedure SetFrameChars(Vertical, Horizontal, LowerRight, UpperRight, LowerLeft, UpperLeft : Char);</code>
+
+Sets the frame characters to be used on subsequent FrameWindow calls.
+
+===== WhereXYdirect =====
+
+<code pascal>procedure WhereXYdirect(var X, Y : Byte);</code>
+
+Read the current position of the cursor directly from the CRT controller
+
+===== GetCrtMode =====
+
+<code pascal>function GetCrtMode : Byte;</code>
+
+Get the current video mode. Also reinitializes internal variables. May reset: CurrentMode, ScreenWidth, ScreenHeight, CurrentPage, and VideoSegment.
+
+===== GotoXYAbs =====
+
+<code pascal>procedure GotoXYAbs(X, Y : Byte);</code>
+
+Move cursor to column X, row Y. No error checking done.
+
+===== SetVisiblePage =====
+
+<code pascal>procedure SetVisiblePage(PageNum : Byte);</code>
+
+Set current video page
+
+===== ScrollWindowUp =====
+
+<code pascal>procedure ScrollWindowUp(XLo, YLo, XHi, YHi, Lines : Byte);</code>
+
+Scrolls the designated window up the specified number of lines.
+
+===== ScrollWindowDown =====
+
+<code pascal>procedure ScrollWindowDown(XLo, YLo, XHi, YHi, Lines : Byte);</code>
+
+Scrolls the designated window down the specified number of lines.
+
+===== CursorTypeSL =====
+
+<code pascal>function CursorTypeSL : Word;</code>
+
+Returns a word. High byte has starting scan line, low byte has ending.
 
 function CursorStartLine : Byte;
   {-Returns the starting scan line of the cursor}
