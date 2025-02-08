@@ -94,56 +94,107 @@ Scrolls the designated window down the specified number of lines.
 
 Returns a word. High byte has starting scan line, low byte has ending.
 
-function CursorStartLine : Byte;
-  {-Returns the starting scan line of the cursor}
+===== CursorStartLine =====
+ 
+<code pascal>function CursorStartLine : Byte;</code>
 
-function CursorEndLine : Byte;
-  {-Returns the ending scan line of the cursor.}
+Returns the starting scan line of the cursor
 
-procedure SetCursorSize(Startline, EndLine : Byte);
-  {-Sets the cursor's starting and ending scan lines.}
+===== CursorEndLine =====
 
-procedure NormalCursor;
-  {-Set normal scan lines for cursor based on current video mode}
+<code pascal>function CursorEndLine : Byte;</code>
 
-procedure FatCursor;
-  {-Set larger scan lines for cursor based on current video mode}
+Returns the ending scan line of the cursor.
 
-procedure BlockCursor;
-  {-Set scan lines for a block cursor}
+===== SetCursorSize =====
 
-procedure HiddenCursor;
-  {-Hide the cursor}
+<code pascal>procedure SetCursorSize(Startline, EndLine : Byte);</code>
 
-function ReadCharAtCursor : Char;
-  {-Returns character at the current cursor location on the selected page.}
+Sets the cursor's starting and ending scan lines.
 
-function ReadAttrAtCursor : Byte;
-  {-Returns attribute at the current cursor location on the selected page.}
+===== NormalCursor =====
 
-procedure GetCursorState(var XY, ScanLines : Word);
-  {-Return the current position and size of the cursor}
+<code pascal>procedure NormalCursor;</code>
 
-procedure RestoreCursorState(XY, ScanLines : Word);
-  {-Reset the cursor to a position and size saved with GetCursorState}
+Set normal scan lines for cursor based on current video mode
 
-procedure FastWriteWindow(St : string; Row, Col, Attr : Byte);
-  {-Write a string using window-relative coordinates}
+===== FatCursor =====
 
-procedure FastText(St : string; Row, Col : Byte);
-  {-Write St at Row,Col without changing the underlying video attribute.}
+<code pascal>procedure FatCursor;</code>
 
-procedure FastTextWindow(St : string; Row, Col : Byte);
-  {-Write St at window Row,Col without changing the underlying video attribute.}
+Set larger scan lines for cursor based on current video mode
 
-procedure FastVert(St : string; Row, Col, Attr : Byte);
-  {-Write St vertically at Row,Col in Attr (video attribute)}
+===== BlockCursor =====
 
-procedure FastVertWindow(St : string; Row, Col, Attr : Byte);
-  {-Write a string vertically using window-relative coordinates}
+<code pascal>procedure BlockCursor;</code>
 
-procedure FastFill(Number : Word; Ch : Char; Row, Col, Attr : Byte);
-  {-Fill Number chs at Row,Col in Attr (video attribute) without snow}
+Set scan lines for a block cursor
+
+===== HiddenCursor =====
+
+<code pascal>procedure HiddenCursor;</code>
+
+Hide the cursor
+
+===== ReadCharAtCursor =====
+
+<code pascal>function ReadCharAtCursor: Char;</code>
+
+Returns character at the current cursor location on the selected page.
+
+===== ReadAttrAtCursor =====
+
+<code pascal>function ReadAttrAtCursor: Byte;</code>
+
+Returns attribute at the current cursor location on the selected page.
+
+===== GetCursorState =====
+
+<code pascal>procedure GetCursorState(var XY, ScanLines: Word);</code>
+
+Return the current position and size of the cursor
+
+===== RestoreCursorState =====
+
+<code pascal>procedure RestoreCursorState(XY, ScanLines: Word);</code>
+
+Reset the cursor to a position and size saved with GetCursorState
+
+===== FastWriteWindow =====
+
+<code pascal>procedure FastWriteWindow(St: string; Row, Col, Attr: Byte);</code>
+
+Write a string using window-relative coordinates
+
+===== FastText =====
+
+<code pascal>procedure FastText(St: string; Row, Col: Byte);</code>
+
+Write St at Row,Col without changing the underlying video attribute.
+
+===== FastTextWindow =====
+
+<code pascal>procedure FastTextWindow(St: string; Row, Col: Byte);</code>
+
+Write St at window Row,Col without changing the underlying video attribute.
+
+===== FastVert =====
+
+<code pascal>procedure FastVert(St: string; Row, Col, Attr: Byte);</code>
+
+Write St vertically at Row,Col in Attr (video attribute)
+
+===== FastVertWindow =====
+
+<code pascal>procedure FastVertWindow(St: string; Row, Col, Attr: Byte);</code>
+
+Write a string vertically using window-relative coordinates
+
+===== FastFill =====
+
+<code pascal>procedure FastFill(Number: Word; Ch: Char; Row, Col, Attr: Byte);</code>
+
+Fill Number chs at Row,Col in Attr (video attribute) without snow
 
 procedure FastFillWindow(Number : Word; Ch : Char; Row, Col, Attr : Byte);
   {-Fill Number chs at window Row,Col in Attr (video attribute) without snow}
