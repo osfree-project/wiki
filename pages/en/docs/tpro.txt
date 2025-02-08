@@ -196,38 +196,70 @@ Write a string vertically using window-relative coordinates
 
 Fill Number chs at Row,Col in Attr (video attribute) without snow
 
-procedure FastFillWindow(Number : Word; Ch : Char; Row, Col, Attr : Byte);
-  {-Fill Number chs at window Row,Col in Attr (video attribute) without snow}
+===== FastFillWindow =====
 
-procedure FastCenter(St : string; Row, Attr : Byte);
-  {-Write St centered on window Row in Attr (video attribute) without snow}
+<code pascal>procedure FastFillWindow(Number: Word; Ch: Char; Row, Col, Attr: Byte);</code>
 
-procedure FastFlush(St : string; Row, Attr : Byte);
-  {-Write St flush right on window Row in Attr (video attribute) without snow}
+Fill Number chs at window Row,Col in Attr (video attribute) without snow
 
-procedure FastRead(Number, Row, Col : Byte; var St : string);
-  {-Read Number characters from the screen into St starting at Row,Col}
+===== FastCenter =====
 
-procedure FastReadWindow(Number, Row, Col : Byte; var St : string);
-  {-Read Number characters from the screen into St starting at window Row,Col}
+<code pascal>procedure FastCenter(St: string; Row, Attr: Byte);</code>
 
-procedure ReadAttribute(Number, Row, Col : Byte; var St : string);
-  {-Read Number attributes from the screen into St starting at Row,Col}
+Write St centered on window Row in Attr (video attribute) without snow
 
-procedure ReadAttributeWindow(Number, Row, Col : Byte; var St : string);
-  {-Read Number attributes from the screen into St starting at window Row,Col}
+===== FastFlush =====
 
-procedure WriteAttribute(St : String; Row, Col : Byte);
-  {-Write string of attributes St at Row,Col without changing characters}
+<code pascal>procedure FastFlush(St: string; Row, Attr: Byte);</code>
 
-procedure WriteAttributeWindow(St : String; Row, Col : Byte);
-  {-Write string of attributes St at window Row,Col without changing characters}
+Write St flush right on window Row in Attr (video attribute) without snow
 
-procedure ChangeAttribute(Number : Word; Row, Col, Attr : Byte);
-  {-Change Number video attributes to Attr starting at Row,Col}
+===== FastRead =====
 
-procedure ChangeAttributeWindow(Number : Word; Row, Col, Attr : Byte);
-  {-Change Number video attributes to Attr starting at window Row,Col}
+<code pascal>procedure FastRead(Number, Row, Col: Byte; var St: string);</code>
+
+Read Number characters from the screen into St starting at Row,Col
+
+===== FastReadWindow =====
+
+<code pascal>procedure FastReadWindow(Number, Row, Col: Byte; var St: string);</code>
+
+Read Number characters from the screen into St starting at window Row,Col
+
+===== ReadAttribute =====
+<code pascal>procedure ReadAttribute(Number, Row, Col: Byte; var St: string);</code>
+
+Read Number attributes from the screen into St starting at Row,Col
+
+===== ReadAttributeWindow =====
+
+<code pascal>procedure ReadAttributeWindow(Number, Row, Col: Byte; var St: string);</code>
+
+Read Number attributes from the screen into St starting at window Row,Col
+
+===== WriteAttribute =====
+
+<code pascal>procedure WriteAttribute(St: String; Row, Col: Byte);</code>
+
+Write string of attributes St at Row,Col without changing characters
+
+===== WriteAttributeWindow =====
+
+<code pascal>procedure WriteAttributeWindow(St: String; Row, Col: Byte);</code>
+
+Write string of attributes St at window Row,Col without changing characters
+
+===== ChangeAttribute =====
+
+<code pascal>procedure ChangeAttribute(Number: Word; Row, Col, Attr: Byte);</code>
+
+Change Number video attributes to Attr starting at Row,Col
+
+===== ChangeAttributeWindow =====
+
+<code pascal>procedure ChangeAttributeWindow(Number: Word; Row, Col, Attr: Byte);</code>
+
+Change Number video attributes to Attr starting at window Row,Col
 
 procedure MoveScreen(var Source, Dest; Length : Word);
   {-Move Length words from Source to Dest without snow}
