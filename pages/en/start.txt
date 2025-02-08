@@ -33,9 +33,6 @@ Also, we're available as https://osfree.su or https://osfree.ru, and as http://o
 
 {{rss>https://github.com/osfree-project/os3/commits/master.atom 12 author date description 1h}}
 
-==== Last bugtracker issues ====
-
-{{rss>https://osfree.org/mantis/issues_rss.php?username=valerius&key=IrYNBGclQADoHkoPqWjWErMc0EZ3vo6Zh-4j2W6BnxGE5dSRiAjrPJl-Lp5WsAIm4hHyv2lRFS_A7ypWM1nc 15 author date 1h}}
 
 ==== Last forum topics ====
 
