@@ -429,100 +429,192 @@ Return true if a Hercules graphics card is present
 
 Activate or deactivate colors on a Hercules InColor card
 
-function HercGraphicsMode : Boolean;
-  {-Return True if a Hercules card is in graphics mode}
+===== HercGraphicsMode =====
 
-function HercModeTestWorks : Boolean;
-  {-Return True if HercGraphicsMode will work}
+<code pascal>function HercGraphicsMode : Boolean;</code>
 
-procedure SetHercMode(GraphMode : Boolean; GraphPage : Byte);
-  {-Set Hercules card to graphics mode or text mode, and activate specified
-   graphics page (if switching to graphics mode).}
+Return True if a Hercules card is in graphics mode
 
-function ReadKeyWord : Word;
-  {-Waits for keypress, then returns scan and character codes together}
+===== HercModeTestWorks =====
 
-function CheckKbd(var KeyCode : Word) : Boolean;
-  {-Returns True (and the key codes) if a keystroke is waiting}
+<code pascal>function HercModeTestWorks : Boolean;</code>
 
-function KbdFlags : Byte;
-  {-Returns keyboard status flags as a bit-coded byte}
+Return True if HercGraphicsMode will work
 
-procedure StuffKey(W : Word);
-  {-Stuff one key into the keyboard buffer}
+===== SetHercMode =====
 
-procedure StuffString(S : string);
-  {-Stuff the contents of S into the keyboard buffer}
+<code pascal>procedure SetHercMode(GraphMode : Boolean; GraphPage : Byte);</code>
 
-procedure ReInitCrt;
-  {-Reinitialize CRT unit's internal variables. For TSR's or programs with
-   DOS shells. May reset: CurrentMode, ScreenWidth, ScreenHeight,
-   WindMin/WindMax, CurrentPage, CurrentDisplay, CheckSnow, and VideoSegment}
+Set Hercules card to graphics mode or text mode, and activate specified graphics page (if switching to graphics mode).
 
-{$ifdef WIN32}
-procedure SetSafeCPSwitching(F: Boolean);
-procedure SetUseACP(F: Boolean);
-{$ENDIF}
+===== ReadKeyWord =====
+
+<code pascal>function ReadKeyWord : Word;</code>
+
+Waits for keypress, then returns scan and character codes together
+
+===== CheckKbd =====
+
+<code pascal>function CheckKbd(var KeyCode : Word) : Boolean;</code>
+
+Returns True (and the key codes) if a keystroke is waiting
+
+===== KbdFlags =====
+
+<code pascal>function KbdFlags : Byte;</code>
+
+Returns keyboard status flags as a bit-coded byte
+
+===== StuffKey =====
+
+<code pascal>procedure StuffKey(W : Word);</code>
+
+Stuff one key into the keyboard buffer
+
+===== StuffString =====
+
+<code pascal>procedure StuffString(S : string);</code>
+
+Stuff the contents of S into the keyboard buffer
+
+===== ReInitCrt =====
+
+<code pascal>procedure ReInitCrt;</code>
+
+Reinitialize CRT unit's internal variables. For TSR's or programs with DOS shells. May reset: CurrentMode, ScreenWidth, ScreenHeight, WindMin/WindMax, CurrentPage, CurrentDisplay, CheckSnow, and VideoSegment
+
+===== SetSafeCPSwitching =====
+
+<code psacal>procedure SetSafeCPSwitching(F: Boolean);</code>
+
+===== SetUseACP =====
+
+<code pascal>procedure SetUseACP(F: Boolean);</code>
 
 
-procedure AssignConToCrt;
+===== AssignConToCrt =====
 
-procedure ClrScr;
-  {-Clears the screen and returns the cursor to the upper-left corner}
+<code pascal>procedure AssignConToCrt;</code>
 
-procedure TextBackground(Color: Byte);
-  {-Selects the background color}
+===== ClrScr =====
 
-procedure TextColor(Color: Byte);
-  {-Selects the foreground character color}
+<code psacal>procedure ClrScr;</code>
 
-procedure Window(X1,Y1,X2,Y2: Byte);
-  {-Defines a text window on the screen}
+Clears the screen and returns the cursor to the upper-left corner
 
-procedure GotoXY(X,Y: Byte);
-  {-Moves the cursor to the given coordinates within the screen}
+===== TextBackground =====
 
-function WhereX: Byte;
-  {-Returns the X coordinate of the current cursor location}
+<code pascal>procedure TextBackground(Color: Byte);</code>
 
-function WhereY: Byte;
-  {-Returns the Y coordinate of the current cursor location}
+Selects the background color
 
-procedure ClrEol;
-  {-Clears all characters from the cursor position to the end of the line }
-  { without moving the cursor.                                            }
+===== TextColor =====
 
-function KeyPressed: Boolean;
-  {-Determines if a key has been pressed on the keyboard and returns True }
-  { if a key has been pressed                                             }
+<code pascal>procedure TextColor(Color: Byte);</code>
 
-function ReadKey: Char;
-  {-Reads a character from the keyboard and returns a character or an     }
-  { extended scan code.                                                   }
+Selects the foreground character color
 
-procedure TextMode (Mode: word);
-procedure InsLine;
-  {-Inserts an empty line at the cursor position}
+===== Window =====
 
-procedure DelLine;
-  {-Deletes the line containing the cursor}
+<code pascal>procedure Window(X1,Y1,X2,Y2: Byte);</code>
 
-procedure LowVideo;
-  {-Selects low intensity characters}
+Defines a text window on the screen
 
-procedure HighVideo;
-  {-Selects high-intensity characters}
+===== GotoXY =====
 
-procedure NormVideo;
-  {-Selects normal intensity characters}
+<code pascal>procedure GotoXY(X,Y: Byte);</code>
 
-procedure Delay(MS: Word);
-procedure Sound(Hz: Word);
-procedure NoSound;
-procedure AssignCrt(var F: Text);
-  {-Associates a text file with CRT device.}
+Moves the cursor to the given coordinates within the screen
 
-procedure PlaySound(Freq,Duration: Longint);
-  {-Setups window coordinates }
+===== WhereX =====
 
-procedure GetLastMode;
+<code pascal>function WhereX: Byte;</code>
+
+Returns the X coordinate of the current cursor location
+
+===== WhereY =====
+
+<code pascal>function WhereY: Byte;</code>
+
+Returns the Y coordinate of the current cursor location
+
+===== ClrEol =====
+
+<code pascal>procedure ClrEol;</code>
+
+Clears all characters from the cursor position to the end of the line without moving the cursor.
+
+===== KeyPressed =====
+
+<code pascal>function KeyPressed: Boolean;</code>
+
+Determines if a key has been pressed on the keyboard and returns True if a key has been pressed
+
+===== ReadKey =====
+
+<code pascal>function ReadKey: Char;</code>
+
+Reads a character from the keyboard and returns a character or an extended scan code.
+
+===== TextMode =====
+
+<code pascal>procedure TextMode (Mode: word);</code>
+
+===== InsLine =====
+
+<code pascal>procedure InsLine;</code>
+
+Inserts an empty line at the cursor position
+
+===== DelLine =====
+
+<code pascal>procedure DelLine;</code>
+
+Deletes the line containing the cursor
+
+===== LowVideo =====
+
+<code pascal>procedure LowVideo;</code>
+
+Selects low intensity characters
+
+===== HighVideo =====
+
+<code pascal>procedure HighVideo;</code>
+
+Selects high-intensity characters
+
+===== NormVideo =====
+
+<code pascal>procedure NormVideo;</code>
+
+Selects normal intensity characters
+
+===== Delay =====
+
+<code pascal>procedure Delay(MS: Word);</code>
+
+===== Sound =====
+
+<code pascal>procedure Sound(Hz: Word);</code>
+
+===== NoSound =====
+
+<code pascal>procedure NoSound;</code>
+
+===== AssignCrt =====
+
+<code pascal>procedure AssignCrt(var F: Text);</code>
+
+Associates a text file with CRT device.
+
+===== PlaySound =====
+
+<code pascal>procedure PlaySound(Freq,Duration: Longint);</code>
+
+Setups window coordinates 
+
+===== GetLastMode =====
+
+<code pascal>procedure GetLastMode;</code>
+
