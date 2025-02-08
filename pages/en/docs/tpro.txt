@@ -261,97 +261,173 @@ Change Number video attributes to Attr starting at Row,Col
 
 Change Number video attributes to Attr starting at window Row,Col
 
-procedure MoveScreen(var Source, Dest; Length : Word);
-  {-Move Length words from Source to Dest without snow}
+===== MoveScreen =====
 
-procedure FlexWrite(St : string; Row, Col : Byte; var FAttrs : FlexAttrs);
-  {-Write St at Row,Col with flexible color handling}
+<code pascal>procedure MoveScreen(var Source, Dest; Length : Word);</code>
 
-procedure FlexWriteWindow(St : string; Row, Col : Byte; var FAttrs : FlexAttrs);
-  {-Write a string flexibly using window-relative coordinates.}
+Move Length words from Source to Dest without snow
 
-function SaveWindow(XLow, YLow, XHigh, YHigh : Byte; Allocate : Boolean;
-                    var Covers : Pointer) : Boolean;
-  {-Allocate buffer space if requested and save window contents}
+===== FlexWrite =====
 
-procedure RestoreWindow(XLow, YLow, XHigh, YHigh : Byte;
-                        Deallocate : Boolean; var Covers : Pointer);
-  {-Restore screen contents and deallocate buffer space if requested}
+<code pascal>procedure FlexWrite(St : string; Row, Col : Byte; var FAttrs : FlexAttrs);</code>
 
-procedure StoreWindowCoordinates(var WC : WindowCoordinates);
-  {-Store the window coordinates for the active window}
+Write St at Row,Col with flexible color handling
 
-procedure RestoreWindowCoordinates(WC : WindowCoordinates);
-  {-Restore previously saved window coordinates}
+===== FlexWriteWindow =====
 
-function PackWindow(XLow, YLow, XHigh, YHigh : Byte) : PackedWindowPtr;
-  {-Return a pointer to a packed window, or nil if not enough memory}
+<code pascal>procedure FlexWriteWindow(St :string; Row, Col: Byte; var FAttrs: FlexAttrs);</code>
 
-procedure DispPackedWindow(PWP : PackedWindowPtr);
-  {-Display the packed window pointed to by PWP}
+Write a string flexibly using window-relative coordinates.
 
-procedure DispPackedWindowAt(PWP : PackedWindowPtr; Row, Col : Byte);
-  {-Display the packed window pointed to by PWP at Row,Col. If necessary,
-   the coordinates are adjusted to allow it to fit on the screen.}
+===== SaveWindow =====
 
-procedure MapPackedWindowColors(PWP : PackedWindowPtr);
-  {-Map the colors in a packed window for improved appearance on mono/B&W
-   displays}
+<code pascal>function SaveWindow(XLow, YLow, XHigh, YHigh : Byte; Allocate : Boolean; var Covers : Pointer) : Boolean;</code>
 
-procedure DisposePackedWindow(var PWP : PackedWindowPtr);
-  {-Dispose of a packed window, setting PWP to nil on exit}
+Allocate buffer space if requested and save window contents
 
-procedure WritePackedWindow(PWP : PackedWindowPtr; FName : string);
-  {-Store the packed window pointed to by PWP in FName}
+===== RestoreWindow =====
 
-function ReadPackedWindow(FName : string) : PackedWindowPtr;
-  {-Read the packed window stored in FName into memory}
+<code pascal>procedure RestoreWindow(XLow, YLow, XHigh, YHigh : Byte; Deallocate : Boolean; var Covers : Pointer);</code>
 
-function CreateLibrary(var F : file; Name : string;
-                       Entries : Byte) : DirectoryPtr;
-  {-Create a library with the specified # of directory entries}
+Restore screen contents and deallocate buffer space if requested
 
-function OpenLibrary(var F : file; Name : string) : DirectoryPtr;
-  {-Open the specified library and return a pointer to its directory}
+===== StoreWindowCoordinates =====
 
-procedure CloseLibrary(var F : file; var DP : DirectoryPtr);
-  {-Close library F and deallocate its directory}
+<code pascal>procedure StoreWindowCoordinates(var WC : WindowCoordinates);</code>
 
-procedure PackLibrary(LName : string);
-  {-Pack a library to remove deleted entries.}
+Store the window coordinates for the active window
 
-procedure AddWindowToLibrary(PWP : PackedWindowPtr; var F : file;
-                             DP : DirectoryPtr; WinName : LibName);
-  {-Add a packed window to the specified library}
+===== RestoreWindowCoordinates =====
 
-function ReadWindowFromLibrary(var F : file; DP : DirectoryPtr;
-                               WinName : LibName) : PackedWindowPtr;
-  {-Read a packed window from a library}
+<code pascal>procedure RestoreWindowCoordinates(WC : WindowCoordinates);</code>
 
-procedure DeleteWindowFromLibrary(var F : file; DP : DirectoryPtr;
-                                  WinName : LibName);
-  {-Delete a packed window from the specified library}
+Restore previously saved window coordinates
 
-function MapColor(c : Byte) : Byte;
-  {-Map a video attribute for visibility on mono/bw displays}
+===== PackWindow =====
 
-procedure SetBlink(Status : Boolean);
-  {-Enable text mode attribute blinking if On is True}
+<code pascal>function PackWindow(XLow, YLow, XHigh, YHigh : Byte) : PackedWindowPtr;</code>
 
-procedure SetCrtBorder(Attr : Byte);
-  {-Set border to background color if card type and mode allow}
+Return a pointer to a packed window, or nil if not enough memory
 
-function Font8x8Selected : Boolean;
-  {-Return True if EGA or VGA is active and in 8x8 font}
+===== DispPackedWindow =====
 
-procedure SelectFont8x8(Status : Boolean);
-  {-Toggle 8x8 font on or off}
+<code pascal>procedure DispPackedWindow(PWP : PackedWindowPtr);</code>
 
-function HercPresent : Boolean;
-  {-Return true if a Hercules graphics card is present}
+Display the packed window pointed to by PWP
 
-procedure SwitchInColorCard(ColorOn : Boolean);
-  {-Activate or deactivate colors on a Hercules InColor card}
+===== DispPackedWindowAt =====
+
+<code pascal>procedure DispPackedWindowAt(PWP : PackedWindowPtr; Row, Col : Byte);</code>
+
+Display the packed window pointed to by PWP at Row,Col. If necessary, the coordinates are adjusted to allow it to fit on the screen.
+
+===== MapPackedWindowColors =====
+
+<code pascal>procedure MapPackedWindowColors(PWP : PackedWindowPtr);</code>
+
+Map the colors in a packed window for improved appearance on mono/B&W displays
+
+===== DisposePackedWindow =====
+
+<code pascal>procedure DisposePackedWindow(var PWP : PackedWindowPtr);</code>
+
+Dispose of a packed window, setting PWP to nil on exit
+
+===== WritePackedWindow =====
+
+<code pascal>procedure WritePackedWindow(PWP : PackedWindowPtr; FName : string);</code>
+
+Store the packed window pointed to by PWP in FName
+
+===== ReadPackedWindow =====
+
+<code pascal>function ReadPackedWindow(FName : string) : PackedWindowPtr;</code>
+
+Read the packed window stored in FName into memory
+
+===== CreateLibrary =====
+
+<code pascal>function CreateLibrary(var F : file; Name : string; Entries : Byte) : DirectoryPtr;</code>
+
+Create a library with the specified # of directory entries
+
+===== OpenLibrary =====
+
+<code pascal>function OpenLibrary(var F : file; Name : string) : DirectoryPtr;</code>
+
+Open the specified library and return a pointer to its directory
+
+===== CloseLibrary =====
+
+<code pascal>procedure CloseLibrary(var F : file; var DP : DirectoryPtr);</code>
+
+Close library F and deallocate its directory
+
+===== PackLibrary =====
+
+<code pascal>procedure PackLibrary(LName : string);</code>
+
+Pack a library to remove deleted entries.
+
+===== AddWindowToLibrary =====
+
+<code pascal>procedure AddWindowToLibrary(PWP : PackedWindowPtr; var F : file; DP : DirectoryPtr; WinName : LibName);</code>
+
+Add a packed window to the specified library
+
+===== ReadWindowFromLibrary =====
+
+<code pascal>function ReadWindowFromLibrary(var F : file; DP : DirectoryPtr; WinName : LibName) : PackedWindowPtr;</code>
+
+Read a packed window from a library
+
+===== DeleteWindowFromLibrary =====
+
+<code pascal>procedure DeleteWindowFromLibrary(var F : file; DP : DirectoryPtr; WinName : LibName);</code>
+
+Delete a packed window from the specified library
+
+===== MapColor =====
+
+<code pascal>function MapColor(c : Byte) : Byte;</code>
+
+Map a video attribute for visibility on mono/bw displays
+
+===== SetBlink =====
+
+<code pascal>procedure SetBlink(Status : Boolean);</code>
+
+Enable text mode attribute blinking if On is True
+
+===== SetCrtBorder =====
+
+<code pascal>procedure SetCrtBorder(Attr : Byte);</code>
+
+Set border to background color if card type and mode allow
+
+===== Font8x8Selected =====
+
+<code pascal>function Font8x8Selected : Boolean;</code>
+
+Return True if EGA or VGA is active and in 8x8 font
+
+===== SelectFont8x8 =====
+
+<code pascal>procedure SelectFont8x8(Status : Boolean);</code>
+
+Toggle 8x8 font on or off
+
+===== HercPresent =====
+
+<code oascal>function HercPresent : Boolean;</code>
+
+Return true if a Hercules graphics card is present
+
+===== SwitchInColorCard =====
+
+<code pascal>procedure SwitchInColorCard(ColorOn : Boolean);</code>
+
+Activate or deactivate colors on a Hercules InColor card
 
 function HercGraphicsMode : Boolean;
   {-Return True if a Hercules card is in graphics mode}
