@@ -513,11 +513,18 @@ Note: somtemitTypes version uses default compiler calling convention. For IBM SO
 ==== somtfatal, somtfatalSL function ====
 
 <code c>
-SOMEXTERN void somtfatal(char *file, long lineno, char *fmt, ...);
+SOMEXTERN void OPTLINK somtfatal(char *file, long lineno, char *fmt, ...);
+</code>
+
+Used by: IBM SOM 2.1 NT in SOMIPC.EXE
+
+<code c>
 SOMEXTERN void SOMLINK somtfatalSL(char *file, long lineno, char *fmt, ...);
 </code>
 
-Note: somtfatal version uses default compiler calling convention. For IBM SOM 3.0 for NT it is Optlink. 
+Used by: 
+
+
 ==== somtinternal, somtinternalSL function ====
 
 <code c>
