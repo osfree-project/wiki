@@ -461,23 +461,74 @@ methods:
 
 ===== 1. Appendix 1. SOM ABI =====
 
-Due switching from MSVC (IBM SOM 2.1) to VAC (IBM SOM 3.0) some problems was occur:
+Due to switching from MSVC (IBM SOM 2.1) to VAC (IBM SOM 3.0) some problems were occurred:
 
-First problem is a calling convention. All non SOMLINK calls in IBM SOM 2.1 is a _cdecl calls. But under IBM SOM 3.0 all non SOMLINK calls is a Optlink calls. Read some info here:
+The first problem is a calling convention. All non SOMLINK calls in IBM SOM 2.1 are a _cdecl calls. But under IBM SOM 3.0 all non SOMLINK calls are an Optlink calls. Read some info here:
 https://github.com/prokushev/SOM-Delphi-Wiki/blob/master/Known%20differences%20between%20SOM%202.1%20and%20SOM%203.0.md
-Goal of somFree SOM Compiler and Emitter Framework is to provide a possibility to use original IBM SOM emitters as from  IBM SOM 2.1 as from IBM SOM 3.0. Another goal is a development of somFree emitters, which can be used on both IBM SOM 2.1 and IBM SOM 3.0 compilers.To achieve above goals somFree provides some solutions:
+Goal of somFree SOM Compiler and Emitter Framework is to provide a possibility to use original IBM SOM emitters as from IBM SOM 2.1 as from IBM SOM 3.0. Another goal is a development of somFree emitters, which can be used on both IBM SOM 2.1 and IBM SOM 3.0 compilers. To achieve above goals somFree provides some solutions:
 1. Automatic somc.dll calling convention switching.
-somFree SOMC.DLL provides automatic switching of IBM SOM 2.1 ABI and IBM SOM 3.0 ABI. Switching occurs on somtload call during loading of emitter. For IBM SOM 3.0 all emitter contains entry point emitSL, so, if loading was success, then somFree handles Optlink calling convention for all non SOMLINK calls. If no such entry (found only emit) then IBM SOM 2.1 ABI used.
+somFree SOMC.DLL provides automatic switching of IBM SOM 2.1 ABI and IBM SOM 3.0 ABI. Switching occurs on boatload call during loading of emitter. For IBM SOM 3.0 all emitter contains entry point emitSL, so, if loading was success, then somFree handles Optlink calling convention for all non SOMLINK calls. If no such entry (found only emit) then IBM SOM 2.1 ABI used.
 2. Support both entry points (emitSL and emit) in emitters.
 somFree emitters automatically switches to IBM SOM 2.1 ABI on emit call and to IBM SOM 3.0 ABI on emitSL call.
 
-todo: add info abount internal structures like in http://www.edm2.com/index.php/OS/2_Application_Binary_Interface_for_PowerPC_(32-bit)   http://www.os2site.com/sw/dev/info/abippc32.pdf
-====== Список литературы ======
+todo: add info about internal structures like in http://www.edm2.com/index.php/OS/2_Application_Binary_Interface_for_PowerPC_(32-bit)   http://www.os2site.com/sw/dev/info/abippc32.pdf
+
+===== 2. Appendix 2. Terminology changes and syntax construct evolution =====
+
+During SOM compiler evolution, some terms were changed and/or obsolete. Here is a table with terms mapping.
+
+^ SOM 1.0 ^ SOM 2.0 ^ somFree ^
+| attribute | modifier | annotation |
+| group     | {obsolete} | {obsolete} |
+
+IBM SOM 1.0 introduced Object Interface Definition Language (OIDL) which predates Interface Definition Language (IDL). It was a simple language which provided simple objects description. IBM SOM 2.0 switched to SOM IDL, which was an extended version of OMG IDL. SOM Compiler provided OIDL to IDL conversion tools. Because of moving to IDL, ''attribute'' were renamed to ''modifier'' and ''group'' obsolete. SOM IDL extensions mostly ''implementation'' section.
+IBM SOM 3.0 added some more OMG IDL compatibility according to CORBA 2.x standards, like ''#pragma'' statement. Modifiers now can be declared via ''#pragma modifier''. Some modifiers were only defined via ''#pragma''.
+
+somFree supports SOM IDL as found in IBM SOM 3.0.
+
+osFree somFree compiler tries to implement current IDL 4.2 Specification. It supports ''@annotation''. So, many constructions can be (and must be) implemented via standard and somFree specific annotations.
+
+OIDL
+<code>
+include <somobj.csc>;
+
+class Hello;
+
+method:
+  sayHello(string msg);
+
+passthru C:
+#define DEFAULT_MSG "Hello!"
+endpassthru;
+</code>
+
+SOM IDL
+<code idl>
+#include <somobj.idl>
+interface Hello
+{
+  implementation
+  {
+  }
+}
+</code>
+
+IDL 4.2
+<code idl>
+#include <somobj.idl>
+
+interface Hello
+{
+}
+</code>
+
+====== Bibliography ======
 
 
   - Object Management Group, "C Language Mapping Specification 1.0, 1999" Available: https://www.omg.org/spec/C/
   - IBM, "OS/2 2.0 Technical Library. System Object Model Guide and Reference. First Edition, 1991"  Available: https://www.os2museum.com/files/docs/os220tl/os2-2.0-som-1991.pdf
   - Object Management Group, "The Common Object Request Broker: Architecture and Specification. Revision 1.1, 1991" Available: https://www.omg.org/spec/CORBA/1.1
+  - Object Management Group, "Interface Definition Language™. Version 4.2, 2018" Available: https://www.omg.org/spec/IDL/4.2
 
 
 
