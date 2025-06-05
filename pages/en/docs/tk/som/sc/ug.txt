@@ -6,8 +6,6 @@
 
 somFree Compiler and Emitter Framework is a free open source binary compatible reimplementation of IBM SOM Compiler and Emitter Framework. It is tries to be as compatible as possible on API and ABI level.
 
-
-
 ===== somFree Compiler =====
 
 The somFree Compiler is a tool to produce various file formats from Interface Definition Language (IDL) files or Object Interface Definition Language (OIDL) files. somFree Compiler reads IDL or OIDL file and produces an abstract graph tree. Using abstract tree, somFree Compiler generates an object graph tree. After the object graph is ready, somFree Compiler produces an output using template.
@@ -481,8 +479,7 @@ During SOM compiler evolution, some terms were changed and/or obsolete. Here is 
 | attribute | modifier | annotation |
 | group     | {obsolete} | {obsolete} |
 
-IBM SOM 1.0 introduced Object Interface Definition Language (OIDL) which predates Interface Definition Language (IDL). It was a simple language which provided simple objects description. IBM SOM 2.0 switched to SOM IDL, which was an extended version of OMG IDL. SOM Compiler provided OIDL to IDL conversion tools. Because of moving to IDL, ''attribute'' were renamed to ''modifier'' and ''group'' obsolete. SOM IDL extensions mostly ''implementation'' section.
-IBM SOM 3.0 added some more OMG IDL compatibility according to CORBA 2.x standards, like ''#pragma'' statement. Modifiers now can be declared via ''#pragma modifier''. Some modifiers were only defined via ''#pragma''.
+IBM SOM 1.0 introduced Object Interface Definition Language (OIDL) which predates Interface Definition Language (IDL). It was a simple language which provided simple objects description. IBM SOM 2.0 switched to SOM IDL, which was an extended version of OMG IDL. SOM Compiler provided OIDL to IDL conversion tools. Because of moving to IDL, ''attribute'' were renamed to ''modifier'' and ''group'' obsolete. SOM IDL extensions mostly ''implementation'' section. Also ''#pragma'' statement was added. Modifiers now can be declared via ''#pragma modifier''. Some modifiers were only defined via ''#pragma''.
 
 somFree supports SOM IDL as found in IBM SOM 3.0.
 
