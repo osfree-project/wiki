@@ -2,19 +2,21 @@
   * [[en:docs:tk:som:progg|somFree Programming Guide]]
   * [[en:docs:tk:som:sc|somFree Compiler and Emitter Framework]]
 
-Quick history:
+====== Quick history ======
 
-  * SOM 1.0 - came out with OS/2 2.0 and used to build WorkPlaceShell. It includes only SOMObject, SOMClass and SOMClsMgr classes. Object Interface Definition Language was used to describe interfaces.
-  * SOM 2.0 - aligned with CORBA 1.1, used CORBA IDL and added DSOM. SOM Compiler was reworked and Emitter Framework was added. C++ bindings that allow you to implement and invoke your classes in C++. The Distributed, Persistence, Replication and Emitter Frameworks. CORBA compliance, SOM classes are now described in CORBA's Interface Definition Language (IDL) instead of OIDL. Support for multiple inheritance. Interface Repository for run-time typing information.
-  * SOM 2.1 
+  * IBM SOM 1.0 - came out with OS/2 2.0 and used to build WorkPlaceShell. It includes only SOMObject, SOMClass and SOMClsMgr classes. Object Interface Definition Language was used to describe interfaces.
+  * IBM SOM 2.0 - aligned with CORBA 1.1, used CORBA IDL and added DSOM. SOM Compiler was reworked and Emitter Framework was added. C++ bindings that allow you to implement and invoke your classes in C++. The Distributed, Persistence, Replication and Emitter Frameworks. CORBA compliance, SOM classes are now described in CORBA's Interface Definition Language (IDL) instead of OIDL. Support for multiple inheritance. Interface Repository for run-time typing information.
+  * IBM SOM 2.1 - Persistence and Replication Frameworks removed. DirectToSOM (DTS) C++ support added. 32-bit TCP/IP support. New initialization. DSOM changes to support CORBA memory management. Metaclasses Framework.
   * SOM adopted by Apple to move OpenDoc from C++ to a language neutral framework.
-  * SOM 3.0 - added IIOP support, referencing counting for SOMObject and more CORBA frameworks
+  * IBM SOM 3.0 - added IIOP support, referencing counting for SOMObject and more CORBA frameworks and object services
+  * somFree 1.x - Roger Brown reimplementation of IBM SOM, but some parts missing and some reverted (like Persistence framework). Initial stubs for CORBA 2+ support.
+  * osFree somFree - enhanced version of somFree which attempts to return SOM Compiler and Emitter Framework design to somFree. And add CORBA 2+ support.
 
 SOM was available on OS/2 2.0 upwards, Windows NT, AIX 4, OS/390 and OS/400.
 
-Why somFree?
+====== Why somFree? ======
 
-This project provides a clean-room implementation of the major SOM components and is built to be very portable. The name comes from the method used to delete a SOMObject.
+somFree project provides a clean-room implementation of the major SOM components and is built to be very portable. The name comes from the method used to delete a SOMObject.
 
 Main differences from IBM SOM
 
@@ -27,9 +29,9 @@ Main differences from IBM SOM
 
 ===== Changes =====
 
-Changes from original somFree compiler:
+Changes to osFree version from original somFree compiler:
 
-  * Added and mostly documented SOM Compiler library SOMC. Most of internal structures now also present as in old IBM SOM 2.1 Toolkit. SOMLINK style functions for most of SOM Compiler library added (NT version used optlink for some functions). somtShowEntry function outputs more info. Undocumented SOMTTypes now documented.
+  * Added and mostly documented SOM Compiler library - SOMC. Most of the internal structures now also present as in old IBM SOM 2.1 Toolkit. SOMLINK style functions for most of SOM Compiler library added (NT version used optlink for some functions). somtShowEntry function outputs more info. Undocumented SOMTTypes now documented.
   * SOM Compiler now supports emitters too.
   * New emitters:
     * LNK - Open Watcom WLink support.
@@ -41,5 +43,5 @@ Changes from original somFree compiler:
   * SOMIPC now supports IDL 4.2 specification.
   * CORBA C Language Mapping Specification 1.0 now supported by default instead of CORBA 1.1 C Language mapping.
   * Added support of OIDL files
-  * PDL inprovements to be close to original PDL
+  * PDL improvements to be close to original PDL
   * Core IDLs revised and some documenting was added
