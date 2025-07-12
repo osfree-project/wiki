@@ -13,9 +13,7 @@ DosMkDir (DirName, Reserved)
 ===== Parameters =====
 
 
-  * DirName ([[PSZ]]) - input : Address of the ASCIIZ directory path name, which may or may not include a drive specification. If no drive is specified, the current drive is assumed.
-
-[[DosQSysInfo]] is called by an application during initialization to determine the maximum path length allowed by OS/2.
+  * DirName ([[PSZ]]) - input : Address of the ASCIIZ directory path name, which may or may not include a drive specification. If no drive is specified, the current drive is assumed. [[DosQSysInfo]] is called by an application during initialization to determine the maximum path length allowed by OS.
 
   *Reserved ([[ULONG]]) - input : Reserved and must be set to zero.
 
@@ -37,7 +35,7 @@ Return code descriptions are:
 
 If any subdirectory names in the path do not exist, the subdirectory is not created. Upon return, a subdirectory is created at the end of the specified path.
 
-[[DosQSysInfo]] must be used by an application to determine the maximum path length supported by OS/2. The returned value should be used to dynamically allocate buffers that are to be used to store paths.
+[[DosQSysInfo]] must be used by an application to determine the maximum path length supported by OS. The returned value should be used to dynamically allocate buffers that are to be used to store paths.
 
 If a program running with the NEWFILES bit set tries to create a directory with blanks immediately preceding the dot on a FAT drive, the system rejects the name. For example, if c: is a FAT drive, the name "file .txt" is rejected and the name "file.txt" is accepted. 
 

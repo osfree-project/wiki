@@ -40,8 +40,8 @@ under the FlashTek X-32 DOS extender, the pointer is in DS:EDX
           
 ===== See also =====
 
-AH=[[en:docs:dos:api:int21:3a|3Ah - Remove directory]],AH=[[en:docs:dos:api:int21:3b|3Bh - Change directory]],AH=[[en:docs:dos:api:int21:6d|6Dh]],AX=[[en:docs:dos:api:int21:71:39|7139h - LFN Create directory]],AX=[[en:docs:dos:api:int21:43:ff|43FFh]]/BP=5053h
- INT 2F/AX=1103h,INT 60/DI=0511h
+AH=[[en:docs:dos:api:int21:3a|3Ah - Remove directory]],AH=[[en:docs:dos:api:int21:3b|3Bh - Change directory]],AH=[[en:docs:dos:api:int21:6d|6Dh]],AX=[[en:docs:dos:api:int21:71:39|7139h - LFN Create directory]],AX=[[en:docs:dos:api:int21:43:ff|43FFh - LFN (bare DOS) Create directory]]/BP=5053h
+ INT 2F/AX=1103h
 
 ===== Note =====
 
