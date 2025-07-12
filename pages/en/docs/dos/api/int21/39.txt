@@ -16,27 +16,31 @@
 
 ===== Input =====
 
-        AH = 39h
-        DS:DX -> ASCIZ pathname
+  * AH = 39h
+  * DS:DX -> ASCIZ pathname (maximum length 67 or 260 characters)
 
 ===== Return =====
 
- CF clear if successful
-            AX destroyed
-        CF set on error
-            AX = error code (03h,05h) (see #01680 at AH=59h/BX=0000h)
+  * CF clear if successful
+    * AX destroyed
+  * CF set on error
+    * AX = error code (03h,05h) (see #01680 at AH=59h/BX=0000h)
 
 ===== Notes =====
 
 all directories in the given path except the last must exist fails if the parent directory is the root and is full
         
 DOS 2.x-3.3 allow the creation of a directory sufficiently deep that it is not possible to make that directory the current directory because the path would exceed 64 characters
+
+DOS 4+ checks for 67 path length (64 + driveletter + ':" + '\')
+
+OS/2 2.0+ MVDM checks for 260 path length (257 + driveletter + ':" + '\')
           
 under the FlashTek X-32 DOS extender, the pointer is in DS:EDX
           
 ===== See also =====
 
-AH=[[en:docs:dos:api:int21:3a|3Ah]],AH=[[en:docs:dos:api:int21:3b|3Bh]],AH=[[en:docs:dos:api:int21:6d|6Dh]],AX=[[en:docs:dos:api:int21:71:39|7139h]],AX=[[en:docs:dos:api:int21:43:ff|43FFh]]/BP=5053h
+AH=[[en:docs:dos:api:int21:3a|3Ah - Remove directory]],AH=[[en:docs:dos:api:int21:3b|3Bh - Change directory]],AH=[[en:docs:dos:api:int21:6d|6Dh]],AX=[[en:docs:dos:api:int21:71:39|7139h - LFN Create directory]],AX=[[en:docs:dos:api:int21:43:ff|43FFh]]/BP=5053h
  INT 2F/AX=1103h,INT 60/DI=0511h
 
 ===== Note =====
