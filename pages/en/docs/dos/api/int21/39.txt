@@ -12,6 +12,7 @@
 
 ===== Family API =====
 
+[[en:docs:fapi:DosMkDir]]
 
 ===== Input =====
 
