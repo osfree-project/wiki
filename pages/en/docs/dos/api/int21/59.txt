@@ -12,6 +12,7 @@ GET EXTENDED ERROR INFORMATION
 
 ===== Family API =====
 
+[[en:docs:fapi:DosErrClass]]
 
 ===== Input =====
 
