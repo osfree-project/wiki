@@ -16,17 +16,17 @@ GET EXTENDED ERROR INFORMATION
 
 ===== Input =====
 
-	AH = 59h
-	BX = 0000h
+  * AH = 59h
+  * BX = 0000h
 
 ===== Return =====
 
-        AX = extended error code (see #01680)
-	BH = error class (see #01682)
-	BL = recommended action (see #01683)
-	CH = error locus (see #01684)
-	ES:DI may be pointer (see #01681, #01680)
-	CL, DX, SI, BP, and DS destroyed
+  * AX = extended error code (see #01680)
+  * BH = error class (see #01682)
+  * BL = recommended action (see #01683)
+  * CH = error locus (see #01684)
+  * ES:DI may be pointer (see #01681, #01680)
+  * CL, DX, SI, BP, and DS destroyed
 
 ===== Notes =====
 
