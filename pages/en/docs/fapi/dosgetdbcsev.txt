@@ -20,9 +20,9 @@ This call obtains a DBCS (double byte character set) environmental vector that r
 The format of the information returned in this buffer is:
 
 ^ Word ^ Description ^
-| 1  |    First range definition for DBCS lead byte values High byte Binary start value (inclusive) for range one Low byte Binary stop value (inclusive) for range one. |
-| 2  |    Second range definition High byte Binary start value for range two    Low byte Binary stop value for range two |
-| N  |    Nth range definition      High byte Binary start value for Nth range         Low byte Binary stop value for Nth range. |
+| 1  | First range definition for DBCS lead byte values High byte Binary start value (inclusive) for range one Low byte Binary stop value (inclusive) for range one. |
+| 2  | Second range definition High byte Binary start value for range two    Low byte Binary stop value for range two |
+| N  | Nth range definition      High byte Binary start value for Nth range         Low byte Binary stop value for Nth range. |
 | N + 1 | Two bytes of binary 0 terminate list. For example:         DB  81H,9FH          DB  E0H,FCH         DB  00H,00H |
 
 ===== Return =====
