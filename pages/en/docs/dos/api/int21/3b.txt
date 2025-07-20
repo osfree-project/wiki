@@ -12,18 +12,19 @@
 
 ===== Family API =====
 
+[[en:docs:fapi:DosChDir]]
 
 ===== Input =====
 
-        AH = 3Bh
-        DS:DX -> ASCIZ pathname to become current directory (max 64 bytes)
+  * AH = 3Bh
+  * DS:DX -> ASCIZ pathname to become current directory (max 64 bytes)
 
 ===== Return =====
 
- CF clear if successful
-            AX destroyed
-        CF set on error
-            AX = error code (03h) (see #01680 at AH=59h/BX=0000h)
+  * CF clear if successful
+    * AX destroyed
+  * CF set on error
+    * AX = error code (03h) (see #01680 at AH=59h/BX=0000h)
 
 ===== Notes =====
 
@@ -31,11 +32,9 @@ if new directory name includes a drive letter, the default drive is not changed,
           
 changing the current directory also changes the directory in which FCB file calls operate
           
-under the FlashTek X-32 DOS extender, the pointer is in DS:EDX
-          
 ===== See also =====
 
-AH=[[en:docs:dos:api:int21:47|47h]],AX=[[en:docs:dos:api:int21:71:3b|713Bh]],INT 2F/AX=1105h
+AH=[[en:docs:dos:api:int21:47|47h]],AX=[[en:docs:dos:api:int21:71:3b|713Bh]]
 
 ===== Note =====
 
