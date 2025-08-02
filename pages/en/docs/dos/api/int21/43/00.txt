@@ -32,6 +32,17 @@ GET FILE ATTRIBUTES
 
 ===== Notes =====
 
+Bitfields for file attributes:
+^ Bit(s) ^ Description ^
+| 7 | unused |
+| 6 | unused |
+| 5 | archive |
+| 4 | directory |
+| 3 | volume label |
+| 2 | system |
+| 1 | hidden |
+| 0 | read-only |
+
 under DR DOS 3.41 and 5.0, attempts to change the subdirectory bit are simply ignored without an error
 
 BUG:    Windows for Workgroups returns error code 05h (access denied) instead of error code 02h (file not found) when attempting to get the attributes of a nonexistent file.  This causes open() with O_CREAT and fopen() with the "w" mode to fail in Borland C++.
