@@ -49,7 +49,7 @@ BUG:    Windows for Workgroups returns error code 05h (access denied) instead of
 
 ===== See also =====
 
-AX=[[en:docs:dos:api:int21:43:01|4301h]],AX=[[en:docs:dos:api:int21:71:43|7143h]]
+AX=[[en:docs:dos:api:int21:43:01|4301h]],AX=[[en:docs:dos:api:int21:71:43:00|7143h/BL=00h]]
 
 ===== Note =====
 
