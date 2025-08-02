@@ -12,7 +12,7 @@ GET FILE ATTRIBUTES
 
 ===== Family API =====
 
-[[en:docs:fapi:DosQFileMode]]
+[[en:docs:fapi:DosQFileMode]], [[en:docs:fapi:DosQFSInfo]]
 
 ===== Input =====
 
@@ -22,26 +22,27 @@ GET FILE ATTRIBUTES
 ===== Return =====
 
   * CF clear if successful
-    * CX = file attributes (see #01420)
+    * CX = file attributes
     * AX = CX (DR DOS 5.0)
   * CF set on error
     * AX = error code (01h,02h,03h,05h) (see #01680 at AH=59h)
 
-===== Macro =====
-
-
-===== Notes =====
-
 Bitfields for file attributes:
 ^ Bit(s) ^ Description ^
-| 7 | unused |
-| 6 | unused |
+| 15-6 | unused |
 | 5 | archive |
 | 4 | directory |
 | 3 | volume label |
 | 2 | system |
 | 1 | hidden |
 | 0 | read-only |
+
+
+
+===== Macro =====
+
+
+===== Notes =====
 
 under DR DOS 3.41 and 5.0, attempts to change the subdirectory bit are simply ignored without an error
 
