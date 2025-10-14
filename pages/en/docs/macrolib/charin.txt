@@ -8,7 +8,7 @@ Read char from keyboard
 
 ===== BIOS Interrupt =====
 
-[[en:docs:bios:api:int|INTH]]: [[en:docs:bios:api::|H]]
+[[en:docs:bios:api:int16|INT16H]]: [[en:docs:bios:api:int16:00|00H]]
 
 ===== Family API =====
 
