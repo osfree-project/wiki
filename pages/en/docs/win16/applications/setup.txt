@@ -1,127 +1,92 @@
-===== Windows 3.1 SETUP.INF Complete Reference =====
+===== Windows SETUP.INF Complete Reference =====
 
-Of course. My apologies for the previous incomplete response. Here is the full, high-quality translation and restructuring of the provided text into English, formatted for DokuWiki.
+===== Complete Windows Installation Guide =====
 
-***
+=== About the Setup Program ===
+The Windows Setup program is located on Disk #1 of the Microsoft Windows disk set. The installation process consists of two main stages:
 
-### Installation and Configuration of Microsoft Windows 3.1
+  * **Stage 1: MS-DOS Mode Setup**
+    - The program evaluates the computer system configuration
+    - Requests verification of the detected information
+    - Copies basic Windows files to the system's hard disk
 
-This guide provides a complete overview of the installation and setup process for Microsoft Windows 3.1.
+  * **Stage 2: Windows Mode Setup**
+    - Loads the Windows operating system
+    - Installs the remaining system files
+    - Guides through a series of choices for installing printer drivers and other applications
 
-----
+=== Running the Setup Program ===
 
-#### ==== About the Windows Setup Program ====
+**For initial installation:**
+  - Insert Windows Disk #1 into the floppy drive
+  - Switch to the appropriate drive letter (for example, A:)
+  - At the command prompt, type: setup
+  - Press the ENTER key
+  - Follow the instructions on your screen
+  - Use the F1 key for online help
 
-The Windows Setup program is located on Disk #1 of the installation set. Its purpose is to guide you through the installation process, which is divided into two main phases:
+**For configuration changes:**
+  - Run Setup from Program Manager after Windows is installed
+  - Use to change system configuration
+  - Add or remove system files
 
-  - **Phase 1: DOS-Based Setup**
-    -- Setup evaluates your computer's hardware and displays its findings for you to verify.
-    -- It then copies the essential Windows files to your hard drive.
-  - **Phase 2: Windows-Based Setup**
-    -- Setup loads the Windows graphical environment for the first time.
-    -- It installs the remaining system files and drivers.
-    -- You are prompted to configure system settings, install printer drivers, and set up applications.
-
-**Note:** In this documentation, `WINDOWS` refers to the main installation directory you choose, and `SYSTEM` refers to the subdirectory within it where the core operating system files are stored.
-
-----
-
-#### ==== New Features in Windows 3.1 Setup ====
-
-The Setup program for Windows 3.1 includes several significant improvements:
-
-  - **Compatibility Verification**
-    -- Setup checks for and warns about device drivers known to be incompatible with either the Setup process or Windows 3.1 itself. It can automatically update drivers from previous Windows 3.x installations.
-  - **Automated Hardware Detection**
-    -- Whether you choose Express or Custom Setup, the program automatically detects most hardware (display, keyboard, mouse). You rarely need to manually select devices from a list.
-  - **Startup Group**
-    -- Setup automatically creates a "Startup" group in Program Manager. Any application placed in this group will launch automatically when Windows starts.
-  - **Automated Installation**
-    -- You can fully automate the installation process by creating a script file. This is ideal for system administrators deploying Windows on multiple machines.
-
-----
-
-#### ==== Executing the Setup Program ====
-
-The Setup program serves two primary purposes, which require different execution methods:
-
-| **Purpose** | **How to Execute** |
-| :--- | :--- |
-| **Initial Installation or Upgrade** | Run `setup` from the MS-DOS command prompt, either from the floppy disks or a network drive. |
-| **Modify Existing Installation** | Run Setup from within Windows via the Program Manager to change your system configuration or add/remove components. |
-
-**Procedure for a standard installation from floppy disks:**
-
-  - Insert Windows 3.1 **Disk #1** into your floppy drive.
-  - Switch to the corresponding drive letter (e.g., `A:`).
-  - At the command prompt, type **`setup`** and press **Enter**.
-  - Follow the on-screen instructions. Press the **F1** key at any time for help.
-
-**Critical Note:** Do not use the MS-DOS `copy` command to transfer files from the installation disks. The files are compressed and must be processed by the Setup program, which decompresses and renames them correctly.
-
-----
-
-#### ==== Setup Command-Line Parameters ====
-
-You can customize the Setup program's behavior using various switches when launching it from the command prompt.
+=== Command Line Parameters ===
 
 | Parameter | Purpose |
-| :--- | :--- |
-| **`/i`** | Bypasses automatic hardware detection. You must manually verify and correct settings on the System Information screen. |
-| **`/n`** | Installs a shared copy of Windows from a network server. |
-| **`/a`** | Performs an **Administrative Setup**, copying all files from the disks to a network server and marking them as read-only. |
-| **`/b`** | Configures Windows for use with a monochrome display. |
-| **`/t`** | Scans the drive for software that may conflict with Setup or Windows 3.1 (for maintenance). |
-| **`/h:[filename]`** | Runs **Batch Mode Setup** for an automated installation. The `[filename]` specifies a system settings file containing the user's configuration. |
-| **`/o:[filename]`** | Specifies an alternate `SETUP.INF` file. |
-| **`/s:[path]`** | Specifies the path to the directory containing the Windows installation files. |
+| /i | Ignores automatic hardware detection. The user will have to check settings and possibly make corrections on the System Information screen during Setup. |
+| /n | Sets up a shared copy of Windows from a network server. |
+| /a | Begins Administrative Setup by expanding and copying all files from the Windows installation disks onto a network server, and also marking the files as read-only. |
+| /b | Sets up Windows with monochrome display attributes. |
+| /t | Searches the drive for incompatible software that should not run at the same time as Setup or Windows. (For maintenance only.) |
+| /h:[filename] | Runs Batch Mode Setup to install Windows with little or no user interaction. The filename is the name of the system settings file that contains information about the user's configuration. |
+| /o:[filename] | Specifies the SETUP.INF file, including the path if filename is not in the directory that contains the Windows Setup files. |
+| /s:[filename] | Specifies the SETUP.INF file, including a path for the Windows installation disks. |
 
-**Tip:** To see a list of all available switches, type **`setup /?`** at the command prompt.
+**Help Tip:** To see a list of the switches available for Windows Setup, at the command prompt type setup /? and press ENTER.
 
-----
+=== Express Setup vs. Custom Setup ===
 
-#### ==== Express Setup vs. Custom Setup ====
+**Express Setup:**
+  - Recommended for most standard installations
+  - Requires providing information only about printers and port connections
+  - Automatically detects the system hardware
 
-At the beginning of the installation, you must choose between two setup types:
+**Custom Setup:**
+  - Provides precise control over how Windows is set up
+  - Requires verification of information detected about the hardware and software in your system
+  - Allows selection of:
+    * The directory where you want the Windows files installed
+    * The computer system hardware, including the monitor, mouse, and keyboard
+    * The preferred language
+    * The network configuration, if any
+    * The printers and printer ports for the computer system
+    * The other applications you want to run with Windows
+    * The specific Windows components you want to install
 
-  - **Express Setup (Recommended)**
-    -- The fastest and simplest method, ideal for most users.
-    -- You are only required to provide basic information, such as your printer model and the port it's connected to.
-    -- Setup handles everything else automatically.
+=== Custom Installation Strategies ===
 
-  - **Custom Setup**
-    -- Designed for advanced users who require precise control over the installation.
-    -- You are asked to verify and potentially modify the detected hardware and software configuration.
-    -- Allows you to select/deselect specific components, choose the installation directory, configure the network, and specify which applications to set up.
+**For single system:**
+  * Customize installation process: Choose Custom Setup at the first Setup prompt
+  * Customize after installation: Use Control Panel, Program Manager, and Windows Setup
 
-----
+**For multiple systems:**
+  * Network installation: Use setup /a to copy files to the network server, then use setup /n to install a shared copy of Windows on the workstations
+  * Automated installation: Create custom system settings files and use setup /h
+  * Hardware list customization: Edit device entries in SETUP.INF for hardware, and edit printer entries in CONTROL.INF
+  * Application customization: Install custom applications, customize Windows applications installation, install custom PIFs during installation
 
-#### ==== Custom Installation Strategies ====
+=== Critical Important Notes ===
 
-The following decision trees help you plan how to install and customize Windows.
-
-  - **For a Single Computer**
-    -- **To customize the *installation process*:** Choose **Custom Setup** at the first prompt.
-    -- **To customize Windows *after* installation:** Use **Control Panel**, **Program Manager**, and the Windows Setup program within Windows.
-
-  - **For Multiple Computers (Network/Automated Deployment)**
-    -- **To deploy on a network:**
-       --> Use **`setup /a`** to copy all files to a network server.
-       --> Then, use **`setup /n`** on each workstation to install a shared copy.
-    -- **To automate installation for multiple users:**
-       --> Create custom system settings files and use the **`setup /h`** switch for a hands-off installation.
-    -- **To customize available hardware options:**
-       --> Edit device entries in the `SETUP.INF` file and printer entries in `CONTROL.INF`.
-    -- **To customize the installed software environment:**
-       --> Modify the relevant `.INF` files to install custom applications, add custom PIFs, or change which Windows components are installed by default.
-    -- **To create a standardized user environment:**
-       --> Set up shared Program Manager groups or edit the `WIN.SRC` and `SYSTEM.SRC` initialization files before installation.
+  * Do not use the MS-DOS copy command to copy the Windows files from the Setup disks
+  * These files are compressed and cannot be used unless you run the Setup program
+  * Setup renames the compressed files during installation
+  * Files on your system that end with an underscore (_) are compressed and have not been installed properly
 
 ==== Technical details ====
 
 ==== Introduction ====
 
-SETUP.INF is the master configuration file that controls every aspect of Windows 3.1 installation. This comprehensive reference documents all sections, keys, and installation processes based on the original Windows Resource Kit documentation.
+SETUP.INF is the master configuration file that controls every aspect of Windows installation. This comprehensive reference documents all sections, keys, and installation processes based on the original Windows Resource Kit documentation.
 
 ==== Installation Process Overview ====
 
