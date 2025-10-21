@@ -1068,37 +1068,3 @@ sve= 2:langsca.dll, "Swedish", 1053
 
 The SETUP.INF file copying system operates through these key mechanisms:
 
-**1. Destination Directories Definition:**
-<code>
-[DestinationDirs]
-DefaultDestDir    = 25, ""              ; Windows directory (e.g., C:\WINDOWS)
-system            = 25, "system"         ; SYSTEM subdirectory
-winabc            = 25, "winabc"         ; WINABC subdirectory
-root              = 10, ""               ; Root directory (e.g., C:\)
-</code>
-
-**Directory ID Codes:**
-  * 25 - Windows directory
-  * 10 - Root directory of boot drive
-  * 11 - System directory
-  * 30 - Root directory of installation drive A:
-
-**2. Disk Number References:**
-File references like <code>2:filename.ext</code> refer to disk numbers defined in [disks] section.
-
-**3. File Selection Process:**
-  - Setup reads hardware configuration
-  - Matches configuration to [machine] section entries
-  - Resolves short names to actual files through related sections
-  - Copies files to destinations specified in [DestinationDirs]
-  - Updates dependencies through [Update.Dependents]
-
-**4. Example Resolution Chain:**
-<code>
-[machine] entry: ast_386_486= ... ,system, ...
-[system] section: system= 2:system.drv
-[disks] section: 2=. ,"Microsoft Windows 3.1 Disk #2",disk2
-Result: Copies system.drv from Disk #2 to appropriate directory
-</code>
-
-This comprehensive SETUP.INF reference provides complete documentation of all installation parameters and processes for Windows 3.1, ensuring accurate system configuration and software installation across all supported hardware platforms.
