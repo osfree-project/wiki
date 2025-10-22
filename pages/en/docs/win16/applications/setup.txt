@@ -100,9 +100,9 @@ The Windows installation follows this precise sequence:
 
 **Phase 2: File Copying**
   - Copy SETUP.EXE to WINDOWS and and SETUP.INF to SYSTEM directory
-  - Copy system files from [windows.system] section
-  - Copy core Windows files from [windows] section
-  - Copy 386-specific files from [windows.system.386]
+  - Copy Core files from [windows.system] and [windows] sections
+  - Copy 386-specific Core files from [windows.system.386]
+  - Copy Machine specific defined by [machine] files from [system], ....
   - Install display drivers from [display] section
   - Install keyboard drivers from keyboard sections
   - Install mouse drivers from pointing device sections
