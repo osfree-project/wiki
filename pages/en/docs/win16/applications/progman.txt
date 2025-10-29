@@ -3,13 +3,13 @@
 ====== Program Manager ======
 
 
-==== PROGMAN.INI: The Program Manager Initialization File ====
+===== PROGMAN.INI: The Program Manager Initialization File =====
 
 The Program Manager initialization file, PROGMAN.INI, usually has entries for **[[#settings|settings]]** and **[[#groups|groups]]**, which describe what should appear in the Program Manager window when you run Program Manager. To change the appearance and behavior of Program Manager, use the menu commands as described in Chapter 3, "Program Manager," in the Windows User's Guide.
 
 A system administrator might also choose to add a third section, **[[#restrictions|restrictions]]**, for custom installations. For more information about creating custom entries for PROGMAN.INI for multiple systems during Windows installation, see "Configuring Program Manager for a Network Workgroup" in Chapter 6, "Tips for Configuring Windows 3 .1."
 
-===== [settings] =====
+==== [settings] ====
 
 The **[settings]** section usually has these entries:
 
@@ -29,7 +29,7 @@ Startup=
 | **AutoArrange=** | 1 if the AutoArrange command is checked on the Options menu in Program Manager. In this case, the icons in each group will be automatically arranged when you run Program Manager. |
 | **Startup=**     | Name of the group that serves as the "startup" group. If this entry is blank, the Startup group created in Windows Setup is the startup group. |
 
-===== [groups] =====
+==== [groups] ====
 
 The PROGMAN.INI file will also have a section named **[groups]**, which has entries such as these:
 
@@ -51,7 +51,7 @@ Group8=C:\WINDOWS\APPLICAT.GRP
 
 To change these settings, we recommend that you use the commands on the Program Manager menu.
 
-===== [restrictions] =====
+==== [restrictions] ====
 
 For network system administration, you can also add a **[restrictions]** section to PROGMAN.INI to restrict user actions. The **[restrictions]** section can have these entries:
 
