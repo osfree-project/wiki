@@ -35,7 +35,7 @@ Novell NetWare (except the new DOS Requester) monitors the offset of any INT 24 
          
 ===== See also =====
 
- AH=[[en:docs:dos:api:int21:35|35h]]
+ AH=[[en:docs:dos:api:int21:35|35h]] **[[en:docs:dpmi:api:int31|INT 31H]]**:AX=[[en:docs:dpmi:api:int31:02:01|0201h]]
 
 ===== Note =====
 

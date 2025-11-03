@@ -28,7 +28,7 @@ If the interrupt being hooked is a hardware interrupt, the memory that the inter
 
 ===== See also =====
 
-   
+**[[en:docs:dos:api:int21|INT 21H]]**: AH=[[en:docs:dos:api:int21:25|25]]
 
 ===== Note =====
 
