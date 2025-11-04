@@ -6,9 +6,11 @@
 
 ===== Syntax =====
 
-void FatalExit(int nErrCode);
+void WINAPI FatalExit(int nErrCode);
 
 ===== Parameters =====
+
+int nErrCode - error code
 
 ===== Return Code =====
 
