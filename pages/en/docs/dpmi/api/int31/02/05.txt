@@ -42,7 +42,7 @@ Refer to the rules for descriptor usage in Appendix D.
     
 ===== See also =====
 
-   
+AX=[[en:docs:dpmi:api:int31:02:01|0201H]], **[[en:docs:dos:api:int21|INT 21H]]**: AH=[[en:docs:dos:api:int21:25|25]]
 
 ===== Note =====
 
