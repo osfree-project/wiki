@@ -30,6 +30,6 @@ terminated.
 
 ===== See also =====
 
-FatalAppExit()
+[[en:docs:win16:api:kernel:fatalappexit|FatalAppExit]]
 
 {{page>en:templates:win16}}
