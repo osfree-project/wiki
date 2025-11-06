@@ -1,16 +1,31 @@
 {{page>en:templates:win16api}}
 
-======  ======
+====== FatalAppExit ======
 
 ===== Brief =====
 
+Display a message box and terminate the application when the message box is closed.
+
 ===== Syntax =====
+
+VOID WINAPI FatalAppExit(UINT uAction, LPCTSTR lpMessageText);
 
 ===== Parameters =====
 
+  * uAction
+Reserved; must be zero.
+  * lpMessageText
+Points to a null-terminated string that is displayed in the message box. The message is displayed on a single line. To accommodate low-resolution screens, the string should be no more than 35 characters in length.
+
 ===== Return Code =====
 
+none
+
 ===== Notes =====
+
+The FatalAppExit function displays a message box and terminates the application when the message box is closed. If Windows is running with a kernel debugger, the message box gives the user the opportunity to terminate the application or to cancel the message box and return to the application that called FatalAppExit.
+
+An application calls FatalAppExit only when it is not capable of terminating any other way. FatalAppExit may not always free an application's memory or close its files, and it may cause a general failure of Windows. An application that encounters an unexpected error should terminate by freeing all its memory and returning from its main message loop.
 
 ===== Example Code =====
 
@@ -19,5 +34,7 @@
 ==== MASM Binding ====
 
 ===== See also =====
+
+[[en:docs:win16:api:kernel:FatalExit]]
 
 {{page>en:templates:win16}}
