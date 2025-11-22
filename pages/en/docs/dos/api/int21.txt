@@ -2,6 +2,24 @@
 
 ====== INT 21H ======
 
+===== Version =====
+
+1 and higher
+
+===== Brief =====
+
+DOS API Dispatcher
+
+===== Family API =====
+
+none
+
+===== Win16 API =====
+
+Dos3Call, NoHookDosCall
+
+===== Input =====
+
 ^ AH ^ Description ^ Version ^ Implemented in DOSKRNL ^
 | [[en:docs:dos:api:int21:00|00H]] | Program terminate | 1.0+ |
 | [[en:docs:dos:api:int21:01|01H]] | Character input | 1.0+ | Yes |
@@ -190,5 +208,17 @@
 | [[en:docs:dos:api:int21:6f|6FH]] | DosQMaxEASize | OS/2 1.0+ |
 | [[en:docs:dos:api:int21:71|71H]] | Long filename functions | 7.0+ (Win95) |
 | [[en:docs:dos:api:int21:73|73H]] | FAT32 functions | 7.0+ (Win95) |
+
+===== Return =====
+
+Depends on funxtion number
+
+===== Macro =====
+
+===== Notes =====
+
+===== See Also =====
+
+===== Note =====
 
 {{page>en:templates:int}}
