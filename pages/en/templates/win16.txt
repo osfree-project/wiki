@@ -7,5 +7,5 @@
 ^ Atom Manager | [[en:docs:win16:api:kernel:InitAtomTable]] [[en:docs:win16:api:kernel:AddAtom]] [[en:docs:win16:api:kernel:DeleteAtom]] [[en:docs:win16:api:kernel:FindAtom]] [[en:docs:win16:api:kernel:GetAtomName]] |
 ^ Windows Initialization File | GetProfileInt GetProfileString WriteProfileString |
 ^ Debugging | FatalExit |
-^ File I/O | OpenFile GetTempFileName GetTempDrive |
+^ File I/O | _lopen _lcreat _llseek _lread _lwrite _lclose OpenFile GetTempFileName GetTempDrive |
 ^ Registry | [[en:docs:win16:api:shell:RegOpenKey]] [[en:docs:win16:api:shell:RegCreateKey]] [[en:docs:win16:api:shell:RegCloseKey]] [[en:docs:win16:api:shell:RegDeleteKey]] [[en:docs:win16:api:shell:RegSetValue]] [[en:docs:win16:api:shell:RegQueryValue]] [[en:docs:win16:api:shell:RegEnumKey]] |

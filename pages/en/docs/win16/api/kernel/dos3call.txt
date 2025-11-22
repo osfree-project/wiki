@@ -1,23 +1,40 @@
 {{page>en:templates:win16api}}
 
-======  ======
+====== Dos3Call ======
 
 ===== Brief =====
 
+Call DOS API dispatcher
+
 ===== Syntax =====
+
+void Dos3Call(void);
 
 ===== Parameters =====
 
+Depends on function. Passed in registers.
+
 ===== Return Code =====
+
+Depends on function. Returns in registers.
 
 ===== Notes =====
 
+This function invoke DOS API dispatcher. It has not any parameters or return codes defined. Parameters and return codes same as in corresponding DOS API. This call actually does int 21h to call dispatcher. NoHookDosCall can be used to call dispatcher directrly, not via int 21h
+
 ===== Example Code =====
+
+<code c>
+_asm mov ah, 02h
+Dos3Call();
+</code>
 
 ==== C Binding ====
 
 ==== MASM Binding ====
 
 ===== See also =====
+
+[[en:docs:win16:api:kernel:NoHookDosCall]]
 
 {{page>en:templates:win16}}

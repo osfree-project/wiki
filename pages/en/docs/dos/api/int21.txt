@@ -16,7 +16,7 @@ none
 
 ===== Win16 API =====
 
-Dos3Call, NoHookDosCall
+[[en:docs:win16:api:kernel:Dos3Call]], [[en:docs:win16:api:kernel:NoHookDosCall]]
 
 ===== Input =====
 
