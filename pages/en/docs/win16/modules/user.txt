@@ -4,374 +4,374 @@
 | 0 | USER | | | |
 | 1 | [[en:docs:win16:api:user:MESSAGEBOX]] | Displays a modal dialog box that contains a system icon, a set of buttons, and a brief application-specific message | | |
 | 2 | [[en:docs:win16:api:user:OLDEXITWINDOWS]] | | Done | |
-| 5 | [[en:docs:win16:api:user:INITAPP]] | | | |
-| 6 | [[en:docs:win16:api:user:POSTQUITMESSAGE]] | | | |
-| 7 | [[en:docs:win16:api:user:EXITWINDOWS]] | | | |
+| 5 | [[en:docs:win16:api:user:INITAPP]] | Initializes an application instance | | |
+| 6 | [[en:docs:win16:api:user:POSTQUITMESSAGE]] | Indicates that the application has requested to terminate | | |
+| 7 | [[en:docs:win16:api:user:EXITWINDOWS]] | Shuts down Windows and restarts the operating system | | |
 | 10 | [[en:docs:win16:api:user:SETTIMER]] | Creates a timer with the specified time-out value | | |
 | 11 | [[en:docs:win16:api:user:BEAR11]] | | | |
 | 12 | [[en:docs:win16:api:user:KILLTIMER]] | Destroys the specified timer | | |
 | 13 | [[en:docs:win16:api:user:GETTICKCOUNT]] | Retrieves the number of milliseconds that have elapsed since the system was started | Done | |
-| 14 | [[en:docs:win16:api:user:GETTIMERRESOLUTION]] | | | |
+| 14 | [[en:docs:win16:api:user:GETTIMERRESOLUTION]] | Retrieves the minimum timer resolution for the system | | |
 | 15 | [[en:docs:win16:api:user:GETCURRENTTIME]] | Retrieves the current Windows time | Done | |
 | 16 | [[en:docs:win16:api:user:CLIPCURSOR]] | Confines the cursor to a rectangular area on the screen | | |
 | 17 | [[en:docs:win16:api:user:GETCURSORPOS]] | Retrieves the position of the mouse cursor, in screen coordinates | | |
 | 18 | [[en:docs:win16:api:user:SETCAPTURE]] | Sets the mouse capture to the specified window | | |
 | 19 | [[en:docs:win16:api:user:RELEASECAPTURE]] | Releases the mouse capture from a window and restores normal mouse input processing | | |
-| 20 | [[en:docs:win16:api:user:SETDOUBLECLICKTIME]] | | | |
-| 21 | [[en:docs:win16:api:user:GETDOUBLECLICKTIME]] | | | |
-| 22 | [[en:docs:win16:api:user:SETFOCUS]] | | | |
-| 23 | [[en:docs:win16:api:user:GETFOCUS]] | | | |
-| 24 | [[en:docs:win16:api:user:REMOVEPROP]] | | | |
-| 25 | [[en:docs:win16:api:user:GETPROP]] | | | |
-| 26 | [[en:docs:win16:api:user:SETPROP]] | | | |
-| 27 | [[en:docs:win16:api:user:ENUMPROPS]] | | | |
-| 28 | [[en:docs:win16:api:user:CLIENTTOSCREEN]] | | | |
-| 29 | [[en:docs:win16:api:user:SCREENTOCLIENT]] | | | |
-| 30 | [[en:docs:win16:api:user:WINDOWFROMPOINT]] | | | |
-| 31 | [[en:docs:win16:api:user:ISICONIC]] | | | |
-| 32 | [[en:docs:win16:api:user:GETWINDOWRECT]] | | | |
-| 33 | [[en:docs:win16:api:user:GETCLIENTRECT]] | | | |
-| 34 | [[en:docs:win16:api:user:ENABLEWINDOW]] | | | |
-| 35 | [[en:docs:win16:api:user:ISWINDOWENABLED]] | | | |
+| 20 | [[en:docs:win16:api:user:SETDOUBLECLICKTIME]] | Sets the double-click time for the mouse | | |
+| 21 | [[en:docs:win16:api:user:GETDOUBLECLICKTIME]] | Retrieves the current double-click time for the mouse | | |
+| 22 | [[en:docs:win16:api:user:SETFOCUS]] | Sets the keyboard focus to the specified window | | |
+| 23 | [[en:docs:win16:api:user:GETFOCUS]] | Retrieves the handle to the window that has the keyboard focus | | |
+| 24 | [[en:docs:win16:api:user:REMOVEPROP]] | Removes a property from a window's property list | | |
+| 25 | [[en:docs:win16:api:user:GETPROP]] | Retrieves a data handle from a window's property list | | |
+| 26 | [[en:docs:win16:api:user:SETPROP]] | Adds a new entry or changes an existing entry in a window's property list | | |
+| 27 | [[en:docs:win16:api:user:ENUMPROPS]] | Enumerates all entries in a window's property list | | |
+| 28 | [[en:docs:win16:api:user:CLIENTTOSCREEN]] | Converts the client-area coordinates of a specified point to screen coordinates | | |
+| 29 | [[en:docs:win16:api:user:SCREENTOCLIENT]] | Converts the screen coordinates of a specified point to client coordinates | | |
+| 30 | [[en:docs:win16:api:user:WINDOWFROMPOINT]] | Retrieves the handle of the window that contains the specified point | | |
+| 31 | [[en:docs:win16:api:user:ISICONIC]] | Determines whether the specified window is minimized (iconic) | | |
+| 32 | [[en:docs:win16:api:user:GETWINDOWRECT]] | Retrieves the dimensions of the bounding rectangle of the specified window | | |
+| 33 | [[en:docs:win16:api:user:GETCLIENTRECT]] | Retrieves the coordinates of a window's client area | | |
+| 34 | [[en:docs:win16:api:user:ENABLEWINDOW]] | Enables or disables mouse and keyboard input to the specified window | | |
+| 35 | [[en:docs:win16:api:user:ISWINDOWENABLED]] | Determines whether the specified window is enabled for mouse and keyboard input | | |
 | 36 | [[en:docs:win16:api:user:GETWINDOWTEXT]] | Copies the text of the specified window's title bar into a buffer | Done | |
 | 37 | [[en:docs:win16:api:user:SETWINDOWTEXT]] | Changes the text of the specified window's title bar | Done | |
 | 38 | [[en:docs:win16:api:user:GETWINDOWTEXTLENGTH]] | Retrieves the length of the specified window's title bar text | Done | |
 | 39 | [[en:docs:win16:api:user:BEGINPAINT]] | Prepares the specified window for painting and fills a PAINTSTRUCT structure with painting information | | |
 | 40 | [[en:docs:win16:api:user:ENDPAINT]] | Marks the end of painting in the specified window | | |
-| 41 | [[en:docs:win16:api:user:CREATEWINDOW]] | | Done | |
-| 42 | [[en:docs:win16:api:user:SHOWWINDOW]] | | | |
-| 43 | [[en:docs:win16:api:user:CLOSEWINDOW]] | | | |
-| 44 | [[en:docs:win16:api:user:OPENICON]] | | | |
-| 45 | [[en:docs:win16:api:user:BRINGWINDOWTOTOP]] | | | |
-| 46 | [[en:docs:win16:api:user:GETPARENT]] | | | |
-| 47 | [[en:docs:win16:api:user:ISWINDOW]] | | | |
-| 48 | [[en:docs:win16:api:user:ISCHILD]] | | | |
-| 49 | [[en:docs:win16:api:user:ISWINDOWVISIBLE]] | | | |
-| 50 | [[en:docs:win16:api:user:FINDWINDOW]] | | | |
-| 52 | [[en:docs:win16:api:user:ANYPOPUP]] | | | |
-| 53 | [[en:docs:win16:api:user:DESTROYWINDOW]] | | | |
-| 54 | [[en:docs:win16:api:user:ENUMWINDOWS]] | | | |
-| 55 | [[en:docs:win16:api:user:ENUMCHILDWINDOWS]] | | | |
-| 56 | [[en:docs:win16:api:user:MOVEWINDOW]] | | | |
-| 57 | [[en:docs:win16:api:user:REGISTERCLASS]] | | Done | |
-| 58 | [[en:docs:win16:api:user:GETCLASSNAME]] | | | |
-| 59 | [[en:docs:win16:api:user:SETACTIVEWINDOW]] | | | |
-| 60 | [[en:docs:win16:api:user:GETACTIVEWINDOW]] | | | |
-| 61 | [[en:docs:win16:api:user:SCROLLWINDOW]] | | | |
-| 62 | [[en:docs:win16:api:user:SETSCROLLPOS]] | | | |
-| 63 | [[en:docs:win16:api:user:GETSCROLLPOS]] | | | |
-| 64 | [[en:docs:win16:api:user:SETSCROLLRANGE]] | | | |
-| 65 | [[en:docs:win16:api:user:GETSCROLLRANGE]] | | | |
-| 66 | [[en:docs:win16:api:user:GETDC]] | | | |
-| 67 | [[en:docs:win16:api:user:GETWINDOWDC]] | | | |
-| 68 | [[en:docs:win16:api:user:RELEASEDC]] | | | |
-| 69 | [[en:docs:win16:api:user:SETCURSOR]] | | | |
-| 70 | [[en:docs:win16:api:user:SETCURSORPOS]] | | | |
-| 71 | [[en:docs:win16:api:user:SHOWCURSOR]] | | | |
-| 72 | [[en:docs:win16:api:user:SETRECT]] | | Done | |
-| 73 | [[en:docs:win16:api:user:SETRECTEMPTY]] | | Done | |
-| 74 | [[en:docs:win16:api:user:COPYRECT]] | | Done | |
-| 75 | [[en:docs:win16:api:user:ISRECTEMPTY]] | | Done | |
-| 76 | [[en:docs:win16:api:user:PTINRECT]] | | Done | |
-| 77 | [[en:docs:win16:api:user:OFFSETRECT]] | | Done | |
-| 78 | [[en:docs:win16:api:user:INFLATERECT]] | | Done | |
-| 79 | [[en:docs:win16:api:user:INTERSECTRECT]] | | Done | |
-| 80 | [[en:docs:win16:api:user:UNIONRECT]] | | Done | |
-| 81 | [[en:docs:win16:api:user:FILLRECT]] | | Done | |
-| 82 | [[en:docs:win16:api:user:INVERTRECT]] | | Done | |
-| 83 | [[en:docs:win16:api:user:FRAMERECT]] | | Done | |
-| 84 | [[en:docs:win16:api:user:DRAWICON]] | | Done | |
-| 85 | [[en:docs:win16:api:user:DRAWTEXT]] | | Done | |
+| 41 | [[en:docs:win16:api:user:CREATEWINDOW]] | Creates an overlapped, pop-up, or child window | Done | |
+| 42 | [[en:docs:win16:api:user:SHOWWINDOW]] | Sets the specified window's show state | | |
+| 43 | [[en:docs:win16:api:user:CLOSEWINDOW]] | Minimizes (but does not destroy) the specified window | | |
+| 44 | [[en:docs:win16:api:user:OPENICON]] | Restores a minimized (iconic) window to its previous size and position | | |
+| 45 | [[en:docs:win16:api:user:BRINGWINDOWTOTOP]] | Brings the specified window to the top of the Z order | | |
+| 46 | [[en:docs:win16:api:user:GETPARENT]] | Retrieves the handle of the specified window's parent window | | |
+| 47 | [[en:docs:win16:api:user:ISWINDOW]] | Determines whether the specified handle is a window handle | | |
+| 48 | [[en:docs:win16:api:user:ISCHILD]] | Determines whether a window is a child window of the specified parent window | | |
+| 49 | [[en:docs:win16:api:user:ISWINDOWVISIBLE]] | Determines whether the specified window is visible | | |
+| 50 | [[en:docs:win16:api:user:FINDWINDOW]] | Retrieves the handle to the top-level window whose class name and window name match the specified strings | | |
+| 52 | [[en:docs:win16:api:user:ANYPOPUP]] | Indicates whether an owned, visible, top-level pop-up, or overlapped window exists on the screen | | |
+| 53 | [[en:docs:win16:api:user:DESTROYWINDOW]] | Destroys the specified window | | |
+| 54 | [[en:docs:win16:api:user:ENUMWINDOWS]] | Enumerates all top-level windows on the screen | | |
+| 55 | [[en:docs:win16:api:user:ENUMCHILDWINDOWS]] | Enumerates the child windows that belong to the specified parent window | | |
+| 56 | [[en:docs:win16:api:user:MOVEWINDOW]] | Changes the position and dimensions of the specified window | | |
+| 57 | [[en:docs:win16:api:user:REGISTERCLASS]] | Registers a window class for subsequent use in calls to the CreateWindow function | Done | |
+| 58 | [[en:docs:win16:api:user:GETCLASSNAME]] | Retrieves the name of the class to which the specified window belongs | | |
+| 59 | [[en:docs:win16:api:user:SETACTIVEWINDOW]] | Sets the specified window to the active window | | |
+| 60 | [[en:docs:win16:api:user:GETACTIVEWINDOW]] | Retrieves the handle to the active window | | |
+| 61 | [[en:docs:win16:api:user:SCROLLWINDOW]] | Scrolls the contents of the specified window's client area | | |
+| 62 | [[en:docs:win16:api:user:SETSCROLLPOS]] | Sets the position of the scroll box (thumb) in the specified scroll bar | | |
+| 63 | [[en:docs:win16:api:user:GETSCROLLPOS]] | Retrieves the current position of the scroll box (thumb) in the specified scroll bar | | |
+| 64 | [[en:docs:win16:api:user:SETSCROLLRANGE]] | Sets the minimum and maximum scroll box positions for the specified scroll bar | | |
+| 65 | [[en:docs:win16:api:user:GETSCROLLRANGE]] | Retrieves the current minimum and maximum scroll box positions for the specified scroll bar | | |
+| 66 | [[en:docs:win16:api:user:GETDC]] | Retrieves a handle to a device context for the client area of the specified window | | |
+| 67 | [[en:docs:win16:api:user:GETWINDOWDC]] | Retrieves a handle to a device context for the entire window, including title bar, menus, and scroll bars | | |
+| 68 | [[en:docs:win16:api:user:RELEASEDC]] | Releases a device context, freeing it for use by other applications | | |
+| 69 | [[en:docs:win16:api:user:SETCURSOR]] | Sets the cursor shape | | |
+| 70 | [[en:docs:win16:api:user:SETCURSORPOS]] | Moves the cursor to the specified screen coordinates | | |
+| 71 | [[en:docs:win16:api:user:SHOWCURSOR]] | Displays or hides the cursor | | |
+| 72 | [[en:docs:win16:api:user:SETRECT]] | Sets the coordinates of the specified rectangle | Done | |
+| 73 | [[en:docs:win16:api:user:SETRECTEMPTY]] | Creates an empty rectangle | Done | |
+| 74 | [[en:docs:win16:api:user:COPYRECT]] | Copies the coordinates of one rectangle to another | Done | |
+| 75 | [[en:docs:win16:api:user:ISRECTEMPTY]] | Determines whether the specified rectangle is empty | Done | |
+| 76 | [[en:docs:win16:api:user:PTINRECT]] | Determines whether the specified point is inside the specified rectangle | Done | |
+| 77 | [[en:docs:win16:api:user:OFFSETRECT]] | Moves the specified rectangle by the specified offsets | Done | |
+| 78 | [[en:docs:win16:api:user:INFLATERECT]] | Increases or decreases the width and height of the specified rectangle | Done | |
+| 79 | [[en:docs:win16:api:user:INTERSECTRECT]] | Calculates the intersection of two source rectangles and places the coordinates of the intersection rectangle into the destination rectangle | Done | |
+| 80 | [[en:docs:win16:api:user:UNIONRECT]] | Creates the union of two rectangles | Done | |
+| 81 | [[en:docs:win16:api:user:FILLRECT]] | Fills a rectangle by using the specified brush | Done | |
+| 82 | [[en:docs:win16:api:user:INVERTRECT]] | Inverts a rectangle in a window by performing a logical NOT operation on the color values for each pixel in the rectangle's interior | Done | |
+| 83 | [[en:docs:win16:api:user:FRAMERECT]] | Draws a border around the specified rectangle by using the specified brush | Done | |
+| 84 | [[en:docs:win16:api:user:DRAWICON]] | Draws an icon or cursor into the specified device context | Done | |
+| 85 | [[en:docs:win16:api:user:DRAWTEXT]] | Draws formatted text in the specified rectangle | Done | |
 | 86 | [[en:docs:win16:api:user:BEAR86]] | | | |
-| 87 | [[en:docs:win16:api:user:DIALOGBOX]] | | Done | |
-| 88 | [[en:docs:win16:api:user:ENDDIALOG]] | | | |
-| 89 | [[en:docs:win16:api:user:CREATEDIALOG]] | | Done | |
-| 90 | [[en:docs:win16:api:user:ISDIALOGMESSAGE]] | | | |
-| 91 | [[en:docs:win16:api:user:GETDLGITEM]] | | | |
-| 92 | [[en:docs:win16:api:user:SETDLGITEMTEXT]] | | Done | |
-| 93 | [[en:docs:win16:api:user:GETDLGITEMTEXT]] | | Done | |
-| 94 | [[en:docs:win16:api:user:SETDLGITEMINT]] | | | |
-| 95 | [[en:docs:win16:api:user:GETDLGITEMINT]] | | | |
-| 96 | [[en:docs:win16:api:user:CHECKRADIOBUTTON]] | | | |
-| 97 | [[en:docs:win16:api:user:CHECKDLGBUTTON]] | | Done | |
-| 98 | [[en:docs:win16:api:user:ISDLGBUTTONCHECKED]] | | Done | |
-| 99 | [[en:docs:win16:api:user:DLGDIRSELECT]] | | Done | |
-| 100 | [[en:docs:win16:api:user:DLGDIRLIST]] | | | |
-| 101 | [[en:docs:win16:api:user:SENDDLGITEMMESSAGE]] | | Done | |
+| 87 | [[en:docs:win16:api:user:DIALOGBOX]] | Creates a modal dialog box from a dialog box template resource | Done | |
+| 88 | [[en:docs:win16:api:user:ENDDIALOG]] | Destroys a modal dialog box, causing the system to end any processing for the dialog box | | |
+| 89 | [[en:docs:win16:api:user:CREATEDIALOG]] | Creates a modeless dialog box from a dialog box template resource | Done | |
+| 90 | [[en:docs:win16:api:user:ISDIALOGMESSAGE]] | Determines whether a message is intended for the specified dialog box and, if it is, processes the message | | |
+| 91 | [[en:docs:win16:api:user:GETDLGITEM]] | Retrieves the handle of a control in the specified dialog box | | |
+| 92 | [[en:docs:win16:api:user:SETDLGITEMTEXT]] | Sets the title or text of a control in a dialog box | Done | |
+| 93 | [[en:docs:win16:api:user:GETDLGITEMTEXT]] | Retrieves the title or text associated with a control in a dialog box | Done | |
+| 94 | [[en:docs:win16:api:user:SETDLGITEMINT]] | Sets the text of a control in a dialog box to the string representation of a specified integer value | | |
+| 95 | [[en:docs:win16:api:user:GETDLGITEMINT]] | Retrieves the text of the specified control by converting it to an integer value | | |
+| 96 | [[en:docs:win16:api:user:CHECKRADIOBUTTON]] | Adds a check mark to (checks) a specified radio button in a group and removes a check mark from (clears) all other radio buttons in the group | | |
+| 97 | [[en:docs:win16:api:user:CHECKDLGBUTTON]] | Changes the check state of a button control | Done | |
+| 98 | [[en:docs:win16:api:user:ISDLGBUTTONCHECKED]] | Determines whether a button control is checked or not | Done | |
+| 99 | [[en:docs:win16:api:user:DLGDIRSELECT]] | Retrieves the current selection from a list box filled by the DlgDirList function | Done | |
+| 100 | [[en:docs:win16:api:user:DLGDIRLIST]] | Fills a list box with a file or directory listing | | |
+| 101 | [[en:docs:win16:api:user:SENDDLGITEMMESSAGE]] | Sends a message to the specified control in a dialog box | Done | |
 | 102 | [[en:docs:win16:api:user:ADJUSTWINDOWRECT]] | Calculates the required size of the window rectangle based on the desired client rectangle size | | |
-| 103 | [[en:docs:win16:api:user:MAPDIALOGRECT]] | | | |
-| 104 | [[en:docs:win16:api:user:MESSAGEBEEP]] | | | |
-| 105 | [[en:docs:win16:api:user:FLASHWINDOW]] | | | |
-| 106 | [[en:docs:win16:api:user:GETKEYSTATE]] | | | |
-| 107 | [[en:docs:win16:api:user:DEFWINDOWPROC]] | | | |
+| 103 | [[en:docs:win16:api:user:MAPDIALOGRECT]] | Converts the dialog-box coordinates of a specified rectangle to screen coordinates | | |
+| 104 | [[en:docs:win16:api:user:MESSAGEBEEP]] | Plays a waveform sound corresponding to the specified alert type | | |
+| 105 | [[en:docs:win16:api:user:FLASHWINDOW]] | Flashes the specified window one time | | |
+| 106 | [[en:docs:win16:api:user:GETKEYSTATE]] | Retrieves the status of the specified virtual key | | |
+| 107 | [[en:docs:win16:api:user:DEFWINDOWPROC]] | Calls the default window procedure to provide default processing for any window messages that an application does not process | | |
 | 108 | [[en:docs:win16:api:user:GETMESSAGE]] | Retrieves a message from the calling thread's message queue | | |
 | 109 | [[en:docs:win16:api:user:PEEKMESSAGE]] | Checks the thread message queue for a message and returns immediately | | |
-| 110 | [[en:docs:win16:api:user:POSTMESSAGE]] | | | |
-| 111 | [[en:docs:win16:api:user:SENDMESSAGE]] | | | |
+| 110 | [[en:docs:win16:api:user:POSTMESSAGE]] | Places (posts) a message in the message queue associated with the thread that created the specified window and returns without waiting for the thread to process the message | | |
+| 111 | [[en:docs:win16:api:user:SENDMESSAGE]] | Sends the specified message to a window or windows and does not return until the window procedure has processed the message | | |
 | 112 | [[en:docs:win16:api:user:WAITMESSAGE]] | Yields control to other threads when a thread has no other messages in its message queue | | |
-| 113 | [[en:docs:win16:api:user:TRANSLATEMESSAGE]] | | | |
-| 114 | [[en:docs:win16:api:user:DISPATCHMESSAGE]] | | | |
-| 115 | [[en:docs:win16:api:user:REPLYMESSAGE]] | | | |
-| 116 | [[en:docs:win16:api:user:POSTAPPMESSAGE]] | | | |
-| 118 | [[en:docs:win16:api:user:REGISTERWINDOWMESSAGE]] | | | |
-| 119 | [[en:docs:win16:api:user:GETMESSAGEPOS]] | | | |
-| 120 | [[en:docs:win16:api:user:GETMESSAGETIME]] | | | |
-| 121 | [[en:docs:win16:api:user:SETWINDOWSHOOK]] | | Done | |
-| 122 | [[en:docs:win16:api:user:CALLWINDOWPROC]] | | | |
-| 123 | [[en:docs:win16:api:user:CALLMSGFILTER]] | | | |
-| 124 | [[en:docs:win16:api:user:UPDATEWINDOW]] | | Done | |
-| 125 | [[en:docs:win16:api:user:INVALIDATERECT]] | | Done | |
-| 126 | [[en:docs:win16:api:user:INVALIDATERGN]] | | Done | |
-| 127 | [[en:docs:win16:api:user:VALIDATERECT]] | | Done | |
-| 128 | [[en:docs:win16:api:user:VALIDATERGN]] | | Done | |
-| 129 | [[en:docs:win16:api:user:GETCLASSWORD]] | | | |
-| 130 | [[en:docs:win16:api:user:SETCLASSWORD]] | | | |
-| 131 | [[en:docs:win16:api:user:GETCLASSLONG]] | | | |
-| 132 | [[en:docs:win16:api:user:SETCLASSLONG]] | | | |
-| 133 | [[en:docs:win16:api:user:GETWINDOWWORD]] | | | |
-| 134 | [[en:docs:win16:api:user:SETWINDOWWORD]] | | | |
-| 135 | [[en:docs:win16:api:user:GETWINDOWLONG]] | | | |
-| 136 | [[en:docs:win16:api:user:SETWINDOWLONG]] | | | |
-| 137 | [[en:docs:win16:api:user:OPENCLIPBOARD]] | | | |
-| 138 | [[en:docs:win16:api:user:CLOSECLIPBOARD]] | | | |
-| 139 | [[en:docs:win16:api:user:EMPTYCLIPBOARD]] | | | |
-| 140 | [[en:docs:win16:api:user:GETCLIPBOARDOWNER]] | | | |
-| 141 | [[en:docs:win16:api:user:SETCLIPBOARDDATA]] | | | |
-| 142 | [[en:docs:win16:api:user:GETCLIPBOARDDATA]] | | | |
-| 143 | [[en:docs:win16:api:user:COUNTCLIPBOARDFORMATS]] | | | |
-| 144 | [[en:docs:win16:api:user:ENUMCLIPBOARDFORMATS]] | | | |
-| 145 | [[en:docs:win16:api:user:REGISTERCLIPBOARDFORMAT]] | | | |
-| 146 | [[en:docs:win16:api:user:GETCLIPBOARDFORMATNAME]] | | | |
-| 147 | [[en:docs:win16:api:user:SETCLIPBOARDVIEWER]] | | | |
-| 148 | [[en:docs:win16:api:user:GETCLIPBOARDVIEWER]] | | | |
-| 149 | [[en:docs:win16:api:user:CHANGECLIPBOARDCHAIN]] | | | |
-| 150 | [[en:docs:win16:api:user:LOADMENU]] | | Done | |
-| 151 | [[en:docs:win16:api:user:CREATEMENU]] | | Done | |
-| 152 | [[en:docs:win16:api:user:DESTROYMENU]] | | Done | |
-| 153 | [[en:docs:win16:api:user:CHANGEMENU]] | | Done | |
-| 154 | [[en:docs:win16:api:user:CHECKMENUITEM]] | | Done | |
-| 155 | [[en:docs:win16:api:user:ENABLEMENUITEM]] | | Done | |
-| 156 | [[en:docs:win16:api:user:GETSYSTEMMENU]] | | Done | |
-| 157 | [[en:docs:win16:api:user:GETMENU]] | | Done | |
-| 158 | [[en:docs:win16:api:user:SETMENU]] | | Done | |
-| 159 | [[en:docs:win16:api:user:GETSUBMENU]] | | Done | |
-| 160 | [[en:docs:win16:api:user:DRAWMENUBAR]] | | Done | |
-| 161 | [[en:docs:win16:api:user:GETMENUSTRING]] | | Done | |
-| 162 | [[en:docs:win16:api:user:HILITEMENUITEM]] | | Done | |
-| 163 | [[en:docs:win16:api:user:CREATECARET]] | | Done | |
-| 164 | [[en:docs:win16:api:user:DESTROYCARET]] | | Done | |
-| 165 | [[en:docs:win16:api:user:SETCARETPOS]] | | Done | |
-| 166 | [[en:docs:win16:api:user:HIDECARET]] | | Done | |
-| 167 | [[en:docs:win16:api:user:SHOWCARET]] | | Done | |
-| 168 | [[en:docs:win16:api:user:SETCARETBLINKTIME]] | | Done | |
-| 169 | [[en:docs:win16:api:user:GETCARETBLINKTIME]] | | Done| |
-| 170 | [[en:docs:win16:api:user:ARRANGEICONICWINDOWS]] | | | |
-| 171 | [[en:docs:win16:api:user:WINHELP]] | | | |
-| 173 | [[en:docs:win16:api:user:LOADCURSOR]] | | | |
-| 174 | [[en:docs:win16:api:user:LOADICON]] | | | |
-| 175 | [[en:docs:win16:api:user:LOADBITMAP]] | | | |
-| 176 | [[en:docs:win16:api:user:LOADSTRING]] | | Done | |
-| 177 | [[en:docs:win16:api:user:LOADACCELERATORS]] | | Done | |
-| 178 | [[en:docs:win16:api:user:TRANSLATEACCELERATOR]] | | | |
-| 179 | [[en:docs:win16:api:user:GETSYSTEMMETRICS]] | | Done | |
-| 180 | [[en:docs:win16:api:user:GETSYSCOLOR]] | | Done | |
-| 181 | [[en:docs:win16:api:user:SETSYSCOLORS]] | | Done | |
+| 113 | [[en:docs:win16:api:user:TRANSLATEMESSAGE]] | Translates virtual-key messages into character messages | | |
+| 114 | [[en:docs:win16:api:user:DISPATCHMESSAGE]] | Dispatches a message to a window procedure | | |
+| 115 | [[en:docs:win16:api:user:REPLYMESSAGE]] | Used to reply to a message sent through the SendMessage function without returning control to the function that called SendMessage | | |
+| 116 | [[en:docs:win16:api:user:POSTAPPMESSAGE]] | Places a message in the message queue of all top-level windows and returns immediately | | |
+| 118 | [[en:docs:win16:api:user:REGISTERWINDOWMESSAGE]] | Defines a new window message that is guaranteed to be unique throughout the system | | |
+| 119 | [[en:docs:win16:api:user:GETMESSAGEPOS]] | Retrieves the cursor position for the last message retrieved by the GetMessage function | | |
+| 120 | [[en:docs:win16:api:user:GETMESSAGETIME]] | Retrieves the message time for the last message retrieved by the GetMessage function | | |
+| 121 | [[en:docs:win16:api:user:SETWINDOWSHOOK]] | Installs an application-defined hook procedure into a hook chain | Done | |
+| 122 | [[en:docs:win16:api:user:CALLWINDOWPROC]] | Passes message information to the specified window procedure | | |
+| 123 | [[en:docs:win16:api:user:CALLMSGFILTER]] | Passes a message and hook code to the hook procedures associated with the WH_SYSMSGFILTER and WH_MSGFILTER hooks | | |
+| 124 | [[en:docs:win16:api:user:UPDATEWINDOW]] | Updates the client area of the specified window by sending a WM_PAINT message to the window if the window's update region is not empty | Done | |
+| 125 | [[en:docs:win16:api:user:INVALIDATERECT]] | Adds a rectangle to the specified window's update region, invalidating the rectangle | Done | |
+| 126 | [[en:docs:win16:api:user:INVALIDATERGN]] | Adds a region to the specified window's update region, invalidating the region | Done | |
+| 127 | [[en:docs:win16:api:user:VALIDATERECT]] | Removes a rectangle from the specified window's update region, validating the rectangle | Done | |
+| 128 | [[en:docs:win16:api:user:VALIDATERGN]] | Removes a region from the specified window's update region, validating the region | Done | |
+| 129 | [[en:docs:win16:api:user:GETCLASSWORD]] | Retrieves the address of the specified window class's menu name string | | |
+| 130 | [[en:docs:win16:api:user:SETCLASSWORD]] | Replaces the address of the menu name string for the specified window class | | |
+| 131 | [[en:docs:win16:api:user:GETCLASSLONG]] | Retrieves the specified 32-bit value from the window class structure | | |
+| 132 | [[en:docs:win16:api:user:SETCLASSLONG]] | Replaces the specified 32-bit value in the window class structure | | |
+| 133 | [[en:docs:win16:api:user:GETWINDOWWORD]] | Retrieves the specified 16-bit value from the window structure | | |
+| 134 | [[en:docs:win16:api:user:SETWINDOWWORD]] | Replaces the specified 16-bit value in the window structure | | |
+| 135 | [[en:docs:win16:api:user:GETWINDOWLONG]] | Retrieves the specified 32-bit value from the window structure | | |
+| 136 | [[en:docs:win16:api:user:SETWINDOWLONG]] | Replaces the specified 32-bit value in the window structure | | |
+| 137 | [[en:docs:win16:api:user:OPENCLIPBOARD]] | Opens the clipboard for examination and prevents other applications from modifying the clipboard content | | |
+| 138 | [[en:docs:win16:api:user:CLOSECLIPBOARD]] | Closes the clipboard | | |
+| 139 | [[en:docs:win16:api:user:EMPTYCLIPBOARD]] | Empties the clipboard and frees handles to data in the clipboard | | |
+| 140 | [[en:docs:win16:api:user:GETCLIPBOARDOWNER]] | Retrieves the window handle of the current owner of the clipboard | | |
+| 141 | [[en:docs:win16:api:user:SETCLIPBOARDDATA]] | Places data on the clipboard in a specified clipboard format | | |
+| 142 | [[en:docs:win16:api:user:GETCLIPBOARDDATA]] | Retrieves data from the clipboard in a specified format | | |
+| 143 | [[en:docs:win16:api:user:COUNTCLIPBOARDFORMATS]] | Retrieves the number of different data formats currently on the clipboard | | |
+| 144 | [[en:docs:win16:api:user:ENUMCLIPBOARDFORMATS]] | Enumerates the data formats currently available on the clipboard | | |
+| 145 | [[en:docs:win16:api:user:REGISTERCLIPBOARDFORMAT]] | Registers a new clipboard format | | |
+| 146 | [[en:docs:win16:api:user:GETCLIPBOARDFORMATNAME]] | Retrieves the name of the specified registered clipboard format | | |
+| 147 | [[en:docs:win16:api:user:SETCLIPBOARDVIEWER]] | Adds the specified window to the chain of clipboard viewers | | |
+| 148 | [[en:docs:win16:api:user:GETCLIPBOARDVIEWER]] | Retrieves the handle to the first window in the clipboard viewer chain | | |
+| 149 | [[en:docs:win16:api:user:CHANGECLIPBOARDCHAIN]] | Removes a window from the chain of clipboard viewers | | |
+| 150 | [[en:docs:win16:api:user:LOADMENU]] | Loads the specified menu resource from the executable file associated with an application instance | Done | |
+| 151 | [[en:docs:win16:api:user:CREATEMENU]] | Creates a menu | Done | |
+| 152 | [[en:docs:win16:api:user:DESTROYMENU]] | Destroys the specified menu and frees any memory that the menu occupies | Done | |
+| 153 | [[en:docs:win16:api:user:CHANGEMENU]] | Adds, deletes, or modifies menu items | Done | |
+| 154 | [[en:docs:win16:api:user:CHECKMENUITEM]] | Adds or removes a check mark from a menu item | Done | |
+| 155 | [[en:docs:win16:api:user:ENABLEMENUITEM]] | Enables, disables, or grays a menu item | Done | |
+| 156 | [[en:docs:win16:api:user:GETSYSTEMMENU]] | Allows the application to access the window menu (system menu) for copying and modification | Done | |
+| 157 | [[en:docs:win16:api:user:GETMENU]] | Retrieves the handle of the menu assigned to the specified window | Done | |
+| 158 | [[en:docs:win16:api:user:SETMENU]] | Assigns a new menu to the specified window | Done | |
+| 159 | [[en:docs:win16:api:user:GETSUBMENU]] | Retrieves the handle of a submenu in the specified menu | Done | |
+| 160 | [[en:docs:win16:api:user:DRAWMENUBAR]] | Redraws the menu bar of the specified window | Done | |
+| 161 | [[en:docs:win16:api:user:GETMENUSTRING]] | Copies the text string of the specified menu item into a buffer | Done | |
+| 162 | [[en:docs:win16:api:user:HILITEMENUITEM]] | Highlights or removes the highlighting from a menu item | Done | |
+| 163 | [[en:docs:win16:api:user:CREATECARET]] | Creates a new shape for the system caret and assigns ownership of the caret to the specified window | Done | |
+| 164 | [[en:docs:win16:api:user:DESTROYCARET]] | Destroys the current shape of the caret and frees the caret from the window | Done | |
+| 165 | [[en:docs:win16:api:user:SETCARETPOS]] | Moves the caret to the specified coordinates | Done | |
+| 166 | [[en:docs:win16:api:user:HIDECARET]] | Removes the caret from the screen | Done | |
+| 167 | [[en:docs:win16:api:user:SHOWCARET]] | Makes the caret visible on the screen at the caret's current position | Done | |
+| 168 | [[en:docs:win16:api:user:SETCARETBLINKTIME]] | Sets the caret blink time | Done | |
+| 169 | [[en:docs:win16:api:user:GETCARETBLINKTIME]] | Retrieves the caret blink time | Done| |
+| 170 | [[en:docs:win16:api:user:ARRANGEICONICWINDOWS]] | Arranges all the minimized (iconic) child windows of the specified parent window | | |
+| 171 | [[en:docs:win16:api:user:WINHELP]] | Starts Windows Help | | |
+| 173 | [[en:docs:win16:api:user:LOADCURSOR]] | Loads the specified cursor resource from the executable file associated with an application instance | | |
+| 174 | [[en:docs:win16:api:user:LOADICON]] | Loads the specified icon resource from the executable file associated with an application instance | | |
+| 175 | [[en:docs:win16:api:user:LOADBITMAP]] | Loads the specified bitmap resource from the executable file associated with an application instance | | |
+| 176 | [[en:docs:win16:api:user:LOADSTRING]] | Loads a string resource from the executable file associated with an application instance | Done | |
+| 177 | [[en:docs:win16:api:user:LOADACCELERATORS]] | Loads the specified accelerator table | Done | |
+| 178 | [[en:docs:win16:api:user:TRANSLATEACCELERATOR]] | Processes accelerator keys for menu commands | | |
+| 179 | [[en:docs:win16:api:user:GETSYSTEMMETRICS]] | Retrieves the system metrics for the current display | Done | |
+| 180 | [[en:docs:win16:api:user:GETSYSCOLOR]] | Retrieves the current color of the specified display element | Done | |
+| 181 | [[en:docs:win16:api:user:SETSYSCOLORS]] | Sets the colors for one or more display elements | Done | |
 | 182 | [[en:docs:win16:api:user:BEAR182]] | | | |
-| 183 | [[en:docs:win16:api:user:GETCARETPOS]] | | Done | |
-| 184 | [[en:docs:win16:api:user:QUERYSENDMESSAGE]] | | | |
-| 185 | [[en:docs:win16:api:user:GRAYSTRING]] | | Done | |
-| 186 | [[en:docs:win16:api:user:SWAPMOUSEBUTTON]] | | | |
-| 188 | [[en:docs:win16:api:user:SETSYSMODALWINDOW]] | | | |
-| 189 | [[en:docs:win16:api:user:GETSYSMODALWINDOW]] | | | |
-| 190 | [[en:docs:win16:api:user:GETUPDATERECT]] | | | |
-| 191 | [[en:docs:win16:api:user:CHILDWINDOWFROMPOINT]] | | | |
-| 192 | [[en:docs:win16:api:user:INSENDMESSAGE]] | | | |
-| 193 | [[en:docs:win16:api:user:ISCLIPBOARDFORMATAVAILABLE]] | | | |
-| 194 | [[en:docs:win16:api:user:DLGDIRSELECTCOMBOBOX]] | | Done | |
-| 195 | [[en:docs:win16:api:user:DLGDIRLISTCOMBOBOX]] | | | |
-| 196 | [[en:docs:win16:api:user:TABBEDTEXTOUT]] | | | |
-| 197 | [[en:docs:win16:api:user:GETTABBEDTEXTEXTENT]] | | | |
-| 198 | [[en:docs:win16:api:user:CASCADECHILDWINDOWS]] | | | |
-| 199 | [[en:docs:win16:api:user:TILECHILDWINDOWS]] | | | |
-| 200 | [[en:docs:win16:api:user:OPENCOMM]] | | Stub | |
-| 201 | [[en:docs:win16:api:user:SETCOMMSTATE]] | | Stub | |
-| 202 | [[en:docs:win16:api:user:GETCOMMSTATE]] | | Stub | |
-| 203 | [[en:docs:win16:api:user:GETCOMMERROR]] | | Stub | |
-| 204 | [[en:docs:win16:api:user:READCOMM]] | | Stub | |
-| 205 | [[en:docs:win16:api:user:WRITECOMM]] | | Stub | |
-| 206 | [[en:docs:win16:api:user:TRANSMITCOMMCHAR]] | | Stub | |
-| 207 | [[en:docs:win16:api:user:CLOSECOMM]] | | Stub | |
-| 208 | [[en:docs:win16:api:user:SETCOMMEVENTMASK]] | | Stub | |
-| 209 | [[en:docs:win16:api:user:GETCOMMEVENTMASK]] | | Stub | |
-| 210 | [[en:docs:win16:api:user:SETCOMMBREAK]] | | Stub | |
-| 211 | [[en:docs:win16:api:user:CLEARCOMMBREAK]] | | Stub | |
-| 212 | [[en:docs:win16:api:user:UNGETCOMMCHAR]] | | Stub | |
-| 213 | [[en:docs:win16:api:user:BUILDCOMMDCB]] | | Stub | |
-| 214 | [[en:docs:win16:api:user:ESCAPECOMMFUNCTION]] | | Stub | |
-| 215 | [[en:docs:win16:api:user:FLUSHCOMM]] | | Stub | |
+| 183 | [[en:docs:win16:api:user:GETCARETPOS]] | Retrieves the current position of the caret | Done | |
+| 184 | [[en:docs:win16:api:user:QUERYSENDMESSAGE]] | Determines whether the message was sent from another task using the SendMessage function | | |
+| 185 | [[en:docs:win16:api:user:GRAYSTRING]] | Draws gray text at the specified location | Done | |
+| 186 | [[en:docs:win16:api:user:SWAPMOUSEBUTTON]] | Reverses or restores the meaning of the left and right mouse buttons | | |
+| 188 | [[en:docs:win16:api:user:SETSYSMODALWINDOW]] | Causes the system to direct all user input to the specified window, regardless of which application the user is interacting with | | |
+| 189 | [[en:docs:win16:api:user:GETSYSMODALWINDOW]] | Retrieves the system-modal window, if one exists | | |
+| 190 | [[en:docs:win16:api:user:GETUPDATERECT]] | Retrieves the coordinates of the rectangle that completely encloses the update region of the specified window | | |
+| 191 | [[en:docs:win16:api:user:CHILDWINDOWFROMPOINT]] | Determines which, if any, of the child windows belonging to the specified parent window contains the specified point | | |
+| 192 | [[en:docs:win16:api:user:INSENDMESSAGE]] | Determines whether the current window procedure is processing a message sent from another task by the SendMessage function | | |
+| 193 | [[en:docs:win16:api:user:ISCLIPBOARDFORMATAVAILABLE]] | Determines whether the clipboard contains data in the specified format | | |
+| 194 | [[en:docs:win16:api:user:DLGDIRSELECTCOMBOBOX]] | Retrieves the current selection from a combo box filled by the DlgDirListComboBox function | Done | |
+| 195 | [[en:docs:win16:api:user:DLGDIRLISTCOMBOBOX]] | Fills a combo box with a file or directory listing | | |
+| 196 | [[en:docs:win16:api:user:TABBEDTEXTOUT]] | Writes a character string at a specified location, expanding tabs to the values specified in an array of tab-stop positions | | |
+| 197 | [[en:docs:win16:api:user:GETTABBEDTEXTEXTENT]] | Computes the width and height of a character string, which may include tab characters | | |
+| 198 | [[en:docs:win16:api:user:CASCADECHILDWINDOWS]] | Cascades the specified child windows of the specified parent window | | |
+| 199 | [[en:docs:win16:api:user:TILECHILDWINDOWS]] | Tiles the specified child windows of the specified parent window | | |
+| 200 | [[en:docs:win16:api:user:OPENCOMM]] | Opens a communications device | Stub | |
+| 201 | [[en:docs:win16:api:user:SETCOMMSTATE]] | Configures a communications device according to the specifications in a device-control block | Stub | |
+| 202 | [[en:docs:win16:api:user:GETCOMMSTATE]] | Retrieves the current control settings for a communications device | Stub | |
+| 203 | [[en:docs:win16:api:user:GETCOMMERROR]] | Retrieves information about the most recent communications error for a communications device | Stub | |
+| 204 | [[en:docs:win16:api:user:READCOMM]] | Reads data from a communications device | Stub | |
+| 205 | [[en:docs:win16:api:user:WRITECOMM]] | Writes data to a communications device | Stub | |
+| 206 | [[en:docs:win16:api:user:TRANSMITCOMMCHAR]] | Transmits a character ahead of any pending data in the output buffer of a communications device | Stub | |
+| 207 | [[en:docs:win16:api:user:CLOSECOMM]] | Closes a communications device | Stub | |
+| 208 | [[en:docs:win16:api:user:SETCOMMEVENTMASK]] | Specifies a set of events to be monitored for a communications device | Stub | |
+| 209 | [[en:docs:win16:api:user:GETCOMMEVENTMASK]] | Retrieves the event mask for a communications device | Stub | |
+| 210 | [[en:docs:win16:api:user:SETCOMMBREAK]] | Suspends character transmission for a communications device and places the transmission line in a break state | Stub | |
+| 211 | [[en:docs:win16:api:user:CLEARCOMMBREAK]] | Restores character transmission for a communications device and places the transmission line in a nonbreak state | Stub | |
+| 212 | [[en:docs:win16:api:user:UNGETCOMMCHAR]] | Places a character back into the input buffer of a communications device | Stub | |
+| 213 | [[en:docs:win16:api:user:BUILDCOMMDCB]] | Fills a device-control block with values specified in a string | Stub | |
+| 214 | [[en:docs:win16:api:user:ESCAPECOMMFUNCTION]] | Directs a communications device to perform an extended function | Stub | |
+| 215 | [[en:docs:win16:api:user:FLUSHCOMM]] | Flushes the input or output buffer of a communications device | Stub | |
 | 216 | [[en:docs:win16:api:user:UserSeeUserDo]] | | Done | |
-| 218 | [[en:docs:win16:api:user:DIALOGBOXINDIRECT]] | | Done | |
-| 219 | [[en:docs:win16:api:user:CREATEDIALOGINDIRECT]] | | Done | |
-| 220 | [[en:docs:win16:api:user:LOADMENUINDIRECT]] | | Done | |
+| 218 | [[en:docs:win16:api:user:DIALOGBOXINDIRECT]] | Creates a modal dialog box from a dialog box template in memory | Done | |
+| 219 | [[en:docs:win16:api:user:CREATEDIALOGINDIRECT]] | Creates a modeless dialog box from a dialog box template in memory | Done | |
+| 220 | [[en:docs:win16:api:user:LOADMENUINDIRECT]] | Loads the specified menu template from memory | Done | |
 | 221 | [[en:docs:win16:api:user:SCROLLDC]] | Scrolls a rectangle of bits horizontally and vertically | | |
-| 222 | [[en:docs:win16:api:user:GETKEYBOARDSTATE]] | | | |
-| 223 | [[en:docs:win16:api:user:SETKEYBOARDSTATE]] | | | |
-| 224 | [[en:docs:win16:api:user:GETWINDOWTASK]] | | | |
-| 225 | [[en:docs:win16:api:user:ENUMTASKWINDOWS]] | | | |
-| 226 | [[en:docs:win16:api:user:LOCKINPUT]] | | | |
-| 227 | [[en:docs:win16:api:user:GETNEXTDLGGROUPITEM]] | | | |
-| 228 | [[en:docs:win16:api:user:GETNEXTDLGTABITEM]] | | | |
-| 229 | [[en:docs:win16:api:user:GETTOPWINDOW]] | | | |
-| 230 | [[en:docs:win16:api:user:GETNEXTWINDOW]] | | | |
-| 231 | [[en:docs:win16:api:user:GETSYSTEMDEBUGSTATE]] | | | |
+| 222 | [[en:docs:win16:api:user:GETKEYBOARDSTATE]] | Retrieves the status of each virtual key on the keyboard | | |
+| 223 | [[en:docs:win16:api:user:SETKEYBOARDSTATE]] | Sets the status of each virtual key on the keyboard | | |
+| 224 | [[en:docs:win16:api:user:GETWINDOWTASK]] | Retrieves the handle of the task that owns the specified window | | |
+| 225 | [[en:docs:win16:api:user:ENUMTASKWINDOWS]] | Enumerates all windows associated with a task | | |
+| 226 | [[en:docs:win16:api:user:LOCKINPUT]] | Locks or unlocks input to the specified task | | |
+| 227 | [[en:docs:win16:api:user:GETNEXTDLGGROUPITEM]] | Retrieves the handle of the first control in a group of controls that precedes or follows the specified control | | |
+| 228 | [[en:docs:win16:api:user:GETNEXTDLGTABITEM]] | Retrieves the handle of the first control that has the WS_TABSTOP style that precedes or follows the specified control | | |
+| 229 | [[en:docs:win16:api:user:GETTOPWINDOW]] | Examines the Z order of the child windows associated with the specified parent window and retrieves the handle of the child window at the top of the Z order | | |
+| 230 | [[en:docs:win16:api:user:GETNEXTWINDOW]] | Retrieves the handle of the next or previous window in the Z order | | |
+| 231 | [[en:docs:win16:api:user:GETSYSTEMDEBUGSTATE]] | Retrieves information about the current state of the system for debugging purposes | | |
 | 232 | [[en:docs:win16:api:user:SETWINDOWPOS]] | Changes the size, position, and Z order of a child, pop-up, or top-level window | | |
-| 233 | [[en:docs:win16:api:user:SETPARENT]] | | | |
-| 234 | [[en:docs:win16:api:user:UNHOOKWINDOWSHOOK]] | | | |
-| 235 | [[en:docs:win16:api:user:DEFHOOKPROC]] | | Done | |
-| 236 | [[en:docs:win16:api:user:GETCAPTURE]] | | | |
-| 237 | [[en:docs:win16:api:user:GETUPDATERGN]] | | | |
-| 238 | [[en:docs:win16:api:user:EXCLUDEUPDATERGN]] | | | |
-| 239 | [[en:docs:win16:api:user:DIALOGBOXPARAM]] | | | |
-| 240 | [[en:docs:win16:api:user:DIALOGBOXINDIRECTPARAM]] | | | |
-| 241 | [[en:docs:win16:api:user:CREATEDIALOGPARAM]] | | Done | |
-| 242 | [[en:docs:win16:api:user:CREATEDIALOGINDIRECTPARAM]] | | | |
-| 243 | [[en:docs:win16:api:user:GETDIALOGBASEUNITS]] | | | |
-| 244 | [[en:docs:win16:api:user:EQUALRECT]] | | Done | |
-| 245 | [[en:docs:win16:api:user:ENABLECOMMNOTIFICATION]] | | Stub | |
-| 246 | [[en:docs:win16:api:user:EXITWINDOWSEXEC]] | | | |
-| 247 | [[en:docs:win16:api:user:GETCURSOR]] | | | |
-| 248 | [[en:docs:win16:api:user:GETOPENCLIPBOARDWINDOW]] | | | |
-| 249 | [[en:docs:win16:api:user:GETASYNCKEYSTATE]] | | | |
-| 250 | [[en:docs:win16:api:user:GETMENUSTATE]] | | Done | |
-| 251 | [[en:docs:win16:api:user:SENDDRIVERMESSAGE]] | | | |
-| 252 | [[en:docs:win16:api:user:OPENDRIVER]] | | | |
-| 253 | [[en:docs:win16:api:user:CLOSEDRIVER]] | | | |
-| 254 | [[en:docs:win16:api:user:GETDRIVERMODULEHANDLE]] | | | |
-| 255 | [[en:docs:win16:api:user:DEFDRIVERPROC]] | | | |
-| 256 | [[en:docs:win16:api:user:GETDRIVERINFO]] | | | |
-| 257 | [[en:docs:win16:api:user:GETNEXTDRIVER]] | | | |
+| 233 | [[en:docs:win16:api:user:SETPARENT]] | Changes the parent window of the specified child window | | |
+| 234 | [[en:docs:win16:api:user:UNHOOKWINDOWSHOOK]] | Removes a hook procedure installed in a hook chain by the SetWindowsHook function | | |
+| 235 | [[en:docs:win16:api:user:DEFHOOKPROC]] | Passes a hook message to the next hook procedure in the current hook chain | Done | |
+| 236 | [[en:docs:win16:api:user:GETCAPTURE]] | Retrieves the handle of the window that has captured the mouse | | |
+| 237 | [[en:docs:win16:api:user:GETUPDATERGN]] | Retrieves the update region of a window by copying it into the specified region | | |
+| 238 | [[en:docs:win16:api:user:EXCLUDEUPDATERGN]] | Prevents drawing within the update region of the specified window by excluding the update region from the specified device context's clipping region | | |
+| 239 | [[en:docs:win16:api:user:DIALOGBOXPARAM]] | Creates a modal dialog box from a dialog box template resource, passing application-defined data to the dialog box procedure | | |
+| 240 | [[en:docs:win16:api:user:DIALOGBOXINDIRECTPARAM]] | Creates a modal dialog box from a dialog box template in memory, passing application-defined data to the dialog box procedure | | |
+| 241 | [[en:docs:win16:api:user:CREATEDIALOGPARAM]] | Creates a modeless dialog box from a dialog box template resource, passing application-defined data to the dialog box procedure | Done | |
+| 242 | [[en:docs:win16:api:user:CREATEDIALOGINDIRECTPARAM]] | Creates a modeless dialog box from a dialog box template in memory, passing application-defined data to the dialog box procedure | | |
+| 243 | [[en:docs:win16:api:user:GETDIALOGBASEUNITS]] | Retrieves the dialog base units used to create the dialog box | | |
+| 244 | [[en:docs:win16:api:user:EQUALRECT]] | Determines whether the two specified rectangles are equal by comparing their coordinates | Done | |
+| 245 | [[en:docs:win16:api:user:ENABLECOMMNOTIFICATION]] | Enables or disables notification for a communications device | Stub | |
+| 246 | [[en:docs:win16:api:user:EXITWINDOWSEXEC]] | Executes the specified application when Windows exits | | |
+| 247 | [[en:docs:win16:api:user:GETCURSOR]] | Retrieves the handle of the current cursor | | |
+| 248 | [[en:docs:win16:api:user:GETOPENCLIPBOARDWINDOW]] | Retrieves the handle of the window that currently has the clipboard open | | |
+| 249 | [[en:docs:win16:api:user:GETASYNCKEYSTATE]] | Determines whether a key is up or down at the time the function is called, and whether the key was pressed after a previous call to GetAsyncKeyState | | |
+| 250 | [[en:docs:win16:api:user:GETMENUSTATE]] | Retrieves the menu item state | Done | |
+| 251 | [[en:docs:win16:api:user:SENDDRIVERMESSAGE]] | Sends a message to an installable driver | | |
+| 252 | [[en:docs:win16:api:user:OPENDRIVER]] | Opens an installable driver | | |
+| 253 | [[en:docs:win16:api:user:CLOSEDRIVER]] | Closes an installable driver | | |
+| 254 | [[en:docs:win16:api:user:GETDRIVERMODULEHANDLE]] | Retrieves the module handle of an installable driver | | |
+| 255 | [[en:docs:win16:api:user:DEFDRIVERPROC]] | Provides default processing for any messages that an installable driver does not process | | |
+| 256 | [[en:docs:win16:api:user:GETDRIVERINFO]] | Retrieves information about an installable driver | | |
+| 257 | [[en:docs:win16:api:user:GETNEXTDRIVER]] | Retrieves the handle of the next installable driver in the list of installable drivers | | |
 | 258 | [[en:docs:win16:api:user:MAPWINDOWPOINTS]] | Converts (maps) a set of points from a coordinate space relative to one window to a coordinate space relative to another window | | |
 | 259 | [[en:docs:win16:api:user:BEGINDEFERWINDOWPOS]] | Allocates memory for a multiple-window-position structure and returns the handle to the structure | | |
 | 260 | [[en:docs:win16:api:user:DEFERWINDOWPOS]] | Updates the specified multiple-window-position structure for the specified window | | |
 | 261 | [[en:docs:win16:api:user:ENDDEFERWINDOWPOS]] | Simultaneously updates the position and size of one or more windows in a single screen-refreshing cycle | | |
 | 262 | [[en:docs:win16:api:user:GETWINDOW]] | Retrieves a handle to a window that has the specified relationship to the specified window | | |
-| 263 | [[en:docs:win16:api:user:GETMENUITEMCOUNT]] | | Done | |
-| 264 | [[en:docs:win16:api:user:GETMENUITEMID]] | | Done | |
+| 263 | [[en:docs:win16:api:user:GETMENUITEMCOUNT]] | Retrieves the number of items in the specified menu | Done | |
+| 264 | [[en:docs:win16:api:user:GETMENUITEMID]] | Retrieves the menu item identifier of a menu item located at the specified position in a menu | Done | |
 | 265 | [[en:docs:win16:api:user:SHOWOWNEDPOPUPS]] | Shows or hides all pop-up windows owned by the specified window | | |
-| 266 | [[en:docs:win16:api:user:SETMESSAGEQUEUE]] | | | |
+| 266 | [[en:docs:win16:api:user:SETMESSAGEQUEUE]] | Creates a new message queue for the calling application | | |
 | 267 | [[en:docs:win16:api:user:SHOWSCROLLBAR]] | Shows or hides the specified scroll bar | | |
-| 268 | [[en:docs:win16:api:user:GLOBALADDATOM]] | | Done | |
-| 269 | [[en:docs:win16:api:user:GLOBALDELETEATOM]] | | Done | |
-| 270 | [[en:docs:win16:api:user:GLOBALFINDATOM]] | | Done | |
-| 271 | [[en:docs:win16:api:user:GLOBALGETATOMNAME]] | | Done | |
+| 268 | [[en:docs:win16:api:user:GLOBALADDATOM]] | Adds a character string to the global atom table and returns a unique value (an atom) identifying the string | Done | |
+| 269 | [[en:docs:win16:api:user:GLOBALDELETEATOM]] | Decrements the reference count of a global string atom, and if the reference count reaches zero, removes the string from the global atom table | Done | |
+| 270 | [[en:docs:win16:api:user:GLOBALFINDATOM]] | Retrieves the atom associated with the specified character string from the global atom table | Done | |
+| 271 | [[en:docs:win16:api:user:GLOBALGETATOMNAME]] | Retrieves a copy of the character string associated with the specified global atom | Done | |
 | 272 | [[en:docs:win16:api:user:ISZOOMED]] | Determines whether a window is maximized | | |
-| 277 | [[en:docs:win16:api:user:GETDLGCTRLID]] | | | |
-| 278 | [[en:docs:win16:api:user:GETDESKTOPHWND]] | | | |
-| 279 | [[en:docs:win16:api:user:OldSetDeskPattern]] | | Done | |
-| 282 | [[en:docs:win16:api:user:SELECTPALETTE]] | | | |
-| 283 | [[en:docs:win16:api:user:REALIZEPALETTE]] | | | |
-| 284 | [[en:docs:win16:api:user:GETFREESYSTEMRESOURCES]] | | Done | |
-| 286 | [[en:docs:win16:api:user:GETDESKTOPWINDOW]] | | | |
-| 287 | [[en:docs:win16:api:user:GETLASTACTIVEPOPUP]] | | | |
-| 288 | [[en:docs:win16:api:user:GETMESSAGEEXTRAINFO]] | | | |
+| 277 | [[en:docs:win16:api:user:GETDLGCTRLID]] | Retrieves the identifier of the specified control | | |
+| 278 | [[en:docs:win16:api:user:GETDESKTOPHWND]] | Retrieves the handle of the desktop window | | |
+| 279 | [[en:docs:win16:api:user:OldSetDeskPattern]] | Sets the desktop pattern | Done | |
+| 282 | [[en:docs:win16:api:user:SELECTPALETTE]] | Selects a logical palette into a device context | | |
+| 283 | [[en:docs:win16:api:user:REALIZEPALETTE]] | Maps palette entries from the current logical palette to the system palette | | |
+| 284 | [[en:docs:win16:api:user:GETFREESYSTEMRESOURCES]] | Retrieves the percentage of free system resources | Done | |
+| 286 | [[en:docs:win16:api:user:GETDESKTOPWINDOW]] | Retrieves the handle of the desktop window | | |
+| 287 | [[en:docs:win16:api:user:GETLASTACTIVEPOPUP]] | Determines which pop-up window owned by the specified window was most recently active | | |
+| 288 | [[en:docs:win16:api:user:GETMESSAGEEXTRAINFO]] | Retrieves the extra message information for the current thread | | |
 | 290 | [[en:docs:win16:api:user:REDRAWWINDOW]] | Updates the specified rectangle or region in a window's client area | | |
-| 291 | [[en:docs:win16:api:user:SETWINDOWSHOOKEX]] | | | |
-| 292 | [[en:docs:win16:api:user:UNHOOKWINDOWSHOOKEX]] | | | |
-| 293 | [[en:docs:win16:api:user:CALLNEXTHOOKEX]] | | | |
-| 294 | [[en:docs:win16:api:user:LOCKWINDOWUPDATE]] | | | |
-| 299 | [[en:docs:win16:api:user:mouse_event]] | | Done | |
-| 308 | [[en:docs:win16:api:user:DEFDLGPROC]] | | | |
-| 309 | [[en:docs:win16:api:user:GETCLIPCURSOR]] | | | |
-| 319 | [[en:docs:win16:api:user:SCROLLWINDOWEX]] | | | |
-| 324 | [[en:docs:win16:api:user:FillWindow]] | | Done | |
-| 325 | [[en:docs:win16:api:user:PaintRect]] | | Done | |
-| 326 | [[en:docs:win16:api:user:GetControlBrush]] | | Done | |
-| 331 | [[en:docs:win16:api:user:ENABLEHARDWAREINPUT]] | | | |
-| 333 | [[en:docs:win16:api:user:IsUserIdle]] | | Done | |
-| 334 | [[en:docs:win16:api:user:GETQUEUESTATUS]] | | | |
-| 335 | [[en:docs:win16:api:user:GETINPUTSTATE]] | | | |
-| 337 | [[en:docs:win16:api:user:GetMouseEventProc]] | | Done | |
-| 358 | [[en:docs:win16:api:user:ISMENU]] | | | |
-| 359 | [[en:docs:win16:api:user:GETDCEX]] | | | |
-| 368 | [[en:docs:win16:api:user:COPYICON]] | | Done | |
-| 369 | [[en:docs:win16:api:user:COPYCURSOR]] | | Done | |
-| 370 | [[en:docs:win16:api:user:GETWINDOWPLACEMENT]] | | | |
-| 371 | [[en:docs:win16:api:user:SETWINDOWPLACEMENT]] | | | |
-| 373 | [[en:docs:win16:api:user:SUBTRACTRECT]] | | Done | |
-| 397 | [[en:docs:win16:api:user:REGISTERCLASSEX]] | | Done | |
-| 398 | [[en:docs:win16:api:user:GetClassInfoEx]] | | Done | |
-| 402 | [[en:docs:win16:api:user:GETPRIORITYCLIPBOARDFORMAT]] | | | |
-| 403 | [[en:docs:win16:api:user:UNREGISTERCLASS]] | | Done | |
-| 404 | [[en:docs:win16:api:user:GETCLASSINFO]] | | Done | |
-| 406 | [[en:docs:win16:api:user:CREATECURSOR]] | | Done | |
-| 407 | [[en:docs:win16:api:user:CREATEICON]] | | Done | |
-| 408 | [[en:docs:win16:api:user:CreateCursorIconIndirect]] | | Done | |
-| 410 | [[en:docs:win16:api:user:INSERTMENU]] | | Done | |
-| 411 | [[en:docs:win16:api:user:APPENDMENU]] | | Done | |
-| 412 | [[en:docs:win16:api:user:REMOVEMENU]] | | Done | |
-| 413 | [[en:docs:win16:api:user:DELETEMENU]] | | Done | |
-| 414 | [[en:docs:win16:api:user:MODIFYMENU]] | | Done | |
-| 415 | [[en:docs:win16:api:user:CREATEPOPUPMENU]] | | Done | |
-| 416 | [[en:docs:win16:api:user:TRACKPOPUPMENU]] | | Done | |
-| 417 | [[en:docs:win16:api:user:GETMENUCHECKMARKDIMENSIONS]] | | Done | |
-| 418 | [[en:docs:win16:api:user:SETMENUITEMBITMAPS]] | | Done | |
-| 420 | [[en:docs:win16:api:user:_WSPRINTF]] | | Done | |
-| 421 | [[en:docs:win16:api:user:WVSPRINTF]] | | Done | |
-| 422 | [[en:docs:win16:api:user:DLGDIRSELECTEX]] | | | |
-| 423 | [[en:docs:win16:api:user:DLGDIRSELECTCOMBOBOXEX]] | | | |
-| 430 | [[en:docs:win16:api:user:LSTRCMP]] | | Done | |
-| 431 | [[en:docs:win16:api:user:ANSIUPPER]] | | Done | |
-| 432 | [[en:docs:win16:api:user:ANSILOWER]] | | Done | |
-| 433 | [[en:docs:win16:api:user:ISCHARALPHA]] | | Done | |
-| 434 | [[en:docs:win16:api:user:ISCHARALPHANUMERIC]] | | Done | |
-| 435 | [[en:docs:win16:api:user:ISCHARUPPER]] | | Done | |
-| 436 | [[en:docs:win16:api:user:ISCHARLOWER]] | | Done | |
-| 437 | [[en:docs:win16:api:user:ANSIUPPERBUFF]] | | Done | |
-| 438 | [[en:docs:win16:api:user:ANSILOWERBUFF]] | | Done | |
-| 445 | [[en:docs:win16:api:user:DEFFRAMEPROC]] | | | |
-| 447 | [[en:docs:win16:api:user:DEFMDICHILDPROC]] | | | |
-| 451 | [[en:docs:win16:api:user:TRANSLATEMDISYSACCEL]] | | | |
-| 452 | [[en:docs:win16:api:user:CREATEWINDOWEX]] | | | |
-| 454 | [[en:docs:win16:api:user:ADJUSTWINDOWRECTEX]] | | | |
-| 457 | [[en:docs:win16:api:user:DESTROYICON]] | | Done | |
-| 458 | [[en:docs:win16:api:user:DESTROYCURSOR]] | | Done | |
-| 462 | [[en:docs:win16:api:user:CALCCHILDSCROLL]] | | | |
-| 466 | [[en:docs:win16:api:user:DRAWFOCUSRECT]] | | Done | |
-| 471 | [[en:docs:win16:api:user:LSTRCMPI]] | | Done | |
-| 472 | [[en:docs:win16:api:user:ANSINEXT]] | | Done | |
-| 473 | [[en:docs:win16:api:user:ANSIPREV]] | | Done | |
-| 482 | [[en:docs:win16:api:user:ENABLESCROLLBAR]] | | | |
-| 483 | [[en:docs:win16:api:user:SYSTEMPARAMETERSINFO]] | | Done | |
-| 499 | [[en:docs:win16:api:user:WNETERRORTEXT]] | | Stub | |
-| 501 | [[en:docs:win16:api:user:WNETOPENJOB]] | | Stub | |
-| 502 | [[en:docs:win16:api:user:WNETCLOSEJOB]] | | Stub | |
-| 503 | [[en:docs:win16:api:user:WNETABORTJOB]] | | Stub | |
-| 504 | [[en:docs:win16:api:user:WNETHOLDJOB]] | | Stub | |
-| 505 | [[en:docs:win16:api:user:WNETRELEASEJOB]] | | Stub  | |
-| 506 | [[en:docs:win16:api:user:WNETCANCELJOB]] | | Stub | |
-| 507 | [[en:docs:win16:api:user:WNETSETJOBCOPIES]] | | Stub | |
-| 508 | [[en:docs:win16:api:user:WNETWATCHQUEUE]] | | Stub | |
-| 509 | [[en:docs:win16:api:user:WNETUNWATCHQUEUE]] | | Stub | |
-| 510 | [[en:docs:win16:api:user:WNETLOCKQUEUEDATA]] | | Stub | |
-| 511 | [[en:docs:win16:api:user:WNETUNLOCKQUEUEDATA]] | | Stub | |
-| 512 | [[en:docs:win16:api:user:WNETGETCONNECTION]] | | | |
-| 513 | [[en:docs:win16:api:user:WNETGETCAPS]] | | Done | |
-| 514 | [[en:docs:win16:api:user:WNETDEVICEMODE]] | | Stub | |
-| 515 | [[en:docs:win16:api:user:WNETBROWSEDIALOG]] | | Stub | |
-| 516 | [[en:docs:win16:api:user:WNETGETUSER]] | | | |
-| 517 | [[en:docs:win16:api:user:WNETADDCONNECTION]] | | Stub | |
-| 518 | [[en:docs:win16:api:user:WNETCANCELCONNECTION]] | | Stub | |
-| 519 | [[en:docs:win16:api:user:WNETGETERROR]] | | Stub | |
-| 520 | [[en:docs:win16:api:user:WNETGETERRORTEXT]] | | Stub | |
-| 521 | [[en:docs:win16:api:user:WNETENABLE]] | | | |
-| 522 | [[en:docs:win16:api:user:WNETDISABLE]] | | | |
-| 523 | [[en:docs:win16:api:user:WNETRESTORECONNECTION]] | | Stub | |
-| 524 | [[en:docs:win16:api:user:WNETWRITEJOB]] | | Stub | |
-| 525 | [[en:docs:win16:api:user:WNETCONNECTDIALOG]] | | Stub | |
-| 526 | [[en:docs:win16:api:user:WNETDISCONNECTDIALOG]] | | Stub | |
-| 527 | [[en:docs:win16:api:user:WNETCONNECTIONDIALOG]] | | Stub | |
-| 528 | [[en:docs:win16:api:user:WNETVIEWQUEUEDIALOG]] | | Stub | |
-| 529 | [[en:docs:win16:api:user:WNETPROPERTYDIALOG]] | | Stub | |
-| 530 | [[en:docs:win16:api:user:WNETGETDIRECTORYTYPE]] | | | |
-| 531 | [[en:docs:win16:api:user:WNETDIRECTORYNOTIFY]] | | Stub | |
-| 532 | [[en:docs:win16:api:user:WNETGETPROPERTYTEXT]] | | Stub | |
+| 291 | [[en:docs:win16:api:user:SETWINDOWSHOOKEX]] | Installs an application-defined hook procedure into a hook chain | | |
+| 292 | [[en:docs:win16:api:user:UNHOOKWINDOWSHOOKEX]] | Removes a hook procedure installed in a hook chain by the SetWindowsHookEx function | | |
+| 293 | [[en:docs:win16:api:user:CALLNEXTHOOKEX]] | Passes the hook information to the next hook procedure in the current hook chain | | |
+| 294 | [[en:docs:win16:api:user:LOCKWINDOWUPDATE]] | Disables or enables drawing in the specified window | | |
+| 299 | [[en:docs:win16:api:user:mouse_event]] | Synthesizes mouse motion and button clicks | Done | |
+| 308 | [[en:docs:win16:api:user:DEFDLGPROC]] | Provides default processing for any messages that a dialog box with a private window class does not process | | |
+| 309 | [[en:docs:win16:api:user:GETCLIPCURSOR]] | Retrieves the cursor confinement rectangle | | |
+| 319 | [[en:docs:win16:api:user:SCROLLWINDOWEX]] | Scrolls the content of the specified window's client area | | |
+| 324 | [[en:docs:win16:api:user:FillWindow]] | Fills the client area of the specified window with the specified brush | Done | |
+| 325 | [[en:docs:win16:api:user:PaintRect]] | Paints the specified rectangle by using the specified brush | Done | |
+| 326 | [[en:docs:win16:api:user:GetControlBrush]] | Retrieves the brush for the specified control | Done | |
+| 331 | [[en:docs:win16:api:user:ENABLEHARDWAREINPUT]] | Enables or disables mouse and keyboard input to the system | | |
+| 333 | [[en:docs:win16:api:user:IsUserIdle]] | Determines whether the system is idle | Done | |
+| 334 | [[en:docs:win16:api:user:GETQUEUESTATUS]] | Retrieves the type of messages in the calling thread's message queue | | |
+| 335 | [[en:docs:win16:api:user:GETINPUTSTATE]] | Determines whether there are mouse-button, keyboard, or timer events in the message queue | | |
+| 337 | [[en:docs:win16:api:user:GetMouseEventProc]] | Retrieves the address of the current mouse event procedure | Done | |
+| 358 | [[en:docs:win16:api:user:ISMENU]] | Determines whether a handle is a menu handle | | |
+| 359 | [[en:docs:win16:api:user:GETDCEX]] | Retrieves a handle to a device context for the client area of the specified window | | |
+| 368 | [[en:docs:win16:api:user:COPYICON]] | Copies the specified icon from another module to the current module | Done | |
+| 369 | [[en:docs:win16:api:user:COPYCURSOR]] | Copies the specified cursor from another module to the current module | Done | |
+| 370 | [[en:docs:win16:api:user:GETWINDOWPLACEMENT]] | Retrieves the show state and the restored, minimized, and maximized positions of the specified window | | |
+| 371 | [[en:docs:win16:api:user:SETWINDOWPLACEMENT]] | Sets the show state and the restored, minimized, and maximized positions of the specified window | | |
+| 373 | [[en:docs:win16:api:user:SUBTRACTRECT]] | Obtains the coordinates of a rectangle determined by subtracting one rectangle from another | Done | |
+| 397 | [[en:docs:win16:api:user:REGISTERCLASSEX]] | Registers a window class for subsequent use in the CreateWindow or CreateWindowEx function | Done | |
+| 398 | [[en:docs:win16:api:user:GetClassInfoEx]] | Retrieves information about a window class | Done | |
+| 402 | [[en:docs:win16:api:user:GETPRIORITYCLIPBOARDFORMAT]] | Retrieves the first available clipboard format in the specified list | | |
+| 403 | [[en:docs:win16:api:user:UNREGISTERCLASS]] | Unregisters a window class, freeing the memory required for the class | Done | |
+| 404 | [[en:docs:win16:api:user:GETCLASSINFO]] | Retrieves information about a window class | Done | |
+| 406 | [[en:docs:win16:api:user:CREATECURSOR]] | Creates a cursor having the specified size, bit patterns, and hot spot | Done | |
+| 407 | [[en:docs:win16:api:user:CREATEICON]] | Creates an icon having the specified size, colors, and bit patterns | Done | |
+| 408 | [[en:docs:win16:api:user:CreateCursorIconIndirect]] | Creates an icon or cursor from an icon or cursor resource data structure | Done | |
+| 410 | [[en:docs:win16:api:user:INSERTMENU]] | Inserts a new menu item into a menu, moving other items down | Done | |
+| 411 | [[en:docs:win16:api:user:APPENDMENU]] | Appends a new item to the end of the specified menu | Done | |
+| 412 | [[en:docs:win16:api:user:REMOVEMENU]] | Deletes a menu item or detaches a submenu from the specified menu | Done | |
+| 413 | [[en:docs:win16:api:user:DELETEMENU]] | Deletes an item from the specified menu | Done | |
+| 414 | [[en:docs:win16:api:user:MODIFYMENU]] | Changes an existing menu item | Done | |
+| 415 | [[en:docs:win16:api:user:CREATEPOPUPMENU]] | Creates a drop-down menu, submenu, or shortcut menu | Done | |
+| 416 | [[en:docs:win16:api:user:TRACKPOPUPMENU]] | Displays a shortcut menu at the specified location and tracks the selection of items on the shortcut menu | Done | |
+| 417 | [[en:docs:win16:api:user:GETMENUCHECKMARKDIMENSIONS]] | Retrieves the dimensions of the default check mark bitmap | Done | |
+| 418 | [[en:docs:win16:api:user:SETMENUITEMBITMAPS]] | Associates the specified check mark bitmaps with a menu item | Done | |
+| 420 | [[en:docs:win16:api:user:_WSPRINTF]] | Writes formatted data to a string | Done | |
+| 421 | [[en:docs:win16:api:user:WVSPRINTF]] | Writes formatted data to a string using a variable argument list | Done | |
+| 422 | [[en:docs:win16:api:user:DLGDIRSELECTEX]] | Retrieves the current selection from a single-selection or multiple-selection list box filled by the DlgDirList function | | |
+| 423 | [[en:docs:win16:api:user:DLGDIRSELECTCOMBOBOXEX]] | Retrieves the current selection from a combo box filled by the DlgDirListComboBox function | | |
+| 430 | [[en:docs:win16:api:user:LSTRCMP]] | Compares two character strings | Done | |
+| 431 | [[en:docs:win16:api:user:ANSIUPPER]] | Converts a character string or a single character to uppercase | Done | |
+| 432 | [[en:docs:win16:api:user:ANSILOWER]] | Converts a character string or a single character to lowercase | Done | |
+| 433 | [[en:docs:win16:api:user:ISCHARALPHA]] | Determines whether a character is an alphabetic character | Done | |
+| 434 | [[en:docs:win16:api:user:ISCHARALPHANUMERIC]] | Determines whether a character is either an alphabetic or a numeric character | Done | |
+| 435 | [[en:docs:win16:api:user:ISCHARUPPER]] | Determines whether a character is uppercase | Done | |
+| 436 | [[en:docs:win16:api:user:ISCHARLOWER]] | Determines whether a character is lowercase | Done | |
+| 437 | [[en:docs:win16:api:user:ANSIUPPERBUFF]] | Converts a character string to uppercase | Done | |
+| 438 | [[en:docs:win16:api:user:ANSILOWERBUFF]] | Converts a character string to lowercase | Done | |
+| 445 | [[en:docs:win16:api:user:DEFFRAMEPROC]] | Provides default processing for any window messages that a multiple-document interface (MDI) frame window does not process | | |
+| 447 | [[en:docs:win16:api:user:DEFMDICHILDPROC]] | Provides default processing for any window messages that an MDI child window does not process | | |
+| 451 | [[en:docs:win16:api:user:TRANSLATEMDISYSACCEL]] | Processes accelerator keystrokes for system menu commands of multiple-document interface (MDI) child windows | | |
+| 452 | [[en:docs:win16:api:user:CREATEWINDOWEX]] | Creates an overlapped, pop-up, or child window with an extended window style | | |
+| 454 | [[en:docs:win16:api:user:ADJUSTWINDOWRECTEX]] | Calculates the required size of the window rectangle based on the desired client rectangle size and window styles | | |
+| 457 | [[en:docs:win16:api:user:DESTROYICON]] | Destroys an icon and frees any memory the icon occupied | Done | |
+| 458 | [[en:docs:win16:api:user:DESTROYCURSOR]] | Destroys a cursor and frees any memory the cursor occupied | Done | |
+| 462 | [[en:docs:win16:api:user:CALCCHILDSCROLL]] | Calculates the scrolling rectangle for a scroll bar control | | |
+| 466 | [[en:docs:win16:api:user:DRAWFOCUSRECT]] | Draws a rectangle in the style used to indicate that the rectangle has the focus | Done | |
+| 471 | [[en:docs:win16:api:user:LSTRCMPI]] | Compares two character strings, ignoring case | Done | |
+| 472 | [[en:docs:win16:api:user:ANSINEXT]] | Returns a pointer to the next character in a string | Done | |
+| 473 | [[en:docs:win16:api:user:ANSIPREV]] | Returns a pointer to the previous character in a string | Done | |
+| 482 | [[en:docs:win16:api:user:ENABLESCROLLBAR]] | Enables or disables one or both arrows of a scroll bar | | |
+| 483 | [[en:docs:win16:api:user:SYSTEMPARAMETERSINFO]] | Retrieves or sets the value of one of the system-wide parameters | Done | |
+| 499 | [[en:docs:win16:api:user:WNETERRORTEXT]] | Retrieves the error string for a network error | Stub | |
+| 501 | [[en:docs:win16:api:user:WNETOPENJOB]] | Opens a print job on a network printer | Stub | |
+| 502 | [[en:docs:win16:api:user:WNETCLOSEJOB]] | Closes a print job on a network printer | Stub | |
+| 503 | [[en:docs:win16:api:user:WNETABORTJOB]] | Aborts a print job on a network printer | Stub | |
+| 504 | [[en:docs:win16:api:user:WNETHOLDJOB]] | Holds a print job on a network printer | Stub | |
+| 505 | [[en:docs:win16:api:user:WNETRELEASEJOB]] | Releases a held print job on a network printer | Stub  | |
+| 506 | [[en:docs:win16:api:user:WNETCANCELJOB]] | Cancels a print job on a network printer | Stub | |
+| 507 | [[en:docs:win16:api:user:WNETSETJOBCOPIES]] | Sets the number of copies for a print job on a network printer | Stub | |
+| 508 | [[en:docs:win16:api:user:WNETWATCHQUEUE]] | Installs a queue watch for a network print queue | Stub | |
+| 509 | [[en:docs:win16:api:user:WNETUNWATCHQUEUE]] | Removes a queue watch for a network print queue | Stub | |
+| 510 | [[en:docs:win16:api:user:WNETLOCKQUEUEDATA]] | Locks the queue data for a network print queue | Stub | |
+| 511 | [[en:docs:win16:api:user:WNETUNLOCKQUEUEDATA]] | Unlocks the queue data for a network print queue | Stub | |
+| 512 | [[en:docs:win16:api:user:WNETGETCONNECTION]] | Retrieves the network resource name associated with a local device | | |
+| 513 | [[en:docs:win16:api:user:WNETGETCAPS]] | Retrieves the capabilities of the network provider | Done | |
+| 514 | [[en:docs:win16:api:user:WNETDEVICEMODE]] | Displays the configuration dialog box for a network device | Stub | |
+| 515 | [[en:docs:win16:api:user:WNETBROWSEDIALOG]] | Displays a network browse dialog box | Stub | |
+| 516 | [[en:docs:win16:api:user:WNETGETUSER]] | Retrieves the current network user name | | |
+| 517 | [[en:docs:win16:api:user:WNETADDCONNECTION]] | Connects a local device to a network resource | Stub | |
+| 518 | [[en:docs:win16:api:user:WNETCANCELCONNECTION]] | Disconnects a network connection | Stub | |
+| 519 | [[en:docs:win16:api:user:WNETGETERROR]] | Retrieves the most recent network error | Stub | |
+| 520 | [[en:docs:win16:api:user:WNETGETERRORTEXT]] | Retrieves the error text for a network error | Stub | |
+| 521 | [[en:docs:win16:api:user:WNETENABLE]] | Enables or disables the network provider | | |
+| 522 | [[en:docs:win16:api:user:WNETDISABLE]] | Disables the network provider | | |
+| 523 | [[en:docs:win16:api:user:WNETRESTORECONNECTION]] | Restores a network connection | Stub | |
+| 524 | [[en:docs:win16:api:user:WNETWRITEJOB]] | Writes data to a network print job | Stub | |
+| 525 | [[en:docs:win16:api:user:WNETCONNECTDIALOG]] | Displays a network connection dialog box | Stub | |
+| 526 | [[en:docs:win16:api:user:WNETDISCONNECTDIALOG]] | Displays a network disconnection dialog box | Stub | |
+| 527 | [[en:docs:win16:api:user:WNETCONNECTIONDIALOG]] | Displays a network connection dialog box | Stub | |
+| 528 | [[en:docs:win16:api:user:WNETVIEWQUEUEDIALOG]] | Displays a network queue view dialog box | Stub | |
+| 529 | [[en:docs:win16:api:user:WNETPROPERTYDIALOG]] | Displays a network property dialog box | Stub | |
+| 530 | [[en:docs:win16:api:user:WNETGETDIRECTORYTYPE]] | Determines the type of a network directory | | |
+| 531 | [[en:docs:win16:api:user:WNETDIRECTORYNOTIFY]] | Notifies the network of a directory change | Stub | |
+| 532 | [[en:docs:win16:api:user:WNETGETPROPERTYTEXT]] | Retrieves the property text for a network resource | Stub | |
