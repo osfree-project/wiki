@@ -1,377 +1,377 @@
 {{page>en:templates:win16api}}
 
 ^ Ordinal ^ Name ^ Description ^ Status ^ Version ^
-| 000 | USER | | | |
-| 001 | [[en:docs:win16:api:user:MESSAGEBOX]] | | | |
-| 002 | [[en:docs:win16:api:user:OLDEXITWINDOWS]] | | Done | |
-| 005 | [[en:docs:win16:api:user:INITAPP]] | | | |
-| 006 | [[en:docs:win16:api:user:POSTQUITMESSAGE]] | | | |
-| 007 | [[en:docs:win16:api:user:EXITWINDOWS]] | | | |
-| 00a | [[en:docs:win16:api:user:SETTIMER]] | | | |
-| 00b | [[en:docs:win16:api:user:BEAR11]] | | | |
-| 00c | [[en:docs:win16:api:user:KILLTIMER]] | | | |
-| 00d | [[en:docs:win16:api:user:GETTICKCOUNT]] | | Done | |
-| 00e | [[en:docs:win16:api:user:GETTIMERRESOLUTION]] | | | |
-| 00f | [[en:docs:win16:api:user:GETCURRENTTIME]] | | Done | |
-| 010 | [[en:docs:win16:api:user:CLIPCURSOR]] | | | |
-| 011 | [[en:docs:win16:api:user:GETCURSORPOS]] | | | |
-| 012 | [[en:docs:win16:api:user:SETCAPTURE]] | | | |
-| 013 | [[en:docs:win16:api:user:RELEASECAPTURE]] | | | |
-| 014 | [[en:docs:win16:api:user:SETDOUBLECLICKTIME]] | | | |
-| 015 | [[en:docs:win16:api:user:GETDOUBLECLICKTIME]] | | | |
-| 016 | [[en:docs:win16:api:user:SETFOCUS]] | | | |
-| 017 | [[en:docs:win16:api:user:GETFOCUS]] | | | |
-| 018 | [[en:docs:win16:api:user:REMOVEPROP]] | | | |
-| 019 | [[en:docs:win16:api:user:GETPROP]] | | | |
-| 01a | [[en:docs:win16:api:user:SETPROP]] | | | |
-| 01b | [[en:docs:win16:api:user:ENUMPROPS]] | | | |
-| 01c | [[en:docs:win16:api:user:CLIENTTOSCREEN]] | | | |
-| 01d | [[en:docs:win16:api:user:SCREENTOCLIENT]] | | | |
-| 01e | [[en:docs:win16:api:user:WINDOWFROMPOINT]] | | | |
-| 01f | [[en:docs:win16:api:user:ISICONIC]] | | | |
-| 020 | [[en:docs:win16:api:user:GETWINDOWRECT]] | | | |
-| 021 | [[en:docs:win16:api:user:GETCLIENTRECT]] | | | |
-| 022 | [[en:docs:win16:api:user:ENABLEWINDOW]] | | | |
-| 023 | [[en:docs:win16:api:user:ISWINDOWENABLED]] | | | |
-| 024 | [[en:docs:win16:api:user:GETWINDOWTEXT]] | | Done | |
-| 025 | [[en:docs:win16:api:user:SETWINDOWTEXT]] | | Done | |
-| 026 | [[en:docs:win16:api:user:GETWINDOWTEXTLENGTH]] | | Done | |
-| 027 | [[en:docs:win16:api:user:BEGINPAINT]] | | | |
-| 028 | [[en:docs:win16:api:user:ENDPAINT]] | | | |
-| 029 | [[en:docs:win16:api:user:CREATEWINDOW]] | | Done | |
-| 02a | [[en:docs:win16:api:user:SHOWWINDOW]] | | | |
-| 02b | [[en:docs:win16:api:user:CLOSEWINDOW]] | | | |
-| 02c | [[en:docs:win16:api:user:OPENICON]] | | | |
-| 02d | [[en:docs:win16:api:user:BRINGWINDOWTOTOP]] | | | |
-| 02e | [[en:docs:win16:api:user:GETPARENT]] | | | |
-| 02f | [[en:docs:win16:api:user:ISWINDOW]] | | | |
-| 030 | [[en:docs:win16:api:user:ISCHILD]] | | | |
-| 031 | [[en:docs:win16:api:user:ISWINDOWVISIBLE]] | | | |
-| 032 | [[en:docs:win16:api:user:FINDWINDOW]] | | | |
-| 034 | [[en:docs:win16:api:user:ANYPOPUP]] | | | |
-| 035 | [[en:docs:win16:api:user:DESTROYWINDOW]] | | | |
-| 036 | [[en:docs:win16:api:user:ENUMWINDOWS]] | | | |
-| 037 | [[en:docs:win16:api:user:ENUMCHILDWINDOWS]] | | | |
-| 038 | [[en:docs:win16:api:user:MOVEWINDOW]] | | | |
-| 039 | [[en:docs:win16:api:user:REGISTERCLASS]] | | Done | |
-| 03a | [[en:docs:win16:api:user:GETCLASSNAME]] | | | |
-| 03b | [[en:docs:win16:api:user:SETACTIVEWINDOW]] | | | |
-| 03c | [[en:docs:win16:api:user:GETACTIVEWINDOW]] | | | |
-| 03d | [[en:docs:win16:api:user:SCROLLWINDOW]] | | | |
-| 03e | [[en:docs:win16:api:user:SETSCROLLPOS]] | | | |
-| 03f | [[en:docs:win16:api:user:GETSCROLLPOS]] | | | |
-| 040 | [[en:docs:win16:api:user:SETSCROLLRANGE]] | | | |
-| 041 | [[en:docs:win16:api:user:GETSCROLLRANGE]] | | | |
-| 042 | [[en:docs:win16:api:user:GETDC]] | | | |
-| 043 | [[en:docs:win16:api:user:GETWINDOWDC]] | | | |
-| 044 | [[en:docs:win16:api:user:RELEASEDC]] | | | |
-| 045 | [[en:docs:win16:api:user:SETCURSOR]] | | | |
-| 046 | [[en:docs:win16:api:user:SETCURSORPOS]] | | | |
-| 047 | [[en:docs:win16:api:user:SHOWCURSOR]] | | | |
-| 048 | [[en:docs:win16:api:user:SETRECT]] | | Done | |
-| 049 | [[en:docs:win16:api:user:SETRECTEMPTY]] | | Done | |
-| 04a | [[en:docs:win16:api:user:COPYRECT]] | | Done | |
-| 04b | [[en:docs:win16:api:user:ISRECTEMPTY]] | | Done | |
-| 04c | [[en:docs:win16:api:user:PTINRECT]] | | Done | |
-| 04d | [[en:docs:win16:api:user:OFFSETRECT]] | | Done | |
-| 04e | [[en:docs:win16:api:user:INFLATERECT]] | | Done | |
-| 04f | [[en:docs:win16:api:user:INTERSECTRECT]] | | Done | |
-| 050 | [[en:docs:win16:api:user:UNIONRECT]] | | Done | |
-| 051 | [[en:docs:win16:api:user:FILLRECT]] | | Done | |
-| 052 | [[en:docs:win16:api:user:INVERTRECT]] | | Done | |
-| 053 | [[en:docs:win16:api:user:FRAMERECT]] | | Done | |
-| 054 | [[en:docs:win16:api:user:DRAWICON]] | | Done | |
-| 055 | [[en:docs:win16:api:user:DRAWTEXT]] | | Done | |
-| 056 | [[en:docs:win16:api:user:BEAR86]] | | | |
-| 057 | [[en:docs:win16:api:user:DIALOGBOX]] | | Done | |
-| 058 | [[en:docs:win16:api:user:ENDDIALOG]] | | | |
-| 059 | [[en:docs:win16:api:user:CREATEDIALOG]] | | Done | |
-| 05a | [[en:docs:win16:api:user:ISDIALOGMESSAGE]] | | | |
-| 05b | [[en:docs:win16:api:user:GETDLGITEM]] | | | |
-| 05c | [[en:docs:win16:api:user:SETDLGITEMTEXT]] | | Done | |
-| 05d | [[en:docs:win16:api:user:GETDLGITEMTEXT]] | | Done | |
-| 05e | [[en:docs:win16:api:user:SETDLGITEMINT]] | | | |
-| 05f | [[en:docs:win16:api:user:GETDLGITEMINT]] | | | |
-| 060 | [[en:docs:win16:api:user:CHECKRADIOBUTTON]] | | | |
-| 061 | [[en:docs:win16:api:user:CHECKDLGBUTTON]] | | Done | |
-| 062 | [[en:docs:win16:api:user:ISDLGBUTTONCHECKED]] | | Done | |
-| 063 | [[en:docs:win16:api:user:DLGDIRSELECT]] | | Done | |
-| 064 | [[en:docs:win16:api:user:DLGDIRLIST]] | | | |
-| 065 | [[en:docs:win16:api:user:SENDDLGITEMMESSAGE]] | | Done | |
-| 066 | [[en:docs:win16:api:user:ADJUSTWINDOWRECT]] | | | |
-| 067 | [[en:docs:win16:api:user:MAPDIALOGRECT]] | | | |
-| 068 | [[en:docs:win16:api:user:MESSAGEBEEP]] | | | |
-| 069 | [[en:docs:win16:api:user:FLASHWINDOW]] | | | |
-| 06a | [[en:docs:win16:api:user:GETKEYSTATE]] | | | |
-| 06b | [[en:docs:win16:api:user:DEFWINDOWPROC]] | | | |
-| 06c | [[en:docs:win16:api:user:GETMESSAGE]] | | | |
-| 06d | [[en:docs:win16:api:user:PEEKMESSAGE]] | | | |
-| 06e | [[en:docs:win16:api:user:POSTMESSAGE]] | | | |
-| 06f | [[en:docs:win16:api:user:SENDMESSAGE]] | | | |
-| 070 | [[en:docs:win16:api:user:WAITMESSAGE]] | | | |
-| 071 | [[en:docs:win16:api:user:TRANSLATEMESSAGE]] | | | |
-| 072 | [[en:docs:win16:api:user:DISPATCHMESSAGE]] | | | |
-| 073 | [[en:docs:win16:api:user:REPLYMESSAGE]] | | | |
-| 074 | [[en:docs:win16:api:user:POSTAPPMESSAGE]] | | | |
-| 076 | [[en:docs:win16:api:user:REGISTERWINDOWMESSAGE]] | | | |
-| 077 | [[en:docs:win16:api:user:GETMESSAGEPOS]] | | | |
-| 078 | [[en:docs:win16:api:user:GETMESSAGETIME]] | | | |
-| 079 | [[en:docs:win16:api:user:SETWINDOWSHOOK]] | | Done | |
-| 07a | [[en:docs:win16:api:user:CALLWINDOWPROC]] | | | |
-| 07b | [[en:docs:win16:api:user:CALLMSGFILTER]] | | | |
-| 07c | [[en:docs:win16:api:user:UPDATEWINDOW]] | | Done | |
-| 07d | [[en:docs:win16:api:user:INVALIDATERECT]] | | Done | |
-| 07e | [[en:docs:win16:api:user:INVALIDATERGN]] | | Done | |
-| 07f | [[en:docs:win16:api:user:VALIDATERECT]] | | Done | |
-| 080 | [[en:docs:win16:api:user:VALIDATERGN]] | | Done | |
-| 081 | [[en:docs:win16:api:user:GETCLASSWORD]] | | | |
-| 082 | [[en:docs:win16:api:user:SETCLASSWORD]] | | | |
-| 083 | [[en:docs:win16:api:user:GETCLASSLONG]] | | | |
-| 084 | [[en:docs:win16:api:user:SETCLASSLONG]] | | | |
-| 085 | [[en:docs:win16:api:user:GETWINDOWWORD]] | | | |
-| 086 | [[en:docs:win16:api:user:SETWINDOWWORD]] | | | |
-| 087 | [[en:docs:win16:api:user:GETWINDOWLONG]] | | | |
-| 088 | [[en:docs:win16:api:user:SETWINDOWLONG]] | | | |
-| 089 | [[en:docs:win16:api:user:OPENCLIPBOARD]] | | | |
-| 08a | [[en:docs:win16:api:user:CLOSECLIPBOARD]] | | | |
-| 08b | [[en:docs:win16:api:user:EMPTYCLIPBOARD]] | | | |
-| 08c | [[en:docs:win16:api:user:GETCLIPBOARDOWNER]] | | | |
-| 08d | [[en:docs:win16:api:user:SETCLIPBOARDDATA]] | | | |
-| 08e | [[en:docs:win16:api:user:GETCLIPBOARDDATA]] | | | |
-| 08f | [[en:docs:win16:api:user:COUNTCLIPBOARDFORMATS]] | | | |
-| 090 | [[en:docs:win16:api:user:ENUMCLIPBOARDFORMATS]] | | | |
-| 091 | [[en:docs:win16:api:user:REGISTERCLIPBOARDFORMAT]] | | | |
-| 092 | [[en:docs:win16:api:user:GETCLIPBOARDFORMATNAME]] | | | |
-| 093 | [[en:docs:win16:api:user:SETCLIPBOARDVIEWER]] | | | |
-| 094 | [[en:docs:win16:api:user:GETCLIPBOARDVIEWER]] | | | |
-| 095 | [[en:docs:win16:api:user:CHANGECLIPBOARDCHAIN]] | | | |
-| 096 | [[en:docs:win16:api:user:LOADMENU]] | | Done | |
-| 097 | [[en:docs:win16:api:user:CREATEMENU]] | | Done | |
-| 098 | [[en:docs:win16:api:user:DESTROYMENU]] | | Done | |
-| 099 | [[en:docs:win16:api:user:CHANGEMENU]] | | Done | |
-| 09a | [[en:docs:win16:api:user:CHECKMENUITEM]] | | Done | |
-| 09b | [[en:docs:win16:api:user:ENABLEMENUITEM]] | | Done | |
-| 09c | [[en:docs:win16:api:user:GETSYSTEMMENU]] | | Done | |
-| 09d | [[en:docs:win16:api:user:GETMENU]] | | Done | |
-| 09e | [[en:docs:win16:api:user:SETMENU]] | | Done | |
-| 09f | [[en:docs:win16:api:user:GETSUBMENU]] | | Done | |
-| 0a0 | [[en:docs:win16:api:user:DRAWMENUBAR]] | | Done | |
-| 0a1 | [[en:docs:win16:api:user:GETMENUSTRING]] | | Done | |
-| 0a2 | [[en:docs:win16:api:user:HILITEMENUITEM]] | | Done | |
-| 0a3 | [[en:docs:win16:api:user:CREATECARET]] | | Done | |
-| 0a4 | [[en:docs:win16:api:user:DESTROYCARET]] | | Done | |
-| 0a5 | [[en:docs:win16:api:user:SETCARETPOS]] | | Done | |
-| 0a6 | [[en:docs:win16:api:user:HIDECARET]] | | Done | |
-| 0a7 | [[en:docs:win16:api:user:SHOWCARET]] | | Done | |
-| 0a8 | [[en:docs:win16:api:user:SETCARETBLINKTIME]] | | Done | |
-| 0a9 | [[en:docs:win16:api:user:GETCARETBLINKTIME]] | | Done| |
-| 0aa | [[en:docs:win16:api:user:ARRANGEICONICWINDOWS]] | | | |
-| 0ab | [[en:docs:win16:api:user:WINHELP]] | | | |
-| 0ad | [[en:docs:win16:api:user:LOADCURSOR]] | | | |
-| 0ae | [[en:docs:win16:api:user:LOADICON]] | | | |
-| 0af | [[en:docs:win16:api:user:LOADBITMAP]] | | | |
-| 0b0 | [[en:docs:win16:api:user:LOADSTRING]] | | Done | |
-| 0b1 | [[en:docs:win16:api:user:LOADACCELERATORS]] | | Done | |
-| 0b2 | [[en:docs:win16:api:user:TRANSLATEACCELERATOR]] | | | |
-| 0b3 | [[en:docs:win16:api:user:GETSYSTEMMETRICS]] | | Done | |
-| 0b4 | [[en:docs:win16:api:user:GETSYSCOLOR]] | | Done | |
-| 0b5 | [[en:docs:win16:api:user:SETSYSCOLORS]] | | Done | |
-| 0b6 | [[en:docs:win16:api:user:BEAR182]] | | | |
-| 0b7 | [[en:docs:win16:api:user:GETCARETPOS]] | | Done | |
-| 0b8 | [[en:docs:win16:api:user:QUERYSENDMESSAGE]] | | | |
-| 0b9 | [[en:docs:win16:api:user:GRAYSTRING]] | | Done | |
-| 0ba | [[en:docs:win16:api:user:SWAPMOUSEBUTTON]] | | | |
-| 0bc | [[en:docs:win16:api:user:SETSYSMODALWINDOW]] | | | |
-| 0bd | [[en:docs:win16:api:user:GETSYSMODALWINDOW]] | | | |
-| 0be | [[en:docs:win16:api:user:GETUPDATERECT]] | | | |
-| 0bf | [[en:docs:win16:api:user:CHILDWINDOWFROMPOINT]] | | | |
-| 0c0 | [[en:docs:win16:api:user:INSENDMESSAGE]] | | | |
-| 0c1 | [[en:docs:win16:api:user:ISCLIPBOARDFORMATAVAILABLE]] | | | |
-| 0c2 | [[en:docs:win16:api:user:DLGDIRSELECTCOMBOBOX]] | | Done | |
-| 0c3 | [[en:docs:win16:api:user:DLGDIRLISTCOMBOBOX]] | | | |
-| 0c4 | [[en:docs:win16:api:user:TABBEDTEXTOUT]] | | | |
-| 0c5 | [[en:docs:win16:api:user:GETTABBEDTEXTEXTENT]] | | | |
-| 0c6 | [[en:docs:win16:api:user:CASCADECHILDWINDOWS]] | | | |
-| 0c7 | [[en:docs:win16:api:user:TILECHILDWINDOWS]] | | | |
-| 0c8 | [[en:docs:win16:api:user:OPENCOMM]] | | Stub | |
-| 0c9 | [[en:docs:win16:api:user:SETCOMMSTATE]] | | Stub | |
-| 0ca | [[en:docs:win16:api:user:GETCOMMSTATE]] | | Stub | |
-| 0cb | [[en:docs:win16:api:user:GETCOMMERROR]] | | Stub | |
-| 0cc | [[en:docs:win16:api:user:READCOMM]] | | Stub | |
-| 0cd | [[en:docs:win16:api:user:WRITECOMM]] | | Stub | |
-| 0ce | [[en:docs:win16:api:user:TRANSMITCOMMCHAR]] | | Stub | |
-| 0cf | [[en:docs:win16:api:user:CLOSECOMM]] | | Stub | |
-| 0d0 | [[en:docs:win16:api:user:SETCOMMEVENTMASK]] | | Stub | |
-| 0d1 | [[en:docs:win16:api:user:GETCOMMEVENTMASK]] | | Stub | |
-| 0d2 | [[en:docs:win16:api:user:SETCOMMBREAK]] | | Stub | |
-| 0d3 | [[en:docs:win16:api:user:CLEARCOMMBREAK]] | | Stub | |
-| 0d4 | [[en:docs:win16:api:user:UNGETCOMMCHAR]] | | Stub | |
-| 0d5 | [[en:docs:win16:api:user:BUILDCOMMDCB]] | | Stub | |
-| 0d6 | [[en:docs:win16:api:user:ESCAPECOMMFUNCTION]] | | Stub | |
-| 0d7 | [[en:docs:win16:api:user:FLUSHCOMM]] | | Stub | |
-| 0d8 | [[en:docs:win16:api:user:UserSeeUserDo]] | | Done | |
-| 0da | [[en:docs:win16:api:user:DIALOGBOXINDIRECT]] | | Done | |
-| 0db | [[en:docs:win16:api:user:CREATEDIALOGINDIRECT]] | | Done | |
-| 0dc | [[en:docs:win16:api:user:LOADMENUINDIRECT]] | | Done | |
-| 0dd | [[en:docs:win16:api:user:SCROLLDC]] | | | |
-| 0de | [[en:docs:win16:api:user:GETKEYBOARDSTATE]] | | | |
-| 0df | [[en:docs:win16:api:user:SETKEYBOARDSTATE]] | | | |
-| 0e0 | [[en:docs:win16:api:user:GETWINDOWTASK]] | | | |
-| 0e1 | [[en:docs:win16:api:user:ENUMTASKWINDOWS]] | | | |
-| 0e2 | [[en:docs:win16:api:user:LOCKINPUT]] | | | |
-| 0e3 | [[en:docs:win16:api:user:GETNEXTDLGGROUPITEM]] | | | |
-| 0e4 | [[en:docs:win16:api:user:GETNEXTDLGTABITEM]] | | | |
-| 0e5 | [[en:docs:win16:api:user:GETTOPWINDOW]] | | | |
-| 0e6 | [[en:docs:win16:api:user:GETNEXTWINDOW]] | | | |
-| 0e7 | [[en:docs:win16:api:user:GETSYSTEMDEBUGSTATE]] | | | |
-| 0e8 | [[en:docs:win16:api:user:SETWINDOWPOS]] | | | |
-| 0e9 | [[en:docs:win16:api:user:SETPARENT]] | | | |
-| 0ea | [[en:docs:win16:api:user:UNHOOKWINDOWSHOOK]] | | | |
-| 0eb | [[en:docs:win16:api:user:DEFHOOKPROC]] | | Done | |
-| 0ec | [[en:docs:win16:api:user:GETCAPTURE]] | | | |
-| 0ed | [[en:docs:win16:api:user:GETUPDATERGN]] | | | |
-| 0ee | [[en:docs:win16:api:user:EXCLUDEUPDATERGN]] | | | |
-| 0ef | [[en:docs:win16:api:user:DIALOGBOXPARAM]] | | | |
-| 0f0 | [[en:docs:win16:api:user:DIALOGBOXINDIRECTPARAM]] | | | |
-| 0f1 | [[en:docs:win16:api:user:CREATEDIALOGPARAM]] | | Done | |
-| 0f2 | [[en:docs:win16:api:user:CREATEDIALOGINDIRECTPARAM]] | | | |
-| 0f3 | [[en:docs:win16:api:user:GETDIALOGBASEUNITS]] | | | |
-| 0f4 | [[en:docs:win16:api:user:EQUALRECT]] | | Done | |
-| 0f5 | [[en:docs:win16:api:user:ENABLECOMMNOTIFICATION]] | | Stub | |
-| 0f6 | [[en:docs:win16:api:user:EXITWINDOWSEXEC]] | | | |
-| 0f7 | [[en:docs:win16:api:user:GETCURSOR]] | | | |
-| 0f8 | [[en:docs:win16:api:user:GETOPENCLIPBOARDWINDOW]] | | | |
-| 0f9 | [[en:docs:win16:api:user:GETASYNCKEYSTATE]] | | | |
-| 0fa | [[en:docs:win16:api:user:GETMENUSTATE]] | | Done | |
-| 0fb | [[en:docs:win16:api:user:SENDDRIVERMESSAGE]] | | | |
-| 0fc | [[en:docs:win16:api:user:OPENDRIVER]] | | | |
-| 0fd | [[en:docs:win16:api:user:CLOSEDRIVER]] | | | |
-| 0fe | [[en:docs:win16:api:user:GETDRIVERMODULEHANDLE]] | | | |
-| 0ff | [[en:docs:win16:api:user:DEFDRIVERPROC]] | | | |
-| 100 | [[en:docs:win16:api:user:GETDRIVERINFO]] | | | |
-| 101 | [[en:docs:win16:api:user:GETNEXTDRIVER]] | | | |
-| 102 | [[en:docs:win16:api:user:MAPWINDOWPOINTS]] | | | |
-| 103 | [[en:docs:win16:api:user:BEGINDEFERWINDOWPOS]] | | | |
-| 104 | [[en:docs:win16:api:user:DEFERWINDOWPOS]] | | | |
-| 105 | [[en:docs:win16:api:user:ENDDEFERWINDOWPOS]] | | | |
-| 106 | [[en:docs:win16:api:user:GETWINDOW]] | | | |
-| 107 | [[en:docs:win16:api:user:GETMENUITEMCOUNT]] | | Done | |
-| 108 | [[en:docs:win16:api:user:GETMENUITEMID]] | | Done | |
-| 109 | [[en:docs:win16:api:user:SHOWOWNEDPOPUPS]] | | | |
-| 10a | [[en:docs:win16:api:user:SETMESSAGEQUEUE]] | | | |
-| 10b | [[en:docs:win16:api:user:SHOWSCROLLBAR]] | | | |
-| 10c | [[en:docs:win16:api:user:GLOBALADDATOM]] | | Done | |
-| 10d | [[en:docs:win16:api:user:GLOBALDELETEATOM]] | | Done | |
-| 10e | [[en:docs:win16:api:user:GLOBALFINDATOM]] | | Done | |
-| 10f | [[en:docs:win16:api:user:GLOBALGETATOMNAME]] | | Done | |
-| 110 | [[en:docs:win16:api:user:ISZOOMED]] | | | |
-| 115 | [[en:docs:win16:api:user:GETDLGCTRLID]] | | | |
-| 116 | [[en:docs:win16:api:user:GETDESKTOPHWND]] | | | |
-| 117 | [[en:docs:win16:api:user:OldSetDeskPattern]] | | Done | |
-| 11a | [[en:docs:win16:api:user:SELECTPALETTE]] | | | |
-| 11b | [[en:docs:win16:api:user:REALIZEPALETTE]] | | | |
-| 11c | [[en:docs:win16:api:user:GETFREESYSTEMRESOURCES]] | | Done | |
-| 11e | [[en:docs:win16:api:user:GETDESKTOPWINDOW]] | | | |
-| 11f | [[en:docs:win16:api:user:GETLASTACTIVEPOPUP]] | | | |
-| 120 | [[en:docs:win16:api:user:GETMESSAGEEXTRAINFO]] | | | |
-| 122 | [[en:docs:win16:api:user:REDRAWWINDOW]] | | | |
-| 123 | [[en:docs:win16:api:user:SETWINDOWSHOOKEX]] | | | |
-| 124 | [[en:docs:win16:api:user:UNHOOKWINDOWSHOOKEX]] | | | |
-| 125 | [[en:docs:win16:api:user:CALLNEXTHOOKEX]] | | | |
-| 126 | [[en:docs:win16:api:user:LOCKWINDOWUPDATE]] | | | |
-| 12b | [[en:docs:win16:api:user:mouse_event]] | | Done | |
-| 134 | [[en:docs:win16:api:user:DEFDLGPROC]] | | | |
-| 135 | [[en:docs:win16:api:user:GETCLIPCURSOR]] | | | |
-| 13f | [[en:docs:win16:api:user:SCROLLWINDOWEX]] | | | |
-| 144 | [[en:docs:win16:api:user:FillWindow]] | | Done | |
-| 145 | [[en:docs:win16:api:user:PaintRect]] | | Done | |
-| 146 | [[en:docs:win16:api:user:GetControlBrush]] | | Done | |
-| 14b | [[en:docs:win16:api:user:ENABLEHARDWAREINPUT]] | | | |
-| 14d | [[en:docs:win16:api:user:IsUserIdle]] | | Done | |
-| 14e | [[en:docs:win16:api:user:GETQUEUESTATUS]] | | | |
-| 14f | [[en:docs:win16:api:user:GETINPUTSTATE]] | | | |
-| 151 | [[en:docs:win16:api:user:GetMouseEventProc]] | | Done | |
-| 166 | [[en:docs:win16:api:user:ISMENU]] | | | |
-| 167 | [[en:docs:win16:api:user:GETDCEX]] | | | |
-| 170 | [[en:docs:win16:api:user:COPYICON]] | | Done | |
-| 171 | [[en:docs:win16:api:user:COPYCURSOR]] | | Done | |
-| 172 | [[en:docs:win16:api:user:GETWINDOWPLACEMENT]] | | | |
-| 173 | [[en:docs:win16:api:user:SETWINDOWPLACEMENT]] | | | |
-| 175 | [[en:docs:win16:api:user:SUBTRACTRECT]] | | Done | |
-| 18d | [[en:docs:win16:api:user:REGISTERCLASSEX]] | | Done | |
-| 18e | [[en:docs:win16:api:user:GetClassInfoEx]] | | Done | |
-| 192 | [[en:docs:win16:api:user:GETPRIORITYCLIPBOARDFORMAT]] | | | |
-| 193 | [[en:docs:win16:api:user:UNREGISTERCLASS]] | | Done | |
-| 194 | [[en:docs:win16:api:user:GETCLASSINFO]] | | Done | |
-| 196 | [[en:docs:win16:api:user:CREATECURSOR]] | | Done | |
-| 197 | [[en:docs:win16:api:user:CREATEICON]] | | Done | |
-| 198 | [[en:docs:win16:api:user:CreateCursorIconIndirect]] | | Done | |
-| 19a | [[en:docs:win16:api:user:INSERTMENU]] | | Done | |
-| 19b | [[en:docs:win16:api:user:APPENDMENU]] | | Done | |
-| 19c | [[en:docs:win16:api:user:REMOVEMENU]] | | Done | |
-| 19d | [[en:docs:win16:api:user:DELETEMENU]] | | Done | |
-| 19e | [[en:docs:win16:api:user:MODIFYMENU]] | | Done | |
-| 19f | [[en:docs:win16:api:user:CREATEPOPUPMENU]] | | Done | |
-| 1a0 | [[en:docs:win16:api:user:TRACKPOPUPMENU]] | | Done | |
-| 1a1 | [[en:docs:win16:api:user:GETMENUCHECKMARKDIMENSIONS]] | | Done | |
-| 1a2 | [[en:docs:win16:api:user:SETMENUITEMBITMAPS]] | | Done | |
-| 1a4 | [[en:docs:win16:api:user:_WSPRINTF]] | | Done | |
-| 1a5 | [[en:docs:win16:api:user:WVSPRINTF]] | | Done | |
-| 1a6 | [[en:docs:win16:api:user:DLGDIRSELECTEX]] | | | |
-| 1a7 | [[en:docs:win16:api:user:DLGDIRSELECTCOMBOBOXEX]] | | | |
-| 1ae | [[en:docs:win16:api:user:LSTRCMP]] | | Done | |
-| 1af | [[en:docs:win16:api:user:ANSIUPPER]] | | Done | |
-| 1b0 | [[en:docs:win16:api:user:ANSILOWER]] | | Done | |
-| 1b1 | [[en:docs:win16:api:user:ISCHARALPHA]] | | Done | |
-| 1b2 | [[en:docs:win16:api:user:ISCHARALPHANUMERIC]] | | Done | |
-| 1b3 | [[en:docs:win16:api:user:ISCHARUPPER]] | | Done | |
-| 1b4 | [[en:docs:win16:api:user:ISCHARLOWER]] | | Done | |
-| 1b5 | [[en:docs:win16:api:user:ANSIUPPERBUFF]] | | Done | |
-| 1b6 | [[en:docs:win16:api:user:ANSILOWERBUFF]] | | Done | |
-| 1bd | [[en:docs:win16:api:user:DEFFRAMEPROC]] | | | |
-| 1bf | [[en:docs:win16:api:user:DEFMDICHILDPROC]] | | | |
-| 1c3 | [[en:docs:win16:api:user:TRANSLATEMDISYSACCEL]] | | | |
-| 1c4 | [[en:docs:win16:api:user:CREATEWINDOWEX]] | | | |
-| 1c6 | [[en:docs:win16:api:user:ADJUSTWINDOWRECTEX]] | | | |
-| 1c9 | [[en:docs:win16:api:user:DESTROYICON]] | | Done | |
-| 1ca | [[en:docs:win16:api:user:DESTROYCURSOR]] | | Done | |
-| 1ce | [[en:docs:win16:api:user:CALCCHILDSCROLL]] | | | |
-| 1d2 | [[en:docs:win16:api:user:DRAWFOCUSRECT]] | | Done | |
-| 1d7 | [[en:docs:win16:api:user:LSTRCMPI]] | | Done | |
-| 1d8 | [[en:docs:win16:api:user:ANSINEXT]] | | Done | |
-| 1d9 | [[en:docs:win16:api:user:ANSIPREV]] | | Done | |
-| 1e2 | [[en:docs:win16:api:user:ENABLESCROLLBAR]] | | | |
-| 1e3 | [[en:docs:win16:api:user:SYSTEMPARAMETERSINFO]] | | Done | |
-| 1f3 | [[en:docs:win16:api:user:WNETERRORTEXT]] | | Stub | |
-| 1f5 | [[en:docs:win16:api:user:WNETOPENJOB]] | | Stub | |
-| 1f6 | [[en:docs:win16:api:user:WNETCLOSEJOB]] | | Stub | |
-| 1f7 | [[en:docs:win16:api:user:WNETABORTJOB]] | | Stub | |
-| 1f8 | [[en:docs:win16:api:user:WNETHOLDJOB]] | | Stub | |
-| 1f9 | [[en:docs:win16:api:user:WNETRELEASEJOB]] | | Stub  | |
-| 1fa | [[en:docs:win16:api:user:WNETCANCELJOB]] | | Stub | |
-| 1fb | [[en:docs:win16:api:user:WNETSETJOBCOPIES]] | | Stub | |
-| 1fc | [[en:docs:win16:api:user:WNETWATCHQUEUE]] | | Stub | |
-| 1fd | [[en:docs:win16:api:user:WNETUNWATCHQUEUE]] | | Stub | |
-| 1fe | [[en:docs:win16:api:user:WNETLOCKQUEUEDATA]] | | Stub | |
-| 1ff | [[en:docs:win16:api:user:WNETUNLOCKQUEUEDATA]] | | Stub | |
-| 200 | [[en:docs:win16:api:user:WNETGETCONNECTION]] | | | |
-| 201 | [[en:docs:win16:api:user:WNETGETCAPS]] | | Done | |
-| 202 | [[en:docs:win16:api:user:WNETDEVICEMODE]] | | Stub | |
-| 203 | [[en:docs:win16:api:user:WNETBROWSEDIALOG]] | | Stub | |
-| 204 | [[en:docs:win16:api:user:WNETGETUSER]] | | | |
-| 205 | [[en:docs:win16:api:user:WNETADDCONNECTION]] | | Stub | |
-| 206 | [[en:docs:win16:api:user:WNETCANCELCONNECTION]] | | Stub | |
-| 207 | [[en:docs:win16:api:user:WNETGETERROR]] | | Stub | |
-| 208 | [[en:docs:win16:api:user:WNETGETERRORTEXT]] | | Stub | |
-| 209 | [[en:docs:win16:api:user:WNETENABLE]] | | | |
-| 20a | [[en:docs:win16:api:user:WNETDISABLE]] | | | |
-| 20b | [[en:docs:win16:api:user:WNETRESTORECONNECTION]] | | Stub | |
-| 20c | [[en:docs:win16:api:user:WNETWRITEJOB]] | | Stub | |
-| 20d | [[en:docs:win16:api:user:WNETCONNECTDIALOG]] | | Stub | |
-| 20e | [[en:docs:win16:api:user:WNETDISCONNECTDIALOG]] | | Stub | |
-| 20f | [[en:docs:win16:api:user:WNETCONNECTIONDIALOG]] | | Stub | |
-| 210 | [[en:docs:win16:api:user:WNETVIEWQUEUEDIALOG]] | | Stub | |
-| 211 | [[en:docs:win16:api:user:WNETPROPERTYDIALOG]] | | Stub | |
-| 212 | [[en:docs:win16:api:user:WNETGETDIRECTORYTYPE]] | | | |
-| 213 | [[en:docs:win16:api:user:WNETDIRECTORYNOTIFY]] | | Stub | |
-| 214 | [[en:docs:win16:api:user:WNETGETPROPERTYTEXT]] | | Stub | |
+| 0 | USER | | | |
+| 1 | [[en:docs:win16:api:user:MESSAGEBOX]] | Displays a modal dialog box that contains a system icon, a set of buttons, and a brief application-specific message | | |
+| 2 | [[en:docs:win16:api:user:OLDEXITWINDOWS]] | | Done | |
+| 5 | [[en:docs:win16:api:user:INITAPP]] | | | |
+| 6 | [[en:docs:win16:api:user:POSTQUITMESSAGE]] | | | |
+| 7 | [[en:docs:win16:api:user:EXITWINDOWS]] | | | |
+| 10 | [[en:docs:win16:api:user:SETTIMER]] | Creates a timer with the specified time-out value | | |
+| 11 | [[en:docs:win16:api:user:BEAR11]] | | | |
+| 12 | [[en:docs:win16:api:user:KILLTIMER]] | Destroys the specified timer | | |
+| 13 | [[en:docs:win16:api:user:GETTICKCOUNT]] | Retrieves the number of milliseconds that have elapsed since the system was started | Done | |
+| 14 | [[en:docs:win16:api:user:GETTIMERRESOLUTION]] | | | |
+| 15 | [[en:docs:win16:api:user:GETCURRENTTIME]] | Retrieves the current Windows time | Done | |
+| 16 | [[en:docs:win16:api:user:CLIPCURSOR]] | Confines the cursor to a rectangular area on the screen | | |
+| 17 | [[en:docs:win16:api:user:GETCURSORPOS]] | Retrieves the position of the mouse cursor, in screen coordinates | | |
+| 18 | [[en:docs:win16:api:user:SETCAPTURE]] | Sets the mouse capture to the specified window | | |
+| 19 | [[en:docs:win16:api:user:RELEASECAPTURE]] | Releases the mouse capture from a window and restores normal mouse input processing | | |
+| 20 | [[en:docs:win16:api:user:SETDOUBLECLICKTIME]] | | | |
+| 21 | [[en:docs:win16:api:user:GETDOUBLECLICKTIME]] | | | |
+| 22 | [[en:docs:win16:api:user:SETFOCUS]] | | | |
+| 23 | [[en:docs:win16:api:user:GETFOCUS]] | | | |
+| 24 | [[en:docs:win16:api:user:REMOVEPROP]] | | | |
+| 25 | [[en:docs:win16:api:user:GETPROP]] | | | |
+| 26 | [[en:docs:win16:api:user:SETPROP]] | | | |
+| 27 | [[en:docs:win16:api:user:ENUMPROPS]] | | | |
+| 28 | [[en:docs:win16:api:user:CLIENTTOSCREEN]] | | | |
+| 29 | [[en:docs:win16:api:user:SCREENTOCLIENT]] | | | |
+| 30 | [[en:docs:win16:api:user:WINDOWFROMPOINT]] | | | |
+| 31 | [[en:docs:win16:api:user:ISICONIC]] | | | |
+| 32 | [[en:docs:win16:api:user:GETWINDOWRECT]] | | | |
+| 33 | [[en:docs:win16:api:user:GETCLIENTRECT]] | | | |
+| 34 | [[en:docs:win16:api:user:ENABLEWINDOW]] | | | |
+| 35 | [[en:docs:win16:api:user:ISWINDOWENABLED]] | | | |
+| 36 | [[en:docs:win16:api:user:GETWINDOWTEXT]] | Copies the text of the specified window's title bar into a buffer | Done | |
+| 37 | [[en:docs:win16:api:user:SETWINDOWTEXT]] | Changes the text of the specified window's title bar | Done | |
+| 38 | [[en:docs:win16:api:user:GETWINDOWTEXTLENGTH]] | Retrieves the length of the specified window's title bar text | Done | |
+| 39 | [[en:docs:win16:api:user:BEGINPAINT]] | Prepares the specified window for painting and fills a PAINTSTRUCT structure with painting information | | |
+| 40 | [[en:docs:win16:api:user:ENDPAINT]] | Marks the end of painting in the specified window | | |
+| 41 | [[en:docs:win16:api:user:CREATEWINDOW]] | | Done | |
+| 42 | [[en:docs:win16:api:user:SHOWWINDOW]] | | | |
+| 43 | [[en:docs:win16:api:user:CLOSEWINDOW]] | | | |
+| 44 | [[en:docs:win16:api:user:OPENICON]] | | | |
+| 45 | [[en:docs:win16:api:user:BRINGWINDOWTOTOP]] | | | |
+| 46 | [[en:docs:win16:api:user:GETPARENT]] | | | |
+| 47 | [[en:docs:win16:api:user:ISWINDOW]] | | | |
+| 48 | [[en:docs:win16:api:user:ISCHILD]] | | | |
+| 49 | [[en:docs:win16:api:user:ISWINDOWVISIBLE]] | | | |
+| 50 | [[en:docs:win16:api:user:FINDWINDOW]] | | | |
+| 52 | [[en:docs:win16:api:user:ANYPOPUP]] | | | |
+| 53 | [[en:docs:win16:api:user:DESTROYWINDOW]] | | | |
+| 54 | [[en:docs:win16:api:user:ENUMWINDOWS]] | | | |
+| 55 | [[en:docs:win16:api:user:ENUMCHILDWINDOWS]] | | | |
+| 56 | [[en:docs:win16:api:user:MOVEWINDOW]] | | | |
+| 57 | [[en:docs:win16:api:user:REGISTERCLASS]] | | Done | |
+| 58 | [[en:docs:win16:api:user:GETCLASSNAME]] | | | |
+| 59 | [[en:docs:win16:api:user:SETACTIVEWINDOW]] | | | |
+| 60 | [[en:docs:win16:api:user:GETACTIVEWINDOW]] | | | |
+| 61 | [[en:docs:win16:api:user:SCROLLWINDOW]] | | | |
+| 62 | [[en:docs:win16:api:user:SETSCROLLPOS]] | | | |
+| 63 | [[en:docs:win16:api:user:GETSCROLLPOS]] | | | |
+| 64 | [[en:docs:win16:api:user:SETSCROLLRANGE]] | | | |
+| 65 | [[en:docs:win16:api:user:GETSCROLLRANGE]] | | | |
+| 66 | [[en:docs:win16:api:user:GETDC]] | | | |
+| 67 | [[en:docs:win16:api:user:GETWINDOWDC]] | | | |
+| 68 | [[en:docs:win16:api:user:RELEASEDC]] | | | |
+| 69 | [[en:docs:win16:api:user:SETCURSOR]] | | | |
+| 70 | [[en:docs:win16:api:user:SETCURSORPOS]] | | | |
+| 71 | [[en:docs:win16:api:user:SHOWCURSOR]] | | | |
+| 72 | [[en:docs:win16:api:user:SETRECT]] | | Done | |
+| 73 | [[en:docs:win16:api:user:SETRECTEMPTY]] | | Done | |
+| 74 | [[en:docs:win16:api:user:COPYRECT]] | | Done | |
+| 75 | [[en:docs:win16:api:user:ISRECTEMPTY]] | | Done | |
+| 76 | [[en:docs:win16:api:user:PTINRECT]] | | Done | |
+| 77 | [[en:docs:win16:api:user:OFFSETRECT]] | | Done | |
+| 78 | [[en:docs:win16:api:user:INFLATERECT]] | | Done | |
+| 79 | [[en:docs:win16:api:user:INTERSECTRECT]] | | Done | |
+| 80 | [[en:docs:win16:api:user:UNIONRECT]] | | Done | |
+| 81 | [[en:docs:win16:api:user:FILLRECT]] | | Done | |
+| 82 | [[en:docs:win16:api:user:INVERTRECT]] | | Done | |
+| 83 | [[en:docs:win16:api:user:FRAMERECT]] | | Done | |
+| 84 | [[en:docs:win16:api:user:DRAWICON]] | | Done | |
+| 85 | [[en:docs:win16:api:user:DRAWTEXT]] | | Done | |
+| 86 | [[en:docs:win16:api:user:BEAR86]] | | | |
+| 87 | [[en:docs:win16:api:user:DIALOGBOX]] | | Done | |
+| 88 | [[en:docs:win16:api:user:ENDDIALOG]] | | | |
+| 89 | [[en:docs:win16:api:user:CREATEDIALOG]] | | Done | |
+| 90 | [[en:docs:win16:api:user:ISDIALOGMESSAGE]] | | | |
+| 91 | [[en:docs:win16:api:user:GETDLGITEM]] | | | |
+| 92 | [[en:docs:win16:api:user:SETDLGITEMTEXT]] | | Done | |
+| 93 | [[en:docs:win16:api:user:GETDLGITEMTEXT]] | | Done | |
+| 94 | [[en:docs:win16:api:user:SETDLGITEMINT]] | | | |
+| 95 | [[en:docs:win16:api:user:GETDLGITEMINT]] | | | |
+| 96 | [[en:docs:win16:api:user:CHECKRADIOBUTTON]] | | | |
+| 97 | [[en:docs:win16:api:user:CHECKDLGBUTTON]] | | Done | |
+| 98 | [[en:docs:win16:api:user:ISDLGBUTTONCHECKED]] | | Done | |
+| 99 | [[en:docs:win16:api:user:DLGDIRSELECT]] | | Done | |
+| 100 | [[en:docs:win16:api:user:DLGDIRLIST]] | | | |
+| 101 | [[en:docs:win16:api:user:SENDDLGITEMMESSAGE]] | | Done | |
+| 102 | [[en:docs:win16:api:user:ADJUSTWINDOWRECT]] | Calculates the required size of the window rectangle based on the desired client rectangle size | | |
+| 103 | [[en:docs:win16:api:user:MAPDIALOGRECT]] | | | |
+| 104 | [[en:docs:win16:api:user:MESSAGEBEEP]] | | | |
+| 105 | [[en:docs:win16:api:user:FLASHWINDOW]] | | | |
+| 106 | [[en:docs:win16:api:user:GETKEYSTATE]] | | | |
+| 107 | [[en:docs:win16:api:user:DEFWINDOWPROC]] | | | |
+| 108 | [[en:docs:win16:api:user:GETMESSAGE]] | Retrieves a message from the calling thread's message queue | | |
+| 109 | [[en:docs:win16:api:user:PEEKMESSAGE]] | Checks the thread message queue for a message and returns immediately | | |
+| 110 | [[en:docs:win16:api:user:POSTMESSAGE]] | | | |
+| 111 | [[en:docs:win16:api:user:SENDMESSAGE]] | | | |
+| 112 | [[en:docs:win16:api:user:WAITMESSAGE]] | Yields control to other threads when a thread has no other messages in its message queue | | |
+| 113 | [[en:docs:win16:api:user:TRANSLATEMESSAGE]] | | | |
+| 114 | [[en:docs:win16:api:user:DISPATCHMESSAGE]] | | | |
+| 115 | [[en:docs:win16:api:user:REPLYMESSAGE]] | | | |
+| 116 | [[en:docs:win16:api:user:POSTAPPMESSAGE]] | | | |
+| 118 | [[en:docs:win16:api:user:REGISTERWINDOWMESSAGE]] | | | |
+| 119 | [[en:docs:win16:api:user:GETMESSAGEPOS]] | | | |
+| 120 | [[en:docs:win16:api:user:GETMESSAGETIME]] | | | |
+| 121 | [[en:docs:win16:api:user:SETWINDOWSHOOK]] | | Done | |
+| 122 | [[en:docs:win16:api:user:CALLWINDOWPROC]] | | | |
+| 123 | [[en:docs:win16:api:user:CALLMSGFILTER]] | | | |
+| 124 | [[en:docs:win16:api:user:UPDATEWINDOW]] | | Done | |
+| 125 | [[en:docs:win16:api:user:INVALIDATERECT]] | | Done | |
+| 126 | [[en:docs:win16:api:user:INVALIDATERGN]] | | Done | |
+| 127 | [[en:docs:win16:api:user:VALIDATERECT]] | | Done | |
+| 128 | [[en:docs:win16:api:user:VALIDATERGN]] | | Done | |
+| 129 | [[en:docs:win16:api:user:GETCLASSWORD]] | | | |
+| 130 | [[en:docs:win16:api:user:SETCLASSWORD]] | | | |
+| 131 | [[en:docs:win16:api:user:GETCLASSLONG]] | | | |
+| 132 | [[en:docs:win16:api:user:SETCLASSLONG]] | | | |
+| 133 | [[en:docs:win16:api:user:GETWINDOWWORD]] | | | |
+| 134 | [[en:docs:win16:api:user:SETWINDOWWORD]] | | | |
+| 135 | [[en:docs:win16:api:user:GETWINDOWLONG]] | | | |
+| 136 | [[en:docs:win16:api:user:SETWINDOWLONG]] | | | |
+| 137 | [[en:docs:win16:api:user:OPENCLIPBOARD]] | | | |
+| 138 | [[en:docs:win16:api:user:CLOSECLIPBOARD]] | | | |
+| 139 | [[en:docs:win16:api:user:EMPTYCLIPBOARD]] | | | |
+| 140 | [[en:docs:win16:api:user:GETCLIPBOARDOWNER]] | | | |
+| 141 | [[en:docs:win16:api:user:SETCLIPBOARDDATA]] | | | |
+| 142 | [[en:docs:win16:api:user:GETCLIPBOARDDATA]] | | | |
+| 143 | [[en:docs:win16:api:user:COUNTCLIPBOARDFORMATS]] | | | |
+| 144 | [[en:docs:win16:api:user:ENUMCLIPBOARDFORMATS]] | | | |
+| 145 | [[en:docs:win16:api:user:REGISTERCLIPBOARDFORMAT]] | | | |
+| 146 | [[en:docs:win16:api:user:GETCLIPBOARDFORMATNAME]] | | | |
+| 147 | [[en:docs:win16:api:user:SETCLIPBOARDVIEWER]] | | | |
+| 148 | [[en:docs:win16:api:user:GETCLIPBOARDVIEWER]] | | | |
+| 149 | [[en:docs:win16:api:user:CHANGECLIPBOARDCHAIN]] | | | |
+| 150 | [[en:docs:win16:api:user:LOADMENU]] | | Done | |
+| 151 | [[en:docs:win16:api:user:CREATEMENU]] | | Done | |
+| 152 | [[en:docs:win16:api:user:DESTROYMENU]] | | Done | |
+| 153 | [[en:docs:win16:api:user:CHANGEMENU]] | | Done | |
+| 154 | [[en:docs:win16:api:user:CHECKMENUITEM]] | | Done | |
+| 155 | [[en:docs:win16:api:user:ENABLEMENUITEM]] | | Done | |
+| 156 | [[en:docs:win16:api:user:GETSYSTEMMENU]] | | Done | |
+| 157 | [[en:docs:win16:api:user:GETMENU]] | | Done | |
+| 158 | [[en:docs:win16:api:user:SETMENU]] | | Done | |
+| 159 | [[en:docs:win16:api:user:GETSUBMENU]] | | Done | |
+| 160 | [[en:docs:win16:api:user:DRAWMENUBAR]] | | Done | |
+| 161 | [[en:docs:win16:api:user:GETMENUSTRING]] | | Done | |
+| 162 | [[en:docs:win16:api:user:HILITEMENUITEM]] | | Done | |
+| 163 | [[en:docs:win16:api:user:CREATECARET]] | | Done | |
+| 164 | [[en:docs:win16:api:user:DESTROYCARET]] | | Done | |
+| 165 | [[en:docs:win16:api:user:SETCARETPOS]] | | Done | |
+| 166 | [[en:docs:win16:api:user:HIDECARET]] | | Done | |
+| 167 | [[en:docs:win16:api:user:SHOWCARET]] | | Done | |
+| 168 | [[en:docs:win16:api:user:SETCARETBLINKTIME]] | | Done | |
+| 169 | [[en:docs:win16:api:user:GETCARETBLINKTIME]] | | Done| |
+| 170 | [[en:docs:win16:api:user:ARRANGEICONICWINDOWS]] | | | |
+| 171 | [[en:docs:win16:api:user:WINHELP]] | | | |
+| 173 | [[en:docs:win16:api:user:LOADCURSOR]] | | | |
+| 174 | [[en:docs:win16:api:user:LOADICON]] | | | |
+| 175 | [[en:docs:win16:api:user:LOADBITMAP]] | | | |
+| 176 | [[en:docs:win16:api:user:LOADSTRING]] | | Done | |
+| 177 | [[en:docs:win16:api:user:LOADACCELERATORS]] | | Done | |
+| 178 | [[en:docs:win16:api:user:TRANSLATEACCELERATOR]] | | | |
+| 179 | [[en:docs:win16:api:user:GETSYSTEMMETRICS]] | | Done | |
+| 180 | [[en:docs:win16:api:user:GETSYSCOLOR]] | | Done | |
+| 181 | [[en:docs:win16:api:user:SETSYSCOLORS]] | | Done | |
+| 182 | [[en:docs:win16:api:user:BEAR182]] | | | |
+| 183 | [[en:docs:win16:api:user:GETCARETPOS]] | | Done | |
+| 184 | [[en:docs:win16:api:user:QUERYSENDMESSAGE]] | | | |
+| 185 | [[en:docs:win16:api:user:GRAYSTRING]] | | Done | |
+| 186 | [[en:docs:win16:api:user:SWAPMOUSEBUTTON]] | | | |
+| 188 | [[en:docs:win16:api:user:SETSYSMODALWINDOW]] | | | |
+| 189 | [[en:docs:win16:api:user:GETSYSMODALWINDOW]] | | | |
+| 190 | [[en:docs:win16:api:user:GETUPDATERECT]] | | | |
+| 191 | [[en:docs:win16:api:user:CHILDWINDOWFROMPOINT]] | | | |
+| 192 | [[en:docs:win16:api:user:INSENDMESSAGE]] | | | |
+| 193 | [[en:docs:win16:api:user:ISCLIPBOARDFORMATAVAILABLE]] | | | |
+| 194 | [[en:docs:win16:api:user:DLGDIRSELECTCOMBOBOX]] | | Done | |
+| 195 | [[en:docs:win16:api:user:DLGDIRLISTCOMBOBOX]] | | | |
+| 196 | [[en:docs:win16:api:user:TABBEDTEXTOUT]] | | | |
+| 197 | [[en:docs:win16:api:user:GETTABBEDTEXTEXTENT]] | | | |
+| 198 | [[en:docs:win16:api:user:CASCADECHILDWINDOWS]] | | | |
+| 199 | [[en:docs:win16:api:user:TILECHILDWINDOWS]] | | | |
+| 200 | [[en:docs:win16:api:user:OPENCOMM]] | | Stub | |
+| 201 | [[en:docs:win16:api:user:SETCOMMSTATE]] | | Stub | |
+| 202 | [[en:docs:win16:api:user:GETCOMMSTATE]] | | Stub | |
+| 203 | [[en:docs:win16:api:user:GETCOMMERROR]] | | Stub | |
+| 204 | [[en:docs:win16:api:user:READCOMM]] | | Stub | |
+| 205 | [[en:docs:win16:api:user:WRITECOMM]] | | Stub | |
+| 206 | [[en:docs:win16:api:user:TRANSMITCOMMCHAR]] | | Stub | |
+| 207 | [[en:docs:win16:api:user:CLOSECOMM]] | | Stub | |
+| 208 | [[en:docs:win16:api:user:SETCOMMEVENTMASK]] | | Stub | |
+| 209 | [[en:docs:win16:api:user:GETCOMMEVENTMASK]] | | Stub | |
+| 210 | [[en:docs:win16:api:user:SETCOMMBREAK]] | | Stub | |
+| 211 | [[en:docs:win16:api:user:CLEARCOMMBREAK]] | | Stub | |
+| 212 | [[en:docs:win16:api:user:UNGETCOMMCHAR]] | | Stub | |
+| 213 | [[en:docs:win16:api:user:BUILDCOMMDCB]] | | Stub | |
+| 214 | [[en:docs:win16:api:user:ESCAPECOMMFUNCTION]] | | Stub | |
+| 215 | [[en:docs:win16:api:user:FLUSHCOMM]] | | Stub | |
+| 216 | [[en:docs:win16:api:user:UserSeeUserDo]] | | Done | |
+| 218 | [[en:docs:win16:api:user:DIALOGBOXINDIRECT]] | | Done | |
+| 219 | [[en:docs:win16:api:user:CREATEDIALOGINDIRECT]] | | Done | |
+| 220 | [[en:docs:win16:api:user:LOADMENUINDIRECT]] | | Done | |
+| 221 | [[en:docs:win16:api:user:SCROLLDC]] | Scrolls a rectangle of bits horizontally and vertically | | |
+| 222 | [[en:docs:win16:api:user:GETKEYBOARDSTATE]] | | | |
+| 223 | [[en:docs:win16:api:user:SETKEYBOARDSTATE]] | | | |
+| 224 | [[en:docs:win16:api:user:GETWINDOWTASK]] | | | |
+| 225 | [[en:docs:win16:api:user:ENUMTASKWINDOWS]] | | | |
+| 226 | [[en:docs:win16:api:user:LOCKINPUT]] | | | |
+| 227 | [[en:docs:win16:api:user:GETNEXTDLGGROUPITEM]] | | | |
+| 228 | [[en:docs:win16:api:user:GETNEXTDLGTABITEM]] | | | |
+| 229 | [[en:docs:win16:api:user:GETTOPWINDOW]] | | | |
+| 230 | [[en:docs:win16:api:user:GETNEXTWINDOW]] | | | |
+| 231 | [[en:docs:win16:api:user:GETSYSTEMDEBUGSTATE]] | | | |
+| 232 | [[en:docs:win16:api:user:SETWINDOWPOS]] | Changes the size, position, and Z order of a child, pop-up, or top-level window | | |
+| 233 | [[en:docs:win16:api:user:SETPARENT]] | | | |
+| 234 | [[en:docs:win16:api:user:UNHOOKWINDOWSHOOK]] | | | |
+| 235 | [[en:docs:win16:api:user:DEFHOOKPROC]] | | Done | |
+| 236 | [[en:docs:win16:api:user:GETCAPTURE]] | | | |
+| 237 | [[en:docs:win16:api:user:GETUPDATERGN]] | | | |
+| 238 | [[en:docs:win16:api:user:EXCLUDEUPDATERGN]] | | | |
+| 239 | [[en:docs:win16:api:user:DIALOGBOXPARAM]] | | | |
+| 240 | [[en:docs:win16:api:user:DIALOGBOXINDIRECTPARAM]] | | | |
+| 241 | [[en:docs:win16:api:user:CREATEDIALOGPARAM]] | | Done | |
+| 242 | [[en:docs:win16:api:user:CREATEDIALOGINDIRECTPARAM]] | | | |
+| 243 | [[en:docs:win16:api:user:GETDIALOGBASEUNITS]] | | | |
+| 244 | [[en:docs:win16:api:user:EQUALRECT]] | | Done | |
+| 245 | [[en:docs:win16:api:user:ENABLECOMMNOTIFICATION]] | | Stub | |
+| 246 | [[en:docs:win16:api:user:EXITWINDOWSEXEC]] | | | |
+| 247 | [[en:docs:win16:api:user:GETCURSOR]] | | | |
+| 248 | [[en:docs:win16:api:user:GETOPENCLIPBOARDWINDOW]] | | | |
+| 249 | [[en:docs:win16:api:user:GETASYNCKEYSTATE]] | | | |
+| 250 | [[en:docs:win16:api:user:GETMENUSTATE]] | | Done | |
+| 251 | [[en:docs:win16:api:user:SENDDRIVERMESSAGE]] | | | |
+| 252 | [[en:docs:win16:api:user:OPENDRIVER]] | | | |
+| 253 | [[en:docs:win16:api:user:CLOSEDRIVER]] | | | |
+| 254 | [[en:docs:win16:api:user:GETDRIVERMODULEHANDLE]] | | | |
+| 255 | [[en:docs:win16:api:user:DEFDRIVERPROC]] | | | |
+| 256 | [[en:docs:win16:api:user:GETDRIVERINFO]] | | | |
+| 257 | [[en:docs:win16:api:user:GETNEXTDRIVER]] | | | |
+| 258 | [[en:docs:win16:api:user:MAPWINDOWPOINTS]] | Converts (maps) a set of points from a coordinate space relative to one window to a coordinate space relative to another window | | |
+| 259 | [[en:docs:win16:api:user:BEGINDEFERWINDOWPOS]] | Allocates memory for a multiple-window-position structure and returns the handle to the structure | | |
+| 260 | [[en:docs:win16:api:user:DEFERWINDOWPOS]] | Updates the specified multiple-window-position structure for the specified window | | |
+| 261 | [[en:docs:win16:api:user:ENDDEFERWINDOWPOS]] | Simultaneously updates the position and size of one or more windows in a single screen-refreshing cycle | | |
+| 262 | [[en:docs:win16:api:user:GETWINDOW]] | Retrieves a handle to a window that has the specified relationship to the specified window | | |
+| 263 | [[en:docs:win16:api:user:GETMENUITEMCOUNT]] | | Done | |
+| 264 | [[en:docs:win16:api:user:GETMENUITEMID]] | | Done | |
+| 265 | [[en:docs:win16:api:user:SHOWOWNEDPOPUPS]] | Shows or hides all pop-up windows owned by the specified window | | |
+| 266 | [[en:docs:win16:api:user:SETMESSAGEQUEUE]] | | | |
+| 267 | [[en:docs:win16:api:user:SHOWSCROLLBAR]] | Shows or hides the specified scroll bar | | |
+| 268 | [[en:docs:win16:api:user:GLOBALADDATOM]] | | Done | |
+| 269 | [[en:docs:win16:api:user:GLOBALDELETEATOM]] | | Done | |
+| 270 | [[en:docs:win16:api:user:GLOBALFINDATOM]] | | Done | |
+| 271 | [[en:docs:win16:api:user:GLOBALGETATOMNAME]] | | Done | |
+| 272 | [[en:docs:win16:api:user:ISZOOMED]] | Determines whether a window is maximized | | |
+| 277 | [[en:docs:win16:api:user:GETDLGCTRLID]] | | | |
+| 278 | [[en:docs:win16:api:user:GETDESKTOPHWND]] | | | |
+| 279 | [[en:docs:win16:api:user:OldSetDeskPattern]] | | Done | |
+| 282 | [[en:docs:win16:api:user:SELECTPALETTE]] | | | |
+| 283 | [[en:docs:win16:api:user:REALIZEPALETTE]] | | | |
+| 284 | [[en:docs:win16:api:user:GETFREESYSTEMRESOURCES]] | | Done | |
+| 286 | [[en:docs:win16:api:user:GETDESKTOPWINDOW]] | | | |
+| 287 | [[en:docs:win16:api:user:GETLASTACTIVEPOPUP]] | | | |
+| 288 | [[en:docs:win16:api:user:GETMESSAGEEXTRAINFO]] | | | |
+| 290 | [[en:docs:win16:api:user:REDRAWWINDOW]] | Updates the specified rectangle or region in a window's client area | | |
+| 291 | [[en:docs:win16:api:user:SETWINDOWSHOOKEX]] | | | |
+| 292 | [[en:docs:win16:api:user:UNHOOKWINDOWSHOOKEX]] | | | |
+| 293 | [[en:docs:win16:api:user:CALLNEXTHOOKEX]] | | | |
+| 294 | [[en:docs:win16:api:user:LOCKWINDOWUPDATE]] | | | |
+| 299 | [[en:docs:win16:api:user:mouse_event]] | | Done | |
+| 308 | [[en:docs:win16:api:user:DEFDLGPROC]] | | | |
+| 309 | [[en:docs:win16:api:user:GETCLIPCURSOR]] | | | |
+| 319 | [[en:docs:win16:api:user:SCROLLWINDOWEX]] | | | |
+| 324 | [[en:docs:win16:api:user:FillWindow]] | | Done | |
+| 325 | [[en:docs:win16:api:user:PaintRect]] | | Done | |
+| 326 | [[en:docs:win16:api:user:GetControlBrush]] | | Done | |
+| 331 | [[en:docs:win16:api:user:ENABLEHARDWAREINPUT]] | | | |
+| 333 | [[en:docs:win16:api:user:IsUserIdle]] | | Done | |
+| 334 | [[en:docs:win16:api:user:GETQUEUESTATUS]] | | | |
+| 335 | [[en:docs:win16:api:user:GETINPUTSTATE]] | | | |
+| 337 | [[en:docs:win16:api:user:GetMouseEventProc]] | | Done | |
+| 358 | [[en:docs:win16:api:user:ISMENU]] | | | |
+| 359 | [[en:docs:win16:api:user:GETDCEX]] | | | |
+| 368 | [[en:docs:win16:api:user:COPYICON]] | | Done | |
+| 369 | [[en:docs:win16:api:user:COPYCURSOR]] | | Done | |
+| 370 | [[en:docs:win16:api:user:GETWINDOWPLACEMENT]] | | | |
+| 371 | [[en:docs:win16:api:user:SETWINDOWPLACEMENT]] | | | |
+| 373 | [[en:docs:win16:api:user:SUBTRACTRECT]] | | Done | |
+| 397 | [[en:docs:win16:api:user:REGISTERCLASSEX]] | | Done | |
+| 398 | [[en:docs:win16:api:user:GetClassInfoEx]] | | Done | |
+| 402 | [[en:docs:win16:api:user:GETPRIORITYCLIPBOARDFORMAT]] | | | |
+| 403 | [[en:docs:win16:api:user:UNREGISTERCLASS]] | | Done | |
+| 404 | [[en:docs:win16:api:user:GETCLASSINFO]] | | Done | |
+| 406 | [[en:docs:win16:api:user:CREATECURSOR]] | | Done | |
+| 407 | [[en:docs:win16:api:user:CREATEICON]] | | Done | |
+| 408 | [[en:docs:win16:api:user:CreateCursorIconIndirect]] | | Done | |
+| 410 | [[en:docs:win16:api:user:INSERTMENU]] | | Done | |
+| 411 | [[en:docs:win16:api:user:APPENDMENU]] | | Done | |
+| 412 | [[en:docs:win16:api:user:REMOVEMENU]] | | Done | |
+| 413 | [[en:docs:win16:api:user:DELETEMENU]] | | Done | |
+| 414 | [[en:docs:win16:api:user:MODIFYMENU]] | | Done | |
+| 415 | [[en:docs:win16:api:user:CREATEPOPUPMENU]] | | Done | |
+| 416 | [[en:docs:win16:api:user:TRACKPOPUPMENU]] | | Done | |
+| 417 | [[en:docs:win16:api:user:GETMENUCHECKMARKDIMENSIONS]] | | Done | |
+| 418 | [[en:docs:win16:api:user:SETMENUITEMBITMAPS]] | | Done | |
+| 420 | [[en:docs:win16:api:user:_WSPRINTF]] | | Done | |
+| 421 | [[en:docs:win16:api:user:WVSPRINTF]] | | Done | |
+| 422 | [[en:docs:win16:api:user:DLGDIRSELECTEX]] | | | |
+| 423 | [[en:docs:win16:api:user:DLGDIRSELECTCOMBOBOXEX]] | | | |
+| 430 | [[en:docs:win16:api:user:LSTRCMP]] | | Done | |
+| 431 | [[en:docs:win16:api:user:ANSIUPPER]] | | Done | |
+| 432 | [[en:docs:win16:api:user:ANSILOWER]] | | Done | |
+| 433 | [[en:docs:win16:api:user:ISCHARALPHA]] | | Done | |
+| 434 | [[en:docs:win16:api:user:ISCHARALPHANUMERIC]] | | Done | |
+| 435 | [[en:docs:win16:api:user:ISCHARUPPER]] | | Done | |
+| 436 | [[en:docs:win16:api:user:ISCHARLOWER]] | | Done | |
+| 437 | [[en:docs:win16:api:user:ANSIUPPERBUFF]] | | Done | |
+| 438 | [[en:docs:win16:api:user:ANSILOWERBUFF]] | | Done | |
+| 445 | [[en:docs:win16:api:user:DEFFRAMEPROC]] | | | |
+| 447 | [[en:docs:win16:api:user:DEFMDICHILDPROC]] | | | |
+| 451 | [[en:docs:win16:api:user:TRANSLATEMDISYSACCEL]] | | | |
+| 452 | [[en:docs:win16:api:user:CREATEWINDOWEX]] | | | |
+| 454 | [[en:docs:win16:api:user:ADJUSTWINDOWRECTEX]] | | | |
+| 457 | [[en:docs:win16:api:user:DESTROYICON]] | | Done | |
+| 458 | [[en:docs:win16:api:user:DESTROYCURSOR]] | | Done | |
+| 462 | [[en:docs:win16:api:user:CALCCHILDSCROLL]] | | | |
+| 466 | [[en:docs:win16:api:user:DRAWFOCUSRECT]] | | Done | |
+| 471 | [[en:docs:win16:api:user:LSTRCMPI]] | | Done | |
+| 472 | [[en:docs:win16:api:user:ANSINEXT]] | | Done | |
+| 473 | [[en:docs:win16:api:user:ANSIPREV]] | | Done | |
+| 482 | [[en:docs:win16:api:user:ENABLESCROLLBAR]] | | | |
+| 483 | [[en:docs:win16:api:user:SYSTEMPARAMETERSINFO]] | | Done | |
+| 499 | [[en:docs:win16:api:user:WNETERRORTEXT]] | | Stub | |
+| 501 | [[en:docs:win16:api:user:WNETOPENJOB]] | | Stub | |
+| 502 | [[en:docs:win16:api:user:WNETCLOSEJOB]] | | Stub | |
+| 503 | [[en:docs:win16:api:user:WNETABORTJOB]] | | Stub | |
+| 504 | [[en:docs:win16:api:user:WNETHOLDJOB]] | | Stub | |
+| 505 | [[en:docs:win16:api:user:WNETRELEASEJOB]] | | Stub  | |
+| 506 | [[en:docs:win16:api:user:WNETCANCELJOB]] | | Stub | |
+| 507 | [[en:docs:win16:api:user:WNETSETJOBCOPIES]] | | Stub | |
+| 508 | [[en:docs:win16:api:user:WNETWATCHQUEUE]] | | Stub | |
+| 509 | [[en:docs:win16:api:user:WNETUNWATCHQUEUE]] | | Stub | |
+| 510 | [[en:docs:win16:api:user:WNETLOCKQUEUEDATA]] | | Stub | |
+| 511 | [[en:docs:win16:api:user:WNETUNLOCKQUEUEDATA]] | | Stub | |
+| 512 | [[en:docs:win16:api:user:WNETGETCONNECTION]] | | | |
+| 513 | [[en:docs:win16:api:user:WNETGETCAPS]] | | Done | |
+| 514 | [[en:docs:win16:api:user:WNETDEVICEMODE]] | | Stub | |
+| 515 | [[en:docs:win16:api:user:WNETBROWSEDIALOG]] | | Stub | |
+| 516 | [[en:docs:win16:api:user:WNETGETUSER]] | | | |
+| 517 | [[en:docs:win16:api:user:WNETADDCONNECTION]] | | Stub | |
+| 518 | [[en:docs:win16:api:user:WNETCANCELCONNECTION]] | | Stub | |
+| 519 | [[en:docs:win16:api:user:WNETGETERROR]] | | Stub | |
+| 520 | [[en:docs:win16:api:user:WNETGETERRORTEXT]] | | Stub | |
+| 521 | [[en:docs:win16:api:user:WNETENABLE]] | | | |
+| 522 | [[en:docs:win16:api:user:WNETDISABLE]] | | | |
+| 523 | [[en:docs:win16:api:user:WNETRESTORECONNECTION]] | | Stub | |
+| 524 | [[en:docs:win16:api:user:WNETWRITEJOB]] | | Stub | |
+| 525 | [[en:docs:win16:api:user:WNETCONNECTDIALOG]] | | Stub | |
+| 526 | [[en:docs:win16:api:user:WNETDISCONNECTDIALOG]] | | Stub | |
+| 527 | [[en:docs:win16:api:user:WNETCONNECTIONDIALOG]] | | Stub | |
+| 528 | [[en:docs:win16:api:user:WNETVIEWQUEUEDIALOG]] | | Stub | |
+| 529 | [[en:docs:win16:api:user:WNETPROPERTYDIALOG]] | | Stub | |
+| 530 | [[en:docs:win16:api:user:WNETGETDIRECTORYTYPE]] | | | |
+| 531 | [[en:docs:win16:api:user:WNETDIRECTORYNOTIFY]] | | Stub | |
+| 532 | [[en:docs:win16:api:user:WNETGETPROPERTYTEXT]] | | Stub | |
