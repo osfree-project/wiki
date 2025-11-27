@@ -1,7 +1,6 @@
 {{page>en:templates:win16api}}
 
 ^ Ordinal ^ Name ^ Description ^ Status ^ Version ^
-| 0 | USER | | | |
 | 1 | [[en:docs:win16:api:user:MESSAGEBOX]] | Displays a modal dialog box that contains a system icon, a set of buttons, and a brief application-specific message | | |
 | 2 | [[en:docs:win16:api:user:OLDEXITWINDOWS]] | | Done | |
 | 5 | [[en:docs:win16:api:user:INITAPP]] | Initializes an application instance | | |
