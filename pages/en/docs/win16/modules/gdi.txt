@@ -1,219 +1,216 @@
-
-^ Ordinal ^ Name ^ Description ^ Status ^^^ Version ^
-^   :::   ^  ::: ^  :::        ^ Real ^ Std ^ Enh ^ ::: ^
-| 0 | GDI | Graphics Device Interface | | | |
-| 1 | [[en:docs:win16:api:gdi:|SETBKCOLOR]] | Sets the current background color | | | |
-| 2 | [[en:docs:win16:api:gdi:|SETBKMODE]] | Sets the background mix mode | | | |
-| 3 | [[en:docs:win16:api:gdi:|SETMAPMODE]] | Sets the mapping mode | | | |
-| 4 | [[en:docs:win16:api:gdi:|SETROP2]] | Sets the foreground mix mode | | | |
-| 6 | [[en:docs:win16:api:gdi:|SETPOLYFILLMODE]] | Sets the polygon filling mode | | | |
-| 7 | [[en:docs:win16:api:gdi:|SETSTRETCHBLTMODE]] | Sets the bitmap stretching mode | | | |
-| 8 | [[en:docs:win16:api:gdi:|SETTEXTCHARACTEREXTRA]] | Sets intercharacter spacing | | | |
-| 9 | [[en:docs:win16:api:gdi:|SETTEXTCOLOR]] | Sets the text color | | | |
-| 10 | [[en:docs:win16:api:gdi:|SETTEXTJUSTIFICATION]] | Sets text justification parameters | | | |
-| 11 | [[en:docs:win16:api:gdi:|SETWINDOWORG]] | Sets the window origin | | | |
-| 12 | [[en:docs:win16:api:gdi:|SETWINDOWEXT]] | Sets the window extents | | | |
-| 13 | [[en:docs:win16:api:gdi:|SETVIEWPORTORG]] | Sets the viewport origin | | | |
-| 14 | [[en:docs:win16:api:gdi:|SETVIEWPORTEXT]] | Sets the viewport extents | | | |
-| 15 | [[en:docs:win16:api:gdi:|OFFSETWINDOWORG]] | Moves the window origin | | | |
-| 16 | [[en:docs:win16:api:gdi:|SCALEWINDOWEXT]] | Scales the window extents | | | |
-| 17 | [[en:docs:win16:api:gdi:|OFFSETVIEWPORTORG]] | Moves the viewport origin | | | |
-| 18 | [[en:docs:win16:api:gdi:|SCALEVIEWPORTEXT]] | Scales the viewport extents | | | |
-| 19 | [[en:docs:win16:api:gdi:|LINETO]] | Draws a line from current position to specified point | | | |
-| 20 | [[en:docs:win16:api:gdi:|MOVETO]] | Moves the current position | | | |
-| 21 | [[en:docs:win16:api:gdi:|EXCLUDECLIPRECT]] | Excludes a rectangle from the clipping region | | | |
-| 22 | [[en:docs:win16:api:gdi:|INTERSECTCLIPRECT]] | Intersects a rectangle with the clipping region | | | |
-| 23 | [[en:docs:win16:api:gdi:|ARC]] | Draws an elliptical arc | | | |
-| 24 | [[en:docs:win16:api:gdi:|ELLIPSE]] | Draws an ellipse | | | |
-| 25 | [[en:docs:win16:api:gdi:|FLOODFILL]] | Fills an area with the current brush | | | |
-| 26 | [[en:docs:win16:api:gdi:|PIE]] | Draws a pie-shaped wedge | | | |
-| 27 | [[en:docs:win16:api:gdi:|RECTANGLE]] | Draws a rectangle | | | |
-| 28 | [[en:docs:win16:api:gdi:|ROUNDRECT]] | Draws a rectangle with rounded corners | | | |
-| 29 | [[en:docs:win16:api:gdi:|PATBLT]] | Performs a pattern bit-block transfer | | | |
-| 30 | [[en:docs:win16:api:gdi:|SAVEDC]] | Saves the device context state | | | |
-| 31 | [[en:docs:win16:api:gdi:|SETPIXEL]] | Sets a pixel to the specified color | | | |
-| 32 | [[en:docs:win16:api:gdi:|OFFSETCLIPRGN]] | Moves the clipping region | | | |
-| 33 | [[en:docs:win16:api:gdi:|TEXTOUT]] | Outputs a character string | | | |
-| 34 | [[en:docs:win16:api:gdi:|BITBLT]] | Performs a bit-block transfer | | | |
-| 35 | [[en:docs:win16:api:gdi:|STRETCHBLT]] | Performs a stretched bit-block transfer | | | |
-| 36 | [[en:docs:win16:api:gdi:|POLYGON]] | Draws a polygon | | | |
-| 37 | [[en:docs:win16:api:gdi:|POLYLINE]] | Draws a series of line segments | | | |
-| 38 | [[en:docs:win16:api:gdi:|ESCAPE]] | Accesses device-specific functions | | | |
-| 39 | [[en:docs:win16:api:gdi:|RESTOREDC]] | Restores the device context state | | | |
-| 40 | [[en:docs:win16:api:gdi:|FILLRGN]] | Fills a region with a brush | | | |
-| 41 | [[en:docs:win16:api:gdi:|FRAMERGN]] | Draws a border around a region | | | |
-| 42 | [[en:docs:win16:api:gdi:|INVERTRGN]] | Inverts the colors in a region | | | |
-| 43 | [[en:docs:win16:api:gdi:|PAINTRGN]] | Paints a region with a brush | | | |
-| 44 | [[en:docs:win16:api:gdi:|SELECTCLIPRGN]] | Selects a region as the clipping region | | | |
-| 45 | [[en:docs:win16:api:gdi:|SELECTOBJECT]] | Selects an object into the device context | | | |
-| 47 | [[en:docs:win16:api:gdi:|COMBINERGN]] | Combines two regions | | | |
-| 48 | [[en:docs:win16:api:gdi:|CREATEBITMAP]] | Creates a bitmap | | | |
-| 49 | [[en:docs:win16:api:gdi:|CREATEBITMAPINDIRECT]] | Creates a bitmap from a structure | | | |
-| 50 | [[en:docs:win16:api:gdi:|CREATEBRUSHINDIRECT]] | Creates a brush from a structure | | | |
-| 51 | [[en:docs:win16:api:gdi:|CREATECOMPATIBLEBITMAP]] | Creates a compatible bitmap | | | |
-| 52 | [[en:docs:win16:api:gdi:|CREATECOMPATIBLEDC]] | Creates a memory device context | | | |
-| 54 | [[en:docs:win16:api:gdi:|CREATEDC]] | Creates a device context | | | |
-| 55 | [[en:docs:win16:api:gdi:|CREATEELLIPTICRGN]] | Creates an elliptical region | | | |
-| 56 | [[en:docs:win16:api:gdi:|CREATEELLIPTICRGNINDIRECT]] | Creates an elliptical region from a rectangle | | | |
-| 57 | [[en:docs:win16:api:gdi:|CREATEFONT]] | Creates a logical font | | | |
-| 58 | [[en:docs:win16:api:gdi:|CREATEFONTINDIRECT]] | Creates a font from a structure | | | |
-| 59 | [[en:docs:win16:api:gdi:|CREATEHATCHBRUSH]] | Creates a hatched brush | | | |
-| 60 | [[en:docs:win16:api:gdi:|CREATEPATTERNBRUSH]] | Creates a pattern brush | | | |
-| 61 | [[en:docs:win16:api:gdi:|CREATEPEN]] | Creates a logical pen | | | |
-| 62 | [[en:docs:win16:api:gdi:|CREATEPENINDIRECT]] | Creates a pen from a structure | | | |
-| 63 | [[en:docs:win16:api:gdi:|CREATEPOLYGONRGN]] | Creates a polygonal region | | | |
-| 64 | [[en:docs:win16:api:gdi:|CREATERECTRGN]] | Creates a rectangular region | | | |
-| 65 | [[en:docs:win16:api:gdi:|CREATERECTRGNINDIRECT]] | Creates a rectangular region from a rectangle | | | |
-| 66 | [[en:docs:win16:api:gdi:|CREATESOLIDBRUSH]] | Creates a solid brush | | | |
-| 67 | [[en:docs:win16:api:gdi:|DPTOLP]] | Converts device points to logical points | | | |
-| 68 | [[en:docs:win16:api:gdi:|DELETEDC]] | Deletes a device context | | | |
-| 69 | [[en:docs:win16:api:gdi:|DELETEOBJECT]] | Deletes a GDI object | | | |
-| 70 | [[en:docs:win16:api:gdi:|ENUMFONTS]] | Enumerates available fonts | | | |
-| 71 | [[en:docs:win16:api:gdi:|ENUMOBJECTS]] | Enumerates GDI objects | | | |
-| 72 | [[en:docs:win16:api:gdi:|EQUALRGN]] | Checks if two regions are equal | | | |
-| 74 | [[en:docs:win16:api:gdi:|GETBITMAPBITS]] | Retrieves bitmap bits | | | |
-| 75 | [[en:docs:win16:api:gdi:|GETBKCOLOR]] | Retrieves the background color | | | |
-| 76 | [[en:docs:win16:api:gdi:|GETBKMODE]] | Retrieves the background mix mode | | | |
-| 77 | [[en:docs:win16:api:gdi:|GETCLIPBOX]] | Retrieves the clipping bounding box | | | |
-| 78 | [[en:docs:win16:api:gdi:|GETCURRENTPOSITION]] | Retrieves the current position | | | |
-| 79 | [[en:docs:win16:api:gdi:|GETDCORG]] | Retrieves the device context origin | | | |
-| 80 | [[en:docs:win16:api:gdi:|GETDEVICECAPS]] | Retrieves device capabilities | | | |
-| 81 | [[en:docs:win16:api:gdi:|GETMAPMODE]] | Retrieves the mapping mode | | | |
-| 82 | [[en:docs:win16:api:gdi:|GETOBJECT]] | Retrieves information about a GDI object | | | |
-| 83 | [[en:docs:win16:api:gdi:|GETPIXEL]] | Retrieves the color of a pixel | | | |
-| 84 | [[en:docs:win16:api:gdi:|GETPOLYFILLMODE]] | Retrieves the polygon filling mode | | | |
-| 85 | [[en:docs:win16:api:gdi:|GETROP2]] | Retrieves the foreground mix mode | | | |
-| 86 | [[en:docs:win16:api:gdi:|GETRELABS]] | Converts relative coordinates to absolute | | | |
-| 87 | [[en:docs:win16:api:gdi:|GETSTOCKOBJECT]] | Retrieves a stock GDI object | | | |
-| 88 | [[en:docs:win16:api:gdi:|GETSTRETCHBLTMODE]] | Retrieves the bitmap stretching mode | | | |
-| 89 | [[en:docs:win16:api:gdi:|GETTEXTCHARACTEREXTRA]] | Retrieves intercharacter spacing | | | |
-| 90 | [[en:docs:win16:api:gdi:|GETTEXTCOLOR]] | Retrieves the text color | | | |
-| 91 | [[en:docs:win16:api:gdi:|GETTEXTEXTENT]] | Computes text dimensions | | | |
-| 92 | [[en:docs:win16:api:gdi:|GETTEXTFACE]] | Retrieves the typeface name | | | |
-| 93 | [[en:docs:win16:api:gdi:|GETTEXTMETRICS]] | Retrieves font metrics | | | |
-| 94 | [[en:docs:win16:api:gdi:|GETVIEWPORTEXT]] | Retrieves the viewport extents | | | |
-| 95 | [[en:docs:win16:api:gdi:|GETVIEWPORTORG]] | Retrieves the viewport origin | | | |
-| 96 | [[en:docs:win16:api:gdi:|GETWINDOWEXT]] | Retrieves the window extents | | | |
-| 97 | [[en:docs:win16:api:gdi:|GETWINDOWORG]] | Retrieves the window origin | | | |
-| 99 | [[en:docs:win16:api:gdi:|LPTODP]] | Converts logical points to device points | | | |
-| 100 | [[en:docs:win16:api:gdi:|LINEDDA]] | Line drawing with callback function | | | |
-| 101 | [[en:docs:win16:api:gdi:|OFFSETRGN]] | Moves a region | | | |
-| 103 | [[en:docs:win16:api:gdi:|PTVISIBLE]] | Checks if a point is visible | | | |
-| 104 | [[en:docs:win16:api:gdi:|RECTVISIBLE]] | Checks if a rectangle is visible | | | |
-| 106 | [[en:docs:win16:api:gdi:|SETBITMAPBITS]] | Sets bitmap bits | | | |
-| 119 | [[en:docs:win16:api:gdi:|ADDFONTRESOURCE]] | Adds a font resource | | | |
-| 123 | [[en:docs:win16:api:gdi:|PLAYMETAFILE]] | Plays a metafile | | | |
-| 124 | [[en:docs:win16:api:gdi:|GETMETAFILE]] | Retrieves a metafile | | | |
-| 125 | [[en:docs:win16:api:gdi:|CREATEMETAFILE]] | Creates a metafile | | | |
-| 126 | [[en:docs:win16:api:gdi:|CLOSEMETAFILE]] | Closes a metafile | | | |
-| 127 | [[en:docs:win16:api:gdi:|DELETEMETAFILE]] | Deletes a metafile | | | |
-| 128 | [[en:docs:win16:api:gdi:|MULDIV]] | Performs multiplication and division | | | |
-| 132 | [[en:docs:win16:api:gdi:|SETENVIRONMENT]] | Sets printer environment | | | |
-| 133 | [[en:docs:win16:api:gdi:|GETENVIRONMENT]] | Retrieves printer environment | | | |
-| 134 | [[en:docs:win16:api:gdi:|GETRGNBOX]] | Retrieves region bounding box | | | |
-| 136 | [[en:docs:win16:api:gdi:|REMOVEFONTRESOURCE]] | Removes a font resource | | | |
-| 148 | [[en:docs:win16:api:gdi:|SETBRUSHORG]] | Sets brush origin | | | |
-| 149 | [[en:docs:win16:api:gdi:|GETBRUSHORG]] | Retrieves brush origin | | | |
-| 150 | [[en:docs:win16:api:gdi:|UNREALIZEOBJECT]] | Unrealizes a GDI object | | | |
-| 151 | [[en:docs:win16:api:gdi:|COPYMETAFILE]] | Copies a metafile | | | |
-| 153 | [[en:docs:win16:api:gdi:|CREATEIC]] | Creates an information context | | | |
-| 154 | [[en:docs:win16:api:gdi:|GETNEARESTCOLOR]] | Retrieves nearest available color | | | |
-| 155 | [[en:docs:win16:api:gdi:|QUERYABORT]] | Queries print job abort status | | | |
-| 156 | [[en:docs:win16:api:gdi:|CREATEDISCARDABLEBITMAP]] | Creates a discardable bitmap | | | |
-| 159 | [[en:docs:win16:api:gdi:|GETMETAFILEBITS]] | Retrieves metafile bits | | | |
-| 160 | [[en:docs:win16:api:gdi:|SETMETAFILEBITS]] | Sets metafile bits | | | |
-| 161 | [[en:docs:win16:api:gdi:|PTINREGION]] | Checks if point is in region | | | |
-| 162 | [[en:docs:win16:api:gdi:|GETBITMAPDIMENSION]] | Retrieves bitmap dimensions | | | |
-| 163 | [[en:docs:win16:api:gdi:|SETBITMAPDIMENSION]] | Sets bitmap dimensions | | | |
-| 172 | [[en:docs:win16:api:gdi:|SETRECTRGN]] | Sets a rectangular region | | | |
-| 175 | [[en:docs:win16:api:gdi:|ENUMMETAFILE]] | Enumerates metafile records | | | |
-| 176 | [[en:docs:win16:api:gdi:|PLAYMETAFILERECORD]] | Plays a metafile record | | | |
-| 181 | [[en:docs:win16:api:gdi:|RECTINREGION]] | Checks if rectangle is in region | | | |
-| 193 | [[en:docs:win16:api:gdi:|SETBOUNDSRECT]] | Sets bounding rectangle | | | |
-| 194 | [[en:docs:win16:api:gdi:|GETBOUNDSRECT]] | Retrieves bounding rectangle | | | |
-| 196 | [[en:docs:win16:api:gdi:|SETMETAFILEBITSBETTER]] | Sets metafile bits with improved method | | | |
-| 201 | [[en:docs:win16:api:gdi:|DMBITBLT]] | Device mode bit-block transfer | | | |
-| 202 | [[en:docs:win16:api:gdi:|DMCOLORINFO]] | Device mode color information | | | |
-| 208 | [[en:docs:win16:api:gdi:|DMOUTPUT]] | Device mode output | | | |
-| 209 | [[en:docs:win16:api:gdi:|DMPIXEL]] | Device mode pixel operation | | | |
-| 210 | [[en:docs:win16:api:gdi:|DMREALIZEOBJECT]] | Device mode object realization | | | |
-| 211 | [[en:docs:win16:api:gdi:|DMSTRBLT]] | Device mode stretch block transfer | | | |
-| 212 | [[en:docs:win16:api:gdi:|DMSCANLR]] | Device mode scanline operation | | | |
-| 240 | [[en:docs:win16:api:gdi:|OPENJOB]] | Opens print job | | | |
-| 241 | [[en:docs:win16:api:gdi:|WRITESPOOL]] | Writes to spooler | | | |
-| 243 | [[en:docs:win16:api:gdi:|CLOSEJOB]] | Closes print job | | | |
-| 244 | [[en:docs:win16:api:gdi:|DELETEJOB]] | Deletes print job | | | |
-| 246 | [[en:docs:win16:api:gdi:|STARTSPOOLPAGE]] | Starts spooler page | | | |
-| 247 | [[en:docs:win16:api:gdi:|ENDSPOOLPAGE]] | Ends spooler page | | | |
-| 254 | [[en:docs:win16:api:gdi:|SPOOLFILE]] | Spools file | | | |
-| 300 | [[en:docs:win16:api:gdi:|ENGINEENUMERATEFONT]] | Engine font enumeration | | | |
-| 301 | [[en:docs:win16:api:gdi:|ENGINEDELETEFONT]] | Engine font deletion | | | |
-| 302 | [[en:docs:win16:api:gdi:|ENGINEREALIZEFONT]] | Engine font realization | | | |
-| 303 | [[en:docs:win16:api:gdi:|ENGINEGETCHARWIDTH]] | Engine character width retrieval | | | |
-| 304 | [[en:docs:win16:api:gdi:|ENGINESETFONTCONTEXT]] | Engine font context setting | | | |
-| 305 | [[en:docs:win16:api:gdi:|ENGINEGETGLYPHBMP]] | Engine glyph bitmap retrieval | | | |
-| 307 | [[en:docs:win16:api:gdi:|GETCHARABCWIDTHS]] | Retrieves character ABC widths | | | |
-| 308 | [[en:docs:win16:api:gdi:|GETOUTLINETEXTMETRICS]] | Retrieves outline text metrics | | | |
-| 309 | [[en:docs:win16:api:gdi:|GETGLYPHOUTLINE]] | Retrieves glyph outline | | | |
-| 310 | [[en:docs:win16:api:gdi:|CREATESCALABLEFONTRESOURCE]] | Creates scalable font resource | | | |
-| 311 | [[en:docs:win16:api:gdi:|GETFONTDATA]] | Retrieves font data | | | |
-| 313 | [[en:docs:win16:api:gdi:|GETRASTERIZERCAPS]] | Retrieves rasterizer capabilities | | | |
-| 330 | [[en:docs:win16:api:gdi:|ENUMFONTFAMILIES]] | Enumerates font families | | | |
-| 332 | [[en:docs:win16:api:gdi:|GETKERNINGPAIRS]] | Retrieves kerning pairs | | | |
-| 345 | [[en:docs:win16:api:gdi:|GETTEXTALIGN]] | Retrieves text alignment | | | |
-| 346 | [[en:docs:win16:api:gdi:|SETTEXTALIGN]] | Sets text alignment | | | |
-| 348 | [[en:docs:win16:api:gdi:|CHORD]] | Draws chord | | | |
-| 349 | [[en:docs:win16:api:gdi:|SETMAPPERFLAGS]] | Sets font mapper flags | | | |
-| 350 | [[en:docs:win16:api:gdi:|GETCHARWIDTH]] | Retrieves character widths | | | |
-| 351 | [[en:docs:win16:api:gdi:|EXTTEXTOUT]] | Extended text output | | | |
-| 353 | [[en:docs:win16:api:gdi:|GETASPECTRATIOFILTER]] | Retrieves aspect ratio filter | | | |
-| 360 | [[en:docs:win16:api:gdi:|CREATEPALETTE]] | Creates palette | | | |
-| 363 | [[en:docs:win16:api:gdi:|GETPALETTEENTRIES]] | Retrieves palette entries | | | |
-| 364 | [[en:docs:win16:api:gdi:|SETPALETTEENTRIES]] | Sets palette entries | | | |
-| 366 | [[en:docs:win16:api:gdi:|UPDATECOLORS]] | Updates colors | | | |
-| 367 | [[en:docs:win16:api:gdi:|ANIMATEPALETTE]] | Animates palette | | | |
-| 368 | [[en:docs:win16:api:gdi:|RESIZEPALETTE]] | Resizes palette | | | |
-| 370 | [[en:docs:win16:api:gdi:|GETNEARESTPALETTEINDEX]] | Retrieves nearest palette index | | | |
-| 372 | [[en:docs:win16:api:gdi:|EXTFLOODFILL]] | Extended flood fill | | | |
-| 373 | [[en:docs:win16:api:gdi:|SETSYSTEMPALETTEUSE]] | Sets system palette use | | | |
-| 374 | [[en:docs:win16:api:gdi:|GETSYSTEMPALETTEUSE]] | Retrieves system palette use | | | |
-| 375 | [[en:docs:win16:api:gdi:|GETSYSTEMPALETTEENTRIES]] | Retrieves system palette entries | | | |
-| 376 | [[en:docs:win16:api:gdi:|RESETDC]] | Resets device context | | | |
-| 377 | [[en:docs:win16:api:gdi:|STARTDOC]] | Starts print document | | | |
-| 378 | [[en:docs:win16:api:gdi:|ENDDOC]] | Ends print document | | | |
-| 379 | [[en:docs:win16:api:gdi:|STARTPAGE]] | Starts print page | | | |
-| 380 | [[en:docs:win16:api:gdi:|ENDPAGE]] | Ends print page | | | |
-| 381 | [[en:docs:win16:api:gdi:|SETABORTPROC]] | Sets abort procedure | | | |
-| 382 | [[en:docs:win16:api:gdi:|ABORTDOC]] | Aborts print document | | | |
-| 400 | [[en:docs:win16:api:gdi:|FASTWINDOWFRAME]] | Fast window frame drawing | | | |
-| 410 | [[en:docs:win16:api:gdi:|ISVALIDMETAFILE]] | Checks metafile validity | | | |
-| 439 | [[en:docs:win16:api:gdi:|STRETCHDIBITS]] | Stretches DIB bits | | | |
-| 440 | [[en:docs:win16:api:gdi:|SETDIBITS]] | Sets DIB bits | | | |
-| 441 | [[en:docs:win16:api:gdi:|GETDIBITS]] | Retrieves DIB bits | | | |
-| 442 | [[en:docs:win16:api:gdi:|CREATEDIBITMAP]] | Creates DIB bitmap | | | |
-| 443 | [[en:docs:win16:api:gdi:|SETDIBITSTODEVICE]] | Sets DIB bits to device | | | |
-| 444 | [[en:docs:win16:api:gdi:|CREATEROUNDRECTRGN]] | Creates rounded rectangle region | | | |
-| 445 | [[en:docs:win16:api:gdi:|CREATEDIBPATTERNBRUSH]] | Creates DIB pattern brush | | | |
-| 450 | [[en:docs:win16:api:gdi:|POLYPOLYGON]] | Draws multiple polygons | | | |
-| 451 | [[en:docs:win16:api:gdi:|CREATEPOLYPOLYGONRGN]] | Creates multiple polygon region | | | |
-| 462 | [[en:docs:win16:api:gdi:|ISGDIOBJECT]] | Checks if object is GDI object | | | |
-| 465 | [[en:docs:win16:api:gdi:|RECTVISIBLE_EHH]] | Extended rectangle visibility check | | | |
-| 468 | [[en:docs:win16:api:gdi:|GETBITMAPDIMENSIONEX]] | Extended bitmap dimension retrieval | | | |
-| 469 | [[en:docs:win16:api:gdi:|GETBRUSHORGEX]] | Extended brush origin retrieval | | | |
-| 470 | [[en:docs:win16:api:gdi:|GETCURRENTPOSITIONEX]] | Extended current position retrieval | | | |
-| 471 | [[en:docs:win16:api:gdi:|GETTEXTEXTENTPOINT]] | Text extent point retrieval | | | |
-| 472 | [[en:docs:win16:api:gdi:|GETVIEWPORTEXTEX]] | Extended viewport extents retrieval | | | |
-| 473 | [[en:docs:win16:api:gdi:|GETVIEWPORTORGEX]] | Extended viewport origin retrieval | | | |
-| 474 | [[en:docs:win16:api:gdi:|GETWINDOWEXTEX]] | Extended window extents retrieval | | | |
-| 475 | [[en:docs:win16:api:gdi:|GETWINDOWORGEX]] | Extended window origin retrieval | | | |
-| 476 | [[en:docs:win16:api:gdi:|OFFSETVIEWPORTORGEX]] | Extended viewport origin offset | | | |
-| 477 | [[en:docs:win16:api:gdi:|OFFSETWINDOWORGEX]] | Extended window origin offset | | | |
-| 478 | [[en:docs:win16:api:gdi:|SETBITMAPDIMENSIONEX]] | Extended bitmap dimension setting | | | |
-| 479 | [[en:docs:win16:api:gdi:|SETVIEWPORTEXTEX]] | Extended viewport extents setting | | | |
-| 480 | [[en:docs:win16:api:gdi:|SETVIEWPORTORGEX]] | Extended viewport origin setting | | | |
-| 481 | [[en:docs:win16:api:gdi:|SETWINDOWEXTEX]] | Extended window extents setting | | | |
-| 482 | [[en:docs:win16:api:gdi:|SETWINDOWORGEX]] | Extended window origin setting | | | |
-| 483 | [[en:docs:win16:api:gdi:|MOVETOEX]] | Extended move to | | | |
-| 484 | [[en:docs:win16:api:gdi:|SCALEVIEWPORTEXTEX]] | Extended viewport scaling | | | |
-| 485 | [[en:docs:win16:api:gdi:|SCALEWINDOWEXTEX]] | Extended window scaling | | | |
-| 486 | [[en:docs:win16:api:gdi:|GETASPECTRATIOFILTEREX]] | Extended aspect ratio filter retrieval | | | |
+^ Ordinal ^ Name ^ Description ^ Status ^ Version ^
+| 1 | [[en:docs:win16:api:gdi:SETBKCOLOR]] | Sets the current background color | | |
+| 2 | [[en:docs:win16:api:gdi:SETBKMODE]] | Sets the background mix mode | | |
+| 3 | [[en:docs:win16:api:gdi:SETMAPMODE]] | Sets the mapping mode | | |
+| 4 | [[en:docs:win16:api:gdi:SETROP2]] | Sets the foreground mix mode | | |
+| 6 | [[en:docs:win16:api:gdi:SETPOLYFILLMODE]] | Sets the polygon filling mode | | |
+| 7 | [[en:docs:win16:api:gdi:SETSTRETCHBLTMODE]] | Sets the bitmap stretching mode | | |
+| 8 | [[en:docs:win16:api:gdi:SETTEXTCHARACTEREXTRA]] | Sets intercharacter spacing | | |
+| 9 | [[en:docs:win16:api:gdi:SETTEXTCOLOR]] | Sets the text color | | |
+| 10 | [[en:docs:win16:api:gdi:SETTEXTJUSTIFICATION]] | Sets text justification parameters | | |
+| 11 | [[en:docs:win16:api:gdi:SETWINDOWORG]] | Sets the window origin | | |
+| 12 | [[en:docs:win16:api:gdi:SETWINDOWEXT]] | Sets the window extents | | |
+| 13 | [[en:docs:win16:api:gdi:SETVIEWPORTORG]] | Sets the viewport origin | | |
+| 14 | [[en:docs:win16:api:gdi:SETVIEWPORTEXT]] | Sets the viewport extents | | |
+| 15 | [[en:docs:win16:api:gdi:OFFSETWINDOWORG]] | Moves the window origin | | |
+| 16 | [[en:docs:win16:api:gdi:SCALEWINDOWEXT]] | Scales the window extents | | |
+| 17 | [[en:docs:win16:api:gdi:OFFSETVIEWPORTORG]] | Moves the viewport origin | | |
+| 18 | [[en:docs:win16:api:gdi:SCALEVIEWPORTEXT]] | Scales the viewport extents | | |
+| 19 | [[en:docs:win16:api:gdi:LINETO]] | Draws a line from current position to specified point | | |
+| 20 | [[en:docs:win16:api:gdi:MOVETO]] | Moves the current position | | |
+| 21 | [[en:docs:win16:api:gdi:EXCLUDECLIPRECT]] | Excludes a rectangle from the clipping region | | |
+| 22 | [[en:docs:win16:api:gdi:INTERSECTCLIPRECT]] | Intersects a rectangle with the clipping region | | |
+| 23 | [[en:docs:win16:api:gdi:ARC]] | Draws an elliptical arc | | |
+| 24 | [[en:docs:win16:api:gdi:ELLIPSE]] | Draws an ellipse | | |
+| 25 | [[en:docs:win16:api:gdi:FLOODFILL]] | Fills an area with the current brush | | |
+| 26 | [[en:docs:win16:api:gdi:PIE]] | Draws a pie-shaped wedge | | |
+| 27 | [[en:docs:win16:api:gdi:RECTANGLE]] | Draws a rectangle | | |
+| 28 | [[en:docs:win16:api:gdi:ROUNDRECT]] | Draws a rectangle with rounded corners | | |
+| 29 | [[en:docs:win16:api:gdi:PATBLT]] | Performs a pattern bit-block transfer | | |
+| 30 | [[en:docs:win16:api:gdi:SAVEDC]] | Saves the device context state | | |
+| 31 | [[en:docs:win16:api:gdi:SETPIXEL]] | Sets a pixel to the specified color | | |
+| 32 | [[en:docs:win16:api:gdi:OFFSETCLIPRGN]] | Moves the clipping region | | |
+| 33 | [[en:docs:win16:api:gdi:TEXTOUT]] | Outputs a character string | | |
+| 34 | [[en:docs:win16:api:gdi:BITBLT]] | Performs a bit-block transfer | | |
+| 35 | [[en:docs:win16:api:gdi:STRETCHBLT]] | Performs a stretched bit-block transfer | | |
+| 36 | [[en:docs:win16:api:gdi:POLYGON]] | Draws a polygon | | |
+| 37 | [[en:docs:win16:api:gdi:POLYLINE]] | Draws a series of line segments | | |
+| 38 | [[en:docs:win16:api:gdi:ESCAPE]] | Accesses device-specific functions | | |
+| 39 | [[en:docs:win16:api:gdi:RESTOREDC]] | Restores the device context state | | |
+| 40 | [[en:docs:win16:api:gdi:FILLRGN]] | Fills a region with a brush | | |
+| 41 | [[en:docs:win16:api:gdi:FRAMERGN]] | Draws a border around a region | | |
+| 42 | [[en:docs:win16:api:gdi:INVERTRGN]] | Inverts the colors in a region | | |
+| 43 | [[en:docs:win16:api:gdi:PAINTRGN]] | Paints a region with a brush | | |
+| 44 | [[en:docs:win16:api:gdi:SELECTCLIPRGN]] | Selects a region as the clipping region | | |
+| 45 | [[en:docs:win16:api:gdi:SELECTOBJECT]] | Selects an object into the device context | | |
+| 47 | [[en:docs:win16:api:gdi:COMBINERGN]] | Combines two regions | | |
+| 48 | [[en:docs:win16:api:gdi:CREATEBITMAP]] | Creates a bitmap | | |
+| 49 | [[en:docs:win16:api:gdi:CREATEBITMAPINDIRECT]] | Creates a bitmap from a structure | | |
+| 50 | [[en:docs:win16:api:gdi:CREATEBRUSHINDIRECT]] | Creates a brush from a structure | | |
+| 51 | [[en:docs:win16:api:gdi:CREATECOMPATIBLEBITMAP]] | Creates a compatible bitmap | | |
+| 52 | [[en:docs:win16:api:gdi:CREATECOMPATIBLEDC]] | Creates a memory device context | | |
+| 54 | [[en:docs:win16:api:gdi:CREATEDC]] | Creates a device context | | |
+| 55 | [[en:docs:win16:api:gdi:CREATEELLIPTICRGN]] | Creates an elliptical region | | |
+| 56 | [[en:docs:win16:api:gdi:CREATEELLIPTICRGNINDIRECT]] | Creates an elliptical region from a rectangle | | |
+| 57 | [[en:docs:win16:api:gdi:CREATEFONT]] | Creates a logical font | | |
+| 58 | [[en:docs:win16:api:gdi:CREATEFONTINDIRECT]] | Creates a font from a structure | | |
+| 59 | [[en:docs:win16:api:gdi:CREATEHATCHBRUSH]] | Creates a hatched brush | | |
+| 60 | [[en:docs:win16:api:gdi:CREATEPATTERNBRUSH]] | Creates a pattern brush | | |
+| 61 | [[en:docs:win16:api:gdi:CREATEPEN]] | Creates a logical pen | | |
+| 62 | [[en:docs:win16:api:gdi:CREATEPENINDIRECT]] | Creates a pen from a structure | | |
+| 63 | [[en:docs:win16:api:gdi:CREATEPOLYGONRGN]] | Creates a polygonal region | | |
+| 64 | [[en:docs:win16:api:gdi:CREATERECTRGN]] | Creates a rectangular region | | |
+| 65 | [[en:docs:win16:api:gdi:CREATERECTRGNINDIRECT]] | Creates a rectangular region from a rectangle | | |
+| 66 | [[en:docs:win16:api:gdi:CREATESOLIDBRUSH]] | Creates a solid brush | | |
+| 67 | [[en:docs:win16:api:gdi:DPTOLP]] | Converts device points to logical points | | |
+| 68 | [[en:docs:win16:api:gdi:DELETEDC]] | Deletes a device context | | |
+| 69 | [[en:docs:win16:api:gdi:DELETEOBJECT]] | Deletes a GDI object | | |
+| 70 | [[en:docs:win16:api:gdi:ENUMFONTS]] | Enumerates available fonts | | |
+| 71 | [[en:docs:win16:api:gdi:ENUMOBJECTS]] | Enumerates GDI objects | | |
+| 72 | [[en:docs:win16:api:gdi:EQUALRGN]] | Checks if two regions are equal | | |
+| 74 | [[en:docs:win16:api:gdi:GETBITMAPBITS]] | Retrieves bitmap bits | | |
+| 75 | [[en:docs:win16:api:gdi:GETBKCOLOR]] | Retrieves the background color | | |
+| 76 | [[en:docs:win16:api:gdi:GETBKMODE]] | Retrieves the background mix mode | | |
+| 77 | [[en:docs:win16:api:gdi:GETCLIPBOX]] | Retrieves the clipping bounding box | | |
+| 78 | [[en:docs:win16:api:gdi:GETCURRENTPOSITION]] | Retrieves the current position | | |
+| 79 | [[en:docs:win16:api:gdi:GETDCORG]] | Retrieves the device context origin | | |
+| 80 | [[en:docs:win16:api:gdi:GETDEVICECAPS]] | Retrieves device capabilities | | |
+| 81 | [[en:docs:win16:api:gdi:GETMAPMODE]] | Retrieves the mapping mode | | |
+| 82 | [[en:docs:win16:api:gdi:GETOBJECT]] | Retrieves information about a GDI object | | |
+| 83 | [[en:docs:win16:api:gdi:GETPIXEL]] | Retrieves the color of a pixel | | |
+| 84 | [[en:docs:win16:api:gdi:GETPOLYFILLMODE]] | Retrieves the polygon filling mode | | |
+| 85 | [[en:docs:win16:api:gdi:GETROP2]] | Retrieves the foreground mix mode | | |
+| 86 | [[en:docs:win16:api:gdi:GETRELABS]] | Converts relative coordinates to absolute | | |
+| 87 | [[en:docs:win16:api:gdi:GETSTOCKOBJECT]] | Retrieves a stock GDI object | | |
+| 88 | [[en:docs:win16:api:gdi:GETSTRETCHBLTMODE]] | Retrieves the bitmap stretching mode | | |
+| 89 | [[en:docs:win16:api:gdi:GETTEXTCHARACTEREXTRA]] | Retrieves intercharacter spacing | | |
+| 90 | [[en:docs:win16:api:gdi:GETTEXTCOLOR]] | Retrieves the text color | | |
+| 91 | [[en:docs:win16:api:gdi:GETTEXTEXTENT]] | Computes text dimensions | | |
+| 92 | [[en:docs:win16:api:gdi:GETTEXTFACE]] | Retrieves the typeface name | | |
+| 93 | [[en:docs:win16:api:gdi:GETTEXTMETRICS]] | Retrieves font metrics | | |
+| 94 | [[en:docs:win16:api:gdi:GETVIEWPORTEXT]] | Retrieves the viewport extents | | |
+| 95 | [[en:docs:win16:api:gdi:GETVIEWPORTORG]] | Retrieves the viewport origin | | |
+| 96 | [[en:docs:win16:api:gdi:GETWINDOWEXT]] | Retrieves the window extents | | |
+| 97 | [[en:docs:win16:api:gdi:GETWINDOWORG]] | Retrieves the window origin | | |
+| 99 | [[en:docs:win16:api:gdi:LPTODP]] | Converts logical points to device points | | |
+| 100 | [[en:docs:win16:api:gdi:LINEDDA]] | Line drawing with callback function | | |
+| 101 | [[en:docs:win16:api:gdi:OFFSETRGN]] | Moves a region | | |
+| 103 | [[en:docs:win16:api:gdi:PTVISIBLE]] | Checks if a point is visible | | |
+| 104 | [[en:docs:win16:api:gdi:RECTVISIBLE]] | Checks if a rectangle is visible | | |
+| 106 | [[en:docs:win16:api:gdi:SETBITMAPBITS]] | Sets bitmap bits | | |
+| 119 | [[en:docs:win16:api:gdi:ADDFONTRESOURCE]] | Adds a font resource | | |
+| 123 | [[en:docs:win16:api:gdi:PLAYMETAFILE]] | Plays a metafile | | |
+| 124 | [[en:docs:win16:api:gdi:GETMETAFILE]] | Retrieves a metafile | | |
+| 125 | [[en:docs:win16:api:gdi:CREATEMETAFILE]] | Creates a metafile | | |
+| 126 | [[en:docs:win16:api:gdi:CLOSEMETAFILE]] | Closes a metafile | | |
+| 127 | [[en:docs:win16:api:gdi:DELETEMETAFILE]] | Deletes a metafile | | |
+| 128 | [[en:docs:win16:api:gdi:MULDIV]] | Performs multiplication and division | | |
+| 132 | [[en:docs:win16:api:gdi:SETENVIRONMENT]] | Sets printer environment | | |
+| 133 | [[en:docs:win16:api:gdi:GETENVIRONMENT]] | Retrieves printer environment | | |
+| 134 | [[en:docs:win16:api:gdi:GETRGNBOX]] | Retrieves region bounding box | | |
+| 136 | [[en:docs:win16:api:gdi:REMOVEFONTRESOURCE]] | Removes a font resource | | |
+| 148 | [[en:docs:win16:api:gdi:SETBRUSHORG]] | Sets brush origin | | |
+| 149 | [[en:docs:win16:api:gdi:GETBRUSHORG]] | Retrieves brush origin | | |
+| 150 | [[en:docs:win16:api:gdi:UNREALIZEOBJECT]] | Unrealizes a GDI object | | |
+| 151 | [[en:docs:win16:api:gdi:COPYMETAFILE]] | Copies a metafile | | |
+| 153 | [[en:docs:win16:api:gdi:CREATEIC]] | Creates an information context | | |
+| 154 | [[en:docs:win16:api:gdi:GETNEARESTCOLOR]] | Retrieves nearest available color | | |
+| 155 | [[en:docs:win16:api:gdi:QUERYABORT]] | Queries print job abort status | | |
+| 156 | [[en:docs:win16:api:gdi:CREATEDISCARDABLEBITMAP]] | Creates a discardable bitmap | | |
+| 159 | [[en:docs:win16:api:gdi:GETMETAFILEBITS]] | Retrieves metafile bits | | |
+| 160 | [[en:docs:win16:api:gdi:SETMETAFILEBITS]] | Sets metafile bits | | |
+| 161 | [[en:docs:win16:api:gdi:PTINREGION]] | Checks if point is in region | | |
+| 162 | [[en:docs:win16:api:gdi:GETBITMAPDIMENSION]] | Retrieves bitmap dimensions | | |
+| 163 | [[en:docs:win16:api:gdi:SETBITMAPDIMENSION]] | Sets bitmap dimensions | | |
+| 172 | [[en:docs:win16:api:gdi:SETRECTRGN]] | Sets a rectangular region | | |
+| 175 | [[en:docs:win16:api:gdi:ENUMMETAFILE]] | Enumerates metafile records | | |
+| 176 | [[en:docs:win16:api:gdi:PLAYMETAFILERECORD]] | Plays a metafile record | | |
+| 181 | [[en:docs:win16:api:gdi:RECTINREGION]] | Checks if rectangle is in region | | |
+| 193 | [[en:docs:win16:api:gdi:SETBOUNDSRECT]] | Sets bounding rectangle | | |
+| 194 | [[en:docs:win16:api:gdi:GETBOUNDSRECT]] | Retrieves bounding rectangle | | |
+| 196 | [[en:docs:win16:api:gdi:SETMETAFILEBITSBETTER]] | Sets metafile bits with improved method | | |
+| 201 | [[en:docs:win16:api:gdi:DMBITBLT]] | Device mode bit-block transfer | | |
+| 202 | [[en:docs:win16:api:gdi:DMCOLORINFO]] | Device mode color information | | |
+| 208 | [[en:docs:win16:api:gdi:DMOUTPUT]] | Device mode output | | |
+| 209 | [[en:docs:win16:api:gdi:DMPIXEL]] | Device mode pixel operation | | |
+| 210 | [[en:docs:win16:api:gdi:DMREALIZEOBJECT]] | Device mode object realization | | |
+| 211 | [[en:docs:win16:api:gdi:DMSTRBLT]] | Device mode stretch block transfer | | |
+| 212 | [[en:docs:win16:api:gdi:DMSCANLR]] | Device mode scanline operation | | |
+| 240 | [[en:docs:win16:api:gdi:OPENJOB]] | Opens print job | | |
+| 241 | [[en:docs:win16:api:gdi:WRITESPOOL]] | Writes to spooler | | |
+| 243 | [[en:docs:win16:api:gdi:CLOSEJOB]] | Closes print job | | |
+| 244 | [[en:docs:win16:api:gdi:DELETEJOB]] | Deletes print job | | |
+| 246 | [[en:docs:win16:api:gdi:STARTSPOOLPAGE]] | Starts spooler page | | |
+| 247 | [[en:docs:win16:api:gdi:ENDSPOOLPAGE]] | Ends spooler page | | |
+| 254 | [[en:docs:win16:api:gdi:SPOOLFILE]] | Spools file | | |
+| 300 | [[en:docs:win16:api:gdi:ENGINEENUMERATEFONT]] | Engine font enumeration | | |
+| 301 | [[en:docs:win16:api:gdi:ENGINEDELETEFONT]] | Engine font deletion | | |
+| 302 | [[en:docs:win16:api:gdi:ENGINEREALIZEFONT]] | Engine font realization | | |
+| 303 | [[en:docs:win16:api:gdi:ENGINEGETCHARWIDTH]] | Engine character width retrieval | | |
+| 304 | [[en:docs:win16:api:gdi:ENGINESETFONTCONTEXT]] | Engine font context setting | | |
+| 305 | [[en:docs:win16:api:gdi:ENGINEGETGLYPHBMP]] | Engine glyph bitmap retrieval | | |
+| 307 | [[en:docs:win16:api:gdi:GETCHARABCWIDTHS]] | Retrieves character ABC widths | | |
+| 308 | [[en:docs:win16:api:gdi:GETOUTLINETEXTMETRICS]] | Retrieves outline text metrics | | |
+| 309 | [[en:docs:win16:api:gdi:GETGLYPHOUTLINE]] | Retrieves glyph outline | | |
+| 310 | [[en:docs:win16:api:gdi:CREATESCALABLEFONTRESOURCE]] | Creates scalable font resource | | |
+| 311 | [[en:docs:win16:api:gdi:GETFONTDATA]] | Retrieves font data | | |
+| 313 | [[en:docs:win16:api:gdi:GETRASTERIZERCAPS]] | Retrieves rasterizer capabilities | | |
+| 330 | [[en:docs:win16:api:gdi:ENUMFONTFAMILIES]] | Enumerates font families | | |
+| 332 | [[en:docs:win16:api:gdi:GETKERNINGPAIRS]] | Retrieves kerning pairs | | |
+| 345 | [[en:docs:win16:api:gdi:GETTEXTALIGN]] | Retrieves text alignment | | |
+| 346 | [[en:docs:win16:api:gdi:SETTEXTALIGN]] | Sets text alignment | | |
+| 348 | [[en:docs:win16:api:gdi:CHORD]] | Draws chord | | |
+| 349 | [[en:docs:win16:api:gdi:SETMAPPERFLAGS]] | Sets font mapper flags | | |
+| 350 | [[en:docs:win16:api:gdi:GETCHARWIDTH]] | Retrieves character widths | | |
+| 351 | [[en:docs:win16:api:gdi:EXTTEXTOUT]] | Extended text output | | |
+| 353 | [[en:docs:win16:api:gdi:GETASPECTRATIOFILTER]] | Retrieves aspect ratio filter | | |
+| 360 | [[en:docs:win16:api:gdi:CREATEPALETTE]] | Creates palette | | |
+| 363 | [[en:docs:win16:api:gdi:GETPALETTEENTRIES]] | Retrieves palette entries | | |
+| 364 | [[en:docs:win16:api:gdi:SETPALETTEENTRIES]] | Sets palette entries | | |
+| 366 | [[en:docs:win16:api:gdi:UPDATECOLORS]] | Updates colors | | |
+| 367 | [[en:docs:win16:api:gdi:ANIMATEPALETTE]] | Animates palette | | |
+| 368 | [[en:docs:win16:api:gdi:RESIZEPALETTE]] | Resizes palette | | |
+| 370 | [[en:docs:win16:api:gdi:GETNEARESTPALETTEINDEX]] | Retrieves nearest palette index | | |
+| 372 | [[en:docs:win16:api:gdi:EXTFLOODFILL]] | Extended flood fill | | |
+| 373 | [[en:docs:win16:api:gdi:SETSYSTEMPALETTEUSE]] | Sets system palette use | | |
+| 374 | [[en:docs:win16:api:gdi:GETSYSTEMPALETTEUSE]] | Retrieves system palette use | | |
+| 375 | [[en:docs:win16:api:gdi:GETSYSTEMPALETTEENTRIES]] | Retrieves system palette entries | | |
+| 376 | [[en:docs:win16:api:gdi:RESETDC]] | Resets device context | | |
+| 377 | [[en:docs:win16:api:gdi:STARTDOC]] | Starts print document | | |
+| 378 | [[en:docs:win16:api:gdi:ENDDOC]] | Ends print document | | |
+| 379 | [[en:docs:win16:api:gdi:STARTPAGE]] | Starts print page | | |
+| 380 | [[en:docs:win16:api:gdi:ENDPAGE]] | Ends print page | | |
+| 381 | [[en:docs:win16:api:gdi:SETABORTPROC]] | Sets abort procedure | | |
+| 382 | [[en:docs:win16:api:gdi:ABORTDOC]] | Aborts print document | | |
+| 400 | [[en:docs:win16:api:gdi:FASTWINDOWFRAME]] | Fast window frame drawing | | |
+| 410 | [[en:docs:win16:api:gdi:ISVALIDMETAFILE]] | Checks metafile validity | | |
+| 439 | [[en:docs:win16:api:gdi:STRETCHDIBITS]] | Stretches DIB bits | | |
+| 440 | [[en:docs:win16:api:gdi:SETDIBITS]] | Sets DIB bits | | |
+| 441 | [[en:docs:win16:api:gdi:GETDIBITS]] | Retrieves DIB bits | | |
+| 442 | [[en:docs:win16:api:gdi:CREATEDIBITMAP]] | Creates DIB bitmap | | |
+| 443 | [[en:docs:win16:api:gdi:SETDIBITSTODEVICE]] | Sets DIB bits to device | | |
+| 444 | [[en:docs:win16:api:gdi:CREATEROUNDRECTRGN]] | Creates rounded rectangle region | | |
+| 445 | [[en:docs:win16:api:gdi:CREATEDIBPATTERNBRUSH]] | Creates DIB pattern brush | | |
+| 450 | [[en:docs:win16:api:gdi:POLYPOLYGON]] | Draws multiple polygons | | |
+| 451 | [[en:docs:win16:api:gdi:CREATEPOLYPOLYGONRGN]] | Creates multiple polygon region | | |
+| 462 | [[en:docs:win16:api:gdi:ISGDIOBJECT]] | Checks if object is GDI object | | |
+| 465 | [[en:docs:win16:api:gdi:RECTVISIBLE_EHH]] | Extended rectangle visibility check | | |
+| 468 | [[en:docs:win16:api:gdi:GETBITMAPDIMENSIONEX]] | Extended bitmap dimension retrieval | | |
+| 469 | [[en:docs:win16:api:gdi:GETBRUSHORGEX]] | Extended brush origin retrieval | | |
+| 470 | [[en:docs:win16:api:gdi:GETCURRENTPOSITIONEX]] | Extended current position retrieval | | |
+| 471 | [[en:docs:win16:api:gdi:GETTEXTEXTENTPOINT]] | Text extent point retrieval | | |
+| 472 | [[en:docs:win16:api:gdi:GETVIEWPORTEXTEX]] | Extended viewport extents retrieval | | |
+| 473 | [[en:docs:win16:api:gdi:GETVIEWPORTORGEX]] | Extended viewport origin retrieval | | |
+| 474 | [[en:docs:win16:api:gdi:GETWINDOWEXTEX]] | Extended window extents retrieval | | |
+| 475 | [[en:docs:win16:api:gdi:GETWINDOWORGEX]] | Extended window origin retrieval | | |
+| 476 | [[en:docs:win16:api:gdi:OFFSETVIEWPORTORGEX]] | Extended viewport origin offset | | |
+| 477 | [[en:docs:win16:api:gdi:OFFSETWINDOWORGEX]] | Extended window origin offset | | |
+| 478 | [[en:docs:win16:api:gdi:SETBITMAPDIMENSIONEX]] | Extended bitmap dimension setting | | |
+| 479 | [[en:docs:win16:api:gdi:SETVIEWPORTEXTEX]] | Extended viewport extents setting | | |
+| 480 | [[en:docs:win16:api:gdi:SETVIEWPORTORGEX]] | Extended viewport origin setting | | |
+| 481 | [[en:docs:win16:api:gdi:SETWINDOWEXTEX]] | Extended window extents setting | | |
+| 482 | [[en:docs:win16:api:gdi:SETWINDOWORGEX]] | Extended window origin setting | | |
+| 483 | [[en:docs:win16:api:gdi:MOVETOEX]] | Extended move to | | |
+| 484 | [[en:docs:win16:api:gdi:SCALEVIEWPORTEXTEX]] | Extended viewport scaling | | |
+| 485 | [[en:docs:win16:api:gdi:SCALEWINDOWEXTEX]] | Extended window scaling | | |
+| 486 | [[en:docs:win16:api:gdi:GETASPECTRATIOFILTEREX]] | Extended aspect ratio filter retrieval | | |
