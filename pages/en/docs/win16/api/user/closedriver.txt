@@ -1,0 +1,47 @@
+{{page>en:templates:win16api}}
+
+====== CloseDriver ======
+
+===== Brief =====
+
+Closes an installable driver.
+
+===== Syntax =====
+
+LRESULT WINAPI CloseDriver(HDRVR hDriver, LPARAM lParam1, LPARAM lParam2);
+
+===== Parameters =====
+
+  * **hDriver**  
+  Handle to the driver to close.
+  * **lParam1**  
+  First close parameter.
+  * **lParam2**  
+  Second close parameter.
+
+===== Return Code =====
+
+Returns driver-specific result.
+
+===== Notes =====
+
+The exact meaning of parameters depends on the driver.
+
+===== C Binding =====
+
+<code c>
+CloseDriver(hDriver, 0, 0);
+</code>
+
+===== MASM Binding =====
+<code asm>
+push lParam2
+push lParam1
+push hDriver
+call CloseDriver
+</code>
+
+===== See also =====
+
+[[en:docs:win16:api:user:OPENDRIVER]]
+
