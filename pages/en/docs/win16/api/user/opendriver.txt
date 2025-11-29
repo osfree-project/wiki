@@ -1,0 +1,48 @@
+{{page>en:templates:win16api}}
+
+====== OpenDriver ======
+
+===== Brief =====
+
+Opens an installable driver.
+
+===== Syntax =====
+
+HDRVR WINAPI OpenDriver(LPCSTR szDriverName, LPCSTR szSectionName, LPARAM lParam);
+
+===== Parameters =====
+
+  * **szDriverName**  
+  Far pointer to driver name.
+  * **szSectionName**  
+  Far pointer to section name in SYSTEM.INI.
+  * **lParam**  
+  Additional parameter.
+
+===== Return Code =====
+
+Returns handle to the driver, or NULL if failed.
+
+===== Notes =====
+
+Installable drivers provide extended functionality beyond standard Windows API.
+
+===== C Binding =====
+<code c>
+HDRVR hDriver = OpenDriver("MYDRV", "MyDriverSection", 0);
+</code>
+
+===== MASM Binding =====
+<code asm>
+push lParam
+push seg szSectionName    ; szSectionName segment
+push offset szSectionName ; szSectionName offset
+push seg szDriverName     ; szDriverName segment
+push offset szDriverName  ; szDriverName offset
+call OpenDriver
+</code>
+
+===== See also =====
+
+[[en:docs:win16:api:user:CLOSEDRIVER]], [[en:docs:win16:api:user:SENDDRIVERMESSAGE]]
+

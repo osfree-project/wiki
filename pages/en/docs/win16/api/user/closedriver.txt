@@ -21,7 +21,8 @@ LRESULT WINAPI CloseDriver(HDRVR hDriver, LPARAM lParam1, LPARAM lParam2);
 
 ===== Return Code =====
 
-Returns driver-specific result.
+Returns nonzero if successful or zero otherwise.
+
 
 ===== Notes =====
 
