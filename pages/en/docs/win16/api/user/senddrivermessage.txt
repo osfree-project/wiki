@@ -1,0 +1,51 @@
+{{page>en:templates:win16api}}
+
+====== SendDriverMessage ======
+
+===== Brief =====
+
+Sends a message to an installable driver.
+
+===== Syntax =====
+
+LRESULT WINAPI SendDriverMessage(HDRVR hDriver, UINT message, LPARAM lParam1, LPARAM lParam2);
+
+===== Parameters =====
+
+  * **hDriver**  
+  Handle to the installable driver.
+  * **message**  
+  Driver-specific message.
+ DRV_LOAD, DRV_ENABLE, DRV_OPEN, DRV_CLOSE, DRV_DISABLE, DRV_FREE, DRV_INSTALL, DRV_QUERYCONFIGURE, DRV_CONFIGURE, DRV_REMOVE, DRV_RESERVED, DRV_USER.
+  * **lParam1**  
+  First message parameter.
+  * **lParam2**  
+  Second message parameter.
+
+===== Return Code =====
+
+Returns nonzero if successful or zero otherwise.
+
+===== Notes =====
+
+The exact meaning of parameters depends on the driver.
+
+===== C Binding =====
+<code c>
+LRESULT result = SendDriverMessage(hDriver, DRV_OPEN, 0, 0);
+</code>
+
+===== MASM Binding =====
+
+<code asm>
+push lParam2
+push lParam1
+push message
+push hDriver
+call SendDriverMessage
+</code>
+
+===== See also =====
+
+[[en:docs:win16:api:user:OPENDRIVER]], [[en:docs:win16:api:user:CLOSEDRIVER]]
+
