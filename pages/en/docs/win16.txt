@@ -1,8 +1,10 @@
 {{page>en:templates:win16api}}
 
-==== Win16 personality ====
+==== Win16 Personality - Windows 3.x Compatibility Layer ====
 
 === Introduction ===
+
+The Win16 Personality is a core component of the osFree project aimed at creating a free, open-source reimplementation of the Microsoft Windows 3.x (16-bit) operating environment. This includes compatibility with Windows 3.0, Windows 3.1, and Windows 3.11. The goal is to provide a platform for running classic Win16 applications, either on top of a pure DOS system or within the broader osFree framework.
 
 Win16 Personality for osFree is planned to be implemented as Windows clone based on various sources. Most notable is HX-DOS Extender for KERNEL, Wine and Twin for USER and other core DLLs. GDI.EXE not handled yet. Applications collected and backported to Win16 mostly from ReactOS and Wine implementations. Also other third parties source code are used, like MAX386.
 
