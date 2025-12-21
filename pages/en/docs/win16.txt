@@ -16,8 +16,9 @@ The Win16 Personality is a project to create a free, open-source reimplementatio
 The project is in early development (alpha stage). Current work focuses on the core 16-bit KERNEL. Critical GUI subsystems USER and GDI, required to run most Windows 3.x programs, are not yet implemented. The first practical milestone is to correctly run simple system utilities like WinVer.
 
 =====  Components and Applications =====
- 
-As part of the project, clones of classic Windows 3.x applications are also being developed:
+
+==== Windows 3.x Application Clones ====
+Clones of classic Windows 3.x applications are also being developed:
 
 ^ Name ^ Description ^Status ^
 | [[en:docs:win16:applications:CALC]] (pure API) | Standard calculator for basic arithmetic. | |
@@ -53,15 +54,8 @@ As part of the project, clones of classic Windows 3.x applications are also bein
 
 The main project source code is available in the repository: [[https://github.com/osfree-project/WIN16 osfree-project/WIN16]]
 
-=====  Related Pages =====
- 
-  * [[en:start|Main osFree page]]
-  * [[https://en.wikipedia.org/wiki/Windows_3.1x|Wikipedia article about this OS family]]
-
-
-
-=== API ===
-
+==== Core System Modules & API ====
+The reimplementation of the core Windows 3.x system modules and interfaces includes:
   * [[en:docs:bios:api|BIOS API]]
   * [[en:docs:dos|DOS API]]
   * [[en:docs:xms:api|XMS API]]
@@ -74,8 +68,16 @@ The main project source code is available in the repository: [[https://github.co
   * [[en:docs:win16:modules:keyboard|KEYBOARD driver]]
   * [[en:docs:win16:modules:mouse|MOUSE driver]]
   * [[en:docs:win16:modules:display|DISPLAY driver]]
-  * [[en:docs:win16:modules:kernel|KERNEL modue]]
+  * [[en:docs:win16:modules:kernel|KERNEL module]]
   * [[en:docs:win16:modules:gdi|GDI module]]
   * [[en:docs:win16:modules:user|USER module]]
   * [[en:docs:win16:modules:shell|SHELL module]]
   * [[en:docs:win16:modules:lzexpand|LZEXPAND module]]
+
+=====  Related Pages =====
+ 
+  * [[en:start|Main osFree page]]
+  * [[https://en.wikipedia.org/wiki/Windows_3.1x|Wikipedia article about this OS family]]
+
+
+
