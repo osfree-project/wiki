@@ -1,12 +1,32 @@
 {{page>en:templates:win16api}}
 
-==== Win16 Personality - Windows 3.x Compatibility Layer ====
+======  Win16 Personality: A Windows 3.x Compatibility Layer ======
+ 
+The Win16 Personality is a project to create a free, open-source reimplementation of the 16-bit Microsoft Windows 3.x operating environment. It aims to provide compatibility with Windows 3.0, Windows 3.1, and Windows 3.11 for running classic Win16 applications.
 
-=== Introduction ===
+=====  Project Goals =====
+ 
+  * Provide binary compatibility for a range of applications built for Windows 3.1/3.11.
+  * Reimplement core system components: KERNEL.EXE, USER.EXE, GDI.EXE.
+  * Serve as a research and educational platform for the classic Windows 3.x architecture.
+  * Integrate the Win16 environment as one of the "Personalities" within the osFree microkernel OS, and ensure it can also run on pure DOS.
 
-The Win16 Personality is a core component of the osFree project aimed at creating a free, open-source reimplementation of the Microsoft Windows 3.x (16-bit) operating environment. This includes compatibility with Windows 3.0, Windows 3.1, and Windows 3.11. The goal is to provide a platform for running classic Win16 applications, either on top of a pure DOS system or within the broader osFree framework.
+===== Current Status =====
 
-Win16 Personality for osFree is planned to be implemented as Windows clone based on various sources. Most notable is HX-DOS Extender for KERNEL, Wine and Twin for USER and other core DLLs. GDI.EXE not handled yet. Applications collected and backported to Win16 mostly from ReactOS and Wine implementations. Also other third parties source code are used, like MAX386.
+The project is in early development (alpha stage). Current work focuses on the core 16-bit KERNEL. Critical GUI subsystems USER and GDI, required to run most Windows 3.x programs, are not yet implemented. The first practical milestone is to correctly run simple system utilities like WinVer.
+
+=====  Components and Applications =====
+ 
+As part of the project, clones of classic Windows 3.x applications are also being developed:
+  * [https://github.com/osfree-project/winver WinVer] – a clone of the system utility displaying Windows version.
+  * [https://github.com/osfree-project/taskman Task Manager] – a clone of the Task Manager.
+  * [https://github.com/osfree-project/notepad Notepad] – a clone of the simple text editor.
+The main project source code is available in the repository: [https://github.com/osfree-project/WIN16 osfree-project/WIN16]
+
+=====  Related Pages =====
+ 
+  * [en:start Main osFree page]
+  * [https://en.wikipedia.org/wiki/Windows_3.1x Windows 3.1x] – Wikipedia article about this OS family.
 
 === Applications ===
 
@@ -61,3 +81,4 @@ Win16 Personality for osFree is planned to be implemented as Windows clone based
   * [[en:docs:win16:modules:user|USER module]]
   * [[en:docs:win16:modules:shell|SHELL module]]
   * [[en:docs:win16:modules:lzexpand|LZEXPAND module]]
+  * 
