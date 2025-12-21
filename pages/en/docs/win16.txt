@@ -20,37 +20,36 @@ The project is in early development (alpha stage). Current work focuses on the c
 As part of the project, clones of classic Windows 3.x applications are also being developed:
 
 ^ Name ^ Description ^Status ^
-| [[en:docs:win16:applications:CALC]] (pure API) | A clone of the standard Windows Calculator for basic arithmetic. | |
-| [[en:docs:win16:applications:CALENDAR]] | A clone of the desktop Calendar for viewing dates and scheduling appointments. | |
-| [[en:docs:win16:applications:CARDFILE]] | A clone of the Cardfile, a simple electronic index card database for organizing information. | |
-| [[en:docs:win16:applications:CHARMAP]] (pure API) | A clone of the Character Map utility for viewing and inserting special characters. | |
-| [[en:docs:win16:applications:CLIPBRD|Clipboard Viewer]]  (pure API) | A clone of the Clipboard Viewer for inspecting the current content of the clipboard. | **Done** |
-| [[en:docs:win16:applications:CLOCK|Clock]]  (pure API) | A clone of the analog or digital Clock for displaying the current time. | **Done** |
-| [[en:docs:win16:applications:CONTROL|Control Panel]] | A clone of the main Control Panel for adjusting system settings and managing hardware. | |
-| [[en:docs:win16:applications:DRWATSON]] | A clone of the Dr. Watson diagnostic tool for capturing system information and errors. | |
-| [[en:docs:win16:applications:EXPAND]] | A clone of the Expand utility (EXPAND.EXE) for decompressing files from Microsoft distribution disks. | **Done** |
-| [[en:docs:win16:applications:FASTOPEN]] | A clone of the FASTOPEN utility for speeding up file access by caching directory locations. | **Done** |
-| [[en:docs:win16:applications:MPLAYER]] | A clone of the Media Player (MPlayer) for playing multimedia files like sound and video. | |
-| [[en:docs:win16:applications:MSD]] | A clone of the Microsoft Diagnostics (MSD) tool for detailed system hardware and software analysis. | |
-| [[en:docs:win16:applications:NOTEPAD|Notepad]] (pure API) | A clone of the simple Notepad text editor for creating and editing plain text files. | **Done** |
-| [[en:docs:win16:applications:PACKAGER]] | A clone of the Object Packager for embedding and linking objects into documents (OLE). | |
-| [[en:docs:win16:applications:PBRUSH]]  (ATL)| A clone of the Paintbrush graphics editor for creating and editing bitmap images. | |
-| [[en:docs:win16:applications:PIFEDIT|PIF Editor]] (pure API) | A clone of the PIF Editor for creating and modifying Program Information Files (PIFs) for DOS applications. | |
-| [[en:docs:win16:applications:PRINTMAN]] | A clone of the Print Manager for managing print jobs and printer queues. | |
-| [[en:docs:win16:applications:PROGMAN|Program Manager]] (pure API) | A clone of the Program Manager, the main shell for organizing applications and documents into groups. | |
-| [[en:docs:win16:applications:REGEDIT]] | A clone of the Registration Info Editor (REGEDIT) for editing the Windows registration database. | |
-| [[en:docs:win16:applications:SETUP]] | A clone of the Windows Setup program for changing system configuration and installing components. | |
-| [[en:docs:win16:applications:SOL]] (pure API) | A clone of the Solitaire card game. | |
-| [[en:docs:win16:applications:SOUNDREC|Sound Recorder]] | A clone of the Sound Recorder for recording, playing, and editing sound files (.WAV). | |
-| [[en:docs:win16:applications:SYSEDIT|System Configuration Editor]] (pure API) | A clone of the System Configuration Editor (SYSEDIT) for modifying critical system files (AUTOEXEC.BAT, CONFIG.SYS, etc.). | **Done** |
-| [[en:docs:win16:applications:TASKMAN|Task Manager]] (pure API) | A clone of the Task Manager for switching between running applications and monitoring system tasks. | **Done** |
-| [[en:docs:win16:applications:WINFILE]] (pure API) | A clone of the File Manager (WINFILE) for managing files, directories, and disk operations. | |
-| [[en:docs:win16:applications:WINHELP]] (pure API) | A clone of the Windows Help (WINHELP) engine for displaying application help files. | |
-| [[en:docs:win16:applications:WINMINE|Minesweeper]] (pure API) | A clone of the Minesweeper puzzle game. | **Done** |
+| [[en:docs:win16:applications:CALC]] (pure API) | Standard calculator for basic arithmetic. | |
+| [[en:docs:win16:applications:CALENDAR]] | Desktop calendar for viewing dates and appointments. | |
+| [[en:docs:win16:applications:CARDFILE]] | Electronic index card database for organizing information. | |
+| [[en:docs:win16:applications:CHARMAP]] (pure API) | Utility for viewing and inserting special characters. | |
+| [[en:docs:win16:applications:CLIPBRD|Clipboard Viewer]] (pure API) | Viewer for inspecting the current clipboard content. | **Done** |
+| [[en:docs:win16:applications:CLOCK|Clock]] (pure API) | Analog or digital clock displaying the current time. | **Done** |
+| [[en:docs:win16:applications:CONTROL|Control Panel]] | Main panel for adjusting system settings and hardware. | |
+| [[en:docs:win16:applications:DRWATSON]] | Diagnostic tool for capturing system information and errors. | |
+| [[en:docs:win16:applications:EXPAND]] | Utility for decompressing files from distribution disks. | **Done** |
+| [[en:docs:win16:applications:FASTOPEN]] | Utility for speeding up file access by caching directories. | **Done** |
+| [[en:docs:win16:applications:MPLAYER]] | Media Player for playing multimedia files. | |
+| [[en:docs:win16:applications:MSD]] | Microsoft Diagnostics tool for detailed hardware analysis. | |
+| [[en:docs:win16:applications:NOTEPAD|Notepad]] (pure API) | Simple text editor for plain text files. | **Done** |
+| [[en:docs:win16:applications:PACKAGER]] | Object Packager for embedding and linking documents (OLE). | |
+| [[en:docs:win16:applications:PBRUSH]] (ATL) | Paintbrush graphics editor for creating bitmap images. | |
+| [[en:docs:win16:applications:PIFEDIT|PIF Editor]] (pure API) | Editor for creating Program Information Files (PIFs) for DOS. | |
+| [[en:docs:win16:applications:PRINTMAN]] | Print Manager for print jobs and printer queues. | |
+| [[en:docs:win16:applications:PROGMAN|Program Manager]] (pure API) | Main shell for organizing applications and documents into groups. | |
+| [[en:docs:win16:applications:REGEDIT]] | Registration Info Editor for the Windows registration database. | |
+| [[en:docs:win16:applications:SETUP]] | Windows Setup program for changing system configuration. | |
+| [[en:docs:win16:applications:SOL]] (pure API) | The classic Solitaire card game. | |
+| [[en:docs:win16:applications:SOUNDREC|Sound Recorder]] | Recorder for playing and editing sound files (.WAV). | |
+| [[en:docs:win16:applications:SYSEDIT|System Configuration Editor]] (pure API) | Editor for modifying system files (AUTOEXEC.BAT, CONFIG.SYS). | **Done** |
+| [[en:docs:win16:applications:TASKMAN|Task Manager]] (pure API) | Manager for switching between running applications and tasks. | **Done** |
+| [[en:docs:win16:applications:WINFILE]] (pure API) | File Manager for managing files, directories, and disks. | |
+| [[en:docs:win16:applications:WINHELP]] (pure API) | Windows Help engine for displaying application help files. | |
+| [[en:docs:win16:applications:WINMINE|Minesweeper]] (pure API) | The classic Minesweeper puzzle game. | **Done** |
 | [[en:docs:win16:applications:WINSHELD]] |  | |
-| [[en:docs:win16:applications:WINVER|Windows Version]] (pure API) | A clone of the About Windows (WinVer) dialog box, displaying system version and copyright information. | **Done** |
-| [[en:docs:win16:applications:WRITE]] | A clone of the Write word processor for creating formatted documents. | |
-
+| [[en:docs:win16:applications:WINVER|Windows Version]] (pure API) | Dialog box displaying Windows version and copyright information. | **Done** |
+| [[en:docs:win16:applications:WRITE]] | Write word processor for creating formatted documents. | |
 
 The main project source code is available in the repository: [[https://github.com/osfree-project/WIN16 osfree-project/WIN16]]
 
