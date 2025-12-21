@@ -18,49 +18,48 @@ The project is in early development (alpha stage). Current work focuses on the c
 =====  Components and Applications =====
  
 As part of the project, clones of classic Windows 3.x applications are also being developed:
-  * [https://github.com/osfree-project/winver WinVer] – a clone of the system utility displaying Windows version.
-  * [https://github.com/osfree-project/taskman Task Manager] – a clone of the Task Manager.
-  * [https://github.com/osfree-project/notepad Notepad] – a clone of the simple text editor.
-The main project source code is available in the repository: [https://github.com/osfree-project/WIN16 osfree-project/WIN16]
+
+^ Name ^ Description ^Status ^
+| [[en:docs:win16:applications:CALC]] (pure API) | | |
+| [[en:docs:win16:applications:CALENDAR]] | | |
+| [[en:docs:win16:applications:CARDFILE]] | | |
+| [[en:docs:win16:applications:CHARMAP]] (pure API) | | |
+| [[en:docs:win16:applications:CLIPBRD|Clipboard Viewer]]  (pure API) | | **Done** |
+| [[en:docs:win16:applications:CLOCK|Clock]]  (pure API) | | **Done** |
+| [[en:docs:win16:applications:CONTROL|Control Panel]] | | |
+| [[en:docs:win16:applications:DRWATSON]] | | |
+| [[en:docs:win16:applications:EXPAND]] | | **Done** |
+| [[en:docs:win16:applications:FASTOPEN]] | | **Done** |
+| [[en:docs:win16:applications:MPLAYER]] | |
+| [[en:docs:win16:applications:MSD]] | | |
+| [[en:docs:win16:applications:NOTEPAD|Notepad]] (pure API) | a clone of the simple text editor | **Done** |
+| [[en:docs:win16:applications:PACKAGER]] | | |
+| [[en:docs:win16:applications:PBRUSH]]  (ATL)| | |
+| [[en:docs:win16:applications:PIFEDIT|PIF Editor]] (pure API) | | |
+| [[en:docs:win16:applications:PRINTMAN]] | | |
+| [[en:docs:win16:applications:PROGMAN|Program Manager]] (pure API) | | |
+| [[en:docs:win16:applications:REGEDIT]] | | |
+| [[en:docs:win16:applications:SETUP]] | | |
+| [[en:docs:win16:applications:SOL]] (pure API) | | |
+| [[en:docs:win16:applications:SOUNDREC|Sound Recorder]] | | |
+| [[en:docs:win16:applications:SYSEDIT|System Configuration Editor]] (pure API) | | **Done** |
+| [[en:docs:win16:applications:TASKMAN|Task Manager]] (pure API) | a clone of the Task Manager | **Done** |
+| [[en:docs:win16:applications:WINFILE]] (pure API) | | |
+| [[en:docs:win16:applications:WINHELP]] (pure API) | | |
+| [[en:docs:win16:applications:WINMINE|Minesweeper]] (pure API) | | **Done** |
+| [[en:docs:win16:applications:WINSHELD]] | | |
+| [[en:docs:win16:applications:WINVER|Windows Version]] (pure API) |  a clone of the system utility displaying Windows version | **Done** |
+| [[en:docs:win16:applications:WRITE]] | | |
+
+
+The main project source code is available in the repository: [[https://github.com/osfree-project/WIN16 osfree-project/WIN16]]
 
 =====  Related Pages =====
  
-  * [en:start Main osFree page]
-  * [https://en.wikipedia.org/wiki/Windows_3.1x Windows 3.1x] – Wikipedia article about this OS family.
+  * [[en:start|Main osFree page]]
+  * [[https://en.wikipedia.org/wiki/Windows_3.1x|Wikipedia article about this OS family]]
 
-=== Applications ===
 
-^ Name ^ Status ^
-| [[en:docs:win16:applications:CALC]] (pure API) | |
-| [[en:docs:win16:applications:CALENDAR]] | |
-| [[en:docs:win16:applications:CARDFILE]] | |
-| [[en:docs:win16:applications:CHARMAP]] (pure API) | |
-| [[en:docs:win16:applications:CLIPBRD|Clipboard Viewer]]  (pure API)| **Done** |
-| [[en:docs:win16:applications:CLOCK|Clock]]  (pure API)| **Done** |
-| [[en:docs:win16:applications:CONTROL|Control Panel]] | |
-| [[en:docs:win16:applications:DRWATSON]] | |
-| [[en:docs:win16:applications:EXPAND]] | **Done** |
-| [[en:docs:win16:applications:FASTOPEN]] | **Done** |
-| [[en:docs:win16:applications:MPLAYER]] | |
-| [[en:docs:win16:applications:MSD]] | |
-| [[en:docs:win16:applications:NOTEPAD|Notepad]]  (pure API)| **Done** |
-| [[en:docs:win16:applications:PACKAGER]] | |
-| [[en:docs:win16:applications:PBRUSH]]  (ATL)| |
-| [[en:docs:win16:applications:PIFEDIT|PIF Editor]] (pure API) | |
-| [[en:docs:win16:applications:PRINTMAN]] | |
-| [[en:docs:win16:applications:PROGMAN|Program Manager]] (pure API) | |
-| [[en:docs:win16:applications:REGEDIT]] | |
-| [[en:docs:win16:applications:SETUP]] | |
-| [[en:docs:win16:applications:SOL]] (pure API) | |
-| [[en:docs:win16:applications:SOUNDREC|Sound Recorder]] | |
-| [[en:docs:win16:applications:SYSEDIT|System Configuration Editor]] (pure API) | **Done** |
-| [[en:docs:win16:applications:TASKMAN|Task Manager]] (pure API) | **Done** |
-| [[en:docs:win16:applications:WINFILE]] (pure API) | |
-| [[en:docs:win16:applications:WINHELP]] (pure API) | |
-| [[en:docs:win16:applications:WINMINE|Minesweeper]] (pure API) | **Done** |
-| [[en:docs:win16:applications:WINSHELD]] | |
-| [[en:docs:win16:applications:WINVER|Windows Version]] (pure API) | **Done** |
-| [[en:docs:win16:applications:WRITE]] | |
 
 === API ===
 
@@ -81,4 +80,3 @@ The main project source code is available in the repository: [https://github.com
   * [[en:docs:win16:modules:user|USER module]]
   * [[en:docs:win16:modules:shell|SHELL module]]
   * [[en:docs:win16:modules:lzexpand|LZEXPAND module]]
-  * 
