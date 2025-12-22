@@ -13,11 +13,11 @@ osFree development must be attacked in several major stages - From a Command Lin
 In this version CPI implementation must be mostly finished. 16-bit API support not required. CMD.EXE and tools must be recompiled (because only sourcelevel compatability at this stage).
 
 ^Version                ^Requirements                     ^Status                    ^
-|0.0.1                      |L4 must be loaded using GRUB and Hello, world application must be executed (as L4 root task). Hello, world application is stub for osFree kernel. |Done |
-|0.0.2                      |EXT2FS must be finished (in general) and boot sequence must be implemented. GRUB must be removed. MicroFSD is 16-bit (OS/2 compatible), IFS is 32-bit (not OS/2 compatible). MicroFSD must load FreeLDR and execute it. FreeLDR must load L4 kernel and root task (osFree kernel stub). LILO must not be required for EXT2FS.  |Done |
+|0.0.1                      |L4 must be loaded using GRUB and Hello, world application must be executed (as L4 root task). Hello, world application is stub for osFree kernel. | **Done** |
+|0.0.2                      |EXT2FS must be finished (in general) and boot sequence must be implemented. GRUB must be removed. MicroFSD is 16-bit (OS/2 compatible), IFS is 32-bit (not OS/2 compatible). MicroFSD must load FreeLDR and execute it. FreeLDR must load L4 kernel and root task (osFree kernel stub). LILO must not be required for EXT2FS.  | **Done** |
 |                              |**Note:** MiniFSD is absent because not required for microkernel architecture.  ||
-|0.0.3                       |osFree kernel must parse CONFIG.SYS using file provider server (not real device driver loading) and show config tree. |Done |
-|0.0.4                     |LX loader and module linker (using file provider). osFree kernel must allow load and execute PROTSHELL application.  |Done  |
+|0.0.3                       |osFree kernel must parse CONFIG.SYS using file provider server (not real device driver loading) and show config tree. | **Done** |
+|0.0.4                     |LX loader and module linker (using file provider). osFree kernel must allow load and execute PROTSHELL application.  | **Done** |
 |0.0.5                       |Filesystem API implementation. LX loader must allow loading of [[en:docs:cmd:minicmd|MINICMD.EXE]] task via [[en:docs:virtual_file_system_servers|L4VFS]] and execute it. [[en:minimal_set_of_api|Minimal set of API]]  must be implemented. All pointers operations must be replaced by handles (implement handle manager). [[en:docs:os2server|OS/2 Server]] must be more structured. Support of OS/2 memory map. **[[status:0.0.5|More...]]** |**In Progress** |
 |0.0.6                       |VIO Server implementation. [[en:api:vio|VIO API]] implementation (32-bit version, via VIO Server). Console support instead of output to log server. Console output via nitpicker (write server like proxygon). |Not Done |
 |0.0.7                       |[[en:api:kbd|KBD API]] implementation (32-bit version) |Not Done |
@@ -43,22 +43,22 @@ In this version CPI implementation must be mostly finished. 16-bit API support n
 SOM tools and environment must be implemented. (Reused of somFree, not included in osFree source tree yet)
 
 ^Version                   ^Requirements                                          ^Status           ^
-|0.2.1                         |SOM Compiler Watcom Linker Emitter     |Done |
-|0.2.2                         |SOM Compiler IDL Preprocessor |Done |
-|0.2.3                         |SOM Compiler H Emitter must be implemented | Done (builtin) |
-|0.2.4                         |SOM Compiler XH Emitter must be implemented | Done (builtin) |
+|0.2.1                         |SOM Compiler Watcom Linker Emitter     | **Done** |
+|0.2.2                         |SOM Compiler IDL Preprocessor | **Done** |
+|0.2.3                         |SOM Compiler H Emitter must be implemented | **Done** (builtin) |
+|0.2.4                         |SOM Compiler XH Emitter must be implemented | **Done** (builtin) |
 |0.2.5                         |SOM Emitter Framework classes must be implemented | In progress |
-|0.2.6                         |SOM Compiler IDL must be implemented | Done (No Emitter Framework) |
+|0.2.6                         |SOM Compiler IDL must be implemented | **Done** (No Emitter Framework) |
 |0.2.7                         |SOM CPI Intefaces |Not Done |
-|                              |SOM Run-time Kernel | Not done |
+|                              |SOM Run-time Kernel | **Done** (not build for OS/2) |
 |                              |SOM Event Management Framework | not done |
-|                              |SOMObjects Interface Repository Framework | not done }
+|                              |SOMObjects Interface Repository Framework | **Done** }
 |                              |SOMObjects Utility Classes | not done |
 |                              |Distributed SOM Frameword | not done |
-|                              |SOM Compiler OIDL Preprocessor | Done |
+|                              |SOM Compiler OIDL Preprocessor | **Done** |
 |                              |SOM Compiler OIDL must be implemented | None |
-|                              |SOM Compiler library must be implemented | None |
-|                              |VisualAge Runtime subset for SOM (Win32 Host only)| None |
+|                              |SOM Compiler library must be implemented | In progress |
+|                              |VisualAge Runtime subset for SOM (Win32 Host only)| In progress |
 
 == 0.4 ==
 
