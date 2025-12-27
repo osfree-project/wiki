@@ -48,7 +48,7 @@ Clones of classic Windows 3.x applications are also being developed:
 | [[en:docs:win16:applications:WINFILE]] (pure API) | File Manager for managing files, directories, and disks. | |
 | [[en:docs:win16:applications:WINHELP]] (pure API) | Windows Help engine for displaying application help files. | |
 | [[en:docs:win16:applications:WINMINE|Minesweeper]] (pure API) | The classic Minesweeper puzzle game. | **Done** |
-| [[en:docs:win16:applications:WINSHELD]] |  | |
+| [[en:docs:win16:applications:WINSHELD]] | The Windows (Win) Shield is the Windows counterpart of the PM Shield. It is both an executable file and a dynamic link library (WINSHELD.EXE and WINSMSG.DLL, respectively). Win Shield serves a complementary purpose, maintaining Workplace Shell windowing-state information for its DOS session. | |
 | [[en:docs:win16:applications:WINVER|Windows Version]] (pure API) | Dialog box displaying Windows version and copyright information. | **Done** |
 | [[en:docs:win16:applications:WRITE]] | Write word processor for creating formatted documents. | |
 
