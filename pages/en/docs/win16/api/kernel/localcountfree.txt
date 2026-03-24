@@ -1,23 +1,35 @@
 {{page>en:templates:win16api}}
 
-======  ======
-
+====== LocalCountFree ======
 ===== Brief =====
+Returns the size, in bytes, of the free area in the current local heap.
 
 ===== Syntax =====
+<code c>WORD FAR PASCAL LocalCountFree(void);</code>
 
 ===== Parameters =====
+This function has no parameters.
 
-===== Return Code =====
+===== Return Value =====
+Returns the size, in bytes, of the free area in the current local heap. The "current" heap is the one whose data segment selector is loaded into the DS register at the time of the call.
 
 ===== Notes =====
 
+In normal use, called from within a module, it returns the free space in that module's own local heap.
+
 ===== Example Code =====
-
 ==== C Binding ====
+<code c>#include <windows.h>
 
+WORD wFreeBytes = LocalCountFree();</code>
 ==== MASM Binding ====
+<code asm>call LocalCountFree ; Returns AX = free bytes in current local heap</code>
 
 ===== See also =====
+
+  * [[LocalSize]]
+  * [[LocalCompact]]
+
+
 
 {{page>en:templates:win16}}

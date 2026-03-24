@@ -1,23 +1,48 @@
 {{page>en:templates:win16api}}
 
-======  ======
+====== LocalHandleDelta ======
+==== Brief ====
+Sets the number of handle table entries to be allocated when the local heap manager runs out of handle table entries for local moveable objects.
 
-===== Brief =====
+==== Syntax ====
+<code c>short WINAPI LocalHandleDelta(
+short nNewDelta
+);</code>
 
-===== Syntax =====
+==== Parameters ====
 
-===== Parameters =====
+nNewDelta – A short integer value specifying the number of handle table entries to be allocated (the "handle delta"). If nNewDelta is zero, the current handle delta is returned without change.
 
-===== Return Code =====
+==== Return Value ====
+Returns the current handle delta (after applying any change).
 
-===== Notes =====
+==== Notes ====
 
-===== Example Code =====
+The local heap manager maintains a handle table for moveable objects. When the table becomes full, it allocates new entries in blocks; the size of this block is the handle delta.
 
+This function allows an application to control the granularity of handle table expansion.
+
+A larger delta reduces the frequency of expansions but consumes more memory; a smaller delta saves memory but may lead to more frequent expansions.
+
+Used for fine‑tuning performance in applications that manipulate many moveable objects.
+
+==== Example Code ====
 ==== C Binding ====
+<code c>// Get current delta
+short currentDelta = LocalHandleDelta(0);
 
+// Set new delta to 16 entries
+short oldDelta = LocalHandleDelta(16);</code>
 ==== MASM Binding ====
+<code asm>; AX = new delta (0 to query)
+push ax
+call LocalHandleDelta
+; Returns AX = current (or new) delta</code>
 
-===== See also =====
+==== See also ====
+
+  * [[LocalAlloc]]
+  * [[LocalReAlloc]]
+
 
 {{page>en:templates:win16}}

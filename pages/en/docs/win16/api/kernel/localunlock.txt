@@ -1,23 +1,41 @@
 {{page>en:templates:win16api}}
 
-======  ======
+====== LocalUnlock ======
+==== Brief ====
+Decrements the lock count of a local memory object.
 
-===== Brief =====
+==== Syntax ====
+<code c>BOOL WINAPI LocalUnlock(
+HLOCAL hMem
+);</code>
 
-===== Syntax =====
+==== Parameters ====
 
-===== Parameters =====
+hMem – Handle to the memory object.
 
-===== Return Code =====
+==== Return Value ====
 
-===== Notes =====
+Returns FALSE (0) if the lock count becomes zero (object is now unlocked).
 
-===== Example Code =====
+Returns TRUE (non‑zero) if the lock count is still greater than zero after decrementing.
 
+==== Notes ====
+
+The return value indicates the new lock state, not success or failure – the function always succeeds for a valid handle.
+
+Unlocking allows the heap manager to move or discard the block during compaction.
+
+==== Example Code ====
 ==== C Binding ====
-
+<code c>BOOL stillLocked = LocalUnlock(hMem);</code>
 ==== MASM Binding ====
+<code asm>push hMem
+call LocalUnlock
+test ax, ax ; zero if completely unlocked</code>
 
-===== See also =====
+==== See also ====
+
+  * [[LocalLock]]
+  * [[LocalFlags]]
 
 {{page>en:templates:win16}}

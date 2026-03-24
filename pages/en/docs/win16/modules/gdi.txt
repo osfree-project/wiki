@@ -1,17 +1,19 @@
+{{page>en:templates:win16api}}
+
 ^ Ordinal ^ Name ^ Description ^ Status ^ Version ^
-| 1 | [[en:docs:win16:api:gdi:SETBKCOLOR]] | Sets the current background color | | |
-| 2 | [[en:docs:win16:api:gdi:SETBKMODE]] | Sets the background mix mode | | |
-| 3 | [[en:docs:win16:api:gdi:SETMAPMODE]] | Sets the mapping mode | | |
-| 4 | [[en:docs:win16:api:gdi:SETROP2]] | Sets the foreground mix mode | | |
-| 6 | [[en:docs:win16:api:gdi:SETPOLYFILLMODE]] | Sets the polygon filling mode | | |
-| 7 | [[en:docs:win16:api:gdi:SETSTRETCHBLTMODE]] | Sets the bitmap stretching mode | | |
-| 8 | [[en:docs:win16:api:gdi:SETTEXTCHARACTEREXTRA]] | Sets intercharacter spacing | | |
-| 9 | [[en:docs:win16:api:gdi:SETTEXTCOLOR]] | Sets the text color | | |
-| 10 | [[en:docs:win16:api:gdi:SETTEXTJUSTIFICATION]] | Sets text justification parameters | | |
-| 11 | [[en:docs:win16:api:gdi:SETWINDOWORG]] | Sets the window origin | | |
-| 12 | [[en:docs:win16:api:gdi:SETWINDOWEXT]] | Sets the window extents | | |
-| 13 | [[en:docs:win16:api:gdi:SETVIEWPORTORG]] | Sets the viewport origin | | |
-| 14 | [[en:docs:win16:api:gdi:SETVIEWPORTEXT]] | Sets the viewport extents | | |
+| 1 | [[en:docs:win16:api:gdi:SetBkColor]] | Sets the current background color | | |
+| 2 | [[en:docs:win16:api:gdi:SetBkMode]] | Sets the background mix mode | | |
+| 3 | [[en:docs:win16:api:gdi:SetMapMode]] | Sets the mapping mode | | |
+| 4 | [[en:docs:win16:api:gdi:SetROP2]] | Sets the foreground mix mode | | |
+| 6 | [[en:docs:win16:api:gdi:SetPolyFillMode]] | Sets the polygon filling mode | | |
+| 7 | [[en:docs:win16:api:gdi:SetStretchBltMode]] | Sets the bitmap stretching mode | | |
+| 8 | [[en:docs:win16:api:gdi:SetTextCharacterExtra]] | Sets intercharacter spacing | | |
+| 9 | [[en:docs:win16:api:gdi:SetTextColor]] | Sets the text color | | |
+| 10 | [[en:docs:win16:api:gdi:SetTextJustification]] | Sets text justification parameters | | |
+| 11 | [[en:docs:win16:api:gdi:SetWindowOrg]] | Sets the window origin | | |
+| 12 | [[en:docs:win16:api:gdi:SetWindowExt]] | Sets the window extents | | |
+| 13 | [[en:docs:win16:api:gdi:SetViewportOrg]] | Sets the viewport origin | | |
+| 14 | [[en:docs:win16:api:gdi:SetViewportExt]] | Sets the viewport extents | | |
 | 15 | [[en:docs:win16:api:gdi:OFFSETWINDOWORG]] | Moves the window origin | | |
 | 16 | [[en:docs:win16:api:gdi:SCALEWINDOWEXT]] | Scales the window extents | | |
 | 17 | [[en:docs:win16:api:gdi:OFFSETVIEWPORTORG]] | Moves the viewport origin | | |

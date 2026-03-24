@@ -4,93 +4,93 @@ Supervisor calls API aimed to call host services from MVM.
 
 ===== Functions =====
 
-^ Function ^ Description ^
-| [[en:docs:mvm:api:0]] | Duplicate handle (params and result same as in INT 21H AH=[[en:docs:dos:api:int21:45|45H]])|
-| [[en:docs:mvm:api:1]] | Terminate MVM with error message (top of stack - far pointer to message ASCIIZ) |
-| [[en:docs:mvm:api:2]] | Terminate MVM and return code to parent process from AX |
-| [[en:docs:mvm:api:3]] | Close file handle (interface not investigated yet) |
-| [[en:docs:mvm:api:4]] | Reset disk buffers |
-| [[en:docs:mvm:api:5]] | Get current PSP (interface not investigated yet) |
-| [[en:docs:mvm:api:6]] | Select default drive (params and result same as in INT 21H AH=[[en:docs:dos:api:int21:0e|0EH]]) |
-| [[en:docs:mvm:api:7]] | Set DTA from DS:DX (params and result same as in INT 21H AH=[[en:docs:dos:api:int21:1a|1AH]])|
-| [[en:docs:mvm:api:8]] | Get version (interface not investigated yet) |
-| [[en:docs:mvm:api:9]] | Write file handle (interface not investigated yet) |
-| [[en:docs:mvm:api:10]] | Set system date (params and result same as in INT 21H AH=[[en:docs:dos:api:int21:2b|2BH]]) |
-| [[en:docs:mvm:api:11]] | Set system time (params and result same as in INT 21H AH=[[en:docs:dos:api:int21:2d|2DH]]) |
-| [[en:docs:mvm:api:12]] | Get system date (result same as in INT 21H AH=[[en:docs:dos:api:int21:2a|2AH]]) |
-| [[en:docs:mvm:api:13]] | Get system time (result same as in INT 21H AH=[[en:docs:dos:api:int21:2c|2CH]]) |
-| [[en:docs:mvm:api:14]] | Read file handle  (interface not investigated yet) |
-| [[en:docs:mvm:api:15]] | Set file handle position (interface not investigated yet) |
-| [[en:docs:mvm:api:16]] | Delete directory (params and result same as in INT 21H AH=[[en:docs:dos:api:int21:3a|3AH]])|
-| [[en:docs:mvm:api:17]] | Create directory (interface not investigated yet) |
-| [[en:docs:mvm:api:18]] | Get current directory (params and result same as in INT 21H AH=[[en:docs:dos:api:int21:47|47H]]) |
-| [[en:docs:mvm:api:19]] | Change directory (params and result same as in INT 21H AH=[[en:docs:dos:api:int21:3b|3BH]]) |
-| [[en:docs:mvm:api:20]] | Get/Set file time (interface not investigated yet) |
-| [[en:docs:mvm:api:21]] | Commit file (interface not investigated yet) |
-| [[en:docs:mvm:api:22]] | Find first file using FCB (interface not investigated yet) |
-| [[en:docs:mvm:api:23]] | Find next file using FCB (interface not investigated yet) |
-| [[en:docs:mvm:api:24]] |  |
-| [[en:docs:mvm:api:25]] | Find first file (interface not investigated yet) |
-| [[en:docs:mvm:api:26]] | |
-| [[en:docs:mvm:api:27]] | |
-| [[en:docs:mvm:api:28]] | Open file (interface not investigated yet)|
-| [[en:docs:mvm:api:29]] | Delete file using FCB DS:DX -> unopened FCB ES -> environment segment |
-| [[en:docs:mvm:api:30]] | Rename file using FCB (params and result same as in INT 21H AH=[[en:docs:dos:api:int21:17|17H]]) |
-| [[en:docs:mvm:api:31]] | Delete file (interface not investigated yet) |
-| [[en:docs:mvm:api:32]] | Rename file (interface not investigated yet) |
-| [[en:docs:mvm:api:33]] | |
-| [[en:docs:mvm:api:34]] | |
-| [[en:docs:mvm:api:35]] | |
-| [[en:docs:mvm:api:36]] | |
-| [[en:docs:mvm:api:37]] | Open file using FCB (interface not investigated yet) |
-| [[en:docs:mvm:api:38]] | |
-| [[en:docs:mvm:api:39]] | Close file using FCB (interface not investigated yet) |
-| [[en:docs:mvm:api:40]] | |
-| [[en:docs:mvm:api:41]] | |
-| [[en:docs:mvm:api:42]] | |
-| [[en:docs:mvm:api:43]] | |
-| [[en:docs:mvm:api:44]] | Set VERIFY flag from AL |
-| [[en:docs:mvm:api:45]] | Find next file (interface not investigated yet) |
-| [[en:docs:mvm:api:46]] | Create new file (interface not investigated yet) |
-| [[en:docs:mvm:api:47]] | Create temp file (interface not investigated yet)|
-| [[en:docs:mvm:api:48]] | |
-| [[en:docs:mvm:api:49]] | Parse filename to FCB (params and result same as in INT 21H AH=[[en:docs:dos:api:int21:29|29H]]) |
-| [[en:docs:mvm:api:50]] | |
-| [[en:docs:mvm:api:51]] | |
-| [[en:docs:mvm:api:52]] | |
-| [[en:docs:mvm:api:53]] | |
-| [[en:docs:mvm:api:54]] | |
-| [[en:docs:mvm:api:55]] | |
-| [[en:docs:mvm:api:56]] | |
-| [[en:docs:mvm:api:57]] | |
-| [[en:docs:mvm:api:58]] | |
-| [[en:docs:mvm:api:59]] | |
-| [[en:docs:mvm:api:60]] | |
-| [[en:docs:mvm:api:61]] | Absolute disk read (interface not investigated yet) |
-| [[en:docs:mvm:api:62]] | Absolute disk write (interface not investigated yet) |
-| [[en:docs:mvm:api:63]] | |
-| [[en:docs:mvm:api:64]] | |
-| [[en:docs:mvm:api:65]] | |
-| [[en:docs:mvm:api:66]] | |
-| [[en:docs:mvm:api:67]] | |
-| [[en:docs:mvm:api:68]] | |
-| [[en:docs:mvm:api:69]] | |
-| [[en:docs:mvm:api:70]] | |
-| [[en:docs:mvm:api:71]] | |
-| [[en:docs:mvm:api:72]] | |
-| [[en:docs:mvm:api:73]] | |
-| [[en:docs:mvm:api:74]] | |
-| [[en:docs:mvm:api:75]] | |
-| [[en:docs:mvm:api:76]] | |
-| [[en:docs:mvm:api:77]] | |
-| [[en:docs:mvm:api:78]] | |
-| [[en:docs:mvm:api:79]] | |
-| [[en:docs:mvm:api:80]] | |
-| [[en:docs:mvm:api:81]] | |
-| [[en:docs:mvm:api:82]] | |
-| [[en:docs:mvm:api:83]] | |
-| [[en:docs:mvm:api:84]] | |
-| [[en:docs:mvm:api:85]] | |
+^ Function ^ Name ^ INT 21h equivalent ^ Description ^
+| [[en:docs:mvm:api:0]] | SVC_DUPHANDLE | [[en:docs:dos:api:int21:45|AH=45h]] | Duplicate handle (params and result same as in INT 21H AH=45H) |
+| [[en:docs:mvm:api:1]] | SVC_ERROREXIT | [[en:docs:dos:api:int21:4c|AH=4Ch]] | Terminate MVM with error message (top of stack - far pointer to message ASCIIZ) |
+| [[en:docs:mvm:api:2]] | SVC_EXIT | [[en:docs:dos:api:int21:4c|AH=4Ch]] | Terminate MVM and return code to parent process from AX |
+| [[en:docs:mvm:api:3]] | SVC_CLOSE | [[en:docs:dos:api:int21:3e|AH=3Eh]] | Close file handle (interface not investigated yet) |
+| [[en:docs:mvm:api:4]] | SVC_RESETDISK | [[en:docs:dos:api:int21:0d|AH=0Dh]] | Reset disk buffers |
+| [[en:docs:mvm:api:5]] | SVC_GETPSP | [[en:docs:dos:api:int21:62|AH=62h]] | Get current PSP (interface not investigated yet) |
+| [[en:docs:mvm:api:6]] | SVC_SELECTDRIVE | [[en:docs:dos:api:int21:0e|AH=0Eh]] | Select default drive (params and result same as in INT 21H AH=0EH) |
+| [[en:docs:mvm:api:7]] | SVC_SETDTA | [[en:docs:dos:api:int21:1a|AH=1Ah]] | Set DTA from DS:DX (params and result same as in INT 21H AH=1AH) |
+| [[en:docs:mvm:api:8]] | SVC_GETVERSION | [[en:docs:dos:api:int21:30|AH=30h]] | Get version (interface not investigated yet) |
+| [[en:docs:mvm:api:9]] | SVC_WRITE | [[en:docs:dos:api:int21:40|AH=40h]] | Write file handle (interface not investigated yet) |
+| [[en:docs:mvm:api:10]] | SVC_SETDATE | [[en:docs:dos:api:int21:2b|AH=2Bh]] | Set system date (params and result same as in INT 21H AH=2BH) |
+| [[en:docs:mvm:api:11]] | SVC_SETTIME | [[en:docs:dos:api:int21:2d|AH=2Dh]] | Set system time (params and result same as in INT 21H AH=2DH) |
+| [[en:docs:mvm:api:12]] | SVC_GETDATE | [[en:docs:dos:api:int21:2a|AH=2Ah]] | Get system date (result same as in INT 21H AH=2AH) |
+| [[en:docs:mvm:api:13]] | SVC_GETTIME | [[en:docs:dos:api:int21:2c|AH=2Ch]] | Get system time (result same as in INT 21H AH=2CH) |
+| [[en:docs:mvm:api:14]] | SVC_READ | [[en:docs:dos:api:int21:3f|AH=3Fh]] | Read file handle (interface not investigated yet) |
+| [[en:docs:mvm:api:15]] | SVC_CHGFILEPTR | [[en:docs:dos:api:int21:42|AH=42h]] | Set file handle position (interface not investigated yet) |
+| [[en:docs:mvm:api:16]] | SVC_RMDIR | [[en:docs:dos:api:int21:3a|AH=3Ah]] | Delete directory (params and result same as in INT 21H AH=3AH) |
+| [[en:docs:mvm:api:17]] | SVC_MKDIR | [[en:docs:dos:api:int21:39|AH=39h]] | Create directory (interface not investigated yet) |
+| [[en:docs:mvm:api:18]] | SVC_QCURDIR | [[en:docs:dos:api:int21:47|AH=47h]] | Get current directory (params and result same as in INT 21H AH=47H) |
+| [[en:docs:mvm:api:19]] | SVC_CHDIR | [[en:docs:dos:api:int21:3b|AH=3Bh]] | Change directory (params and result same as in INT 21H AH=3BH) |
+| [[en:docs:mvm:api:20]] | SVC_GETSETFILETIME | [[en:docs:dos:api:int21:57|AH=57h]] | Get/Set file time (interface not investigated yet) |
+| [[en:docs:mvm:api:21]] | SVC_COMMITFILE | [[en:docs:dos:api:int21:68|AH=68h]] | Commit file (interface not investigated yet) |
+| [[en:docs:mvm:api:22]] | SVC_FINDFIRSTFCB | [[en:docs:dos:api:int21:11|AH=11h]] | Find first file using FCB (interface not investigated yet) |
+| [[en:docs:mvm:api:23]] | SVC_FINDNEXTFCB | [[en:docs:dos:api:int21:12|AH=12h]] | Find next file using FCB (interface not investigated yet) |
+| [[en:docs:mvm:api:24]] | | | |
+| [[en:docs:mvm:api:25]] | SVC_FINDFIRST | [[en:docs:dos:api:int21:4e|AH=4Eh]] | Find first file (interface not investigated yet) |
+| [[en:docs:mvm:api:26]] | | | |
+| [[en:docs:mvm:api:27]] | | | |
+| [[en:docs:mvm:api:28]] | SVC_OPEN | [[en:docs:dos:api:int21:3d|AH=3Dh]] | Open file (interface not investigated yet) |
+| [[en:docs:mvm:api:29]] | SVC_DELETEFCB | [[en:docs:dos:api:int21:13|AH=13h]] | Delete file using FCB (DS:DX → unopened FCB, ES → environment segment) |
+| [[en:docs:mvm:api:30]] | SVC_RENAMEFCB | [[en:docs:dos:api:int21:17|AH=17h]] | Rename file using FCB (params and result same as in INT 21H AH=17H) |
+| [[en:docs:mvm:api:31]] | SVC_DELETE | [[en:docs:dos:api:int21:41|AH=41h]] | Delete file (interface not investigated yet) |
+| [[en:docs:mvm:api:32]] | SVC_MOVE | [[en:docs:dos:api:int21:56|AH=56h]] | Rename file (interface not investigated yet) |
+| [[en:docs:mvm:api:33]] | | | |
+| [[en:docs:mvm:api:34]] | | | |
+| [[en:docs:mvm:api:35]] | | | |
+| [[en:docs:mvm:api:36]] | | | |
+| [[en:docs:mvm:api:37]] | SVC_OPENFCB | [[en:docs:dos:api:int21:0f|AH=0Fh]] | Open file using FCB (interface not investigated yet) |
+| [[en:docs:mvm:api:38]] | | | |
+| [[en:docs:mvm:api:39]] | SVC_CLOSEFCB | [[en:docs:dos:api:int21:10|AH=10h]] | Close file using FCB (interface not investigated yet) |
+| [[en:docs:mvm:api:40]] | | | |
+| [[en:docs:mvm:api:41]] | | | |
+| [[en:docs:mvm:api:42]] | | | |
+| [[en:docs:mvm:api:43]] | | | |
+| [[en:docs:mvm:api:44]] | SVC_SETVERIFY | [[en:docs:dos:api:int21:2e|AH=2Eh]] | Set VERIFY flag from AL |
+| [[en:docs:mvm:api:45]] | SVC_FINDNEXT | [[en:docs:dos:api:int21:4f|AH=4Fh]] | Find next file (interface not investigated yet) |
+| [[en:docs:mvm:api:46]] | SVC_CREATE | [[en:docs:dos:api:int21:3c|AH=3Ch]] | Create new file (interface not investigated yet) |
+| [[en:docs:mvm:api:47]] | SVC_CREATETEMP | [[en:docs:dos:api:int21:5a|AH=5Ah]] | Create temp file (interface not investigated yet) |
+| [[en:docs:mvm:api:48]] | | | |
+| [[en:docs:mvm:api:49]] | SVC_PARSEFILENAME | [[en:docs:dos:api:int21:29|AH=29h]] | Parse filename to FCB (params and result same as in INT 21H AH=29H) – creates an unopened FCB from an ASCIIZ string |
+| [[en:docs:mvm:api:50]] | | | |
+| [[en:docs:mvm:api:51]] | | | |
+| [[en:docs:mvm:api:52]] | | | |
+| [[en:docs:mvm:api:53]] | | | |
+| [[en:docs:mvm:api:54]] | | | |
+| [[en:docs:mvm:api:55]] | | | |
+| [[en:docs:mvm:api:56]] | | | |
+| [[en:docs:mvm:api:57]] | | | |
+| [[en:docs:mvm:api:58]] | | | |
+| [[en:docs:mvm:api:59]] | | | |
+| [[en:docs:mvm:api:60]] | | | |
+| [[en:docs:mvm:api:61]] | SVC_ABSDISKREAD | [[en:docs:dos:api:int25|INT 25h]] | Absolute disk read (interface not investigated yet; corresponds to INT 25h) |
+| [[en:docs:mvm:api:62]] | SVC_ABSDISKWRITE | [[en:docs:dos:api:int26|INT 26h]] | Absolute disk write (interface not investigated yet; corresponds to INT 26h) |
+| [[en:docs:mvm:api:63]] | | | |
+| [[en:docs:mvm:api:64]] | | | |
+| [[en:docs:mvm:api:65]] | | | |
+| [[en:docs:mvm:api:66]] | | | |
+| [[en:docs:mvm:api:67]] | | | |
+| [[en:docs:mvm:api:68]] | | | |
+| [[en:docs:mvm:api:69]] | | | |
+| [[en:docs:mvm:api:70]] | | | |
+| [[en:docs:mvm:api:71]] | | | |
+| [[en:docs:mvm:api:72]] | | | |
+| [[en:docs:mvm:api:73]] | | | |
+| [[en:docs:mvm:api:74]] | | | |
+| [[en:docs:mvm:api:75]] | | | |
+| [[en:docs:mvm:api:76]] | | | |
+| [[en:docs:mvm:api:77]] | | | |
+| [[en:docs:mvm:api:78]] | | | |
+| [[en:docs:mvm:api:79]] | | | |
+| [[en:docs:mvm:api:80]] | | | |
+| [[en:docs:mvm:api:81]] | | | |
+| [[en:docs:mvm:api:82]] | | | |
+| [[en:docs:mvm:api:83]] | | | |
+| [[en:docs:mvm:api:84]] | | | |
+| [[en:docs:mvm:api:85]] | | | |
 
 ===== Structures =====
 

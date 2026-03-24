@@ -1,23 +1,48 @@
 {{page>en:templates:win16api}}
 
-======  ======
+====== LocalLock ======
+==== Brief ====
+Locks a local memory object and returns a pointer to its first byte.
 
-===== Brief =====
+==== Syntax ====
+<code c>LPVOID WINAPI LocalLock(
+HLOCAL hMem
+);</code>
 
-===== Syntax =====
+==== Parameters ====
 
-===== Parameters =====
+hMem – Handle to the memory object.
 
-===== Return Code =====
+==== Return Value ====
 
-===== Notes =====
+Returns a pointer to the beginning of the memory block.
 
-===== Example Code =====
+Returns NULL on failure (e.g., handle is invalid or the block has been discarded). Call GetLastError.
 
+==== Notes ====
+
+Increments the lock count of the object by one. The heap manager cannot move or discard a locked block.
+
+Every call to LocalLock must be balanced with a call to LocalUnlock.
+
+For fixed objects (LMEM_FIXED), the lock count is always zero and the returned pointer equals the handle.
+
+==== Example Code ====
 ==== C Binding ====
-
+<code c>LPSTR pData = (LPSTR)LocalLock(hMem);
+if (pData) {
+// work with data
+LocalUnlock(hMem);
+}</code>
 ==== MASM Binding ====
+<code asm>push hMem
+call LocalLock
+mov [p], ax</code>
 
-===== See also =====
+==== See also ====
+
+  * [[LocalUnlock]]
+  * [[LocalHandle]]
+
 
 {{page>en:templates:win16}}

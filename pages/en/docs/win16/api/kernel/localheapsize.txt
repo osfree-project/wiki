@@ -1,23 +1,37 @@
 {{page>en:templates:win16api}}
 
-======  ======
+====== LocalHeapSize ======
+(Source: Windows KERNEL export list, ordinal 162)
 
 ===== Brief =====
+Returns the size, in bytes, of the current local heap.
 
 ===== Syntax =====
+<code c>WORD FAR PASCAL LocalHeapSize(void);</code>
 
 ===== Parameters =====
+This function has no parameters.
 
-===== Return Code =====
+===== Return Value =====
+Returns the total size, in bytes, of the current local heap. The "current" heap is the one whose data segment selector is loaded into the DS register at the time of the call.
 
 ===== Notes =====
 
+The function operates on the local heap associated with the data segment currently addressed by the DS register. In normal use, called from within a module, it returns the total size of that module's own local heap.
+It can be used to determine the size of another program's local heap by temporarily loading its instance handle (selector) into DS, though this is rarely necessary in practice.
+
 ===== Example Code =====
-
 ==== C Binding ====
+<code c>#include <windows.h>
 
+WORD wHeapSize = LocalHeapSize();</code>
 ==== MASM Binding ====
+<code asm>call LocalHeapSize ; Returns AX = total size of current local heap</code>
 
 ===== See also =====
+
+  * [[LocalCountFree]]
+  * [[LocalSize]]
+
 
 {{page>en:templates:win16}}

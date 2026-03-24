@@ -1,23 +1,38 @@
 {{page>en:templates:win16api}}
 
-======  ======
+====== LocalHandle ======
+==== Brief ====
+Retrieves the handle associated with a given pointer to a local memory object.
 
-===== Brief =====
+==== Syntax ====
+<code c>HLOCAL WINAPI LocalHandle(
+LPCVOID pMem
+);</code>
 
-===== Syntax =====
+==== Parameters ====
 
-===== Parameters =====
+pMem – Pointer to a memory block inside the local heap (returned by LocalLock).
 
-===== Return Code =====
+==== Return Value ====
 
-===== Notes =====
+Returns the handle of the object, or NULL if the pointer does not belong to the local heap. Call GetLastError.
 
-===== Example Code =====
+==== Notes ====
 
+This function is the inverse of LocalLock.
+
+Useful when you only have a pointer and need the handle for other operations (e.g., LocalFlags, LocalSize).
+
+==== Example Code ====
 ==== C Binding ====
-
+<code c>HLOCAL h = LocalHandle(pData);</code>
 ==== MASM Binding ====
+<code asm>push p
+call LocalHandle</code>
 
-===== See also =====
+==== See also ====
+
+  * [[LocalLock]]
+
 
 {{page>en:templates:win16}}

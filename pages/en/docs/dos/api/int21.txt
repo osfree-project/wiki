@@ -12,7 +12,7 @@ DOS API Dispatcher
 
 ===== Family API =====
 
-none
+[[en:docs:fapi:functions|Family API functions]]
 
 ===== Win16 API =====
 
@@ -20,204 +20,207 @@ none
 
 ===== Input =====
 
-^ AH ^ Description ^ Version ^ Implemented in DOSKRNL ^
-| [[en:docs:dos:api:int21:00|00H]] | Program terminate | 1.0+ |
-| [[en:docs:dos:api:int21:01|01H]] | Character input | 1.0+ | Yes |
-| [[en:docs:dos:api:int21:02|02H]] | Character output | 1.0+ | Yes |
-| [[en:docs:dos:api:int21:03|03H]] | Auxiliary input | 1.0+ | Yes |
-| [[en:docs:dos:api:int21:04|04H]] | Auxiliary output | 1.0+ | Yes |
-| [[en:docs:dos:api:int21:05|05H]] | Printer output | 1.0+ | Yes |
-| [[en:docs:dos:api:int21:06|06H]] | Direct console I/O | 1.0+ | Yes |
-| [[en:docs:dos:api:int21:07|07H]] | Direct console input without echo | 1.0+ | Yes |
-| [[en:docs:dos:api:int21:08|08H]] | Console input without echo | 1.0+ | Yes |
-| [[en:docs:dos:api:int21:09|09H]] | Display string | 1.0+ | Yes |
-| [[en:docs:dos:api:int21:0a|0AH]] | Buffered keyboard input | 1.0+ | Yes |
-| [[en:docs:dos:api:int21:0b|0BH]] | Get input status | 1.0+ | Yes |
-| [[en:docs:dos:api:int21:0c|0CH]] | Flush input buffer and input | 1.0+ | Yes |
-| [[en:docs:dos:api:int21:0d|0DH]] | Disk reset | 1.0+ |
-| [[en:docs:dos:api:int21:0e|0EH]] | Set default drive | 1.0+ |
-| [[en:docs:dos:api:int21:0f|0FH]] | Open file (FCB) | 1.0+ |
-| [[en:docs:dos:api:int21:10|10H]] | Close file (FCB) | 1.0+ |
-| [[en:docs:dos:api:int21:11|11H]] | Find first file (FCB) | 1.0+ |
-| [[en:docs:dos:api:int21:12|12H]] | Find next file (FCB) | 1.0+ |
-| [[en:docs:dos:api:int21:13|13H]] | Delete file (FCB) | 1.0+ |
-| [[en:docs:dos:api:int21:14|14H]] | Sequential read (FCB) | 1.0+ |
-| [[en:docs:dos:api:int21:15|15H]] | Sequential write (FCB) | 1.0+ |
-| [[en:docs:dos:api:int21:16|16H]] | Create or truncate file (FCB) | 1.0+ |
-| [[en:docs:dos:api:int21:17|17H]] | Rename file (FCB) | 1.0+ |
-| [[en:docs:dos:api:int21:19|19H]] | Get default drive | 1.0+ |
-| [[en:docs:dos:api:int21:1a|1AH]] | Set disk transfer address | 1.0+ |
-| [[en:docs:dos:api:int21:1b|1BH]] | Get allocation info for default drive | 1.0+ |
-| [[en:docs:dos:api:int21:1c|1CH]] | Get allocation info for specified drive | 1.0+ |
-| [[en:docs:dos:api:int21:1f|1FH]] | Get disk parameter block for default drive | 1.0+ |
-| [[en:docs:dos:api:int21:21|21H]] | Random read (FCB) | 1.0+ |
-| [[en:docs:dos:api:int21:22|22H]] | Random write (FCB) | 1.0+ |
-| [[en:docs:dos:api:int21:23|23H]] | Get file size in records (FCB) | 1.0+ |
-| [[en:docs:dos:api:int21:24|24H]] | Set random record number (FCB) | 1.0+ |
-| [[en:docs:dos:api:int21:25|25H]] | Set interrupt vector | 1.0+ |
-| [[en:docs:dos:api:int21:26|26H]] | Create PSP | 1.0+ |
-| [[en:docs:dos:api:int21:27|27H]] | Random block read (FCB) | 1.0+ |
-| [[en:docs:dos:api:int21:28|28H]] | Random block write (FCB) | 1.0+ |
-| [[en:docs:dos:api:int21:29|29H]] | Parse filename (FCB) | 1.0+ |
-| [[en:docs:dos:api:int21:2a|2AH]] | Get date | 1.0+ |
-| [[en:docs:dos:api:int21:2b|2BH]] | Set date | 1.0+ |
-| [[en:docs:dos:api:int21:2c|2CH]] | Get time | 1.0+ |
-| [[en:docs:dos:api:int21:2d|2DH]] | Set time | 1.0+ |
-| [[en:docs:dos:api:int21:2e|2EH]] | Set verify flag | 1.0+ |
-| [[en:docs:dos:api:int21:2f|2FH]] | Get disk transfer address | 2.0+ |
-| [[en:docs:dos:api:int21:30|30H]] | Get DOS version | 2.0+ |
-| [[en:docs:dos:api:int21:31|31H]] | Terminate and stay resident | 2.0+ |
-| [[en:docs:dos:api:int21:32|32H]] | Get disk parameter block for specified drive | 2.0+ |
-| [[en:docs:dos:api:int21:33|33H]] | Extended functions | 2.0+ | Yes |
-| [[en:docs:dos:api:int21:33:00|3300H]] | Get current extended break state                  | 2.0+    | Yes |
-| [[en:docs:dos:api:int21:33:01|3301H]] | Set state of extended Ctrl+C/Ctrl+Break checking  | 2.0+    | Yes |
-| [[en:docs:dos:api:int21:33:02|3302H]] | Get and set extended Control-Break checking state | 3.0+    | Yes |
-| [[en:docs:dos:api:int21:33:03|3303H]] | Get current CPSW state                            | 3.4/4.0 | No |
-| [[en:docs:dos:api:int21:33:04|3304H]] | Set CPSW state                                    | 3.4/4.0 | No |
-| [[en:docs:dos:api:int21:33:05|3305H]] | Get boot drive                                    | 4.0+    | Yes |
-| [[en:docs:dos:api:int21:33:06|3306H]] | Get true version number                           | 5.0+    | Yes |
-| [[en:docs:dos:api:int21:34|34H]] | Get InDOS flag pointer | 2.0+ |
-| [[en:docs:dos:api:int21:35|35H]] | Get interrupt vector | 2.0+ |
-| [[en:docs:dos:api:int21:36|36H]] | Get free disk space | 2.0+ |
-| [[en:docs:dos:api:int21:37|37H]] | Extended functions | 2.0+ |
-| [[en:docs:dos:api:int21:37:00|3700H]] | Get switch character | 2.0+         |
-| [[en:docs:dos:api:int21:37:01|3701H]] | Set switch character | 2.0+         |
-| [[en:docs:dos:api:int21:37:02|3702H]] | Get availdev flag    | 2.x and 3.3+ |
-| [[en:docs:dos:api:int21:37:03|3703H]] | Set availdev flag    | 2.x and 3.3+ |
-| [[en:docs:dos:api:int21:38|38H]] | Get or set country info | 2.0+ |
-| [[en:docs:dos:api:int21:38:00|3800H]] | Get current country info | 2.0+         |
-| [[en:docs:dos:api:int21:38:01|3801H]] | Get/set specified country info | 3.0+         |
-| [[en:docs:dos:api:int21:39|39H]] | Create subdirectory | 2.0+ |
-| [[en:docs:dos:api:int21:3a|3AH]] | Remove subdirectory | 2.0+ |
-| [[en:docs:dos:api:int21:3b|3BH]] | Change current directory | 2.0+ |
-| [[en:docs:dos:api:int21:3c|3CH]] | Create or truncate file | 2.0+ |
-| [[en:docs:dos:api:int21:3d|3DH]] | Open file | 2.0+ |
-| [[en:docs:dos:api:int21:3e|3EH]] | Close file | 2.0+ |
-| [[en:docs:dos:api:int21:3f|3FH]] | Read file or device | 2.0+ |
-| [[en:docs:dos:api:int21:40|40H]] | Write file or device | 2.0+ |
-| [[en:docs:dos:api:int21:41|41H]] | Delete file | 2.0+ |
-| [[en:docs:dos:api:int21:42|42H]] | Move file pointer | 2.0+ |
-| [[en:docs:dos:api:int21:43|43H]] | Extended functions | 2.0+ |
-| [[en:docs:dos:api:int21:43:00|4300H]] | Get file attributes                               | 2.0+    |
-| [[en:docs:dos:api:int21:43:01|4301H]] | Set file attributes  | 2.0+    |
-| [[en:docs:dos:api:int21:44|44H]] | Extended functions | 2.0+ |
-| [[en:docs:dos:api:int21:44:00|4400H]] | Get device information                            | 2.0+    |
-| [[en:docs:dos:api:int21:44:01|4401H]] | Set device information                            | 2.0+    |
-| [[en:docs:dos:api:int21:44:02|4402H]] | Read from character device control channel        | 2.0+    |
-| [[en:docs:dos:api:int21:44:03|4403H]] | Write to character device control channel         | 2.0+    |
-| [[en:docs:dos:api:int21:44:04|4404H]] | Read from block device control channel            | 2.0+    |
-| [[en:docs:dos:api:int21:44:05|4405H]] | Write to block device control channel             | 2.0+    |
-| [[en:docs:dos:api:int21:44:06|4406H]] | Get input status                                  | 2.0+    |
-| [[en:docs:dos:api:int21:44:07|4407H]] | Get output status                                 | 2.0+    |
-| [[en:docs:dos:api:int21:44:08|4408H]] | Check if block device removable                   | 3.0+    |
-| [[en:docs:dos:api:int21:44:09|4409H]] | Check if block device remote                      | 3.1+    |
-| [[en:docs:dos:api:int21:44:0A|440AH]] | Check if handle is remote                         | 3.1+    |
-| [[en:docs:dos:api:int21:44:0B|440BH]] | Set sharing retry count                           | 3.1+    |
-| [[en:docs:dos:api:int21:44:0C|440CH]] | Generic character device request                  | 3.2+    |
-| [[en:docs:dos:api:int21:44:0D|440DH]] | Generic block device request                      | 3.2+    |
-| [[en:docs:dos:api:int21:44:0E|440EH]] | Get logical drive map                             | 3.2+    |
-| [[en:docs:dos:api:int21:44:0F|440FH]] | Set logical drive map                             | 3.2+    |
-| [[en:docs:dos:api:int21:44:10|4410H]] | Query generic IOCTL capability (handle)           | 5.0+    |
-| [[en:docs:dos:api:int21:44:11|4411H]] | Query generic IOCTL capability (drive)            | 5.0+    |
-| [[en:docs:dos:api:int21:45|45H]] | Duplicate handle | 2.0+ |
-| [[en:docs:dos:api:int21:46|46H]] | Redirect handle | 2.0+ |
-| [[en:docs:dos:api:int21:47|47H]] | Get current directory | 2.0+ |
-| [[en:docs:dos:api:int21:48|48H]] | Allocate memory | 2.0+ |
-| [[en:docs:dos:api:int21:49|49H]] | Release memory | 2.0+ |
-| [[en:docs:dos:api:int21:4a|4AH]] | Reallocate memory | 2.0+ |
-| [[en:docs:dos:api:int21:4b|4BH]] | Execute program | 2.0+ |
-| [[en:docs:dos:api:int21:4c|4CH]] | Terminate with return code | 2.0+ |
-| [[en:docs:dos:api:int21:4d|4DH]] | Get program return code | 2.0+ |
-| [[en:docs:dos:api:int21:4e|4EH]] | Find first file | 2.0+ |
-| [[en:docs:dos:api:int21:4f|4FH]] | Find next file | 2.0+ |
-| [[en:docs:dos:api:int21:50|50H]] | Set current PSP | 2.0+ | Yes |
-| [[en:docs:dos:api:int21:51|51H]] | Get current PSP | 2.0+ | Yes |
-| [[en:docs:dos:api:int21:52|52H]] | Get DOS internal pointers (SYSVARS) | 2.0+ |
-| [[en:docs:dos:api:int21:53|53H]] | Create disk parameter block | 2.0+ |
-| [[en:docs:dos:api:int21:54|54H]] | Get verify flag | 2.0+ |
-| [[en:docs:dos:api:int21:55|55H]] | Create program PSP | 2.0+ |
-| [[en:docs:dos:api:int21:56|56H]] | Rename file | 2.0+ |
-| [[en:docs:dos:api:int21:57|57H]] | Extended functions | 2.0+ |
-| [[en:docs:dos:api:int21:57:00|5700H]] | Get file's last-written date and time             | 2.0+    |
-| [[en:docs:dos:api:int21:57:01|5701H]] | Set file's last-written date and time             | 2.0+    |
-| [[en:docs:dos:api:int21:58|58H]] | Get or set allocation strategy | 2.11+ |
-| [[en:docs:dos:api:int21:58:00|5800H]] | Get memory allocation strategy                    | 2.11+    |
-| [[en:docs:dos:api:int21:58:01|5801H]] | Set memory allocation strategy                    | 2.11+    |
-| [[en:docs:dos:api:int21:58:02|5802H]] | Get UMB link state                                | 5+       |
-| [[en:docs:dos:api:int21:58:03|5803H]] | Set UMB link state                                | 5+       |
-| [[en:docs:dos:api:int21:59|59H]] | Get extended error info | 3.0+ |
-| [[en:docs:dos:api:int21:5a|5AH]] | Create unique file | 3.0+ |
-| [[en:docs:dos:api:int21:5b|5BH]] | Create new file | 3.0+ |
-| [[en:docs:dos:api:int21:5c|5CH]] | Lock or unlock file | 3.0+ |
-| [[en:docs:dos:api:int21:5c:00|5C00H]] | Lock region of file                               | 3.0+    |
-| [[en:docs:dos:api:int21:5c:01|5C01H]] | Unlock region of file                             | 3.0+    |
-| [[en:docs:dos:api:int21:5d|5DH]] | File sharing functions | 3.0+ |
-| [[en:docs:dos:api:int21:5d:07|5D07H]] | Get redirected printer mode                       | 3.1+    |
-| [[en:docs:dos:api:int21:5d:08|5D08H]] | Set redirected printer mode                       | 3.1+    |
-| [[en:docs:dos:api:int21:5d:09|5D09H]] | Flush redirecter printer output                   | 3.1+    |
-| [[en:docs:dos:api:int21:5d:0A|5D0AH]] | Set extended error information                    | 3.1+    |
-| [[en:docs:dos:api:int21:5e|5EH]] | Network functions | 3.0+ |
-| [[en:docs:dos:api:int21:5e:00|5E00H]] | Get machine name                                  | 3.1+    |
-| [[en:docs:dos:api:int21:5e:01|5E01H]] | Set machine name                                  | 3.1+    |
-| [[en:docs:dos:api:int21:5e:02|5E02H]] | Set network printer setup string                  | 3.1+    |
-| [[en:docs:dos:api:int21:5e:03|5E03H]] | Get network printer setup string                  | 3.1+    |
-| [[en:docs:dos:api:int21:5e:04|5E04H]] | Set printer mode                                  | 3.1+    |
-| [[en:docs:dos:api:int21:5e:05|5E05H]] | Get printer mode                                  | 3.1+    |
-| [[en:docs:dos:api:int21:5f|5FH]] | Network redirection functions | 3.0+ |
-| [[en:docs:dos:api:int21:5f:00|5F00H]] | Get redirection mode                              | 3.1+    |
-| [[en:docs:dos:api:int21:5f:01|5F01H]] | Set redirection mode                              | 3.1+    |
-| [[en:docs:dos:api:int21:5f:02|5F02H]] | Get redirection list entry                        | 3.1+    |
-| [[en:docs:dos:api:int21:5f:03|5F03H]] | Redirect device                                   | 3.1+    |
-| [[en:docs:dos:api:int21:5f:04|5F04H]] | Cancel redirection                                | 3.1+    |
-| [[en:docs:dos:api:int21:5f:05|5F05H]] | Get extended redirection list entry               | 4+    |
-| [[en:docs:dos:api:int21:5f:07|5F07H]] | Enable drive                                      | 5+    |
-| [[en:docs:dos:api:int21:5f:08|5F08H]] | Disable drive                                     | 5+    |
-| [[en:docs:dos:api:int21:60|60H]] | Qualify filename | 3.0+ |
-| [[en:docs:dos:api:int21:61|61H]] | OS/2 File System Join/Subst | OS/2 1.0+ |
-| [[en:docs:dos:api:int21:62|62H]] | Get current PSP | 3.0+ | Yes |
-| [[en:docs:dos:api:int21:63|63H]] | Get DBCS lead byte table pointer | 3.0+ |
-| [[en:docs:dos:api:int21:64|64H]] | Set wait for external event flag / OS/2 VDM API | 3.2+ / OS/2 2.0+ |
-| [[en:docs:dos:api:int21:65|65H]] | Get extended country info | 3.3+ |
-| [[en:docs:dos:api:int21:65:00|6500H]] | Set general internationalization info             | 7.1+    |
-| [[en:docs:dos:api:int21:65:01|6501H]] | Get general internationalization info             | 3.3+    |
-| [[en:docs:dos:api:int21:65:02|6502H]] | Get pointer to uppercase table                    | 3.3+    |
-| [[en:docs:dos:api:int21:65:03|6503H]] | Get pointer to lowercase table                    | 6.2+    |
-| [[en:docs:dos:api:int21:65:04|6504H]] | Get pointer to filename uppercase table           | 3.3+    |
-| [[en:docs:dos:api:int21:65:05|6505H]] | Get pointer to filename terminator table          | 3.3+    |
-| [[en:docs:dos:api:int21:65:06|6506H]] | Get pointer to collating sequence table           | 3.3+    |
-| [[en:docs:dos:api:int21:65:07|6507H]] | Get pointer to Double-Byte Character Set table    | 4+      |
-| [[en:docs:dos:api:int21:65:20|6520H]] | Capitalize character                              | 4+      |
-| [[en:docs:dos:api:int21:65:21|6521H]] | Capitalize string                                 | 4+      |
-| [[en:docs:dos:api:int21:65:22|6522H]] | Capitalize ASCIZ string                           | 4+      |
-| [[en:docs:dos:api:int21:65:23|6523H]] | Determine if character represents Yes/No response | 4+      |
-| [[en:docs:dos:api:int21:65:a0|65A0H]] | Capitalize filename character                     | 4+      |
-| [[en:docs:dos:api:int21:65:a1|65A1H]] | Capitalize counted filename string                | 4+      |
-| [[en:docs:dos:api:int21:65:a2|65A2H]] | Capitalize ASCIZ filename                         | 4+      |
-| [[en:docs:dos:api:int21:66|66H]] | Get or set code page | 3.3+ |
-| [[en:docs:dos:api:int21:66:01|6601H]] | Get global code page table                        | 3.3+    |
-| [[en:docs:dos:api:int21:66:02|6602H]] | Set global code page table                        | 3.3+    |
-| [[en:docs:dos:api:int21:67|67H]] | Set handle count | 3.3+ |
-| [[en:docs:dos:api:int21:68|68H]] | Commit file | 3.3+ |
-| [[en:docs:dos:api:int21:69|69H]] | Get or set media id | 4.0+ |
-| [[en:docs:dos:api:int21:69:00|6900H]] | Get serial number                                 | 4.0+    |
-| [[en:docs:dos:api:int21:69:01|6901H]] | Set serial number                                 | 4.0+    |
-| [[en:docs:dos:api:int21:6a|6AH]] | Commit file | 4.0+ |
-| [[en:docs:dos:api:int21:6c|6CH]] | Extended open/create file | 4.0+ / OS/2 1.0+|
-| [[en:docs:dos:api:int21:6d|6DH]] | Extended Make directory | OS/2 1.0+ |
-| [[en:docs:dos:api:int21:6e|6EH]] | DosEnumAttrib | OS/2 1.0+ |
-| [[en:docs:dos:api:int21:6f|6FH]] | DosQMaxEASize | OS/2 1.0+ |
-| [[en:docs:dos:api:int21:71|71H]] | Long filename functions | 7.0+ (Win95) |
-| [[en:docs:dos:api:int21:73|73H]] | FAT32 functions | 7.0+ (Win95) |
+^ AH ^ Description ^ Version ^ Implemented in DOSKRNL ^ **osFree MacroLib API** ^ **FamilyAPI** ^ **Win16 API** ^
+| [[en:docs:dos:api:int21:00|00H]] | Program terminate | 1.0+ | | [[en:docs:macrolib:@Exit]] | [[en:docs:fapi:DosExit]] | — |
+| [[en:docs:dos:api:int21:01|01H]] | Character input | 1.0+ | Yes | — | [[en:docs:fapi:KbdCharIn]] | — |
+| [[en:docs:dos:api:int21:02|02H]] | Character output | 1.0+ | Yes | [[en:docs:macrolib:@DispCh]] | [[en:docs:fapi:VioWrtTTY]] | — |
+| [[en:docs:dos:api:int21:03|03H]] | Auxiliary input | 1.0+ | Yes | — | [[en:docs:fapi:DosDevIOCtl]] | — |
+| [[en:docs:dos:api:int21:04|04H]] | Auxiliary output | 1.0+ | Yes | — | [[en:docs:fapi:DosDevIOCtl]] | — |
+| [[en:docs:dos:api:int21:05|05H]] | Printer output | 1.0+ | Yes | [[en:docs:macrolib:@PrtCh]] | [[en:docs:fapi:DosDevIOCtl]] | — |
+| [[en:docs:dos:api:int21:06|06H]] | Direct console I/O | 1.0+ | Yes | — | [[en:docs:fapi:KbdCharIn]], [[en:docs:fapi:VioWrtTTY]] | — |
+| [[en:docs:dos:api:int21:07|07H]] | Direct console input without echo | 1.0+ | Yes | — | [[en:docs:fapi:KbdCharIn]] | — |
+| [[en:docs:dos:api:int21:08|08H]] | Console input without echo | 1.0+ | Yes | — | [[en:docs:fapi:KbdCharIn]] | — |
+| [[en:docs:dos:api:int21:09|09H]] | Display string | 1.0+ | Yes | [[en:docs:macrolib:@DispStr]] | [[en:docs:fapi:VioWrtCharStr]] | — |
+| [[en:docs:dos:api:int21:0a|0AH]] | Buffered keyboard input | 1.0+ | Yes | [[en:docs:macrolib:@GetStr]] | [[en:docs:fapi:KbdStringIn]] | — |
+| [[en:docs:dos:api:int21:0b|0BH]] | Get input status | 1.0+ | Yes | — | [[en:docs:fapi:KbdPeek]] | — |
+| [[en:docs:dos:api:int21:0c|0CH]] | Flush input buffer and input | 1.0+ | Yes | — | [[en:docs:fapi:KbdFlushBuffer]] | — |
+| [[en:docs:dos:api:int21:0d|0DH]] | Disk reset | 1.0+ | | — | [[en:docs:fapi:DosBufReset]] | — |
+| [[en:docs:dos:api:int21:0e|0EH]] | Set default drive | 1.0+ | | [[en:docs:macrolib:@SetDrv]] | [[en:docs:fapi:DosSelectDisk]] | — |
+| [[en:docs:dos:api:int21:0f|0FH]] | Open file (FCB) | 1.0+ | | — | — | — |
+| [[en:docs:dos:api:int21:10|10H]] | Close file (FCB) | 1.0+ | | — | — | — |
+| [[en:docs:dos:api:int21:11|11H]] | Find first file (FCB) | 1.0+ | | — | — | — |
+| [[en:docs:dos:api:int21:12|12H]] | Find next file (FCB) | 1.0+ | | — | — | — |
+| [[en:docs:dos:api:int21:13|13H]] | Delete file (FCB) | 1.0+ | | — | — | — |
+| [[en:docs:dos:api:int21:14|14H]] | Sequential read (FCB) | 1.0+ | | — | — | — |
+| [[en:docs:dos:api:int21:15|15H]] | Sequential write (FCB) | 1.0+ | | — | — | — |
+| [[en:docs:dos:api:int21:16|16H]] | Create or truncate file (FCB) | 1.0+ | | — | — | — |
+| [[en:docs:dos:api:int21:17|17H]] | Rename file (FCB) | 1.0+ | | — | — | — |
+| [[en:docs:dos:api:int21:19|19H]] | Get default drive | 1.0+ | | [[en:docs:macrolib:@GetDrv]] | [[en:docs:fapi:DosQCurDisk]] | — |
+| [[en:docs:dos:api:int21:1a|1AH]] | Set disk transfer address | 1.0+ | | [[en:docs:macrolib:@SetDTA]] | — | — |
+| [[en:docs:dos:api:int21:1b|1BH]] | Get allocation info for default drive | 1.0+ | | — | [[en:docs:fapi:DosQFSInfo]] | — |
+| [[en:docs:dos:api:int21:1c|1CH]] | Get allocation info for specified drive | 1.0+ | | — | [[en:docs:fapi:DosQFSInfo]] | — |
+| [[en:docs:dos:api:int21:1f|1FH]] | Get disk parameter block for default drive | 1.0+ | | — | — | — |
+| [[en:docs:dos:api:int21:21|21H]] | Random read (FCB) | 1.0+ | | — | — | — |
+| [[en:docs:dos:api:int21:22|22H]] | Random write (FCB) | 1.0+ | | — | — | — |
+| [[en:docs:dos:api:int21:23|23H]] | Get file size in records (FCB) | 1.0+ | | — | — | — |
+| [[en:docs:dos:api:int21:24|24H]] | Set random record number (FCB) | 1.0+ | | — | — | — |
+| [[en:docs:dos:api:int21:25|25H]] | Set interrupt vector | 1.0+ | | [[en:docs:macrolib:@SetInt]] | — | — |
+| [[en:docs:dos:api:int21:26|26H]] | Create PSP | 1.0+ | | — | — | — |
+| [[en:docs:dos:api:int21:27|27H]] | Random block read (FCB) | 1.0+ | | — | — | — |
+| [[en:docs:dos:api:int21:28|28H]] | Random block write (FCB) | 1.0+ | | — | — | — |
+| [[en:docs:dos:api:int21:29|29H]] | Parse filename (FCB) | 1.0+ | | — | — | — |
+| [[en:docs:dos:api:int21:2a|2AH]] | Get date | 1.0+ | | [[en:docs:macrolib:@GetDate]] | [[en:docs:fapi:DosGetDateTime]] | — |
+| [[en:docs:dos:api:int21:2b|2BH]] | Set date | 1.0+ | | [[en:docs:macrolib:@SetDate]] | [[en:docs:fapi:DosSetDateTime]] | — |
+| [[en:docs:dos:api:int21:2c|2CH]] | Get time | 1.0+ | | [[en:docs:macrolib:@GetTime]] | [[en:docs:fapi:DosGetDateTime]] | — |
+| [[en:docs:dos:api:int21:2d|2DH]] | Set time | 1.0+ | | [[en:docs:macrolib:@SetTime]] | [[en:docs:fapi:DosSetDateTime]] | — |
+| [[en:docs:dos:api:int21:2e|2EH]] | Set verify flag | 1.0+ | | — | [[en:docs:fapi:DosSetVerify]] | — |
+| [[en:docs:dos:api:int21:2f|2FH]] | Get disk transfer address | 2.0+ | | [[en:docs:macrolib:@GetDTA]] | — | — |
+| [[en:docs:dos:api:int21:30|30H]] | Get DOS version | 2.0+ | | [[en:docs:macrolib:@GetVer]] | [[en:docs:fapi:DosGetVersion]] | [[en:docs:win16:api:kernel:GetVersion]] |
+| [[en:docs:dos:api:int21:31|31H]] | Terminate and stay resident | 2.0+ | | [[en:docs:macrolib:@TSR]] | — | — |
+| [[en:docs:dos:api:int21:32|32H]] | Get disk parameter block for specified drive | 2.0+ | | — | — | — |
+| [[en:docs:dos:api:int21:33|33H]] | Extended functions | 2.0+ | Yes | — | — | — |
+| [[en:docs:dos:api:int21:33:00|3300H]] | Get current extended break state                  | 2.0+    | Yes | — | — | — |
+| [[en:docs:dos:api:int21:33:01|3301H]] | Set state of extended Ctrl+C/Ctrl+Break checking  | 2.0+    | Yes | — | — | — |
+| [[en:docs:dos:api:int21:33:02|3302H]] | Get and set extended Control-Break checking state | 3.0+    | Yes | — | — | — |
+| [[en:docs:dos:api:int21:33:03|3303H]] | Get current CPSW state                            | 3.4/4.0 | No | — | — | — |
+| [[en:docs:dos:api:int21:33:04|3304H]] | Set CPSW state                                    | 3.4/4.0 | No | — | — | — |
+| [[en:docs:dos:api:int21:33:05|3305H]] | Get boot drive                                    | 4.0+    | Yes | — | — | — |
+| [[en:docs:dos:api:int21:33:06|3306H]] | Get true version number                           | 5.0+    | Yes | — | — | — |
+| [[en:docs:dos:api:int21:34|34H]] | Get InDOS flag pointer | 2.0+ | | — | — | — |
+| [[en:docs:dos:api:int21:35|35H]] | Get interrupt vector | 2.0+ | | [[en:docs:macrolib:@GetInt]] | — | — |
+| [[en:docs:dos:api:int21:36|36H]] | Get free disk space | 2.0+ | | [[en:docs:macrolib:@ChkDrv]] | [[en:docs:fapi:DosQFSInfo]] | [[en:docs:win16:api:kernel:GetFreeSpace]] |
+| [[en:docs:dos:api:int21:37|37H]] | Extended functions | 2.0+ | | — | — | — |
+| [[en:docs:dos:api:int21:37:00|3700H]] | Get switch character | 2.0+         | | — | — | — |
+| [[en:docs:dos:api:int21:37:01|3701H]] | Set switch character | 2.0+         | | — | — | — |
+| [[en:docs:dos:api:int21:37:02|3702H]] | Get availdev flag    | 2.x and 3.3+ | | — | — | — |
+| [[en:docs:dos:api:int21:37:03|3703H]] | Set availdev flag    | 2.x and 3.3+ | | — | — | — |
+| [[en:docs:dos:api:int21:38|38H]] | Get or set country info | 2.0+ | | — | [[en:docs:fapi:DosGetCtryInfo]] | — |
+| [[en:docs:dos:api:int21:38:00|3800H]] | Get current country info | 2.0+         | | — | [[en:docs:fapi:DosGetCtryInfo]] | — |
+| [[en:docs:dos:api:int21:38:01|3801H]] | Get/set specified country info | 3.0+         | | — | [[en:docs:fapi:DosGetCtryInfo]] | — |
+| [[en:docs:dos:api:int21:39|39H]] | Create subdirectory | 2.0+ | | [[en:docs:macrolib:@MkDir]] | [[en:docs:fapi:DosMkDir]] | [[en:docs:win16:api:kernel:CreateDirectory]] |
+| [[en:docs:dos:api:int21:3a|3AH]] | Remove subdirectory | 2.0+ | | [[en:docs:macrolib:@RmDir]] | [[en:docs:fapi:DosRmDir]] | [[en:docs:win16:api:kernel:RemoveDirectory]] |
+| [[en:docs:dos:api:int21:3b|3BH]] | Change current directory | 2.0+ | | [[en:docs:macrolib:@ChDir]] | [[en:docs:fapi:DosChDir]] | [[en:docs:win16:api:kernel:SetCurrentDirectory]] |
+| [[en:docs:dos:api:int21:3c|3CH]] | Create or truncate file | 2.0+ | | [[en:docs:macrolib:@MakFil]] | [[en:docs:fapi:DosOpen]] | [[en:docs:win16:api:_lcreat]] |
+| [[en:docs:dos:api:int21:3d|3DH]] | Open file | 2.0+ | | [[en:docs:macrolib:@OpenFil]] | [[en:docs:fapi:DosOpen]] | [[en:docs:win16:api:_lopen]] |
+| [[en:docs:dos:api:int21:3e|3EH]] | Close file | 2.0+ | | [[en:docs:macrolib:@ClosFil]] | [[en:docs:fapi:DosClose]] | [[en:docs:win16:api:_lclose]] |
+| [[en:docs:dos:api:int21:3f|3FH]] | Read file or device | 2.0+ | | [[en:docs:macrolib:@Read]] | [[en:docs:fapi:DosRead]] | [[en:docs:win16:api:_lread]] |
+| [[en:docs:dos:api:int21:40|40H]] | Write file or device | 2.0+ | | [[en:docs:macrolib:@Write]] | [[en:docs:fapi:DosWrite]] | [[en:docs:win16:api:_lwrite]] |
+| [[en:docs:dos:api:int21:41|41H]] | Delete file | 2.0+ | | [[en:docs:macrolib:@DelFil]] | [[en:docs:fapi:DosDelete]] | — |
+| [[en:docs:dos:api:int21:42|42H]] | Move file pointer | 2.0+ | | [[en:docs:macrolib:@MovePtrAbs]] / [[en:docs:macrolib:@MovePtrRel]] / [[en:docs:macrolib:@GetFilSz]] | [[en:docs:fapi:DosChgFilePtr]] | [[en:docs:win16:api:_llseek]] |
+| [[en:docs:dos:api:int21:43|43H]] | Extended functions | 2.0+ | | — | [[en:docs:fapi:DosQFileMode]] / [[en:docs:fapi:DosSetFileMode]] | — |
+| [[en:docs:dos:api:int21:43:00|4300H]] | Get file attributes                               | 2.0+    | | — | [[en:docs:fapi:DosQFileMode]] | — |
+| [[en:docs:dos:api:int21:43:01|4301H]] | Set file attributes  | 2.0+    | | — | [[en:docs:fapi:DosSetFileMode]] | — |
+| [[en:docs:dos:api:int21:44|44H]] | Extended functions | 2.0+ | | — | [[en:docs:fapi:DosDevIOCtl]] | — |
+| [[en:docs:dos:api:int21:44:00|4400H]] | Get device information                            | 2.0+    | | — | [[en:docs:fapi:DosDevIOCtl]] | — |
+| [[en:docs:dos:api:int21:44:01|4401H]] | Set device information                            | 2.0+    | | — | [[en:docs:fapi:DosDevIOCtl]] | — |
+| [[en:docs:dos:api:int21:44:02|4402H]] | Read from character device control channel        | 2.0+    | | — | [[en:docs:fapi:DosDevIOCtl]] | — |
+| [[en:docs:dos:api:int21:44:03|4403H]] | Write to character device control channel         | 2.0+    | | — | [[en:docs:fapi:DosDevIOCtl]] | — |
+| [[en:docs:dos:api:int21:44:04|4404H]] | Read from block device control channel            | 2.0+    | | — | [[en:docs:fapi:DosDevIOCtl]] | — |
+| [[en:docs:dos:api:int21:44:05|4405H]] | Write to block device control channel             | 2.0+    | | — | [[en:docs:fapi:DosDevIOCtl]] | — |
+| [[en:docs:dos:api:int21:44:06|4406H]] | Get input status                                  | 2.0+    | | — | [[en:docs:fapi:DosDevIOCtl]] | — |
+| [[en:docs:dos:api:int21:44:07|4407H]] | Get output status                                 | 2.0+    | | — | [[en:docs:fapi:DosDevIOCtl]] | — |
+| [[en:docs:dos:api:int21:44:08|4408H]] | Check if block device removable                   | 3.0+    | | — | [[en:docs:fapi:DosDevIOCtl]] | [[en:docs:win16:api:kernel:GetDriveType]] |
+| [[en:docs:dos:api:int21:44:09|4409H]] | Check if block device remote                      | 3.1+    | | — | [[en:docs:fapi:DosDevIOCtl]] | [[en:docs:win16:api:kernel:GetDriveType]] |
+| [[en:docs:dos:api:int21:44:0A|440AH]] | Check if handle is remote                         | 3.1+    | | — | [[en:docs:fapi:DosDevIOCtl]] | — |
+| [[en:docs:dos:api:int21:44:0B|440BH]] | Set sharing retry count                           | 3.1+    | | — | [[en:docs:fapi:DosDevIOCtl]] | — |
+| [[en:docs:dos:api:int21:44:0C|440CH]] | Generic character device request                  | 3.2+    | | — | [[en:docs:fapi:DosDevIOCtl]] | — |
+| [[en:docs:dos:api:int21:44:0D|440DH]] | Generic block device request                      | 3.2+    | | — | [[en:docs:fapi:DosDevIOCtl]] | — |
+| [[en:docs:dos:api:int21:44:0E|440EH]] | Get logical drive map                             | 3.2+    | | — | [[en:docs:fapi:DosDevIOCtl]] | — |
+| [[en:docs:dos:api:int21:44:0F|440FH]] | Set logical drive map                             | 3.2+    | | — | [[en:docs:fapi:DosDevIOCtl]] | — |
+| [[en:docs:dos:api:int21:44:10|4410H]] | Query generic IOCTL capability (handle)           | 5.0+    | | — | [[en:docs:fapi:DosDevIOCtl]] | — |
+| [[en:docs:dos:api:int21:44:11|4411H]] | Query generic IOCTL capability (drive)            | 5.0+    | | — | [[en:docs:fapi:DosDevIOCtl]] | — |
+| [[en:docs:dos:api:int21:45|45H]] | Duplicate handle | 2.0+ | | [[en:docs:macrolib:XDUP]] | [[en:docs:fapi:DosDupHandle]] | — |
+| [[en:docs:dos:api:int21:46|46H]] | Redirect handle | 2.0+ | | [[en:docs:macrolib:XDUP2]] | [[en:docs:fapi:DosDupHandle]] | — |
+| [[en:docs:dos:api:int21:47|47H]] | Get current directory | 2.0+ | | [[en:docs:macrolib:@GetDir]] | [[en:docs:fapi:DosQCurDir]] | [[en:docs:win16:api:kernel:GetCurrentDirectory]] |
+| [[en:docs:dos:api:int21:48|48H]] | Allocate memory | 2.0+ | | [[en:docs:macrolib:@GetBlok]] | [[en:docs:fapi:DosAllocSeg]] | [[en:docs:win16:api:kernel:GlobalAlloc]] |
+| [[en:docs:dos:api:int21:49|49H]] | Release memory | 2.0+ | | [[en:docs:macrolib:@FreeBlok]] | [[en:docs:fapi:DosFreeSeg]] | [[en:docs:win16:api:kernel:GlobalFree]] |
+| [[en:docs:dos:api:int21:4a|4AH]] | Reallocate memory | 2.0+ | | [[en:docs:macrolib:@ModBlok]] | [[en:docs:fapi:DosReallocSeg]] | [[en:docs:win16:api:kernel:GlobalReAlloc]] |
+| [[en:docs:dos:api:int21:4b|4BH]] | Execute program | 2.0+ | | [[en:docs:macrolib:@Exec]] | [[en:docs:fapi:DosExecPgm]] | [[en:docs:win16:api:kernel:WinExec]] |
+| [[en:docs:dos:api:int21:4c|4CH]] | Terminate with return code | 2.0+ | | [[en:docs:macrolib:@Exit]] | [[en:docs:fapi:DosExit]] | — |
+| [[en:docs:dos:api:int21:4d|4DH]] | Get program return code | 2.0+ | | [[en:docs:macrolib:@GetRet]] | — | — |
+| [[en:docs:dos:api:int21:4e|4EH]] | Find first file | 2.0+ | | [[en:docs:macrolib:@GetFirst]] | [[en:docs:fapi:DosFindFirst]] | — |
+| [[en:docs:dos:api:int21:4f|4FH]] | Find next file | 2.0+ | | [[en:docs:macrolib:@GetNext]] | [[en:docs:fapi:DosFindNext]] | — |
+| [[en:docs:dos:api:int21:50|50H]] | Set current PSP | 2.0+ | Yes | — | — | — |
+| [[en:docs:dos:api:int21:51|51H]] | Get current PSP | 2.0+ | Yes | [[en:docs:macrolib:GET_PSP]] | [[en:docs:fapi:DosGetInfoSeg]] (косвенно) | — |
+| [[en:docs:dos:api:int21:52|52H]] | Get DOS internal pointers (SYSVARS) | 2.0+ | | — | — | — |
+| [[en:docs:dos:api:int21:53|53H]] | Create disk parameter block | 2.0+ | | — | — | — |
+| [[en:docs:dos:api:int21:54|54H]] | Get verify flag | 2.0+ | | — | [[en:docs:fapi:DosQVerify]] | — |
+| [[en:docs:dos:api:int21:55|55H]] | Create program PSP | 2.0+ | | — | — | — |
+| [[en:docs:dos:api:int21:56|56H]] | Rename file | 2.0+ | | [[en:docs:macrolib:@MoveFil]] | [[en:docs:fapi:DosMove]] | — |
+| [[en:docs:dos:api:int21:57|57H]] | Extended functions | 2.0+ | | — | [[en:docs:fapi:DosQFileInfo]] / [[en:docs:fapi:DosSetFileInfo]] | — |
+| [[en:docs:dos:api:int21:57:00|5700H]] | Get file's last-written date and time             | 2.0+    | | — | [[en:docs:fapi:DosQFileInfo]] | — |
+| [[en:docs:dos:api:int21:57:01|5701H]] | Set file's last-written date and time             | 2.0+    | | — | [[en:docs:fapi:DosSetFileInfo]] | — |
+| [[en:docs:dos:api:int21:58|58H]] | Get or set allocation strategy | 2.11+ | | — | — | — |
+| [[en:docs:dos:api:int21:58:00|5800H]] | Get memory allocation strategy                    | 2.11+    | | — | — | — |
+| [[en:docs:dos:api:int21:58:01|5801H]] | Set memory allocation strategy                    | 2.11+    | | — | — | — |
+| [[en:docs:dos:api:int21:58:02|5802H]] | Get UMB link state                                | 5+       | | — | — | — |
+| [[en:docs:dos:api:int21:58:03|5803H]] | Set UMB link state                                | 5+       | | — | — | — |
+| [[en:docs:dos:api:int21:59|59H]] | Get extended error info | 3.0+ | | [[en:docs:macrolib:GET_ERROR]] | [[en:docs:fapi:DosErrClass]] | [[en:docs:win16:api:kernel:GetLastError]] |
+| [[en:docs:dos:api:int21:5a|5AH]] | Create unique file | 3.0+ | | [[en:docs:macrolib:CREATE_TEMP]] | [[en:docs:fapi:DosOpen]] | [[en:docs:win16:api:kernel:GetTempFileName]] |
+| [[en:docs:dos:api:int21:5b|5BH]] | Create new file | 3.0+ | | [[en:docs:macrolib:CREATE_NEW]] | [[en:docs:fapi:DosOpen]] | [[en:docs:win16:api:_lcreat]] |
+| [[en:docs:dos:api:int21:5c|5CH]] | Lock or unlock file | 3.0+ | | [[en:docs:macrolib:LOCK_FILE]] / [[en:docs:macrolib:UNLOCK]] | [[en:docs:fapi:DosFileLocks]] | [[en:docs:win16:api:kernel:LockFile]]<br/>[[en:docs:win16:api:kernel:UnlockFile]] |
+| [[en:docs:dos:api:int21:5c:00|5C00H]] | Lock region of file                               | 3.0+    | | [[en:docs:macrolib:LOCK_FILE]] | [[en:docs:fapi:DosFileLocks]] | [[en:docs:win16:api:kernel:LockFile]] |
+| [[en:docs:dos:api:int21:5c:01|5C01H]] | Unlock region of file                             | 3.0+    | | [[en:docs:macrolib:UNLOCK]] | [[en:docs:fapi:DosFileLocks]] | [[en:docs:win16:api:kernel:UnlockFile]] |
+| [[en:docs:dos:api:int21:5d|5DH]] | File sharing functions | 3.0+ | | — | — | — |
+| [[en:docs:dos:api:int21:5d:07|5D07H]] | Get redirected printer mode                       | 3.1+    | | — | — | — |
+| [[en:docs:dos:api:int21:5d:08|5D08H]] | Set redirected printer mode                       | 3.1+    | | — | — | — |
+| [[en:docs:dos:api:int21:5d:09|5D09H]] | Flush redirecter printer output                   | 3.1+    | | — | — | — |
+| [[en:docs:dos:api:int21:5d:0A|5D0AH]] | Set extended error information                    | 3.1+    | | — | — | — |
+| [[en:docs:dos:api:int21:5e|5EH]] | Network functions | 3.0+ | | [[en:docs:macrolib:GET_MACHINE_NAME]] / [[en:docs:macrolib:PRINTER_SETUP]] | — | [[en:docs:win16:api:wnet:WNetAddConnection]]<br/>[[en:docs:win16:api:wnet:WNetCancelConnection]] |
+| [[en:docs:dos:api:int21:5e:00|5E00H]] | Get machine name                                  | 3.1+    | | [[en:docs:macrolib:GET_MACHINE_NAME]] | — | [[en:docs:win16:api:kernel:GetComputerName]] |
+| [[en:docs:dos:api:int21:5e:01|5E01H]] | Set machine name                                  | 3.1+    | | — | — | — |
+| [[en:docs:dos:api:int21:5e:02|5E02H]] | Set network printer setup string                  | 3.1+    | | [[en:docs:macrolib:PRINTER_SETUP]] | — | — |
+| [[en:docs:dos:api:int21:5e:03|5E03H]] | Get network printer setup string                  | 3.1+    | | — | — | — |
+| [[en:docs:dos:api:int21:5e:04|5E04H]] | Set printer mode                                  | 3.1+    | | — | — | — |
+| [[en:docs:dos:api:int21:5e:05|5E05H]] | Get printer mode                                  | 3.1+    | | — | — | — |
+| [[en:docs:dos:api:int21:5f|5FH]] | Network redirection functions | 3.0+ | | [[en:docs:macrolib:GET_LIST]] / [[en:docs:macrolib:REDIR]] / [[en:docs:macrolib:CANCEL_REDIR]] | — | [[en:docs:win16:api:wnet:WNetGetConnection]] |
+| [[en:docs:dos:api:int21:5f:00|5F00H]] | Get redirection mode                              | 3.1+    | | — | — | — |
+| [[en:docs:dos:api:int21:5f:01|5F01H]] | Set redirection mode                              | 3.1+    | | — | — | — |
+| [[en:docs:dos:api:int21:5f:02|5F02H]] | Get redirection list entry                        | 3.1+    | | [[en:docs:macrolib:GET_LIST]] | — | [[en:docs:win16:api:wnet:WNetGetConnection]] |
+| [[en:docs:dos:api:int21:5f:03|5F03H]] | Redirect device                                   | 3.1+    | | [[en:docs:macrolib:REDIR]] | — | [[en:docs:win16:api:wnet:WNetAddConnection]] |
+| [[en:docs:dos:api:int21:5f:04|5F04H]] | Cancel redirection                                | 3.1+    | | [[en:docs:macrolib:CANCEL_REDIR]] | — | [[en:docs:win16:api:wnet:WNetCancelConnection]] |
+| [[en:docs:dos:api:int21:5f:05|5F05H]] | Get extended redirection list entry               | 4+    | | — | — | — |
+| [[en:docs:dos:api:int21:5f:07|5F07H]] | Enable drive                                      | 5+    | | — | — | — |
+| [[en:docs:dos:api:int21:5f:08|5F08H]] | Disable drive                                     | 5+    | | — | — | — |
+| [[en:docs:dos:api:int21:60|60H]] | Qualify filename | 3.0+ | | — | — | — |
+| [[en:docs:dos:api:int21:61|61H]] | OS/2 File System Join/Subst | OS/2 1.0+ | | — | — | — |
+| [[en:docs:dos:api:int21:62|62H]] | Get current PSP | 3.0+ | Yes | [[en:docs:macrolib:GET_PSP]] | [[en:docs:fapi:DosGetInfoSeg]] (косвенно) | — |
+| [[en:docs:dos:api:int21:63|63H]] | Get DBCS lead byte table pointer | 3.0+ | | — | [[en:docs:fapi:DosGetDBCSEv]] | — |
+| [[en:docs:dos:api:int21:64|64H]] | Set wait for external event flag / OS/2 VDM API | 3.2+ / OS/2 2.0+ | | — | — | — |
+| [[en:docs:dos:api:int21:65|65H]] | Get extended country info | 3.3+ | | — | [[en:docs:fapi:DosGetCtryInfo]] | — |
+| [[en:docs:dos:api:int21:65:00|6500H]] | Set general internationalization info             | 7.1+    | | — | [[en:docs:fapi:DosGetCtryInfo]] | — |
+| [[en:docs:dos:api:int21:65:01|6501H]] | Get general internationalization info             | 3.3+    | | — | [[en:docs:fapi:DosGetCtryInfo]] | — |
+| [[en:docs:dos:api:int21:65:02|6502H]] | Get pointer to uppercase table                    | 3.3+    | | — | [[en:docs:fapi:DosGetCtryInfo]] | — |
+| [[en:docs:dos:api:int21:65:03|6503H]] | Get pointer to lowercase table                    | 6.2+    | | — | [[en:docs:fapi:DosGetCtryInfo]] | — |
+| [[en:docs:dos:api:int21:65:04|6504H]] | Get pointer to filename uppercase table           | 3.3+    | | — | [[en:docs:fapi:DosGetCtryInfo]] | — |
+| [[en:docs:dos:api:int21:65:05|6505H]] | Get pointer to filename terminator table          | 3.3+    | | — | [[en:docs:fapi:DosGetCtryInfo]] | — |
+| [[en:docs:dos:api:int21:65:06|6506H]] | Get pointer to collating sequence table           | 3.3+    | | — | [[en:docs:fapi:DosGetCollate]] | — |
+| [[en:docs:dos:api:int21:65:07|6507H]] | Get pointer to Double-Byte Character Set table    | 4+      | | — | [[en:docs:fapi:DosGetDBCSEv]] | — |
+| [[en:docs:dos:api:int21:65:20|6520H]] | Capitalize character                              | 4+      | | — | [[en:docs:fapi:DosCaseMap]] | [[en:docs:win16:api:kernel:AnsiUpper]] |
+| [[en:docs:dos:api:int21:65:21|6521H]] | Capitalize string                                 | 4+      | | — | [[en:docs:fapi:DosCaseMap]] | [[en:docs:win16:api:kernel:AnsiUpperBuff]] |
+| [[en:docs:dos:api:int21:65:22|6522H]] | Capitalize ASCIZ string                           | 4+      | | — | [[en:docs:fapi:DosCaseMap]] | [[en:docs:win16:api:kernel:AnsiUpper]] |
+| [[en:docs:dos:api:int21:65:23|6523H]] | Determine if character represents Yes/No response | 4+      | | — | — | — |
+| [[en:docs:dos:api:int21:65:a0|65A0H]] | Capitalize filename character                     | 4+      | | — | [[en:docs:fapi:DosCaseMap]] | [[en:docs:win16:api:kernel:AnsiUpper]] |
+| [[en:docs:dos:api:int21:65:a1|65A1H]] | Capitalize counted filename string                | 4+      | | — | [[en:docs:fapi:DosCaseMap]] | [[en:docs:win16:api:kernel:AnsiUpperBuff]] |
+| [[en:docs:dos:api:int21:65:a2|65A2H]] | Capitalize ASCIZ filename                         | 4+      | | — | [[en:docs:fapi:DosCaseMap]] | [[en:docs:win16:api:kernel:AnsiUpper]] |
+| [[en:docs:dos:api:int21:66|66H]] | Get or set code page | 3.3+ | | — | [[en:docs:fapi:DosGetCP]] / [[en:docs:fapi:DosSetCP]] | — |
+| [[en:docs:dos:api:int21:66:01|6601H]] | Get global code page table                        | 3.3+    | | — | [[en:docs:fapi:DosGetCP]] | — |
+| [[en:docs:dos:api:int21:66:02|6602H]] | Set global code page table                        | 3.3+    | | — | [[en:docs:fapi:DosSetCP]] | — |
+| [[en:docs:dos:api:int21:67|67H]] | Set handle count | 3.3+ | | — | [[en:docs:fapi:DosSetMaxFH]] | [[en:docs:win16:api:kernel:SetHandleCount]] |
+| [[en:docs:dos:api:int21:68|68H]] | Commit file | 3.3+ | | [[en:docs:macrolib:FLUSH]] | [[en:docs:fapi:DosBufReset]] | — |
+| [[en:docs:dos:api:int21:69|69H]] | Get or set media id | 4.0+ | | — | — | — |
+| [[en:docs:dos:api:int21:69:00|6900H]] | Get serial number                                 | 4.0+    | | — | — | — |
+| [[en:docs:dos:api:int21:69:01|6901H]] | Set serial number                                 | 4.0+    | | — | — | — |
+| [[en:docs:dos:api:int21:6a|6AH]] | Commit file | 4.0+ | | — | [[en:docs:fapi:DosBufReset]] | — |
+| [[en:docs:dos:api:int21:6c|6CH]] | Extended open/create file | 4.0+ / OS/2 1.0+| | — | [[en:docs:fapi:DosOpen]] | — |
+| [[en:docs:dos:api:int21:6d|6DH]] | Extended Make directory | OS/2 1.0+ | | — | [[en:docs:fapi:DosMkDir2]] | — |
+| [[en:docs:dos:api:int21:6e|6EH]] | DosEnumAttrib | OS/2 1.0+ | | — | [[en:docs:fapi:DosFindFirst]] / [[en:docs:fapi:DosFindNext]] | — |
+| [[en:docs:dos:api:int21:6f|6FH]] | DosQMaxEASize | OS/2 1.0+ | | — | — | — |
+| [[en:docs:dos:api:int21:71|71H]] | Long filename functions | 7.0+ (Win95) | | — | — | — |
+| [[en:docs:dos:api:int21:73|73H]] | FAT32 functions | 7.0+ (Win95) | | — | — | — |
 
 ===== Return =====
 
-Depends on funxtion number
+Depends on function number
 
 ===== Macro =====
 
 ===== Notes =====
 
 ===== See Also =====
+
+
+
 
 ===== Note =====
 

@@ -1,17 +1,62 @@
-====== 1 ======
+====== SVC_ERROREXIT ======
 
 ===== Brief =====
 
+Terminate MVM with error message (far pointer to ASCIIZ message on stack)
+
 ===== Input =====
 
+  * Stack (top) = far pointer (segment:offset) to an ASCIIZ message string
 
 ===== Return =====
 
+This function does not return. The MVM is terminated and control passes to the host operating system.
 
 ===== Notes =====
 
+  * The message must be a null‑terminated ASCII string.
+  * The far pointer must be pushed onto the stack (segment first, then offset) before issuing the HLT instruction.
+  * Because the call never returns, no registers are preserved and the carry flag is undefined.
+
+===== Binding =====
+====MASM ====
+
+
+<code asm>
+include macrolib.inc
+
+    push ds
+    push offset msg
+    @SvcErrorExit
+
+msg db "Fatal error",0
+</code>
+
+==== C ====
+
+<code c>
+#include <svc.h>
+
+void main(void) {
+    SvcErrorExit("Fatal error");
+}
+</code>
+
+The underlying pragma is defined as:
+
+<code c>
+extern void SvcErrorExit(const char far *msg);
+#pragma aux SvcErrorExit = \
+    "hlt"           \
+    "db  1"         \
+    "db  NOT 1"     \
+    parm caller [] [msg] \
+    modify [ax bx cx dx];
+</code>
 
 ===== See also =====
 
+  * [[en:docs:mvm:api:2|SVC_EXIT]] – terminate without a message
+  * [[en:docs:dos:api:int21:4c|INT 21h AH=4Ch]] – DOS terminate with return code
 
 {{page>en:templates:svcapi}}

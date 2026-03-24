@@ -1,23 +1,40 @@
 {{page>en:templates:win16api}}
 
-======  ======
+====== LocalSize ======
+==== Brief ====
+Returns the current size (in bytes) of a local memory object.
 
-===== Brief =====
+==== Syntax ====
+<code c>UINT WINAPI LocalSize(
+HLOCAL hMem
+);</code>
 
-===== Syntax =====
+==== Parameters ====
 
-===== Parameters =====
+hMem – Handle to the memory object.
 
-===== Return Code =====
+==== Return Value ====
 
-===== Notes =====
+Returns the size of the block, or zero if the handle is invalid or the object has been discarded.
 
-===== Example Code =====
+Call GetLastError for extended error information.
 
+==== Notes ====
+
+The returned size may be larger than the originally requested size because of internal alignment.
+
+Use LocalFlags first to check whether the block has been discarded.
+
+==== Example Code ====
 ==== C Binding ====
-
+<code c>UINT size = LocalSize(hMem);</code>
 ==== MASM Binding ====
+<code asm>push hMem
+call LocalSize</code>
 
-===== See also =====
+==== See also ====
+
+  * [[LocalAlloc]]
+  * [[LocalFlags]]
 
 {{page>en:templates:win16}}

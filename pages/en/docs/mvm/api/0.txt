@@ -1,22 +1,67 @@
-====== 0 ======
+====== SVC_DUPHANDLE ======
+
+Duplicate a file handle. This call creates a new file handle that refers to the same open file, pipe, or device as an existing handle.
 
 ===== Brief =====
 
+Duplicate file handle (INT 21h AH=45h)
+
 ===== Input =====
 
-  * BX = file handle
+  * BX = existing file handle
 
 ===== Return =====
 
   * CF clear if successful
     * AX = new handle
   * CF set on error
-    * AX = [[en:docs:mvm:api:errors|error code]] (04h,06h) (too many open files (no handles available), invalid handle)
+    * AX = [[en:docs:mvm:api:errors|error code]] (04h, 06h)
 
 ===== Notes =====
 
-moving file pointer for either handle will also move it for the other, because both will refer to the same system file table
+  * Both handles refer to the same system file table entry. Moving the file pointer for one handle also moves it for the other.
+  * Closing one handle does not affect the other until both are closed.
+  * The new handle has the same access rights and sharing mode as the original.
+
+===== Binding =====
+
+==== MASM ====
+
+<code asm>
+include macrolib.inc
+
+    mov bx, handle
+    @SvcDupHandle
+
+handle dw 1234h
+</code>
+
+==== C ====
+
+<code c>
+#include <svc.h>
+
+unsigned short newhandle;
+unsigned short oldhandle = 0x1234;
+
+newhandle = SvcDupHandle(oldhandle);
+</code>
+
+The underlying pragma is defined as:
+
+<code c>
+extern unsigned short SvcDupHandle(unsigned short handle);
+#pragma aux SvcDupHandle = \
+    "hlt"           \
+    "db  0"         \
+    "db  NOT 0"     \
+    parm [bx]       \
+    value [ax]      \
+    modify [ax bx cx dx];
+</code>
 
 ===== See also =====
+
+  * [[en:docs:dos:api:int21:45|INT 21h AH=45h]] – DOS duplicate handle
 
 {{page>en:templates:svcapi}}

@@ -1,0 +1,205 @@
+{{page>en:templates:win16api}}
+
+====== MessageBox ======
+
+===== Brief =====
+
+The **MessageBox** function creates, displays, and operates a message box. The message box contains an application-defined message and title, plus any combination of predefined icons and push buttons.
+
+===== Syntax =====
+<code c>int MessageBox(HWND hWnd, LPCSTR lpText, LPCSTR lpCaption, UINT uType);</code>
+
+===== Parameters =====
+
+  * hWnd - Handle to the owner window of the message box to be created. If this parameter is **NULL**, the message box has no owner window.
+  * lpText - Pointer to a null-terminated string containing the message to be displayed. If the string consists of more than one line, you can separate the lines using a carriage return and/or linefeed character between each line.
+  * lpCaption - Pointer to a null-terminated string used for the dialog box title. If this parameter is **NULL**, the default title "Error" is used.
+  * uType -  Contains a set of bit flags that determine the content and behavior of the dialog box. This parameter can be a combination of flags from the following groups:
+
+**Buttons:**
+  * **MB_ABORTRETRYIGNORE** - Contains Abort, Retry, and Ignore buttons.
+  * **MB_OK** - Contains one push button: OK (default).
+  * **MB_OKCANCEL** - Contains OK and Cancel buttons.
+  * **MB_RETRYCANCEL** - Contains Retry and Cancel buttons.
+  * **MB_YESNO** - Contains Yes and No buttons.
+  * **MB_YESNOCANCEL** - Contains Yes, No, and Cancel buttons.
+
+**Icons:**
+  * **MB_ICONEXCLAMATION / MB_ICONWARNING** - Exclamation-point icon.
+  * **MB_ICONINFORMATION / MB_ICONASTERISK** - Information icon (i in a circle).
+  * **MB_ICONQUESTION** - Question-mark icon.
+  * **MB_ICONSTOP / MB_ICONERROR / MB_ICONHAND** - Stop-sign icon.
+
+**Default Button:**
+  * **MB_DEFBUTTON1** - First button is default (default).
+  * **MB_DEFBUTTON2** - Second button is default.
+  * **MB_DEFBUTTON3** - Third button is default.
+
+**Modality:**
+  * **MB_APPLMODAL** - Application-modal (default). User must respond to the message box before continuing work in the current window.
+  * **MB_SYSTEMMODAL** - System-modal (topmost). All applications are suspended until user responds.
+  * **MB_TASKMODAL** - Task-modal. Similar to MB_APPLMODAL but used when the calling application has no window handle.
+
+**Other:**
+  * **MB_SETFOREGROUND** - Message box becomes the foreground window.
+  * **MB_TOPMOST** - Message box is placed above all non-topmost windows.
+
+===== Return Code =====
+The function returns zero if there is not enough memory to create the message box. If the call succeeds, the return value is one of the following menu-item values:
+
+  * **IDABORT** - Abort button was selected.
+  * **IDCANCEL** - Cancel button was selected.
+  * **IDIGNORE** - Ignore button was selected.
+  * **IDNO** - No button was selected.
+  * **IDOK** - OK button was selected.
+  * **IDRETRY** - Retry button was selected.
+  * **IDYES** - Yes button was selected.
+
+===== Notes =====
+  * The system supports only a limited number of message boxes simultaneously.
+  * When using the **MB_SYSTEMMODAL** flag, the message box appears on top of all windows and is typically used for critical errors requiring immediate user attention.
+  * If a message box is created without an owner window (hWnd = NULL), it behaves as an independent window.
+  * The message box is modal and does not return control until the user closes it by pressing a button.
+
+===== Example Code =====
+
+==== C Binding ====
+<code c>
+#include <windows.h>
+
+int PASCAL WinMain(HANDLE hInstance, HANDLE hPrevInstance,
+                   LPSTR lpCmdLine, int nCmdShow)
+{
+    // Simple information message box
+    MessageBox(NULL,
+               "Hello, world! This is a message from Janus.",
+               "Win16 Example",
+               MB_OK | MB_ICONINFORMATION);
+
+    // Question message box with Yes/No/Cancel
+    int result = MessageBox(NULL,
+                            "Do you want to save changes?",
+                            "Confirmation",
+                            MB_YESNOCANCEL | MB_ICONQUESTION | MB_DEFBUTTON1);
+
+    // Handle the result
+    if (result == IDYES)
+    {
+        MessageBox(NULL, "You chose Yes", "Result", MB_OK | MB_ICONINFORMATION);
+    }
+    else if (result == IDNO)
+    {
+        MessageBox(NULL, "You chose No", "Result", MB_OK | MB_ICONINFORMATION);
+    }
+    else if (result == IDCANCEL)
+    {
+        MessageBox(NULL, "You chose Cancel", "Result", MB_OK | MB_ICONWARNING);
+    }
+
+    // Error message example
+    MessageBox(GetActiveWindow(),
+               "File not found. Please check the path.",
+               "Error",
+               MB_OK | MB_ICONSTOP | MB_SYSTEMMODAL);
+
+    return 0;
+}
+</code>
+
+==== MASM Binding ====
+<code asm>
+; Example for MASM (Microsoft Macro Assembler)
+; Assemble with: MASM /MX program.asm
+; Link with: LINK program.obj,,,libw.lib,,
+
+.MODEL LARGE
+.386
+
+INCLUDE windows.inc
+
+.DATA
+    msg_hello    DB "Hello, world!", 0
+    cap_hello    DB "Greeting", 0
+    
+    msg_question DB "Continue operation?", 0
+    cap_question DB "Question", 0
+    
+    msg_yes      DB "You pressed Yes", 0
+    msg_no       DB "You pressed No", 0
+    msg_cancel   DB "Operation cancelled", 0
+    cap_result   DB "Result", 0
+
+.CODE
+START PROC FAR
+    ; Initialize
+    push    ds
+    pop     ax
+    xor     ax, ax
+    
+    ; Simple message box
+    push    MB_OK OR MB_ICONINFORMATION    ; uType
+    push    OFFSET cap_hello                 ; lpCaption
+    push    OFFSET msg_hello                  ; lpText
+    push    0                                  ; hWnd = NULL
+    call    MessageBox
+    
+    ; Question message box
+    push    MB_YESNOCANCEL OR MB_ICONQUESTION ; uType
+    push    OFFSET cap_question                 ; lpCaption
+    push    OFFSET msg_question                  ; lpText
+    push    0                                      ; hWnd = NULL
+    call    MessageBox
+    
+    ; Check result (result is in AX)
+    cmp     ax, IDYES
+    je      show_yes
+    cmp     ax, IDNO
+    je      show_no
+    cmp     ax, IDCANCEL
+    je      show_cancel
+    jmp     exit_program
+    
+show_yes:
+    push    MB_OK OR MB_ICONINFORMATION
+    push    OFFSET cap_result
+    push    OFFSET msg_yes
+    push    0
+    call    MessageBox
+    jmp     exit_program
+    
+show_no:
+    push    MB_OK OR MB_ICONINFORMATION
+    push    OFFSET cap_result
+    push    OFFSET msg_no
+    push    0
+    call    MessageBox
+    jmp     exit_program
+    
+show_cancel:
+    push    MB_OK OR MB_ICONWARNING
+    push    OFFSET cap_result
+    push    OFFSET msg_cancel
+    push    0
+    call    MessageBox
+    
+exit_program:
+    ; Exit program
+    mov     ax, 4C00h
+    int     21h
+START ENDP
+
+END START
+</code>
+
+===== See also =====
+  * [[MessageBoxIndirect]]
+  * [[MessageBeep]]
+  * [[DialogBox]]
+  * [[DialogBoxParam]]
+  * [[CreateDialog]]
+  * [[FlashWindow]]
+  * [[GetActiveWindow]]
+  * [[SetActiveWindow]]
+
+
+{{page>en:templates:win16}}

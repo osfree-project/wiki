@@ -1,23 +1,48 @@
 {{page>en:templates:win16api}}
 
-======  ======
+====== LocalFlags ======
+==== Brief ====
+Returns information about a local memory object, including its lock count and discardable status.
 
-===== Brief =====
+==== Syntax ====
+<code c>UINT WINAPI LocalFlags(
+HLOCAL hMem
+);</code>
 
-===== Syntax =====
+==== Parameters ====
 
-===== Parameters =====
+hMem – Handle to the memory object.
 
-===== Return Code =====
+==== Return Value ====
 
-===== Notes =====
+The low‑order byte of the low‑order word contains the lock count. Use LMEM_LOCKCOUNT to mask this value.
 
-===== Example Code =====
+The high‑order byte of the low‑order word indicates the allocation attributes (e.g., LMEM_DISCARDABLE, LMEM_DISCARDED).
 
+If the handle is invalid, the function returns LMEM_INVALID_HANDLE (0x7FFF).
+
+==== Notes ====
+
+For fixed objects, the lock count is always zero.
+
+Can be used to determine whether a block has been discarded (by checking for LMEM_DISCARDED in the high‑order byte).
+
+==== Example Code ====
 ==== C Binding ====
-
+<code c>UINT flags = LocalFlags(hMem);
+if (flags != LMEM_INVALID_HANDLE) {
+WORD lockCount = flags & LMEM_LOCKCOUNT;
+if (flags & 0x0F00) ... // discardable/discarded
+}</code>
 ==== MASM Binding ====
+<code asm>push hMem
+call LocalFlags
+and ax, LMEM_LOCKCOUNT ; extract lock count</code>
 
-===== See also =====
+==== See also ====
+
+  * [[LocalLock]]
+  * [[LocalUnlock]]
+
 
 {{page>en:templates:win16}}

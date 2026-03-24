@@ -1,23 +1,59 @@
 {{page>en:templates:win16api}}
 
-======  ======
+====== LocalInit ======
 
 ===== Brief =====
+Initializes a local heap within a specified memory segment.
 
 ===== Syntax =====
+<code c>
+BOOL WINAPI LocalInit(
+  WORD  wSegment,
+  WORD  wOffset,
+  WORD  wHeapSize
+);
+</code>
 
 ===== Parameters =====
+  * **wSegment** - The selector of the segment in which to initialize the local heap.
+  * **wOffset** - The offset within the segment at which the heap should start.
+  * **wHeapSize** - The size, in bytes, of the heap to initialize.
 
 ===== Return Code =====
+  * Returns **non-zero** if the heap is successfully initialized.
+  * Returns **0** if initialization fails.
 
 ===== Notes =====
+  * The function sets up a local heap manager within the provided segment, enabling local memory allocation functions to operate within that segment.
+  * Applications typically call LocalInit during initialization of a data segment or a dynamically allocated memory block intended for use as a local heap.
+  * First 16 bytes of segment used as system data area.
 
 ===== Example Code =====
 
 ==== C Binding ====
+<code c>
+#include <windows.h>
+
+BOOL WINAPI InitializeLocalHeap(WORD seg, WORD offset, WORD size) {
+    return LocalInit(seg, offset, size);
+}
+</code>
 
 ==== MASM Binding ====
+<file>
+; Assume AX = segment, DX = offset, CX = heap size
+push ax          ; wSegment
+push dx          ; wOffset
+push cx          ; wHeapSize
+call LocalInit   ; Returns AX = non-zero if success
+</file>
 
 ===== See also =====
+
+  * [[Local Heap|DGROUP, Local Heap and Atom Table]]
+  * [[en:docs:win16:api:kernel:LocalAlloc|LocalAlloc]] - Allocates memory from the local heap.
+  * [[en:docs:win16:api:kernel:LocalFree|LocalFree]] - Frees memory allocated from the local heap.
+  * [[en:docs:win16:api:kernel:LocalSize|LocalSize]] - Retrieves the size of a local memory block.
+  * [[en:docs:win16:api:kernel:LocalReAlloc|LocalReAlloc]] - Reallocates a local memory block.
 
 {{page>en:templates:win16}}

@@ -1,23 +1,38 @@
 {{page>en:templates:win16api}}
 
-======  ======
+====== LocalCompact ======
+==== Brief ====
+Compacts the local heap to satisfy a memory request and returns the size of the largest free block.
 
-===== Brief =====
+==== Syntax ====
+<code c>UINT WINAPI LocalCompact(
+UINT uMinFree
+);</code>
 
-===== Syntax =====
+==== Parameters ====
 
-===== Parameters =====
+uMinFree – Minimum amount of free space (in bytes) desired. Can be zero.
 
-===== Return Code =====
+==== Return Value ====
+Returns the maximum size of a free block that can be allocated after compaction.
 
-===== Notes =====
+==== Notes ====
 
-===== Example Code =====
+Compaction may move unlocked discardable blocks or discard them entirely.
 
+This function is rarely needed because Windows automatically manages the heap.
+
+==== Example Code ====
 ==== C Binding ====
-
+<code c>UINT maxFree = LocalCompact(1024);</code>
 ==== MASM Binding ====
+<code asm>push 1024
+call LocalCompact</code>
 
-===== See also =====
+==== See also ====
+
+  * [[LocalAlloc]]
+  * [[LocalDiscard]]
+
 
 {{page>en:templates:win16}}

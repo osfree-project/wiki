@@ -71,6 +71,10 @@ Displays Help
 
 Displays Help
 
+=== /LIBPATH ===
+
+Libraries search paths
+
 === /MAP ===
 
 Generates Link Map File

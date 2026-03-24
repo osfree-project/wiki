@@ -1,6 +1,7 @@
 ^ Group ^ Functions ^
 ^ Module manager | GETVERSION GETMODULEHANDLE GETMODULEUSAGE GETMODULEFILENAME GETPROCADDRESS MAKEPROCINSTANCE FREEPROCINSTANCE GETINSTANCEDATA CATCH THROW GETCODEHANDLE LOADLIBRARY |FREELIBRARY
-^ Memory Manager | GlobalAlloc GlobalCompact GlobalDiscard GlobalFree GlobalLock GlobalReAlloc GlobalSize GlobalUnlock GlobalFlags LocalAlloc LocalCompact LocalDiscard LocalFree LocalLock LocalFreeze LocalMelt LocalReAlloc LocalSize LocalUnlock LocalHandleDelta LockData  UnlockData LocalFlags |
+^ Global Memory Manager | GlobalAlloc GlobalCompact GlobalDiscard GlobalFree GlobalLock GlobalReAlloc GlobalSize GlobalUnlock GlobalFlags  |
+^ Local Memory Manager | [[en:docs:win16:api:kernel:LocalInit]] [[en:docs:win16:api:kernel:LocalAlloc]] [[en:docs:win16:api:kernel:LocalCompact]] [[en:docs:win16:api:kernel:LocalDiscard]] [[en:docs:win16:api:kernel:LocalFree]] [[en:docs:win16:api:kernel:LocalLock]] [[en:docs:win16:api:kernel:LocalFreeze]] [[en:docs:win16:api:kernel:LocalMelt]] [[en:docs:win16:api:kernel:LocalReAlloc]] [[en:docs:win16:api:kernel:LocalSize]] [[en:docs:win16:api:kernel:LocalUnlock]] [[en:docs:win16:api:kernel:LocalHandleDelta]] [[en:docs:win16:api:kernel:LockData]]  [[en:docs:win16:api:kernel:UnlockData]] [[en:docs:win16:api:kernel:LocalFlags]] |
 ^ Task Scheduler | GetCurrentTask Yield SetPriority |
 ^ Resource Manager | AddFontResource RemoveFontResource LoadBitmap LoadCursor LoadIcon LoadMenu LoadString LoadAccelerators FindResource LoadResource AllocResource LockResource FreeResource AccessResource SizeofResource SetResourceHandler |
 ^ String Translation | [[en:docs:win16:api:kernel:AnsiUpper]] [[en:docs:win16:api:kernel:AnsiLower]] [[en:docs:win16:api:kernel:AnsiNext]] [[en:docs:win16:api:kernel:AnsiPrev]] |
@@ -9,3 +10,4 @@
 ^ Debugging | FatalExit |
 ^ File I/O | _lopen _lcreat _llseek _lread _lwrite _lclose OpenFile GetTempFileName GetTempDrive |
 ^ Registry | [[en:docs:win16:api:shell:RegOpenKey]] [[en:docs:win16:api:shell:RegCreateKey]] [[en:docs:win16:api:shell:RegCloseKey]] [[en:docs:win16:api:shell:RegDeleteKey]] [[en:docs:win16:api:shell:RegSetValue]] [[en:docs:win16:api:shell:RegQueryValue]] [[en:docs:win16:api:shell:RegEnumKey]] |
+^ Dialogs | [[en:docs:win16:api:user:MessageBox]] |

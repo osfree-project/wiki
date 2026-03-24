@@ -1,23 +1,47 @@
 {{page>en:templates:win16api}}
 
-======  ======
+====== LocalFree ======
 
 ===== Brief =====
+Frees a local memory object and invalidates its handle.
 
 ===== Syntax =====
+<code c>HLOCAL WINAPI LocalFree(
+HLOCAL hMem
+);</code>
 
 ===== Parameters =====
 
-===== Return Code =====
+hMem – Handle to the memory object to free.
+
+===== Return Value =====
+
+Returns NULL if the function succeeds.
+
+Returns the original handle if it fails. Call GetLastError for more information.
 
 ===== Notes =====
 
+After freeing, the handle is no longer valid.
+
+If hMem is NULL, the function does nothing and returns NULL.
+
+It is safe to free a locked block, but doing so may cause memory corruption; always unlock before freeing.
+
+In debug versions of Windows, freeing a locked block may generate a diagnostic message.
+
 ===== Example Code =====
-
 ==== C Binding ====
-
+<code c>if (LocalFree(hMem) != NULL) {
+// error handling
+}</code>
 ==== MASM Binding ====
+<code asm>push hMem
+call LocalFree
+cmp ax, 0 ; success if AX == 0</code>
 
 ===== See also =====
+
+[[LocalAlloc]]
 
 {{page>en:templates:win16}}

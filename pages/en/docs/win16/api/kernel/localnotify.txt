@@ -1,23 +1,59 @@
 {{page>en:templates:win16api}}
 
-======  ======
+====== LocalNotify ======
+(Source: Windows 2.x SDK, Windows 3.0/3.1 KERNEL)
 
 ===== Brief =====
+Sets a notification callback function for local heap events.
 
 ===== Syntax =====
+<code c>FARPROC FAR PASCAL LocalNotify(
+FARPROC lpfnNotify
+);</code>
 
 ===== Parameters =====
 
-===== Return Code =====
+lpfnNotify – Far pointer to the new notification callback function. The callback is invoked by the system when certain events occur in the local heap (such as moving or discarding memory blocks). The exact prototype of the callback and the events it receives are not documented in later versions of Windows; refer to the Windows 2.x SDK for details.
+
+===== Return Value =====
+Returns the address of the previous notification callback function. If no callback was previously set, the return value is NULL.
 
 ===== Notes =====
 
+This function is a relic of Windows versions 2.x and is rarely used in Windows 3.0 and later. It exists in the KERNEL export table (ordinal 14) for compatibility reasons.
+
+The callback function is called by the heap manager before certain operations (e.g., before moving or discarding a local memory block). The application can use this notification to prepare for the operation or to veto it.
+
+Detailed information about the callback prototype and the notification codes can be found in the Microsoft Windows Software Development Kit (SDK) for Windows version 2.x.
+
+In Windows 3.0 and 3.1, the function is still present but its practical use is limited; it is not recommended for new code.
+
+The callback function must be exported (listed in the EXPORTS section of the module definition file) and must use the FAR PASCAL calling convention.
+
 ===== Example Code =====
-
 ==== C Binding ====
+<code c>#include <windows.h>
 
+// Hypothetical callback function (actual prototype unknown)
+void FAR PASCAL MyNotifyHandler(UINT uEvent, HLOCAL hMem, UINT uFlags) {
+// Handle the event
+}
+
+FARPROC lpfnOldNotify;
+
+// Set the new handler and save the old one
+lpfnOldNotify = LocalNotify((FARPROC)MyNotifyHandler);</code>
 ==== MASM Binding ====
+<code asm>; Assume AX = far pointer to new callback
+push ax ; lpfnNotify
+call LocalNotify ; Returns AX = previous callback address</code>
 
 ===== See also =====
+
+  * [[LocalAlloc]]
+  * [[LocalFree]]
+  * [[LocalLock]]
+  * [[LocalCompact]]
+
 
 {{page>en:templates:win16}}

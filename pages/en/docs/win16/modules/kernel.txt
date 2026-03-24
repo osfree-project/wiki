@@ -2,6 +2,8 @@
 
 Windows kernel for 8086 (KERNEL.EXE) doesn't uses DPMI or LDT for memory management. KERNEL.EXE for later versions of Windows emulates selectors functions via segments (like [[en:docs:FAPI]] does), but not so good (mostly functions returns errors). KRNL286.EXE and KRNL386.EXE uses direct LDT manipulations. Kernels for WOW uses DPMI functions. For now, osFree tries to reuse only DPMI (in future it is possible to implement direct LDT manipulation, may be).
 
+  * [[Local Heap|DGROUP, Local Heap and Atom Table]]
+
 Note minimal checked windows version is 1.03.
 
 ^ Ordinal ^ Name ^ Description ^ Status ^^^ Version ^ ECMA-234 ^
@@ -19,7 +21,7 @@ Note minimal checked windows version is 1.03.
 | 011| [[en:docs:win16:api:kernel:LocalHandle]] | Retrieve the handle associated with the specified pointer to a local memory object | | | | | Yes |
 | 012| [[en:docs:win16:api:kernel:LocalFlags]] | Return information about the specified local memory block | | | | 1.03 | Yes |
 | 013| [[en:docs:win16:api:kernel:LocalCompact]] | Generate free bytes of memory by compacting, if necessary, the module's local heap | | | | 1.03 | Yes |
-| 014| [[en:docs:win16:api:kernel:LocalNotify]] | | | | 
+| 014| [[en:docs:win16:api:kernel:LocalNotify]] | Set a notification callback function for local heap events | | | 
 | 015| [[en:docs:win16:api:kernel:GlocalAlloc]] | Allocate memory from the global heap | | | | 1.03 | Yes |
 | 016| [[en:docs:win16:api:kernel:GlobalRealloc]] | Reallocate the global memory block | | | | 1.03 | Yes |
 | 017| [[en:docs:win16:api:kernel:GlobalFree]] | Free the global memory block | | | | 1.03 | Yes |
@@ -65,7 +67,7 @@ Note minimal checked windows version is 1.03.
 | 057| [[en:docs:win16:api:kernel:GetProfileInt]] | Retrieve the value of an integer key from the the Windows initialization file | | | | 1.03 | Yes |
 | 058| [[en:docs:win16:api:kernel:GetProfileString]] | Copy a character string from the user profile into the buffer | | | | 1.03 | Yes |
 | 059| [[en:docs:win16:api:kernel:WriteProfileString]] | Copy the character string into the Windows initialization file | | | | 1.03 | Yes |
-| 060| [[en:docs:win16:api:kernel:FindeResource]] | Determine the location of a resource in the specified resource file | | | | 1.03 | Yes |
+| 060| [[en:docs:win16:api:kernel:FindResource]] | Determine the location of a resource in the specified resource file | | | | 1.03 | Yes |
 | 061| [[en:docs:win16:api:kernel:LoadResource]] | Load a resource from the executable file associated with the module | | | | 1.03 | Yes |
 | 062| [[en:docs:win16:api:kernel:LockResource]] | Retrieve the absolute memory address of the loaded resource | | | | 1.03 | Yes |
 | 063| [[en:docs:win16:api:kernel:FreeResource]] | Remove a loaded resource from memory by freeing the allocated memory occupied by that resource | | | | 1.03 | Yes |
@@ -126,7 +128,7 @@ Note minimal checked windows version is 1.03.
 | 118| [[en:docs:win16:api:kernel:GetTaskQueueDS]] |  | | | | | |
 | 119| [[en:docs:win16:api:kernel:GetTaskQueueES]] |  | | | | | |
 | 120| [[en:docs:win16:api:kernel:UndefDynLink]] |  | | | | | |
-| 121| [[en:docs:win16:api:kernel:LocalShrink]] | | | | | | Yes |
+| 121| [[en:docs:win16:api:kernel:LocalShrink]] | Shrink the specified local heap to the given size | | | | | Yes |
 | 122| [[en:docs:win16:api:kernel:IsTaskLocked]] |  | | | | | |
 | 123| [[en:docs:win16:api:kernel:KbdRst]] |  | | | | | |
 | 124| [[en:docs:win16:api:kernel:EnableKernel]] |  | | | | | |
@@ -166,8 +168,8 @@ Note minimal checked windows version is 1.03.
 | 158| [[en:docs:win16:api:kernel:IsWinOldApTask]] |  | | | | | |
 | 159| [[en:docs:win16:api:kernel:GlobalHandleNoRip]] |  | | | | | |
 | 160| [[en:docs:win16:api:kernel:EMSCopy]] |  | | | | | |
-| 161| [[en:docs:win16:api:kernel:LocalCountFree]] |  | | | | | |
-| 162| [[en:docs:win16:api:kernel:LocalHeapSize]] |  | | | | | |
+| 161| [[en:docs:win16:api:kernel:LocalCountFree]] | Return the size of the free area in the current local heap | | | | | |
+| 162| [[en:docs:win16:api:kernel:LocalHeapSize]] | Return the total size of the current local heap | | | | | |
 | 163| [[en:docs:win16:api:kernel:GlobalLRUOldest]] | | | | | | Yes |
 | 164| [[en:docs:win16:api:kernel:GlobalLRUNewest]] | | | | | | Yes |
 | 165| [[en:docs:win16:api:kernel:A20Proc]] |  | | | | | |

@@ -1,23 +1,61 @@
 {{page>en:templates:win16api}}
 
-======  ======
+====== LocalAlloc ======
 
 ===== Brief =====
 
+Allocates a block of memory from the local heap of the current data segment.
+
 ===== Syntax =====
+<code c>
+HLOCAL WINAPI LocalAlloc(
+UINT uFlags,
+UINT uBytes
+);
+</code>
 
 ===== Parameters =====
 
-===== Return Code =====
+  * uFlags – Allocation attributes. Common flags:
+    * LMEM_FIXED (0x0000) – Allocates fixed memory; the return value is a pointer.
+    * LMEM_MOVEABLE (0x0002) – Allocates movable memory; returns a handle.
+    * LMEM_ZEROINIT (0x0040) – Initializes the memory to zero.
+    * LMEM_DISCARDABLE (0x0F00) – Makes the block discardable (only with LMEM_MOVEABLE).
+    * LMEM_NOCOMPACT (0x0010) – Prevents heap compaction for this allocation.
+    * LMEM_NODISCARD (0x0020) – Prevents discarding of other blocks.
+
+Shorthands: LHND (LMEM_MOVEABLE | LMEM_ZEROINIT), LPTR (LMEM_FIXED | LMEM_ZEROINIT).
+
+  * uBytes – Number of bytes to allocate. If zero and LMEM_MOVEABLE is set, returns a handle to a discarded object.
+
+===== Return Value =====
+
+If successful, returns a handle to the allocated object. For LMEM_FIXED, this handle is actually a pointer.
+
+Returns NULL on failure. Call GetLastError for extended error information.
 
 ===== Notes =====
 
+  * For movable blocks, use LocalLock to obtain a pointer before accessing the memory.
+  * The internal lock count of a new block is zero.
+
 ===== Example Code =====
-
 ==== C Binding ====
-
+<code c>
+HLOCAL hMem = LocalAlloc(LMEM_MOVEABLE | LMEM_ZEROINIT, 1024);
+HLOCAL hMem2 = LocalAlloc(LHND, 1024);
+</code>
 ==== MASM Binding ====
+<code asm>
+push 0042h ; LMEM_MOVEABLE | LMEM_ZEROINIT
+push 0400h ; 1024 bytes
+call LocalAlloc
+</code>
 
 ===== See also =====
+
+[[LocalReAlloc]]
+[[LocalFree]]
+[[LocalLock]]
 
 {{page>en:templates:win16}}

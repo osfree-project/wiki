@@ -1,23 +1,56 @@
 {{page>en:templates:win16api}}
 
-======  ======
+====== LocalShrink ======
+(Source: Windows 3.0 SDK, Microsoft Knowledge Base Article Q21581)
 
 ===== Brief =====
+Shrinks the specified local heap to the size given by the wSize parameter. The minimum size for the automatic local heap is defined in the application's module‑definition file .
 
 ===== Syntax =====
+<code c>WORD WINAPI LocalShrink(
+HANDLE hSeg,
+WORD wSize
+);</code>
 
 ===== Parameters =====
 
-===== Return Code =====
+hSeg – Handle (selector) of the segment that contains the local heap. If hSeg is zero, the function reduces the local heap in the current data segment (DGROUP) .
+
+wSize – Specifies the desired size of the local heap after shrinkage, in bytes .
+
+===== Return Value =====
+The return value specifies the actual size of the local heap after shrinkage, in bytes . If the heap could not be shrunk to the requested size, the return value may be larger than wSize.
 
 ===== Notes =====
 
+Windows will not shrink that portion of the data segment that contains the stack and the static variables .
+
+When an application calls LocalAlloc and there is not enough memory within the application's data segment, Windows uses memory from the global heap and appends it to the data segment. Releasing this temporary memory becomes an issue for the programmer. Using LocalShrink compacts and shrinks the data segment to the smallest possible size .
+
+LocalShrink cannot move FIXED or locked blocks when compacting the local heap. Therefore, free space may still remain in the heap, and the final size may not be as small as requested. The function compacts as much as possible given this constraint .
+
+To determine the new size of the whole data segment, use the GlobalSize function .
+
+This function is rarely used in practice; Windows usually manages the local heap size automatically.
+
 ===== Example Code =====
-
 ==== C Binding ====
+<code c>#include <windows.h>
 
+// Shrink the local heap of the current data segment to 256 bytes
+WORD wNewSize = LocalShrink(0, 256);</code>
 ==== MASM Binding ====
+<code asm>; AX = segment handle (0 for current data segment), BX = desired size in bytes
+push ax ; hSeg
+push bx ; wSize
+call LocalShrink ; Returns AX = new heap size</code>
 
 ===== See also =====
+
+  * [[LocalInit]]
+  * [[LocalAlloc]]
+  * [[LocalCompact]]
+
+
 
 {{page>en:templates:win16}}
