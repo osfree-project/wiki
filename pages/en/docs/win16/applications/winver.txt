@@ -1,14 +1,18 @@
 {{logos:win16.gif}}
 
-====== Windows Version ======
+====== osFree Janus Version ======
 
-Simple application which show standard About dialog from SHELL.DLL. View of dialog depended on implementation.
+Simple application which shows the standard About dialog from SHELL.DLL or built-in About dialog box. The appearance of the dialog depends on the underlying implementation.
 
 {{:en:docs:win16:applications:winver.png|Windows Version}}
 
+===== Features and Compatibility =====
+
+  * **Priority to System Library (SHELL.DLL):** Upon startup, the program attempts to load the ''SHELL.DLL'' library and call the standard ''ShellAbout()'' function. This displays the exact same dialog window found in the original system, including all version-specific elements.
+  * **Fallback Mode:** If ''SHELL.DLL'' is unavailable or if the function call fails, the application does not terminate with an error. Instead, it displays its own built-in dialog window.
+
 ===== Download =====
 
-You can download source code and binaries from [[https://github.com/osfree-project/winver|GitHub]]. Windows Version comes under LGPL-2.1 license.
-
+You can download the source code and binaries from [[https://github.com/osfree-project/winver|GitHub]]. osFree Janus Version is released under the LGPL-2.1 license.
 
 {{page>en:templates:win16app}}

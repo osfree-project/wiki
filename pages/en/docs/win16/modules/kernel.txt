@@ -22,7 +22,7 @@ Note minimal checked windows version is 1.03.
 | 012| [[en:docs:win16:api:kernel:LocalFlags]] | Return information about the specified local memory block | | | | 1.03 | Yes |
 | 013| [[en:docs:win16:api:kernel:LocalCompact]] | Generate free bytes of memory by compacting, if necessary, the module's local heap | | | | 1.03 | Yes |
 | 014| [[en:docs:win16:api:kernel:LocalNotify]] | Set a notification callback function for local heap events | | | 
-| 015| [[en:docs:win16:api:kernel:GlocalAlloc]] | Allocate memory from the global heap | | | | 1.03 | Yes |
+| 015| [[en:docs:win16:api:kernel:GlocalAlloc|GlobalAlloc]] | Allocate memory from the global heap | | | | 1.03 | Yes |
 | 016| [[en:docs:win16:api:kernel:GlobalRealloc]] | Reallocate the global memory block | | | | 1.03 | Yes |
 | 017| [[en:docs:win16:api:kernel:GlobalFree]] | Free the global memory block | | | | 1.03 | Yes |
 | 018| [[en:docs:win16:api:kernel:GlobalLock]] | Retrieve the absolute memory address of the global memory block | | | | 1.03 | Yes |
