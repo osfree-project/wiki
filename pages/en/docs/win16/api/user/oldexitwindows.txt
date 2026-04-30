@@ -1,23 +1,78 @@
 {{page>en:templates:win16api}}
 
-======  ======
+====== OldExitWindows ======
 
 ===== Brief =====
 
+The **OldExitWindows** function immediately terminates the entire Windows session by directly invoking the DOS "terminate program" interrupt (INT 21h, Function 4Ch), which kills the system virtual machine. It is an undocumented function exported by **USER.EXE** at ordinal 2 and represents a hard‑exit mechanism left over from Windows 2.1 for compatibility reasons.
+
 ===== Syntax =====
+<code c>void FAR PASCAL OldExitWindows(void);</code>
 
 ===== Parameters =====
+This function takes no parameters.
 
 ===== Return Code =====
+This function does not return. Control is passed directly to MS‑DOS, and the Windows environment is forcibly terminated.
 
 ===== Notes =====
+  * **OldExitWindows** performs a "hard" exit without any graceful shutdown. It does **not** send the **WM_QUERYENDSESSION** or **WM_ENDSESSION** messages to running applications, nor does it perform the normal Windows cleanup sequence.  
+  * Because of its abrupt nature, using this function can lead to data loss or file corruption in applications that rely on proper termination handling.  
+  * The function is a legacy entry point from Windows 2.1. It is retained in Windows 3.0 and 3.1 under the name **OldExitWindows** to provide binary compatibility for old applications.  
+  * New programs should use the documented **ExitWindows** function for a controlled shutdown that allows applications to veto the exit.  
+  * **OldExitWindows** is exported by **USER.EXE** both by name and by ordinal 2.  
+  * Support: Windows 3.0, Windows 3.1.
 
 ===== Example Code =====
 
 ==== C Binding ====
+<code c>
+#include <windows.h>
+
+int PASCAL WinMain(HANDLE hInstance, HANDLE hPrevInstance,
+                   LPSTR lpCmdLine, int nCmdShow)
+{
+    // Optional confirmation dialog before the hard exit.
+    int result = MessageBox(NULL,
+                            "This will immediately exit Windows without saving. Continue?",
+                            "OldExitWindows Demo",
+                            MB_YESNO | MB_ICONWARNING);
+
+    if (result == IDYES)
+    {
+        // Perform an unconditional, immediate exit to DOS.
+        OldExitWindows();
+    }
+
+    // If the user chose "No", the program continues normally.
+    return 0;
+}
+</code>
 
 ==== MASM Binding ====
+<code asm>
+
+.MODEL LARGE
+.386
+
+INCLUDE windows.inc
+
+.CODE
+START PROC FAR
+
+    ; Call OldExitWindows – never returns
+    call    OldExitWindows
+
+START ENDP
+
+END START
+</code>
 
 ===== See also =====
+  * [[ExitWindows]]
+  * [[ExitWindowsExec]]
+  * [[PostQuitMessage]]
+  * [[WM_QUERYENDSESSION]]
+  * [[WM_ENDSESSION]]
 
 {{page>en:templates:win16}}
