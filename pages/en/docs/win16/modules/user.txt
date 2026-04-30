@@ -2,7 +2,7 @@
 
 ^ Ordinal ^ Name ^ Description ^ Status ^ Version ^
 | 1 | [[en:docs:win16:api:user:MessageBox]] | Displays a modal dialog box that contains a system icon, a set of buttons, and a brief application-specific message | | |
-| 2 | [[en:docs:win16:api:user:OldExitWindows]] | | Done | |
+| 2 | [[en:docs:win16:api:user:OldExitWindows]] | Immediately terminate the entire Windows session by directly invoking the DOS “terminate program” interrupt (INT 21h, Function 4Ch) | Done | |
 | 5 | [[en:docs:win16:api:user:InitApp]] | Initializes an application instance | | |
 | 6 | [[en:docs:win16:api:user:PostQuitMessage]] | Indicates that the application has requested to terminate | | |
 | 7 | [[en:docs:win16:api:user:ExitWindows]] | Shuts down Windows and restarts the operating system | | |
