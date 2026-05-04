@@ -1,23 +1,73 @@
 {{page>en:templates:win16api}}
 
-======  ======
+====== InitApp ======
 
 ===== Brief =====
 
+The **InitApp** function creates the application message queue and installs essential application-support routines. These include a signal procedure, version-specific resource loaders, and a divide-by-zero interrupt handler.
+
 ===== Syntax =====
+
+<code c>
+BOOL WINAPI InitApp(HANDLE hInstance);
+</code>
 
 ===== Parameters =====
 
+  * **hInstance** — Handle to the task to be initialized. This value **must** be the instance handle returned in the `DI` register by the preceding `InitTask` call.
+
 ===== Return Code =====
 
+Returns **nonzero** in the `AX` register if successful. If the function fails, it returns **zero**, and the application must exit immediately.
+
 ===== Notes =====
+
+  * Because this function creates the message queue, failure to call it (or calling out of sequence) will result in an application that cannot receive messages.
 
 ===== Example Code =====
 
 ==== C Binding ====
+<code c>
+/* Declaration of InitApp (often not included in windows.h) */
+extern WINAPI InitApp(HANDLE hInstance);
+
+int PASCAL WinMain(HANDLE hInstance, HANDLE hPrevInstance,
+                   LPSTR lpCmdLine, int nCmdShow)
+{
+    /* InitApp is typically called in the startup code before WinMain.
+       If you are writing custom startup code, call it as shown: */
+    if (!InitApp(hInstance))
+    {
+        /* Critical error: message queue could not be created */
+        return 1;
+    }
+
+    /* ... application code ... */
+    return 0;
+}
+</code>
 
 ==== MASM Binding ====
+<code asm>
+; Standard startup fragment (after InitTask and WaitEvent)
+externFP        InitApp           ; declare far external
+
+    push    di                    ; hInstance from InitTask (DI register)
+    call    far InitApp           ; create message queue & install handlers
+    or      ax, ax                ; test return value
+    jz      noinit                ; jump if initialization failed
+
+    ; ... proceed to call WinMain ...
+
+noinit:
+    mov     al, 0FFh              ; return error code
+    mov     ah, 4Ch
+    int     21h
+</code>
 
 ===== See also =====
+
+  * [[en:docs:win16:api:kernel:inittask|InitTask]]
+  * [[en:docs:win16:api:kernel:waitevent|WaitEvent]]
 
 {{page>en:templates:win16}}
