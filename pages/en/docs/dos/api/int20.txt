@@ -33,6 +33,8 @@ TERMINATE
 
 Function is obsolete. Use [[en:docs:dos:api:int21:4c|INT 21/AH=4Ch]] instead
 
+Function not supported for Win16 applications in protected mode
+
 This function sets the program's return code (ERRORLEVEL) to 00h
 
 ===== See Also =====

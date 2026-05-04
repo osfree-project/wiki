@@ -33,6 +33,8 @@ Absolute disk read
 
 ===== Notes =====
 
+Function not supported for Win16 applications in protected mode
+
 partition is potentially >32M (and requires this form of the call) if  bit 1 of the device attribute word in the device driver is set
 
 for FAT32 drives (which may be up to 2TB in size), use INT 21/AX=7305h
@@ -55,7 +57,7 @@ A method to detect the actual assignments of logical drive numbers to physical B
 
 Although all registers except segment registers may be destroyed some software depends on some of the registers being preserved. For example some Flash disk drivers requires that DX is not trashed. DR-DOS 7.03 takes care of this.
 
- BUGS:	DOS 3.1 through 3.3 set the word at ES:[BP+1Eh] to FFFFh if AL is an invalid drive number
+BUGS:	DOS 3.1 through 3.3 set the word at ES:[BP+1Eh] to FFFFh if AL is an invalid drive number
 
 DR DOS 3.41 will return with a jump instead of RETF, leaving the wrong number of bytes on the stack; use the huge-partition version (INT 25/CX=FFFFh) for all partition sizes under DR DOS 3.41
 
