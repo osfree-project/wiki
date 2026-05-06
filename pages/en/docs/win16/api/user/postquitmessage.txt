@@ -1,23 +1,112 @@
 {{page>en:templates:win16api}}
 
-======  ======
+====== PostQuitMessage ======
 
 ===== Brief =====
 
+The **PostQuitMessage** function posts a message to Windows indicating that an application is requesting to terminate execution (quit). This function is typically used in response to a `WM_DESTROY` message.
+
 ===== Syntax =====
+
+<code c>
+VOID WINAPI PostQuitMessage(int nExitCode);
+</code>
 
 ===== Parameters =====
 
+  * **nExitCode** — Specifies an application-defined exit code. It must be the **wParam** parameter of the `WM_QUIT` message.
+
 ===== Return Code =====
 
+This function does not return a value.
+
 ===== Notes =====
+
+  * The PostQuitMessage function posts a `WM_QUIT` message to the application and returns immediately; the function simply indicates to the system that the application will request to quit some time in the future.
+  * When the application receives the `WM_QUIT` message, it should exit the message loop in the main function and return control to Windows.
 
 ===== Example Code =====
 
 ==== C Binding ====
+<code c>
+#include <windows.h>
+
+LRESULT CALLBACK __export WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
+{
+    switch (msg)
+    {
+        case WM_DESTROY:
+            PostQuitMessage(0);
+            return 0;
+    }
+    return DefWindowProc(hwnd, msg, wParam, lParam);
+}
+
+int WINAPI WinMain(HANDLE hInstance, HANDLE hPrevInstance,
+                   LPSTR lpCmdLine, int nCmdShow)
+{
+    MSG msg;
+
+    /* ... window class registration and creation ... */
+
+    while (GetMessage(&msg, NULL, 0, 0))
+    {
+        TranslateMessage(&msg);
+        DispatchMessage(&msg);
+    }
+
+    return (int)msg.wParam;
+}
+</code>
 
 ==== MASM Binding ====
+<code asm>
+EXTRN PostQuitMessage:FAR
+
+WndProc PROC FAR
+    cmp     ax, WM_DESTROY
+    je      handle_destroy
+    ; ... other messages ...
+
+handle_destroy:
+    push    0                    ; nExitCode = 0
+    call    PostQuitMessage
+    xor     ax, ax               ; return 0 (message handled)
+    retf
+WndProc ENDP
+
+; Message loop that catches WM_QUIT
+WinMain PROC FAR
+    ; ... initialization ...
+
+message_loop:
+    lea     ax, msg
+    push    ax                   ; lpMsg
+    push    0                    ; hWnd
+    push    0                    ; wMsgFilterMin
+    push    0                    ; wMsgFilterMax
+    call    GetMessage
+    cmp     ax, 0
+    je      exit_app             ; FALSE — WM_QUIT received
+
+    lea     ax, msg
+    push    ax
+    call    TranslateMessage
+    lea     ax, msg
+    push    ax
+    call    DispatchMessage
+    jmp     message_loop
+
+exit_app:
+    mov     ax, msg.wParam       ; return exit code from WM_QUIT
+    retf
+WinMain ENDP
+</code>
 
 ===== See also =====
+
+  * [[en:docs:win16:api:user:messagebox|MessageBox]]
+  * [[en:docs:win16:api:user:initapp|InitApp]]
+  * [[en:docs:win16:api:user:getmessage|GetMessage]]
 
 {{page>en:templates:win16}}
