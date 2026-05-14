@@ -2,13 +2,15 @@
 
 New Executable (NE) file format used by set of operating system including OS/2, Windows, Multitasking MS-DOS 4 and set of DOS Extenders. It is designed to be store on disk and in-memory usage. In-disk format is same for all OSes, but In-memory usage is mostly specific for Windows systems.
 
+===== New Executable header =====
+
 ^ Offset ^ Size ^ Name ^ Description ^
-| 00h | WORD | ne_magic | Signature word NEMAGIC |
+| 00h | WORD | ne_magic | Signature word NEMAGIC (0x4E45, 'NE') |
 | On-disk ||||
 | 02h | BYTE | ne_ver | Version number of the linker |
-| 03h | BYTE| ne_rev | Revision number of the linker |
+| 03h | BYTE | ne_rev | Revision number of the linker |
 | In-memory ||||
-| 02h | WORD | count | Usage count (ne_ver/ne_rev on disk) |
+| 02h | WORD | count | Usage count  |
 | 04h | WORD | ne_enttab | Entry Table file offset, relative to the beginning of the segmented EXE header |
 | On-disk ||||
 | 06h | WORD | ne_cbenttab | Number of bytes in the entry table |
@@ -44,6 +46,15 @@ New Executable (NE) file format used by set of operating system including OS/2, 
 | 3Ch | WORD | ??? | minimum code swap area size |
 | 3Eh | 2 BYTEs | ??? | expected Windows version (minor version first) |
 
+===== Flag word (ne_flags) =====
+^ Bit(s) ^ Mask ^ Name ^ Description ^
+| 0-1 | - | NOAUTODATA | No an automatic data segment |
+| 0 | 0001h | SINGLEDATA | Per-process library data (shared DGROUP) |
+| 1 | 0002h | MULTIPLEDATA | Per-instance library data |
+| 11 | 0800H | FIRSTDISC(?) | First segment in the executable file contains code that loads the application |
+| 13 | 2000h | LINKERROR | Errors detected at link time, module will not load |
+| 15 | 8000h | LIBRARY | Module is a dynamic‑link library (DLL) |
+
 On-disk segment entry
 
 ^ Offset ^ Size ^ Name ^ Description ^
@@ -61,7 +72,7 @@ In-memory segment entry
 | 06h | WORD | ns1_minalloc | Minimum allocation size of the segment, in bytes. Total size of the segment. Zero means 64K |
 | 08h | WORD | ns1_handle | Selector or handle (selector - 1) of segment in memory |
 
-
+<code c>
 struct new_segdata {
     union {
         struct {
@@ -74,6 +85,7 @@ struct new_segdata {
         } ns_noniter;
     } ns_union;
 };
+</code>
 
 Relocation table header
 
@@ -120,4 +132,5 @@ Relocation table entry
 | 02h | struct rsrc_typeinfo | rs_typeinfo | ??? |
 
 
-
+  * Microsoft KB: Q65122: Executable-File Header Format
+  * Windows SDK 3.1 (MSDN Library, September 1992)
