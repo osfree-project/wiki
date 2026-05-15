@@ -57,8 +57,12 @@ New Executable (NE) file format used by set of operating system including OS/2, 
 | 0-1 | - | NOAUTODATA | No an automatic data segment |
 | 0 | 0001h | SINGLEDATA | Per-process library data (shared DGROUP) |
 | 1 | 0002h | MULTIPLEDATA | Per-instance library data |
-| 11 | 0800H | FIRSTDISC(?) | First segment in the executable file contains code that loads the application |
+| 8 | 0100h | NENOTWINCOMPAT | Not compatible with P.M. Windowing (OS/2) |
+| 9 | 0200h | NEWINCOMPAT | Compatible with P.M. Windowing (OS/2) |
+| 10 | 0300h | NEWINAPI | Uses P.M. Windowing API (OS/2) |
+| 11 | 0800H | FIRSTDISC/NEBOUND | First segment in the executable file contains code that loads the application (Windows). Bound Family API (OS/2) |
 | 13 | 2000h | LINKERROR | Errors detected at link time, module will not load |
+| 14 | 4000h | NENOTMPSAFE | Process is not multi‑processor safe (OS/2) |
 | 15 | 8000h | LIBRARY | Module is a dynamic‑link library (DLL) |
 
 ===== Operating system flags (ne_flagsothers) =====
