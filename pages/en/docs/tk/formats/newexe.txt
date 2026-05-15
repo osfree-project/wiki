@@ -26,7 +26,13 @@ New Executable (NE) file format used by set of operating system including OS/2, 
 | 10h | WORD | ne_heap | Initial size, in bytes, of dynamic heap added to the data segment. This value is zero if no initial local heap is allocated |
 | 12h | WORD | ne_stack | Initial size, in bytes, of stack added to the data segment. This value is zero to indicate no initial stack allocation, or when SS is not equal to DS |
 | 14h | DWORD | ne_csip | Segment number:offset of CS:IP |
-| 18h | DWORD | ne_sssp | Segment number:offset of SS:SP \\ If SS equals the automatic data segment and SP equals zero, the stack pointer is set to the top of the automatic data segment just below the additional heap area. \\ +--------------------------+\\ ! additional dynamic heap  !\\ +--------------------------+ <- SP\\ !    additional stack      !\\ +--------------------------+\\ ! loaded auto data segment !%\\ +--------------------------+ <- DS, SS |
+| 18h | DWORD | ne_sssp | Segment number:offset of SS:SP \\ If SS equals the automatic data segment and SP equals zero, the stack pointer is set to the top of the automatic data segment just below the additional heap area. \\ <code>+--------------------------+
+! additional dynamic heap  !
++--------------------------+ <- SP
+!    additional stack      !
++--------------------------+
+! loaded auto data segment !
++--------------------------+ <- DS, SS </code> |
 | 1Ch | WORD | ne_cseg | Number of entries in the Segment Table |
 | 1Eh | WORD | ne_cmod | Number of entries in the Module Reference Table |
 | 20h | WORD | ne_cbnrestab | Number of bytes in the Non-Resident Name Table |
@@ -39,10 +45,10 @@ New Executable (NE) file format used by set of operating system including OS/2, 
 | 30h | WORD | ne_cmovent | Number of movable entries in the Entry Table |
 | 32h | WORD | ne_align | Logical sector alignment shift count, log(base 2) of the segment sector size (default 9) |
 | 34h | WORD | ne_cres | Number of resource entries |
-| 36h | BYTE | ne_exetyp | Executable type, used by loader. \\ 00h=Unknown (any “new‑format” OS) \\ 01h=OS/2 \\ 02h=Windows \\ 03h=European MS‑DOS 4.x \\ 04h=Windows 386 |
+| 36h | BYTE | ne_exetyp | Executable type, used by loader. \\ 00h=Unknown (any “new‑format” OS) \\ 01h=OS/2 \\ 02h=Windows \\ 03h=European MS‑DOS 4.x \\ 04h=Windows 386 \\ 05h=BOSS (Borland Operating System Services) \\ 81h=PharLap 286<nowiki>|</nowiki>DOS-Extender, OS/2 \\ 82h=PharLap 286<nowiki>|</nowiki>DOS-Extender, Windows |
 | 37h | BYTE | ne_flagsothers | Operating system flags |
-| 38h | WORD | ??? | offset to return thunks or start of gangload area |
-| 3Ah | WORD | ??? | offset to segment reference thunks or length of gangload area |
+| 38h | WORD | ??? | offset to return thunks or start of gangload/fastload area |
+| 3Ah | WORD | ??? | offset to segment reference thunks or length of gangload/fastload area |
 | 3Ch | WORD | ??? | minimum code swap area size |
 | 3Eh | 2 BYTEs | ??? | expected Windows version (minor version first) |
 
@@ -54,6 +60,14 @@ New Executable (NE) file format used by set of operating system including OS/2, 
 | 11 | 0800H | FIRSTDISC(?) | First segment in the executable file contains code that loads the application |
 | 13 | 2000h | LINKERROR | Errors detected at link time, module will not load |
 | 15 | 8000h | LIBRARY | Module is a dynamic‑link library (DLL) |
+
+===== Operating system flags (ne_flagsothers) =====
+^ Bit ^ Mask ^ Name ^ Description ^
+| 0 | 01h | NELONGNAMES | Supports long file names (OS/2) |
+| 1 | 02h | NEWINISPROT | Windows 2.x app runs in protected mode (Windows) |
+| 2 | 04h | NEWINGETPROPFON | Windows 2.x app gets proportional font (Windows) |
+| 3 | 08h | NEGANGLOAD | Contains gangload/fastload area (Windows) |
+| 7 | 80h | NEWLOAPPL | WLO application on OS/2 (markwlo.exe) (OS/2) |
 
 On-disk segment entry
 
