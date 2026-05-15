@@ -9,16 +9,16 @@ New Executable (NE) file format used by set of operating system including OS/2, 
 | On-disk ||||
 | 02h | BYTE | ne_ver | Version number of the linker |
 | 03h | BYTE | ne_rev | Revision number of the linker |
-| In-memory ||||
+| In-memory (Windows) ||||
 | 02h | WORD | count | Usage count  |
 | 04h | WORD | ne_enttab | Entry Table file offset, relative to the beginning of the segmented EXE header |
 | On-disk ||||
 | 06h | WORD | ne_cbenttab | Number of bytes in the entry table |
-| In-memory ||||
+| In-memory (Windows) ||||
 | 06h | WORD | next | Selector to next module |
 | On-disk ||||
 | 08h | DWORD | ne_crc | 32-bit CRC of entire contents of file. These words are taken as 00 during the calculation |
-| In-memory ||||									   
+| In-memory (Windows) ||||									   
 | 08h | WORD | dgroup_entry | Near ptr to segment entry for DGROUP |
 | 0Ah | WORD | fileinfo | Near ptr to file info (OFSTRUCT) |
 | 0Ch | WORD | ne_flags | Flag word |
@@ -39,7 +39,7 @@ New Executable (NE) file format used by set of operating system including OS/2, 
 | 30h | WORD | ne_cmovent | Number of movable entries in the Entry Table |
 | 32h | WORD | ne_align | Logical sector alignment shift count, log(base 2) of the segment sector size (default 9) |
 | 34h | WORD | ne_cres | Number of resource entries |
-| 36h | BYTE | ne_exetyp | Executable type, used by loader. 02h = WINDOWS |
+| 36h | BYTE | ne_exetyp | Executable type, used by loader. \\ 00h=Unknown (any “new‑format” OS) \\ 01h=OS/2 \\ 02h=Windows \\ 03h=European MS‑DOS 4.x \\ 04h=Windows 386 |
 | 37h | BYTE | ne_flagsothers | Operating system flags |
 | 38h | WORD | ??? | offset to return thunks or start of gangload area |
 | 3Ah | WORD | ??? | offset to segment reference thunks or length of gangload area |
@@ -63,7 +63,7 @@ On-disk segment entry
 | 04h | WORD | ns_flags | Flag word |
 | 06h | WORD | ns_minalloc | Minimum allocation size of the segment, in bytes. Total size of the segment. Zero means 64K |
 
-In-memory segment entry
+In-memory (Windows) segment entry
 
 ^ Offset ^ Size ^ Name ^ Description ^
 | 00h | WORD | ns1_sector | Logical-sector offset (n byte) to the contents of the segment data, relative to the beginning of the file. Zero means no file data |
